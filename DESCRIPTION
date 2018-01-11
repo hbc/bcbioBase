@@ -16,10 +16,19 @@ Depends:
     R (>= 3.4.0),
     SummarizedExperiment (>= 1.6.5)
 Imports:
+    basejump (>= 0.1.11),
     BiocGenerics (>= 0.22.1),
+    dplyr (>= 0.7.4),
+    magrittr (>= 1.5),
     methods,
+    readr (>= 1.1.1),
+    rlang (>= 0.1.6),
     S4Vectors (>= 0.14.7),
+    scales,
     stats,
+    stringr (>= 1.2.0),
+    tibble (>= 1.4.1),
+    tidyr (>= 0.7.2),
     utils
 Suggests:
     BiocStyle,
@@ -29,6 +38,8 @@ Suggests:
     roxygen2,
     testthat,
     tidyverse
+Remotes:
+    steinbaugh/basejump
 biocViews:
     DataImport,
     DataRepresentation,
