@@ -7,11 +7,19 @@
 \alias{reexports}
 \alias{camel}
 \alias{reexports}
+\alias{checkGene2symbol}
+\alias{reexports}
+\alias{detectOrganism}
+\alias{reexports}
 \alias{fixNA}
 \alias{reexports}
 \alias{gene2symbol}
 \alias{reexports}
+\alias{plotHeatmap}
+\alias{reexports}
 \alias{readYAML}
+\alias{reexports}
+\alias{sanitizeAnnotable}
 \alias{reexports}
 \alias{snake}
 \alias{reexports}
@@ -29,7 +37,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{basejump}{\code{\link[basejump]{annotable}}, \code{\link[basejump]{camel}}, \code{\link[basejump]{fixNA}}, \code{\link[basejump]{gene2symbol}}, \code{\link[basejump]{readYAML}}, \code{\link[basejump]{snake}}}
+  \item{basejump}{\code{\link[basejump]{annotable}}, \code{\link[basejump]{camel}}, \code{\link[basejump]{checkGene2symbol}}, \code{\link[basejump]{detectOrganism}}, \code{\link[basejump]{fixNA}}, \code{\link[basejump]{gene2symbol}}, \code{\link[basejump]{plotHeatmap}}, \code{\link[basejump]{readYAML}}, \code{\link[basejump]{sanitizeAnnotable}}, \code{\link[basejump]{snake}}}
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}}
 
