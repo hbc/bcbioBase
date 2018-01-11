@@ -1,7 +1,7 @@
 Package: bcbioBase
 Title: Single-Cell RNA-Seq Utilities
 Description: Base functions and generics for bcbio R packages.
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: as.person(c(
     "Michael Steinbaugh <mike@steinbaugh.com> [aut, cre]"
     ))
