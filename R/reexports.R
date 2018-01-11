@@ -22,6 +22,10 @@ basejump::fixNA
 #' @export
 basejump::gene2symbol
 
+#' @importFrom basejump midnightTheme
+#' @export
+basejump::midnightTheme
+
 #' @importFrom basejump plotHeatmap
 #' @export
 basejump::plotHeatmap
