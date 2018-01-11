@@ -10,6 +10,10 @@ basejump::aggregateReplicates
 #' @export
 basejump::camel
 
+#' @importFrom basejump checkAnnotable
+#' @export
+basejump::checkAnnotable
+
 #' @importFrom basejump checkGene2symbol
 #' @export
 basejump::checkGene2symbol
