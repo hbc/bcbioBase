@@ -2,6 +2,10 @@
 #' @export
 basejump::annotable
 
+#' @importFrom basejump aggregateReplicates
+#' @export
+basejump::aggregateReplicates
+
 #' @importFrom basejump camel
 #' @export
 basejump::camel
@@ -14,6 +18,10 @@ basejump::checkGene2symbol
 #' @export
 basejump::detectOrganism
 
+#' @importFrom basejump dynamicPlotlist
+#' @export
+basejump::dynamicPlotlist
+
 #' @importFrom basejump fixNA
 #' @export
 basejump::fixNA
@@ -22,6 +30,18 @@ basejump::fixNA
 #' @export
 basejump::gene2symbol
 
+#' @importFrom basejump gene2symbolFromGTF
+#' @export
+basejump::gene2symbolFromGTF
+
+#' @importFrom basejump mdHeader
+#' @export
+basejump::mdHeader
+
+#' @importFrom basejump mdList
+#' @export
+basejump::mdList
+
 #' @importFrom basejump midnightTheme
 #' @export
 basejump::midnightTheme
@@ -29,6 +49,14 @@ basejump::midnightTheme
 #' @importFrom basejump plotHeatmap
 #' @export
 basejump::plotHeatmap
+
+#' @importFrom basejump plotQuantileHeatmap
+#' @export
+basejump::plotQuantileHeatmap
+
+#' @importFrom basejump readGTF
+#' @export
+basejump::readGTF
 
 #' @importFrom basejump readYAML
 #' @export
@@ -41,6 +69,14 @@ basejump::sanitizeAnnotable
 #' @importFrom basejump snake
 #' @export
 basejump::snake
+
+#' @importFrom basejump tx2gene
+#' @export
+basejump::tx2gene
+
+#' @importFrom basejump tx2geneFromGTF
+#' @export
+basejump::tx2geneFromGTF
 
 
 
