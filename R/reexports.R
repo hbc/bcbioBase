@@ -6,6 +6,10 @@ basejump::annotable
 #' @export
 basejump::aggregateReplicates
 
+#' @importFrom basejump assignAndSaveData
+#' @export
+basejump::assignAndSaveData
+
 #' @importFrom basejump camel
 #' @export
 basejump::camel
@@ -37,6 +41,14 @@ basejump::gene2symbol
 #' @importFrom basejump gene2symbolFromGTF
 #' @export
 basejump::gene2symbolFromGTF
+
+#' @importFrom basejump loadData
+#' @export
+basejump::loadData
+
+#' @importFrom basejump loadRemoteData
+#' @export
+basejump::loadRemoteData
 
 #' @importFrom basejump mdHeader
 #' @export
@@ -73,6 +85,10 @@ basejump::readYAML
 #' @importFrom basejump sanitizeAnnotable
 #' @export
 basejump::sanitizeAnnotable
+
+#' @importFrom basejump saveData
+#' @export
+basejump::saveData
 
 #' @importFrom basejump snake
 #' @export
