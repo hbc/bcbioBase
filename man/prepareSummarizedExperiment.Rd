@@ -92,7 +92,5 @@ prepareSummarizedExperiment(
 }
 
 Other bcbio Utilities: \code{\link{readDataVersions}},
-  \code{\link{readProgramVersions}},
-  \code{\link{sampleYAMLMetadata}},
-  \code{\link{sampleYAMLMetrics}}, \code{\link{sampleYAML}}
+  \code{\link{readProgramVersions}}
 }

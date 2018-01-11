@@ -32,14 +32,10 @@ url <- file.path(
     "http://basejump.seq.cloud",
     "bcbio",
     "project-summary.yaml")
-yaml <- readYAML(url)
+yaml <- basejump::readYAML(url)
 sampleYAML(yaml, "metadata")
 }
 \seealso{
-Other bcbio Utilities: \code{\link{prepareSummarizedExperiment}},
-  \code{\link{readDataVersions}},
-  \code{\link{readProgramVersions}},
-  \code{\link{sampleYAMLMetadata}},
+Other YAML Utilities: \code{\link{sampleYAMLMetadata}},
   \code{\link{sampleYAMLMetrics}}
 }
-\keyword{internal}

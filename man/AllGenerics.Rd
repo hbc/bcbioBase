@@ -57,4 +57,3 @@ tpm(object)
 \description{
 S4 Generics
 }
-\keyword{internal}

@@ -33,8 +33,6 @@ readProgramVersions(url)
 }
 \seealso{
 Other bcbio Utilities: \code{\link{prepareSummarizedExperiment}},
-  \code{\link{readDataVersions}},
-  \code{\link{sampleYAMLMetadata}},
-  \code{\link{sampleYAMLMetrics}}, \code{\link{sampleYAML}}
+  \code{\link{readDataVersions}}
 }
 \keyword{internal}
