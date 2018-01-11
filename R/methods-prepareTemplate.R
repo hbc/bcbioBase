@@ -43,7 +43,7 @@ NULL
     overwrite = FALSE,
     quiet = FALSE) {
     if (missing(sourceDir)) {
-        sourceDir <- system.file("rmarkdown/shared", package = "basejump")
+        sourceDir <- system.file("rmarkdown/shared", package = "bcbioBase")
     }
     if (isTRUE(overwrite) &
         !isTRUE(quiet)) {
