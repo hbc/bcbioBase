@@ -10,7 +10,7 @@
 #' @family Infrastructure Utilities
 #'
 #' @inheritParams AllGenerics
-#' @inheritParams saveData
+#' @inheritParams readSampleMetadataFile
 #'
 #' @param object *Optional*. File name. If `NULL` (default), download the
 #'   default dependency files for a new experiment.

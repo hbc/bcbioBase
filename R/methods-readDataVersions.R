@@ -3,9 +3,8 @@
 #' @rdname readDataVersions
 #' @name readDataVersions
 #' @family bcbio Utilities
-#' @keywords internal
 #'
-#' @inheritParams saveData
+#' @inheritParams readSampleMetadataFile
 #'
 #' @param object Project directory path (character vector).
 #'
@@ -23,6 +22,7 @@ NULL
 
 # Methods ======================================================================
 #' @rdname readDataVersions
+#' @importFrom basejump localOrRemoteFile
 #' @importFrom readr read_csv
 #' @export
 setMethod(
@@ -31,7 +31,7 @@ setMethod(
     function(
         object,
         quiet = FALSE) {
-        file <- .localOrRemoteFile(object, quiet = quiet)
+        file <- localOrRemoteFile(object, quiet = quiet)
         if (is.null(file)) {
             return(invisible())
         }

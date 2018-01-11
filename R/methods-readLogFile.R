@@ -5,7 +5,7 @@
 #' @family bcbio Project Directory File Utilities
 #' @keywords internal
 #'
-#' @inheritParams saveData
+#' @inheritParams readSampleMetadataFile
 #'
 #' @param object Log file.
 #'
@@ -23,6 +23,7 @@ NULL
 
 # Methods ======================================================================
 #' @rdname readLogFile
+#' @importFrom basejump localOrRemoteFile
 #' @importFrom readr read_lines
 #' @export
 setMethod(
@@ -31,7 +32,7 @@ setMethod(
     function(
         object,
         quiet = FALSE) {
-        file <- .localOrRemoteFile(object, quiet = quiet)
+        file <- localOrRemoteFile(object, quiet = quiet)
         if (is.null(file)) {
             return(invisible())
         }

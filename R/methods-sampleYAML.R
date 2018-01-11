@@ -26,6 +26,7 @@ NULL
 
 
 # Constructors =================================================================
+#' @importFrom basejump removeNA
 #' @importFrom dplyr arrange bind_rows
 #' @importFrom magrittr set_rownames
 .sampleYAML <- function(yaml, keys) {

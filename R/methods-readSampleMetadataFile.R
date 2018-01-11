@@ -5,11 +5,11 @@
 #' @family Data Import and Project Utilities
 #'
 #' @inheritParams AllGenerics
-#' @inheritParams saveData
 #'
 #' @param object Metadata file. Supports CSV and XLSX file formats.
 #' @param lanes *Optional*. Number of lanes used to split the samples into
 #'   technical replicates (`_LXXX`) suffix.
+#' @param quiet If `TRUE`, suppress any status messages and/or progress bars.
 #'
 #' @return [data.frame].
 #'
@@ -32,6 +32,7 @@ NULL
 
 
 # Constructors =================================================================
+#' @importFrom basejump camel readFileByExtension removeNA revcomp
 #' @importFrom dplyr group_by left_join mutate mutate_all mutate_if
 #'   rename ungroup
 #' @importFrom rlang .data sym !!
