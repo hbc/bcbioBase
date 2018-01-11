@@ -2,7 +2,6 @@ context("bcbioGenerics")
 
 test_that("generic definition", {
     generics <- list(
-        aggregateReplicates,
         bcbio,
         `bcbio<-`,
         flatFiles,
@@ -19,7 +18,6 @@ test_that("no methods defined", {
     error <- "unable to find an inherited method"
 
     # Missing signature
-    expect_error(aggregateReplicates(), error)
     expect_error(bcbio(), error)
     expect_error(flatFiles(), error)
     expect_error(interestingGroups(), error)
