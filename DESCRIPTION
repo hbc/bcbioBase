@@ -13,8 +13,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: TRUE
 Depends:
-    R (>= 3.4.0),
-    SummarizedExperiment (>= 1.6.5)
+    R (>= 3.4.0)
 Imports:
     basejump (>= 0.1.11),
     BiocGenerics (>= 0.22.1),
@@ -27,6 +26,7 @@ Imports:
     scales,
     stats,
     stringr (>= 1.2.0),
+    SummarizedExperiment (>= 1.6.5),
     tibble (>= 1.4.1),
     tidyr (>= 0.7.2),
     utils
