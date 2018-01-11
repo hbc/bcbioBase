@@ -240,18 +240,3 @@ test_that("Missing rownames", {
             colData = coldatanorownames),
         "colData missing rownames")
 })
-
-test_that("Deprecated functions", {
-    expect_warning(
-        packageSE(
-            assays = list(assay = mat),
-            colData = coldata,
-            rowData = rowdata),
-        "Use 'prepareSummarizedExperiment' instead.")
-    expect_warning(
-        prepareSE(
-            assays = list(assay = mat),
-            colData = coldata,
-            rowData = rowdata),
-        "Use 'prepareSummarizedExperiment' instead.")
-})
