@@ -3,6 +3,8 @@
 #' @rdname sampleYAML
 #' @name sampleYAML
 #' @family YAML Utilities
+#' 
+#' @inheritParams AllGenerics
 #'
 #' @param yaml Project summary YAML list.
 #' @param keys Nested operator keys, supplied as a character vector.

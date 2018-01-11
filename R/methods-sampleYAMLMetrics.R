@@ -5,6 +5,8 @@
 #' @family YAML Utilities
 #'
 #' @inherit sampleYAML
+#' 
+#' @inheritParams AllGenerics
 #'
 #' @examples
 #' url <- file.path(

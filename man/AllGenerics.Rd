@@ -49,10 +49,6 @@ tpm(object)
 \item{...}{\emph{Additional arguments (for the S4 generic definition).}}
 
 \item{value}{Value to assign.}
-
-\item{x}{Primary object.}
-
-\item{y}{Secondary object.}
 }
 \description{
 S4 Generics

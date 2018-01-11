@@ -15,6 +15,8 @@ sampleYAML(yaml, keys, ...)
 \item{yaml}{Project summary YAML list.}
 
 \item{keys}{Nested operator keys, supplied as a character vector.}
+
+\item{...}{\emph{Additional arguments (for the S4 generic definition).}}
 }
 \value{
 \link{data.frame}.

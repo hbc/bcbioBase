@@ -13,6 +13,8 @@ sampleYAMLMetrics(yaml, ...)
 }
 \arguments{
 \item{yaml}{Project summary YAML list.}
+
+\item{...}{\emph{Additional arguments (for the S4 generic definition).}}
 }
 \value{
 \link{data.frame}.
