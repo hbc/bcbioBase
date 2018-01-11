@@ -1,0 +1,6 @@
+template:
+  params:
+    bootswatch: readable
+authors:
+  Michael Steinbaugh:
+    href: http://steinbaugh.com
