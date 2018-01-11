@@ -3,7 +3,8 @@ Title: Single-Cell RNA-Seq Utilities
 Description: Base functions and generics for bcbio R packages.
 Version: 0.0.2
 Authors@R: as.person(c(
-    "Michael Steinbaugh <mike@steinbaugh.com> [aut, cre]"
+    "Michael Steinbaugh <mike@steinbaugh.com> [aut, cre]",
+    "Harvard Chan Bioinformatics Core <bioinformatics@hsph.harvard.edu> [cph, fnd]"
     ))
 URL:
     http://bioinformatics.sph.harvard.edu/bcbioBase,
