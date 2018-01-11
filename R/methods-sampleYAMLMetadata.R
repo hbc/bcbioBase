@@ -2,8 +2,7 @@
 #'
 #' @rdname sampleYAMLMetadata
 #' @name sampleYAMLMetadata
-#' @family bcbio Utilities
-#' @keywords internal
+#' @family YAML Utilities
 #'
 #' @inherit sampleYAML
 #'
@@ -12,7 +11,7 @@
 #'     "http://basejump.seq.cloud",
 #'     "bcbio",
 #'     "project-summary.yaml")
-#' yaml <- readYAML(url)
+#' yaml <- basejump::readYAML(url)
 #' sampleYAMLMetadata(yaml)
 NULL
 

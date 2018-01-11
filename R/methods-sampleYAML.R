@@ -2,8 +2,7 @@
 #'
 #' @rdname sampleYAML
 #' @name sampleYAML
-#' @family bcbio Utilities
-#' @keywords internal
+#' @family YAML Utilities
 #'
 #' @param yaml Project summary YAML list.
 #' @param keys Nested operator keys, supplied as a character vector.
@@ -13,13 +12,13 @@
 #'   output the same metrics into the YAML.
 #'
 #' @return [data.frame].
-#'
+#' 
 #' @examples
 #' url <- file.path(
 #'     "http://basejump.seq.cloud",
 #'     "bcbio",
 #'     "project-summary.yaml")
-#' yaml <- readYAML(url)
+#' yaml <- basejump::readYAML(url)
 #' sampleYAML(yaml, "metadata")
 NULL
 
