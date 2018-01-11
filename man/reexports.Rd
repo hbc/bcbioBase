@@ -3,7 +3,17 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
+\alias{annotable}
+\alias{reexports}
+\alias{camel}
+\alias{reexports}
+\alias{fixNA}
+\alias{reexports}
+\alias{gene2symbol}
+\alias{reexports}
 \alias{readYAML}
+\alias{reexports}
+\alias{snake}
 \alias{reexports}
 \alias{\%>\%}
 \alias{reexports}
@@ -19,7 +29,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{basejump}{\code{\link[basejump]{readYAML}}}
+  \item{basejump}{\code{\link[basejump]{annotable}}, \code{\link[basejump]{camel}}, \code{\link[basejump]{fixNA}}, \code{\link[basejump]{gene2symbol}}, \code{\link[basejump]{readYAML}}, \code{\link[basejump]{snake}}}
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}}
 
