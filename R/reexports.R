@@ -58,6 +58,10 @@ basejump::plotHeatmap
 #' @export
 basejump::plotQuantileHeatmap
 
+#' @importFrom basejump readFileByExtension
+#' @export
+basejump::readFileByExtension
+
 #' @importFrom basejump readGTF
 #' @export
 basejump::readGTF
