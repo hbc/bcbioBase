@@ -2,7 +2,6 @@
 #'
 #' @rdname AllGenerics
 #' @name AllGenerics
-#' @keywords internal
 #'
 #' @param object Object.
 #' @param x Primary object.
