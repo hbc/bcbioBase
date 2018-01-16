@@ -149,7 +149,10 @@ NULL
     # (`sequence`). This is the current behavior for the inDrop pipeline.
     # Let's check for an ACGT sequence and use the revcomp if there's a
     # match. Otherwise just return the `sampleName` as the `sampleID`.
-    if (isTRUE(multiplexed)) {
+    if (
+        isTRUE(multiplexed) &
+        is.character(metadata[["sequence"]])
+    ) {
         detectSequence <-
             grepl(x = metadata[["sequence"]],
                   pattern = "^[ACGT]{6,}") %>%
