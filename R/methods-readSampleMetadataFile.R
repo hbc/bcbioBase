@@ -79,14 +79,14 @@ NULL
     # Determine whether the samples are multiplexed, based on the presence
     # of duplicate values in the `description` column
     if (any(duplicated(metadata[["fileName"]])) |
-        "sequence" %in% colnames(metadata)) {
+        "index" %in% colnames(metadata)) {
         multiplexed <- TRUE
     } else {
         multiplexed <- FALSE
     }
 
     if (isTRUE(multiplexed)) {
-        requiredCols <- c("fileName", "description", "sampleName", "sequence")
+        requiredCols <- c("fileName", "description", "sampleName", "index")
         if (!all(requiredCols %in% colnames(metadata))) {
             stop(paste(
                 "Required columns:", toString(requiredCols)
@@ -150,11 +150,11 @@ NULL
     # Let's check for an ACGT sequence and use the revcomp if there's a
     # match. Otherwise just return the `sampleName` as the `sampleID`.
     if (isTRUE(multiplexed)) {
-        detectIndex <-
+        detectSequence <-
             grepl(x = metadata[["sequence"]],
                   pattern = "^[ACGT]{6,}") %>%
             all()
-        if (isTRUE(detectIndex)) {
+        if (isTRUE(detectSequence)) {
             metadata[["revcomp"]] <-
                 vapply(metadata[["sequence"]], revcomp, character(1L))
             # Match the sample directories exactly here, using the hyphen.
