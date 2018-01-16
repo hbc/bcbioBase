@@ -60,6 +60,9 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">News</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -122,9 +125,9 @@
     <span class='st'>"project-summary.yaml"</span>)
 <span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/basejump/topics/readYAML'>readYAML</a></span>(<span class='no'>url</span>)</div><div class='output co'>#&gt; <span class='message'>Reading project-summary.yaml</span></div><div class='input'><span class='fu'>sampleYAMLMetrics</span>(<span class='no'>yaml</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; Observations: 4
 #&gt; Variables: 20
-#&gt; $ sampleID                      &lt;fctr&gt; group1_1, group1_2, group2_1, group2_2
-#&gt; $ sampleName                    &lt;fctr&gt; group1_1, group1_2, group2_1, group2_2
-#&gt; $ description                   &lt;fctr&gt; group1_1, group1_2, group2_1, group2_2
+#&gt; $ sampleID                      &lt;fct&gt; group1_1, group1_2, group2_1, group2_2
+#&gt; $ sampleName                    &lt;fct&gt; group1_1, group1_2, group2_1, group2_2
+#&gt; $ description                   &lt;fct&gt; group1_1, group1_2, group2_1, group2_2
 #&gt; $ xGC                           &lt;dbl&gt; 48, 48, 47, 48
 #&gt; $ x53Bias                       &lt;dbl&gt; 1.01, 1.04, 1.00, 0.98
 #&gt; $ averageInsertSize             &lt;dbl&gt; 0, 0, 0, 0
@@ -135,9 +138,9 @@
 #&gt; $ intronicRate                  &lt;dbl&gt; 0.0747, 0.0581, 0.0707, 0.0652
 #&gt; $ mappedPairedReads             &lt;dbl&gt; 0, 0, 0, 0
 #&gt; $ mappedReads                   &lt;dbl&gt; 22062337, 25852621, 25172084, 25100941
-#&gt; $ name                          &lt;fctr&gt; ctrl_f_1, ctrl_f_4, ko_f_1, ko_f_6
-#&gt; $ qualityFormat                 &lt;fctr&gt; standard, standard, standard, standard
-#&gt; $ sequenceLength                &lt;fctr&gt; 25-75, 25-75, 25-75, 25-75
+#&gt; $ name                          &lt;fct&gt; ctrl_f_1, ctrl_f_4, ko_f_1, ko_f_6
+#&gt; $ qualityFormat                 &lt;fct&gt; standard, standard, standard, standard
+#&gt; $ sequenceLength                &lt;fct&gt; 25-75, 25-75, 25-75, 25-75
 #&gt; $ sequencesFlaggedAsPoorQuality &lt;dbl&gt; 0, 0, 0, 0
 #&gt; $ totalReads                    &lt;dbl&gt; 22339941, 26168288, 25490090, 25399483
 #&gt; $ rrna                          &lt;dbl&gt; 42218.64, 48275.49, 38893.78, 40831.69
@@ -160,7 +163,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>.</p>
+  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, Harvard Chan Bioinformatics Core.</p>
 </div>
 
 <div class="pkgdown">
