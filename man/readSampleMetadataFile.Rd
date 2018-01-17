@@ -32,14 +32,14 @@ Read Sample Metadata File
 \examples{
 # Demultiplexed
 demultiplexed <- file.path(
-    "http://basejump.seq.cloud",
+    "http://bcbiobase.seq.cloud",
     "sample_metadata",
     "demultiplexed.xlsx")
 readSampleMetadataFile(demultiplexed)
 
 # Multiplexed (e.g. inDrop single-cell RNA-seq)
 multiplexed <- file.path(
-    "http://basejump.seq.cloud",
+    "http://bcbiobase.seq.cloud",
     "sample_metadata",
     "multiplexed.xlsx")
 readSampleMetadataFile(multiplexed)

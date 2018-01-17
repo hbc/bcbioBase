@@ -2,7 +2,7 @@ context("sampleYAML")
 
 yaml <- readYAML(
     file.path(
-        "http://basejump.seq.cloud",
+        "http://bcbiobase.seq.cloud",
         "bcbio",
         "project-summary.yaml"),
     quiet = TRUE)
@@ -91,7 +91,7 @@ test_that("sampleYAMLMetrics", {
     # Check for proper handling of metrics with mismatched number of values
     yaml2 <- readYAML(
         file.path(
-            "http://basejump.seq.cloud",
+            "http://bcbiobase.seq.cloud",
             "bcbio",
             "project-summary-metrics-mismatch.yaml"),
         quiet = TRUE)

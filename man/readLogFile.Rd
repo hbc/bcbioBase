@@ -26,7 +26,7 @@ Read Log File
 }
 \examples{
 url <- file.path(
-    "http://basejump.seq.cloud",
+    "http://bcbiobase.seq.cloud",
     "bcbio",
     "bcbio-nextgen.log")
 readLogFile(url) \%>\% head()
