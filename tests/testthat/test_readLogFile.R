@@ -2,7 +2,7 @@ context("readLogFile")
 
 test_that("readLogFile", {
     log <- readLogFile(
-        file.path("http://basejump.seq.cloud",
+        file.path("http://bcbiobase.seq.cloud",
                   "bcbio",
                   "bcbio-nextgen.log"),
         quiet = TRUE)

@@ -2,7 +2,7 @@ context("readSampleMetadataFile")
 
 test_that("Demultiplexed FASTQ", {
     file <- file.path(
-        "http://basejump.seq.cloud",
+        "http://bcbiobase.seq.cloud",
         "sample_metadata",
         "demultiplexed.xlsx"
     )
@@ -64,7 +64,7 @@ test_that("Demultiplexed FASTQ", {
     expect_error(
         readSampleMetadataFile(
             file.path(
-                "http://basejump.seq.cloud",
+                "http://bcbiobase.seq.cloud",
                 "sample_metadata",
                 "demultiplexed_with_sampleName.csv"
             ),
@@ -78,7 +78,7 @@ test_that("Demultiplexed FASTQ", {
     expect_error(
         readSampleMetadataFile(
             file.path(
-                "http://basejump.seq.cloud",
+                "http://bcbiobase.seq.cloud",
                 "sample_metadata",
                 "demultiplexed_missing_cols.csv"
             ),
@@ -90,7 +90,7 @@ test_that("Demultiplexed FASTQ", {
     # Duplicated description
     expect_error(
         readSampleMetadataFile(
-            file.path("http://basejump.seq.cloud",
+            file.path("http://bcbiobase.seq.cloud",
                       "sample_metadata",
                       "demultiplexed_duplicated_description.csv"
             ),
@@ -102,7 +102,7 @@ test_that("Demultiplexed FASTQ", {
 
 test_that("Multiplexed FASTQ", {
     file <- file.path(
-        "http://basejump.seq.cloud",
+        "http://bcbiobase.seq.cloud",
         "sample_metadata",
         "multiplexed.xlsx"
     )
@@ -157,19 +157,19 @@ test_that("Multiplexed FASTQ", {
     expect_error(
         readSampleMetadataFile(
             file.path(
-                "http://basejump.seq.cloud",
+                "http://bcbiobase.seq.cloud",
                 "sample_metadata",
                 "multiplexed_missing_cols.csv"
             ),
             quiet = TRUE
         ),
-        "Required columns: fileName, description, sampleName, sequence"
+        "Required columns: fileName, description, sampleName, index"
     )
 
     # Duplicated sampleName
     expect_error(
         readSampleMetadataFile(
-            file.path("http://basejump.seq.cloud",
+            file.path("http://bcbiobase.seq.cloud",
                       "sample_metadata",
                       "multiplexed_duplicated_sampleName.csv"
             ),
@@ -181,7 +181,7 @@ test_that("Multiplexed FASTQ", {
 
 test_that("Legacy bcbio samplename column", {
     file <- file.path(
-        "http://basejump.seq.cloud",
+        "http://bcbiobase.seq.cloud",
         "sample_metadata",
         "bcbio_legacy_samplename.csv"
     )

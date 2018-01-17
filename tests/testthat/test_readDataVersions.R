@@ -2,7 +2,7 @@ context("readDataVersions")
 
 test_that("readDataVersions", {
     versions <- readDataVersions(
-        file.path("http://basejump.seq.cloud",
+        file.path("http://bcbiobase.seq.cloud",
                   "bcbio",
                   "data_versions.csv"),
         quiet = TRUE)

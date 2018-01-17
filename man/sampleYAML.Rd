@@ -31,7 +31,7 @@ output the same metrics into the YAML.
 }
 \examples{
 url <- file.path(
-    "http://basejump.seq.cloud",
+    "http://bcbiobase.seq.cloud",
     "bcbio",
     "project-summary.yaml")
 yaml <- basejump::readYAML(url)

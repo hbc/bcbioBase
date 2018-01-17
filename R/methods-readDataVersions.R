@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' url <- file.path(
-#'     "http://basejump.seq.cloud",
+#'     "http://bcbiobase.seq.cloud",
 #'     "bcbio",
 #'     "data_versions.csv")
 #' readDataVersions(url)
