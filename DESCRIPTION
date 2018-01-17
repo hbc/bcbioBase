@@ -2,10 +2,12 @@ Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions and generics for bcbio R packages.
 Version: 0.0.2
-Authors@R: as.person(c(
-    "Michael Steinbaugh <mike@steinbaugh.com> [aut, cre]",
-    "Harvard Chan Bioinformatics Core <bioinformatics@hsph.harvard.edu> [cph, fnd]"
-    ))
+Authors@R: c(
+    person(given = "Michael",
+           family = "Steinbaugh",
+           email ="mike@steinbaugh.com",
+           role = c("aut", "cre"))
+    )
 URL:
     http://bioinformatics.sph.harvard.edu/bcbioBase,
     https://github.com/hbc/bcbioBase
