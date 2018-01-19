@@ -46,6 +46,10 @@ basejump::gene2symbolFromGTF
 #' @export
 basejump::loadData
 
+#' @importFrom basejump loadDataAsName
+#' @export
+basejump::loadDataAsName
+
 #' @importFrom basejump loadRemoteData
 #' @export
 basejump::loadRemoteData
