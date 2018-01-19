@@ -32,7 +32,8 @@ NULL
 
 
 # Constructors =================================================================
-#' @importFrom basejump camel readFileByExtension removeNA revcomp
+#' @importFrom basejump camel readFileByExtension removeNA
+#' @importFrom Biostrings reverseComplement
 #' @importFrom dplyr group_by left_join mutate mutate_all mutate_if
 #'   rename ungroup
 #' @importFrom rlang .data sym !!
@@ -158,8 +159,17 @@ NULL
                   pattern = "^[ACGT]{6,}") %>%
             all()
         if (isTRUE(detectSequence)) {
-            metadata[["revcomp"]] <-
-                vapply(metadata[["sequence"]], revcomp, character(1L))
+            metadata[["revcomp"]] <- vapply(
+                X = metadata[["sequence"]],
+                FUN = function(x) {
+                    x %>%
+                        as("character") %>%
+                        as("DNAStringSet") %>%
+                        reverseComplement() %>%
+                        as("character")
+                },
+                FUN.VALUE = character(1L)
+            )
             # Match the sample directories exactly here, using the hyphen.
             # We'll sanitize into valid names using `make.names()` in
             # the final return chain.
