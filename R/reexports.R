@@ -106,6 +106,10 @@ basejump::tx2gene
 #' @export
 basejump::tx2geneFromGTF
 
+#' @importFrom basejump writeCounts
+#' @export
+basejump::writeCounts
+
 
 
 #' @importFrom magrittr %>%
