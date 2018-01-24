@@ -118,6 +118,20 @@ magrittr::`%>%`
 
 
 
+#' @importFrom rlang abort
+#' @export
+rlang::abort
+
+#' @importFrom rlang inform
+#' @export
+rlang::inform
+
+#' @importFrom rlang warn
+#' @export
+rlang::warn
+
+
+
 #' @importFrom S4Vectors DataFrame
 #' @export
 S4Vectors::DataFrame
