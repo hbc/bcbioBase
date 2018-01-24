@@ -14,7 +14,7 @@
     metadata <- as.data.frame(metadata)
     # `description` is required
     if (!"description" %in% colnames(metadata)) {
-        stop("'description' column is required", .call = FALSE)
+        abort("`description` column is required")
     }
     # Set `sampleName`, if necessary
     if (!"sampleName" %in% colnames(metadata)) {

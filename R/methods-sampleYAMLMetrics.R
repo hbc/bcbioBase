@@ -30,7 +30,7 @@ NULL
     # STAR featureCounts output with MultiQC. Allow NULL return to handle
     # this pipeline output.
     if (is.null(metrics)) {
-        warning("No sample metrics were calculated", call. = FALSE)
+        warn("No sample metrics were calculated")
         return(NULL)
     }
     # Fix numerics set as characters

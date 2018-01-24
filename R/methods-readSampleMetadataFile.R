@@ -47,10 +47,10 @@ NULL
 
     # Check for manually defined `sampleID`. Warn and remove if present.
     if ("sampleID" %in% colnames(metadata)) {
-        warning(paste(
-            "'sampleID' should not be manually defined",
+        warn(paste(
+            "`sampleID` should not be manually defined",
             "in the sample metadata file"
-        ), call. = FALSE)
+        ))
         metadata[["sampleID"]] <- NULL
     }
 
@@ -58,23 +58,23 @@ NULL
     # consistency in examples or the internal handlng of file and sample
     # names in a future update.
     if ("samplename" %in% colnames(metadata)) {
-        warning(paste(
-            "'samplename' is used in some bcbio examples for FASTQ file names,",
-            "and 'description' for sample names. Here we are using 'fileName'",
-            "for FASTQ file names (e.g. 'control_replicate_1.fastq.gz'),",
-            "'description' for multiplexed per file sample names",
-            "(e.g. 'control replicate 1', and 'sampleName' for multiplexed",
+        warn(paste(
+            "`samplename` is used in some bcbio examples for FASTQ file names,",
+            "and `description` for sample names. Here we are using `fileName`",
+            "for FASTQ file names (e.g. `control_replicate_1.fastq.gz`),",
+            "`description` for multiplexed per file sample names",
+            "(e.g. `control replicate 1`, and `sampleName` for multiplexed",
             "sample names (i.e. inDrop barcoded samples)."
-        ), call. = FALSE)
+        ))
         metadata <- rename(metadata, fileName = .data[["samplename"]])
     }
 
     # Check for basic required columns
     requiredCols <- c("fileName", "description")
     if (!all(requiredCols %in% colnames(metadata))) {
-        stop(paste(
+        abort(paste(
             "Required columns:", toString(requiredCols)
-        ), call. = FALSE)
+        ))
     }
 
     # Determine whether the samples are multiplexed, based on the presence
@@ -89,27 +89,25 @@ NULL
     if (isTRUE(multiplexed)) {
         requiredCols <- c("fileName", "description", "sampleName", "index")
         if (!all(requiredCols %in% colnames(metadata))) {
-            stop(paste(
+            abort(paste(
                 "Required columns:", toString(requiredCols)
-            ), call. = FALSE)
+            ))
         }
         # Ensure `sampleName` is unique
         if (any(duplicated(metadata[["sampleName"]]))) {
-            stop("'sampleName' column must be unique for multiplexed samples",
-                 call. = FALSE)
+            abort("`sampleName` column must be unique for multiplexed samples")
         }
     } else {
         # Ensure `description` is unique
         if (any(duplicated(metadata[["description"]]))) {
-            stop("'description' column must be unique for demultiplexed files",
-                 call. = FALSE)
+            abort("`description` column must be unique for demultiplexed files")
         }
         # Check for user-defined `description` and `sampleName`
         if (all(c("description", "sampleName") %in% colnames(metadata))) {
-            stop(paste(
-                "Specify only 'description' and omit 'sampleName' for",
+            abort(paste(
+                "Specify only `description` and omit `sampleName` for",
                 "demultiplexed FASTQ file metadata"
-            ), call. = FALSE)
+            ))
         }
         metadata[["sampleName"]] <- metadata[["description"]]
     }
