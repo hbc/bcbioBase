@@ -5,7 +5,7 @@
 #' @family YAML Utilities
 #'
 #' @inherit sampleYAML
-#' 
+#'
 #' @inheritParams AllGenerics
 #'
 #' @examples
