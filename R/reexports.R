@@ -106,11 +106,29 @@ basejump::tx2gene
 #' @export
 basejump::tx2geneFromGTF
 
+#' @importFrom basejump writeCounts
+#' @export
+basejump::writeCounts
+
 
 
 #' @importFrom magrittr %>%
 #' @export
 magrittr::`%>%`
+
+
+
+#' @importFrom rlang abort
+#' @export
+rlang::abort
+
+#' @importFrom rlang inform
+#' @export
+rlang::inform
+
+#' @importFrom rlang warn
+#' @export
+rlang::warn
 
 
 

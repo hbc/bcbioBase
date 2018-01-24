@@ -70,7 +70,7 @@ test_that("Demultiplexed FASTQ", {
             ),
             quiet = TRUE
         ),
-        paste("Specify only 'description' and omit 'sampleName'",
+        paste("Specify only `description` and omit `sampleName`",
               "for demultiplexed FASTQ file metadata")
     )
 
@@ -96,7 +96,7 @@ test_that("Demultiplexed FASTQ", {
             ),
             quiet = TRUE
         ),
-        "'description' column must be unique for demultiplexed files"
+        "`description` column must be unique for demultiplexed files"
     )
 })
 
@@ -175,7 +175,7 @@ test_that("Multiplexed FASTQ", {
             ),
             quiet = TRUE
         ),
-        "'sampleName' column must be unique for multiplexed samples"
+        "`sampleName` column must be unique for multiplexed samples"
     )
 })
 
@@ -209,6 +209,6 @@ test_that("Legacy bcbio samplename column", {
     )
     expect_warning(
         readSampleMetadataFile(file, quiet = TRUE),
-        "'samplename' is used in some bcbio examples for FASTQ file names"
+        "`samplename` is used in some bcbio examples for FASTQ file names"
     )
 })

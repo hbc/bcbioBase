@@ -3,7 +3,7 @@
 #' @rdname sampleYAML
 #' @name sampleYAML
 #' @family YAML Utilities
-#' 
+#'
 #' @inheritParams AllGenerics
 #'
 #' @param yaml Project summary YAML list.
@@ -14,7 +14,7 @@
 #'   output the same metrics into the YAML.
 #'
 #' @return [data.frame].
-#' 
+#'
 #' @examples
 #' url <- file.path(
 #'     "http://bcbiobase.seq.cloud",
@@ -33,7 +33,7 @@ NULL
 .sampleYAML <- function(yaml, keys) {
     samples <- yaml[["samples"]]
     if (!length(samples)) {
-        stop("No sample information in YAML", call. = FALSE)
+        abort("No sample information in YAML")
     }
     if (!keys[[1L]] %in% names(samples[[1L]])) {
         return(NULL)

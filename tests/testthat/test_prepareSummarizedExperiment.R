@@ -90,7 +90,7 @@ test_that("colData missing", {
     )
 })
 
-test_that("Ensure 'assays()' requires a list", {
+test_that("Ensure `assays()` requires a list", {
     expect_error(
         prepareSummarizedExperiment(
             assays = mat,
@@ -109,7 +109,7 @@ test_that("Enforce strict names", {
             assays = list(assay = matbadrows),
             rowData = rowdata,
             colData = coldata),
-        "Rownames are not valid")
+        "Rownames are invalid")
     matbadcols <- mat
     colnames(matbadcols) <- paste0(colnames(matbadcols), "-XXX")
     expect_error(
@@ -117,7 +117,7 @@ test_that("Enforce strict names", {
             assays = list(assay = matbadcols),
             rowData = rowdata,
             colData = coldata),
-        "Colnames are not valid")
+        "Colnames are invalid")
 })
 
 test_that("Duplicate names", {
@@ -132,7 +132,7 @@ test_that("Duplicate names", {
             assays = list(assay = matduperows),
             rowData = rowdata,
             colData = coldata),
-        "Non-unique rownames")
+        "non-unique rownames")
     matdupecols <- mat
     colnames(matdupecols) <- c(
         "sample_1",
@@ -144,29 +144,29 @@ test_that("Duplicate names", {
             assays = list(assay = matdupecols),
             rowData = rowdata,
             colData = coldata),
-        "Non-unique colnames")
+        "non-unique colnames")
 })
 
-test_that("'dim' pass-in failure", {
+test_that("`dim()` pass-in failure", {
     # Bad pass-in of objects not supporting `dim()`
     expect_error(
         prepareSummarizedExperiment(
             assays = list(c(xxx = "yyy")),
             rowData = rowdata,
             colData = coldata),
-        "Assay object must support 'dim\\(\\)'")
+        "`assay\\(\\)` object must support `dim\\(\\)`")
     expect_error(
         prepareSummarizedExperiment(
             assays = list(assay = mat),
             rowData = rowdata,
             colData = c(xxx = "yyy")),
-        "colData must support 'dim\\(\\)'")
+        "colData must support `dim\\(\\)`")
     expect_error(
         prepareSummarizedExperiment(
             assays = list(assay = mat),
             rowData = c(xxx = "yyy"),
             colData = coldata),
-        "rowData must support 'dim\\(\\)'")
+        "rowData must support `dim\\(\\)`")
 })
 
 test_that("Invalid metadata", {
@@ -176,7 +176,7 @@ test_that("Invalid metadata", {
             rowData = rowdata,
             colData = coldata,
             metadata = Sys.Date()),
-        "Metadata must be 'list' class object")
+        "Metadata must be a list")
 })
 
 test_that("dimension mismatch", {
@@ -214,7 +214,7 @@ test_that("Missing rownames", {
             assays = list(assay = matnorownames),
             rowData = rowdata,
             colData = coldata),
-        "Assay missing rownames")
+        "`assay\\(\\)` object missing rownames")
     matnocolnames <- mat
     colnames(matnocolnames) <- NULL
     expect_error(
@@ -222,7 +222,7 @@ test_that("Missing rownames", {
             assays = list(assay = matnocolnames),
             rowData = rowdata,
             colData = coldata),
-        "Assay missing colnames")
+        "`assay\\(\\)` object missing colnames")
     rowdatanorownames <- rowdata
     rownames(rowdatanorownames) <- NULL
     expect_error(

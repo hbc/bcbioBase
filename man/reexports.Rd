@@ -57,7 +57,15 @@
 \alias{reexports}
 \alias{tx2geneFromGTF}
 \alias{reexports}
+\alias{writeCounts}
+\alias{reexports}
 \alias{\%>\%}
+\alias{reexports}
+\alias{abort}
+\alias{reexports}
+\alias{inform}
+\alias{reexports}
+\alias{warn}
 \alias{reexports}
 \alias{DataFrame}
 \alias{reexports}
@@ -71,9 +79,11 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{basejump}{\code{\link[basejump]{annotable}}, \code{\link[basejump]{aggregateReplicates}}, \code{\link[basejump]{assignAndSaveData}}, \code{\link[basejump]{camel}}, \code{\link[basejump]{checkAnnotable}}, \code{\link[basejump]{checkGene2symbol}}, \code{\link[basejump]{detectOrganism}}, \code{\link[basejump]{dynamicPlotlist}}, \code{\link[basejump]{fixNA}}, \code{\link[basejump]{gene2symbol}}, \code{\link[basejump]{gene2symbolFromGTF}}, \code{\link[basejump]{loadData}}, \code{\link[basejump]{loadDataAsName}}, \code{\link[basejump]{loadRemoteData}}, \code{\link[basejump]{mdHeader}}, \code{\link[basejump]{mdList}}, \code{\link[basejump]{midnightTheme}}, \code{\link[basejump]{plotHeatmap}}, \code{\link[basejump]{plotQuantileHeatmap}}, \code{\link[basejump]{readFileByExtension}}, \code{\link[basejump]{readGTF}}, \code{\link[basejump]{readYAML}}, \code{\link[basejump]{sanitizeAnnotable}}, \code{\link[basejump]{saveData}}, \code{\link[basejump]{snake}}, \code{\link[basejump]{tx2gene}}, \code{\link[basejump]{tx2geneFromGTF}}}
+  \item{basejump}{\code{\link[basejump]{annotable}}, \code{\link[basejump]{aggregateReplicates}}, \code{\link[basejump]{assignAndSaveData}}, \code{\link[basejump]{camel}}, \code{\link[basejump]{checkAnnotable}}, \code{\link[basejump]{checkGene2symbol}}, \code{\link[basejump]{detectOrganism}}, \code{\link[basejump]{dynamicPlotlist}}, \code{\link[basejump]{fixNA}}, \code{\link[basejump]{gene2symbol}}, \code{\link[basejump]{gene2symbolFromGTF}}, \code{\link[basejump]{loadData}}, \code{\link[basejump]{loadDataAsName}}, \code{\link[basejump]{loadRemoteData}}, \code{\link[basejump]{mdHeader}}, \code{\link[basejump]{mdList}}, \code{\link[basejump]{midnightTheme}}, \code{\link[basejump]{plotHeatmap}}, \code{\link[basejump]{plotQuantileHeatmap}}, \code{\link[basejump]{readFileByExtension}}, \code{\link[basejump]{readGTF}}, \code{\link[basejump]{readYAML}}, \code{\link[basejump]{sanitizeAnnotable}}, \code{\link[basejump]{saveData}}, \code{\link[basejump]{snake}}, \code{\link[basejump]{tx2gene}}, \code{\link[basejump]{tx2geneFromGTF}}, \code{\link[basejump]{writeCounts}}}
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}}
+
+  \item{rlang}{\code{\link[rlang]{abort}}, \code{\link[rlang]{inform}}, \code{\link[rlang]{warn}}}
 
   \item{S4Vectors}{\code{\link[S4Vectors]{DataFrame}}, \code{\link[S4Vectors]{metadata}}}
 

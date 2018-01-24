@@ -5,7 +5,7 @@
 #' @family YAML Utilities
 #'
 #' @inherit sampleYAML
-#' 
+#'
 #' @inheritParams AllGenerics
 #'
 #' @examples
@@ -30,7 +30,7 @@ NULL
     # STAR featureCounts output with MultiQC. Allow NULL return to handle
     # this pipeline output.
     if (is.null(metrics)) {
-        warning("No sample metrics were calculated", call. = FALSE)
+        warn("No sample metrics were calculated")
         return(NULL)
     }
     # Fix numerics set as characters
@@ -38,7 +38,7 @@ NULL
         any(grepl(x = x, pattern = "^[0-9\\.]+$"))
     }
     metrics %>%
-        mutate_if(is.factor, as.character) %>% 
+        mutate_if(is.factor, as.character) %>%
         mutate_if(numericAsCharacter, as.numeric) %>%
         mutate_if(is.character, as.factor) %>%
         .prepareSampleMetadata()

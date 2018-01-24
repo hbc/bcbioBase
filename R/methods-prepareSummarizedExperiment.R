@@ -93,38 +93,38 @@ NULL
     assays <- Filter(Negate(is.null), assays)
     assay <- assays[[1L]]
     if (is.null(dim(assay))) {
-        stop("Assay object must support 'dim()'", call. = FALSE)
+        abort("`assay()` object must support `dim()`")
     }
     # Check for potential dimnames problems
     if (is.null(rownames(assay))) {
-        stop("Assay missing rownames", call. = FALSE)
+        abort("`assay()` object missing rownames")
     }
     if (is.null(colnames(assay))) {
-        stop("Assay missing colnames", call. = FALSE)
+        abort("`assay()` object missing colnames")
     }
     if (any(duplicated(rownames(assay)))) {
-        stop("Non-unique rownames", call. = FALSE)
+        abort("`assay()` object has non-unique rownames")
     }
     if (any(duplicated(colnames(assay)))) {
-        stop("Non-unique colnames", call. = FALSE)
+        abort("`assay()` object has non-unique colnames")
     }
     if (!identical(
         make.names(rownames(assay), unique = TRUE, allow_ = TRUE),
         rownames(assay)
     )) {
-        stop(paste(
-            "Rownames are not valid.",
-            "See 'base::make.names()' for more information."
-            ), call. = FALSE)
+        abort(paste(
+            "Rownames are invalid.",
+            "See `base::make.names()` for more information."
+            ))
     }
     if (!identical(
         make.names(colnames(assay), unique = TRUE, allow_ = TRUE),
         colnames(assay)
     )) {
-        stop(paste(
-            "Colnames are not valid.",
-            "See 'base::make.names()' for more information."
-            ), call. = FALSE)
+        abort(paste(
+            "Colnames are invalid.",
+            "See `base::make.names()` for more information."
+            ))
     }
 
     # Row data =================================================================
@@ -136,7 +136,7 @@ NULL
         unannotatedGenes <- NULL
     } else {
         if (is.null(dim(rowData))) {
-            stop("rowData must support 'dim()'", call. = FALSE)
+            abort("rowData must support `dim()`")
         }
         rowData <- as.data.frame(rowData)
         # Handle tibble rownames
@@ -145,7 +145,7 @@ NULL
             rowData <- column_to_rownames(rowData)
         }
         if (!has_rownames(rowData)) {
-            stop("rowData missing rownames", call. = FALSE)
+            abort("rowData missing rownames")
         }
         # Check for unannotated genes not found in annotable. This typically
         # includes gene identifiers that are now deprecated on Ensembl and/or
@@ -153,12 +153,12 @@ NULL
         if (!all(rownames(assay) %in% rownames(rowData))) {
             unannotatedGenes <- setdiff(rownames(assay), rownames(rowData)) %>%
                 sort()
-            warning(paste(
+            warn(paste(
                 "Unannotated genes detected in counts matrix",
                 paste0(
                     "(", percent(length(unannotatedGenes) / nrow(assay)), ")"
                 )
-            ), call. = FALSE)
+            ))
         } else {
             unannotatedGenes <- NULL
         }
@@ -173,10 +173,10 @@ NULL
 
     # Column data ==============================================================
     if (missing(colData) | is.null(colData)) {
-        stop("colData is required", call. = FALSE)
+        abort("colData is required")
     }
     if (is.null(dim(colData))) {
-        stop("colData must support 'dim()'", call. = FALSE)
+        abort("colData must support `dim()`")
     }
     colData <- as.data.frame(colData)
     # Handle tibble rownames
@@ -185,14 +185,14 @@ NULL
         colData <- column_to_rownames(colData)
     }
     if (!has_rownames(colData)) {
-        stop("colData missing rownames", call. = FALSE)
+        abort("colData missing rownames")
     }
     if (!all(colnames(assay) %in% rownames(colData))) {
         missingSamples <- setdiff(colnames(assay), rownames(colData))
-        stop(paste(
+        abort(paste(
             "Sample mismatch detected:",
             toString(head(missingSamples))
-        ), call. = FALSE)
+        ))
     }
     colData <- colData %>%
         .[colnames(assay), , drop = FALSE] %>%
@@ -204,7 +204,7 @@ NULL
         metadata <- list()
     } else {
         if (!is(metadata, "list")) {
-            stop("Metadata must be 'list' class object", call. = FALSE)
+            abort("Metadata must be a list")
         }
     }
     metadata[["date"]] <- Sys.Date()

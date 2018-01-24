@@ -47,7 +47,7 @@ NULL
     }
     if (isTRUE(overwrite) &
         !isTRUE(quiet)) {
-        message(paste("Overwriting", toString(object)))
+        inform(paste("Overwriting", toString(object)))
     }
     sapply(seq_along(object), function(a) {
         if (!file.exists(object[[a]])) {

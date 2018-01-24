@@ -14,18 +14,18 @@ checkInterestingGroups <- function(
     interestingGroups,
     warnOnNULL = FALSE) {
     if (!all(interestingGroups %in% colnames(object))) {
-        stop(paste(
+        abort(paste(
             "Interesting groups not defined in metadata:",
             toString(setdiff(interestingGroups, colnames(object)))
-        ), call. = FALSE)
+        ))
     }
     # Default to `sampleName` if `NULL`
     if (is.null(interestingGroups)) {
         if (isTRUE(warnOnNULL)) {
-            warning(paste(
-                "'interestingGroups' is 'NULL'.",
-                "Defaulting to 'sampleName'."
-            ), call. = FALSE)
+            warn(paste(
+                "`interestingGroups` is NULL.",
+                "Defaulting to `sampleName`."
+            ))
         }
         interestingGroups <- "sampleName"
     }
