@@ -31,18 +31,18 @@ test_that("sampleYAML", {
     )
 })
 
-test_that("Invalid YAML list", {
+test_that("Invalid YAML input", {
     empty <- list()
     expect_error(
         sampleYAML(empty, keys = "metadata")
     )
     # Fix this method in a future update
-    expect_equal(
+    expect_identical(
         sampleYAML(yaml, keys = "XXX"),
         NULL
     )
-    expect_equal(
-        sampleYAML(yaml, keys = c("XXX", "YYY")),
+    expect_identical(
+        sampleYAML(yaml, keys = c("samples", "XXX")),
         NULL
     )
 })
@@ -65,12 +65,15 @@ test_that("sampleYAMLMetadata", {
 test_that("sampleYAMLMetrics", {
     metrics <- sampleYAMLMetrics(yaml)
     expect_equal(
-        vapply(metrics, class, FUN.VALUE = "character"),
+        vapply(
+            X = metrics,
+            FUN = class,
+            FUN.VALUE = "character"),
         c(sampleID = "factor",
           sampleName = "factor",
           description = "factor",
           xGC = "numeric",
-          x53Bias = "numeric",
+          x5x3Bias = "numeric",  # 5'3 now sanitized to 5x3 in camel
           averageInsertSize = "numeric",
           duplicates = "numeric",
           duplicationRateOfMapped = "numeric",
@@ -102,7 +105,7 @@ test_that("sampleYAMLMetrics", {
           sampleName = "factor",
           description = "factor",
           xGC = "numeric",
-          x53Bias = "numeric",
+          x5x3Bias = "numeric",
           averageInsertSize = "numeric",
           duplicates = "numeric",
           duplicationRateOfMapped = "numeric",
@@ -118,5 +121,16 @@ test_that("sampleYAMLMetrics", {
           totalReads = "numeric",
           rrna = "numeric",
           rrnaRate = "numeric")
+    )
+})
+
+test_that("No sample metrics", {
+    nometrics <- yaml
+    # Subset to only include the first sample
+    nometrics[["samples"]] <- nometrics[["samples"]][[1]]
+    nometrics[["samples"]][["summary"]][["metrics"]] <- NULL
+    expect_warning(
+        sampleYAMLMetrics(nometrics),
+        "No sample metrics were calculated"
     )
 })
