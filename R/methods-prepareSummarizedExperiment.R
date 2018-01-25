@@ -80,7 +80,7 @@ NULL
 # Constructors =================================================================
 #' @importFrom scales percent
 #' @importFrom SummarizedExperiment SummarizedExperiment
-#' @importFrom tibble column_to_rownames has_rownames
+#' @importFrom tibble has_rownames
 #' @importFrom utils head
 .prepareSummarizedExperiment <- function(
     assays,
@@ -139,11 +139,6 @@ NULL
             abort("rowData must support `dim()`")
         }
         rowData <- as.data.frame(rowData)
-        # Handle tibble rownames
-        if (!has_rownames(rowData) &
-            "rowname" %in% colnames(rowData)) {
-            rowData <- column_to_rownames(rowData)
-        }
         if (!has_rownames(rowData)) {
             abort("rowData missing rownames")
         }
