@@ -1,39 +1,38 @@
 context("bcbioGenerics")
 
-test_that("generic definition", {
-    generics <- list(
-        bcbio,
-        `bcbio<-`,
-        flatFiles,
-        interestingGroups,
-        metrics,
-        plotGene,
-        sampleMetadata,
-        selectSamples)
-    classes <- vapply(generics, class, "character")
+names <- c(
+    "bcbio",
+    "bcbio<-",
+    "flatFiles",
+    "interestingGroups",
+    "metrics",
+    "plotDot",
+    "plotGene",
+    "plotQC",
+    "plotViolin",
+    "sampleMetadata",
+    "selectSamples",
+    "tpm"
+)
+generics <- lapply(names, get)
+
+test_that("Exported generics", {
+    classes <- vapply(
+        X = generics,
+        FUN = class,
+        FUN.VALUE = "character")
     expect_true(all(classes == "nonstandardGenericFunction"))
 })
 
-test_that("no methods defined", {
-    error <- "unable to find an inherited method"
-
-    # Missing signature
-    expect_error(bcbio(), error)
-    expect_error(flatFiles(), error)
-    expect_error(interestingGroups(), error)
-    expect_error(metrics(), error)
-    expect_error(plotGene(), error)
-    expect_error(sampleMetadata(), error)
-    expect_error(selectSamples(), error)
-
-    # Assignment without method
-    lst <- list()
-    expect_error(
-        bcbio(lst) <- "xxx",
-        error
+test_that("No methods defined", {
+    methods <- vapply(
+        X = names,
+        FUN = function(x) {
+            showMethods(x, printTo = FALSE) %>%
+                .[[2L]]
+        },
+        FUN.VALUE = "character"
     )
-    expect_error(
-        interestingGroups(lst) <- "xxx",
-        error
-    )
+    names(methods) <- names
+    expect_true(all(grepl("<No methods>", methods)))
 })
