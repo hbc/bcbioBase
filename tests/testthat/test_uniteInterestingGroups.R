@@ -1,10 +1,17 @@
 context("uniteInterestingGroups")
 
-test_that("mtcars", {
+test_that("Single interesting group" , {
+    data <- uniteInterestingGroups(mtcars, interestingGroups = "gear")
+    expect_identical(
+        data[["interestingGroups"]],
+        as.factor(mtcars[["gear"]])
+    )
+})
+
+test_that("Two interesting groups", {
     data <- uniteInterestingGroups(
         mtcars,
-        interestingGroups = c("gear", "carb")
-    )
+        interestingGroups = c("gear", "carb"))
     expect_identical(
         head(data[["interestingGroups"]]),
         factor(
@@ -14,6 +21,9 @@ test_that("mtcars", {
                        "5:2", "5:4", "5:6", "5:8")
         )
     )
+})
+
+test_that("Missing interesting group", {
     expect_error(
         uniteInterestingGroups(
             mtcars,
