@@ -8,7 +8,8 @@
         "knitr",
         "magrittr",
         "rmarkdown",
-        "tidyverse"
+        "viridis",
+        "tidyverse"  # last
     )
     notInstalled <- setdiff(suggests, rownames(installed.packages()))
     if (length(notInstalled)) {
