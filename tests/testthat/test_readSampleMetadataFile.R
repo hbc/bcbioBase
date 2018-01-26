@@ -212,3 +212,15 @@ test_that("Legacy bcbio samplename column", {
         "`samplename` is used in some bcbio examples for FASTQ file names"
     )
 })
+
+test_that("sampleID column already defined", {
+    file <- file.path(
+        "http://bcbiobase.seq.cloud",
+        "sample_metadata",
+        "sampleID_column_defined.xlsx"
+    )
+    expect_error(
+        readSampleMetadataFile(file, quiet = TRUE),
+        "`sampleID` should not be manually defined in the sample metadata file"
+    )
+})
