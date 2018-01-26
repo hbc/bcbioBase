@@ -16,6 +16,7 @@ withoutMethods <- c(
     "bcbio<-",
     "flatFiles",
     "interestingGroups",
+    "interestingGroups<-",
     "metrics",
     "plotDot",
     "plotGene",
