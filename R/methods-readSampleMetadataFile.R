@@ -47,10 +47,11 @@ NULL
 
     # Check for manually defined `sampleID`. Warn and remove if present.
     if ("sampleID" %in% colnames(metadata)) {
-        abort(paste(
+        warn(paste(
             "`sampleID` should not be manually defined",
             "in the sample metadata file"
         ))
+        metadata[["sampleID"]] <- NULL
     }
 
     # Warn on legacy `samplename` column. We need to work on improving the

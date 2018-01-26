@@ -219,7 +219,7 @@ test_that("sampleID column already defined", {
         "sample_metadata",
         "sampleID_column_defined.xlsx"
     )
-    expect_error(
+    expect_warning(
         readSampleMetadataFile(file, quiet = TRUE),
         "`sampleID` should not be manually defined in the sample metadata file"
     )
