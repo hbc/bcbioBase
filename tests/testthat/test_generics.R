@@ -1,39 +1,65 @@
 context("bcbioGenerics")
 
-test_that("generic definition", {
-    generics <- list(
-        bcbio,
-        `bcbio<-`,
-        flatFiles,
-        interestingGroups,
-        metrics,
-        plotGene,
-        sampleMetadata,
-        selectSamples)
-    classes <- vapply(generics, class, "character")
-    expect_true(all(classes == "nonstandardGenericFunction"))
+withMethods <- c(
+    "prepareSummarizedExperiment",
+    "prepareTemplate",
+    "readDataVersions",
+    "readLogFile",
+    "readProgramVersions",
+    "readSampleMetadataFile",
+    "sampleYAML",
+    "sampleYAMLMetadata",
+    "sampleYAMLMetrics"
+)
+withoutMethods <- c(
+    "bcbio",
+    "bcbio<-",
+    "flatFiles",
+    "interestingGroups",
+    "interestingGroups<-",
+    "metrics",
+    "plotDot",
+    "plotGene",
+    "plotQC",
+    "plotViolin",
+    "sampleMetadata",
+    "selectSamples",
+    "tpm"
+)
+
+test_that("S4 generics", {
+    generics <- lapply(
+        X = c(withMethods, withoutMethods),
+        FUN = get)
+    expect_true(all(
+        vapply(
+            X = generics,
+            FUN = isS4,
+            FUN.VALUE = logical(1L))
+    ))
 })
 
-test_that("no methods defined", {
-    error <- "unable to find an inherited method"
-
-    # Missing signature
-    expect_error(bcbio(), error)
-    expect_error(flatFiles(), error)
-    expect_error(interestingGroups(), error)
-    expect_error(metrics(), error)
-    expect_error(plotGene(), error)
-    expect_error(sampleMetadata(), error)
-    expect_error(selectSamples(), error)
-
-    # Assignment without method
-    lst <- list()
-    expect_error(
-        bcbio(lst) <- "xxx",
-        error
-    )
-    expect_error(
-        interestingGroups(lst) <- "xxx",
-        error
-    )
+test_that("No methods defined", {
+    generics <- lapply(
+        X = withoutMethods,
+        FUN = get)
+    
+    methods <- vapply(
+        X = withoutMethods,
+        FUN = function(x) {
+            showMethods(x, printTo = FALSE) %>%
+                .[[2L]]
+        },
+        FUN.VALUE = "character")
+    expect_true(all(grepl("<No methods>", methods)))
+    
+    invisible(lapply(
+        X = generics,
+        FUN = function(x) {
+            expect_error(
+                x(),
+                "unable to find an inherited method for function"
+            )
+        }
+    ))
 })
