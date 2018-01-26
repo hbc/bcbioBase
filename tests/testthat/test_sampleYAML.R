@@ -42,7 +42,7 @@ test_that("Invalid YAML input", {
         NULL
     )
     expect_identical(
-        sampleYAML(yaml, keys = c("samples", "XXX")),
+        sampleYAML(yaml, keys = c("summary", "XXX")),
         NULL
     )
 })
