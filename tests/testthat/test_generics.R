@@ -1,6 +1,17 @@
 context("bcbioGenerics")
 
-names <- c(
+withMethods <- c(
+    "prepareSummarizedExperiment",
+    "prepareTemplate",
+    "readDataVersions",
+    "readLogFile",
+    "readProgramVersions",
+    "readSampleMetadataFile",
+    "sampleYAML",
+    "sampleYAMLMetadata",
+    "sampleYAMLMetrics"
+)
+withoutMethods <- c(
     "bcbio",
     "bcbio<-",
     "flatFiles",
@@ -14,25 +25,40 @@ names <- c(
     "selectSamples",
     "tpm"
 )
-generics <- lapply(names, get)
 
-test_that("Exported generics", {
-    classes <- vapply(
-        X = generics,
-        FUN = class,
-        FUN.VALUE = "character")
-    expect_true(all(classes == "nonstandardGenericFunction"))
+test_that("S4 generics", {
+    generics <- lapply(
+        X = c(withMethods, withoutMethods),
+        FUN = get)
+    expect_true(all(
+        vapply(
+            X = generics,
+            FUN = isS4,
+            FUN.VALUE = logical(1L))
+    ))
 })
 
 test_that("No methods defined", {
+    generics <- lapply(
+        X = withoutMethods,
+        FUN = get)
+    
     methods <- vapply(
-        X = names,
+        X = withoutMethods,
         FUN = function(x) {
             showMethods(x, printTo = FALSE) %>%
                 .[[2L]]
         },
-        FUN.VALUE = "character"
-    )
-    names(methods) <- names
+        FUN.VALUE = "character")
     expect_true(all(grepl("<No methods>", methods)))
+    
+    invisible(lapply(
+        X = generics,
+        FUN = function(x) {
+            expect_error(
+                x(),
+                "unable to find an inherited method for function"
+            )
+        }
+    ))
 })
