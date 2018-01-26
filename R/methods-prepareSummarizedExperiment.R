@@ -174,11 +174,6 @@ NULL
         abort("colData must support `dim()`")
     }
     colData <- as.data.frame(colData)
-    # Handle tibble rownames
-    if (!has_rownames(colData) &
-        "rowname" %in% colnames(colData)) {
-        colData <- column_to_rownames(colData)
-    }
     if (!has_rownames(colData)) {
         abort("colData missing rownames")
     }
