@@ -1,3 +1,4 @@
+#' @importFrom BiocInstaller biocLite
 #' @importFrom utils installed.packages
 .onAttach <- function(libname, pkgname) {
     imports <- c(
