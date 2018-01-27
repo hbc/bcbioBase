@@ -44,7 +44,8 @@ Suggests:
     rmarkdown,
     roxygen2,
     testthat,
-    tidyverse
+    tidyverse,
+    viridis
 Remotes:
     steinbaugh/basejump@develop
 biocViews:
