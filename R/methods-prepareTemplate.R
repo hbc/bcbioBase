@@ -63,17 +63,14 @@ NULL
     }
     # Note that we're not allowing accidental overwrite of locally modified
     # shared template files
-    invisible(lapply(
-        X = object,
-        FUN = function(file) {
-            if (!file.exists(file)) {
-                file.copy(
-                    from = file.path(sourceDir, file),
-                    to = file,
-                    overwrite = FALSE)
-            }
+    invisible(lapply(object, function(file) {
+        if (!file.exists(file)) {
+            file.copy(
+                from = file.path(sourceDir, file),
+                to = file,
+                overwrite = FALSE)
         }
-    ))
+    }))
 }
 
 
