@@ -20,4 +20,9 @@ Useful links:
 \author{
 \strong{Maintainer}: Michael Steinbaugh \email{mike@steinbaugh.com}
 
+Other contributors:
+\itemize{
+  \item Harvard Chan Bioinformatics Core \email{bioinformatics@hsph.harvard.edu} [copyright holder, funder]
+}
+
 }

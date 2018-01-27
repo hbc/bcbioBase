@@ -59,7 +59,7 @@ NULL
     }
     # Check that all source files exist
     if (!all(file.exists(file.path(sourceDir, object)))) {
-        abort("Not all source template files exist")
+        abort("Missing source file")
     }
     # Note that we're not allowing accidental overwrite of locally modified
     # shared template files
