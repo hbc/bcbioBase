@@ -10,10 +10,9 @@
 \usage{
 prepareTemplate(object, ...)
 
-\S4method{prepareTemplate}{missing}(object, sourceDir, quiet = FALSE)
+\S4method{prepareTemplate}{missing}(object, sourceDir = NULL)
 
-\S4method{prepareTemplate}{character}(object, sourceDir, overwrite = FALSE,
-  quiet = FALSE)
+\S4method{prepareTemplate}{character}(object, sourceDir = NULL)
 }
 \arguments{
 \item{object}{\emph{Optional}. File name. If \code{NULL} (default), download the
@@ -23,11 +22,6 @@ default dependency files for a new experiment.}
 
 \item{sourceDir}{Source directory, typically a URL, where the dependency
 files are located.}
-
-\item{quiet}{If \code{TRUE}, suppress any status messages and/or progress bars.}
-
-\item{overwrite}{Overwrite files if they already exist. \emph{This option is used
-primarily for unit testing, and is not generally recommended.}}
 }
 \value{
 No value.
@@ -37,17 +31,36 @@ If the required template dependency files aren't present, download latest
 versions from the package website.
 }
 \details{
-File download utility for RMarkdown knit reports.
+By default, this function will create local copies of these files:
+\itemize{
+\item \code{_footer.Rmd}
+\item \code{_header.Rmd}
+\item \code{_output.yaml}
+\item \code{bibliography.bib}
+\item \code{setup.R}
+}
 }
 \examples{
-# Load the shared files from basejump
+# Copy all of the default shared template files
 prepareTemplate()
+unlink(c(
+    "_footer.Rmd",
+    "_header.Rmd",
+    "_output.yaml",
+    "bibliography.bib",
+    "setup.R"
+))
 
 # Request individual files
-prepareTemplate(c("setup.R", "_header.Rmd"))
+prepareTemplate("setup.R")
+unlink("setup.R")
 
 # Load the shared files from bcbioSingleCell
+\dontrun{
 prepareTemplate(
-    sourceDir = system.file("rmarkdown/shared",
-                            package = "bcbioSingleCell"))
+    sourceDir = system.file("rmarkdown/shared", 
+                            package = "bcbioSingleCell")
+)
+}
+
 }

@@ -3,61 +3,74 @@
 #' If the required template dependency files aren't present, download latest
 #' versions from the package website.
 #'
-#' File download utility for RMarkdown knit reports.
+#' By default, this function will create local copies of these files:
+#' 
+#' - `_footer.Rmd`
+#' - `_header.Rmd`
+#' - `_output.yaml`
+#' - `bibliography.bib`
+#' - `setup.R`
 #'
 #' @rdname prepareTemplate
 #' @name prepareTemplate
 #' @family Infrastructure Utilities
 #'
 #' @inheritParams AllGenerics
-#' @inheritParams readSampleMetadataFile
 #'
 #' @param object *Optional*. File name. If `NULL` (default), download the
 #'   default dependency files for a new experiment.
 #' @param sourceDir Source directory, typically a URL, where the dependency
 #'   files are located.
-#' @param overwrite Overwrite files if they already exist. *This option is used
-#'   primarily for unit testing, and is not generally recommended.*
 #'
 #' @return No value.
 #'
 #' @examples
-#' # Load the shared files from basejump
+#' # Copy all of the default shared template files
 #' prepareTemplate()
+#' unlink(c(
+#'     "_footer.Rmd",
+#'     "_header.Rmd",
+#'     "_output.yaml",
+#'     "bibliography.bib",
+#'     "setup.R"
+#' ))
 #'
 #' # Request individual files
-#' prepareTemplate(c("setup.R", "_header.Rmd"))
+#' prepareTemplate("setup.R")
+#' unlink("setup.R")
 #'
 #' # Load the shared files from bcbioSingleCell
+#' \dontrun{
 #' prepareTemplate(
-#'     sourceDir = system.file("rmarkdown/shared",
-#'                             package = "bcbioSingleCell"))
+#'     sourceDir = system.file("rmarkdown/shared", 
+#'                             package = "bcbioSingleCell")
+#' )
+#' }
+#' 
+
 NULL
 
 
 
 # Constructors =================================================================
-.copyPackageFile <- function(
-    object,
-    sourceDir,
-    overwrite = FALSE,
-    quiet = FALSE) {
-    if (missing(sourceDir)) {
+.copyTemplateFile <- function(object, sourceDir = NULL) {
+    if (is.null(sourceDir)) {
         sourceDir <- system.file("rmarkdown/shared", package = "bcbioBase")
     }
-    if (isTRUE(overwrite) &
-        !isTRUE(quiet)) {
-        inform(paste("Overwriting", toString(object)))
+    # Check that all source files exist
+    if (!all(file.exists(file.path(sourceDir, object)))) {
+        abort("Missing source file")
     }
-    sapply(seq_along(object), function(a) {
-        if (!file.exists(object[[a]])) {
+    # Note that we're not allowing accidental overwrite of locally modified
+    # shared template files
+    invisible(lapply(object, function(file) {
+        if (!file.exists(file)) {
             file.copy(
-                from = file.path(sourceDir, object[[a]]),
-                to = object[[a]],
-                overwrite = overwrite)
+                from = file.path(sourceDir, file),
+                to = file,
+                overwrite = FALSE)
         }
-    }) %>%
-        invisible()
+    }))
 }
 
 
@@ -70,17 +83,14 @@ setMethod(
     signature("missing"),
     function(
         object,
-        sourceDir,
-        quiet = FALSE) {
-        .copyPackageFile(
+        sourceDir = NULL) {
+        .copyTemplateFile(
             c("_output.yaml",
               "_footer.Rmd",
               "_header.Rmd",
               "bibliography.bib",
               "setup.R"),
-            sourceDir = sourceDir,
-            quiet = quiet,
-            overwrite = FALSE)
+            sourceDir = sourceDir)
     })
 
 
@@ -90,4 +100,4 @@ setMethod(
 setMethod(
     "prepareTemplate",
     signature("character"),
-    .copyPackageFile)
+    .copyTemplateFile)

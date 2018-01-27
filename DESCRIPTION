@@ -6,7 +6,10 @@ Authors@R: c(
     person(given = "Michael",
            family = "Steinbaugh",
            email ="mike@steinbaugh.com",
-           role = c("aut", "cre"))
+           role = c("aut", "cre")),
+        person(given = "Harvard Chan Bioinformatics Core",
+           email = "bioinformatics@hsph.harvard.edu",
+           role = c("cph", "fnd"))
     )
 URL:
     http://bioinformatics.sph.harvard.edu/bcbioBase,
@@ -45,13 +48,6 @@ Suggests:
     viridis
 Remotes:
     steinbaugh/basejump@develop
-biocViews:
-    DataImport,
-    DataRepresentation,
-    GeneExpression,
-    Infrastructure,
-    QualityControl,
-    ReportWriting,
-    Visualization
+biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
