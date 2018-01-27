@@ -48,13 +48,6 @@ Suggests:
     viridis
 Remotes:
     steinbaugh/basejump@develop
-biocViews:
-    DataImport,
-    DataRepresentation,
-    GeneExpression,
-    Infrastructure,
-    QualityControl,
-    ReportWriting,
-    Visualization
+biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
