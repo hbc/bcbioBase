@@ -21,7 +21,7 @@ LazyData: TRUE
 Depends:
     R (>= 3.4.0)
 Imports:
-    basejump (>= 0.1.11),
+    basejump (>= 0.2.0),
     BiocGenerics (>= 0.22.1),
     Biostrings,
     dplyr (>= 0.7.4),
@@ -47,7 +47,7 @@ Suggests:
     tidyverse,
     viridis
 Remotes:
-    steinbaugh/basejump@develop
+    steinbaugh/basejump
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
