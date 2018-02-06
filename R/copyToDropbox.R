@@ -39,9 +39,7 @@ copyToDropbox <- function(files, dir) {
             drop_delete(dropboxFile)
         }
         drop_upload(file = file, path = dir)
-        drop_share(
-            path = dropboxFile,
-            requested_visibility = "public")
+        drop_share(dropboxFile, requested_visibility = "public")
     })
 
     invisible(rdrop)
