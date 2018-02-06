@@ -6,7 +6,10 @@ Authors@R: c(
     person(given = "Michael",
            family = "Steinbaugh",
            email ="mike@steinbaugh.com",
-           role = c("aut", "cre"))
+           role = c("aut", "cre")),
+        person(given = "Harvard Chan Bioinformatics Core",
+           email = "bioinformatics@hsph.harvard.edu",
+           role = c("cph", "fnd"))
     )
 URL:
     http://bioinformatics.sph.harvard.edu/bcbioBase,
@@ -18,7 +21,7 @@ LazyData: TRUE
 Depends:
     R (>= 3.4.0)
 Imports:
-    basejump (>= 0.1.11),
+    basejump (>= 0.2.0),
     BiocGenerics (>= 0.22.1),
     Biostrings,
     dplyr (>= 0.7.4),
@@ -45,14 +48,7 @@ Suggests:
     tidyverse,
     viridis
 Remotes:
-    steinbaugh/basejump@develop
-biocViews:
-    DataImport,
-    DataRepresentation,
-    GeneExpression,
-    Infrastructure,
-    QualityControl,
-    ReportWriting,
-    Visualization
+    steinbaugh/basejump
+biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1

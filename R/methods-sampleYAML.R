@@ -43,10 +43,10 @@ NULL
             return(NULL)
         }
     }
-    data <- lapply(seq_along(samples), function(a) {
-        nested <- samples[[a]][[keys]]
+    data <- lapply(samples, function(sample) {
+        nested <- sample[[keys]]
         # Set the description
-        nested[["description"]] <- samples[[a]][["description"]]
+        nested[["description"]] <- sample[["description"]]
         if (rev(keys)[[1L]] == "metadata") {
             if (is.null(nested[["batch"]])) {
                 nested[["batch"]] <- NA
