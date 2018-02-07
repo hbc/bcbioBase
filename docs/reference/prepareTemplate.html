@@ -94,11 +94,10 @@ versions from the package website.</p>
     <pre class="usage"><span class='fu'>prepareTemplate</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for missing</span>
-<span class='fu'>prepareTemplate</span>(<span class='no'>object</span>, <span class='no'>sourceDir</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>prepareTemplate</span>(<span class='no'>object</span>, <span class='kw'>sourceDir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S4 method for character</span>
-<span class='fu'>prepareTemplate</span>(<span class='no'>object</span>, <span class='no'>sourceDir</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>prepareTemplate</span>(<span class='no'>object</span>, <span class='kw'>sourceDir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -117,15 +116,6 @@ default dependency files for a new experiment.</p></td>
       <td><p>Source directory, typically a URL, where the dependency
 files are located.</p></td>
     </tr>
-    <tr>
-      <th>quiet</th>
-      <td><p>If <code>TRUE</code>, suppress any status messages and/or progress bars.</p></td>
-    </tr>
-    <tr>
-      <th>overwrite</th>
-      <td><p>Overwrite files if they already exist. <em>This option is used
-primarily for unit testing, and is not generally recommended.</em></p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -134,20 +124,37 @@ primarily for unit testing, and is not generally recommended.</em></p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>File download utility for RMarkdown knit reports.</p>
+    <p>By default, this function will create local copies of these files:</p><ul>
+<li><p><code>_footer.Rmd</code></p></li>
+<li><p><code>_header.Rmd</code></p></li>
+<li><p><code>_output.yaml</code></p></li>
+<li><p><code>bibliography.bib</code></p></li>
+<li><p><code>setup.R</code></p></li>
+</ul>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Load the shared files from basejump</span>
+    <pre class="examples"><div class='input'><span class='co'># Copy all of the default shared template files</span>
 <span class='fu'>prepareTemplate</span>()
+<span class='fu'>unlink</span>(<span class='fu'>c</span>(
+    <span class='st'>"_footer.Rmd"</span>,
+    <span class='st'>"_header.Rmd"</span>,
+    <span class='st'>"_output.yaml"</span>,
+    <span class='st'>"bibliography.bib"</span>,
+    <span class='st'>"setup.R"</span>
+))
 
 <span class='co'># Request individual files</span>
-<span class='fu'>prepareTemplate</span>(<span class='fu'>c</span>(<span class='st'>"setup.R"</span>, <span class='st'>"_header.Rmd"</span>))
+<span class='fu'>prepareTemplate</span>(<span class='st'>"setup.R"</span>)
+<span class='fu'>unlink</span>(<span class='st'>"setup.R"</span>)
 
-<span class='co'># Load the shared files from bcbioSingleCell</span>
+<span class='co'># Load the shared files from bcbioSingleCell</span></div><span class='co'># NOT RUN {</span>
 <span class='fu'>prepareTemplate</span>(
     <span class='kw'>sourceDir</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"rmarkdown/shared"</span>,
-                            <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"bcbioSingleCell"</span>))</div></pre>
+                            <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"bcbioSingleCell"</span>)
+)
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -166,7 +173,7 @@ primarily for unit testing, and is not generally recommended.</em></p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, Harvard Chan Bioinformatics Core.</p>
+  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
 </div>
 
 <div class="pkgdown">
