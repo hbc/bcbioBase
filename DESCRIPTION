@@ -7,7 +7,7 @@ Authors@R: c(
            family = "Steinbaugh",
            email ="mike@steinbaugh.com",
            role = c("aut", "cre")),
-        person(given = "Harvard Chan Bioinformatics Core",
+    person(given = "Harvard Chan Bioinformatics Core",
            email = "bioinformatics@hsph.harvard.edu",
            role = c("cph", "fnd"))
     )
@@ -21,7 +21,7 @@ LazyData: TRUE
 Depends:
     R (>= 3.4.0)
 Imports:
-    basejump (>= 0.2.0),
+    basejump (>= 0.2.1),
     BiocGenerics (>= 0.22.1),
     Biostrings,
     dplyr (>= 0.7.4),
