@@ -35,7 +35,7 @@ Imports:
     stringr (>= 1.2.0),
     SummarizedExperiment (>= 1.6.5),
     tibble (>= 1.4.1),
-    tidyr (>= 0.7.2),
+    tidyr (>= 0.7.1),
     utils
 Suggests:
     BiocStyle,
