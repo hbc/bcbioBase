@@ -36,14 +36,14 @@ Imports:
     methods,
     rdrop2 (>= 0.8.1),
     readr (>= 1.1.1),
-    rlang (>= 0.1.6),
+    rlang (>= 0.1.2),
     S4Vectors (>= 0.14.7),
     scales,
     stats,
     stringr (>= 1.2.0),
     SummarizedExperiment (>= 1.6.5),
     tibble (>= 1.4.1),
-    tidyr (>= 0.7.2),
+    tidyr (>= 0.7.1),
     utils
 Suggests:
     BiocStyle,
