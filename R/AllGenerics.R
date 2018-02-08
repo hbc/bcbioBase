@@ -6,6 +6,8 @@
 #' @param object Object.
 #' @param value Value to assign.
 #' @param ... *Additional arguments (for the S4 generic definition).*
+#' 
+#' @return Varies, depending upon the method.
 NULL
 
 

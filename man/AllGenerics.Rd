@@ -50,6 +50,9 @@ tpm(object)
 
 \item{value}{Value to assign.}
 }
+\value{
+Varies, depending upon the method.
+}
 \description{
 S4 Generics
 }
