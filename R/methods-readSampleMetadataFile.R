@@ -36,7 +36,6 @@ NULL
 #' @importFrom Biostrings reverseComplement
 #' @importFrom dplyr group_by left_join mutate mutate_all mutate_if
 #'   rename ungroup
-#' @importFrom rlang .data sym !!
 #' @importFrom stringr str_pad
 #' @importFrom tidyr expand
 .readSampleMetadataFile <- function(

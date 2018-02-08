@@ -132,6 +132,18 @@ magrittr::`%>%`
 
 
 
+#' @importFrom rlang !!
+#' @export
+rlang::`!!`
+
+#' @importFrom rlang !!!
+#' @export
+rlang::`!!!`
+
+#' @importFrom rlang .data
+#' @export
+rlang::.data
+
 #' @importFrom rlang abort
 #' @export
 rlang::abort
@@ -139,6 +151,18 @@ rlang::abort
 #' @importFrom rlang inform
 #' @export
 rlang::inform
+
+#' @importFrom rlang is_string
+#' @export
+rlang::is_string
+
+#' @importFrom rlang sym
+#' @export
+rlang::sym
+
+#' @importFrom rlang syms
+#' @export
+rlang::syms
 
 #' @importFrom rlang warn
 #' @export

@@ -5,7 +5,6 @@
 #' single column, delimited by ` : `.
 #'
 #' @importFrom tidyr unite
-#' @importFrom rlang !!! syms
 #'
 #' @param object Object (e.g. [data.frame]) containing interesting groups
 #'   columns.

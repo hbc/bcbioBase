@@ -67,9 +67,21 @@
 \alias{reexports}
 \alias{\%>\%}
 \alias{reexports}
+\alias{!!}
+\alias{reexports}
+\alias{!!!}
+\alias{reexports}
+\alias{.data}
+\alias{reexports}
 \alias{abort}
 \alias{reexports}
 \alias{inform}
+\alias{reexports}
+\alias{is_string}
+\alias{reexports}
+\alias{sym}
+\alias{reexports}
+\alias{syms}
 \alias{reexports}
 \alias{warn}
 \alias{reexports}
@@ -91,7 +103,7 @@ below to see their documentation.
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}}
 
-  \item{rlang}{\code{\link[rlang]{abort}}, \code{\link[rlang]{inform}}, \code{\link[rlang]{warn}}}
+  \item{rlang}{\code{\link[rlang]{!!}}, \code{\link[rlang]{!!!}}, \code{\link[rlang]{.data}}, \code{\link[rlang]{abort}}, \code{\link[rlang]{inform}}, \code{\link[rlang]{is_string}}, \code{\link[rlang]{sym}}, \code{\link[rlang]{syms}}, \code{\link[rlang]{warn}}}
 
   \item{S4Vectors}{\code{\link[S4Vectors]{DataFrame}}, \code{\link[S4Vectors]{metadata}}}
 

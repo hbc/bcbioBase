@@ -5,7 +5,6 @@
 #'
 #' @importFrom dplyr arrange everything mutate mutate_if select
 #' @importFrom magrittr set_rownames
-#' @importFrom rlang .data syms !!!
 #'
 #' @param metadata Metadata [data.frame].
 #'
