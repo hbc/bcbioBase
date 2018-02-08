@@ -52,4 +52,13 @@ test_that("Invalid parameters", {
     )
 })
 
+test_that("HBC Team Folder", {
+    expect_error(
+        copyToDropbox(
+            files = "bibliography.bib",
+            dir = "HBC Team Folder (1)"),
+        "rdrop2 is not detecting directories correctly in the HBC Team Folder"
+    )
+})
+
 unlink("bibliography.bib")

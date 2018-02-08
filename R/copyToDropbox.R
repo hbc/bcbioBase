@@ -34,6 +34,16 @@ copyToDropbox <- function(
     }
     # Ensure trailing slash gets stripped
     dir <- gsub("/$", "", dir)
+    # Error on "HBC Team Folder" detection
+    # TODO This should be safe to remove in a future update
+    if (grepl("HBC Team Folder", dir)) {
+        abort(paste(
+            "rdrop2 is not detecting directories correctly",
+            "in the HBC Team Folder share at the moment.",
+            "Please save the files elsewhere on Dropbox and then",
+            "move them manually. The links will still work."
+        ))
+    }
     # rdsToken
     if (!(is_string(rdsToken) || is.null(rdsToken))) {
         abort("`rdsToken` must contain an RDS file or NULL")
