@@ -17,6 +17,15 @@ Invisibly return \link{list} of rdrop2 output.
 \description{
 Copy Files to Dropbox
 }
+\examples{
+\dontrun{
+files <- c("raw_counts.csv.gz", "tpm.csv.gz")
+copyToDropbox(
+    files,
+    dir = file.path("researcher", "project", "results")
+)
+}
+}
 \author{
 Michael Steinbaugh, Victor Barerra, John Hutchinson
 }

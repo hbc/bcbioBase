@@ -9,6 +9,15 @@
 #'
 #' @return Invisibly return [list] of rdrop2 output.
 #' @export
+#' 
+#' @examples
+#' \dontrun{
+#' files <- c("raw_counts.csv.gz", "tpm.csv.gz")
+#' copyToDropbox(
+#'     files,
+#'     dir = file.path("researcher", "project", "results")
+#' )
+#' }
 copyToDropbox <- function(files, dir) {
     if (!(is.character(files) || is.list(files))) {
         abort("`files` must be a character vector or list")
