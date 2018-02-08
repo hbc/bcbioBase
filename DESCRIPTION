@@ -3,13 +3,20 @@ Title: bcbio Base Functions
 Description: Base functions and generics for bcbio R packages.
 Version: 0.0.4
 Authors@R: c(
-    person(given = "Michael",
-           family = "Steinbaugh",
-           email ="mike@steinbaugh.com",
-           role = c("aut", "cre")),
-    person(given = "Harvard Chan Bioinformatics Core",
-           email = "bioinformatics@hsph.harvard.edu",
-           role = c("cph", "fnd"))
+    person(
+        given = "Michael",
+        family = "Steinbaugh",
+        email ="mike@steinbaugh.com",
+        role = c("aut", "cre")),
+    person(
+        given = "Rory",
+        family = "Kirchner",
+        email = "roryk@alum.mit.edu",
+        role = "aut"),
+    person(
+        given = "Harvard Chan Bioinformatics Core",
+        email = "bioinformatics@hsph.harvard.edu",
+        role = c("cph", "fnd"))
     )
 URL:
     http://bioinformatics.sph.harvard.edu/bcbioBase,
