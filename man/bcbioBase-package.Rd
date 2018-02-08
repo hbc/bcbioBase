@@ -20,6 +20,11 @@ Useful links:
 \author{
 \strong{Maintainer}: Michael Steinbaugh \email{mike@steinbaugh.com}
 
+Authors:
+\itemize{
+  \item Rory Kirchner \email{roryk@alum.mit.edu}
+}
+
 Other contributors:
 \itemize{
   \item Harvard Chan Bioinformatics Core \email{bioinformatics@hsph.harvard.edu} [copyright holder, funder]
