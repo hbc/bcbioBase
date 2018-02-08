@@ -24,7 +24,7 @@ prepareTemplate("bibliography.bib")
 copyToDropbox(
     files = "bibliography.bib",
     dir = file.path("bcbioBase_examples", "copyToDropbox"),
-    rdsToken = system.file("token.rds")
+    rdsToken = system.file("token.rds", package = "bcbioBase")
 )
 unlink("bibliography.bib")
 }
