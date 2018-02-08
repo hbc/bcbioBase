@@ -35,8 +35,8 @@ copyToDropbox <- function(
     # Ensure trailing slash gets stripped
     dir <- gsub("/$", "", dir)
     # rdsToken
-    if (!(is.null(rdsToken) || is_string(rdsToken))) {
-        abort("`rdsToken` must contain an RDS file or NULL")
+    if (!(is_string(rdsToken) || is.na(rdsToken))) {
+        abort("`rdsToken` must contain an RDS file or NA")
     }
 
     # Check that local files exist
