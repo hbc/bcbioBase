@@ -33,7 +33,7 @@ Imports:
     dplyr (>= 0.7.4),
     magrittr (>= 1.5),
     methods,
-    rdrop2 (>= 0.8.1),
+    rdrop2 (>= 0.8.1.9999),
     readr (>= 1.1.1),
     rlang (>= 0.1.2),
     S4Vectors (>= 0.14.7),
@@ -53,6 +53,7 @@ Suggests:
     tidyverse,
     viridis
 Remotes:
+    karthik/rdrop2,
     steinbaugh/basejump
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)

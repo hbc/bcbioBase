@@ -59,27 +59,16 @@ copyToDropbox <- function(
     }
     drop_auth(rdstoken = rdsToken)
 
-    # Check that the desired output directory exists on Dropbox
-    recursive <- unlist(strsplit(dir, .Platform[["file.sep"]]))
-    # Using `suppressWarnings()` here to avoid:
-    # Unknown or uninitialised column: 'path_display'.
-    invisible(lapply(
-        X = seq_along(recursive),
-        FUN = function(a) {
-            path <- paste(recursive[1L:a], collapse = .Platform[["file.sep"]])
-            if (!suppressWarnings(drop_exists(path))) {
-                suppressWarnings(drop_create(path))
-            }
-        }
-    ))
-    if (!suppressWarnings(drop_exists(dir))) {
-        abort("Failed to create destination directory")
+    # Create Dropbox directory path
+    drop_create(dir)
+    if (!drop_exists(dir)) {
+        abort("rdrop2 failed to create Dropbox directory")
     }
     
     # Loop across the files in list
     rdrop <- lapply(files, function(file) {
         dropboxFile <- file.path(dir, basename(file))
-        if (suppressWarnings(drop_exists(dropboxFile))) {
+        if (drop_exists(dropboxFile)) {
             drop_delete(dropboxFile)
         }
         drop_upload(file = file, path = dir)
