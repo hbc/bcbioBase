@@ -2,7 +2,8 @@
 #'
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
 #'
-#' @importFrom rdrop2 drop_auth drop_delete drop_exists drop_share drop_upload
+#' @importFrom rdrop2 drop_auth drop_create drop_delete drop_exists drop_share
+#'   drop_upload
 #'
 #' @param files Local file paths.
 #' @param dir Relative path of remote Dropbox directory.
@@ -19,7 +20,10 @@
 #'     rdsToken = file.path("tests", "testthat", "token.rds")
 #' )
 #' unlink("bibliography.bib")
-copyToDropbox <- function(files, dir, rdsToken = NULL) {
+copyToDropbox <- function(
+    files,
+    dir,
+    rdsToken = NA) {
     # files
     if (!(is.character(files) || is.list(files))) {
         abort("`files` must be a character vector or list")
@@ -49,10 +53,10 @@ copyToDropbox <- function(files, dir, rdsToken = NULL) {
         if (!file.exists(rdsToken)) {
             abort(paste(rdsToken, "does not exist"))
         }
-        drop_auth(rdstoken = rdsToken)
     } else {
-        drop_auth()
+        rdsToken <- NA
     }
+    drop_auth(rdstoken = rdsToken)
 
     # Check that the desired output directory exists on Dropbox
     recursive <- unlist(strsplit(dir, .Platform[["file.sep"]]))
