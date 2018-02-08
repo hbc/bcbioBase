@@ -5,7 +5,7 @@ test_that("RDS token", {
     x <- copyToDropbox(
         files = "bibliography.bib",
         dir = file.path("bcbioBase_examples", "copyToDropbox"),
-        rdsToken = "token.rds"
+        rdsToken = system.file("token.rds", package = "bcbioBase")
     )
     expect_is(x, "list")
     expect_identical(
