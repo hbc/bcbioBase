@@ -17,7 +17,7 @@
 #' copyToDropbox(
 #'     files = "bibliography.bib",
 #'     dir = file.path("bcbioBase_examples", "copyToDropbox"),
-#'     rdsToken = file.path("tests", "testthat", "token.rds")
+#'     rdsToken = system.file("token.rds")
 #' )
 #' unlink("bibliography.bib")
 copyToDropbox <- function(
