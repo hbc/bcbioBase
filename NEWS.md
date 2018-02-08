@@ -1,8 +1,8 @@
 ## bcbioBase 0.0.4 (2018-02-08)
 
-- Added `copyToDropbox()` function, which enables input of a list of local files and returns [Dropbox][] paths using [rdrop2][].
 - Preparing version pinning for [bioconda][]. Relaxed [rlang][] dependency from v0.1.6 to v0.1.2 and [tidyr][] dependency from v0.7.2 to v0.7.1.
-- Updated [basejump][] dependency to v0.2.1 for improved `gene2symbol()` and `tx2gene()` handling.
+- Added `copyToDropbox()` function, which enables input of a list of local files and returns [Dropbox][] paths using [rdrop2][].
+- Updated [basejump][] dependency to v0.2.1.
 
 
 ## bcbioBase 0.0.3 (2018-01-27)
