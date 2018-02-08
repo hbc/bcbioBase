@@ -23,7 +23,7 @@
 copyToDropbox <- function(
     files,
     dir,
-    rdsToken = NA) {
+    rdsToken = NULL) {
     # files
     if (!(is.character(files) || is.list(files))) {
         abort("`files` must be a character vector or list")
@@ -35,8 +35,8 @@ copyToDropbox <- function(
     # Ensure trailing slash gets stripped
     dir <- gsub("/$", "", dir)
     # rdsToken
-    if (!(is_string(rdsToken) || is.na(rdsToken))) {
-        abort("`rdsToken` must contain an RDS file or NA")
+    if (!(is_string(rdsToken) || is.null(rdsToken))) {
+        abort("`rdsToken` must contain an RDS file or NULL")
     }
 
     # Check that local files exist
@@ -54,6 +54,7 @@ copyToDropbox <- function(
             abort(paste(rdsToken, "does not exist"))
         }
     } else {
+        # Match the default in `drop_auth()`
         rdsToken <- NA
     }
     drop_auth(rdstoken = rdsToken)

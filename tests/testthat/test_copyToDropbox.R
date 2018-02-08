@@ -1,10 +1,12 @@
 context("copyToDropbox")
 
+prepareTemplate("bibliography.bib")
+dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
+
 test_that("RDS token", {
-    prepareTemplate("bibliography.bib")
     x <- copyToDropbox(
         files = "bibliography.bib",
-        dir = file.path("bcbioBase_examples", "copyToDropbox"),
+        dir = dropboxDir,
         rdsToken = system.file("token.rds", package = "bcbioBase")
     )
     expect_is(x, "list")
@@ -23,5 +25,31 @@ test_that("RDS token", {
             "size" = "integer"
         )
     )
-    unlink("bibliography.bib")
 })
+
+test_that("Invalid parameters", {
+    # files
+    expect_error(
+        copyToDropbox(files = NULL, dir = getwd()),
+        "`files` must be a character vector or list"
+    )
+    expect_error(
+        copyToDropbox(files = "XXX.csv.gz", dir = getwd()),
+        "Missing local files: XXX.csv.gz"
+    )
+    # dir
+    expect_error(
+        copyToDropbox(files = "XXX", dir = NULL),
+        "`dir` must be a string"
+    )
+    # rdsToken
+    expect_error(
+        copyToDropbox(
+            files = "bibliography.bib",
+            dir = dropboxDir,
+            rdsToken = "XXX.rds"),
+        "XXX.rds does not exist"
+    )
+})
+
+unlink("bibliography.bib")
