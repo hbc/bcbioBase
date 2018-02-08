@@ -60,9 +60,12 @@ copyToDropbox <- function(
     drop_auth(rdstoken = rdsToken)
 
     # Create Dropbox directory path
-    drop_create(dir)
     if (!drop_exists(dir)) {
-        abort("rdrop2 failed to create Dropbox directory")
+        drop_create(dir)
+        # Double check to ensure creation was successful
+        if (!drop_exists(dir)) {
+            abort("rdrop2 is failing to create and detect output directory")
+        }
     }
     
     # Loop across the files in list
