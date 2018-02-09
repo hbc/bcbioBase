@@ -61,7 +61,7 @@ test_that("Invalid parameters", {
 })
 
 test_that("Shared directory", {
-    expect_error(
+    expect_warning(
         copyToDropbox(
             files = files,
             dir = file.path(dropboxDir, "shared"),

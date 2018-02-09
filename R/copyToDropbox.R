@@ -3,7 +3,7 @@
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
 #'
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
-#'   drop_share drop_upload
+#'   drop_get_metadata drop_share drop_upload
 #'
 #' @param files Local file paths.
 #' @param dir Relative path of remote Dropbox directory.
@@ -68,15 +68,12 @@ copyToDropbox <- function(
         drop_create(dir)
     }
     
-    # Prevent writes into shared directories. rdrop2 currently isn't working
-    # well with "HBC Team Folder". We can sunset this restriction in the future
-    # when rdrop2 gets updated and appears to work better with shared team
-    # directories.
+    # Warn about writes into shared directories
     metadata <- drop_get_metadata(dir)
     if (any(
         c("parent_shared_folder_id", "sharing_info") %in% names(metadata)
     )) {
-        abort(paste(
+        warn(paste(
             "rdrop2 currently isn't working well with shared directories.",
             "For the time being, please write to an unshared directory.",
             "The files can be then moved manually on your Dropbox account",
