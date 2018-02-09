@@ -2,8 +2,8 @@
 #'
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
 #'
-#' @importFrom rdrop2 drop_auth drop_create drop_delete drop_exists drop_share
-#'   drop_upload
+#' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
+#'   drop_share drop_upload
 #'
 #' @param files Local file paths.
 #' @param dir Relative path of remote Dropbox directory.
@@ -23,7 +23,7 @@
 copyToDropbox <- function(
     files,
     dir,
-    rdsToken = NULL) {
+    rdsToken = NA) {
     # files
     if (!(is.character(files) || is.list(files))) {
         abort("`files` must be a character vector or list")
@@ -32,21 +32,10 @@ copyToDropbox <- function(
     if (!is_string(dir)) {
         abort("`dir` must be a string")
     }
-    # Ensure trailing slash gets stripped
     dir <- gsub("/$", "", dir)
-    # Error on "HBC Team Folder" detection
-    # TODO This should be safe to remove in a future update
-    if (grepl("HBC Team Folder", dir)) {
-        abort(paste(
-            "rdrop2 is not detecting directories correctly",
-            "in the HBC Team Folder share at the moment.",
-            "Please save the files elsewhere on Dropbox and then",
-            "move them manually. The links will still work."
-        ))
-    }
     # rdsToken
-    if (!(is_string(rdsToken) || is.null(rdsToken))) {
-        abort("`rdsToken` must contain an RDS file or NULL")
+    if (!(is_string(rdsToken) || is.na(rdsToken))) {
+        abort("`rdsToken` must contain an RDS file or NA")
     }
 
     # Check that local files exist
@@ -63,19 +52,36 @@ copyToDropbox <- function(
         if (!file.exists(rdsToken)) {
             abort(paste(rdsToken, "does not exist"))
         }
-    } else {
-        # Match the default in `drop_auth()`
-        rdsToken <- NA
     }
     drop_auth(rdstoken = rdsToken)
 
-    # Create Dropbox directory path
+    # Display account information
+    acc <- drop_acc()
+    inform(paste(
+        "Dropbox:",
+        acc$name$display_name,
+        paste0("<", acc$email, ">")
+    ))
+    
+    # Dropbox output directory
     if (!drop_exists(dir)) {
         drop_create(dir)
-        # Double check to ensure creation was successful
-        if (!drop_exists(dir)) {
-            abort("rdrop2 is failing to create and detect output directory")
-        }
+    }
+    
+    # Prevent writes into shared directories. rdrop2 currently isn't working
+    # well with "HBC Team Folder". We can sunset this restriction in the future
+    # when rdrop2 gets updated and appears to work better with shared team
+    # directories.
+    metadata <- drop_get_metadata(dir)
+    if (any(
+        c("parent_shared_folder_id", "sharing_info") %in% names(metadata)
+    )) {
+        abort(paste(
+            "rdrop2 currently isn't working well with shared directories.",
+            "For the time being, please write to an unshared directory.",
+            "The files can be then moved manually on your Dropbox account",
+            "and the link URLs will be preserved."
+        ))
     }
     
     # Loop across the files in list

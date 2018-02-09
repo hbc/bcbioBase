@@ -1,14 +1,15 @@
 context("copyToDropbox")
 
 prepareTemplate("bibliography.bib")
+files <- "bibliography.bib"
 dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
+rdsToken <- system.file("token.rds", package = "bcbioBase")
 
 test_that("RDS token", {
     x <- copyToDropbox(
-        files = "bibliography.bib",
+        files = files,
         dir = dropboxDir,
-        rdsToken = system.file("token.rds", package = "bcbioBase")
-    )
+        rdsToken = rdsToken)
     expect_is(x, "list")
     expect_identical(
         lapply(x[[1L]], class),
@@ -45,19 +46,27 @@ test_that("Invalid parameters", {
     # rdsToken
     expect_error(
         copyToDropbox(
-            files = "bibliography.bib",
+            files = files,
+            dir = dropboxDir,
+            rdsToken = mtcars),
+        "`rdsToken` must contain an RDS file or NA"
+    )
+    expect_error(
+        copyToDropbox(
+            files = files,
             dir = dropboxDir,
             rdsToken = "XXX.rds"),
         "XXX.rds does not exist"
     )
 })
 
-test_that("HBC Team Folder", {
+test_that("Shared directory", {
     expect_error(
         copyToDropbox(
-            files = "bibliography.bib",
-            dir = "HBC Team Folder (1)"),
-        "rdrop2 is not detecting directories correctly in the HBC Team Folder"
+            files = files,
+            dir = file.path(dropboxDir, "shared"),
+            rdsToken = rdsToken),
+        "rdrop2 currently isn't working well with shared directories."
     )
 })
 

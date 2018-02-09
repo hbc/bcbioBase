@@ -4,7 +4,7 @@
 \alias{copyToDropbox}
 \title{Copy Files to Dropbox}
 \usage{
-copyToDropbox(files, dir, rdsToken = NULL)
+copyToDropbox(files, dir, rdsToken = NA)
 }
 \arguments{
 \item{files}{Local file paths.}
