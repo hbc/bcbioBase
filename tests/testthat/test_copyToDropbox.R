@@ -64,10 +64,13 @@ test_that("Shared directory", {
     expect_warning(
         copyToDropbox(
             files = files,
-            dir = file.path(dropboxDir, "shared"),
+            dir = paste0(dropboxDir, "_shared"),
             rdsToken = rdsToken),
         "rdrop2 currently isn't working well with shared directories."
     )
+    # Don't clean up this directory, because we won't be able to check
+    # that directory is already shared
 })
 
 unlink("bibliography.bib")
+rdrop2::drop_delete(dropboxDir)
