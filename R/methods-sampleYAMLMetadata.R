@@ -27,10 +27,7 @@ setMethod(
     "sampleYAMLMetadata",
     signature("list"),
     function(yaml) {
-        sampleYAML(
-            yaml = yaml,
-            keys = "metadata"
-        ) %>%
+        sampleYAML(yaml = yaml, keys = "metadata") %>%
             mutate_all(as.factor) %>%
             .prepareSampleMetadata()
     })
