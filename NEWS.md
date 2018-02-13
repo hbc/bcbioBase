@@ -1,8 +1,9 @@
-## bcbioBase 0.0.4 (2018-02-08)
+## bcbioBase 0.1.0 (2018-02-13)
 
 - Preparing version pinning for [bioconda][]. Relaxed [rlang][] dependency from v0.1.6 to v0.1.2 and [tidyr][] dependency from v0.7.2 to v0.7.1.
 - Added `copyToDropbox()` function, which enables input of a list of local files and returns [Dropbox][] paths using [rdrop2][].
 - Updated [basejump][] dependency to v0.2.1.
+- Added assertive checks for all functions.
 
 
 ## bcbioBase 0.0.3 (2018-01-27)
