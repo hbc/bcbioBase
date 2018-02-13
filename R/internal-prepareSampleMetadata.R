@@ -5,13 +5,14 @@
 #'
 #' @importFrom dplyr arrange everything mutate mutate_if select
 #' @importFrom magrittr set_rownames
+#' @importFrom tibble as_tibble
 #'
 #' @param object Metadata [data.frame].
 #'
 #' @return [data.frame].
 .prepareSampleMetadata <- function(object) {
     assert_has_dimnames(object)
-    object <- as.data.frame(object)
+    object <- as_tibble(object)
     assert_is_subset("description", colnames(object))
 
     # Set `sampleName`, if necessary
@@ -37,5 +38,6 @@
         mutate_if(is.factor, droplevels) %>%
         select(metadataPriorityCols, everything()) %>%
         arrange(!!!syms(metadataPriorityCols)) %>%
+        as.data.frame() %>%
         set_rownames(.[["sampleID"]])
 }
