@@ -26,12 +26,12 @@ demultiplexed <- file.path(
     "http://bcbiobase.seq.cloud",
     "sample_metadata",
     "demultiplexed.xlsx")
-readSampleMetadataFile(demultiplexed)
+readSampleMetadataFile(demultiplexed) \%>\% glimpse()
 
 # Multiplexed (e.g. inDrop single-cell RNA-seq)
 multiplexed <- file.path(
     "http://bcbiobase.seq.cloud",
     "sample_metadata",
     "multiplexed.xlsx")
-readSampleMetadataFile(multiplexed)
+readSampleMetadataFile(multiplexed) \%>\% glimpse()
 }

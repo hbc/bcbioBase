@@ -22,7 +22,7 @@ url <- file.path(
     "http://bcbiobase.seq.cloud",
     "bcbio",
     "data_versions.csv")
-readDataVersions(url)
+readDataVersions(url) \%>\% glimpse()
 }
 \seealso{
 Other File Utilities: \code{\link{readLogFile}}

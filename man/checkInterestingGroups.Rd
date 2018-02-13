@@ -20,3 +20,11 @@ Valid character of defined interesting groups. Stop on failure.
 Prevent unwanted downstream behavior when a missing interesting group
 is requested by the user.
 }
+\examples{
+demultiplexed <- file.path(
+    "http://bcbiobase.seq.cloud",
+    "sample_metadata",
+    "demultiplexed.xlsx")
+meta <- readSampleMetadataFile(demultiplexed)
+checkInterestingGroups(object = meta, interestingGroups = "genotype")
+}

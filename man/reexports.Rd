@@ -78,6 +78,8 @@
 \alias{metadata}
 \alias{reexports}
 \alias{glimpse}
+\alias{reexports}
+\alias{tibble}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -93,6 +95,6 @@ below to see their documentation.
 
   \item{S4Vectors}{\code{\link[S4Vectors]{DataFrame}}, \code{\link[S4Vectors]{metadata}}}
 
-  \item{tibble}{\code{\link[tibble]{glimpse}}}
+  \item{tibble}{\code{\link[tibble]{glimpse}}, \code{\link[tibble]{tibble}}}
 }}
 

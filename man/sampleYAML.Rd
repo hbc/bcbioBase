@@ -19,7 +19,7 @@ sampleYAML(yaml, keys, ...)
 \item{...}{Additional arguments.}
 }
 \value{
-\link{data.frame}.
+\link{tibble}.
 }
 \description{
 Sample YAML Metadata Utilities
@@ -34,8 +34,8 @@ url <- file.path(
     "http://bcbiobase.seq.cloud",
     "bcbio",
     "project-summary.yaml")
-yaml <- readYAML(url)
-sampleYAML(yaml, "metadata")
+yaml <- basejump::readYAML(url)
+sampleYAML(yaml, "metadata") \%>\% glimpse()
 }
 \seealso{
 Other YAML Utilities: \code{\link{sampleYAMLMetadata}},

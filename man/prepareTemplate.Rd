@@ -41,18 +41,22 @@ By default, this function will create local copies of these files:
 }
 }
 \examples{
-# Copy all of the default shared template files
-prepareTemplate()
-unlink(c(
+defaultFiles <- c(
     "_footer.Rmd",
     "_header.Rmd",
     "_output.yaml",
     "bibliography.bib",
     "setup.R"
-))
+)
+
+# Copy all of the default shared template files
+prepareTemplate()
+file.exists(defaultFiles)
+unlink(defaultFiles)
 
 # Request individual files
 prepareTemplate("setup.R")
+file.exists("setup.R")
 unlink("setup.R")
 
 # Load the shared files from bcbioSingleCell
@@ -63,5 +67,4 @@ prepareTemplate(
         package = "bcbioSingleCell")
 )
 }
-
 }

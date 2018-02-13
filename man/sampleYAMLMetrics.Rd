@@ -17,7 +17,7 @@ sampleYAMLMetrics(yaml, ...)
 \item{...}{Additional arguments.}
 }
 \value{
-\link{data.frame}.
+\link{tibble}.
 }
 \description{
 Sample Metrics from YAML File

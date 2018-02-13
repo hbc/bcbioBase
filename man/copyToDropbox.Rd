@@ -21,11 +21,13 @@ Copy Files to Dropbox
 }
 \examples{
 prepareTemplate("bibliography.bib")
-copyToDropbox(
+dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
+suppressMessages(copyToDropbox(
     files = "bibliography.bib",
-    dir = file.path("bcbioBase_examples", "copyToDropbox"),
+    dir = dropboxDir,
     rdsToken = system.file("token.rds", package = "bcbioBase")
-)
+))
+rdrop2::drop_exists(file.path(dropboxDir, "bibliography.bib"))
 unlink("bibliography.bib")
 }
 \author{
