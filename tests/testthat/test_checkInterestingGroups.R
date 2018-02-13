@@ -3,7 +3,11 @@ context("checkInterestingGroups")
 test_that("Missing interesting groups", {
     expect_error(
         checkInterestingGroups(mtcars, interestingGroups = "XXX"),
-        "Interesting groups not defined in metadata: XXX"
+        paste(
+            "is_subset :",
+            "The element 'XXX' in interestingGroups is not in",
+            "colnames\\(object\\)."
+        )
     )
 })
 

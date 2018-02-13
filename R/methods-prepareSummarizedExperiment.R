@@ -100,10 +100,10 @@ NULL
     colData = NULL,
     metadata = NULL) {
     assert_is_list(assays)
-
     validData <- c("data.frame", "DataFrame", "matrix", "NULL")
     assert_is_any_of(rowData, validData)
     assert_is_any_of(colData, validData)
+    assert_is_any_of(metadata, c("list", "NULL"))
 
     # Assays ===================================================================
     # Drop any `NULL` items from list.
@@ -158,6 +158,10 @@ NULL
         rowData <- rowData[rownames(assay), , drop = FALSE]
         rownames(rowData) <- rownames(assay)
     } else {
+        warn(paste(
+            "Summarizing experiment without row data",
+            "(e.g. gene annotations)"
+        ))
         rowData <- DataFrame(row.names = rownames(assay))
         unannotatedGenes <- NULL
     }
@@ -168,6 +172,10 @@ NULL
         colData <- as(colData, "DataFrame")
         assert_are_identical(colnames(assay), rownames(colData))
     } else {
+        warn(paste(
+            "Summarizing experiment without column data",
+            "(e.g. sample metadata)"
+        ))
         colData <- DataFrame(row.names = colnames(assay))
     }
 

@@ -7,7 +7,7 @@ test_that("readLogFile", {
                   "bcbio-nextgen.log"),
         quiet = TRUE)
     expect_true(is.character(log))
-    expect_equal(
+    expect_identical(
         log[[1L]],
         paste("[2017-08-15T14:53Z]",
               "compute-a-16-44.o2.rc.hms.harvard.edu:",
@@ -21,7 +21,7 @@ test_that("Missing file", {
         readLogFile("XXX.log"),
         "XXX.log missing"
     )
-    expect_equal(
+    expect_identical(
         suppressWarnings(
             readLogFile("XXX.log")
         ),

@@ -29,6 +29,10 @@ test_that("Missing interesting group", {
             mtcars,
             interestingGroups = c("XXX", "YYY")
         ),
-        "Interesting groups not defined in metadata: XXX, YYY"
+        paste(
+            "is_subset :",
+            "The elements 'XXX', 'YYY' in interestingGroups are not in",
+            "colnames\\(object\\)."
+        )
     )
 })

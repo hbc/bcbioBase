@@ -5,6 +5,7 @@
 #' @keywords internal
 #'
 #' @importFrom assertive assert_all_are_existing_files
+#' @importFrom assertive assert_are_disjoint_sets
 #' @importFrom assertive assert_are_identical
 #' @importFrom assertive assert_are_intersecting_sets
 #' @importFrom assertive assert_has_colnames

@@ -33,17 +33,13 @@ NULL
 .sampleYAML <- function(yaml, keys) {
     samples <- yaml[["samples"]]
     assert_is_non_empty(samples)
-
-    # TODO abort here instead?
-    if (!keys[[1L]] %in% names(samples[[1L]])) {
-        warn("No primary keys matched")
-        return(NULL)
-    }
+    # TODO Improve recursion detection in a future update
+    assert_is_subset(keys[[1L]], names(samples[[1L]]))
     if (length(keys) > 1L) {
-        if (!keys[[2L]] %in% names(samples[[1L]][[keys[[1L]]]])) {
-            warn("No secondary keys matched")
-            return(NULL)
-        }
+        assert_is_subset(
+            keys[[2L]],
+            names(samples[[1L]][[keys[[1L]]]])
+        )
     }
 
     data <- lapply(samples, function(sample) {

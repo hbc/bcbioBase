@@ -13,17 +13,17 @@ test_that("Demultiplexed FASTQ", {
               "sample_2",
               "sample_3",
               "sample_4")
-    expect_equal(
+    expect_identical(
         as.character(meta[["sampleID"]]),
         rows
     )
-    expect_equal(
+    expect_identical(
         rownames(meta),
         rows
     )
 
     # Check that column names get set correctly
-    expect_equal(
+    expect_identical(
         colnames(meta),
         c("sampleID",
           "sampleName",
@@ -34,7 +34,7 @@ test_that("Demultiplexed FASTQ", {
 
     # Lane-split technical replicate support
     meta <- readSampleMetadataFile(file, lanes = 4L, quiet = TRUE)
-    expect_equal(
+    expect_identical(
         rownames(meta)[1L:8L],
         c("sample_1_L001",
           "sample_1_L002",
@@ -45,7 +45,7 @@ test_that("Demultiplexed FASTQ", {
           "sample_2_L003",
           "sample_2_L004")
     )
-    expect_equal(
+    expect_identical(
         meta[1L, metadataPriorityCols],
         data.frame(
             sampleID = factor(
@@ -108,7 +108,7 @@ test_that("Multiplexed FASTQ", {
     )
     meta <- readSampleMetadataFile(file, quiet = TRUE)
 
-    expect_equal(
+    expect_identical(
         rownames(meta),
         c("run_1_CAGTTATG",
           "run_1_TTACCTCC",
@@ -121,7 +121,7 @@ test_that("Multiplexed FASTQ", {
 
     # Lane-split technical replicate support
     meta <- readSampleMetadataFile(file, lanes = 4L, quiet = TRUE)
-    expect_equal(
+    expect_identical(
         rownames(meta),
         c("run_1_L001_CAGTTATG",
           "run_1_L001_TTACCTCC",
@@ -188,7 +188,7 @@ test_that("Legacy bcbio samplename column", {
     meta <- suppressWarnings(
         readSampleMetadataFile(file, quiet = TRUE)
     )
-    expect_equal(
+    expect_identical(
         meta,
         data.frame(
             # sanitized

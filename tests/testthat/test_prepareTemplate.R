@@ -21,6 +21,6 @@ test_that("Single file", {
 test_that("Missing source file", {
     expect_error(
         prepareTemplate("XXX.R"),
-        "Missing source file"
+        "is_existing_file :"
     )
 })
