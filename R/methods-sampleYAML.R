@@ -13,7 +13,7 @@
 #'   counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
 #'   output the same metrics into the YAML.
 #'
-#' @return [data.frame].
+#' @return [tibble].
 #'
 #' @examples
 #' url <- file.path(
@@ -31,6 +31,7 @@ NULL
 #' @importFrom dplyr arrange bind_rows
 #' @importFrom magrittr set_rownames
 .sampleYAML <- function(yaml, keys) {
+    assert_is_list(yaml)
     yaml <- yaml[["samples"]]
     assert_is_list(yaml)
     assert_is_non_empty(yaml)
@@ -50,38 +51,37 @@ NULL
     }
 
     data <- lapply(yaml, function(sample) {
-        nested <- sample[[keys]]
-
-        # Always set the description, if present
-        if (is.character(sample[["description"]])) {
-            nested[["description"]] <- sample[["description"]]
-        }
+        # Always get the sample description
+        assert_is_character(sample[["description"]])
+        description <- sample[["description"]]
 
         # Fix NULL batch and phenotype values found in metadata
         if (rev(keys)[[1L]] == "metadata") {
-            if (is.null(nested[["batch"]])) {
-                nested[["batch"]] <- NA
+            if (is.null(sample[[keys]][["batch"]])) {
+                sample[[keys]][["batch"]] <- NA
             }
-            if (length(nested[["phenotype"]])) {
-                if (grepl("^$", nested[["phenotype"]])) {
-                    nested[["phenotype"]] <- NA
+            if (length(sample[[keys]][["phenotype"]])) {
+                if (grepl("^$", sample[[keys]][["phenotype"]])) {
+                    sample[[keys]][["phenotype"]] <- NA
                 }
             }
         }
 
-        unlist <- unlist(nested)
-        names(unlist) <- camel(names(unlist), strict = FALSE)
+        unlist <- unlist(sample[[keys]])
+        # Add back the description
+        unlist <- c(description = description, unlist)
         unlist
     })
 
+    # Use this method to handle an uneven number of lengths.
+    # This can happen for sample metrics values that vary in lengths per sample.
     dflist <- lapply(data, function(x) {
-        as.data.frame(t(x), stringsAsFactors = FALSE)
+        as_tibble(t(x), stringsAsFactors = FALSE)
     })
 
     bind_rows(dflist) %>%
         removeNA() %>%
-        arrange(.data[["description"]]) %>%
-        set_rownames(.[["description"]])
+        arrange(.data[["description"]])
 }
 
 

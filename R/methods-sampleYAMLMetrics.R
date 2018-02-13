@@ -24,11 +24,12 @@ NULL
         yaml = yaml,
         keys = c("summary", "metrics")
     )
+    assert_is_tbl(data)
 
     # The fast mode RNA-seq pipeline doesn't report metrics generated from
     # STAR featureCounts output with MultiQC. Allow NULL return to handle
     # this pipeline output.
-    if (is.null(data)) {
+    if (identical(colnames(data), "description")) {
         warn("No sample metrics were calculated")
         return(NULL)
     }

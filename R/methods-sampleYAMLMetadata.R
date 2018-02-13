@@ -20,13 +20,7 @@ NULL
 # Constructors =================================================================
 #' @importFrom dplyr mutate_all
 .sampleYAMLMetadata <- function(yaml) {
-    data <- sampleYAML(yaml = yaml, keys = "metadata")
-    # TODO Abort here?
-    if (is.null(data)) {
-        warn("Failed to obtain sample metadata")
-        return(NULL)
-    }
-    data %>%
+    sampleYAML(yaml = yaml, keys = "metadata") %>%
         mutate_all(as.factor) %>%
         .prepareSampleMetadata()
 }
