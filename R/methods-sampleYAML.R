@@ -31,6 +31,7 @@ NULL
 #' @importFrom dplyr arrange bind_rows
 #' @importFrom magrittr set_rownames
 .sampleYAML <- function(yaml, keys) {
+    assert_is_non_empty(yaml)
     yaml <- yaml[["samples"]]
     assert_is_list(yaml)
     assert_is_non_empty(yaml)
@@ -67,6 +68,9 @@ NULL
         }
 
         unlist <- unlist(sample[[keys]])
+        assert_has_names(unlist)
+        names(unlist) <- camel(names(unlist))
+
         # Add back the description
         unlist <- c(description = description, unlist)
         unlist
