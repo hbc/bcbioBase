@@ -29,6 +29,14 @@ basejump::checkGene2symbol
 #' @export
 basejump::checkTx2gene
 
+#' @importFrom basejump convertGenesToSymbols
+#' @export
+basejump::convertGenesToSymbols
+
+#' @importFrom basejump convertTranscriptsToGenes
+#' @export
+basejump::convertTranscriptsToGenes
+
 #' @importFrom basejump detectOrganism
 #' @export
 basejump::detectOrganism
