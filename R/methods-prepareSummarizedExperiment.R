@@ -41,38 +41,50 @@
 #'     nrow = 4L,
 #'     ncol = 4L,
 #'     dimnames = list(
-#'         c("ENSMUSG00000000001",
-#'           "ENSMUSG00000000003",
-#'           "ENSMUSG00000000028",
-#'           "ENSMUSG00000000031"),
-#'         c("sample_1",
-#'           "sample_2",
-#'           "sample_3",
-#'           "sample_4")))
+#'         c(
+#'             "ENSMUSG00000000001",
+#'             "ENSMUSG00000000003",
+#'             "ENSMUSG00000000028",
+#'             "ENSMUSG00000000031"
+#'         ),
+#'         c(
+#'             "sample_1",
+#'             "sample_2",
+#'             "sample_3",
+#'             "sample_4"
+#'         )
+#'     )
+#' )
 #' rowData <- data.frame(
 #'     ensgene = c(
 #'         "ENSMUSG00000000001",
 #'         "ENSMUSG00000000003",
 #'         "ENSMUSG00000000028",
-#'         "ENSMUSG00000000031"),
+#'         "ENSMUSG00000000031"
+#'     ),
 #'     biotype = c(
 #'         "coding",
 #'         "coding",
 #'         "coding",
-#'         "coding"),
-#'     row.names = rownames(mat))
+#'         "coding"
+#'     ),
+#'     row.names = rownames(mat)
+#' )
 #' colData <- data.frame(
 #'     genotype = c(
 #'         "wildtype",
 #'         "wildtype",
 #'         "knockout",
-#'         "knockout"),
+#'         "knockout"
+#'     ),
 #'     age = c(3, 6, 3, 6),
-#'     row.names = colnames(mat))
+#'     row.names = colnames(mat)
+#' )
 #' prepareSummarizedExperiment(
 #'     assays = list(assay = mat),
 #'     rowData = rowData,
-#'     colData = colData)
+#'     colData = colData
+#' )
 NULL
 
 
@@ -84,64 +96,47 @@ NULL
 #' @importFrom utils head
 .prepareSummarizedExperiment <- function(
     assays,
-    rowData,
-    colData,
-    metadata) {
+    rowData = NULL,
+    colData = NULL,
+    metadata = NULL) {
+    validData <- c("data.frame", "DataFrame", "matrix", "NULL")
+    assert_is_list(assays)
+    assert_is_any_of(rowData, validData)
+    assert_is_any_of(colData, validData)
+
     # Assays ===================================================================
-    # Drop any `NULL` items from list. Otherwise we'll get a dimension mismatch
-    # error.
+    # Drop any `NULL` items from list.
     assays <- Filter(Negate(is.null), assays)
+
     assay <- assays[[1L]]
-    if (is.null(dim(assay))) {
-        abort("`assay()` object must support `dim()`")
-    }
-    # Check for potential dimnames problems
-    if (is.null(rownames(assay))) {
-        abort("`assay()` object missing rownames")
-    }
-    if (is.null(colnames(assay))) {
-        abort("`assay()` object missing colnames")
-    }
-    if (any(duplicated(rownames(assay)))) {
-        abort("`assay()` object has non-unique rownames")
-    }
-    if (any(duplicated(colnames(assay)))) {
-        abort("`assay()` object has non-unique colnames")
-    }
-    if (!identical(
+    assert_has_dimnames(assay)
+    assert_has_rownames(assay)
+    assert_has_colnames(assay)
+    assert_has_no_duplicates(rownames(assay))
+    assert_has_no_duplicates(colnames(assay))
+    assert_are_identical(
         make.names(rownames(assay), unique = TRUE, allow_ = TRUE),
         rownames(assay)
-    )) {
-        abort(paste(
-            "Rownames are invalid.",
-            "See `base::make.names()` for more information."
-            ))
-    }
-    if (!identical(
+    )
+    assert_are_identical(
         make.names(colnames(assay), unique = TRUE, allow_ = TRUE),
         colnames(assay)
-    )) {
-        abort(paste(
-            "Colnames are invalid.",
-            "See `base::make.names()` for more information."
-            ))
-    }
+    )
+
+    # Ensure that all slotted items have the same dimensions and names
+    lapply(
+        X = assays,
+        FUN = function(x) {
+            assert_are_identical(dim(x), dim(assay))
+            assert_are_identical(dimnames(x), dimnames(assay))
+    })
 
     # Row data =================================================================
-    # Alow rowData to be left unset
-    if (missing(rowData)) {
-        rowData <- NULL
-    }
-    if (is.null(rowData)) {
-        unannotatedGenes <- NULL
-    } else {
-        if (is.null(dim(rowData))) {
-            abort("rowData must support `dim()`")
-        }
+    if (!is.null(rowData)) {
         rowData <- as.data.frame(rowData)
-        if (!has_rownames(rowData)) {
-            abort("rowData missing rownames")
-        }
+        rowData <- as(rowData, "DataFrame")
+        assert_are_intersecting_sets(rownames(assay), rownames(rowData))
+
         # Check for unannotated genes not found in annotable. This typically
         # includes gene identifiers that are now deprecated on Ensembl and/or
         # FASTA spike-in identifiers. Warn on detection rather than stopping.
@@ -149,7 +144,7 @@ NULL
             unannotatedGenes <- setdiff(rownames(assay), rownames(rowData)) %>%
                 sort()
             warn(paste(
-                "Unannotated genes detected in counts matrix",
+                "Unannotated genes detected in assay",
                 paste0(
                     "(", percent(length(unannotatedGenes) / nrow(assay)), ")"
                 )
@@ -158,44 +153,23 @@ NULL
             unannotatedGenes <- NULL
         }
 
-        # Fit the annotable annotations to match the number of rows
-        # (genes/transcripts) present in the counts matrix
-        rowData <- rowData %>%
-            .[rownames(assay), , drop = FALSE] %>%
-            set_rownames(rownames(assay)) %>%
-            as("DataFrame")
+        # Allow for dynamic resizing of rows to match gene annotable input
+        rowData <- rowData[rownames(assay), , drop = FALSE]
+        rownames(rowData) <- rownames(assay)
+    } else {
+        unannotatedGenes <- NULL
     }
 
     # Column data ==============================================================
-    if (missing(colData) | is.null(colData)) {
-        abort("colData is required")
+    if (!is.null(colData)) {
+        colData <- as.data.frame(colData)
+        colData <- as(colData, "DataFrame")
+        assert_are_identical(colnames(assay), rownames(colData))
     }
-    if (is.null(dim(colData))) {
-        abort("colData must support `dim()`")
-    }
-    colData <- as.data.frame(colData)
-    if (!has_rownames(colData)) {
-        abort("colData missing rownames")
-    }
-    if (!all(colnames(assay) %in% rownames(colData))) {
-        missingSamples <- setdiff(colnames(assay), rownames(colData))
-        abort(paste(
-            "Sample mismatch detected:",
-            toString(head(missingSamples))
-        ))
-    }
-    colData <- colData %>%
-        .[colnames(assay), , drop = FALSE] %>%
-        set_rownames(colnames(assay)) %>%
-        as("DataFrame")
 
     # Metadata =================================================================
-    if (missing(metadata)) {
+    if (!is.null(metadata)) {
         metadata <- list()
-    } else {
-        if (!is(metadata, "list")) {
-            abort("Metadata must be a list")
-        }
     }
     metadata[["date"]] <- Sys.Date()
     metadata[["wd"]] <- getwd()

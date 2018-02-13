@@ -6,31 +6,33 @@
 #' @importFrom dplyr arrange everything mutate mutate_if select
 #' @importFrom magrittr set_rownames
 #'
-#' @param metadata Metadata [data.frame].
+#' @param object Metadata [data.frame].
 #'
 #' @return [data.frame].
-.prepareSampleMetadata <- function(metadata) {
-    metadata <- as.data.frame(metadata)
-    # `description` is required
-    if (!"description" %in% colnames(metadata)) {
-        abort("`description` column is required")
-    }
+.prepareSampleMetadata <- function(object) {
+    assert_has_dimnames(object)
+    object <- as.data.frame(object)
+    assert_is_subset("description", colnames(object))
+
     # Set `sampleName`, if necessary
-    if (!"sampleName" %in% colnames(metadata)) {
-        metadata[["sampleName"]] <- metadata[["description"]]
+    if (!"sampleName" %in% colnames(object)) {
+        object[["sampleName"]] <- object[["description"]]
     }
+
     # Set `sampleID`, if necessary
-    if (!"sampleID" %in% colnames(metadata)) {
-        metadata[["sampleID"]] <- metadata[["sampleName"]]
+    if (!"sampleID" %in% colnames(object)) {
+        object[["sampleID"]] <- object[["sampleName"]]
     }
+
     # Ensure `sampleID` has valid names. This allows for input of samples
     # beginning with numbers or containing hyphens for example, which aren't
     # valid names in R.
-    metadata[["sampleID"]] <- gsub(
-            x = make.names(metadata[["sampleID"]], unique = TRUE),
+    object[["sampleID"]] <- gsub(
+            x = make.names(object[["sampleID"]], unique = TRUE),
             pattern = "\\.",
             replacement = "_")
-    metadata %>%
+
+    object %>%
         mutate_if(is.character, as.factor) %>%
         mutate_if(is.factor, droplevels) %>%
         select(metadataPriorityCols, everything()) %>%
