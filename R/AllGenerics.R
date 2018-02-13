@@ -3,10 +3,8 @@
 #' @rdname AllGenerics
 #' @name AllGenerics
 #'
-#' @param object Object.
-#' @param value Value to assign.
-#' @param ... *Additional arguments (for the S4 generic definition).*
-#' 
+#' @inheritParams general
+#'
 #' @return Varies, depending upon the method.
 NULL
 
@@ -104,38 +102,6 @@ setGeneric("prepareSummarizedExperiment", function(assays, ...) {
 #' @export
 setGeneric("prepareTemplate", function(object, ...) {
     standardGeneric("prepareTemplate")
-})
-
-
-
-#' @rdname readDataVersions
-#' @export
-setGeneric("readDataVersions", function(object, ...) {
-    standardGeneric("readDataVersions")
-})
-
-
-
-#' @rdname readLogFile
-#' @export
-setGeneric("readLogFile", function(object, ...) {
-    standardGeneric("readLogFile")
-})
-
-
-
-#' @rdname readProgramVersions
-#' @export
-setGeneric("readProgramVersions", function(object, ...) {
-    standardGeneric("readProgramVersions")
-})
-
-
-
-#' @rdname readSampleMetadataFile
-#' @export
-setGeneric("readSampleMetadataFile", function(object, ...) {
-    standardGeneric("readSampleMetadataFile")
 })
 
 

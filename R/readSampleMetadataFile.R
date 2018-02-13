@@ -4,14 +4,23 @@
 #' @name readSampleMetadataFile
 #' @family Data Import and Project Utilities
 #'
-#' @inheritParams AllGenerics
+#' @importFrom basejump camel readFileByExtension removeNA
+#' @importFrom Biostrings reverseComplement
+#' @importFrom dplyr group_by left_join mutate mutate_all mutate_if
+#'   rename ungroup
+#' @importFrom stringr str_pad
+#' @importFrom tibble as_tibble
+#' @importFrom tidyr expand
 #'
-#' @param object Metadata file. Supports CSV and XLSX file formats.
+#' @inheritParams general
+#'
+#' @param file Metadata file. Supports CSV and XLSX file formats.
 #' @param lanes *Optional*. Number of lanes used to split the samples into
 #'   technical replicates (`_LXXX`) suffix.
 #' @param quiet If `TRUE`, suppress any status messages and/or progress bars.
 #'
 #' @return [data.frame].
+#' @export
 #'
 #' @examples
 #' # Demultiplexed
@@ -27,110 +36,77 @@
 #'     "sample_metadata",
 #'     "multiplexed.xlsx")
 #' readSampleMetadataFile(multiplexed)
-NULL
-
-
-
-# Constructors =================================================================
-#' @importFrom basejump camel readFileByExtension removeNA
-#' @importFrom Biostrings reverseComplement
-#' @importFrom dplyr group_by left_join mutate mutate_all mutate_if
-#'   rename ungroup
-#' @importFrom stringr str_pad
-#' @importFrom tidyr expand
-.readSampleMetadataFile <- function(
-    object,
+readSampleMetadataFile <- function(
+    file,
     lanes = 1L,
     quiet = FALSE) {
-    metadata <- readFileByExtension(object, quiet = quiet)
+    assert_is_a_string(file)
+    assert_is_integer(lanes)
+    assert_is_a_bool(quiet)
 
-    # Check for manually defined `sampleID`. Warn and remove if present.
-    if ("sampleID" %in% colnames(metadata)) {
-        warn(paste(
-            "`sampleID` should not be manually defined",
-            "in the sample metadata file"
-        ))
-        metadata[["sampleID"]] <- NULL
-    }
+    data <- readFileByExtension(file, quiet = quiet) %>%
+        as_tibble()
+
+    # Don't allow the user to manually define `sampleID` column
+    assert_are_disjoint_sets("sampleID", colnames(data))
 
     # Warn on legacy `samplename` column. We need to work on improving the
     # consistency in examples or the internal handlng of file and sample
     # names in a future update.
-    if ("samplename" %in% colnames(metadata)) {
+    if ("samplename" %in% colnames(data)) {
         warn(paste(
-            "`samplename` is used in some bcbio examples for FASTQ file names,",
-            "and `description` for sample names. Here we are using `fileName`",
-            "for FASTQ file names (e.g. `control_replicate_1.fastq.gz`),",
+            "`samplename` (note case) is used in some bcbio examples for",
+            "FASTQ file names and `description` for sample names.",
+            "Here we are requiring `fileName for FASTQ file names",
+            "(e.g. `control_replicate_1.fastq.gz`),",
             "`description` for multiplexed per file sample names",
             "(e.g. `control replicate 1`, and `sampleName` for multiplexed",
             "sample names (i.e. inDrop barcoded samples)."
         ))
-        metadata <- rename(metadata, fileName = .data[["samplename"]])
+        data <- rename(data, fileName = .data[["samplename"]])
     }
 
     # Check for basic required columns
     requiredCols <- c("fileName", "description")
-    if (!all(requiredCols %in% colnames(metadata))) {
-        abort(paste(
-            "Required columns:", toString(requiredCols)
-        ))
-    }
+    assert_is_subset(requiredCols, colnames(data))
 
     # Determine whether the samples are multiplexed, based on the presence
     # of duplicate values in the `description` column
-    if (any(duplicated(metadata[["fileName"]])) |
-        "index" %in% colnames(metadata)) {
+    if (any(duplicated(data[["fileName"]])) | "index" %in% colnames(data)) {
         multiplexed <- TRUE
     } else {
         multiplexed <- FALSE
     }
 
     if (isTRUE(multiplexed)) {
-        requiredCols <- c("fileName", "description", "sampleName", "index")
-        if (!all(requiredCols %in% colnames(metadata))) {
-            abort(paste(
-                "Required columns:", toString(requiredCols)
-            ))
-        }
-        # Ensure `sampleName` is unique
-        if (any(duplicated(metadata[["sampleName"]]))) {
-            abort("`sampleName` column must be unique for multiplexed samples")
-        }
+        requiredCols <- c(requiredCols, "sampleName", "index")
+        assert_is_subset(requiredCols, colnames(data))
+        assert_has_no_duplicates(data[["sampleName"]])
     } else {
-        # Ensure `description` is unique
-        if (any(duplicated(metadata[["description"]]))) {
-            abort("`description` column must be unique for demultiplexed files")
-        }
-        # Check for user-defined `description` and `sampleName`
-        if (all(c("description", "sampleName") %in% colnames(metadata))) {
-            abort(paste(
-                "Specify only `description` and omit `sampleName` for",
-                "demultiplexed FASTQ file metadata"
-            ))
-        }
-        metadata[["sampleName"]] <- metadata[["description"]]
+        assert_has_no_duplicates(data[["description"]])
+        assert_are_disjoint_sets("sampleName", colnames(data))
+        data[["sampleName"]] <- data[["description"]]
     }
 
-    metadata <- metadata %>%
+    data <- data %>%
         # Valid rows must contain `description` and `sampleName`. Imported Excel
         # files can contain empty rows, so this helps correct that problem.
         .[!is.na(.[["description"]]), , drop = FALSE] %>%
         .[!is.na(.[["sampleName"]]), , drop = FALSE] %>%
         # Strip all NA rows and columns
         removeNA() %>%
-        # Make colnames camelCase
-        camel(strict = FALSE)
+        camel()
 
     # Prepare metadata for lane split replicates. This step will expand rows
     # into the number of desired replicates.
     if (lanes > 1L) {
-        metadata <- metadata %>%
+        data <- data %>%
             group_by(!!sym("description")) %>%
             # Expand by lane (e.g. "L001")
             expand(
                 lane = paste0("L", str_pad(1L:lanes, 3L, pad = "0"))
             ) %>%
-            left_join(metadata, by = "description") %>%
+            left_join(data, by = "description") %>%
             ungroup() %>%
             mutate(
                 description = paste(
@@ -149,15 +125,15 @@ NULL
     # match. Otherwise just return the `sampleName` as the `sampleID`.
     if (
         isTRUE(multiplexed) &
-        is.character(metadata[["sequence"]])
+        is.character(data[["sequence"]])
     ) {
         detectSequence <-
-            grepl(x = metadata[["sequence"]],
+            grepl(x = data[["sequence"]],
                   pattern = "^[ACGT]{6,}") %>%
             all()
         if (isTRUE(detectSequence)) {
-            metadata[["revcomp"]] <- vapply(
-                X = metadata[["sequence"]],
+            data[["revcomp"]] <- vapply(
+                X = data[["sequence"]],
                 FUN = function(x) {
                     x %>%
                         as("character") %>%
@@ -170,30 +146,20 @@ NULL
             # Match the sample directories exactly here, using the hyphen.
             # We'll sanitize into valid names using `make.names()` in
             # the final return chain.
-            metadata[["sampleID"]] <-
-                paste(metadata[["description"]],
-                      metadata[["revcomp"]],
+            data[["sampleID"]] <-
+                paste(data[["description"]],
+                      data[["revcomp"]],
                       sep = "-")
         }
     }
 
     # Default to sanitized `sampleName` column for `sampleID`
-    if (!"sampleID" %in% colnames(metadata)) {
-        metadata[["sampleID"]] <- metadata[["sampleName"]]
+    if (!"sampleID" %in% colnames(data)) {
+        data[["sampleID"]] <- data[["sampleName"]]
     }
 
-    metadata %>%
+    data %>%
         mutate_all(as.factor) %>%
         mutate_if(is.factor, droplevels) %>%
         .prepareSampleMetadata()
 }
-
-
-
-# Methods ======================================================================
-#' @rdname readSampleMetadataFile
-#' @export
-setMethod(
-    "readSampleMetadataFile",
-    signature("character"),
-    .readSampleMetadataFile)
