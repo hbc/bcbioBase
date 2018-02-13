@@ -20,8 +20,8 @@
 #'     "http://bcbiobase.seq.cloud",
 #'     "bcbio",
 #'     "project-summary.yaml")
-#' yaml <- readYAML(url)
-#' sampleYAML(yaml, "metadata")
+#' yaml <- basejump::readYAML(url)
+#' sampleYAML(yaml, "metadata") %>% glimpse()
 NULL
 
 
@@ -31,21 +31,33 @@ NULL
 #' @importFrom dplyr arrange bind_rows
 #' @importFrom magrittr set_rownames
 .sampleYAML <- function(yaml, keys) {
-    samples <- yaml[["samples"]]
-    assert_is_non_empty(samples)
-    # TODO Improve recursion detection in a future update
-    assert_is_subset(keys[[1L]], names(samples[[1L]]))
-    if (length(keys) > 1L) {
+    yaml <- yaml[["samples"]]
+    assert_is_list(yaml)
+    assert_is_non_empty(yaml)
+    assert_is_character(keys)
+    # Currently max 2 keys are supported
+    assert_all_are_in_range(length(keys), lower = 1L, upper = 2L)
+
+    # Always check that first key exists (e.g. "metadata")
+    assert_is_subset(keys[[1L]], names(yaml[[1L]]))
+
+    # When going deeper (e.g. metrics, check for secondary key presence)
+    if (length(keys) == 2L) {
         assert_is_subset(
             keys[[2L]],
-            names(samples[[1L]][[keys[[1L]]]])
+            names(yaml[[1L]][[keys[[1L]]]])
         )
     }
 
-    data <- lapply(samples, function(sample) {
+    data <- lapply(yaml, function(sample) {
         nested <- sample[[keys]]
-        # Set the description
-        nested[["description"]] <- sample[["description"]]
+
+        # Always set the description, if present
+        if (is.character(sample[["description"]])) {
+            nested[["description"]] <- sample[["description"]]
+        }
+
+        # Fix NULL batch and phenotype values found in metadata
         if (rev(keys)[[1L]] == "metadata") {
             if (is.null(nested[["batch"]])) {
                 nested[["batch"]] <- NA
@@ -56,6 +68,7 @@ NULL
                 }
             }
         }
+
         unlist <- unlist(nested)
         names(unlist) <- camel(names(unlist), strict = FALSE)
         unlist
