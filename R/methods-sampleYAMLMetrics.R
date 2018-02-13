@@ -6,8 +6,6 @@
 #'
 #' @inherit sampleYAML
 #'
-#' @inheritParams AllGenerics
-#'
 #' @examples
 #' url <- file.path(
 #'     "http://bcbiobase.seq.cloud",
@@ -22,22 +20,25 @@ NULL
 # Constructors =================================================================
 #' @importFrom dplyr mutate_if
 .sampleYAMLMetrics <- function(yaml) {
-    metrics <- sampleYAML(
+    data <- sampleYAML(
         yaml = yaml,
         keys = c("summary", "metrics")
     )
+
     # The fast mode RNA-seq pipeline doesn't report metrics generated from
     # STAR featureCounts output with MultiQC. Allow NULL return to handle
     # this pipeline output.
-    if (is.null(metrics)) {
+    if (is.null(data)) {
         warn("No sample metrics were calculated")
         return(NULL)
     }
+
     # Fix numerics set as characters
     numericAsCharacter <- function(x) {
         any(grepl(x = x, pattern = "^[0-9\\.]+$"))
     }
-    metrics %>%
+
+    data %>%
         mutate_if(is.factor, as.character) %>%
         mutate_if(numericAsCharacter, as.numeric) %>%
         mutate_if(is.character, as.factor) %>%

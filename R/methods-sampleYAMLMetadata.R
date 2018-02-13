@@ -6,8 +6,6 @@
 #'
 #' @inherit sampleYAML
 #'
-#' @inheritParams AllGenerics
-#'
 #' @examples
 #' url <- file.path(
 #'     "http://bcbiobase.seq.cloud",
@@ -19,15 +17,26 @@ NULL
 
 
 
+# Constructors =================================================================
+#' @importFrom dplyr mutate_all
+.sampleYAMLMetadata <- function(yaml) {
+    data <- sampleYAML(yaml = yaml, keys = "metadata")
+    # TODO Abort here?
+    if (is.null(data)) {
+        warn("Failed to obtain sample metadata")
+        return(NULL)
+    }
+    data %>%
+        mutate_all(as.factor) %>%
+        .prepareSampleMetadata()
+}
+
+
+
 # Methods ======================================================================
 #' @rdname sampleYAMLMetadata
-#' @importFrom dplyr mutate_all
 #' @export
 setMethod(
     "sampleYAMLMetadata",
     signature("list"),
-    function(yaml) {
-        sampleYAML(yaml = yaml, keys = "metadata") %>%
-            mutate_all(as.factor) %>%
-            .prepareSampleMetadata()
-    })
+    .sampleYAMLMetadata)

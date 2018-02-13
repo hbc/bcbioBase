@@ -16,7 +16,7 @@ sampleYAML(yaml, keys, ...)
 
 \item{keys}{Nested operator keys, supplied as a character vector.}
 
-\item{...}{\emph{Additional arguments (for the S4 generic definition).}}
+\item{...}{Additional arguments.}
 }
 \value{
 \link{data.frame}.
@@ -34,7 +34,7 @@ url <- file.path(
     "http://bcbiobase.seq.cloud",
     "bcbio",
     "project-summary.yaml")
-yaml <- basejump::readYAML(url)
+yaml <- readYAML(url)
 sampleYAML(yaml, "metadata")
 }
 \seealso{

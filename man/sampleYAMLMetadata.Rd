@@ -14,7 +14,7 @@ sampleYAMLMetadata(yaml, ...)
 \arguments{
 \item{yaml}{Project summary YAML list.}
 
-\item{...}{\emph{Additional arguments (for the S4 generic definition).}}
+\item{...}{Additional arguments.}
 }
 \value{
 \link{data.frame}.

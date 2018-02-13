@@ -4,7 +4,7 @@
 #' @name sampleYAML
 #' @family YAML Utilities
 #'
-#' @inheritParams AllGenerics
+#' @inheritParams general
 #'
 #' @param yaml Project summary YAML list.
 #' @param keys Nested operator keys, supplied as a character vector.
@@ -20,7 +20,7 @@
 #'     "http://bcbiobase.seq.cloud",
 #'     "bcbio",
 #'     "project-summary.yaml")
-#' yaml <- basejump::readYAML(url)
+#' yaml <- readYAML(url)
 #' sampleYAML(yaml, "metadata")
 NULL
 
@@ -32,17 +32,20 @@ NULL
 #' @importFrom magrittr set_rownames
 .sampleYAML <- function(yaml, keys) {
     samples <- yaml[["samples"]]
-    if (!length(samples)) {
-        abort("No sample information in YAML")
-    }
+    assert_is_non_empty(samples)
+
+    # TODO abort here instead?
     if (!keys[[1L]] %in% names(samples[[1L]])) {
+        warn("No primary keys matched")
         return(NULL)
     }
     if (length(keys) > 1L) {
         if (!keys[[2L]] %in% names(samples[[1L]][[keys[[1L]]]])) {
+            warn("No secondary keys matched")
             return(NULL)
         }
     }
+
     data <- lapply(samples, function(sample) {
         nested <- sample[[keys]]
         # Set the description
@@ -61,9 +64,11 @@ NULL
         names(unlist) <- camel(names(unlist), strict = FALSE)
         unlist
     })
+
     dflist <- lapply(data, function(x) {
         as.data.frame(t(x), stringsAsFactors = FALSE)
     })
+
     bind_rows(dflist) %>%
         removeNA() %>%
         arrange(.data[["description"]]) %>%
