@@ -53,7 +53,7 @@ copyToDropbox <- function(
 
     # Dropbox output directory
     if (!suppressWarnings(drop_exists(dir))) {
-        drop_create(dir)
+        drop_create(dir)  # nocov
     }
 
     # Warn about writes into shared directories
