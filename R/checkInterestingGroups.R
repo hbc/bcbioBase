@@ -15,12 +15,9 @@ checkInterestingGroups <- function(
     object,
     interestingGroups,
     warnOnNULL = FALSE) {
-    if (!all(interestingGroups %in% colnames(object))) {
-        abort(paste(
-            "Interesting groups not defined in metadata:",
-            toString(setdiff(interestingGroups, colnames(object)))
-        ))
-    }
+    assert_has_colnames(object)
+    assert_is_subset(interestingGroups, colnames(object))
+
     # Default to `sampleName` if `NULL`
     if (is.null(interestingGroups)) {
         if (isTRUE(warnOnNULL)) {
@@ -31,5 +28,6 @@ checkInterestingGroups <- function(
         }
         interestingGroups <- "sampleName"
     }
+
     interestingGroups
 }

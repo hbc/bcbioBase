@@ -11,7 +11,7 @@
 #'
 #' @return Invisibly return [list] of rdrop2 output.
 #' @export
-#' 
+#'
 #' @examples
 #' prepareTemplate("bibliography.bib")
 #' copyToDropbox(
@@ -24,50 +24,34 @@ copyToDropbox <- function(
     files,
     dir,
     rdsToken = NA) {
-    # files
-    if (!(is.character(files) || is.list(files))) {
-        abort("`files` must be a character vector or list")
-    }
-    # dir
-    if (!is_string(dir)) {
-        abort("`dir` must be a string")
-    }
+    assert_is_any_of(files, c("character", "list"))
+    assert_all_are_existing_files(files)
+    assert_is_a_string(dir)
     dir <- gsub("/$", "", dir)
-    # rdsToken
-    if (!(is_string(rdsToken) || is.na(rdsToken))) {
-        abort("`rdsToken` must contain an RDS file or NA")
-    }
-
-    # Check that local files exist
-    if (!all(vapply(files, file.exists, logical(1L)))) {
-        missing <- !vapply(files, file.exists, logical(1L))
-        abort(paste(
-            "Missing local files:",
-            toString(basename(files[missing]))
-        ))
+    assert_is_any_of(rdsToken, c("character", "logical"))
+    if (is.character(rdsToken)) {
+        assert_is_a_string(rdsToken)
+        assert_all_are_existing_files(rdsToken)
+    } else if (is.logical(rdsToken)) {
+        assert_is_identical_to_na(rdsToken)
     }
 
     # Ensure user is authenticated with Dropbox
-    if (is_string(rdsToken)) {
-        if (!file.exists(rdsToken)) {
-            abort(paste(rdsToken, "does not exist"))
-        }
-    }
     drop_auth(rdstoken = rdsToken)
 
     # Display account information
     acc <- drop_acc()
     inform(paste(
         "Dropbox:",
-        acc$name$display_name,
-        paste0("<", acc$email, ">")
+        acc[["name"]][["display_name"]],
+        paste0("<", acc[["email"]], ">")
     ))
-    
+
     # Dropbox output directory
     if (!drop_exists(dir)) {
         drop_create(dir)
     }
-    
+
     # Warn about writes into shared directories
     metadata <- drop_get_metadata(dir)
     if (any(
@@ -80,7 +64,7 @@ copyToDropbox <- function(
             "and the link URLs will be preserved."
         ))
     }
-    
+
     # Loop across the files in list
     rdrop <- lapply(files, function(file) {
         dropboxFile <- file.path(dir, basename(file))
