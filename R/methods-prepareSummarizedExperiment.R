@@ -99,8 +99,9 @@ NULL
     rowData = NULL,
     colData = NULL,
     metadata = NULL) {
-    validData <- c("data.frame", "DataFrame", "matrix", "NULL")
     assert_is_list(assays)
+
+    validData <- c("data.frame", "DataFrame", "matrix", "NULL")
     assert_is_any_of(rowData, validData)
     assert_is_any_of(colData, validData)
 
@@ -157,6 +158,7 @@ NULL
         rowData <- rowData[rownames(assay), , drop = FALSE]
         rownames(rowData) <- rownames(assay)
     } else {
+        rowData <- DataFrame(row.names = rownames(assay))
         unannotatedGenes <- NULL
     }
 
@@ -165,10 +167,12 @@ NULL
         colData <- as.data.frame(colData)
         colData <- as(colData, "DataFrame")
         assert_are_identical(colnames(assay), rownames(colData))
+    } else {
+        colData <- DataFrame(row.names = colnames(assay))
     }
 
     # Metadata =================================================================
-    if (!is.null(metadata)) {
+    if (is.null(metadata)) {
         metadata <- list()
     }
     metadata[["date"]] <- Sys.Date()
