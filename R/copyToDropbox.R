@@ -48,7 +48,7 @@ copyToDropbox <- function(
     ))
 
     # Dropbox output directory
-    if (!drop_exists(dir)) {
+    if (!suppressWarnings(drop_exists(dir))) {
         drop_create(dir)
     }
 
@@ -68,7 +68,7 @@ copyToDropbox <- function(
     # Loop across the files in list
     rdrop <- lapply(files, function(file) {
         dropboxFile <- file.path(dir, basename(file))
-        if (drop_exists(dropboxFile)) {
+        if (suppressWarnings(drop_exists(dropboxFile))) {
             drop_delete(dropboxFile)
         }
         drop_upload(file = file, path = dir)
