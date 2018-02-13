@@ -11,6 +11,14 @@
 #'
 #' @return Valid character of defined interesting groups. Stop on failure.
 #' @export
+#'
+#' @examples
+#' demultiplexed <- file.path(
+#'     "http://bcbiobase.seq.cloud",
+#'     "sample_metadata",
+#'     "demultiplexed.xlsx")
+#' meta <- readSampleMetadataFile(demultiplexed)
+#' checkInterestingGroups(object = meta, interestingGroups = "genotype")
 checkInterestingGroups <- function(
     object,
     interestingGroups,

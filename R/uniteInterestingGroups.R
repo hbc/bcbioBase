@@ -12,6 +12,18 @@
 #'
 #' @return [data.frame].
 #' @export
+#'
+#' @examples
+#' demultiplexed <- file.path(
+#'     "http://bcbiobase.seq.cloud",
+#'     "sample_metadata",
+#'     "demultiplexed.xlsx")
+#' meta <- readSampleMetadataFile(demultiplexed)
+#' meta <- uniteInterestingGroups(
+#'     object = meta,
+#'     interestingGroups = c("genotype", "sampleName")
+#' )
+#' pull(meta, "interestingGroups")
 uniteInterestingGroups <- function(object, interestingGroups) {
     assert_has_colnames(object)
     assert_is_character(interestingGroups)

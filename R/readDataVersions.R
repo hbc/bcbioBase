@@ -17,7 +17,7 @@
 #'     "http://bcbiobase.seq.cloud",
 #'     "bcbio",
 #'     "data_versions.csv")
-#' readDataVersions(url)
+#' readDataVersions(url) %>% glimpse()
 readDataVersions <- function(
     file,
     quiet = FALSE) {

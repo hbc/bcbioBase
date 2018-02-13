@@ -14,11 +14,13 @@
 #'
 #' @examples
 #' prepareTemplate("bibliography.bib")
-#' copyToDropbox(
+#' dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
+#' suppressMessages(copyToDropbox(
 #'     files = "bibliography.bib",
-#'     dir = file.path("bcbioBase_examples", "copyToDropbox"),
+#'     dir = dropboxDir,
 #'     rdsToken = system.file("token.rds", package = "bcbioBase")
-#' )
+#' ))
+#' rdrop2::drop_exists(file.path(dropboxDir, "bibliography.bib"))
 #' unlink("bibliography.bib")
 copyToDropbox <- function(
     files,
@@ -28,6 +30,7 @@ copyToDropbox <- function(
     assert_all_are_existing_files(files)
     assert_is_a_string(dir)
     dir <- gsub("/$", "", dir)
+    assert_all_are_non_missing_nor_empty_character(dir)
     assert_is_any_of(rdsToken, c("character", "logical"))
     if (is.character(rdsToken)) {
         assert_is_a_string(rdsToken)
@@ -41,6 +44,7 @@ copyToDropbox <- function(
 
     # Display account information
     acc <- drop_acc()
+
     inform(paste(
         "Dropbox:",
         acc[["name"]][["display_name"]],
