@@ -1,3 +1,5 @@
+# TODO Deprecate in favor of `assert_formal_interesting_groups`
+
 #' Check Interesting Groups
 #'
 #' Prevent unwanted downstream behavior when a missing interesting group
