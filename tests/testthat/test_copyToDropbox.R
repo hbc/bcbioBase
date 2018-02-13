@@ -4,6 +4,7 @@ prepareTemplate("bibliography.bib")
 files <- "bibliography.bib"
 dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
 rdsToken <- system.file("token.rds", package = "bcbioBase")
+stopifnot(file.exists(rdsToken))
 
 test_that("RDS token", {
     x <- copyToDropbox(
@@ -29,34 +30,43 @@ test_that("RDS token", {
 })
 
 test_that("Invalid parameters", {
-    # files
     expect_error(
         copyToDropbox(files = NULL, dir = getwd()),
-        "`files` must be a character vector or list"
+        paste(
+            "is2 :",
+            "files is not in any of the classes 'character', 'list'."
+        )
     )
     expect_error(
         copyToDropbox(files = "XXX.csv.gz", dir = getwd()),
-        "Missing local files: XXX.csv.gz"
+        paste(
+            "is_existing_file :",
+            "Some or all of the files specified by files do not exist."
+        )
     )
-    # dir
     expect_error(
-        copyToDropbox(files = "XXX", dir = NULL),
-        "`dir` must be a string"
+        copyToDropbox(files = "bibliography.bib", dir = NULL),
+        paste(
+            "is_a_string :",
+            "dir is not of class 'character'; it has class 'NULL'"
+        )
     )
-    # rdsToken
     expect_error(
         copyToDropbox(
             files = files,
             dir = dropboxDir,
             rdsToken = mtcars),
-        "`rdsToken` must contain an RDS file or NA"
+        "is2 : rdsToken is not in any of the classes 'character', 'logical'."
     )
     expect_error(
         copyToDropbox(
             files = files,
             dir = dropboxDir,
             rdsToken = "XXX.rds"),
-        "XXX.rds does not exist"
+        paste(
+            "is_existing_file :",
+            "Some or all of the files specified by rdsToken do not exist."
+        )
     )
 })
 
@@ -68,8 +78,7 @@ test_that("Shared directory", {
             rdsToken = rdsToken),
         "rdrop2 currently isn't working well with shared directories."
     )
-    # Don't clean up this directory, because we won't be able to check
-    # that directory is already shared
+    # Don't unlink this directory, because we won't be able to check if shared
 })
 
 unlink("bibliography.bib")
