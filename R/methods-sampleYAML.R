@@ -68,9 +68,7 @@ NULL
         }
 
         unlist <- unlist(sample[[keys]])
-        assert_has_names(unlist)
         names(unlist) <- camel(names(unlist))
-
         # Add back the description
         unlist <- c(description = description, unlist)
         unlist
