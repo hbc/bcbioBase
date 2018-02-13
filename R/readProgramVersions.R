@@ -13,6 +13,7 @@
 #' @param file Program versions TXT file.
 #'
 #' @return [data.frame].
+#' @export
 #'
 #' @examples
 #' url <- file.path(

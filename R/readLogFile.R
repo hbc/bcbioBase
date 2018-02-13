@@ -10,6 +10,7 @@
 #' @param file Log file.
 #'
 #' @return Character vector.
+#' @export
 #'
 #' @examples
 #' url <- file.path(
