@@ -5,6 +5,7 @@
 #' @keywords internal
 #'
 #' @importFrom assertive assert_all_are_existing_files
+#' @importFrom assertive assert_all_are_non_missing_nor_empty_character
 #' @importFrom assertive assert_are_disjoint_sets
 #' @importFrom assertive assert_are_identical
 #' @importFrom assertive assert_are_intersecting_sets
