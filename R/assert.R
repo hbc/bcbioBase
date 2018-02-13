@@ -22,5 +22,6 @@
 #' @importFrom assertive assert_is_list
 #' @importFrom assertive assert_is_non_empty
 #' @importFrom assertive assert_is_subset
+#' @importFrom assertive assert_is_tbl
 
 NULL
