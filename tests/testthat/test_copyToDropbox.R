@@ -27,6 +27,16 @@ test_that("RDS token", {
             "size" = "integer"
         )
     )
+    expect_error(
+        copyToDropbox(
+            files = files,
+            dir = dropboxDir,
+            rdsToken = FALSE),
+        paste(
+            "is_identical_to_na :",
+            "rdsToken is not identical to NA; its value is FALSE."
+        )
+    )
 })
 
 test_that("Invalid parameters", {

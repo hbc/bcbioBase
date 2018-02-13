@@ -10,23 +10,17 @@ yaml <- readYAML(
 test_that("sampleYAML", {
     expect_identical(
         sampleYAML(yaml, "metadata"),
-        data.frame(
-            "group" = c(
-                "ctrl",
-                "ctrl",
-                "ko",
-                "ko"),
+        tibble(
             "description" = c(
                 "group1_1",
                 "group1_2",
                 "group2_1",
                 "group2_2"),
-            row.names = c(
-                "group1_1",
-                "group1_2",
-                "group2_1",
-                "group2_2"),
-            stringsAsFactors = FALSE
+            "group" = c(
+                "ctrl",
+                "ctrl",
+                "ko",
+                "ko")
         )
     )
 })
@@ -34,7 +28,7 @@ test_that("sampleYAML", {
 test_that("Invalid YAML input", {
     expect_error(
         sampleYAML(yaml = list(), keys = "metadata"),
-        "is_non_empty : samples has length 0."
+        "is_non_empty : yaml has length 0."
     )
     # Primary key failure
     expect_error(
@@ -42,7 +36,7 @@ test_that("Invalid YAML input", {
         paste(
             "is_subset :",
             "The element 'XXX' in keys\\[\\[1L\\]\\] is not in",
-            "names\\(samples\\[\\[1L\\]\\]\\)."
+            "names\\(yaml\\[\\[1L\\]\\]\\)."
         )
     )
     # Secondary key failure
@@ -51,7 +45,7 @@ test_that("Invalid YAML input", {
         paste(
             "is_subset :",
             "The element 'XXX' in keys\\[\\[2L\\]\\] is not in",
-            "names\\(samples\\[\\[1L\\]\\]\\[\\[keys\\[\\[1L\\]\\]\\]\\]\\)."
+            "names\\(yaml\\[\\[1L\\]\\]\\[\\[keys\\[\\[1L\\]\\]\\]\\]\\)."
         )
     )
 })
@@ -137,17 +131,34 @@ test_that("sampleYAMLMetrics", {
     )
 })
 
-test_that("No sample metrics", {
-    nometrics <- yaml
+test_that("Fast mode support for skipped metrics calculations", {
+    fastmode <- "Fast mode detected: No sample metrics were calculated"
+
     # Subset to only include the first sample
-    nometrics[["samples"]] <- nometrics[["samples"]][[1]]
-    nometrics[["samples"]][["summary"]][["metrics"]] <- NULL
-    expect_error(
-        sampleYAMLMetrics(nometrics),
-        paste(
-            "is_subset :",
-            "The element 'summary' in keys\\[\\[1L\\]\\] is not in",
-            "names\\(samples\\[\\[1L\\]\\]\\)."
-        )
+    single <- yaml
+    single[["samples"]] <- single[["samples"]][1L]
+
+    # NULL metrics
+    nullmetrics <- single
+    nullmetrics[["samples"]][[1L]][["summary"]][["metrics"]] <- NULL
+    expect_warning(
+        sampleYAMLMetrics(nullmetrics),
+        fastmode
+    )
+    expect_identical(
+        suppressWarnings(sampleYAMLMetrics(nullmetrics)),
+        NULL
+    )
+
+    # Empty metrics
+    emptymetrics <- single
+    emptymetrics[["samples"]][[1L]][["summary"]][["metrics"]] <- list()
+    expect_warning(
+        sampleYAMLMetrics(emptymetrics),
+        fastmode
+    )
+    expect_identical(
+        suppressWarnings(sampleYAMLMetrics(emptymetrics)),
+        NULL
     )
 })
