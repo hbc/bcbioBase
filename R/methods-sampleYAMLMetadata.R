@@ -12,7 +12,7 @@
 #'     "bcbio",
 #'     "project-summary.yaml")
 #' yaml <- basejump::readYAML(url)
-#' sampleYAMLMetadata(yaml)
+#' sampleYAMLMetadata(yaml) %>% glimpse()
 NULL
 
 
