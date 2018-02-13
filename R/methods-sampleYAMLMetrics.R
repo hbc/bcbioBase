@@ -20,17 +20,25 @@ NULL
 # Constructors =================================================================
 #' @importFrom dplyr mutate_if
 .sampleYAMLMetrics <- function(yaml) {
+    # The fast mode RNA-seq pipeline doesn't report metrics generated from
+    # STAR featureCounts output with MultiQC
+    fastMode <- "Fast mode detected: No sample metrics were calculated"
+
+    # Early return on NULL metrics (fast mode)
+    if (is.null(yaml[["samples"]][[1L]][["summary"]][["metrics"]])) {
+        warn(fastMode)
+        return(NULL)
+    }
+
     data <- sampleYAML(
         yaml = yaml,
         keys = c("summary", "metrics")
     )
     assert_is_tbl(data)
 
-    # The fast mode RNA-seq pipeline doesn't report metrics generated from
-    # STAR featureCounts output with MultiQC. Allow NULL return to handle
-    # this pipeline output.
+
     if (identical(colnames(data), "description")) {
-        warn("No sample metrics were calculated")
+        warn(fastMode)
         return(NULL)
     }
 

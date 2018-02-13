@@ -31,11 +31,10 @@ NULL
 #' @importFrom dplyr arrange bind_rows
 #' @importFrom magrittr set_rownames
 .sampleYAML <- function(yaml, keys) {
-    assert_is_list(yaml)
     yaml <- yaml[["samples"]]
     assert_is_list(yaml)
     assert_is_non_empty(yaml)
-    assert_is_character(keys)
+
     # Currently max 2 keys are supported
     assert_all_are_in_range(length(keys), lower = 1L, upper = 2L)
 
