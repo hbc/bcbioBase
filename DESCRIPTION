@@ -28,6 +28,7 @@ LazyData: TRUE
 Depends:
     R (>= 3.4.0)
 Imports:
+    assertive (>= 0.3.0),
     basejump (>= 0.2.1),
     Biostrings,
     dplyr (>= 0.7.4),
