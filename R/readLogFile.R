@@ -22,7 +22,7 @@ readLogFile <- function(
     file,
     quiet = FALSE) {
     assert_is_a_string(file)
-    file <- localOrRemoteFile(file, quiet = quiet)
+    file <- localOrRemoteFile(file, severity = "warning", quiet = quiet)
     if (is.null(file)) {
         return(invisible())
     }

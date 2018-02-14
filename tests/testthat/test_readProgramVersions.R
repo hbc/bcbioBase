@@ -16,7 +16,7 @@ test_that("readProgramVersions", {
 test_that("Missing file", {
     expect_warning(
         readProgramVersions("XXX.txt"),
-        "XXX.txt missing"
+        "is_existing_file :"
     )
     expect_identical(
         suppressWarnings(

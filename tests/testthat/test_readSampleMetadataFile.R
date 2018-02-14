@@ -224,3 +224,11 @@ test_that("`sampleID` already defined by the user", {
         )
     )
 })
+
+test_that("Missing file", {
+    # Always stop on missing
+    expect_error(
+        readSampleMetadataFile("XXX.csv"),
+        "is_existing_file :"
+    )
+})
