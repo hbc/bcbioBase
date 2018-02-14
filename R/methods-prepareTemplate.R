@@ -8,8 +8,8 @@
 #' - `_footer.Rmd`
 #' - `_header.Rmd`
 #' - `_output.yaml`
+#' - `_setup.R`
 #' - `bibliography.bib`
-#' - `setup.R`
 #'
 #' @rdname prepareTemplate
 #' @name prepareTemplate
@@ -29,8 +29,8 @@
 #'     "_footer.Rmd",
 #'     "_header.Rmd",
 #'     "_output.yaml",
-#'     "bibliography.bib",
-#'     "setup.R"
+#'     "_setup.R",
+#'     "bibliography.bib"
 #' )
 #'
 #' # Copy all of the default shared template files
@@ -39,9 +39,9 @@
 #' unlink(defaultFiles)
 #'
 #' # Request individual files
-#' prepareTemplate("setup.R")
-#' file.exists("setup.R")
-#' unlink("setup.R")
+#' prepareTemplate("bibliography.bib")
+#' file.exists("bibliography.bib")
+#' unlink("bibliography.bib")
 #'
 #' # Load the shared files from bcbioSingleCell
 #' \dontrun{
@@ -85,11 +85,13 @@ setMethod(
         object,
         sourceDir = NULL) {
         .copyTemplateFile(
-            c("_output.yaml",
-              "_footer.Rmd",
-              "_header.Rmd",
-              "bibliography.bib",
-              "setup.R"),
+            c(
+                "_output.yaml",
+                "_footer.Rmd",
+                "_header.Rmd",
+                "_setup.R",
+                "bibliography.bib"
+            ),
             sourceDir = sourceDir)
     })
 

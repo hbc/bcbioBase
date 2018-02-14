@@ -5,17 +5,18 @@ test_that("All default shared files", {
         "_footer.Rmd",
         "_header.Rmd",
         "_output.yaml",
-        "bibliography.bib",
-        "setup.R")
+        "_setup.R",
+        "bibliography.bib"
+    )
     expect_silent(prepareTemplate())
     expect_true(all(file.exists(files)))
     unlink(files)
 })
 
 test_that("Single file", {
-    prepareTemplate("setup.R")
-    expect_true(file.exists("setup.R"))
-    unlink("setup.R")
+    prepareTemplate("bibliography.bib")
+    expect_true(file.exists("bibliography.bib"))
+    unlink("bibliography.bib")
 })
 
 test_that("Missing source file", {
