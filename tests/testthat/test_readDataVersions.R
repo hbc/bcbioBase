@@ -16,7 +16,7 @@ test_that("readDataVersions", {
 test_that("Missing file", {
     expect_warning(
         readDataVersions("XXX.csv"),
-        "XXX.csv missing"
+        "is_existing_file :"
     )
     expect_identical(
         suppressWarnings(
