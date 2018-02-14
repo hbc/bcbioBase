@@ -7,7 +7,7 @@ test_that("readProgramVersions", {
                   "programs.txt"),
         quiet = TRUE)
     expect_true(tibble::is_tibble(versions))
-    expect_equal(
+    expect_identical(
         colnames(versions),
         c("program", "version")
     )
@@ -18,7 +18,7 @@ test_that("Missing file", {
         readProgramVersions("XXX.txt"),
         "XXX.txt missing"
     )
-    expect_equal(
+    expect_identical(
         suppressWarnings(
             readProgramVersions("XXX.txt")
         ),

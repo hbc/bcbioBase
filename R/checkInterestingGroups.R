@@ -1,3 +1,5 @@
+# TODO Deprecate in favor of `assert_formal_interesting_groups`
+
 #' Check Interesting Groups
 #'
 #' Prevent unwanted downstream behavior when a missing interesting group
@@ -9,16 +11,21 @@
 #'
 #' @return Valid character of defined interesting groups. Stop on failure.
 #' @export
+#'
+#' @examples
+#' demultiplexed <- file.path(
+#'     "http://bcbiobase.seq.cloud",
+#'     "sample_metadata",
+#'     "demultiplexed.xlsx")
+#' meta <- readSampleMetadataFile(demultiplexed)
+#' checkInterestingGroups(object = meta, interestingGroups = "genotype")
 checkInterestingGroups <- function(
     object,
     interestingGroups,
     warnOnNULL = FALSE) {
-    if (!all(interestingGroups %in% colnames(object))) {
-        abort(paste(
-            "Interesting groups not defined in metadata:",
-            toString(setdiff(interestingGroups, colnames(object)))
-        ))
-    }
+    assert_has_colnames(object)
+    assert_is_subset(interestingGroups, colnames(object))
+
     # Default to `sampleName` if `NULL`
     if (is.null(interestingGroups)) {
         if (isTRUE(warnOnNULL)) {
@@ -29,5 +36,6 @@ checkInterestingGroups <- function(
         }
         interestingGroups <- "sampleName"
     }
+
     interestingGroups
 }

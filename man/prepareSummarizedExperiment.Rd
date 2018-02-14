@@ -10,14 +10,15 @@
 \usage{
 prepareSummarizedExperiment(assays, ...)
 
-\S4method{prepareSummarizedExperiment}{list}(assays, rowData, colData, metadata)
+\S4method{prepareSummarizedExperiment}{list}(assays, rowData = NULL,
+  colData = NULL, metadata = NULL)
 }
 \arguments{
 \item{assays}{List containing RNA-seq count matrices with matching
 dimensions. Counts can be passed in either dense (\code{matrix}) or sparse
 (\code{dgCMatrix}, \code{dgTMatrix}) format.}
 
-\item{...}{\emph{Additional arguments (for the S4 generic definition).}}
+\item{...}{Additional arguments.}
 
 \item{rowData}{Object describing assay matrix rows. Must support
 \code{\link[base:dim]{base::dim()}}.}
@@ -50,38 +51,50 @@ mat <- matrix(
     nrow = 4L,
     ncol = 4L,
     dimnames = list(
-        c("ENSMUSG00000000001",
-          "ENSMUSG00000000003",
-          "ENSMUSG00000000028",
-          "ENSMUSG00000000031"),
-        c("sample_1",
-          "sample_2",
-          "sample_3",
-          "sample_4")))
+        c(
+            "ENSMUSG00000000001",
+            "ENSMUSG00000000003",
+            "ENSMUSG00000000028",
+            "ENSMUSG00000000031"
+        ),
+        c(
+            "sample_1",
+            "sample_2",
+            "sample_3",
+            "sample_4"
+        )
+    )
+)
 rowData <- data.frame(
     ensgene = c(
         "ENSMUSG00000000001",
         "ENSMUSG00000000003",
         "ENSMUSG00000000028",
-        "ENSMUSG00000000031"),
+        "ENSMUSG00000000031"
+    ),
     biotype = c(
         "coding",
         "coding",
         "coding",
-        "coding"),
-    row.names = rownames(mat))
+        "coding"
+    ),
+    row.names = rownames(mat)
+)
 colData <- data.frame(
     genotype = c(
         "wildtype",
         "wildtype",
         "knockout",
-        "knockout"),
+        "knockout"
+    ),
     age = c(3, 6, 3, 6),
-    row.names = colnames(mat))
+    row.names = colnames(mat)
+)
 prepareSummarizedExperiment(
     assays = list(assay = mat),
     rowData = rowData,
-    colData = colData)
+    colData = colData
+)
 }
 \seealso{
 \itemize{
@@ -91,6 +104,5 @@ prepareSummarizedExperiment(
 \item \code{\link[utils:sessionInfo]{utils::sessionInfo()}}.
 }
 
-Other bcbio Utilities: \code{\link{readDataVersions}},
-  \code{\link{readProgramVersions}}
+Other bcbio Utilities: \code{\link{readProgramVersions}}
 }

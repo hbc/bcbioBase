@@ -3,10 +3,6 @@ context("bcbioGenerics")
 withMethods <- c(
     "prepareSummarizedExperiment",
     "prepareTemplate",
-    "readDataVersions",
-    "readLogFile",
-    "readProgramVersions",
-    "readSampleMetadataFile",
     "sampleYAML",
     "sampleYAMLMetadata",
     "sampleYAMLMetrics"
@@ -43,7 +39,7 @@ test_that("No methods defined", {
     generics <- lapply(
         X = withoutMethods,
         FUN = get)
-    
+
     methods <- vapply(
         X = withoutMethods,
         FUN = function(x) {
@@ -52,7 +48,7 @@ test_that("No methods defined", {
         },
         FUN.VALUE = "character")
     expect_true(all(grepl("<No methods>", methods)))
-    
+
     invisible(lapply(
         X = generics,
         FUN = function(x) {

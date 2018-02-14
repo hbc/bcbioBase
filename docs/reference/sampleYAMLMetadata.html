@@ -104,13 +104,13 @@
     </tr>
     <tr>
       <th>...</th>
-      <td><p><em>Additional arguments (for the S4 generic definition).</em></p></td>
+      <td><p>Additional arguments.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data.frame.</p>
+    <p><a href='http://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -123,11 +123,12 @@
     <span class='st'>"http://bcbiobase.seq.cloud"</span>,
     <span class='st'>"bcbio"</span>,
     <span class='st'>"project-summary.yaml"</span>)
-<span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/basejump/topics/readYAML'>readYAML</a></span>(<span class='no'>url</span>)</div><div class='output co'>#&gt; <span class='message'>Reading project-summary.yaml</span></div><div class='input'><span class='fu'>sampleYAMLMetadata</span>(<span class='no'>yaml</span>)</div><div class='output co'>#&gt;          sampleID sampleName description group
-#&gt; group1_1 group1_1   group1_1    group1_1  ctrl
-#&gt; group1_2 group1_2   group1_2    group1_2  ctrl
-#&gt; group2_1 group2_1   group2_1    group2_1    ko
-#&gt; group2_2 group2_2   group2_2    group2_2    ko</div></pre>
+<span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/basejump/topics/readYAML'>readYAML</a></span>(<span class='no'>url</span>)</div><div class='output co'>#&gt; <span class='message'>Reading project-summary.yaml</span></div><div class='input'><span class='fu'>sampleYAMLMetadata</span>(<span class='no'>yaml</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; Observations: 4
+#&gt; Variables: 4
+#&gt; $ sampleID    &lt;fct&gt; group1_1, group1_2, group2_1, group2_2
+#&gt; $ sampleName  &lt;fct&gt; group1_1, group1_2, group2_1, group2_2
+#&gt; $ description &lt;fct&gt; group1_1, group1_2, group2_1, group2_2
+#&gt; $ group       &lt;fct&gt; ctrl, ctrl, ko, ko</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -146,7 +147,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
+  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, Rory Kirchner, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
 </div>
 
 <div class="pkgdown">

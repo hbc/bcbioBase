@@ -16,10 +16,10 @@ sampleYAML(yaml, keys, ...)
 
 \item{keys}{Nested operator keys, supplied as a character vector.}
 
-\item{...}{\emph{Additional arguments (for the S4 generic definition).}}
+\item{...}{Additional arguments.}
 }
 \value{
-\link{data.frame}.
+\link{tibble}.
 }
 \description{
 Sample YAML Metadata Utilities
@@ -35,7 +35,7 @@ url <- file.path(
     "bcbio",
     "project-summary.yaml")
 yaml <- basejump::readYAML(url)
-sampleYAML(yaml, "metadata")
+sampleYAML(yaml, "metadata") \%>\% glimpse()
 }
 \seealso{
 Other YAML Utilities: \code{\link{sampleYAMLMetadata}},

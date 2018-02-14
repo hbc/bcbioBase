@@ -18,7 +18,7 @@ prepareTemplate(object, ...)
 \item{object}{\emph{Optional}. File name. If \code{NULL} (default), download the
 default dependency files for a new experiment.}
 
-\item{...}{\emph{Additional arguments (for the S4 generic definition).}}
+\item{...}{Additional arguments.}
 
 \item{sourceDir}{Source directory, typically a URL, where the dependency
 files are located.}
@@ -28,7 +28,7 @@ No value.
 }
 \description{
 If the required template dependency files aren't present, download latest
-versions from the package website.
+versions from the package website. \emph{Existing files are never overwritten.}
 }
 \details{
 By default, this function will create local copies of these files:
@@ -41,26 +41,30 @@ By default, this function will create local copies of these files:
 }
 }
 \examples{
-# Copy all of the default shared template files
-prepareTemplate()
-unlink(c(
+defaultFiles <- c(
     "_footer.Rmd",
     "_header.Rmd",
     "_output.yaml",
     "bibliography.bib",
     "setup.R"
-))
+)
+
+# Copy all of the default shared template files
+prepareTemplate()
+file.exists(defaultFiles)
+unlink(defaultFiles)
 
 # Request individual files
 prepareTemplate("setup.R")
+file.exists("setup.R")
 unlink("setup.R")
 
 # Load the shared files from bcbioSingleCell
 \dontrun{
 prepareTemplate(
-    sourceDir = system.file("rmarkdown/shared", 
-                            package = "bcbioSingleCell")
+    sourceDir = system.file(
+        "rmarkdown/shared",
+        package = "bcbioSingleCell")
 )
 }
-
 }

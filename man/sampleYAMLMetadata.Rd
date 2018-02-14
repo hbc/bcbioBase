@@ -14,10 +14,10 @@ sampleYAMLMetadata(yaml, ...)
 \arguments{
 \item{yaml}{Project summary YAML list.}
 
-\item{...}{\emph{Additional arguments (for the S4 generic definition).}}
+\item{...}{Additional arguments.}
 }
 \value{
-\link{data.frame}.
+\link{tibble}.
 }
 \description{
 Sample Metadata from YAML
@@ -28,7 +28,7 @@ url <- file.path(
     "bcbio",
     "project-summary.yaml")
 yaml <- basejump::readYAML(url)
-sampleYAMLMetadata(yaml)
+sampleYAMLMetadata(yaml) \%>\% glimpse()
 }
 \seealso{
 Other YAML Utilities: \code{\link{sampleYAMLMetrics}},

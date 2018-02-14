@@ -3,9 +3,11 @@
 #' Base functions and generics for bcbio R packages.
 #'
 #' @import methods
+#' @importFrom rlang !!! !! .data abort inform sym syms warn
+#' @importFrom utils globalVariables
 "_PACKAGE"
 
-#' @importFrom utils globalVariables
-globalVariables(".")
 
+
+globalVariables(".")
 metadataPriorityCols <- c("sampleID", "sampleName", "description")

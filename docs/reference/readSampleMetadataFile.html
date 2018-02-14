@@ -90,22 +90,14 @@
     <p>Read Sample Metadata File</p>
     
 
-    <pre class="usage"><span class='fu'>readSampleMetadataFile</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for character</span>
-<span class='fu'>readSampleMetadataFile</span>(<span class='no'>object</span>, <span class='kw'>lanes</span> <span class='kw'>=</span> <span class='fl'>1L</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>readSampleMetadataFile</span>(<span class='no'>file</span>, <span class='kw'>lanes</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
+      <th>file</th>
       <td><p>Metadata file. Supports CSV and XLSX file formats.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p><em>Additional arguments (for the S4 generic definition).</em></p></td>
     </tr>
     <tr>
       <th>lanes</th>
@@ -129,32 +121,27 @@ technical replicates (<code>_LXXX</code>) suffix.</p></td>
     <span class='st'>"http://bcbiobase.seq.cloud"</span>,
     <span class='st'>"sample_metadata"</span>,
     <span class='st'>"demultiplexed.xlsx"</span>)
-<span class='fu'>readSampleMetadataFile</span>(<span class='no'>demultiplexed</span>)</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.xlsx</span></div><div class='output co'>#&gt;          sampleID sampleName description            fileName genotype
-#&gt; sample_1 sample_1   sample 1    sample 1 sample1_R1.fastq.gz wildtype
-#&gt; sample_2 sample_2   sample 2    sample 2 sample2_R1.fastq.gz wildtype
-#&gt; sample_3 sample_3   sample 3    sample 3 sample3_R1.fastq.gz   mutant
-#&gt; sample_4 sample_4   sample 4    sample 4 sample4_R1.fastq.gz   mutant</div><div class='input'>
+<span class='fu'>readSampleMetadataFile</span>(<span class='no'>demultiplexed</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.xlsx</span></div><div class='output co'>#&gt; Observations: 4
+#&gt; Variables: 5
+#&gt; $ sampleID    &lt;fct&gt; sample_1, sample_2, sample_3, sample_4
+#&gt; $ sampleName  &lt;fct&gt; sample 1, sample 2, sample 3, sample 4
+#&gt; $ description &lt;fct&gt; sample 1, sample 2, sample 3, sample 4
+#&gt; $ fileName    &lt;fct&gt; sample1_R1.fastq.gz, sample2_R1.fastq.gz, sample3_R1.fa...
+#&gt; $ genotype    &lt;fct&gt; wildtype, wildtype, mutant, mutant</div><div class='input'>
 <span class='co'># Multiplexed (e.g. inDrop single-cell RNA-seq)</span>
 <span class='no'>multiplexed</span> <span class='kw'>&lt;-</span> <span class='fu'>file.path</span>(
     <span class='st'>"http://bcbiobase.seq.cloud"</span>,
     <span class='st'>"sample_metadata"</span>,
     <span class='st'>"multiplexed.xlsx"</span>)
-<span class='fu'>readSampleMetadataFile</span>(<span class='no'>multiplexed</span>)</div><div class='output co'>#&gt; <span class='message'>Reading multiplexed.xlsx</span></div><div class='output co'>#&gt;                      sampleID sampleName description         fileName index
-#&gt; run_1_CAGTTATG run_1_CAGTTATG   sample 2       run 1 run1_R1.fastq.gz    18
-#&gt; run_1_TTACCTCC run_1_TTACCTCC   sample 1       run 1 run1_R1.fastq.gz    17
-#&gt; run_2_ATAGCCTT run_2_ATAGCCTT   sample 5       run 2 run2_R1.fastq.gz    14
-#&gt; run_2_CTTAATAG run_2_CTTAATAG   sample 4       run 2 run2_R1.fastq.gz    13
-#&gt; run_2_TAAGGCTC run_2_TAAGGCTC   sample 6       run 2 run2_R1.fastq.gz    15
-#&gt; run_2_TCGCATAA run_2_TCGCATAA   sample 7       run 2 run2_R1.fastq.gz    16
-#&gt; run_2_TCTTACGC run_2_TCTTACGC   sample 3       run 2 run2_R1.fastq.gz    12
-#&gt;                sequence  revcomp
-#&gt; run_1_CAGTTATG CATAACTG CAGTTATG
-#&gt; run_1_TTACCTCC GGAGGTAA TTACCTCC
-#&gt; run_2_ATAGCCTT AAGGCTAT ATAGCCTT
-#&gt; run_2_CTTAATAG CTATTAAG CTTAATAG
-#&gt; run_2_TAAGGCTC GAGCCTTA TAAGGCTC
-#&gt; run_2_TCGCATAA TTATGCGA TCGCATAA
-#&gt; run_2_TCTTACGC GCGTAAGA TCTTACGC</div></pre>
+<span class='fu'>readSampleMetadataFile</span>(<span class='no'>multiplexed</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; <span class='message'>Reading multiplexed.xlsx</span></div><div class='output co'>#&gt; Observations: 7
+#&gt; Variables: 7
+#&gt; $ sampleID    &lt;fct&gt; run_1_CAGTTATG, run_1_TTACCTCC, run_2_ATAGCCTT, run_2_C...
+#&gt; $ sampleName  &lt;fct&gt; sample 2, sample 1, sample 5, sample 4, sample 6, sampl...
+#&gt; $ description &lt;fct&gt; run 1, run 1, run 2, run 2, run 2, run 2, run 2
+#&gt; $ fileName    &lt;fct&gt; run1_R1.fastq.gz, run1_R1.fastq.gz, run2_R1.fastq.gz, r...
+#&gt; $ index       &lt;fct&gt; 18, 17, 14, 13, 15, 16, 12
+#&gt; $ sequence    &lt;fct&gt; CATAACTG, GGAGGTAA, AAGGCTAT, CTATTAAG, GAGCCTTA, TTATG...
+#&gt; $ revcomp     &lt;fct&gt; CAGTTATG, TTACCTCC, ATAGCCTT, CTTAATAG, TAAGGCTC, TCGCA...</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -171,7 +158,7 @@ technical replicates (<code>_LXXX</code>) suffix.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
+  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, Rory Kirchner, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
 </div>
 
 <div class="pkgdown">

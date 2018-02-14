@@ -8,55 +8,60 @@ yaml <- readYAML(
     quiet = TRUE)
 
 test_that("sampleYAML", {
-    expect_equal(
+    expect_identical(
         sampleYAML(yaml, "metadata"),
-        data.frame(
-            "group" = c(
-                "ctrl",
-                "ctrl",
-                "ko",
-                "ko"),
+        tibble(
             "description" = c(
                 "group1_1",
                 "group1_2",
                 "group2_1",
                 "group2_2"),
-            row.names = c(
-                "group1_1",
-                "group1_2",
-                "group2_1",
-                "group2_2"),
-            stringsAsFactors = FALSE
+            "group" = c(
+                "ctrl",
+                "ctrl",
+                "ko",
+                "ko")
         )
     )
 })
 
 test_that("Invalid YAML input", {
-    empty <- list()
     expect_error(
-        sampleYAML(empty, keys = "metadata")
+        sampleYAML(yaml = list(), keys = "metadata"),
+        "is_non_empty : yaml has length 0."
     )
-    # Fix this method in a future update
-    expect_identical(
+    # Primary key failure
+    expect_error(
         sampleYAML(yaml, keys = "XXX"),
-        NULL
+        paste(
+            "is_subset :",
+            "The element 'XXX' in keys\\[\\[1L\\]\\] is not in",
+            "names\\(yaml\\[\\[1L\\]\\]\\)."
+        )
     )
-    expect_identical(
+    # Secondary key failure
+    expect_error(
         sampleYAML(yaml, keys = c("summary", "XXX")),
-        NULL
+        paste(
+            "is_subset :",
+            "The element 'XXX' in keys\\[\\[2L\\]\\] is not in",
+            "names\\(yaml\\[\\[1L\\]\\]\\[\\[keys\\[\\[1L\\]\\]\\]\\]\\)."
+        )
     )
 })
 
 test_that("sampleYAMLMetadata", {
     samples <- c("group1_1", "group1_2", "group2_1", "group2_2")
-    expect_equal(
+    expect_identical(
         sampleYAMLMetadata(yaml),
         data.frame(
             sampleID = factor(samples, levels = samples),
             sampleName = factor(samples, levels = samples),
             description = factor(samples, levels = samples),
-            group = factor(c("ctrl", "ctrl", "ko", "ko"),
-                           levels = c("ctrl", "ko")),
+            group = factor(
+                c("ctrl", "ctrl", "ko", "ko"),
+                levels = c("ctrl", "ko")
+            ),
             row.names = samples
         )
     )
@@ -64,31 +69,32 @@ test_that("sampleYAMLMetadata", {
 
 test_that("sampleYAMLMetrics", {
     metrics <- sampleYAMLMetrics(yaml)
-    expect_equal(
+    expect_identical(
         vapply(
             X = metrics,
             FUN = class,
             FUN.VALUE = "character"),
-        c(sampleID = "factor",
-          sampleName = "factor",
-          description = "factor",
-          xGC = "numeric",
-          x5x3Bias = "numeric",  # 5'3 now sanitized to 5x3 in camel
-          averageInsertSize = "numeric",
-          duplicates = "numeric",
-          duplicationRateOfMapped = "numeric",
-          exonicRate = "numeric",
-          intergenicRate = "numeric",
-          intronicRate = "numeric",
-          mappedPairedReads = "numeric",
-          mappedReads = "numeric",
-          name = "factor",
-          qualityFormat = "factor",
-          sequenceLength = "factor",
-          sequencesFlaggedAsPoorQuality = "numeric",
-          totalReads = "numeric",
-          rrna = "numeric",
-          rrnaRate = "numeric")
+        c(
+            sampleID = "factor",
+            sampleName = "factor",
+            description = "factor",
+            xGC = "numeric",
+            x5x3Bias = "numeric",  # 5'3 now sanitized to 5x3 in camel
+            averageInsertSize = "numeric",
+            duplicates = "numeric",
+            duplicationRateOfMapped = "numeric",
+            exonicRate = "numeric",
+            intergenicRate = "numeric",
+            intronicRate = "numeric",
+            mappedPairedReads = "numeric",
+            mappedReads = "numeric",
+            name = "factor",
+            qualityFormat = "factor",
+            sequenceLength = "factor",
+            sequencesFlaggedAsPoorQuality = "numeric",
+            totalReads = "numeric",
+            rrna = "numeric",
+            rrnaRate = "numeric")
     )
 
     # Check for proper handling of metrics with mismatched number of values
@@ -99,38 +105,60 @@ test_that("sampleYAMLMetrics", {
             "project-summary-metrics-mismatch.yaml"),
         quiet = TRUE)
     metrics2 <- sampleYAMLMetrics(yaml2)
-    expect_equal(
+    expect_identical(
         vapply(metrics2, class, FUN.VALUE = "character"),
-        c(sampleID = "factor",
-          sampleName = "factor",
-          description = "factor",
-          xGC = "numeric",
-          x5x3Bias = "numeric",
-          averageInsertSize = "numeric",
-          duplicates = "numeric",
-          duplicationRateOfMapped = "numeric",
-          exonicRate = "numeric",
-          intergenicRate = "numeric",
-          intronicRate = "numeric",
-          mappedPairedReads = "numeric",
-          mappedReads = "numeric",
-          name = "factor",
-          qualityFormat = "factor",
-          sequenceLength = "numeric",  # factor in the main example
-          sequencesFlaggedAsPoorQuality = "numeric",
-          totalReads = "numeric",
-          rrna = "numeric",
-          rrnaRate = "numeric")
+        c(
+            sampleID = "factor",
+            sampleName = "factor",
+            description = "factor",
+            xGC = "numeric",
+            x5x3Bias = "numeric",
+            averageInsertSize = "numeric",
+            duplicates = "numeric",
+            duplicationRateOfMapped = "numeric",
+            exonicRate = "numeric",
+            intergenicRate = "numeric",
+            intronicRate = "numeric",
+            mappedPairedReads = "numeric",
+            mappedReads = "numeric",
+            name = "factor",
+            qualityFormat = "factor",
+            sequenceLength = "numeric",  # factor in the main example
+            sequencesFlaggedAsPoorQuality = "numeric",
+            totalReads = "numeric",
+            rrna = "numeric",
+            rrnaRate = "numeric")
     )
 })
 
-test_that("No sample metrics", {
-    nometrics <- yaml
+test_that("Fast mode support for skipped metrics calculations", {
+    fastmode <- "Fast mode detected: No sample metrics were calculated"
+
     # Subset to only include the first sample
-    nometrics[["samples"]] <- nometrics[["samples"]][[1]]
-    nometrics[["samples"]][["summary"]][["metrics"]] <- NULL
+    single <- yaml
+    single[["samples"]] <- single[["samples"]][1L]
+
+    # NULL metrics
+    nullmetrics <- single
+    nullmetrics[["samples"]][[1L]][["summary"]][["metrics"]] <- NULL
     expect_warning(
-        sampleYAMLMetrics(nometrics),
-        "No sample metrics were calculated"
+        sampleYAMLMetrics(nullmetrics),
+        fastmode
+    )
+    expect_identical(
+        suppressWarnings(sampleYAMLMetrics(nullmetrics)),
+        NULL
+    )
+
+    # Empty metrics
+    emptymetrics <- single
+    emptymetrics[["samples"]][[1L]][["summary"]][["metrics"]] <- list()
+    expect_warning(
+        sampleYAMLMetrics(emptymetrics),
+        fastmode
+    )
+    expect_identical(
+        suppressWarnings(sampleYAMLMetrics(emptymetrics)),
+        NULL
     )
 })

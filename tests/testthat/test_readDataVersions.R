@@ -7,7 +7,7 @@ test_that("readDataVersions", {
                   "data_versions.csv"),
         quiet = TRUE)
     expect_true(tibble::is_tibble(versions))
-    expect_equal(
+    expect_identical(
         colnames(versions),
         c("genome", "resource", "version")
     )
@@ -18,7 +18,7 @@ test_that("Missing file", {
         readDataVersions("XXX.csv"),
         "XXX.csv missing"
     )
-    expect_equal(
+    expect_identical(
         suppressWarnings(
             readDataVersions("XXX.csv")
         ),

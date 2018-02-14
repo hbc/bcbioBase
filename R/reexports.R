@@ -14,13 +14,28 @@ basejump::assignAndSaveData
 #' @export
 basejump::camel
 
+# TODO deprecate
 #' @importFrom basejump checkAnnotable
 #' @export
 basejump::checkAnnotable
 
+# TODO deprecate
 #' @importFrom basejump checkGene2symbol
 #' @export
 basejump::checkGene2symbol
+
+# TODO deprecate
+#' @importFrom basejump checkTx2gene
+#' @export
+basejump::checkTx2gene
+
+#' @importFrom basejump convertGenesToSymbols
+#' @export
+basejump::convertGenesToSymbols
+
+#' @importFrom basejump convertTranscriptsToGenes
+#' @export
+basejump::convertTranscriptsToGenes
 
 #' @importFrom basejump detectOrganism
 #' @export
@@ -54,10 +69,20 @@ basejump::loadDataAsName
 #' @export
 basejump::loadRemoteData
 
+#' @importFrom basejump markdownHeader
+#' @export
+basejump::markdownHeader
+
+#' @importFrom basejump markdownList
+#' @export
+basejump::markdownList
+
+# TODO deprecate
 #' @importFrom basejump mdHeader
 #' @export
 basejump::mdHeader
 
+# TODO deprecate
 #' @importFrom basejump mdList
 #' @export
 basejump::mdList
@@ -124,20 +149,6 @@ magrittr::`%>%`
 
 
 
-#' @importFrom rlang abort
-#' @export
-rlang::abort
-
-#' @importFrom rlang inform
-#' @export
-rlang::inform
-
-#' @importFrom rlang warn
-#' @export
-rlang::warn
-
-
-
 #' @importFrom S4Vectors DataFrame
 #' @export
 S4Vectors::DataFrame
@@ -151,3 +162,7 @@ S4Vectors::metadata
 #' @importFrom tibble glimpse
 #' @export
 tibble::glimpse
+
+#' @importFrom tibble tibble
+#' @export
+tibble::tibble

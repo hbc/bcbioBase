@@ -6,31 +6,31 @@
 #'
 #' @inherit sampleYAML
 #'
-#' @inheritParams AllGenerics
-#'
 #' @examples
 #' url <- file.path(
 #'     "http://bcbiobase.seq.cloud",
 #'     "bcbio",
 #'     "project-summary.yaml")
 #' yaml <- basejump::readYAML(url)
-#' sampleYAMLMetadata(yaml)
+#' sampleYAMLMetadata(yaml) %>% glimpse()
 NULL
+
+
+
+# Constructors =================================================================
+#' @importFrom dplyr mutate_all
+.sampleYAMLMetadata <- function(yaml) {
+    sampleYAML(yaml = yaml, keys = "metadata") %>%
+        mutate_all(as.factor) %>%
+        .prepareSampleMetadata()
+}
 
 
 
 # Methods ======================================================================
 #' @rdname sampleYAMLMetadata
-#' @importFrom dplyr mutate_all
 #' @export
 setMethod(
     "sampleYAMLMetadata",
     signature("list"),
-    function(yaml) {
-        sampleYAML(
-            yaml = yaml,
-            keys = "metadata"
-        ) %>%
-            mutate_all(as.factor) %>%
-            .prepareSampleMetadata()
-    })
+    .sampleYAMLMetadata)

@@ -9,12 +9,17 @@ warnings_are_errors: false
 # Temporarily enable to cache R packages
 # script: true
 
+before_install:
+- openssl aes-256-cbc -K $encrypted_548ab35dca07_key -iv $encrypted_548ab35dca07_iv -in inst/token.rds.enc -out inst/token.rds -d
+
 r:
   - bioc-release
   # - bioc-devel
 r_packages:
   - covr
   - rlang
+r_github_packages:
+  - karthik/rdrop2
 
 after_success:
   - Rscript -e 'covr::codecov()'

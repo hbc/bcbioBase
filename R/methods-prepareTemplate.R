@@ -1,10 +1,10 @@
 #' Prepare R Markdown Template File
 #'
 #' If the required template dependency files aren't present, download latest
-#' versions from the package website.
+#' versions from the package website. *Existing files are never overwritten.*
 #'
 #' By default, this function will create local copies of these files:
-#' 
+#'
 #' - `_footer.Rmd`
 #' - `_header.Rmd`
 #' - `_output.yaml`
@@ -15,7 +15,7 @@
 #' @name prepareTemplate
 #' @family Infrastructure Utilities
 #'
-#' @inheritParams AllGenerics
+#' @inheritParams general
 #'
 #' @param object *Optional*. File name. If `NULL` (default), download the
 #'   default dependency files for a new experiment.
@@ -25,44 +25,44 @@
 #' @return No value.
 #'
 #' @examples
-#' # Copy all of the default shared template files
-#' prepareTemplate()
-#' unlink(c(
+#' defaultFiles <- c(
 #'     "_footer.Rmd",
 #'     "_header.Rmd",
 #'     "_output.yaml",
 #'     "bibliography.bib",
 #'     "setup.R"
-#' ))
+#' )
+#'
+#' # Copy all of the default shared template files
+#' prepareTemplate()
+#' file.exists(defaultFiles)
+#' unlink(defaultFiles)
 #'
 #' # Request individual files
 #' prepareTemplate("setup.R")
+#' file.exists("setup.R")
 #' unlink("setup.R")
 #'
 #' # Load the shared files from bcbioSingleCell
 #' \dontrun{
 #' prepareTemplate(
-#'     sourceDir = system.file("rmarkdown/shared", 
-#'                             package = "bcbioSingleCell")
+#'     sourceDir = system.file(
+#'         "rmarkdown/shared",
+#'         package = "bcbioSingleCell")
 #' )
 #' }
-#' 
-
 NULL
 
 
 
 # Constructors =================================================================
 .copyTemplateFile <- function(object, sourceDir = NULL) {
+    assert_is_character(object)
     if (is.null(sourceDir)) {
         sourceDir <- system.file("rmarkdown/shared", package = "bcbioBase")
     }
-    # Check that all source files exist
-    if (!all(file.exists(file.path(sourceDir, object)))) {
-        abort("Missing source file")
-    }
-    # Note that we're not allowing accidental overwrite of locally modified
-    # shared template files
+    assert_is_a_string(sourceDir)
+    assert_all_are_existing_files(file.path(sourceDir, object))
     invisible(lapply(object, function(file) {
         if (!file.exists(file)) {
             file.copy(
