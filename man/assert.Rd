@@ -5,7 +5,7 @@
 \title{Assert Checks}
 \arguments{
 \item{severity}{How severe should the consequences of the assertion be?
-Either \code{stop}, \code{warning}, or \code{message}.}
+Either "\code{stop}", "\code{warning}", "\code{message}", or "\code{none}".}
 }
 \description{
 Assert Checks
