@@ -1,7 +1,9 @@
 context("assert_formal_interesting_groups")
 
 test_that("Success", {
-    assert_formal_interesting_groups(mtcars, colnames(mtcars)[1L:2L])
+    expect_silent(
+        assert_formal_interesting_groups(mtcars, colnames(mtcars)[1L:2L])
+    )
 })
 
 test_that("Failure", {

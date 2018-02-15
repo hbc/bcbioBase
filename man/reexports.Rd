@@ -3,6 +3,8 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
+\alias{readYAML}
+\alias{reexports}
 \alias{pull}
 \alias{reexports}
 \alias{\%>\%}
@@ -21,6 +23,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{basejump}{\code{\link[basejump]{readYAML}}}
+
   \item{dplyr}{\code{\link[dplyr]{pull}}}
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}}

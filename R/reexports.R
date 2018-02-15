@@ -1,3 +1,9 @@
+#' @importFrom basejump readYAML
+#' @export
+basejump::readYAML
+
+
+
 #' @importFrom dplyr pull
 #' @export
 dplyr::pull
