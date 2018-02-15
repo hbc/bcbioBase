@@ -3,6 +3,10 @@
 \name{assert}
 \alias{assert}
 \title{Assert Checks}
+\arguments{
+\item{severity}{How severe should the consequences of the assertion be?
+Either \code{stop}, \code{warning}, or \code{message}.}
+}
 \description{
 Assert Checks
 }

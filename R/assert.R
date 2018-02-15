@@ -25,5 +25,7 @@
 #' @importFrom assertive assert_is_non_empty
 #' @importFrom assertive assert_is_subset
 #' @importFrom assertive assert_is_tbl
-
+#'
+#' @param severity How severe should the consequences of the assertion be?
+#'   Either `stop`, `warning`, or `message`.
 NULL
