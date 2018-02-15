@@ -36,8 +36,8 @@ By default, this function will create local copies of these files:
 \item \code{_footer.Rmd}
 \item \code{_header.Rmd}
 \item \code{_output.yaml}
+\item \code{_setup.R}
 \item \code{bibliography.bib}
-\item \code{setup.R}
 }
 }
 \examples{
@@ -45,8 +45,8 @@ defaultFiles <- c(
     "_footer.Rmd",
     "_header.Rmd",
     "_output.yaml",
-    "bibliography.bib",
-    "setup.R"
+    "_setup.R",
+    "bibliography.bib"
 )
 
 # Copy all of the default shared template files
@@ -55,9 +55,9 @@ file.exists(defaultFiles)
 unlink(defaultFiles)
 
 # Request individual files
-prepareTemplate("setup.R")
-file.exists("setup.R")
-unlink("setup.R")
+prepareTemplate("bibliography.bib")
+file.exists("bibliography.bib")
+unlink("bibliography.bib")
 
 # Load the shared files from bcbioSingleCell
 \dontrun{
