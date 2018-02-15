@@ -27,12 +27,10 @@
 uniteInterestingGroups <- function(object, interestingGroups) {
     assert_has_colnames(object)
     assert_is_character(interestingGroups)
-
-    # Set up the interesting groups column
-    # TODO Move to an assert check method in a future update
-    interestingGroups <- checkInterestingGroups(object, interestingGroups)
+    assert_formal_interesting_groups(object, interestingGroups)
 
     object[["interestingGroups"]] <- NULL
+
     if (length(interestingGroups) > 1L) {
         # For multiple groups, unite to a colon-separated string
         object <- unite(

@@ -1,3 +1,5 @@
+# nocov start
+
 #' Deprecated Functions
 #'
 #' @rdname deprecated
@@ -14,3 +16,5 @@ NULL
 checkInterestingGroups <- function() {
     .Deprecated("assert_formal_interesting_groups")
 }
+
+# nocov end

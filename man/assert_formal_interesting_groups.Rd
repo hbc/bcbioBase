@@ -27,5 +27,5 @@ demultiplexed <- file.path(
     "sample_metadata",
     "demultiplexed.xlsx")
 meta <- readSampleMetadataFile(demultiplexed)
-checkInterestingGroups(object = meta, interestingGroups = "genotype")
+assert_formal_interesting_groups(meta, "genotype")
 }
