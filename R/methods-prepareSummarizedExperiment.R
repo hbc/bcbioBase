@@ -182,13 +182,15 @@ NULL
     # Metadata =================================================================
     if (is.null(metadata)) {
         metadata <- list()
+    } else {
+        metadata <- as.list(metadata)
+        assert_has_names(metadata)
     }
     metadata[["date"]] <- Sys.Date()
     metadata[["wd"]] <- getwd()
     metadata[["utilsSessionInfo"]] <- utils::sessionInfo()
     metadata[["devtoolsSessionInfo"]] <- devtools::session_info()
     metadata[["unannotatedGenes"]] <- unannotatedGenes
-    metadata <- as(metadata, "SimpleList")
 
     # Return ===================================================================
     SummarizedExperiment(
