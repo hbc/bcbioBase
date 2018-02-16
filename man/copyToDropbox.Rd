@@ -25,7 +25,7 @@ dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
 suppressMessages(copyToDropbox(
     files = "bibliography.bib",
     dir = dropboxDir,
-    rdsToken = system.file("token.rds", package = "bcbioBase")
+    rdsToken = system.file("extdata/token.rds", package = "bcbioBase")
 ))
 rdrop2::drop_exists(file.path(dropboxDir, "bibliography.bib"))
 unlink("bibliography.bib")

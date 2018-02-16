@@ -3,7 +3,7 @@ context("copyToDropbox")
 prepareTemplate("bibliography.bib")
 files <- "bibliography.bib"
 dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
-rdsToken <- system.file("token.rds", package = "bcbioBase")
+rdsToken <- system.file("extdata/token.rds", package = "bcbioBase")
 stopifnot(file.exists(rdsToken))
 
 test_that("RDS token", {

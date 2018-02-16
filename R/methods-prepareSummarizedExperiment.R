@@ -103,7 +103,7 @@ NULL
     validData <- c("data.frame", "DataFrame", "matrix", "NULL")
     assert_is_any_of(rowData, validData)
     assert_is_any_of(colData, validData)
-    assert_is_any_of(metadata, c("list", "NULL"))
+    assert_is_any_of(metadata, c("list", "SimpleList", "NULL"))
 
     # Assays ===================================================================
     # Drop any `NULL` items from list.
@@ -194,7 +194,8 @@ NULL
         assays = assays,
         rowData = rowData,
         colData = colData,
-        metadata = metadata)
+        metadata = metadata
+    )
 }
 
 
