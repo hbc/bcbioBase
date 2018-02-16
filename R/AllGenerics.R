@@ -114,6 +114,14 @@ setGeneric("sampleMetadata", function(object, ...) {
 
 
 
+#' @rdname AllGenerics
+#' @export
+setGeneric("sampleMetadata<-", function(object, ..., value) {
+    standardGeneric("sampleMetadata<-")
+})
+
+
+
 #' @rdname sampleYAML
 #' @export
 setGeneric("sampleYAML", function(yaml, keys, ...) {

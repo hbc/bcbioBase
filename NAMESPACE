@@ -3,6 +3,7 @@
 export("%>%")
 export("bcbio<-")
 export("interestingGroups<-")
+export("sampleMetadata<-")
 export(DataFrame)
 export(aggregateReplicates)
 export(annotable)
