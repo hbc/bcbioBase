@@ -26,6 +26,7 @@
 #' @importFrom assertive assert_is_subset
 #' @importFrom assertive assert_is_tbl
 #'
+#' @param x Object.
 #' @param severity How severe should the consequences of the assertion be?
 #'   Either "`stop`", "`warning`", "`message`", or "`none`".
 NULL
@@ -40,7 +41,7 @@ NULL
 #' @inherit assert
 #' @family Assert Checks
 #'
-#' @param object Object supporting [colnames()], typically a [data.frame].
+#' @param x Object supporting [colnames()], typically a [data.frame].
 #' @param interestingGroups Interesting groups character vector.
 #'
 #' @export
@@ -53,13 +54,13 @@ NULL
 #' meta <- readSampleMetadataFile(demultiplexed)
 #' assert_formal_interesting_groups(meta, "genotype")
 assert_formal_interesting_groups <- function(
-    object,
+    x,
     interestingGroups,
     severity = "stop") {
-    assert_has_colnames(object, severity = severity)
+    assert_has_colnames(x, severity = severity)
     assert_is_subset(
         x = interestingGroups,
-        y = colnames(object),
+        y = colnames(x),
         severity = severity
     )
 }

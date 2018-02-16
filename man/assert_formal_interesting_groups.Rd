@@ -4,10 +4,10 @@
 \alias{assert_formal_interesting_groups}
 \title{Interesting Groups Formal Assert Check}
 \usage{
-assert_formal_interesting_groups(object, interestingGroups, severity = "stop")
+assert_formal_interesting_groups(x, interestingGroups, severity = "stop")
 }
 \arguments{
-\item{object}{Object supporting \code{\link[=colnames]{colnames()}}, typically a \link{data.frame}.}
+\item{x}{Object supporting \code{\link[=colnames]{colnames()}}, typically a \link{data.frame}.}
 
 \item{interestingGroups}{Interesting groups character vector.}
 

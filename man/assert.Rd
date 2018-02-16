@@ -4,6 +4,8 @@
 \alias{assert}
 \title{Assert Checks}
 \arguments{
+\item{x}{Object.}
+
 \item{severity}{How severe should the consequences of the assertion be?
 Either "\code{stop}", "\code{warning}", "\code{message}", or "\code{none}".}
 }
