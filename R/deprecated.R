@@ -4,6 +4,7 @@
 #'
 #' @rdname deprecated
 #' @name deprecated
+#' @keywords internal
 #'
 #' @return No value.
 NULL

@@ -38,8 +38,9 @@ NULL
 #' Prevent unwanted downstream behavior when a missing interesting group
 #' is requested by the user.
 #'
-#' @inherit assert
 #' @family Assert Checks
+#' @inherit assert
+#' @keywords internal
 #'
 #' @param x Object supporting [colnames()], typically a [data.frame].
 #' @param interestingGroups Interesting groups character vector.

@@ -26,3 +26,4 @@ demultiplexed <- file.path(
 meta <- readSampleMetadataFile(demultiplexed)
 assert_formal_interesting_groups(meta, "genotype")
 }
+\keyword{internal}

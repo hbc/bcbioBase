@@ -120,7 +120,7 @@
 <span class='fu'>suppressMessages</span>(<span class='fu'>copyToDropbox</span>(
     <span class='kw'>files</span> <span class='kw'>=</span> <span class='st'>"bibliography.bib"</span>,
     <span class='kw'>dir</span> <span class='kw'>=</span> <span class='no'>dropboxDir</span>,
-    <span class='kw'>rdsToken</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"token.rds"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"bcbioBase"</span>)
+    <span class='kw'>rdsToken</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"extdata/token.rds"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"bcbioBase"</span>)
 ))
 <span class='kw pkg'>rdrop2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rdrop2/topics/drop_exists'>drop_exists</a></span>(<span class='fu'>file.path</span>(<span class='no'>dropboxDir</span>, <span class='st'>"bibliography.bib"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>unlink</span>(<span class='st'>"bibliography.bib"</span>)</div></pre>
   </div>
