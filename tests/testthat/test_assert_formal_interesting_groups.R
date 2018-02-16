@@ -12,7 +12,7 @@ test_that("Failure", {
         paste(
             "is_subset :",
             "The element 'XXX' in interestingGroups is not in",
-            "colnames\\(object\\)."
+            "colnames\\(x\\)."
         )
     )
 })
