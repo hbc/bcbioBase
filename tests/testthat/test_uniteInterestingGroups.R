@@ -25,14 +25,11 @@ test_that("Two interesting groups", {
 
 test_that("Missing interesting group", {
     expect_error(
-        uniteInterestingGroups(
-            mtcars,
-            interestingGroups = c("XXX", "YYY")
-        ),
+        uniteInterestingGroups(mtcars, interestingGroups = c("XXX", "YYY")),
         paste(
             "is_subset :",
             "The elements 'XXX', 'YYY' in interestingGroups are not in",
-            "colnames\\(object\\)."
+            "colnames\\(x\\)."
         )
     )
 })
