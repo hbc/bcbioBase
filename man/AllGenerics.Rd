@@ -13,6 +13,7 @@
 \alias{plotQC}
 \alias{plotViolin}
 \alias{sampleMetadata}
+\alias{sampleMetadata<-}
 \alias{selectSamples}
 \alias{tpm}
 \title{S4 Generics}
@@ -38,6 +39,8 @@ plotQC(object, ...)
 plotViolin(object, ...)
 
 sampleMetadata(object, ...)
+
+sampleMetadata(object, ...) <- value
 
 selectSamples(object, ...)
 
