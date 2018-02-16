@@ -92,4 +92,3 @@ test_that("Shared directory", {
 })
 
 unlink("bibliography.bib")
-rdrop2::drop_delete(dropboxDir)
