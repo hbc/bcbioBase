@@ -19,6 +19,7 @@ withoutMethods <- c(
     "plotQC",
     "plotViolin",
     "sampleMetadata",
+    "sampleMetadata<-",
     "selectSamples",
     "tpm"
 )
