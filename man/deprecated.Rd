@@ -2,11 +2,7 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
-\alias{checkInterestingGroups}
 \title{Deprecated Functions}
-\usage{
-checkInterestingGroups()
-}
 \value{
 No value.
 }
