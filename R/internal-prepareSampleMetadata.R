@@ -3,7 +3,7 @@
 #' @keywords internal
 #' @noRd
 #'
-#' @importFrom dplyr arrange everything mutate mutate_all select
+#' @importFrom dplyr arrange everything mutate mutate_if select
 #' @importFrom magrittr set_rownames
 #' @importFrom tibble as_tibble
 #'
@@ -34,8 +34,8 @@
             replacement = "_")
 
     object %>%
-        mutate_all(as.factor) %>%
-        mutate_all(droplevels) %>%
+        mutate_if(is.character, as.factor) %>%
+        mutate_if(is.factor, droplevels) %>%
         select(metadataPriorityCols, everything()) %>%
         arrange(!!!syms(metadataPriorityCols)) %>%
         as.data.frame() %>%
