@@ -6,8 +6,7 @@
 #'
 #' @importFrom basejump camel readFileByExtension removeNA
 #' @importFrom Biostrings reverseComplement
-#' @importFrom dplyr group_by left_join mutate mutate_all mutate_if
-#'   rename ungroup
+#' @importFrom dplyr group_by left_join mutate mutate_all rename ungroup
 #' @importFrom stringr str_pad
 #' @importFrom tibble as_tibble
 #' @importFrom tidyr expand
@@ -160,6 +159,6 @@ readSampleMetadataFile <- function(
 
     data %>%
         mutate_all(as.factor) %>%
-        mutate_if(is.factor, droplevels) %>%
+        mutate_all(droplevels) %>%
         .prepareSampleMetadata()
 }

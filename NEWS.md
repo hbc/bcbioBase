@@ -1,3 +1,11 @@
+## bcbioBase 0.1.1 (2018-02-17)
+
+- Added internal assert checks.
+- Now exporting `sampleMetadata<-()` assignment generic.
+- Updated encrypted token for rdrop2 working example.
+- Added `assert_formal_interesting_groups()` assert checks. Deprecated `checkInterestingGroups()`.
+
+
 ## bcbioBase 0.1.0 (2018-02-13)
 
 - Preparing version pinning for [bioconda][]. Relaxed [rlang][] dependency from v0.1.6 to v0.1.2 and [tidyr][] dependency from v0.7.2 to v0.7.1.

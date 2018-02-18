@@ -54,7 +54,7 @@ NULL
 #'     "demultiplexed.xlsx")
 #' meta <- readSampleMetadataFile(demultiplexed)
 #' assert_formal_interesting_groups(meta, "genotype")
-assert_formal_interesting_groups <- function(
+assert_formal_interesting_groups <- function(  # nolint
     x,
     interestingGroups,
     severity = "stop") {
