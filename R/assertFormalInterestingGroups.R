@@ -35,10 +35,3 @@ assertFormalInterestingGroups <- function(
         severity = severity
     )
 }
-
-
-
-# Aliases ======================================================================
-#' @rdname assertFormalInterestingGroups
-#' @export
-assertFormalInterestingGroups -> assert_formal_interesting_groups
