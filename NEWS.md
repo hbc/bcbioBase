@@ -1,3 +1,13 @@
+## bcbioBase 0.1.3 (2018-02-19)
+
+- Now exporting `assertFormalInterestingGroups()` in camel case.
+
+
+## bcbioBase 0.1.2 (2018-02-18)
+
+- Added back `checkInterestingGroups()` since this code is still present on bcbioRNASeq master branch.
+
+
 ## bcbioBase 0.1.1 (2018-02-17)
 
 - Added internal assert checks.
