@@ -1,7 +1,5 @@
-# TODO Deprecate in favor of `assert_formal_interesting_groups`
 # nocov start
-
-
+# TODO Deprecate in favor of `assert_formal_interesting_groups`
 
 #' Check Interesting Groups
 #'
@@ -42,7 +40,5 @@ checkInterestingGroups <- function(
 
     interestingGroups
 }
-
-
 
 # nocov end

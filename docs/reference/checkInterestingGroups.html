@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Interesting Groups Formal Assert Check — assert_formal_interesting_groups • bcbioBase</title>
+<title>Check Interesting Groups — checkInterestingGroups • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,7 +83,7 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Interesting Groups Formal Assert Check</h1>
+    <h1>Check Interesting Groups</h1>
     </div>
 
     
@@ -91,13 +91,13 @@
 is requested by the user.</p>
     
 
-    <pre class="usage"><span class='fu'>assert_formal_interesting_groups</span>(<span class='no'>x</span>, <span class='no'>interestingGroups</span>, <span class='kw'>severity</span> <span class='kw'>=</span> <span class='st'>"stop"</span>)</pre>
+    <pre class="usage"><span class='fu'>checkInterestingGroups</span>(<span class='no'>object</span>, <span class='no'>interestingGroups</span>, <span class='kw'>warnOnNULL</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
+      <th>object</th>
       <td><p>Object supporting <code>colnames()</code>, typically a data.frame.</p></td>
     </tr>
     <tr>
@@ -105,11 +105,14 @@ is requested by the user.</p>
       <td><p>Interesting groups character vector.</p></td>
     </tr>
     <tr>
-      <th>severity</th>
-      <td><p>How severe should the consequences of the assertion be?
-Either "<code>stop</code>", "<code>warning</code>", "<code>message</code>", or "<code>none</code>".</p></td>
+      <th>warnOnNULL</th>
+      <td><p>Warn the user on <code>NULL</code> argument.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Valid character of defined interesting groups. Stop on failure.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -117,13 +120,15 @@ Either "<code>stop</code>", "<code>warning</code>", "<code>message</code>", or "
     <span class='st'>"http://bcbiobase.seq.cloud"</span>,
     <span class='st'>"sample_metadata"</span>,
     <span class='st'>"demultiplexed.xlsx"</span>)
-<span class='no'>meta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='readSampleMetadataFile.html'>readSampleMetadataFile</a></span>(<span class='no'>demultiplexed</span>)</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.xlsx</span></div><div class='input'><span class='fu'>assert_formal_interesting_groups</span>(<span class='no'>meta</span>, <span class='st'>"genotype"</span>)</div></pre>
+<span class='no'>meta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='readSampleMetadataFile.html'>readSampleMetadataFile</a></span>(<span class='no'>demultiplexed</span>)</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.xlsx</span></div><div class='input'><span class='fu'>checkInterestingGroups</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>meta</span>, <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='st'>"genotype"</span>)</div><div class='output co'>#&gt; [1] "genotype"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#value">Value</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
