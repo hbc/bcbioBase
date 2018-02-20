@@ -1,3 +1,8 @@
+## bcbioBase 0.1.4 (2018-02-20)
+
+- Don't include sample metadata in `summaryYAMLMetrics()` return.
+
+
 ## bcbioBase 0.1.3 (2018-02-19)
 
 - Now exporting `assertFormalInterestingGroups()` in camel case.

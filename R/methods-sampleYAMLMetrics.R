@@ -36,7 +36,6 @@ NULL
     )
     assert_is_tbl(data)
 
-
     if (identical(colnames(data), "description")) {
         warn(fastMode)
         return(NULL)
@@ -51,7 +50,12 @@ NULL
         mutate_if(is.factor, as.character) %>%
         mutate_if(numericAsCharacter, as.numeric) %>%
         mutate_if(is.character, as.factor) %>%
-        .prepareSampleMetadata()
+        .prepareSampleMetadata() %>%
+        # Drop any sample metadata ID columns
+        .[, setdiff(
+            x = colnames(.),
+            y = c(metadataPriorityCols, "name")
+        ), drop = FALSE]
 }
 
 
