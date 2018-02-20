@@ -8,3 +8,5 @@
 #'
 #' @return No value.
 NULL
+
+# nocov end

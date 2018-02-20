@@ -1,5 +1,5 @@
 # nocov start
-# TODO Deprecate in favor of `assert_formal_interesting_groups`
+# TODO Deprecate in future release
 
 #' Check Interesting Groups
 #'

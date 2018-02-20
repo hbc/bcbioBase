@@ -2,12 +2,9 @@
 % Please edit documentation in R/assertFormalInterestingGroups.R
 \name{assertFormalInterestingGroups}
 \alias{assertFormalInterestingGroups}
-\alias{assert_formal_interesting_groups}
 \title{Interesting Groups Formal Assert Check}
 \usage{
 assertFormalInterestingGroups(x, interestingGroups, severity = "stop")
-
-assert_formal_interesting_groups(x, interestingGroups, severity = "stop")
 }
 \arguments{
 \item{x}{Object supporting \code{\link[=colnames]{colnames()}}, typically a \link{data.frame}.}

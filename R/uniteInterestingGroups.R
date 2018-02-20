@@ -27,7 +27,7 @@
 uniteInterestingGroups <- function(object, interestingGroups) {
     assert_has_colnames(object)
     assert_is_character(interestingGroups)
-    assert_formal_interesting_groups(object, interestingGroups)
+    assertFormalInterestingGroups(object, interestingGroups)
 
     object[["interestingGroups"]] <- NULL
 
