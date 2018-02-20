@@ -45,11 +45,8 @@ test_that("sampleYAMLMetadata", {
 test_that("sampleYAMLMetrics", {
     metrics <- sampleYAMLMetrics(yaml)
     expect_identical(
-        vapply(
-            X = metrics,
-            FUN = class,
-            FUN.VALUE = "character"),
-        c(
+        lapply(metrics, class),
+        list(
             xGC = "numeric",
             x5x3Bias = "numeric",  # 5'3 now sanitized to 5x3 in camel
             averageInsertSize = "numeric",
@@ -77,11 +74,8 @@ test_that("sampleYAMLMetrics", {
         quiet = TRUE)
     metrics2 <- sampleYAMLMetrics(yaml2)
     expect_identical(
-        vapply(metrics2, class, FUN.VALUE = "character"),
-        c(
-            sampleID = "factor",
-            sampleName = "factor",
-            description = "factor",
+        lapply(metrics2, class),
+        list(
             xGC = "numeric",
             x5x3Bias = "numeric",
             averageInsertSize = "numeric",
@@ -92,7 +86,6 @@ test_that("sampleYAMLMetrics", {
             intronicRate = "numeric",
             mappedPairedReads = "numeric",
             mappedReads = "numeric",
-            name = "factor",
             qualityFormat = "factor",
             sequenceLength = "numeric",  # factor in the main example
             sequencesFlaggedAsPoorQuality = "numeric",
