@@ -25,31 +25,6 @@ test_that("sampleYAML", {
     )
 })
 
-test_that("Invalid YAML input", {
-    expect_error(
-        sampleYAML(yaml = list(), keys = "metadata"),
-        "is_non_empty : yaml has length 0."
-    )
-    # Primary key failure
-    expect_error(
-        sampleYAML(yaml, keys = "XXX"),
-        paste(
-            "is_subset :",
-            "The element 'XXX' in keys\\[\\[1L\\]\\] is not in",
-            "names\\(yaml\\[\\[1L\\]\\]\\)."
-        )
-    )
-    # Secondary key failure
-    expect_error(
-        sampleYAML(yaml, keys = c("summary", "XXX")),
-        paste(
-            "is_subset :",
-            "The element 'XXX' in keys\\[\\[2L\\]\\] is not in",
-            "names\\(yaml\\[\\[1L\\]\\]\\[\\[keys\\[\\[1L\\]\\]\\]\\]\\)."
-        )
-    )
-})
-
 test_that("sampleYAMLMetadata", {
     samples <- c("group1_1", "group1_2", "group2_1", "group2_2")
     expect_identical(
@@ -75,9 +50,6 @@ test_that("sampleYAMLMetrics", {
             FUN = class,
             FUN.VALUE = "character"),
         c(
-            sampleID = "factor",
-            sampleName = "factor",
-            description = "factor",
             xGC = "numeric",
             x5x3Bias = "numeric",  # 5'3 now sanitized to 5x3 in camel
             averageInsertSize = "numeric",
@@ -88,7 +60,6 @@ test_that("sampleYAMLMetrics", {
             intronicRate = "numeric",
             mappedPairedReads = "numeric",
             mappedReads = "numeric",
-            name = "factor",
             qualityFormat = "factor",
             sequenceLength = "factor",
             sequencesFlaggedAsPoorQuality = "numeric",
@@ -160,5 +131,30 @@ test_that("Fast mode support for skipped metrics calculations", {
     expect_identical(
         suppressWarnings(sampleYAMLMetrics(emptymetrics)),
         NULL
+    )
+})
+
+test_that("Invalid YAML input", {
+    expect_error(
+        sampleYAML(yaml = list(), keys = "metadata"),
+        "is_non_empty : yaml has length 0."
+    )
+    # Primary key failure
+    expect_error(
+        sampleYAML(yaml, keys = "XXX"),
+        paste(
+            "is_subset :",
+            "The element 'XXX' in keys\\[\\[1L\\]\\] is not in",
+            "names\\(yaml\\[\\[1L\\]\\]\\)."
+        )
+    )
+    # Secondary key failure
+    expect_error(
+        sampleYAML(yaml, keys = c("summary", "XXX")),
+        paste(
+            "is_subset :",
+            "The element 'XXX' in keys\\[\\[2L\\]\\] is not in",
+            "names\\(yaml\\[\\[1L\\]\\]\\[\\[keys\\[\\[1L\\]\\]\\]\\]\\)."
+        )
     )
 })
