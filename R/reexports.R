@@ -8,6 +8,10 @@ dplyr::pull
 #' @export
 fs::file_exists
 
+#' @importFrom fs path
+#' @export
+fs::path
+
 
 
 #' @importFrom magrittr %>%
