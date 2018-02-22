@@ -14,10 +14,11 @@
 #' @export
 #'
 #' @examples
-#' demultiplexed <- file.path(
+#' demultiplexed <- paste(
 #'     "http://bcbiobase.seq.cloud",
 #'     "sample_metadata",
-#'     "demultiplexed.xlsx")
+#'     "demultiplexed.xlsx",
+#'     sep = "/")
 #' meta <- readSampleMetadataFile(demultiplexed)
 #' checkInterestingGroups(object = meta, interestingGroups = "genotype")
 checkInterestingGroups <- function(

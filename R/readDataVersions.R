@@ -13,19 +13,18 @@
 #' @export
 #'
 #' @examples
-#' url <- file.path(
+#' url <- paste(
 #'     "http://bcbiobase.seq.cloud",
 #'     "bcbio",
-#'     "data_versions.csv")
+#'     "data_versions.csv",
+#'     sep = "/")
 #' readDataVersions(url) %>% glimpse()
-readDataVersions <- function(
-    file,
-    quiet = FALSE) {
+readDataVersions <- function(file) {
     assert_is_a_string(file)
-    assert_is_a_bool(quiet)
-    file <- localOrRemoteFile(file, severity = "warning", quiet = quiet)
+    # bcbio doesn't save this in fast mode
+    file <- localOrRemoteFile(file, severity = "warning")
     if (is.null(file)) {
-        return(invisible())
+        return(NULL)
     }
-    read_csv(file, progress = quiet)
+    read_csv(file)
 }

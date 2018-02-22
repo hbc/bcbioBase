@@ -16,34 +16,31 @@
 #' @param file Metadata file. Supports CSV and XLSX file formats.
 #' @param lanes *Optional*. Number of lanes used to split the samples into
 #'   technical replicates (`_LXXX`) suffix.
-#' @param quiet If `TRUE`, suppress any status messages and/or progress bars.
 #'
 #' @return [data.frame].
 #' @export
 #'
 #' @examples
 #' # Demultiplexed
-#' demultiplexed <- file.path(
+#' demultiplexed <- paste(
 #'     "http://bcbiobase.seq.cloud",
 #'     "sample_metadata",
-#'     "demultiplexed.xlsx")
+#'     "demultiplexed.xlsx",
+#'     sep = "/")
 #' readSampleMetadataFile(demultiplexed) %>% glimpse()
 #'
 #' # Multiplexed (e.g. inDrop single-cell RNA-seq)
-#' multiplexed <- file.path(
+#' multiplexed <- paste(
 #'     "http://bcbiobase.seq.cloud",
 #'     "sample_metadata",
-#'     "multiplexed.xlsx")
+#'     "multiplexed.xlsx",
+#'     sep = "/")
 #' readSampleMetadataFile(multiplexed) %>% glimpse()
-readSampleMetadataFile <- function(
-    file,
-    lanes = 1L,
-    quiet = FALSE) {
+readSampleMetadataFile <- function(file, lanes = 1L) {
     assert_is_a_string(file)
     assert_is_integer(lanes)
-    assert_is_a_bool(quiet)
 
-    data <- readFileByExtension(file, quiet = quiet) %>%
+    data <- readFileByExtension(file) %>%
         as_tibble()
 
     # Don't allow the user to manually define `sampleID` column

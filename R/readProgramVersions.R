@@ -16,25 +16,23 @@
 #' @export
 #'
 #' @examples
-#' url <- file.path(
+#' url <- paste(
 #'     "http://bcbiobase.seq.cloud",
 #'     "bcbio",
-#'     "programs.txt")
+#'     "programs.txt",
+#'     sep = "/")
 #' readProgramVersions(url)
-readProgramVersions <- function(
-    file,
-    quiet = FALSE) {
+readProgramVersions <- function(file) {
     assert_is_a_string(file)
-    assert_is_a_bool(quiet)
-    file <- localOrRemoteFile(file, severity = "warning", quiet = quiet)
+    # bcbio doesn't save this in fast mode
+    file <- localOrRemoteFile(file, severity = "warning")
     if (is.null(file)) {
-        return(invisible())
+        return(NULL)
     }
-    # programs.txt, but is comma separated!
+    # bcbio outputs programs.txt, but is comma separated!
     read_csv(
         file,
         col_names = c("program", "version"),
         # `c` denotes character here
-        col_types = "cc",
-        progress = quiet)
+        col_types = "cc")
 }
