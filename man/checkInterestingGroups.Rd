@@ -21,10 +21,11 @@ Prevent unwanted downstream behavior when a missing interesting group
 is requested by the user.
 }
 \examples{
-demultiplexed <- file.path(
+demultiplexed <- paste(
     "http://bcbiobase.seq.cloud",
     "sample_metadata",
-    "demultiplexed.xlsx")
+    "demultiplexed.xlsx",
+    sep = "\\n")
 meta <- readSampleMetadataFile(demultiplexed)
 checkInterestingGroups(object = meta, interestingGroups = "genotype")
 }

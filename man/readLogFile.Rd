@@ -4,12 +4,10 @@
 \alias{readLogFile}
 \title{Read Log File}
 \usage{
-readLogFile(file, quiet = FALSE)
+readLogFile(file)
 }
 \arguments{
 \item{file}{Log file.}
-
-\item{quiet}{If \code{TRUE}, suppress any status messages and/or progress bars.}
 }
 \value{
 Character vector.
@@ -18,10 +16,11 @@ Character vector.
 Read Log File
 }
 \examples{
-url <- file.path(
+url <- paste(
     "http://bcbiobase.seq.cloud",
     "bcbio",
-    "bcbio-nextgen.log")
+    "bcbio-nextgen.log",
+    sep = "/")
 readLogFile(url) \%>\% head()
 }
 \seealso{

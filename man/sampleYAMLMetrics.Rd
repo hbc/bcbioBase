@@ -23,10 +23,11 @@ sampleYAMLMetrics(yaml, ...)
 Sample Metrics from YAML File
 }
 \examples{
-url <- file.path(
+url <- paste(
     "http://bcbiobase.seq.cloud",
     "bcbio",
-    "project-summary.yaml")
+    "project-summary.yaml",
+    sep = "/")
 yaml <- basejump::readYAML(url)
 sampleYAMLMetrics(yaml) \%>\% glimpse()
 }
