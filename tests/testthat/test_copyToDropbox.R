@@ -3,52 +3,54 @@ context("copyToDropbox")
 prepareTemplate("bibliography.bib")
 files <- "bibliography.bib"
 dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
-rdsToken <- system.file("extdata/token.rds", package = "bcbioBase")
-stopifnot(file.exists(rdsToken))
 
-test_that("RDS token", {
-    x <- copyToDropbox(
-        files = files,
-        dir = dropboxDir,
-        rdsToken = rdsToken)
-    expect_is(x, "list")
-    expect_identical(
-        lapply(x[[1L]], class),
-        list(
-            ".tag" = "character",
-            "url" = "character",
-            "id" = "character",
-            "name" = "character",
-            "path_lower" = "character",
-            "link_permissions" = "list",
-            "client_modified" = "character",
-            "server_modified" = "character",
-            "rev" = "character",
-            "size" = "integer"
-        )
-    )
-    expect_error(
-        copyToDropbox(
+# Don't run this test on AppVeyor CI yet
+# Sys.getenv("APPVEYOR")
+if (!file.exists("token.rds")) {
+    test_that("RDS token enabled", {
+        x <- copyToDropbox(
             files = files,
             dir = dropboxDir,
-            rdsToken = FALSE),
-        paste(
-            "is_identical_to_na :",
-            "rdsToken is not identical to NA; its value is FALSE."
+            rdsToken = "token.rds")
+        expect_is(x, "list")
+        expect_identical(
+            lapply(x[[1L]], class),
+            list(
+                ".tag" = "character",
+                "url" = "character",
+                "id" = "character",
+                "name" = "character",
+                "path_lower" = "character",
+                "link_permissions" = "list",
+                "client_modified" = "character",
+                "server_modified" = "character",
+                "rev" = "character",
+                "size" = "integer"
+            )
         )
-    )
-})
+    })
+    test_that("Shared Dropbox directory", {
+        expect_warning(
+            copyToDropbox(
+                files = files,
+                dir = paste0(dropboxDir, "_shared"),
+                rdsToken = rdsToken),
+            "rdrop2 currently isn't working well with shared directories."
+        )
+        # Don't unlink this directory, because we won't be able to check if shared
+    })
+}
 
 test_that("Invalid parameters", {
     expect_error(
-        copyToDropbox(files = NULL, dir = getwd()),
+        copyToDropbox(files = NULL, dir = "."),
         paste(
             "is2 :",
             "files is not in any of the classes 'character', 'list'."
         )
     )
     expect_error(
-        copyToDropbox(files = "XXX.csv.gz", dir = getwd()),
+        copyToDropbox(files = "XXX.csv.gz", dir = "."),
         paste(
             "is_existing_file :",
             "Some or all of the files specified by files do not exist."
@@ -62,33 +64,23 @@ test_that("Invalid parameters", {
         )
     )
     expect_error(
-        copyToDropbox(
-            files = files,
-            dir = dropboxDir,
-            rdsToken = mtcars),
+        copyToDropbox(files = files, dir = dropboxDir, rdsToken = mtcars),
         "is2 : rdsToken is not in any of the classes 'character', 'logical'."
     )
     expect_error(
-        copyToDropbox(
-            files = files,
-            dir = dropboxDir,
-            rdsToken = "XXX.rds"),
+        copyToDropbox(files = files, dir = dropboxDir, rdsToken = "XXX.rds"),
         paste(
             "is_existing_file :",
             "Some or all of the files specified by rdsToken do not exist."
         )
     )
-})
-
-test_that("Shared directory", {
-    expect_warning(
-        copyToDropbox(
-            files = files,
-            dir = paste0(dropboxDir, "_shared"),
-            rdsToken = rdsToken),
-        "rdrop2 currently isn't working well with shared directories."
+    expect_error(
+        copyToDropbox(files = files, dir = dropboxDir, rdsToken = FALSE),
+        paste(
+            "is_identical_to_na :",
+            "rdsToken is not identical to NA; its value is FALSE."
+        )
     )
-    # Don't unlink this directory, because we won't be able to check if shared
 })
 
 unlink("bibliography.bib")
