@@ -90,6 +90,7 @@ NULL
 
 
 # Constructors =================================================================
+#' @importFrom fs path_real
 #' @importFrom scales percent
 #' @importFrom SummarizedExperiment SummarizedExperiment
 #' @importFrom tibble has_rownames
@@ -184,7 +185,7 @@ NULL
         metadata <- list()
     }
     metadata[["date"]] <- Sys.Date()
-    metadata[["wd"]] <- getwd()
+    metadata[["wd"]] <- path_real(".")
     metadata[["utilsSessionInfo"]] <- utils::sessionInfo()
     metadata[["devtoolsSessionInfo"]] <- devtools::session_info()
     metadata[["unannotatedGenes"]] <- unannotatedGenes
@@ -194,8 +195,7 @@ NULL
         assays = assays,
         rowData = rowData,
         colData = colData,
-        metadata = metadata
-    )
+        metadata = metadata)
 }
 
 

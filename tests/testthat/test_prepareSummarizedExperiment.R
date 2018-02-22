@@ -48,16 +48,14 @@ se <- prepareSummarizedExperiment(
     colData = coldata)
 
 test_that("Valid SummarizedExperiment", {
+    expect_identical(dim(se), c(4L, 4L))
     expect_identical(
-        dim(se),
-        c(4L, 4L))
-    expect_identical(
-        names(metadata(se)),
-        c(
-            "date",
-            "wd",
-            "utilsSessionInfo",
-            "devtoolsSessionInfo"
+        lapply(metadata(se), class),
+        list(
+            "date" = "Date",
+            "wd" = c("fs_path", "character"),
+            "utilsSessionInfo" = "sessionInfo",
+            "devtoolsSessionInfo" = "session_info"
         )
     )
 })
