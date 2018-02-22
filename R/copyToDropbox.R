@@ -13,15 +13,9 @@
 #' @export
 #'
 #' @examples
-#' prepareTemplate("bibliography.bib")
-#' dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
-#' suppressMessages(copyToDropbox(
-#'     files = "bibliography.bib",
-#'     dir = dropboxDir,
-#'     rdsToken = system.file("extdata/token.rds", package = "bcbioBase")
-#' ))
-#' rdrop2::drop_exists(file.path(dropboxDir, "bibliography.bib"))
-#' unlink("bibliography.bib")
+#' \dontrun{
+#' copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
+#' }
 copyToDropbox <- function(
     files,
     dir,
