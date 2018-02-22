@@ -6,7 +6,7 @@ dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
 
 # Don't run this test on AppVeyor CI yet
 # Sys.getenv("APPVEYOR")
-if (!file.exists("token.rds")) {
+if (file.exists("token.rds")) {
     test_that("RDS token enabled", {
         x <- copyToDropbox(
             files = files,
