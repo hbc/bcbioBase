@@ -16,7 +16,7 @@
 #'     "http://bcbiobase.seq.cloud",
 #'     "sample_metadata",
 #'     "demultiplexed.xlsx",
-#'     sep = "/")
+#'     sep = "/"))
 #'
 #' # Success
 #' assertFormalInterestingGroups(meta, interestingGroups = "genotype")
