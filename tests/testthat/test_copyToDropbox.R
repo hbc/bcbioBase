@@ -83,4 +83,4 @@ test_that("Invalid parameters", {
     )
 })
 
-file_remove("bibliography.bib")
+file_delete("bibliography.bib")

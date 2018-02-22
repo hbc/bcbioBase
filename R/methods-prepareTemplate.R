@@ -60,19 +60,23 @@ NULL
 # Constructors =================================================================
 .copyTemplateFile <- function(object, sourceDir = NULL) {
     assert_is_character(object)
+    assertIsAStringOrNULL(sourceDir)
     if (is.null(sourceDir)) {
         sourceDir <- system.file("rmarkdown/shared", package = "bcbioBase")
     }
-    assert_is_a_string(sourceDir)
     assert_all_are_existing_files(path(sourceDir, object))
-    invisible(lapply(object, function(file) {
-        if (!file_exists(file)) {
-            file_copy(
-                from = path(sourceDir, file),
-                to = file,
-                overwrite = FALSE)
-        }
-    }))
+    invisible(mapply(
+        FUN = function(file, sourceDir) {
+            if (!file_exists(file)) {
+                file_copy(
+                    path = path(sourceDir, file),
+                    new_path = file,
+                    overwrite = FALSE)
+            }
+        },
+        file = object,
+        MoreArgs = list(sourceDir = sourceDir)
+    ))
 }
 
 

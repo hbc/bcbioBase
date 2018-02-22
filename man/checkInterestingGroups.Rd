@@ -25,7 +25,7 @@ demultiplexed <- paste(
     "http://bcbiobase.seq.cloud",
     "sample_metadata",
     "demultiplexed.xlsx",
-    sep = "\\n")
+    sep = "/")
 meta <- readSampleMetadataFile(demultiplexed)
 checkInterestingGroups(object = meta, interestingGroups = "genotype")
 }
