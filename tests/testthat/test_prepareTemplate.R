@@ -9,14 +9,14 @@ test_that("All default shared files", {
         "bibliography.bib"
     )
     expect_silent(prepareTemplate())
-    expect_true(all(file.exists(files)))
-    unlink(files)
+    expect_true(all(file_exists(files)))
+    file_remove(files)
 })
 
 test_that("Single file", {
     prepareTemplate("bibliography.bib")
-    expect_true(file.exists("bibliography.bib"))
-    unlink("bibliography.bib")
+    expect_true(file_exists("bibliography.bib"))
+    file_remove("bibliography.bib")
 })
 
 test_that("Missing source file", {

@@ -1,11 +1,12 @@
 context("readSampleMetadataFile")
 
 test_that("Demultiplexed FASTQ", {
-    file <- file.path(
+    file <- paste(
         "http://bcbiobase.seq.cloud",
         "sample_metadata",
-        "demultiplexed.xlsx")
-    meta <- readSampleMetadataFile(file, quiet = TRUE)
+        "demultiplexed.xlsx",
+        sep = "/")
+    meta <- readSampleMetadataFile(file)
 
     # Check that names are sanitized correctly
     rows <- c("sample_1", "sample_2", "sample_3", "sample_4")
@@ -19,7 +20,7 @@ test_that("Demultiplexed FASTQ", {
     )
 
     # Lane-split technical replicate support
-    meta <- readSampleMetadataFile(file, lanes = 4L, quiet = TRUE)
+    meta <- readSampleMetadataFile(file, lanes = 4L)
     expect_identical(
         rownames(meta)[1L:8L],
         c(
@@ -50,11 +51,12 @@ test_that("Demultiplexed FASTQ", {
     # Error on file containing redundant `description` and `sampleName` columns
     expect_error(
         readSampleMetadataFile(
-            file.path(
+            paste(
                 "http://bcbiobase.seq.cloud",
                 "sample_metadata",
-                "demultiplexed_with_sampleName.csv"),
-            quiet = TRUE),
+                "demultiplexed_with_sampleName.csv",
+                sep = "/")
+        ),
         paste(
             "are_disjoint_sets :",
             "\"sampleName\" and colnames\\(data\\) have common elements:",
@@ -65,11 +67,12 @@ test_that("Demultiplexed FASTQ", {
     # Required column check failure
     expect_error(
         readSampleMetadataFile(
-            file.path(
+            paste(
                 "http://bcbiobase.seq.cloud",
                 "sample_metadata",
-                "demultiplexed_missing_cols.csv"),
-            quiet = TRUE),
+                "demultiplexed_missing_cols.csv",
+                sep = "/")
+        ),
         paste(
             "is_subset :",
             "The element 'description' in requiredCols is not in",
@@ -80,11 +83,12 @@ test_that("Demultiplexed FASTQ", {
     # Duplicated description
     expect_error(
         readSampleMetadataFile(
-            file.path(
+            paste(
                 "http://bcbiobase.seq.cloud",
                 "sample_metadata",
-                "demultiplexed_duplicated_description.csv"),
-            quiet = TRUE),
+                "demultiplexed_duplicated_description.csv",
+                sep = "/")
+        ),
         paste(
             "has_no_duplicates :",
             "data\\[\\[\"description\"\\]\\] has a duplicate at position 2."
@@ -93,11 +97,12 @@ test_that("Demultiplexed FASTQ", {
 })
 
 test_that("Multiplexed FASTQ", {
-    file <- file.path(
+    file <- paste(
         "http://bcbiobase.seq.cloud",
         "sample_metadata",
-        "multiplexed.xlsx")
-    meta <- readSampleMetadataFile(file, quiet = TRUE)
+        "multiplexed.xlsx",
+        sep = "/")
+    meta <- readSampleMetadataFile(file)
 
     expect_identical(
         rownames(meta),
@@ -112,7 +117,7 @@ test_that("Multiplexed FASTQ", {
     )
 
     # Lane-split technical replicate support
-    meta <- readSampleMetadataFile(file, lanes = 4L, quiet = TRUE)
+    meta <- readSampleMetadataFile(file, lanes = 4L)
     expect_identical(
         rownames(meta),
         c(
@@ -149,11 +154,12 @@ test_that("Multiplexed FASTQ", {
     # Required column check failure
     expect_error(
         readSampleMetadataFile(
-            file.path(
+            paste(
                 "http://bcbiobase.seq.cloud",
                 "sample_metadata",
-                "multiplexed_missing_cols.csv"),
-            quiet = TRUE),
+                "multiplexed_missing_cols.csv",
+                sep = "/")
+        ),
         paste(
             "is_subset :",
             "The element 'index' in requiredCols is not in",
@@ -164,10 +170,12 @@ test_that("Multiplexed FASTQ", {
     # Duplicate rows in `sampleName` column
     expect_error(
         readSampleMetadataFile(
-            file.path("http://bcbiobase.seq.cloud",
-                      "sample_metadata",
-                      "multiplexed_duplicated_sampleName.csv"),
-            quiet = TRUE),
+            paste(
+                "http://bcbiobase.seq.cloud",
+                "sample_metadata",
+                "multiplexed_duplicated_sampleName.csv",
+                sep = "/")
+        ),
         paste(
             "has_no_duplicates :",
             "data\\[\\[\"sampleName\"\\]\\] has duplicates at positions 2, 4."
@@ -176,11 +184,12 @@ test_that("Multiplexed FASTQ", {
 })
 
 test_that("Legacy bcbio samplename column", {
-    file <- file.path(
+    file <- paste(
         "http://bcbiobase.seq.cloud",
         "sample_metadata",
-        "bcbio_legacy_samplename.csv")
-    meta <- suppressWarnings(readSampleMetadataFile(file, quiet = TRUE))
+        "bcbio_legacy_samplename.csv",
+        sep = "/")
+    meta <- suppressWarnings(readSampleMetadataFile(file))
     expect_identical(
         meta,
         data.frame(
@@ -205,18 +214,19 @@ test_that("Legacy bcbio samplename column", {
         )
     )
     expect_warning(
-        readSampleMetadataFile(file, quiet = TRUE),
+        readSampleMetadataFile(file),
         "`samplename` \\(note case\\) is used in some bcbio examples"
     )
 })
 
 test_that("`sampleID` already defined by the user", {
-    file <- file.path(
+    file <- paste(
         "http://bcbiobase.seq.cloud",
         "sample_metadata",
-        "sampleID_column_defined.xlsx")
+        "sampleID_column_defined.xlsx",
+        sep = "/")
     expect_error(
-        readSampleMetadataFile(file, quiet = TRUE),
+        readSampleMetadataFile(file),
         paste(
             "are_disjoint_sets :",
             "\"sampleID\" and colnames\\(data\\) have common elements:",

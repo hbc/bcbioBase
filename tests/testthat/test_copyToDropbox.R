@@ -2,11 +2,11 @@ context("copyToDropbox")
 
 prepareTemplate("bibliography.bib")
 files <- "bibliography.bib"
-dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
+dropboxDir <- path("bcbioBase_examples", "copyToDropbox")
 
 # Don't run this test on AppVeyor CI yet
 # Sys.getenv("APPVEYOR")
-if (file.exists("token.rds")) {
+if (file_exists("token.rds")) {
     test_that("RDS token enabled", {
         x <- copyToDropbox(
             files = files,
@@ -34,10 +34,10 @@ if (file.exists("token.rds")) {
             copyToDropbox(
                 files = files,
                 dir = paste0(dropboxDir, "_shared"),
-                rdsToken = rdsToken),
+                rdsToken = "token.rds"),
             "rdrop2 currently isn't working well with shared directories."
         )
-        # Don't unlink this directory, because we won't be able to check if shared
+        # Don't remove directory, because we won't be able to check if shared
     })
 }
 
@@ -83,4 +83,4 @@ test_that("Invalid parameters", {
     )
 })
 
-unlink("bibliography.bib")
+file_remove("bibliography.bib")
