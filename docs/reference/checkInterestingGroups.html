@@ -116,10 +116,11 @@ is requested by the user.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>demultiplexed</span> <span class='kw'>&lt;-</span> <span class='fu'>file.path</span>(
+    <pre class="examples"><div class='input'><span class='no'>demultiplexed</span> <span class='kw'>&lt;-</span> <span class='fu'>paste</span>(
     <span class='st'>"http://bcbiobase.seq.cloud"</span>,
     <span class='st'>"sample_metadata"</span>,
-    <span class='st'>"demultiplexed.xlsx"</span>)
+    <span class='st'>"demultiplexed.xlsx"</span>,
+    <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"/"</span>)
 <span class='no'>meta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='readSampleMetadataFile.html'>readSampleMetadataFile</a></span>(<span class='no'>demultiplexed</span>)</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.xlsx</span></div><div class='input'><span class='fu'>checkInterestingGroups</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>meta</span>, <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='st'>"genotype"</span>)</div><div class='output co'>#&gt; [1] "genotype"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
