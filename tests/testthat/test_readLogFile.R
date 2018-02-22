@@ -20,14 +20,8 @@ test_that("readLogFile", {
 })
 
 test_that("Missing file", {
-    expect_warning(
+    expect_error(
         readLogFile("XXX.log"),
         "is_existing_file :"
-    )
-    expect_identical(
-        suppressWarnings(
-            readLogFile("XXX.log")
-        ),
-        NULL
     )
 })
