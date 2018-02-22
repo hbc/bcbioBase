@@ -4,6 +4,12 @@ dplyr::pull
 
 
 
+#' @importFrom fs file_exists
+#' @export
+fs::file_exists
+
+
+
 #' @importFrom magrittr %>%
 #' @export
 magrittr::`%>%`
