@@ -15,6 +15,8 @@
 #' @name prepareTemplate
 #' @family Infrastructure Utilities
 #'
+#' @importFrom fs file_copy file_exists path
+#'
 #' @inheritParams general
 #'
 #' @param object *Optional*. File name. If `NULL` (default), download the
@@ -35,13 +37,13 @@
 #'
 #' # Copy all of the default shared template files
 #' prepareTemplate()
-#' file.exists(defaultFiles)
-#' unlink(defaultFiles)
+#' file_exists(defaultFiles)
+#' file_delete(defaultFiles)
 #'
 #' # Request individual files
 #' prepareTemplate("bibliography.bib")
-#' file.exists("bibliography.bib")
-#' unlink("bibliography.bib")
+#' file_exists("bibliography.bib")
+#' file_delete("bibliography.bib")
 #'
 #' # Load the shared files from bcbioSingleCell
 #' \dontrun{
@@ -62,11 +64,11 @@ NULL
         sourceDir <- system.file("rmarkdown/shared", package = "bcbioBase")
     }
     assert_is_a_string(sourceDir)
-    assert_all_are_existing_files(file.path(sourceDir, object))
+    assert_all_are_existing_files(path(sourceDir, object))
     invisible(lapply(object, function(file) {
-        if (!file.exists(file)) {
-            file.copy(
-                from = file.path(sourceDir, file),
+        if (!file_exists(file)) {
+            file_copy(
+                from = path(sourceDir, file),
                 to = file,
                 overwrite = FALSE)
         }

@@ -2,6 +2,7 @@
 #'
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
 #'
+#' @importFrom fs path
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
 #'   drop_get_metadata drop_share drop_upload
 #'
@@ -65,7 +66,7 @@ copyToDropbox <- function(
 
     # Loop across the files in list
     rdrop <- lapply(files, function(file) {
-        dropboxFile <- file.path(dir, basename(file))
+        dropboxFile <- path(dir, basename(file))
         if (suppressWarnings(drop_exists(dropboxFile))) {
             drop_delete(dropboxFile)
         }
