@@ -54,7 +54,8 @@ test_that("Valid SummarizedExperiment", {
         list(
             "date" = "Date",
             "wd" = c("fs_path", "character"),
-            "sessionInfo" = "session_info"
+            "devtoolsSessionInfo" = "session_info",
+            "utilsSessionInfo" = "sessionInfo"
         )
     )
 })
