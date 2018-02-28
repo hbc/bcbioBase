@@ -90,6 +90,7 @@ NULL
 
 
 # Constructors =================================================================
+#' @importFrom basejump sanitizeColData
 #' @importFrom fs path_real
 #' @importFrom scales percent
 #' @importFrom sessioninfo session_info
@@ -102,10 +103,27 @@ NULL
     colData = NULL,
     metadata = NULL) {
     assert_is_list(assays)
-    validData <- c("data.frame", "DataFrame", "matrix", "NULL")
-    assert_is_any_of(rowData, validData)
-    assert_is_any_of(colData, validData)
-    assert_is_any_of(metadata, c("list", "SimpleList", "NULL"))
+    assert_is_any_of(
+        rowData,
+        classes = c(
+            "GRanges",
+            "data.frame",
+            "DataFrame",
+            "matrix",
+            "NULL")
+    )
+    assert_is_any_of(
+        x = colData,
+        classes = c(
+            "data.frame",
+            "DataFrame",
+            "matrix",
+            "NULL")
+    )
+    assert_is_any_of(
+        x = metadata,
+        classes = c("list", "SimpleList", "NULL")
+    )
 
     # Assays ===================================================================
     # Drop any `NULL` items from list.
@@ -127,57 +145,89 @@ NULL
     )
 
     # Ensure that all slotted items have the same dimensions and names
-    lapply(
+    invisible(lapply(
         X = assays,
         FUN = function(x) {
             assert_are_identical(dim(x), dim(assay))
             assert_are_identical(dimnames(x), dimnames(assay))
-    })
+    }))
 
     # Row data =================================================================
-    if (!is.null(rowData)) {
-        rowData <- as.data.frame(rowData)
-        rowData <- as(rowData, "DataFrame")
-        assert_are_intersecting_sets(rownames(assay), rownames(rowData))
-
-        # Check for unannotated genes not found in annotable. This typically
-        # includes gene identifiers that are now deprecated on Ensembl and/or
-        # FASTA spike-in identifiers. Warn on detection rather than stopping.
-        if (!all(rownames(assay) %in% rownames(rowData))) {
-            unannotatedGenes <- setdiff(rownames(assay), rownames(rowData)) %>%
-                sort()
-            warn(paste(
-                "Unannotated genes detected in assay",
-                paste0(
-                    "(", percent(length(unannotatedGenes) / nrow(assay)), ")"
+    # Check for unannotated genes not found in annotable. This typically
+    # includes gene identifiers that are now deprecated on Ensembl and/or
+    # FASTA spike-in identifiers. Warn on detection rather than stopping.
+    unannotatedRows <- NULL
+    if (is(rowData, "GRanges")) {
+        assert_are_intersecting_sets(rownames(assay), names(rowData))
+        unannotatedRows <- sort(setdiff(rownames(assay), names(rowData)))
+        if (length(unannotatedRows)) {
+            # Stash the missing rows at the first seqname (e.g. chromosome 1)
+            # with the ranges 1-2, and no strand.
+            # FIXME Is there a better way to stash empty ranges?
+            vec <- paste(
+                levels(seqnames(rowData))[[1L]],
+                "1-2",
+                sep = ":"
+            )
+            empty <- GRanges(
+                replicate(
+                    n = length(unannotatedRows),
+                    expr = vec)
+            )
+            names(empty) <- unannotatedRows
+            # Create the required empty metadata columns
+            mcols(empty) <- matrix(
+                nrow = length(unannotatedRows),
+                ncol = ncol(mcols(rowData)),
+                dimnames = list(
+                    unannotatedRows,
+                    colnames(mcols(rowData))
                 )
-            ))
-        } else {
-            unannotatedGenes <- NULL
+            ) %>%
+                as("DataFrame")
         }
-
+        rowData <- c(rowData, empty)
+        rowData <- rowData[rownames(assay)]
+    } else if (!is.null(rowData)) {
+        # Coerce to DataFrame, if necessary
+        if (!is(rowData, "DataFrame")) {
+            rowData <- rowData %>%
+                as.data.frame() %>%
+                as("DataFrame")
+        }
+        assert_are_intersecting_sets(rownames(assay), rownames(rowData))
+        unannotatedRows <- sort(setdiff(rownames(assay), rownames(rowData)))
         # Allow for dynamic resizing of rows to match gene annotable input
         rowData <- rowData[rownames(assay), , drop = FALSE]
         rownames(rowData) <- rownames(assay)
     } else {
-        warn(paste(
-            "Summarizing experiment without row data",
-            "(e.g. gene annotations)"
-        ))
+        warn("Summarizing experiment without row data")
         rowData <- DataFrame(row.names = rownames(assay))
-        unannotatedGenes <- NULL
+        unannotatedRows <- NULL
+    }
+
+    # Warn the user on detection of unannotated rows
+    if (length(unannotatedRows)) {
+        warn(paste(
+            length(unannotatedRows),
+            "unannotated rows detected in SummarizedExperiment",
+            paste0("(", percent(length(unannotatedRows) / nrow(assay)), "):"),
+            toString(unannotatedRows)
+        ))
     }
 
     # Column data ==============================================================
     if (!is.null(colData)) {
-        colData <- as.data.frame(colData)
-        colData <- as(colData, "DataFrame")
+        # Coerce to DataFrame, if necessary
+        if (!is(colData, "DataFrame")) {
+            colData <- colData %>%
+                as.data.frame() %>%
+                as("DataFrame")
+        }
         assert_are_identical(colnames(assay), rownames(colData))
+        colData <- sanitizeColData(colData)
     } else {
-        warn(paste(
-            "Summarizing experiment without column data",
-            "(e.g. sample metadata)"
-        ))
+        warn("Summarizing experiment without column data")
         colData <- DataFrame(row.names = colnames(assay))
     }
 
@@ -189,7 +239,7 @@ NULL
     metadata[["wd"]] <- path_real(".")
     metadata[["utilsSessionInfo"]] <- sessionInfo()
     metadata[["devtoolsSessionInfo"]] <- session_info(include_base = TRUE)
-    metadata[["unannotatedGenes"]] <- unannotatedGenes
+    metadata[["unannotatedRows"]] <- unannotatedRows
 
     # Return ===================================================================
     SummarizedExperiment(
