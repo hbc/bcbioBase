@@ -188,8 +188,8 @@ NULL
                 )
             ) %>%
                 as("DataFrame")
+            rowData <- c(rowData, empty)
         }
-        rowData <- c(rowData, empty)
         rowData <- rowData[rownames(assay)]
     } else if (!is.null(rowData)) {
         # Coerce to DataFrame, if necessary

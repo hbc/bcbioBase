@@ -16,9 +16,11 @@ mat <- matrix(
             "sample_1",
             "sample_2",
             "sample_3",
-            "sample_4")))
+            "sample_4")
+        )
+)
 # Check handling of rowData (annotable) mismatch
-rowdata <- data.frame(
+rowData <- data.frame(
     ensgene = c(
         "ENSMUSG00000000001",
         "ENSMUSG00000000003",
@@ -33,21 +35,25 @@ rowdata <- data.frame(
         "ENSMUSG00000000001",
         "ENSMUSG00000000003",
         "ENSMUSG00000000028",
-        "ENSMUSG00000000031"))
-coldata <- data.frame(
+        "ENSMUSG00000000031")
+)
+colData <- data.frame(
     genotype = c(
         "wildtype",
         "wildtype",
         "knockout",
         "knockout"),
     age = c(3L, 6L, 3L, 6L),
-    row.names = colnames(mat))
-se <- prepareSummarizedExperiment(
-    assays = list(assay = mat),
-    rowData = rowdata,
-    colData = coldata)
+    row.names = colnames(mat)
+)
 
-test_that("Valid SummarizedExperiment", {
+
+test_that("SummarizedExperiment", {
+    se <- prepareSummarizedExperiment(
+        assays = list(assay = mat),
+        rowData = rowData,
+        colData = colData)
+    expect_s4_class(se, "SummarizedExperiment")
     expect_identical(dim(se), c(4L, 4L))
     expect_identical(
         lapply(metadata(se), class),
@@ -60,48 +66,58 @@ test_that("Valid SummarizedExperiment", {
     )
 })
 
+test_that("RangedSummarizedExperiment", {
+    rowData <- genes("Mus musculus")
+    expect_s4_class(rowData, "GRanges")
+    se <- prepareSummarizedExperiment(
+        assays = list(assay = mat),
+        rowData = rowData,
+        colData = colData)
+    expect_s4_class(se, "RangedSummarizedExperiment")
+})
+
 test_that("Empty row and/or column data", {
-    noanno <- suppressWarnings(
+    noAnno <- suppressWarnings(
         prepareSummarizedExperiment(assays = list(assay = mat))
     )
     expect_warning(
         prepareSummarizedExperiment(
         assays = list(assay = mat),
-        colData = coldata),
+        colData = colData),
         "Summarizing experiment without row data"
     )
     expect_warning(
         prepareSummarizedExperiment(
             assays = list(assay = mat),
-            rowData = rowdata),
+            rowData = rowData),
         "Summarizing experiment without column data"
     )
-    expect_identical(length(slot(noanno, "elementMetadata")), 0L)
-    expect_identical(length(slot(noanno, "colData")), 0L)
+    expect_identical(length(slot(noAnno, "elementMetadata")), 0L)
+    expect_identical(length(slot(noAnno, "colData")), 0L)
 })
 
 # This checks to see if there are any dashes in the names
 test_that("Enforce strict names", {
-    matbadrows <- mat
-    rownames(matbadrows) <- paste0(rownames(matbadrows), "-XXX")
+    matBadRows <- mat
+    rownames(matBadRows) <- paste0(rownames(matBadRows), "-XXX")
     expect_error(
         prepareSummarizedExperiment(
-            assays = list(assay = matbadrows),
-            rowData = rowdata,
-            colData = coldata),
+            assays = list(assay = matBadRows),
+            rowData = rowData,
+            colData = colData),
         paste(
             "are_identical :",
             "make.names\\(rownames\\(assay\\), unique = TRUE, allow_ = TRUE\\)",
             "and rownames\\(assay\\) are not identical."
         )
     )
-    matbadcols <- mat
-    colnames(matbadcols) <- paste0(colnames(matbadcols), "-XXX")
+    matBadCols <- mat
+    colnames(matBadCols) <- paste0(colnames(matBadCols), "-XXX")
     expect_error(
         prepareSummarizedExperiment(
-            assays = list(assay = matbadcols),
-            rowData = rowdata,
-            colData = coldata),
+            assays = list(assay = matBadCols),
+            rowData = rowData,
+            colData = colData),
         paste(
             "are_identical :",
             "make.names\\(colnames\\(assay\\), unique = TRUE, allow_ = TRUE\\)",
@@ -111,33 +127,33 @@ test_that("Enforce strict names", {
 })
 
 test_that("Duplicate names", {
-    matduperows <- mat
-    rownames(matduperows) <- c(
+    matDupeRows <- mat
+    rownames(matDupeRows) <- c(
         "ENSMUSG00000000001",
         "ENSMUSG00000000001",
         "ENSMUSG00000000003",
         "ENSMUSG00000000003")
     expect_error(
         prepareSummarizedExperiment(
-            assays = list(assay = matduperows),
-            rowData = rowdata,
-            colData = coldata),
+            assays = list(assay = matDupeRows),
+            rowData = rowData,
+            colData = colData),
         paste(
             "has_no_duplicates :",
             "rownames\\(assay\\) has duplicates at positions 2, 4."
         )
     )
-    matdupecols <- mat
-    colnames(matdupecols) <- c(
+    matDupeCols <- mat
+    colnames(matDupeCols) <- c(
         "sample_1",
         "sample_1",
         "sample_2",
         "sample_2")
     expect_error(
         prepareSummarizedExperiment(
-            assays = list(assay = matdupecols),
-            rowData = rowdata,
-            colData = coldata),
+            assays = list(assay = matDupeCols),
+            rowData = rowData,
+            colData = colData),
         paste(
             "has_no_duplicates :",
             "colnames\\(assay\\) has duplicates at positions 2, 4."
@@ -150,14 +166,14 @@ test_that("Column data pass-in failure in assays", {
     expect_error(
         prepareSummarizedExperiment(
             assays = list(c(xxx = "yyy")),
-            rowData = rowdata,
-            colData = coldata),
+            rowData = rowData,
+            colData = colData),
         "has_dimnames : The dimension names of assay are NULL."
     )
     expect_error(
         prepareSummarizedExperiment(
             assays = list(assay = mat),
-            rowData = rowdata,
+            rowData = rowData,
             colData = c(xxx = "yyy")
         ),
         "is2 : colData"
@@ -166,7 +182,7 @@ test_that("Column data pass-in failure in assays", {
         prepareSummarizedExperiment(
             assays = list(assay = mat),
             rowData = c(xxx = "yyy"),
-            colData = coldata
+            colData = colData
         ),
         "is2 : rowData"
     )
@@ -176,40 +192,40 @@ test_that("Invalid metadata", {
     expect_error(
         prepareSummarizedExperiment(
             assays = list(assay = mat),
-            rowData = rowdata,
-            colData = coldata,
+            rowData = rowData,
+            colData = colData,
             metadata = Sys.Date()
         ),
         "is2 : metadata")
 })
 
 test_that("Dimension mismatch", {
-    matextracol <- cbind(mat, "sample_5" = seq(17L, 20L))
+    matExtraCol <- cbind(mat, "sample_5" = seq(17L, 20L))
     expect_error(
         prepareSummarizedExperiment(
-            assays = list(assay = matextracol),
-            rowData = rowdata,
-            colData = coldata),
+            assays = list(assay = matExtraCol),
+            rowData = rowData,
+            colData = colData),
         paste(
             "are_identical :",
             "colnames\\(assay\\) and rownames\\(colData\\) are not identical."
         )
     )
-    matextrarow <- rbind(mat, "ENSMUSG00000000037" = seq(17L, 20L))
+    matExtraRow <- rbind(mat, "ENSMUSG00000000037" = seq(17L, 20L))
     expect_warning(
         prepareSummarizedExperiment(
-            assays = list(assay = matextrarow),
-            rowData = rowdata,
-            colData = coldata),
+            assays = list(assay = matExtraRow),
+            rowData = rowData,
+            colData = colData),
         "1 unannotated rows detected")
-    seextrarow <- suppressWarnings(
+    seExtraRow <- suppressWarnings(
         prepareSummarizedExperiment(
-            assays = list(assay = matextrarow),
-            rowData = rowdata,
-            colData = coldata)
+            assays = list(assay = matExtraRow),
+            rowData = rowData,
+            colData = colData)
     )
     expect_identical(
-        metadata(seextrarow)[["unannotatedRows"]],
+        metadata(seExtraRow)[["unannotatedRows"]],
         "ENSMUSG00000000037"
     )
 })
@@ -221,8 +237,8 @@ test_that("Missing rownames", {
     expect_error(
         prepareSummarizedExperiment(
             assays = list(assay = matnorownames),
-            rowData = rowdata,
-            colData = coldata),
+            rowData = rowData,
+            colData = colData),
         "has_rownames : The row names of assay are NULL."
     )
     matnocolnames <- mat
@@ -230,29 +246,29 @@ test_that("Missing rownames", {
     expect_error(
         prepareSummarizedExperiment(
             assays = list(assay = matnocolnames),
-            rowData = rowdata,
-            colData = coldata),
+            rowData = rowData,
+            colData = colData),
         "has_colnames : The column names of assay are NULL."
     )
-    rowdatanorownames <- rowdata
+    rowdatanorownames <- rowData
     rownames(rowdatanorownames) <- NULL
     expect_error(
         prepareSummarizedExperiment(
             assays = list(assay = mat),
             rowData = rowdatanorownames,
-            colData = coldata),
+            colData = colData),
         paste(
             "are_intersecting_sets :",
             "rownames\\(assay\\) and rownames\\(rowData\\)",
             "have no common elements."
         )
     )
-    coldatanorownames <- coldata
+    coldatanorownames <- colData
     rownames(coldatanorownames) <- NULL
     expect_error(
         prepareSummarizedExperiment(
             assays = list(assay = mat),
-            rowData = rowdata,
+            rowData = rowData,
             colData = coldatanorownames),
         paste(
             "are_identical :",
