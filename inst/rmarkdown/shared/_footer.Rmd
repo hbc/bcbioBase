@@ -5,8 +5,8 @@
 # R session information {.tabset}
 
 ```{r session_info}
-markdownHeader("`devtools::session_info()`", level = 2)
-devtools::session_info()
+markdownHeader("`sessioninfo::session_info()`", level = 2)
+sessioninfo::session_info()
 markdownHeader("`utils::sessionInfo()`", level = 2)
 sessionInfo()
 markdownHeader("YAML params", level = 2)

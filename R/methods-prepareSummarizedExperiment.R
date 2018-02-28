@@ -92,9 +92,10 @@ NULL
 # Constructors =================================================================
 #' @importFrom fs path_real
 #' @importFrom scales percent
+#' @importFrom sessioninfo session_info
 #' @importFrom SummarizedExperiment SummarizedExperiment
 #' @importFrom tibble has_rownames
-#' @importFrom utils head
+#' @importFrom utils head sessionInfo
 .prepareSummarizedExperiment <- function(
     assays,
     rowData = NULL,
@@ -186,8 +187,8 @@ NULL
     }
     metadata[["date"]] <- Sys.Date()
     metadata[["wd"]] <- path_real(".")
-    metadata[["utilsSessionInfo"]] <- utils::sessionInfo()
-    metadata[["devtoolsSessionInfo"]] <- devtools::session_info()
+    metadata[["utilsSessionInfo"]] <- sessionInfo()
+    metadata[["devtoolsSessionInfo"]] <- session_info(include_base = TRUE)
     metadata[["unannotatedGenes"]] <- unannotatedGenes
 
     # Return ===================================================================
