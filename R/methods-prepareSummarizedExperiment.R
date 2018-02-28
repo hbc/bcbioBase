@@ -203,7 +203,6 @@ NULL
     } else {
         warn("Summarizing experiment without row data")
         rowData <- DataFrame(row.names = rownames(assay))
-        unannotatedRows <- NULL
     }
 
     # Warn the user on detection of unannotated rows
@@ -214,6 +213,8 @@ NULL
             paste0("(", percent(length(unannotatedRows) / nrow(assay)), "):"),
             toString(unannotatedRows)
         ))
+    } else {
+        unannotatedRows <- NULL
     }
 
     # Column data ==============================================================
