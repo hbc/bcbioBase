@@ -68,35 +68,16 @@ test_that("Empty row and/or column data", {
         prepareSummarizedExperiment(
         assays = list(assay = mat),
         colData = coldata),
-        paste(
-            "Summarizing experiment without row data",
-            "\\(e.g. gene annotations\\)"
-        )
+        "Summarizing experiment without row data"
     )
     expect_warning(
         prepareSummarizedExperiment(
             assays = list(assay = mat),
             rowData = rowdata),
-        paste(
-            "Summarizing experiment without column data",
-            "\\(e.g. sample metadata\\)"
-        )
+        "Summarizing experiment without column data"
     )
     expect_identical(length(slot(noanno, "elementMetadata")), 0L)
     expect_identical(length(slot(noanno, "colData")), 0L)
-})
-
-test_that("Ensure `assays()` requires a list", {
-    expect_error(
-        prepareSummarizedExperiment(
-            assays = mat,
-            rowData = rowdata,
-            colData = coldata),
-        paste(
-            "unable to find an inherited method for function",
-            "'prepareSummarizedExperiment' for signature '\"matrix\"'"
-        )
-    )
 })
 
 # This checks to see if there are any dashes in the names
@@ -220,7 +201,7 @@ test_that("Dimension mismatch", {
             assays = list(assay = matextrarow),
             rowData = rowdata,
             colData = coldata),
-        "Unannotated genes detected in assay \\(20%\\)")
+        "1 unannotated rows detected")
     seextrarow <- suppressWarnings(
         prepareSummarizedExperiment(
             assays = list(assay = matextrarow),
@@ -228,7 +209,7 @@ test_that("Dimension mismatch", {
             colData = coldata)
     )
     expect_identical(
-        metadata(seextrarow)[["unannotatedGenes"]],
+        metadata(seextrarow)[["unannotatedRows"]],
         "ENSMUSG00000000037"
     )
 })
