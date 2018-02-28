@@ -1,5 +1,7 @@
 context("prepareSummarizedExperiment")
 
+# TODO Need to improve unit tests for spike-in handling
+
 # Create the matrix with invalid names. We'll sanitize these
 # into snake_case later.
 mat <- matrix(
