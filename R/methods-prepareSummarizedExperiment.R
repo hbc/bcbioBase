@@ -92,9 +92,12 @@ NULL
 # Constructors =================================================================
 #' @importFrom basejump sanitizeColData
 #' @importFrom fs path_real
+#' @importFrom GenomeInfoDb seqnames
+#' @importFrom GenomicRanges GRanges
 #' @importFrom scales percent
 #' @importFrom sessioninfo session_info
 #' @importFrom SummarizedExperiment SummarizedExperiment
+#' @importFrom S4Vectors mcols mcols<-
 #' @importFrom tibble has_rownames
 #' @importFrom utils head sessionInfo
 .prepareSummarizedExperiment <- function(
