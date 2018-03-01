@@ -20,7 +20,6 @@ r_packages:
   - rlang
 r_github_packages:
   - karthik/rdrop2
-  - steinbaugh/basejump@develop
 
 after_success:
   - Rscript -e 'covr::codecov()'
