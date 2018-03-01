@@ -13,18 +13,15 @@
 #' @export
 #'
 #' @examples
-#' url <- file.path(
+#' url <- paste(
 #'     "http://bcbiobase.seq.cloud",
 #'     "bcbio",
-#'     "bcbio-nextgen.log")
+#'     "bcbio-nextgen.log",
+#'     sep = "/")
 #' readLogFile(url) %>% head()
-readLogFile <- function(
-    file,
-    quiet = FALSE) {
+readLogFile <- function(file) {
     assert_is_a_string(file)
-    file <- localOrRemoteFile(file, severity = "warning", quiet = quiet)
-    if (is.null(file)) {
-        return(invisible())
-    }
+    file <- localOrRemoteFile(file)
+    assert_all_are_existing_files(file)
     read_lines(file)
 }

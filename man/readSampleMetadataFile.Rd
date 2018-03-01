@@ -4,15 +4,13 @@
 \alias{readSampleMetadataFile}
 \title{Read Sample Metadata File}
 \usage{
-readSampleMetadataFile(file, lanes = 1L, quiet = FALSE)
+readSampleMetadataFile(file, lanes = 1L)
 }
 \arguments{
 \item{file}{Metadata file. Supports CSV and XLSX file formats.}
 
 \item{lanes}{\emph{Optional}. Number of lanes used to split the samples into
 technical replicates (\code{_LXXX}) suffix.}
-
-\item{quiet}{If \code{TRUE}, suppress any status messages and/or progress bars.}
 }
 \value{
 \link{data.frame}.
@@ -22,16 +20,18 @@ Read Sample Metadata File
 }
 \examples{
 # Demultiplexed
-demultiplexed <- file.path(
+demultiplexed <- paste(
     "http://bcbiobase.seq.cloud",
     "sample_metadata",
-    "demultiplexed.xlsx")
+    "demultiplexed.xlsx",
+    sep = "/")
 readSampleMetadataFile(demultiplexed) \%>\% glimpse()
 
 # Multiplexed (e.g. inDrop single-cell RNA-seq)
-multiplexed <- file.path(
+multiplexed <- paste(
     "http://bcbiobase.seq.cloud",
     "sample_metadata",
-    "multiplexed.xlsx")
+    "multiplexed.xlsx",
+    sep = "/")
 readSampleMetadataFile(multiplexed) \%>\% glimpse()
 }

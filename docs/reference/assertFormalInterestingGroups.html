@@ -113,10 +113,11 @@ Either "<code>stop</code>", "<code>warning</code>", "<code>message</code>", or "
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>meta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='readSampleMetadataFile.html'>readSampleMetadataFile</a></span>(<span class='fu'>file.path</span>(
+    <pre class="examples"><div class='input'><span class='no'>meta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='readSampleMetadataFile.html'>readSampleMetadataFile</a></span>(<span class='fu'>paste</span>(
     <span class='st'>"http://bcbiobase.seq.cloud"</span>,
     <span class='st'>"sample_metadata"</span>,
-    <span class='st'>"demultiplexed.xlsx"</span>))</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.xlsx</span></div><div class='input'>
+    <span class='st'>"demultiplexed.xlsx"</span>,
+    <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"/"</span>))</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.xlsx</span></div><div class='input'>
 <span class='co'># Success</span>
 <span class='fu'>assertFormalInterestingGroups</span>(<span class='no'>meta</span>, <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='st'>"genotype"</span>)
 

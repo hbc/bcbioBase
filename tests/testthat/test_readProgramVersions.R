@@ -2,11 +2,12 @@ context("readProgramVersions")
 
 test_that("readProgramVersions", {
     versions <- readProgramVersions(
-        file.path("http://bcbiobase.seq.cloud",
-                  "bcbio",
-                  "programs.txt"),
-        quiet = TRUE)
-    expect_true(tibble::is_tibble(versions))
+        paste(
+            "http://bcbiobase.seq.cloud",
+            "bcbio",
+            "programs.txt",
+            sep = "/"))
+    expect_is(versions, "tbl_df")
     expect_identical(
         colnames(versions),
         c("program", "version")

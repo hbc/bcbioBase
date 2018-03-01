@@ -4,12 +4,10 @@
 \alias{readProgramVersions}
 \title{Read Program Versions}
 \usage{
-readProgramVersions(file, quiet = FALSE)
+readProgramVersions(file)
 }
 \arguments{
 \item{file}{Program versions TXT file.}
-
-\item{quiet}{If \code{TRUE}, suppress any status messages and/or progress bars.}
 }
 \value{
 \link{data.frame}.
@@ -18,10 +16,11 @@ readProgramVersions(file, quiet = FALSE)
 Read Program Versions
 }
 \examples{
-url <- file.path(
+url <- paste(
     "http://bcbiobase.seq.cloud",
     "bcbio",
-    "programs.txt")
+    "programs.txt",
+    sep = "/")
 readProgramVersions(url)
 }
 \seealso{

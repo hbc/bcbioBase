@@ -21,10 +21,11 @@ coloring in plots. When multiple interesting groups are present, unite into a
 single column, delimited by \code{:}.
 }
 \examples{
-demultiplexed <- file.path(
+demultiplexed <- paste(
     "http://bcbiobase.seq.cloud",
     "sample_metadata",
-    "demultiplexed.xlsx")
+    "demultiplexed.xlsx",
+    sep = "/")
 meta <- readSampleMetadataFile(demultiplexed)
 meta <- uniteInterestingGroups(
     object = meta,

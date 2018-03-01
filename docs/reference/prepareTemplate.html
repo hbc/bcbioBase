@@ -144,11 +144,15 @@ files are located.</p></td>
 
 <span class='co'># Copy all of the default shared template files</span>
 <span class='fu'>prepareTemplate</span>()
-<span class='fu'>file.exists</span>(<span class='no'>defaultFiles</span>)</div><div class='output co'>#&gt; [1] TRUE TRUE TRUE TRUE TRUE</div><div class='input'><span class='fu'>unlink</span>(<span class='no'>defaultFiles</span>)
+<span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_exists</a></span>(<span class='no'>defaultFiles</span>)</div><div class='output co'>#&gt;      _footer.Rmd      _header.Rmd     _output.yaml         _setup.R 
+#&gt;             TRUE             TRUE             TRUE             TRUE 
+#&gt; bibliography.bib 
+#&gt;             TRUE </div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/delete.html'>file_delete</a></span>(<span class='no'>defaultFiles</span>)
 
 <span class='co'># Request individual files</span>
 <span class='fu'>prepareTemplate</span>(<span class='st'>"bibliography.bib"</span>)
-<span class='fu'>file.exists</span>(<span class='st'>"bibliography.bib"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>unlink</span>(<span class='st'>"bibliography.bib"</span>)
+<span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_exists</a></span>(<span class='st'>"bibliography.bib"</span>)</div><div class='output co'>#&gt; bibliography.bib 
+#&gt;             TRUE </div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/delete.html'>file_delete</a></span>(<span class='st'>"bibliography.bib"</span>)
 
 <span class='co'># Load the shared files from bcbioSingleCell</span></div><span class='co'># NOT RUN {</span>
 <span class='fu'>prepareTemplate</span>(

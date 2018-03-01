@@ -4,12 +4,10 @@
 \alias{readDataVersions}
 \title{Read Data Versions}
 \usage{
-readDataVersions(file, quiet = FALSE)
+readDataVersions(file)
 }
 \arguments{
 \item{file}{Data versions CSV file.}
-
-\item{quiet}{If \code{TRUE}, suppress any status messages and/or progress bars.}
 }
 \value{
 \link{data.frame}.
@@ -18,10 +16,11 @@ readDataVersions(file, quiet = FALSE)
 Read Data Versions
 }
 \examples{
-url <- file.path(
+url <- paste(
     "http://bcbiobase.seq.cloud",
     "bcbio",
-    "data_versions.csv")
+    "data_versions.csv",
+    sep = "/")
 readDataVersions(url) \%>\% glimpse()
 }
 \seealso{

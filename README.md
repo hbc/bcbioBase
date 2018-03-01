@@ -1,9 +1,10 @@
 # bcbioBase
 
-[![Build Status](https://travis-ci.org/hbc/bcbioBase.svg?branch=master)](https://travis-ci.org/hbc/bcbioBase)
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![codecov](https://codecov.io/gh/hbc/bcbioBase/branch/master/graph/badge.svg)](https://codecov.io/gh/hbc/bcbioBase)
+[![Travis CI](https://travis-ci.org/hbc/bcbioBase.svg?branch=master)](https://travis-ci.org/hbc/bcbioBase)
+[![AppVeyor CI](https://ci.appveyor.com/api/projects/status/j2o9aspoj8x4l9x7/branch/master?svg=true)](https://ci.appveyor.com/project/mjsteinbaugh/bcbiobase/branch/master)
+[![Codecov](https://codecov.io/gh/hbc/bcbioBase/branch/master/graph/badge.svg)](https://codecov.io/gh/hbc/bcbioBase)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/r-bcbiobase/badges/version.svg)](https://anaconda.org/bioconda/r-bcbiobase)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 
 Base functions and generics for [bcbio][] [R][] packages.
 

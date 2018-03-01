@@ -26,6 +26,8 @@
 #' @importFrom assertive assert_is_subset
 #' @importFrom assertive assert_is_tbl
 #'
+#' @importFrom basejump assertIsAStringOrNULL
+#'
 #' @param x Object.
 #' @param severity How severe should the consequences of the assertion be?
 #'   Either "`stop`", "`warning`", "`message`", or "`none`".

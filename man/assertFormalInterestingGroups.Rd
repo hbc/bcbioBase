@@ -19,10 +19,11 @@ Prevent unwanted downstream behavior when a missing interesting group
 is requested by the user.
 }
 \examples{
-meta <- readSampleMetadataFile(file.path(
+meta <- readSampleMetadataFile(paste(
     "http://bcbiobase.seq.cloud",
     "sample_metadata",
-    "demultiplexed.xlsx"))
+    "demultiplexed.xlsx",
+    sep = "/"))
 
 # Success
 assertFormalInterestingGroups(meta, interestingGroups = "genotype")

@@ -12,10 +12,11 @@
 #' @export
 #'
 #' @examples
-#' meta <- readSampleMetadataFile(file.path(
+#' meta <- readSampleMetadataFile(paste(
 #'     "http://bcbiobase.seq.cloud",
 #'     "sample_metadata",
-#'     "demultiplexed.xlsx"))
+#'     "demultiplexed.xlsx",
+#'     sep = "/"))
 #'
 #' # Success
 #' assertFormalInterestingGroups(meta, interestingGroups = "genotype")

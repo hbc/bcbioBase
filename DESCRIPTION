@@ -1,7 +1,7 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions and generics for bcbio R packages.
-Version: 0.1.4
+Version: 0.1.5
 Authors@R: c(
     person(
         given = "Michael",
@@ -26,12 +26,15 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: TRUE
 Depends:
-    R (>= 3.4.0)
+    R (>= 3.4.0),
+    basejump (>= 0.3.1)
 Imports:
     assertive (>= 0.3.0),
-    basejump (>= 0.3.1),
     Biostrings,
     dplyr (>= 0.7.4),
+    fs (>= 1.0.0),
+    GenomeInfoDb,
+    GenomicRanges,
     magrittr (>= 1.5),
     methods,
     rdrop2 (>= 0.8.1),
@@ -39,14 +42,15 @@ Imports:
     rlang (>= 0.1.2),
     S4Vectors (>= 0.14.7),
     scales,
+    sessioninfo (>= 1.0.0),
     stringr (>= 1.2.0),
     SummarizedExperiment (>= 1.6.5),
+    S4Vectors,
     tibble (>= 1.4.1),
     tidyr (>= 0.7.1),
     utils
 Suggests:
     BiocStyle,
-    devtools,
     lintr,
     rmarkdown,
     roxygen2,
@@ -54,7 +58,7 @@ Suggests:
     tidyverse,
     viridis
 Remotes:
-    steinbaugh/basejump
+    steinbaugh/basejump@develop
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
