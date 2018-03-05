@@ -15,6 +15,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' demultiplexed <- paste(
 #'     "http://bcbiobase.seq.cloud",
 #'     "sample_metadata",
@@ -23,6 +24,7 @@
 #' )
 #' meta <- readSampleMetadataFile(demultiplexed)
 #' checkInterestingGroups(object = meta, interestingGroups = "genotype")
+#' }
 checkInterestingGroups <- function(
     object,
     interestingGroups,
