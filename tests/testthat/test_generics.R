@@ -1,4 +1,4 @@
-context("bcbioGenerics")
+context("Generics")
 
 withMethods <- c(
     "prepareSummarizedExperiment",

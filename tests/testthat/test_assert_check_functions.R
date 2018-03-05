@@ -1,12 +1,10 @@
-context("assertFormalInterestingGroups")
+context("Assert Check Functions")
 
-test_that("Success", {
+# assertFormalInterestingGroups ================================================
+test_that("assertFormalInterestingGroups", {
     expect_silent(
         assertFormalInterestingGroups(mtcars, colnames(mtcars)[1L:2L])
     )
-})
-
-test_that("Failure", {
     expect_error(
         assertFormalInterestingGroups(mtcars, interestingGroups = "XXX"),
         paste(
