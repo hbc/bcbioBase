@@ -24,7 +24,8 @@ demultiplexed <- paste(
     "http://bcbiobase.seq.cloud",
     "sample_metadata",
     "demultiplexed.xlsx",
-    sep = "/")
+    sep = "/"
+)
 readSampleMetadataFile(demultiplexed) \%>\% glimpse()
 
 # Multiplexed (e.g. inDrop single-cell RNA-seq)
@@ -32,6 +33,12 @@ multiplexed <- paste(
     "http://bcbiobase.seq.cloud",
     "sample_metadata",
     "multiplexed.xlsx",
-    sep = "/")
+    sep = "/"
+)
 readSampleMetadataFile(multiplexed) \%>\% glimpse()
+}
+\seealso{
+Other Read Functions: \code{\link{readDataVersions}},
+  \code{\link{readLogFile}},
+  \code{\link{readProgramVersions}}
 }

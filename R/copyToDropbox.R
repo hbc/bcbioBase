@@ -1,5 +1,6 @@
 #' Copy Files to Dropbox
 #'
+#' @family Write Functions
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
 #'
 #' @importFrom fs path
@@ -20,18 +21,18 @@
 copyToDropbox <- function(
     files,
     dir,
-    rdsToken = NA) {
+    rdsToken = NULL
+) {
     assert_is_any_of(files, c("character", "list"))
     assert_all_are_existing_files(files)
     assert_is_a_string(dir)
     dir <- gsub("/$", "", dir)
     assert_all_are_non_missing_nor_empty_character(dir)
-    assert_is_any_of(rdsToken, c("character", "logical"))
     if (is.character(rdsToken)) {
         assert_is_a_string(rdsToken)
         assert_all_are_existing_files(rdsToken)
-    } else if (is.logical(rdsToken)) {
-        assert_is_identical_to_na(rdsToken)
+    } else {
+        rdsToken <- NA
     }
 
     # Ensure user is authenticated with Dropbox

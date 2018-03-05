@@ -22,16 +22,20 @@ sampleYAMLMetrics(yaml, ...)
 \description{
 Sample Metrics from YAML File
 }
+\note{
+bcbio doesn't calculate sample metrics when run in fast mode.
+}
 \examples{
 url <- paste(
     "http://bcbiobase.seq.cloud",
     "bcbio",
     "project-summary.yaml",
-    sep = "/")
+    sep = "/"
+)
 yaml <- basejump::readYAML(url)
 sampleYAMLMetrics(yaml) \%>\% glimpse()
 }
 \seealso{
-Other YAML Utilities: \code{\link{sampleYAMLMetadata}},
+Other YAML Functions: \code{\link{sampleYAMLMetadata}},
   \code{\link{sampleYAML}}
 }

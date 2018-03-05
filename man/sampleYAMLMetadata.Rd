@@ -27,11 +27,12 @@ url <- paste(
     "http://bcbiobase.seq.cloud",
     "bcbio",
     "project-summary.yaml",
-    sep = "/")
+    sep = "/"
+)
 yaml <- basejump::readYAML(url)
 sampleYAMLMetadata(yaml) \%>\% glimpse()
 }
 \seealso{
-Other YAML Utilities: \code{\link{sampleYAMLMetrics}},
+Other YAML Functions: \code{\link{sampleYAMLMetrics}},
   \code{\link{sampleYAML}}
 }

@@ -1,8 +1,7 @@
 #' Sample Metadata from YAML
 #'
-#' @rdname sampleYAMLMetadata
 #' @name sampleYAMLMetadata
-#' @family YAML Utilities
+#' @family YAML Functions
 #'
 #' @inherit sampleYAML
 #'
@@ -11,7 +10,8 @@
 #'     "http://bcbiobase.seq.cloud",
 #'     "bcbio",
 #'     "project-summary.yaml",
-#'     sep = "/")
+#'     sep = "/"
+#' )
 #' yaml <- basejump::readYAML(url)
 #' sampleYAMLMetadata(yaml) %>% glimpse()
 NULL
@@ -34,4 +34,5 @@ NULL
 setMethod(
     "sampleYAMLMetadata",
     signature("list"),
-    .sampleYAMLMetadata)
+    .sampleYAMLMetadata
+)

@@ -14,22 +14,32 @@ assertFormalInterestingGroups(x, interestingGroups, severity = "stop")
 \item{severity}{How severe should the consequences of the assertion be?
 Either "\code{stop}", "\code{warning}", "\code{message}", or "\code{none}".}
 }
+\value{
+Silent, stop on error.
+}
 \description{
 Prevent unwanted downstream behavior when a missing interesting group
 is requested by the user.
 }
 \examples{
-meta <- readSampleMetadataFile(paste(
-    "http://bcbiobase.seq.cloud",
-    "sample_metadata",
-    "demultiplexed.xlsx",
-    sep = "/"))
+data <- readSampleMetadataFile(
+    file = paste(
+        "http://bcbiobase.seq.cloud",
+        "sample_metadata",
+        "demultiplexed.xlsx",
+        sep = "/"
+    )
+)
 
 # Success
-assertFormalInterestingGroups(meta, interestingGroups = "genotype")
+assertFormalInterestingGroups(data, interestingGroups = "genotype")
 
 # Failure
 tryCatch(
-    assertFormalInterestingGroups(meta, interestingGroups = "XXX"),
-    error = function(e) e)
+    assertFormalInterestingGroups(data, interestingGroups = "XXX"),
+    error = function(e) e
+)
+}
+\seealso{
+Other Assert Check Functions: \code{\link{checkInterestingGroups}}
 }

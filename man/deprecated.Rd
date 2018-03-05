@@ -2,7 +2,14 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
+\alias{sampleMetadata}
+\alias{sampleMetadata<-}
 \title{Deprecated Functions}
+\usage{
+sampleMetadata(...)
+
+sampleMetadata(...) <- value
+}
 \value{
 No value.
 }

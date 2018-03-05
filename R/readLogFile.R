@@ -1,6 +1,6 @@
 #' Read Log File
 #'
-#' @family File Utilities
+#' @family Read Functions
 #'
 #' @importFrom basejump localOrRemoteFile
 #' @importFrom readr read_lines
@@ -17,7 +17,8 @@
 #'     "http://bcbiobase.seq.cloud",
 #'     "bcbio",
 #'     "bcbio-nextgen.log",
-#'     sep = "/")
+#'     sep = "/"
+#' )
 #' readLogFile(url) %>% head()
 readLogFile <- function(file) {
     assert_is_a_string(file)

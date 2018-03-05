@@ -1,14 +1,12 @@
 #' Read Sample Metadata File
 #'
-#' @rdname readSampleMetadataFile
 #' @name readSampleMetadataFile
-#' @family Data Import and Project Utilities
+#' @family Read Functions
 #'
 #' @importFrom basejump camel readFileByExtension removeNA
 #' @importFrom Biostrings reverseComplement
 #' @importFrom dplyr group_by left_join mutate mutate_all rename ungroup
 #' @importFrom stringr str_pad
-#' @importFrom tibble as_tibble
 #' @importFrom tidyr expand
 #'
 #' @inheritParams general
@@ -26,7 +24,8 @@
 #'     "http://bcbiobase.seq.cloud",
 #'     "sample_metadata",
 #'     "demultiplexed.xlsx",
-#'     sep = "/")
+#'     sep = "/"
+#' )
 #' readSampleMetadataFile(demultiplexed) %>% glimpse()
 #'
 #' # Multiplexed (e.g. inDrop single-cell RNA-seq)
@@ -34,14 +33,14 @@
 #'     "http://bcbiobase.seq.cloud",
 #'     "sample_metadata",
 #'     "multiplexed.xlsx",
-#'     sep = "/")
+#'     sep = "/"
+#' )
 #' readSampleMetadataFile(multiplexed) %>% glimpse()
 readSampleMetadataFile <- function(file, lanes = 1L) {
     assert_is_a_string(file)
     assert_is_integer(lanes)
 
-    data <- readFileByExtension(file) %>%
-        as_tibble()
+    data <- readFileByExtension(file)
 
     # Don't allow the user to manually define `sampleID` column
     assert_are_disjoint_sets("sampleID", colnames(data))
@@ -68,7 +67,7 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
 
     # Determine whether the samples are multiplexed, based on the presence
     # of duplicate values in the `description` column
-    if (any(duplicated(data[["fileName"]])) | "index" %in% colnames(data)) {
+    if (any(duplicated(data[["fileName"]])) || "index" %in% colnames(data)) {
         multiplexed <- TRUE
     } else {
         multiplexed <- FALSE
@@ -123,10 +122,7 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
         isTRUE(multiplexed) &
         is.character(data[["sequence"]])
     ) {
-        detectSequence <-
-            grepl(x = data[["sequence"]],
-                  pattern = "^[ACGT]{6,}") %>%
-            all()
+        detectSequence <- all(grepl("^[ACGT]{6,}", data[["sequence"]]))
         if (isTRUE(detectSequence)) {
             data[["revcomp"]] <- vapply(
                 X = data[["sequence"]],
@@ -142,10 +138,11 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
             # Match the sample directories exactly here, using the hyphen.
             # We'll sanitize into valid names using `make.names()` in
             # the final return chain.
-            data[["sampleID"]] <-
-                paste(data[["description"]],
-                      data[["revcomp"]],
-                      sep = "-")
+            data[["sampleID"]] <- paste(
+                data[["description"]],
+                data[["revcomp"]],
+                sep = "-"
+            )
         }
     }
 

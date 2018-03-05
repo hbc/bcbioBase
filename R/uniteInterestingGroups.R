@@ -18,13 +18,14 @@
 #'     "http://bcbiobase.seq.cloud",
 #'     "sample_metadata",
 #'     "demultiplexed.xlsx",
-#'     sep = "/")
+#'     sep = "/"
+#' )
 #' meta <- readSampleMetadataFile(demultiplexed)
 #' meta <- uniteInterestingGroups(
 #'     object = meta,
 #'     interestingGroups = c("genotype", "sampleName")
 #' )
-#' pull(meta, "interestingGroups")
+#' meta[, "interestingGroups"]
 uniteInterestingGroups <- function(object, interestingGroups) {
     assert_has_colnames(object)
     assert_is_character(interestingGroups)
@@ -39,7 +40,8 @@ uniteInterestingGroups <- function(object, interestingGroups) {
             col = interestingGroups,
             !!!syms(interestingGroups),
             sep = ":",
-            remove = FALSE)
+            remove = FALSE
+        )
     } else {
         object[["interestingGroups"]] <- object[[interestingGroups]]
     }

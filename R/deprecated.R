@@ -23,4 +23,9 @@ sampleMetadata <- function(...) {
     sampleData(...)
 }
 
+
+
+# future =======================================================================
+# checkInterestingGroups
+
 # nocov end

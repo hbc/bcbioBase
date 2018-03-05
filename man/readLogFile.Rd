@@ -20,9 +20,12 @@ url <- paste(
     "http://bcbiobase.seq.cloud",
     "bcbio",
     "bcbio-nextgen.log",
-    sep = "/")
+    sep = "/"
+)
 readLogFile(url) \%>\% head()
 }
 \seealso{
-Other File Utilities: \code{\link{readDataVersions}}
+Other Read Functions: \code{\link{readDataVersions}},
+  \code{\link{readProgramVersions}},
+  \code{\link{readSampleMetadataFile}}
 }

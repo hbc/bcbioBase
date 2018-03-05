@@ -1,8 +1,9 @@
 #' Sample Metrics from YAML File
 #'
-#' @rdname sampleYAMLMetrics
+#' @note bcbio doesn't calculate sample metrics when run in fast mode.
+#'
 #' @name sampleYAMLMetrics
-#' @family YAML Utilities
+#' @family YAML Functions
 #'
 #' @inherit sampleYAML
 #'
@@ -11,7 +12,8 @@
 #'     "http://bcbiobase.seq.cloud",
 #'     "bcbio",
 #'     "project-summary.yaml",
-#'     sep = "/")
+#'     sep = "/"
+#' )
 #' yaml <- basejump::readYAML(url)
 #' sampleYAMLMetrics(yaml) %>% glimpse()
 NULL
@@ -21,11 +23,8 @@ NULL
 # Constructors =================================================================
 #' @importFrom dplyr mutate_if
 .sampleYAMLMetrics <- function(yaml) {
-    # The fast mode RNA-seq pipeline doesn't report metrics generated from
-    # STAR featureCounts output with MultiQC
-    fastMode <- "Fast mode detected: No sample metrics were calculated"
-
     # Early return on NULL metrics (fast mode)
+    fastMode <- "Fast mode detected: No sample metrics were calculated"
     if (is.null(yaml[["samples"]][[1L]][["summary"]][["metrics"]])) {
         warn(fastMode)
         return(NULL)
@@ -67,4 +66,5 @@ NULL
 setMethod(
     "sampleYAMLMetrics",
     signature("list"),
-    .sampleYAMLMetrics)
+    .sampleYAMLMetrics
+)

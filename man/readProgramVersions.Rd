@@ -15,15 +15,20 @@ readProgramVersions(file)
 \description{
 Read Program Versions
 }
+\note{
+bcbio doesn't save program versions when run in fast mode.
+}
 \examples{
 url <- paste(
     "http://bcbiobase.seq.cloud",
     "bcbio",
     "programs.txt",
-    sep = "/")
+    sep = "/"
+)
 readProgramVersions(url)
 }
 \seealso{
-Other bcbio Utilities: \code{\link{prepareSummarizedExperiment}}
+Other Read Functions: \code{\link{readDataVersions}},
+  \code{\link{readLogFile}},
+  \code{\link{readSampleMetadataFile}}
 }
-\keyword{internal}

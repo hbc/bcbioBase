@@ -64,7 +64,8 @@ file_delete("bibliography.bib")
 prepareTemplate(
     sourceDir = system.file(
         "rmarkdown/shared",
-        package = "bcbioSingleCell")
+        package = "bcbioSingleCell"
+    )
 )
 }
 }

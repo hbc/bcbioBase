@@ -1,9 +1,9 @@
 #' Read Program Versions
 #'
-#' @rdname readProgramVersions
+#' @note bcbio doesn't save program versions when run in fast mode.
+#'
 #' @name readProgramVersions
-#' @family bcbio Utilities
-#' @keywords internal
+#' @family Read Functions
 #'
 #' @importFrom basejump localOrRemoteFile
 #' @importFrom readr read_csv
@@ -20,11 +20,11 @@
 #'     "http://bcbiobase.seq.cloud",
 #'     "bcbio",
 #'     "programs.txt",
-#'     sep = "/")
+#'     sep = "/"
+#' )
 #' readProgramVersions(url)
 readProgramVersions <- function(file) {
     assert_is_a_string(file)
-    # bcbio doesn't save this in fast mode
     file <- localOrRemoteFile(file, severity = "warning")
     if (is.null(file)) {
         return(NULL)
@@ -34,5 +34,6 @@ readProgramVersions <- function(file) {
         file,
         col_names = c("program", "version"),
         # `c` denotes character here
-        col_types = "cc")
+        col_types = "cc"
+    )
 }

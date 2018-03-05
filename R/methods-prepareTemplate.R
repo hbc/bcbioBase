@@ -11,9 +11,8 @@
 #' - `_setup.R`
 #' - `bibliography.bib`
 #'
-#' @rdname prepareTemplate
 #' @name prepareTemplate
-#' @family Infrastructure Utilities
+#' @family R Markdown Functions
 #'
 #' @importFrom fs file_copy file_exists path
 #'
@@ -50,7 +49,8 @@
 #' prepareTemplate(
 #'     sourceDir = system.file(
 #'         "rmarkdown/shared",
-#'         package = "bcbioSingleCell")
+#'         package = "bcbioSingleCell"
+#'     )
 #' )
 #' }
 NULL
@@ -99,7 +99,8 @@ setMethod(
                 "bibliography.bib"
             ),
             sourceDir = sourceDir)
-    })
+    }
+)
 
 
 
@@ -108,4 +109,5 @@ setMethod(
 setMethod(
     "prepareTemplate",
     signature("character"),
-    .copyTemplateFile)
+    .copyTemplateFile
+)

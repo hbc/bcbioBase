@@ -29,9 +29,10 @@
     # beginning with numbers or containing hyphens for example, which aren't
     # valid names in R.
     object[["sampleID"]] <- gsub(
-            x = make.names(object[["sampleID"]], unique = TRUE),
-            pattern = "\\.",
-            replacement = "_")
+        x = make.names(object[["sampleID"]], unique = TRUE),
+        pattern = "\\.",
+        replacement = "_"
+    )
 
     object %>%
         mutate_if(is.character, as.factor) %>%

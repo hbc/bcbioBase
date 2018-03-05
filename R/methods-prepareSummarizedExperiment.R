@@ -11,9 +11,7 @@
 #' - `utilsSessionInfo`: [utils::sessionInfo()] return.
 #' - `devtoolsSessionInfo`: [devtools::session_info()] return.
 #'
-#' @rdname prepareSummarizedExperiment
 #' @name prepareSummarizedExperiment
-#' @family bcbio Utilities
 #'
 #' @inheritParams general
 #'
@@ -104,7 +102,8 @@ NULL
     assays,
     rowData = NULL,
     colData = NULL,
-    metadata = NULL) {
+    metadata = NULL
+) {
     assert_is_list(assays)
     assert_is_any_of(
         rowData,
@@ -113,7 +112,8 @@ NULL
             "data.frame",
             "DataFrame",
             "matrix",
-            "NULL")
+            "NULL"
+        )
     )
     assert_is_any_of(
         x = colData,
@@ -121,7 +121,8 @@ NULL
             "data.frame",
             "DataFrame",
             "matrix",
-            "NULL")
+            "NULL"
+        )
     )
     assert_is_any_of(
         x = metadata,
@@ -131,7 +132,6 @@ NULL
     # Assays ===================================================================
     # Drop any `NULL` items from list.
     assays <- Filter(Negate(is.null), assays)
-
     assay <- assays[[1L]]
     assert_has_dimnames(assay)
     assert_has_rownames(assay)
@@ -153,7 +153,8 @@ NULL
         FUN = function(x) {
             assert_are_identical(dim(x), dim(assay))
             assert_are_identical(dimnames(x), dimnames(assay))
-    }))
+        }
+    ))
 
     # Row data =================================================================
     # Check for unannotated genes not found in annotable. This typically
@@ -250,7 +251,8 @@ NULL
         assays = assays,
         rowData = rowData,
         colData = colData,
-        metadata = metadata)
+        metadata = metadata
+    )
 }
 
 
@@ -261,4 +263,5 @@ NULL
 setMethod(
     "prepareSummarizedExperiment",
     signature("list"),
-    .prepareSummarizedExperiment)
+    .prepareSummarizedExperiment
+)

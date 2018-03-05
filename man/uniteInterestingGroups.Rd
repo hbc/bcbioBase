@@ -25,11 +25,12 @@ demultiplexed <- paste(
     "http://bcbiobase.seq.cloud",
     "sample_metadata",
     "demultiplexed.xlsx",
-    sep = "/")
+    sep = "/"
+)
 meta <- readSampleMetadataFile(demultiplexed)
 meta <- uniteInterestingGroups(
     object = meta,
     interestingGroups = c("genotype", "sampleName")
 )
-pull(meta, "interestingGroups")
+meta[, "interestingGroups"]
 }

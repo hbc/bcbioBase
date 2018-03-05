@@ -103,6 +103,4 @@ prepareSummarizedExperiment(
 \item \code{\link[base:getwd]{base::getwd()}}.
 \item \code{\link[utils:sessionInfo]{utils::sessionInfo()}}.
 }
-
-Other bcbio Utilities: \code{\link{readProgramVersions}}
 }

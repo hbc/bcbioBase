@@ -15,14 +15,20 @@ readDataVersions(file)
 \description{
 Read Data Versions
 }
+\note{
+bcbio doesn't save data versions when run in fast mode.
+}
 \examples{
 url <- paste(
     "http://bcbiobase.seq.cloud",
     "bcbio",
     "data_versions.csv",
-    sep = "/")
+    sep = "/"
+)
 readDataVersions(url) \%>\% glimpse()
 }
 \seealso{
-Other File Utilities: \code{\link{readLogFile}}
+Other Read Functions: \code{\link{readLogFile}},
+  \code{\link{readProgramVersions}},
+  \code{\link{readSampleMetadataFile}}
 }
