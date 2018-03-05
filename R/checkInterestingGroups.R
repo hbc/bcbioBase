@@ -1,5 +1,4 @@
 # nocov start
-# TODO Deprecate in future release
 
 #' Check Interesting Groups
 #'
@@ -18,13 +17,17 @@
 #'     "http://bcbiobase.seq.cloud",
 #'     "sample_metadata",
 #'     "demultiplexed.xlsx",
-#'     sep = "/")
+#'     sep = "/"
+#' )
 #' meta <- readSampleMetadataFile(demultiplexed)
 #' checkInterestingGroups(object = meta, interestingGroups = "genotype")
 checkInterestingGroups <- function(
     object,
     interestingGroups,
-    warnOnNULL = FALSE) {
+    warnOnNULL = FALSE
+) {
+    .Deprecated("assertFormalInterestingGroups")
+
     assert_has_colnames(object)
     assert_is_subset(interestingGroups, colnames(object))
 
