@@ -3,7 +3,8 @@
 #' Prevent unwanted downstream behavior when a missing interesting group
 #' is requested by the user.
 #'
-#' @family Assert Checks
+#' @family Assert Check Functions
+#'
 #' @inherit assert
 #'
 #' @param x Object supporting [colnames()], typically a [data.frame].
