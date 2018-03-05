@@ -18,7 +18,6 @@ cache:
 build_script:
   - travis-tool.sh bioc_install GenomeInfoDbData
   - travis-tool.sh install_deps
-  - travis-tool.sh install_github steinbaugh/basejump@develop
 
 test_script:
   - travis-tool.sh run_tests
