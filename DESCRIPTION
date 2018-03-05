@@ -45,7 +45,6 @@ Imports:
     sessioninfo (>= 1.0.0),
     stringr (>= 1.2.0),
     SummarizedExperiment (>= 1.6.5),
-    S4Vectors,
     tibble (>= 1.4.1),
     tidyr (>= 0.7.1),
     utils
