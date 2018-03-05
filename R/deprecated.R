@@ -1,6 +1,6 @@
 # nocov start
 
-#' Deprecated Functions
+#' Defunct or Deprecated Functions
 #'
 #' @name deprecated
 #' @keywords internal
