@@ -4,7 +4,7 @@
 \alias{deprecated}
 \alias{sampleMetadata}
 \alias{sampleMetadata<-}
-\title{Deprecated Functions}
+\title{Defunct or Deprecated Functions}
 \usage{
 sampleMetadata(object, ...)
 
@@ -14,6 +14,6 @@ sampleMetadata(object, ...) <- value
 No value.
 }
 \description{
-Deprecated Functions
+Defunct or Deprecated Functions
 }
 \keyword{internal}

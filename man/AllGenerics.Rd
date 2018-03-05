@@ -4,6 +4,8 @@
 \alias{AllGenerics}
 \alias{bcbio}
 \alias{bcbio<-}
+\alias{featureData}
+\alias{featureData<-}
 \alias{flatFiles}
 \alias{interestingGroups}
 \alias{interestingGroups<-}
@@ -21,6 +23,10 @@
 bcbio(object, ...)
 
 bcbio(object, ...) <- value
+
+featureData(object, ...)
+
+featureData(object, ...) <- value
 
 flatFiles(object, ...)
 
