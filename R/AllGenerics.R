@@ -108,16 +108,16 @@ setGeneric("prepareTemplate", function(object, ...) {
 
 #' @rdname AllGenerics
 #' @export
-setGeneric("sampleMetadata", function(object, ...) {
-    standardGeneric("sampleMetadata")
+setGeneric("sampleData", function(object, ...) {
+    standardGeneric("sampleData")
 })
 
 
 
 #' @rdname AllGenerics
 #' @export
-setGeneric("sampleMetadata<-", function(object, ..., value) {
-    standardGeneric("sampleMetadata<-")
+setGeneric("sampleData<-", function(object, ..., value) {
+    standardGeneric("sampleData<-")
 })
 
 
