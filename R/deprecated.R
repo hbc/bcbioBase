@@ -11,16 +11,16 @@ NULL
 # v0.1.5 =======================================================================
 #' @rdname deprecated
 #' @export
-sampleMetadata <- function(...) {
+sampleMetadata <- function(object, ...) {
     .Deprecated("sampleData")
-    sampleData(...)
+    sampleData(object, ...)
 }
 
 #' @rdname deprecated
 #' @export
-`sampleMetadata<-` <- function(...) {
+`sampleMetadata<-` <- function(object, ..., value) {
     .Deprecated("sampleData<-")
-    sampleData(...)
+    sampleData(object, ..., value)
 }
 
 

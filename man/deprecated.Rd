@@ -6,9 +6,9 @@
 \alias{sampleMetadata<-}
 \title{Deprecated Functions}
 \usage{
-sampleMetadata(...)
+sampleMetadata(object, ...)
 
-sampleMetadata(...) <- value
+sampleMetadata(object, ...) <- value
 }
 \value{
 No value.
