@@ -12,23 +12,28 @@
 #' @export
 #'
 #' @examples
-#' meta <- readSampleMetadataFile(paste(
-#'     "http://bcbiobase.seq.cloud",
-#'     "sample_metadata",
-#'     "demultiplexed.xlsx",
-#'     sep = "/"))
+#' data <- readSampleMetadataFile(
+#'     file = paste(
+#'         "http://bcbiobase.seq.cloud",
+#'         "sample_metadata",
+#'         "demultiplexed.xlsx",
+#'         sep = "/"
+#'     )
+#' )
 #'
 #' # Success
-#' assertFormalInterestingGroups(meta, interestingGroups = "genotype")
+#' assertFormalInterestingGroups(data, interestingGroups = "genotype")
 #'
 #' # Failure
 #' tryCatch(
-#'     assertFormalInterestingGroups(meta, interestingGroups = "XXX"),
-#'     error = function(e) e)
+#'     assertFormalInterestingGroups(data, interestingGroups = "XXX"),
+#'     error = function(e) e
+#' )
 assertFormalInterestingGroups <- function(
     x,
     interestingGroups,
-    severity = "stop") {
+    severity = "stop"
+) {
     assert_has_colnames(x, severity = severity)
     assert_is_subset(
         x = interestingGroups,
