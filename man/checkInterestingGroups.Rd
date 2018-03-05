@@ -28,7 +28,12 @@ demultiplexed <- paste(
     sep = "/"
 )
 meta <- readSampleMetadataFile(demultiplexed)
-checkInterestingGroups(object = meta, interestingGroups = "genotype")
+
+# Deprecated
+tryCatch(
+    checkInterestingGroups(object = meta, interestingGroups = "genotype"),
+    warning = function(w) w
+)
 }
 \seealso{
 Other Assert Check Functions: \code{\link{assertFormalInterestingGroups}}
