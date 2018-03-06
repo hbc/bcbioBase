@@ -1,8 +1,12 @@
 context("Generics")
 
 withMethods <- c(
+    "featureData",
+    "featureData<-",
     "prepareSummarizedExperiment",
     "prepareTemplate",
+    "sampleData",
+    "sampleData<-",
     "sampleYAML",
     "sampleYAMLMetadata",
     "sampleYAMLMetrics"
@@ -18,8 +22,6 @@ withoutMethods <- c(
     "plotGene",
     "plotQC",
     "plotViolin",
-    "sampleMetadata",
-    "sampleMetadata<-",
     "selectSamples",
     "tpm"
 )
