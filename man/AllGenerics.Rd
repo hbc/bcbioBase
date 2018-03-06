@@ -4,8 +4,6 @@
 \alias{AllGenerics}
 \alias{bcbio}
 \alias{bcbio<-}
-\alias{featureData}
-\alias{featureData<-}
 \alias{flatFiles}
 \alias{interestingGroups}
 \alias{interestingGroups<-}
@@ -14,8 +12,6 @@
 \alias{plotGene}
 \alias{plotQC}
 \alias{plotViolin}
-\alias{sampleData}
-\alias{sampleData<-}
 \alias{selectSamples}
 \alias{tpm}
 \title{S4 Generics}
@@ -23,10 +19,6 @@
 bcbio(object, ...)
 
 bcbio(object, ...) <- value
-
-featureData(object, ...)
-
-featureData(object, ...) <- value
 
 flatFiles(object, ...)
 
@@ -43,10 +35,6 @@ plotGene(object, ...)
 plotQC(object, ...)
 
 plotViolin(object, ...)
-
-sampleData(object, ...)
-
-sampleData(object, ...) <- value
 
 selectSamples(object, ...)
 

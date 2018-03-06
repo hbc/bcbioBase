@@ -26,7 +26,7 @@ setGeneric("bcbio<-", function(object, ..., value) {
 
 
 
-#' @rdname AllGenerics
+#' @rdname featureData
 #' @export
 setGeneric("featureData", function(object, ...) {
     standardGeneric("featureData")
@@ -34,7 +34,7 @@ setGeneric("featureData", function(object, ...) {
 
 
 
-#' @rdname AllGenerics
+#' @rdname featureData
 #' @export
 setGeneric("featureData<-", function(object, ..., value) {
     standardGeneric("featureData<-")
@@ -122,7 +122,7 @@ setGeneric("prepareTemplate", function(object, ...) {
 
 
 
-#' @rdname AllGenerics
+#' @rdname sampleData
 #' @export
 setGeneric("sampleData", function(object, ...) {
     standardGeneric("sampleData")
@@ -130,7 +130,7 @@ setGeneric("sampleData", function(object, ...) {
 
 
 
-#' @rdname AllGenerics
+#' @rdname sampleData
 #' @export
 setGeneric("sampleData<-", function(object, ..., value) {
     standardGeneric("sampleData<-")

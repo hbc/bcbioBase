@@ -7,6 +7,7 @@
 #' @name featureData
 #' @family Metadata Functions
 #'
+#' @inheritParams general
 #' @inheritParams sampleData
 #'
 #' @param return `DataFrame`, `data.frame`, or `AsIs`.

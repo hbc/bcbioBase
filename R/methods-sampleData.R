@@ -10,6 +10,8 @@
 #' @name sampleData
 #' @family Metadata Functions
 #'
+#' @inheritParams general
+#'
 #' @param return `DataFrame`, `data.frame`, or unmodified (`AsIs`).
 #'
 #' @return Sample metadata. Note that the samples are defined in the rows,
