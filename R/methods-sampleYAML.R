@@ -5,14 +5,14 @@
 #'
 #' @inheritParams general
 #'
-#' @param yaml Project summary YAML list.
+#' @param yaml Project summary YAML `list`.
 #' @param keys Nested operator keys, supplied as a character vector.
 #'
 #' @note Metrics are only generated for a standard RNA-seq run with aligned
 #'   counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
 #'   output the same metrics into the YAML.
 #'
-#' @return [tibble].
+#' @return `tibble`.
 #'
 #' @examples
 #' url <- paste(

@@ -1,15 +1,6 @@
-#' Sample Metadata Constructor
-#'
-#' @keywords internal
-#' @noRd
-#'
 #' @importFrom dplyr arrange everything mutate mutate_if select
 #' @importFrom magrittr set_rownames
 #' @importFrom tibble as_tibble
-#'
-#' @param object Metadata [data.frame].
-#'
-#' @return [data.frame].
 .prepareSampleMetadata <- function(object) {
     assert_has_dimnames(object)
     object <- as_tibble(object)

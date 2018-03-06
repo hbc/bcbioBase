@@ -40,6 +40,8 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
     assert_is_a_string(file)
     assert_is_integer(lanes)
 
+    # Support CSV, TSV, or XLSX files automatically.
+    # Works with local or remote files.
     data <- readFileByExtension(file)
 
     # Don't allow the user to manually define `sampleID` column
@@ -119,7 +121,7 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
     # Let's check for an ACGT sequence and use the revcomp if there's a
     # match. Otherwise just return the `sampleName` as the `sampleID`.
     if (
-        isTRUE(multiplexed) &
+        isTRUE(multiplexed) &&
         is.character(data[["sequence"]])
     ) {
         detectSequence <- all(grepl("^[ACGT]{6,}", data[["sequence"]]))

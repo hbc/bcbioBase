@@ -1,17 +1,17 @@
-context("copyToDropbox")
+context("Write Functions")
 
+# copyToDropbox ================================================================
 prepareTemplate("bibliography.bib")
 files <- "bibliography.bib"
 dropboxDir <- path("bcbioBase_examples", "copyToDropbox")
 
-# Don't run this test on AppVeyor CI yet
-# Sys.getenv("APPVEYOR")
 if (file_exists("token.rds")) {
-    test_that("RDS token enabled", {
+    test_that("copyToDropbox : RDS token enabled", {
         x <- copyToDropbox(
             files = files,
             dir = dropboxDir,
-            rdsToken = "token.rds")
+            rdsToken = "token.rds"
+        )
         expect_is(x, "list")
         expect_identical(
             lapply(x[[1L]], class),
@@ -29,19 +29,20 @@ if (file_exists("token.rds")) {
             )
         )
     })
-    test_that("Shared Dropbox directory", {
+    test_that("copyToDropbox : Shared Dropbox directory", {
         expect_warning(
             copyToDropbox(
                 files = files,
                 dir = paste0(dropboxDir, "_shared"),
-                rdsToken = "token.rds"),
+                rdsToken = "token.rds"
+            ),
             "rdrop2 currently isn't working well with shared directories."
         )
         # Don't remove directory, because we won't be able to check if shared
     })
 }
 
-test_that("Invalid parameters", {
+test_that("copyToDropbox : Invalid parameters", {
     expect_error(
         copyToDropbox(files = NULL, dir = "."),
         paste(
@@ -64,21 +65,10 @@ test_that("Invalid parameters", {
         )
     )
     expect_error(
-        copyToDropbox(files = files, dir = dropboxDir, rdsToken = mtcars),
-        "is2 : rdsToken is not in any of the classes 'character', 'logical'."
-    )
-    expect_error(
         copyToDropbox(files = files, dir = dropboxDir, rdsToken = "XXX.rds"),
         paste(
             "is_existing_file :",
             "Some or all of the files specified by rdsToken do not exist."
-        )
-    )
-    expect_error(
-        copyToDropbox(files = files, dir = dropboxDir, rdsToken = FALSE),
-        paste(
-            "is_identical_to_na :",
-            "rdsToken is not identical to NA; its value is FALSE."
         )
     )
 })
