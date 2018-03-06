@@ -14,8 +14,6 @@
 #' @name prepareTemplate
 #' @family R Markdown Functions
 #'
-#' @importFrom fs file_copy file_exists path
-#'
 #' @inheritParams general
 #'
 #' @param object *Optional*. File name. If `NULL` (default), download the
@@ -64,14 +62,15 @@ NULL
     if (is.null(sourceDir)) {
         sourceDir <- system.file("rmarkdown/shared", package = "bcbioBase")
     }
-    assert_all_are_existing_files(path(sourceDir, object))
+    assert_all_are_existing_files(file.path(sourceDir, object))
     invisible(mapply(
         FUN = function(file, sourceDir) {
-            if (!file_exists(file)) {
-                file_copy(
-                    path = path(sourceDir, file),
-                    new_path = file,
-                    overwrite = FALSE)
+            if (!file.exists(file)) {
+                file.copy(
+                    from = file.path(sourceDir, file),
+                    to = file,
+                    overwrite = FALSE
+                )
             }
         },
         file = object,

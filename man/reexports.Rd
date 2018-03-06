@@ -5,12 +5,6 @@
 \alias{reexports}
 \alias{pull}
 \alias{reexports}
-\alias{file_delete}
-\alias{reexports}
-\alias{file_exists}
-\alias{reexports}
-\alias{path}
-\alias{reexports}
 \alias{\%>\%}
 \alias{reexports}
 \alias{DataFrame}
@@ -28,8 +22,6 @@ below to see their documentation.
 
 \describe{
   \item{dplyr}{\code{\link[dplyr]{pull}}}
-
-  \item{fs}{\code{\link[fs]{file_delete}}, \code{\link[fs]{file_exists}}, \code{\link[fs]{path}}}
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}}
 

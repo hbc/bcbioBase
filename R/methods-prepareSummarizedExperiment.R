@@ -89,7 +89,6 @@ NULL
 
 # Constructors =================================================================
 #' @importFrom basejump sanitizeColData
-#' @importFrom fs path_real
 #' @importFrom GenomeInfoDb seqnames
 #' @importFrom GenomicRanges GRanges
 #' @importFrom scales percent
@@ -241,7 +240,7 @@ NULL
         metadata <- list()
     }
     metadata[["date"]] <- Sys.Date()
-    metadata[["wd"]] <- path_real(".")
+    metadata[["wd"]] <- normalizePath(".")
     metadata[["utilsSessionInfo"]] <- sessionInfo()
     metadata[["devtoolsSessionInfo"]] <- session_info(include_base = TRUE)
     metadata[["unannotatedRows"]] <- unannotatedRows

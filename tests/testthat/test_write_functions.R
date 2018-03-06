@@ -3,9 +3,9 @@ context("Write Functions")
 # copyToDropbox ================================================================
 prepareTemplate("bibliography.bib")
 files <- "bibliography.bib"
-dropboxDir <- path("bcbioBase_examples", "copyToDropbox")
+dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
 
-if (file_exists("token.rds")) {
+if (file.exists("token.rds")) {
     test_that("copyToDropbox : RDS token enabled", {
         x <- copyToDropbox(
             files = files,
@@ -73,4 +73,4 @@ test_that("copyToDropbox : Invalid parameters", {
     )
 })
 
-file_delete("bibliography.bib")
+unlink("bibliography.bib")

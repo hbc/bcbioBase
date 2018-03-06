@@ -68,7 +68,7 @@ test_that("SummarizedExperiment", {
         lapply(metadata(se), class),
         list(
             "date" = "Date",
-            "wd" = c("fs_path", "character"),
+            "wd" = "character",
             "utilsSessionInfo" = "sessionInfo",
             "devtoolsSessionInfo" = "session_info"
         )
