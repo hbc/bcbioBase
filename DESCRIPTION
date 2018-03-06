@@ -32,7 +32,6 @@ Imports:
     assertive (>= 0.3.0),
     Biostrings,
     dplyr (>= 0.7.4),
-    fs (>= 1.0.0),
     GenomeInfoDb,
     GenomicRanges,
     magrittr (>= 1.5),
