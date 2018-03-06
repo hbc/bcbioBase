@@ -1,4 +1,4 @@
-context("copyToDropbox")
+context("Write Functions")
 
 # copyToDropbox ================================================================
 prepareTemplate("bibliography.bib")
@@ -10,7 +10,8 @@ if (file_exists("token.rds")) {
         x <- copyToDropbox(
             files = files,
             dir = dropboxDir,
-            rdsToken = "token.rds")
+            rdsToken = "token.rds"
+        )
         expect_is(x, "list")
         expect_identical(
             lapply(x[[1L]], class),
@@ -33,7 +34,8 @@ if (file_exists("token.rds")) {
             copyToDropbox(
                 files = files,
                 dir = paste0(dropboxDir, "_shared"),
-                rdsToken = "token.rds"),
+                rdsToken = "token.rds"
+            ),
             "rdrop2 currently isn't working well with shared directories."
         )
         # Don't remove directory, because we won't be able to check if shared
@@ -63,21 +65,10 @@ test_that("copyToDropbox : Invalid parameters", {
         )
     )
     expect_error(
-        copyToDropbox(files = files, dir = dropboxDir, rdsToken = mtcars),
-        "is2 : rdsToken is not in any of the classes 'character', 'logical'."
-    )
-    expect_error(
         copyToDropbox(files = files, dir = dropboxDir, rdsToken = "XXX.rds"),
         paste(
             "is_existing_file :",
             "Some or all of the files specified by rdsToken do not exist."
-        )
-    )
-    expect_error(
-        copyToDropbox(files = files, dir = dropboxDir, rdsToken = FALSE),
-        paste(
-            "is_identical_to_na :",
-            "rdsToken is not identical to NA; its value is FALSE."
         )
     )
 })
