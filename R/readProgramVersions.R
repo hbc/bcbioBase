@@ -12,7 +12,7 @@
 #'
 #' @param file Program versions TXT file.
 #'
-#' @return [data.frame].
+#' @return `data.frame`.
 #' @export
 #'
 #' @examples

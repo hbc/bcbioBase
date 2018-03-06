@@ -10,7 +10,7 @@
 #' @name sampleData
 #' @family Metadata Functions
 #'
-#' @param return `DataFrame`, `data.frame`, or `AsIs`.
+#' @param return `DataFrame`, `data.frame`, or unmodified (`AsIs`).
 #'
 #' @return Sample metadata. Note that the samples are defined in the rows,
 #'   similar to [colData()].

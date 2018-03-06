@@ -1,16 +1,16 @@
 #' Unite Interesting Groups
 #'
-#' Create a single interesting groups column (`interestingGroups`) used for
+#' Create a single interesting groups column ("`interestingGroups`") used for
 #' coloring in plots. When multiple interesting groups are present, unite into a
-#' single column, delimited by `:`.
+#' single column, delimited by "`:`".
 #'
 #' @importFrom tidyr unite
 #'
-#' @param object Object (e.g. [data.frame]) containing interesting groups
+#' @param object Object (e.g. `data.frame`) containing interesting groups
 #'   columns.
 #' @param interestingGroups Character vector of interesting groups.
 #'
-#' @return [data.frame].
+#' @return `data.frame`.
 #' @export
 #'
 #' @examples

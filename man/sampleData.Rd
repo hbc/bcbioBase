@@ -16,7 +16,7 @@
 \S4method{sampleData}{ANY}(object, ...) <- value
 }
 \arguments{
-\item{return}{\code{DataFrame}, \code{data.frame}, or \code{AsIs}.}
+\item{return}{\code{DataFrame}, \code{data.frame}, or unmodified (\code{AsIs}).}
 }
 \value{
 Sample metadata. Note that the samples are defined in the rows,

@@ -7,18 +7,18 @@
 uniteInterestingGroups(object, interestingGroups)
 }
 \arguments{
-\item{object}{Object (e.g. \link{data.frame}) containing interesting groups
+\item{object}{Object (e.g. \code{data.frame}) containing interesting groups
 columns.}
 
 \item{interestingGroups}{Character vector of interesting groups.}
 }
 \value{
-\link{data.frame}.
+\code{data.frame}.
 }
 \description{
-Create a single interesting groups column (\code{interestingGroups}) used for
+Create a single interesting groups column ("\code{interestingGroups}") used for
 coloring in plots. When multiple interesting groups are present, unite into a
-single column, delimited by \code{:}.
+single column, delimited by "\code{:}".
 }
 \examples{
 demultiplexed <- paste(

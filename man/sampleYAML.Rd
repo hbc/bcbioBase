@@ -12,14 +12,14 @@ sampleYAML(yaml, keys, ...)
 \S4method{sampleYAML}{list,character}(yaml, keys)
 }
 \arguments{
-\item{yaml}{Project summary YAML list.}
+\item{yaml}{Project summary YAML \code{list}.}
 
 \item{keys}{Nested operator keys, supplied as a character vector.}
 
 \item{...}{Additional arguments.}
 }
 \value{
-\link{tibble}.
+\code{tibble}.
 }
 \description{
 Sample YAML Metadata Utilities

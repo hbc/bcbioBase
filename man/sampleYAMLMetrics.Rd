@@ -12,12 +12,12 @@ sampleYAMLMetrics(yaml, ...)
 \S4method{sampleYAMLMetrics}{list}(yaml)
 }
 \arguments{
-\item{yaml}{Project summary YAML list.}
+\item{yaml}{Project summary YAML \code{list}.}
 
 \item{...}{Additional arguments.}
 }
 \value{
-\link{tibble}.
+\code{tibble}.
 }
 \description{
 Sample Metrics from YAML File

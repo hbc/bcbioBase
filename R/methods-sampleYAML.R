@@ -5,7 +5,7 @@
 #'
 #' @inheritParams general
 #'
-#' @param yaml Project summary YAML list.
+#' @param yaml Project summary YAML `list`.
 #' @param keys Nested operator keys, supplied as a character vector.
 #'
 #' @note Metrics are only generated for a standard RNA-seq run with aligned

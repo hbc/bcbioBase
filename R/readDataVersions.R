@@ -11,7 +11,7 @@
 #'
 #' @param file Data versions CSV file.
 #'
-#' @return [data.frame].
+#' @return `data.frame`.
 #' @export
 #'
 #' @examples

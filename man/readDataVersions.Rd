@@ -10,7 +10,7 @@ readDataVersions(file)
 \item{file}{Data versions CSV file.}
 }
 \value{
-\link{data.frame}.
+\code{data.frame}.
 }
 \description{
 Read Data Versions

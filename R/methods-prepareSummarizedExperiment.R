@@ -165,9 +165,9 @@ NULL
         assert_are_intersecting_sets(rownames(assay), names(rowData))
         unannotatedRows <- sort(setdiff(rownames(assay), names(rowData)))
         if (length(unannotatedRows)) {
+            # TODO Improved method for stashing empty ranges?
             # Stash the missing rows at the first seqname (e.g. chromosome 1)
             # with the ranges 1-2, and no strand.
-            # FIXME Is there a better way to stash empty ranges?
             vec <- paste(
                 levels(seqnames(rowData))[[1L]],
                 "1-2",
