@@ -1,13 +1,17 @@
-context("sampleYAML")
+context("YAML Functions")
 
 yaml <- readYAML(
     paste(
         "http://bcbiobase.seq.cloud",
         "bcbio",
         "project-summary.yaml",
-        sep = "/")
+        sep = "/"
+    )
 )
 
+
+
+# sampleYAML ===================================================================
 test_that("sampleYAML", {
     expect_identical(
         sampleYAML(yaml, "metadata"),
@@ -16,16 +20,21 @@ test_that("sampleYAML", {
                 "group1_1",
                 "group1_2",
                 "group2_1",
-                "group2_2"),
+                "group2_2"
+            ),
             "group" = c(
                 "ctrl",
                 "ctrl",
                 "ko",
-                "ko")
+                "ko"
+            )
         )
     )
 })
 
+
+
+# sampleYAMLMetadata ===========================================================
 test_that("sampleYAMLMetadata", {
     samples <- c("group1_1", "group1_2", "group2_1", "group2_2")
     expect_identical(
@@ -43,6 +52,9 @@ test_that("sampleYAMLMetadata", {
     )
 })
 
+
+
+# sampleYAMLMetrics ============================================================
 test_that("sampleYAMLMetrics", {
     metrics <- sampleYAMLMetrics(yaml)
     expect_identical(
@@ -63,7 +75,8 @@ test_that("sampleYAMLMetrics", {
             sequencesFlaggedAsPoorQuality = "numeric",
             totalReads = "numeric",
             rrna = "numeric",
-            rrnaRate = "numeric")
+            rrnaRate = "numeric"
+        )
     )
 
     # Check for proper handling of metrics with mismatched number of values
@@ -72,7 +85,8 @@ test_that("sampleYAMLMetrics", {
             "http://bcbiobase.seq.cloud",
             "bcbio",
             "project-summary-metrics-mismatch.yaml",
-            sep = "/")
+            sep = "/"
+        )
     )
     metrics2 <- sampleYAMLMetrics(yaml2)
     expect_identical(
@@ -93,11 +107,12 @@ test_that("sampleYAMLMetrics", {
             sequencesFlaggedAsPoorQuality = "numeric",
             totalReads = "numeric",
             rrna = "numeric",
-            rrnaRate = "numeric")
+            rrnaRate = "numeric"
+        )
     )
 })
 
-test_that("Fast mode support for skipped metrics calculations", {
+test_that("sampleYAMLMetrics : Fast mode", {
     fastmode <- "Fast mode detected: No sample metrics were calculated"
 
     # Subset to only include the first sample
@@ -129,7 +144,10 @@ test_that("Fast mode support for skipped metrics calculations", {
     )
 })
 
-test_that("Invalid YAML input", {
+
+
+# General ======================================================================
+test_that("Invalid parameters", {
     expect_error(
         sampleYAML(yaml = list(), keys = "metadata"),
         "is_non_empty : yaml has length 0."

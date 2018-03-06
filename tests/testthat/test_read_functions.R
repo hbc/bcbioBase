@@ -1,11 +1,107 @@
-context("readSampleMetadataFile")
+context("Read Functions")
 
-test_that("Demultiplexed FASTQ", {
+# readDataVersions =============================================================
+test_that("readDataVersions", {
+    versions <- readDataVersions(
+        file = paste(
+            "http://bcbiobase.seq.cloud",
+            "bcbio",
+            "data_versions.csv",
+            sep = "/"
+        )
+    )
+    expect_is(versions, "tbl_df")
+    expect_identical(
+        colnames(versions),
+        c("genome", "resource", "version")
+    )
+})
+
+test_that("readDataVersions : Missing file", {
+    expect_warning(
+        readDataVersions("XXX.csv"),
+        "is_existing_file :"
+    )
+    expect_identical(
+        suppressWarnings(
+            readDataVersions("XXX.csv")
+        ),
+        NULL
+    )
+})
+
+
+
+# readLogFile ==================================================================
+test_that("readLogFile", {
+    log <- readLogFile(
+        paste(
+            "http://bcbiobase.seq.cloud",
+            "bcbio",
+            "bcbio-nextgen.log",
+            sep = "/")
+    )
+    expect_true(is.character(log))
+    expect_identical(
+        log[[1L]],
+        paste(
+            "[2017-08-15T14:53Z]",
+            "compute-a-16-44.o2.rc.hms.harvard.edu:",
+            "System YAML configuration:",
+            "/n/app/bcbio/dev/galaxy/bcbio_system.yaml"
+        )
+    )
+})
+
+test_that("readLogFile : Missing file", {
+    expect_error(
+        readLogFile("XXX.log"),
+        "is_existing_file :"
+    )
+})
+
+
+
+# readProgramVersions ==========================================================
+test_that("readProgramVersions", {
+    versions <- readProgramVersions(
+        paste(
+            "http://bcbiobase.seq.cloud",
+            "bcbio",
+            "programs.txt",
+            sep = "/"
+        )
+    )
+    expect_is(versions, "tbl_df")
+    expect_identical(
+        colnames(versions),
+        c("program", "version")
+    )
+})
+
+test_that("readProgramVersions : Missing file", {
+    expect_warning(
+        readProgramVersions("XXX.txt"),
+        "is_existing_file :"
+    )
+    expect_identical(
+        suppressWarnings(
+            readProgramVersions("XXX.txt")
+        ),
+        NULL
+    )
+})
+
+
+
+# readSampleMetadataFile =======================================================
+test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
     file <- paste(
         "http://bcbiobase.seq.cloud",
         "sample_metadata",
         "demultiplexed.xlsx",
-        sep = "/")
+        sep = "/"
+    )
     meta <- readSampleMetadataFile(file)
 
     # Check that names are sanitized correctly
@@ -31,21 +127,26 @@ test_that("Demultiplexed FASTQ", {
             "sample_2_L001",
             "sample_2_L002",
             "sample_2_L003",
-            "sample_2_L004")
+            "sample_2_L004"
+        )
     )
     expect_identical(
         meta[1L, metadataPriorityCols],
         data.frame(
             sampleID = factor(
                 "sample_1_L001",
-                levels = levels(meta[["sampleID"]])),
+                levels = levels(meta[["sampleID"]])
+            ),
             sampleName = factor(
                 "sample 1_L001",
-                levels = levels(meta[["sampleName"]])),
+                levels = levels(meta[["sampleName"]])
+            ),
             description = factor(
                 "sample 1_L001",
-                levels = levels(meta[["description"]])),
-            row.names = "sample_1_L001")
+                levels = levels(meta[["description"]])
+            ),
+            row.names = "sample_1_L001"
+        )
     )
 
     # Error on file containing redundant `description` and `sampleName` columns
@@ -55,7 +156,8 @@ test_that("Demultiplexed FASTQ", {
                 "http://bcbiobase.seq.cloud",
                 "sample_metadata",
                 "demultiplexed_with_sampleName.csv",
-                sep = "/")
+                sep = "/"
+            )
         ),
         paste(
             "are_disjoint_sets :",
@@ -71,7 +173,8 @@ test_that("Demultiplexed FASTQ", {
                 "http://bcbiobase.seq.cloud",
                 "sample_metadata",
                 "demultiplexed_missing_cols.csv",
-                sep = "/")
+                sep = "/"
+            )
         ),
         paste(
             "is_subset :",
@@ -87,7 +190,8 @@ test_that("Demultiplexed FASTQ", {
                 "http://bcbiobase.seq.cloud",
                 "sample_metadata",
                 "demultiplexed_duplicated_description.csv",
-                sep = "/")
+                sep = "/"
+            )
         ),
         paste(
             "has_no_duplicates :",
@@ -96,12 +200,13 @@ test_that("Demultiplexed FASTQ", {
     )
 })
 
-test_that("Multiplexed FASTQ", {
+test_that("readSampleMetadataFile : Multiplexed FASTQ", {
     file <- paste(
         "http://bcbiobase.seq.cloud",
         "sample_metadata",
         "multiplexed.xlsx",
-        sep = "/")
+        sep = "/"
+    )
     meta <- readSampleMetadataFile(file)
 
     expect_identical(
@@ -113,7 +218,8 @@ test_that("Multiplexed FASTQ", {
             "run_2_CTTAATAG",
             "run_2_TAAGGCTC",
             "run_2_TCGCATAA",
-            "run_2_TCTTACGC")
+            "run_2_TCTTACGC"
+        )
     )
 
     # Lane-split technical replicate support
@@ -148,7 +254,8 @@ test_that("Multiplexed FASTQ", {
             "run_2_L004_CTTAATAG",
             "run_2_L004_TAAGGCTC",
             "run_2_L004_TCGCATAA",
-            "run_2_L004_TCTTACGC")
+            "run_2_L004_TCTTACGC"
+        )
     )
 
     # Required column check failure
@@ -158,7 +265,8 @@ test_that("Multiplexed FASTQ", {
                 "http://bcbiobase.seq.cloud",
                 "sample_metadata",
                 "multiplexed_missing_cols.csv",
-                sep = "/")
+                sep = "/"
+            )
         ),
         paste(
             "is_subset :",
@@ -174,7 +282,8 @@ test_that("Multiplexed FASTQ", {
                 "http://bcbiobase.seq.cloud",
                 "sample_metadata",
                 "multiplexed_duplicated_sampleName.csv",
-                sep = "/")
+                sep = "/"
+            )
         ),
         paste(
             "has_no_duplicates :",
@@ -183,12 +292,13 @@ test_that("Multiplexed FASTQ", {
     )
 })
 
-test_that("Legacy bcbio samplename column", {
+test_that("readSampleMetadataFile : Legacy bcbio samplename column", {
     file <- paste(
         "http://bcbiobase.seq.cloud",
         "sample_metadata",
         "bcbio_legacy_samplename.csv",
-        sep = "/")
+        sep = "/"
+    )
     meta <- suppressWarnings(readSampleMetadataFile(file))
     expect_identical(
         meta,
@@ -196,19 +306,23 @@ test_that("Legacy bcbio samplename column", {
             # sanitized
             sampleID = factor(
                 "sample_1",
-                levels = "sample_1"),
+                levels = "sample_1"
+            ),
             # matches description
             sampleName = factor(
                 "sample-1",
-                levels = "sample-1"),
+                levels = "sample-1"
+            ),
             # unmodified
             description = factor(
                 "sample-1",
-                levels = "sample-1"),
+                levels = "sample-1"
+            ),
             # renamed `samplename`
             fileName = factor(
                 "sample-1.fastq.gz",
-                levels = "sample-1.fastq.gz"),
+                levels = "sample-1.fastq.gz"
+            ),
             # sanitized
             row.names = "sample_1"
         )
@@ -219,12 +333,13 @@ test_that("Legacy bcbio samplename column", {
     )
 })
 
-test_that("`sampleID` already defined by the user", {
+test_that("readSampleMetadataFile : sampleID defined by user", {
     file <- paste(
         "http://bcbiobase.seq.cloud",
         "sample_metadata",
         "sampleID_column_defined.xlsx",
-        sep = "/")
+        sep = "/"
+    )
     expect_error(
         readSampleMetadataFile(file),
         paste(
@@ -235,7 +350,7 @@ test_that("`sampleID` already defined by the user", {
     )
 })
 
-test_that("Missing file", {
+test_that("readSampleMetadataFile : Missing file", {
     # Always stop on missing
     expect_error(
         readSampleMetadataFile("XXX.csv"),
