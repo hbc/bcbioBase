@@ -1,13 +1,12 @@
 context("copyToDropbox")
 
+# copyToDropbox ================================================================
 prepareTemplate("bibliography.bib")
 files <- "bibliography.bib"
 dropboxDir <- path("bcbioBase_examples", "copyToDropbox")
 
-# Don't run this test on AppVeyor CI yet
-# Sys.getenv("APPVEYOR")
 if (file_exists("token.rds")) {
-    test_that("RDS token enabled", {
+    test_that("copyToDropbox : RDS token enabled", {
         x <- copyToDropbox(
             files = files,
             dir = dropboxDir,
@@ -29,7 +28,7 @@ if (file_exists("token.rds")) {
             )
         )
     })
-    test_that("Shared Dropbox directory", {
+    test_that("copyToDropbox : Shared Dropbox directory", {
         expect_warning(
             copyToDropbox(
                 files = files,
@@ -41,7 +40,7 @@ if (file_exists("token.rds")) {
     })
 }
 
-test_that("Invalid parameters", {
+test_that("copyToDropbox : Invalid parameters", {
     expect_error(
         copyToDropbox(files = NULL, dir = "."),
         paste(
