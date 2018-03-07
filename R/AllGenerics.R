@@ -1,28 +1,11 @@
 #' S4 Generics
 #'
-#' @rdname AllGenerics
 #' @name AllGenerics
 #'
 #' @inheritParams general
 #'
 #' @return Varies, depending upon the method.
 NULL
-
-
-
-#' @rdname AllGenerics
-#' @export
-setGeneric("bcbio", function(object, ...) {
-    standardGeneric("bcbio")
-})
-
-
-
-#' @rdname AllGenerics
-#' @export
-setGeneric("bcbio<-", function(object, ..., value) {
-    standardGeneric("bcbio<-")
-})
 
 
 
