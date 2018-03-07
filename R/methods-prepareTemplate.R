@@ -34,13 +34,13 @@
 #'
 #' # Copy all of the default shared template files
 #' prepareTemplate()
-#' file_exists(defaultFiles)
-#' file_delete(defaultFiles)
+#' file.exists(defaultFiles)
+#' unlink(defaultFiles)
 #'
 #' # Request individual files
 #' prepareTemplate("bibliography.bib")
-#' file_exists("bibliography.bib")
-#' file_delete("bibliography.bib")
+#' file.exists("bibliography.bib")
+#' unlink("bibliography.bib")
 #'
 #' # Load the shared files from bcbioSingleCell
 #' \dontrun{
