@@ -76,11 +76,9 @@ test_that("SummarizedExperiment", {
 })
 
 test_that("RangedSummarizedExperiment", {
-    rowData <- genes("Mus musculus")
-    expect_s4_class(rowData, "GRanges")
     se <- prepareSummarizedExperiment(
         assays = list(assay = mat),
-        rowData = rowData,
+        rowData = genes("Mus musculus", return = "GRanges"),
         colData = colData
     )
     expect_s4_class(se, "RangedSummarizedExperiment")
