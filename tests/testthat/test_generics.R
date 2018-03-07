@@ -1,8 +1,6 @@
 context("Generics")
 
 withMethods <- c(
-    "featureData",
-    "featureData<-",
     "prepareSummarizedExperiment",
     "prepareTemplate",
     "sampleData",
