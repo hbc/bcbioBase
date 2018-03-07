@@ -97,7 +97,8 @@ setMethod(
                 "_setup.R",
                 "bibliography.bib"
             ),
-            sourceDir = sourceDir)
+            sourceDir = sourceDir
+        )
     }
 )
 

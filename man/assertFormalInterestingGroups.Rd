@@ -7,7 +7,7 @@
 assertFormalInterestingGroups(x, interestingGroups, severity = "stop")
 }
 \arguments{
-\item{x}{Object supporting \code{\link[=colnames]{colnames()}}, typically a \link{data.frame}.}
+\item{x}{Object supporting \code{\link[=colnames]{colnames()}}, typically a \code{data.frame}.}
 
 \item{interestingGroups}{Interesting groups character vector.}
 

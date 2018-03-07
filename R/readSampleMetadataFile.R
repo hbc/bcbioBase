@@ -15,7 +15,7 @@
 #' @param lanes *Optional*. Number of lanes used to split the samples into
 #'   technical replicates (`_LXXX`) suffix.
 #'
-#' @return [data.frame].
+#' @return `data.frame`.
 #' @export
 #'
 #' @examples

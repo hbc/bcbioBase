@@ -7,7 +7,7 @@
 #'
 #' @inherit assert
 #'
-#' @param x Object supporting [colnames()], typically a [data.frame].
+#' @param x Object supporting [colnames()], typically a `data.frame`.
 #' @param interestingGroups Interesting groups character vector.
 #'
 #' @return Silent, stop on error.

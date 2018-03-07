@@ -8,7 +8,19 @@
 #' @return No value.
 NULL
 
-# v0.1.5 =======================================================================
+# v0.2.0 =======================================================================
+#' @rdname deprecated
+#' @export
+bcbio <- function(...) {
+    .Defunct("metadata")
+}
+
+#' @rdname deprecated
+#' @export
+`bcbio<-` <- function(...) {
+    .Defunct("metadata<-")
+}
+
 #' @rdname deprecated
 #' @export
 sampleMetadata <- function(object, ...) {

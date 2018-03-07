@@ -10,8 +10,6 @@ withMethods <- c(
     "sampleYAMLMetrics"
 )
 withoutMethods <- c(
-    "bcbio",
-    "bcbio<-",
     "flatFiles",
     "interestingGroups",
     "interestingGroups<-",

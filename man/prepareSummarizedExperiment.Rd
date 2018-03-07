@@ -20,16 +20,14 @@ dimensions. Counts can be passed in either dense (\code{matrix}) or sparse
 
 \item{...}{Additional arguments.}
 
-\item{rowData}{Object describing assay matrix rows. Must support
-\code{\link[base:dim]{base::dim()}}.}
+\item{rowData}{Object describing assay rows. Must support \code{\link[base:dim]{base::dim()}}.}
 
-\item{colData}{Object describing assay matrix columns. Must support
-\code{\link[base:dim]{base::dim()}}.}
+\item{colData}{Object describing assay columns. Must support \code{\link[base:dim]{base::dim()}}.}
 
-\item{metadata}{\emph{Optional}. Metadata list.}
+\item{metadata}{\emph{Optional}. Metadata \code{list}.}
 }
 \value{
-\link{SummarizedExperiment}.
+\code{SummarizedExperiment}.
 }
 \description{
 This is a utility wrapper for \code{SummarizedExperiment()} that provides

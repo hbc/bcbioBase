@@ -2,10 +2,16 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
+\alias{bcbio}
+\alias{bcbio<-}
 \alias{sampleMetadata}
 \alias{sampleMetadata<-}
 \title{Defunct or Deprecated Functions}
 \usage{
+bcbio(...)
+
+bcbio(...) <- value
+
 sampleMetadata(object, ...)
 
 sampleMetadata(object, ...) <- value

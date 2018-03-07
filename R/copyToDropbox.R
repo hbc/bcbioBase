@@ -10,7 +10,7 @@
 #' @param dir Relative path of remote Dropbox directory.
 #' @param rdsToken RDS file token to use for Dropbox authentication.
 #'
-#' @return Invisibly return [list] of rdrop2 output.
+#' @return Invisible `list` of rdrop2 output.
 #' @export
 #'
 #' @examples

@@ -14,7 +14,7 @@ copyToDropbox(files, dir, rdsToken = NULL)
 \item{rdsToken}{RDS file token to use for Dropbox authentication.}
 }
 \value{
-Invisibly return \link{list} of rdrop2 output.
+Invisible \code{list} of rdrop2 output.
 }
 \description{
 Copy Files to Dropbox
