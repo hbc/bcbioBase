@@ -7,7 +7,7 @@
 #'
 #' @family Assert Check Functions
 #'
-#' @param object Object supporting [colnames()], typically a [data.frame].
+#' @param object Object supporting [colnames()], typically a `data.frame`.
 #' @param interestingGroups Interesting groups character vector.
 #' @param warnOnNULL Warn the user on `NULL` argument.
 #'
