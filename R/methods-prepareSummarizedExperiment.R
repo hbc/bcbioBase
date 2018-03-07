@@ -1,3 +1,10 @@
+# TODO Add `isSpike` param
+# By default drop genes that don't have an annotation. Maybe add this as
+# `drop` argument, allowing user to keep unannotated genes that aren't spike-ins
+# When slotting spike-ins, use `plasmid` in the GRanges seqnames
+
+
+
 #' Prepare Summarized Experiment
 #'
 #' This is a utility wrapper for `SummarizedExperiment()` that provides
@@ -18,11 +25,9 @@
 #' @param assays List containing RNA-seq count matrices with matching
 #'   dimensions. Counts can be passed in either dense (`matrix`) or sparse
 #'   (`dgCMatrix`, `dgTMatrix`) format.
-#' @param rowData Object describing assay matrix rows. Must support
-#'   [base::dim()].
-#' @param colData Object describing assay matrix columns. Must support
-#'   [base::dim()].
-#' @param metadata *Optional*. Metadata list.
+#' @param rowData Object describing assay rows. Must support [base::dim()].
+#' @param colData Object describing assay columns. Must support [base::dim()].
+#' @param metadata *Optional*. Metadata `list`.
 #'
 #' @seealso
 #' - [SummarizedExperiment::SummarizedExperiment()].
@@ -30,7 +35,7 @@
 #' - [base::getwd()].
 #' - [utils::sessionInfo()].
 #'
-#' @return [SummarizedExperiment].
+#' @return `SummarizedExperiment`.
 #' @export
 #'
 #' @examples
@@ -165,6 +170,7 @@ NULL
         unannotatedRows <- sort(setdiff(rownames(assay), names(rowData)))
         if (length(unannotatedRows)) {
             # TODO Improved method for stashing empty ranges?
+            # Use `plasmid` here for spike-ins
             # Stash the missing rows at the first seqname (e.g. chromosome 1)
             # with the ranges 1-2, and no strand.
             vec <- paste(
