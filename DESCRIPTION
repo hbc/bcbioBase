@@ -7,17 +7,20 @@ Authors@R: c(
         given = "Michael",
         family = "Steinbaugh",
         email ="mike@steinbaugh.com",
-        role = c("aut", "cre")),
+        role = c("aut", "cre"),
+        comment = c(ORCID = "0000-0002-2403-2221")
+    ),
     person(
         given = "Rory",
         family = "Kirchner",
         email = "roryk@alum.mit.edu",
-        role = "aut"),
+        role = "aut"
+    ),
     person(
         given = "Harvard Chan Bioinformatics Core",
         email = "bioinformatics@hsph.harvard.edu",
-        role = c("cph", "fnd"))
-    )
+        role = c("cph", "fnd")
+    ))
 URL:
     http://bioinformatics.sph.harvard.edu/bcbioBase,
     https://github.com/hbc/bcbioBase
@@ -26,26 +29,26 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: TRUE
 Depends:
-    R (>= 3.4.0),
+    R (>= 3.4),
     basejump (>= 0.3.2)
 Imports:
-    assertive (>= 0.3.0),
+    assertive (>= 0.3),
     Biostrings,
-    dplyr (>= 0.7.4),
+    dplyr (>= 0.7),
     GenomeInfoDb,
     GenomicRanges,
     magrittr (>= 1.5),
     methods,
-    rdrop2 (>= 0.8.1),
-    readr (>= 1.1.1),
-    rlang (>= 0.1.2),
-    S4Vectors (>= 0.14.7),
+    rdrop2 (>= 0.8),
+    readr (>= 1.0),
+    rlang (>= 0.1),
+    S4Vectors,
     scales,
-    sessioninfo (>= 1.0.0),
-    stringr (>= 1.2.0),
+    sessioninfo (>= 1.0),
+    stringr (>= 1.2),
     SummarizedExperiment (>= 1.6.5),
-    tibble (>= 1.4.1),
-    tidyr (>= 0.7.1),
+    tibble (>= 1.4),
+    tidyr (>= 0.8),
     utils
 Suggests:
     BiocStyle,
