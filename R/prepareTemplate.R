@@ -11,17 +11,15 @@
 #' - `_setup.R`
 #' - `bibliography.bib`
 #'
-#' @name prepareTemplate
 #' @family R Markdown Functions
 #'
 #' @inheritParams general
 #'
-#' @param object *Optional*. File name. If `NULL` (default), download the
-#'   default dependency files for a new experiment.
-#' @param sourceDir Source directory, typically a URL, where the dependency
-#'   files are located.
+#' @param file File name.
+#' @param sourceDir Source directory.
 #'
 #' @return No value.
+#' @export
 #'
 #' @examples
 #' defaultFiles <- c(
@@ -51,18 +49,20 @@
 #'     )
 #' )
 #' }
-NULL
-
-
-
-# Constructors =================================================================
-.copyTemplateFile <- function(object, sourceDir = NULL) {
-    assert_is_character(object)
-    assertIsAStringOrNULL(sourceDir)
-    if (is.null(sourceDir)) {
-        sourceDir <- system.file("rmarkdown/shared", package = "bcbioBase")
-    }
-    assert_all_are_existing_files(file.path(sourceDir, object))
+prepareTemplate <- function(
+    file = c(
+        "_output.yaml",
+        "_footer.Rmd",
+        "_header.Rmd",
+        "_setup.R",
+        "bibliography.bib"
+    ),
+    sourceDir = system.file("rmarkdown/shared", package = "bcbioBase")
+) {
+    assert_is_character(file)
+    assert_all_are_dirs(sourceDir)
+    assert_is_a_string(sourceDir)
+    assert_all_are_existing_files(file.path(sourceDir, file))
     invisible(mapply(
         FUN = function(file, sourceDir) {
             if (!file.exists(file)) {
@@ -73,41 +73,7 @@ NULL
                 )
             }
         },
-        file = object,
+        file = file,
         MoreArgs = list(sourceDir = sourceDir)
     ))
 }
-
-
-
-# Methods ======================================================================
-#' @rdname prepareTemplate
-#' @export
-setMethod(
-    "prepareTemplate",
-    signature("missing"),
-    function(
-        object,
-        sourceDir = NULL) {
-        .copyTemplateFile(
-            c(
-                "_output.yaml",
-                "_footer.Rmd",
-                "_header.Rmd",
-                "_setup.R",
-                "bibliography.bib"
-            ),
-            sourceDir = sourceDir
-        )
-    }
-)
-
-
-
-#' @rdname prepareTemplate
-#' @export
-setMethod(
-    "prepareTemplate",
-    signature("character"),
-    .copyTemplateFile
-)

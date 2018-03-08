@@ -89,22 +89,6 @@ setGeneric("plotViolin", function(object, ...) {
 
 
 
-#' @rdname prepareSummarizedExperiment
-#' @export
-setGeneric("prepareSummarizedExperiment", function(assays, ...) {
-    standardGeneric("prepareSummarizedExperiment")
-})
-
-
-
-#' @rdname prepareTemplate
-#' @export
-setGeneric("prepareTemplate", function(object, ...) {
-    standardGeneric("prepareTemplate")
-})
-
-
-
 #' @rdname sampleData
 #' @export
 setGeneric("sampleData", function(object, ...) {
