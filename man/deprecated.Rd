@@ -8,9 +8,9 @@
 \alias{sampleMetadata<-}
 \title{Defunct or Deprecated Functions}
 \usage{
-bcbio(...)
+bcbio(object, ...)
 
-bcbio(...) <- value
+bcbio(object, ...) <- value
 
 sampleMetadata(object, ...)
 

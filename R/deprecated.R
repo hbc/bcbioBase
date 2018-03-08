@@ -11,13 +11,13 @@ NULL
 # v0.2.0 =======================================================================
 #' @rdname deprecated
 #' @export
-bcbio <- function(...) {
+bcbio <- function(object, ...) {
     .Defunct("metadata")
 }
 
 #' @rdname deprecated
 #' @export
-`bcbio<-` <- function(...) {
+`bcbio<-` <- function(object, ..., value) {
     .Defunct("metadata<-")
 }
 
