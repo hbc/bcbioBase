@@ -28,6 +28,7 @@ setMethod(
     "interestingGroups",
     signature("SummarizedExperiment"),
     function(object) {
+        validObject(object)
         metadata(object)[["interestingGroups"]]
     }
 )
