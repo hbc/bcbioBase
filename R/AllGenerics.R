@@ -11,6 +11,22 @@ NULL
 
 #' @rdname AllGenerics
 #' @export
+setGeneric("bcbio", function(object, ...) {
+    standardGeneric("bcbio")
+})
+
+
+
+#' @rdname AllGenerics
+#' @export
+setGeneric("bcbio<-", function(object, ..., value) {
+    standardGeneric("bcbio<-")
+})
+
+
+
+#' @rdname AllGenerics
+#' @export
 setGeneric("flatFiles", function(object, ...) {
     standardGeneric("flatFiles")
 })

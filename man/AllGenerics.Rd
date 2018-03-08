@@ -2,6 +2,8 @@
 % Please edit documentation in R/AllGenerics.R
 \name{AllGenerics}
 \alias{AllGenerics}
+\alias{bcbio}
+\alias{bcbio<-}
 \alias{flatFiles}
 \alias{interestingGroups}
 \alias{interestingGroups<-}
@@ -14,6 +16,10 @@
 \alias{tpm}
 \title{S4 Generics}
 \usage{
+bcbio(object, ...)
+
+bcbio(object, ...) <- value
+
 flatFiles(object, ...)
 
 interestingGroups(object, ...)
