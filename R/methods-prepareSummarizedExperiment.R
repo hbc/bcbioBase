@@ -218,7 +218,7 @@ NULL
     if (length(unannotatedRows)) {
         warn(paste(
             length(unannotatedRows),
-            "unannotated rows detected in SummarizedExperiment",
+            "unannotated rows detected",
             paste0("(", percent(length(unannotatedRows) / nrow(assay)), "):"),
             toString(unannotatedRows)
         ))
