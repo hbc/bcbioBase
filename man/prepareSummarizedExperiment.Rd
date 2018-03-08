@@ -50,7 +50,48 @@ environment parameters:
 }
 }
 \examples{
-\dontrun{
-# Hello
-}
+genes <- c(
+    "EGFP",  # spike
+    "gene_1",
+    "gene_2",
+    "gene_3",
+    "dead_gene"
+)
+samples <- c(
+    "sample_1",
+    "sample_2",
+    "sample_3",
+    "sample_4"
+)
+mat <- matrix(
+    seq(1L:20L),
+    nrow = 5L,
+    ncol = 4L,
+    dimnames = list(genes, samples)
+)
+# Leave out the unannotated EGFP spike-in
+rowRanges <- GRanges(
+    seqnames = c("1", "1", "1"),
+    ranges = IRanges(
+        start = c(1L, 101L, 201L),
+        end = c(100L, 200L, 300L)
+    )
+)
+names(rowRanges) <- c("gene_1", "gene_2", "gene_3")
+colData <- data.frame(
+    "genotype" = c(
+        "wildtype",
+        "wildtype",
+        "knockout",
+        "knockout"
+    ),
+    "age" = c(3L, 6L, 3L, 6L),
+    row.names = samples
+)
+prepareSummarizedExperiment(
+    assays = list(assay = mat),
+    rowRanges = rowRanges,
+    colData = colData,
+    isSpike = "EGFP"
+)
 }
