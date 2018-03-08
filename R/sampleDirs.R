@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' uploadDir <- system.file("extdata/bcbio", package = "bcbioRNASeq")
+#' uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
 #' sampleDirs(uploadDir)
 #' }
 sampleDirs <- function(uploadDir) {
