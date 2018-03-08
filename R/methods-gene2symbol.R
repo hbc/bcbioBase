@@ -27,6 +27,7 @@ NULL
 
 # Methods ======================================================================
 #' @rdname gene2symbol
+#' @importFrom SummarizedExperiment rowData
 #' @export
 setMethod(
     "gene2symbol",
@@ -35,9 +36,10 @@ setMethod(
         validObject(object)
         data <- rowData(object)
         data <- as.data.frame(data)
+        rownames(data) <- slot(object, "NAMES")
         cols <- c("ensgene", "symbol")
         assert_is_subset(cols, colnames(data))
-        data[, cols, drop = FALSE]
+        data <- data[, cols, drop = FALSE]
         assertIsGene2symbol(data)
         data
     }
