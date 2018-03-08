@@ -26,7 +26,7 @@ sampleDirs <- function(uploadDir) {
 
     # Require detection and removal of nested `projectDir`
     projectDir <- grep(
-        pattern = "^(\\d{4}-\\d{2}-\\d{2})_([^/]+)$",
+        pattern = projectDirPattern,
         x = basename(subdirs)
     )
     assert_is_non_empty(projectDir)
