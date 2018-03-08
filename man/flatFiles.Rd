@@ -20,8 +20,10 @@ for improved archival data storage.
 }
 \examples{
 \dontrun{
-load(system.file("extdata/bcb.rda", package = "bcbioRNASeq"))
-flatFiles(bcb) \%>\% names()
+load(system.file("extdata/se.rda", package = "bcbioBase"))
+
+# SummarizedExperiment
+flatFiles(se) \%>\% names()
 }
 }
 \author{

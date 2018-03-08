@@ -1,3 +1,7 @@
+# TODO Improve error message if dataset is transcript level?
+
+
+
 #' Gene to Symbol Mappings
 #'
 #' @name gene2symbol

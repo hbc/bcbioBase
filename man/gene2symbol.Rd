@@ -20,11 +20,10 @@ Gene to Symbol Mappings
 }
 \examples{
 \dontrun{
-# TODO Switch to loading a bcb as a SummarizedExperiment for example
-load(system.file("extdata/bcb.rda", package = "bcbioRNASeq"))
+load(system.file("extdata/se.rda", package = "bcbioBase"))
 
-# bcbioRNASeq
-gene2symbol(bcb) \%>\% head()
+# SummarizedExperiment
+gene2symbol(se) \%>\% head()
 }
 }
 \author{
