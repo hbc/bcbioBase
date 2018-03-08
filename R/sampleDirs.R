@@ -19,36 +19,31 @@
 #' }
 sampleDirs <- function(uploadDir) {
     assert_all_are_dirs(uploadDir)
-    subdirs <- list.dirs(uploadDir, full.names = TRUE, recursive = FALSE)
-    subdirPattern <- paste0(perSampleDirs, collapse = "|") %>%
-        paste0("^", ., "$")
-    sampleDirs <- list.files(
-        path = subdirs,
-        pattern = subdirPattern,
-        full.names = TRUE,
-        recursive = FALSE
-    )
-    assert_is_non_empty(sampleDirs)
-    sampleDirs <- sampleDirs %>%
-        dirname() %>%
-        sort() %>%
-        unique()
+    uploadDir <- normalizePath(uploadDir, winslash = "/", mustWork = TRUE)
 
-    # Ensure removal of nested `projectDir`
-    if (any(grepl(projectDirPattern, basename(sampleDirs)))) {
-        sampleDirs <- sampleDirs %>%
-            .[!grepl(projectDirPattern, basename(.))]
-        assert_is_non_empty(sampleDirs)
-    }
+    # Get the subdirectories in the upload directory
+    subdirs <- list.dirs(uploadDir, full.names = TRUE, recursive = FALSE)
+
+    # Require detection and removal of nested `projectDir`
+    projectDir <- grep(
+        pattern = "^(\\d{4}-\\d{2}-\\d{2})_([^/]+)$",
+        x = basename(subdirs)
+    )
+    assert_is_non_empty(projectDir)
+
+    sampleDirs <- subdirs[-projectDir]
+    assert_is_non_empty(sampleDirs)
 
     # Generate names from file paths and make valid
     names <- basename(sampleDirs) %>%
         make.names(unique = TRUE) %>%
         gsub("\\.", "_", .)
-    sampleDirs <- normalizePath(sampleDirs, winslash = "/", mustWork = TRUE)
     names(sampleDirs) <- names
 
-    inform(paste(length(sampleDirs), "samples detected"))
+    inform(paste(
+        length(sampleDirs), "samples detected:",
+        toString(names(sampleDirs))
+    ))
 
     sampleDirs
 }

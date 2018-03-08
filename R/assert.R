@@ -3,6 +3,7 @@
 #' @name assert
 #' @keywords internal
 #'
+#' @importFrom assertive assert_all_are_dirs
 #' @importFrom assertive assert_all_are_existing_files
 #' @importFrom assertive assert_all_are_in_range
 #' @importFrom assertive assert_all_are_non_missing_nor_empty_character
