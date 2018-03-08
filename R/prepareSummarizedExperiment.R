@@ -159,15 +159,17 @@ prepareSummarizedExperiment <- function(
                 ),
                 toString(unannotatedRows)
             ))
+            intersect <- intersect(rownames(assay), names(rowRanges))
             assays <- mapply(
                 assay = assays,
-                MoreArgs = list(rownames = names(rowRanges)),
-                FUN = function(assay, rownames) {
-                    assay[rownames, , drop = FALSE]
+                MoreArgs = list(intersect = intersect),
+                FUN = function(assay, intersect) {
+                    assay[intersect, , drop = FALSE]
                 },
                 USE.NAMES = TRUE,
                 SIMPLIFY = FALSE
             )
+            rowRanges <- rowRanges[intersect]
         }
     }
 
