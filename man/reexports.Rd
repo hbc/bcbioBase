@@ -5,6 +5,10 @@
 \alias{reexports}
 \alias{pull}
 \alias{reexports}
+\alias{GRanges}
+\alias{reexports}
+\alias{IRanges}
+\alias{reexports}
 \alias{\%>\%}
 \alias{reexports}
 \alias{DataFrame}
@@ -22,6 +26,10 @@ below to see their documentation.
 
 \describe{
   \item{dplyr}{\code{\link[dplyr]{pull}}}
+
+  \item{GenomicRanges}{\code{\link[GenomicRanges]{GRanges}}}
+
+  \item{IRanges}{\code{\link[IRanges]{IRanges}}}
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}}
 

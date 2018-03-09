@@ -4,8 +4,8 @@
 \alias{prepareSummarizedExperiment}
 \title{Prepare Summarized Experiment}
 \usage{
-prepareSummarizedExperiment(assays, rowRanges = NULL, colData = NULL,
-  metadata = NULL, isSpike = NULL)
+prepareSummarizedExperiment(assays, rowRanges, colData, metadata = NULL,
+  isSpike = NULL)
 }
 \arguments{
 \item{assays}{List containing RNA-seq count matrices with matching
