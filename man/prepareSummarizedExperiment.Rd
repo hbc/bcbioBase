@@ -22,10 +22,6 @@ columns.}
 \item{metadata}{\emph{Optional}. Metadata \code{list}.}
 
 \item{isSpike}{Character vector of spike-in sequence rownames.}
-
-\item{dropRows}{Drop unannotated rows (e.g. deprecated genes/transcripts). Only
-applies when \code{rowRanges} is defined. Note that spike-ins declared in the
-\code{isSpike} argument will not be dropped.}
 }
 \value{
 \code{RangedSummarizedExperiment}.

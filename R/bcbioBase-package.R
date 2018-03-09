@@ -26,8 +26,10 @@
 #' @importFrom assertive assert_is_non_empty
 #' @importFrom assertive assert_is_subset
 #' @importFrom assertive assert_is_tbl
+#' @importFrom basejump assertIsGene2symbol
 #' @importFrom basejump assertIsAStringOrNULL
 #' @importFrom rlang !!! !! .data abort inform sym syms warn
+#' @importFrom S4Vectors metadata metadata<-
 #' @importFrom utils globalVariables
 "_PACKAGE"
 

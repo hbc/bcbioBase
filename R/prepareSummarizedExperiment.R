@@ -32,9 +32,6 @@
 #'   columns.
 #' @param metadata *Optional*. Metadata `list`.
 #' @param isSpike Character vector of spike-in sequence rownames.
-#' @param dropRows Drop unannotated rows (e.g. deprecated genes/transcripts). Only
-#'   applies when `rowRanges` is defined. Note that spike-ins declared in the
-#'   `isSpike` argument will not be dropped.
 #'
 #' @return `RangedSummarizedExperiment`.
 #' @export

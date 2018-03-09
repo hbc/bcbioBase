@@ -4,8 +4,6 @@
 \alias{AllGenerics}
 \alias{bcbio}
 \alias{bcbio<-}
-\alias{interestingGroups}
-\alias{interestingGroups<-}
 \alias{metrics}
 \alias{plotDot}
 \alias{plotGene}
@@ -18,10 +16,6 @@
 bcbio(object, ...)
 
 bcbio(object, ...) <- value
-
-interestingGroups(object, ...)
-
-interestingGroups(object, ...) <- value
 
 metrics(object, ...)
 
