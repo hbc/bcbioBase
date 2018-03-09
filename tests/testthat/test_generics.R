@@ -1,8 +1,8 @@
 context("Generics")
 
 withMethods <- c(
-    "prepareSummarizedExperiment",
-    "prepareTemplate",
+    "interestingGroups",
+    "interestingGroups<-",
     "sampleData",
     "sampleData<-",
     "sampleYAML",
@@ -12,8 +12,6 @@ withMethods <- c(
 withoutMethods <- c(
     "bcbio",
     "bcbio<-",
-    "interestingGroups",
-    "interestingGroups<-",
     "metrics",
     "plotDot",
     "plotGene",
@@ -31,7 +29,8 @@ test_that("S4 generics", {
         vapply(
             X = generics,
             FUN = isS4,
-            FUN.VALUE = logical(1L))
+            FUN.VALUE = logical(1L)
+        )
     ))
 })
 
