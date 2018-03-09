@@ -192,7 +192,8 @@ prepareSummarizedExperiment <- function(
     metadata[["wd"]] <- normalizePath(".")
     metadata[["utilsSessionInfo"]] <- sessionInfo()
     metadata[["devtoolsSessionInfo"]] <- session_info(include_base = TRUE)
-    metadata[["unannotatedRows"]] <- unannotatedRows
+    metadata[["isSpike"]] <- as.character(isSpike)
+    metadata[["unannotatedRows"]] <- as.character(unannotatedRows)
 
     # Return ===================================================================
     SummarizedExperiment(
