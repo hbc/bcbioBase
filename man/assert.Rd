@@ -9,6 +9,9 @@
 \item{severity}{How severe should the consequences of the assertion be?
 Either "\code{stop}", "\code{warning}", "\code{message}", or "\code{none}".}
 }
+\value{
+Silent on success, stop on failure.
+}
 \description{
 Assert Checks
 }
