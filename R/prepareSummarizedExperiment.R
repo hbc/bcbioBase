@@ -95,7 +95,6 @@ prepareSummarizedExperiment <- function(
     # Assays ===================================================================
     assert_is_any_of(assays, c("list", "ShallowSimpleListAssays"))
     if (is.list(assays)) {
-        # Drop any `NULL` items from list
         assays <- Filter(Negate(is.null), assays)
     }
     assay <- assays[[1L]]
@@ -112,14 +111,6 @@ prepareSummarizedExperiment <- function(
         x = make.names(colnames(assay), unique = TRUE, allow_ = TRUE),
         y = colnames(assay)
     )
-    # Ensure that all slotted items have the same dimensions and names
-    invisible(lapply(
-        X = assays,
-        FUN = function(x) {
-            assert_are_identical(dim(x), dim(assay))
-            assert_are_identical(dimnames(x), dimnames(assay))
-        }
-    ))
 
     # Row ranges ===============================================================
     assert_is_any_of(rowRanges, c("GRanges", "NULL"))
