@@ -4,11 +4,14 @@
 \alias{deprecated}
 \alias{sampleMetadata}
 \alias{sampleMetadata<-}
+\alias{flatFiles}
 \title{Defunct or Deprecated Functions}
 \usage{
 sampleMetadata(object, ...)
 
 sampleMetadata(object, ...) <- value
+
+flatFiles(object)
 }
 \value{
 No value.

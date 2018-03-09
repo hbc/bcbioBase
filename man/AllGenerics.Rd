@@ -4,7 +4,6 @@
 \alias{AllGenerics}
 \alias{bcbio}
 \alias{bcbio<-}
-\alias{flatFiles}
 \alias{interestingGroups}
 \alias{interestingGroups<-}
 \alias{metrics}
@@ -19,8 +18,6 @@
 bcbio(object, ...)
 
 bcbio(object, ...) <- value
-
-flatFiles(object, ...)
 
 interestingGroups(object, ...)
 

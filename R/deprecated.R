@@ -23,6 +23,15 @@ sampleMetadata <- function(object, ...) {
     sampleData(object, ..., value)
 }
 
+#' @rdname deprecated
+#' @export
+flatFiles <- function(object) {
+    .Deprecated("as(object, \"list\")")
+    return(NULL)
+    stopifnot(is(object, "SummarizedExperiment"))
+    as(object, "list")
+}
+
 
 
 # future =======================================================================
