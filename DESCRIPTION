@@ -37,6 +37,7 @@ Imports:
     dplyr (>= 0.7),
     GenomeInfoDb,
     GenomicRanges,
+    IRanges,
     magrittr (>= 1.5),
     methods,
     rdrop2 (>= 0.8),

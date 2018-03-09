@@ -4,6 +4,18 @@ dplyr::pull
 
 
 
+#' @importFrom GenomicRanges GRanges
+#' @export
+GenomicRanges::GRanges
+
+
+
+#' @importFrom IRanges IRanges
+#' @export
+IRanges::IRanges
+
+
+
 #' @importFrom magrittr %>%
 #' @export
 magrittr::`%>%`
