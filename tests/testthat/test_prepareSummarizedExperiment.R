@@ -1,109 +1,76 @@
-# TODO Need to improve unit tests for spike-in handling
-
 context("prepareSummarizedExperiment")
 
-# Create the matrix with invalid names. We'll sanitize these
-# into snake_case later.
+genes <- c(
+    "EGFP",  # spike
+    "gene_1",
+    "gene_2",
+    "gene_3",
+    "dead_gene"
+)
+samples <- c(
+    "sample_1",
+    "sample_2",
+    "sample_3",
+    "sample_4"
+)
 mat <- matrix(
-    seq(1L:16L),
-    nrow = 4L,
+    seq(1L:20L),
+    nrow = 5L,
     ncol = 4L,
-    dimnames = list(
-        c(
-            "ENSMUSG00000000001",
-            "ENSMUSG00000000003",
-            "ENSMUSG00000000028",
-            "ENSMUSG00000000031"
-        ),
-        c(
-            "sample_1",
-            "sample_2",
-            "sample_3",
-            "sample_4"
-        )
+    dimnames = list(genes, samples)
+)
+# Leave out the unannotated EGFP spike-in
+rowRanges <- GRanges(
+    seqnames = c("1", "1", "1"),
+    ranges = IRanges(
+        start = c(1L, 101L, 201L),
+        end = c(100L, 200L, 300L)
     )
 )
-# Check handling of rowData (annotable) mismatch
-rowData <- data.frame(
-    ensgene = c(
-        "ENSMUSG00000000001",
-        "ENSMUSG00000000003",
-        "ENSMUSG00000000028",
-        "ENSMUSG00000000031"
-    ),
-    biotype = c(
-        "coding",
-        "coding",
-        "coding",
-        "coding"
-    ),
-    row.names = c(
-        "ENSMUSG00000000001",
-        "ENSMUSG00000000003",
-        "ENSMUSG00000000028",
-        "ENSMUSG00000000031"
-    )
-)
+names(rowRanges) <- c("gene_1", "gene_2", "gene_3")
 colData <- data.frame(
-    genotype = c(
+    "genotype" = c(
         "wildtype",
         "wildtype",
         "knockout",
         "knockout"
     ),
-    age = c(3L, 6L, 3L, 6L),
-    row.names = colnames(mat)
+    "age" = c(3L, 6L, 3L, 6L),
+    row.names = samples
 )
 
-
-test_that("SummarizedExperiment", {
-    se <- prepareSummarizedExperiment(
+test_that("RangedSummarizedExperiment", {
+    rse <- suppressWarnings(prepareSummarizedExperiment(
         assays = list(assay = mat),
-        rowData = rowData,
-        colData = colData
-    )
-    expect_s4_class(se, "SummarizedExperiment")
-    expect_identical(dim(se), c(4L, 4L))
+        rowRanges = rowRanges,
+        colData = colData,
+        isSpike = "EGFP"
+    ))
+    expect_s4_class(rse, "RangedSummarizedExperiment")
+    expect_identical(dim(rse), c(4L, 4L))
     expect_identical(
-        lapply(metadata(se), class),
+        names(rse),
+        c("EGFP", "gene_1", "gene_2", "gene_3")
+    )
+    expect_identical(
+        metadata(rse)[["isSpike"]],
+        "EGFP"
+    )
+    expect_identical(
+        metadata(rse)[["unannotatedRows"]],
+        "dead_gene"
+    )
+    expect_identical(
+        lapply(metadata(rse), class),
         list(
             "date" = "Date",
             "wd" = "character",
             "utilsSessionInfo" = "sessionInfo",
-            "devtoolsSessionInfo" = "session_info"
+            "devtoolsSessionInfo" = "session_info",
+            "isSpike" = "character",
+            "unannotatedRows" = "character"
         )
     )
-})
-
-test_that("RangedSummarizedExperiment", {
-    se <- prepareSummarizedExperiment(
-        assays = list(assay = mat),
-        rowData = genes("Mus musculus", return = "GRanges"),
-        colData = colData
-    )
-    expect_s4_class(se, "RangedSummarizedExperiment")
-})
-
-test_that("Empty row and/or column data", {
-    noAnno <- suppressWarnings(
-        prepareSummarizedExperiment(assays = list(assay = mat))
-    )
-    expect_warning(
-        prepareSummarizedExperiment(
-            assays = list(assay = mat),
-            colData = colData
-        ),
-        "Summarizing experiment without row data"
-    )
-    expect_warning(
-        prepareSummarizedExperiment(
-            assays = list(assay = mat),
-            rowData = rowData
-        ),
-        "Summarizing experiment without column data"
-    )
-    expect_identical(length(slot(noAnno, "elementMetadata")), 0L)
-    expect_identical(length(slot(noAnno, "colData")), 0L)
 })
 
 # This checks to see if there are any dashes in the names
