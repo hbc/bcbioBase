@@ -86,8 +86,8 @@
 #' )
 prepareSummarizedExperiment <- function(
     assays,
-    rowRanges = NULL,
-    colData = NULL,
+    rowRanges,
+    colData,
     metadata = NULL,
     isSpike = NULL
 ) {
@@ -113,7 +113,7 @@ prepareSummarizedExperiment <- function(
     )
 
     # Row ranges ===============================================================
-    assert_is_any_of(rowRanges, c("GRanges", "NULL"))
+    assert_is_all_of(rowRanges, "GRanges")
     unannotatedRows <- character()
     if (is(rowRanges, "GRanges")) {
         assert_are_intersecting_sets(rownames(assay), names(rowRanges))
@@ -169,7 +169,7 @@ prepareSummarizedExperiment <- function(
     # Column data ==============================================================
     assert_is_any_of(
         x = colData,
-        classes = c("DataFrame", "data.frame", "matrix", "NULL")
+        classes = c("DataFrame", "data.frame", "matrix")
     )
     if (!is.null(colData)) {
         # Coerce to DataFrame, if necessary
