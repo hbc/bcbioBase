@@ -12,7 +12,6 @@ withMethods <- c(
 withoutMethods <- c(
     "bcbio",
     "bcbio<-",
-    "flatFiles",
     "interestingGroups",
     "interestingGroups<-",
     "metrics",
