@@ -93,9 +93,11 @@ prepareSummarizedExperiment <- function(
 ) {
 
     # Assays ===================================================================
-    assert_is_list(assays)
-    # Drop any `NULL` items from list
-    assays <- Filter(Negate(is.null), assays)
+    assert_is_any_of(assays, c("list", "ShallowSimpleListAssays"))
+    if (is.list(assays)) {
+        # Drop any `NULL` items from list
+        assays <- Filter(Negate(is.null), assays)
+    }
     assay <- assays[[1L]]
     assert_has_dimnames(assay)
     assert_has_rownames(assay)
