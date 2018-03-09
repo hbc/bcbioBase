@@ -115,55 +115,53 @@ prepareSummarizedExperiment <- function(
     # Row ranges ===============================================================
     assert_is_all_of(rowRanges, "GRanges")
     unannotatedRows <- character()
-    if (is(rowRanges, "GRanges")) {
-        assert_are_intersecting_sets(rownames(assay), names(rowRanges))
-        unannotatedRows <- setdiff(rownames(assay), names(rowRanges))
-        # Create placeholder ranges for spike-ins
-        if (length(unannotatedRows) && is.character(isSpike)) {
-            assert_is_subset(isSpike, unannotatedRows)
-            unannotatedRows <- unannotatedRows %>%
-                .[-match(isSpike, .)]
-            vec <- paste("spike", "1-100", sep = ":")
-            vec <- replicate(n = length(isSpike), expr = vec)
-            spikes <- GRanges(vec)
-            names(spikes) <- isSpike
-            # Create the required empty metadata columns
-            mcols(spikes) <- matrix(
-                nrow = length(spikes),
-                ncol = ncol(mcols(rowRanges)),
-                dimnames = list(
-                    isSpike,
-                    colnames(mcols(rowRanges))
-                )
-            ) %>%
-                as("DataFrame")
-            # Warning about no sequence levels in common is expected here
-            rowRanges <- suppressWarnings(c(spikes, rowRanges))
-        }
-
-        # Warn the user about dropping unannotated rows
-        if (length(unannotatedRows)) {
-            warn(paste(
-                "Dropping", length(unannotatedRows), "unannotated rows",
-                paste0(
-                    "(",
-                    percent(length(unannotatedRows) / nrow(assay)),
-                    "):"
-                ),
-                toString(unannotatedRows)
-            ))
-            intersect <- intersect(rownames(assay), names(rowRanges))
-            assays <- mapply(
-                assay = assays,
-                MoreArgs = list(intersect = intersect),
-                FUN = function(assay, intersect) {
-                    assay[intersect, , drop = FALSE]
-                },
-                USE.NAMES = TRUE,
-                SIMPLIFY = FALSE
+    assert_are_intersecting_sets(rownames(assay), names(rowRanges))
+    unannotatedRows <- setdiff(rownames(assay), names(rowRanges))
+    # Create placeholder ranges for spike-ins
+    if (length(unannotatedRows) && is.character(isSpike)) {
+        assert_is_subset(isSpike, unannotatedRows)
+        unannotatedRows <- unannotatedRows %>%
+            .[-match(isSpike, .)]
+        vec <- paste("spike", "1-100", sep = ":")
+        vec <- replicate(n = length(isSpike), expr = vec)
+        spikes <- GRanges(vec)
+        names(spikes) <- isSpike
+        # Create the required empty metadata columns
+        mcols(spikes) <- matrix(
+            nrow = length(spikes),
+            ncol = ncol(mcols(rowRanges)),
+            dimnames = list(
+                isSpike,
+                colnames(mcols(rowRanges))
             )
-            rowRanges <- rowRanges[intersect]
-        }
+        ) %>%
+            as("DataFrame")
+        # Warning about no sequence levels in common is expected here
+        rowRanges <- suppressWarnings(c(spikes, rowRanges))
+    }
+
+    # Warn the user about dropping unannotated rows
+    if (length(unannotatedRows)) {
+        warn(paste(
+            "Dropping", length(unannotatedRows), "unannotated rows",
+            paste0(
+                "(",
+                percent(length(unannotatedRows) / nrow(assay)),
+                "):"
+            ),
+            toString(unannotatedRows)
+        ))
+        intersect <- intersect(rownames(assay), names(rowRanges))
+        assays <- mapply(
+            assay = assays,
+            MoreArgs = list(intersect = intersect),
+            FUN = function(assay, intersect) {
+                assay[intersect, , drop = FALSE]
+            },
+            USE.NAMES = TRUE,
+            SIMPLIFY = FALSE
+        )
+        rowRanges <- rowRanges[intersect]
     }
 
     # Column data ==============================================================
@@ -171,19 +169,14 @@ prepareSummarizedExperiment <- function(
         x = colData,
         classes = c("DataFrame", "data.frame", "matrix")
     )
-    if (!is.null(colData)) {
-        # Coerce to DataFrame, if necessary
-        if (!is(colData, "DataFrame")) {
-            colData <- colData %>%
-                as.data.frame() %>%
-                as("DataFrame")
-        }
-        assert_are_identical(colnames(assay), rownames(colData))
-        colData <- sanitizeColData(colData)
-    } else {
-        warn("Summarizing experiment without column data")
-        colData <- DataFrame(row.names = colnames(assay))
+    # Coerce to DataFrame, if necessary
+    if (!is(colData, "DataFrame")) {
+        colData <- colData %>%
+            as.data.frame() %>%
+            as("DataFrame")
     }
+    assert_are_identical(colnames(assay), rownames(colData))
+    colData <- sanitizeColData(colData)
 
     # Metadata =================================================================
     assert_is_any_of(metadata, c("list", "NULL"))
