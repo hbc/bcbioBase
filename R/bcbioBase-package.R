@@ -2,7 +2,7 @@
 #'
 #' Base functions and generics for bcbio R packages.
 #'
-#' @import methods
+#' @import methods S4Vectors
 #' @importFrom assertive assert_all_are_dirs
 #' @importFrom assertive assert_all_are_existing_files
 #' @importFrom assertive assert_all_are_in_range
@@ -30,7 +30,6 @@
 #' @importFrom basejump assertIsGene2symbol
 #' @importFrom basejump assertIsAStringOrNULL
 #' @importFrom rlang !!! !! .data abort inform sym syms warn
-#' @importFrom S4Vectors metadata metadata<-
 #' @importFrom utils globalVariables
 "_PACKAGE"
 
