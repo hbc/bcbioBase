@@ -88,9 +88,16 @@ prepareSummarizedExperiment <- function(
     metadata = NULL,
     isSpike = NULL
 ) {
+    assert_is_any_of(assays, c("list", "ShallowSimpleListAssays"))
+    assert_is_all_of(rowRanges, "GRanges")
+    assert_is_any_of(
+        x = colData,
+        classes = c("DataFrame", "data.frame", "matrix")
+    )
+    assert_is_any_of(metadata, c("list", "NULL"))
+    assertIsCharacterOrNULL(isSpike)
 
     # Assays ===================================================================
-    assert_is_any_of(assays, c("list", "ShallowSimpleListAssays"))
     if (is.list(assays)) {
         assays <- Filter(Negate(is.null), assays)
     }
@@ -110,14 +117,14 @@ prepareSummarizedExperiment <- function(
     )
 
     # Row ranges ===============================================================
-    assert_is_all_of(rowRanges, "GRanges")
-    unannotatedRows <- character()
     assert_are_intersecting_sets(rownames(assay), names(rowRanges))
-    unannotatedRows <- setdiff(rownames(assay), names(rowRanges))
-    # Create placeholder ranges for spike-ins
-    if (length(unannotatedRows) && is.character(isSpike)) {
-        assert_is_subset(isSpike, unannotatedRows)
-        unannotatedRows <- unannotatedRows %>%
+    intersect <- intersect(rownames(assay), names(rowRanges))
+    setdiff <- setdiff(rownames(assay), names(rowRanges))
+
+    # FASTA spike-ins: Create placeholder ranges
+    if (length(setdiff) && is.character(isSpike)) {
+        assert_is_subset(isSpike, setdiff)
+        setdiff <- setdiff %>%
             .[-match(isSpike, .)]
         vec <- paste("spike", "1-100", sep = ":")
         vec <- replicate(n = length(isSpike), expr = vec)
@@ -137,18 +144,17 @@ prepareSummarizedExperiment <- function(
         rowRanges <- suppressWarnings(c(spikes, rowRanges))
     }
 
-    # Warn the user about dropping unannotated rows
-    if (length(unannotatedRows)) {
+    # Warn and drop remaining unannotated rows that aren't spike-ins
+    if (length(setdiff)) {
         warn(paste(
-            "Dropping", length(unannotatedRows), "unannotated rows",
+            "Dropping", length(setdiff), "unannotated rows",
             paste0(
                 "(",
-                percent(length(unannotatedRows) / nrow(assay)),
+                percent(length(setdiff) / nrow(assay)),
                 "):"
             ),
-            toString(unannotatedRows)
+            toString(setdiff)
         ))
-        intersect <- intersect(rownames(assay), names(rowRanges))
         assays <- mapply(
             assay = assays,
             MoreArgs = list(intersect = intersect),
@@ -158,14 +164,12 @@ prepareSummarizedExperiment <- function(
             USE.NAMES = TRUE,
             SIMPLIFY = FALSE
         )
-        rowRanges <- rowRanges[intersect]
     }
 
+    # Subset the rowRanges to match the assays
+    rowRanges <- rowRanges[intersect]
+
     # Column data ==============================================================
-    assert_is_any_of(
-        x = colData,
-        classes = c("DataFrame", "data.frame", "matrix")
-    )
     # Coerce to DataFrame, if necessary
     if (!is(colData, "DataFrame")) {
         colData <- colData %>%
@@ -176,14 +180,13 @@ prepareSummarizedExperiment <- function(
     colData <- sanitizeColData(colData)
 
     # Metadata =================================================================
-    assert_is_any_of(metadata, c("list", "NULL"))
     metadata <- as.list(metadata)
     metadata[["date"]] <- Sys.Date()
     metadata[["wd"]] <- normalizePath(".")
     metadata[["utilsSessionInfo"]] <- sessionInfo()
     metadata[["devtoolsSessionInfo"]] <- session_info(include_base = TRUE)
     metadata[["isSpike"]] <- as.character(isSpike)
-    metadata[["unannotatedRows"]] <- as.character(unannotatedRows)
+    metadata[["unannotatedRows"]] <- as.character(setdiff)
 
     # Return ===================================================================
     SummarizedExperiment(
