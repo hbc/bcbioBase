@@ -13,13 +13,10 @@
 #' @export
 #'
 #' @examples
-#' url <- paste(
-#'     "http://bcbiobase.seq.cloud",
-#'     "bcbio",
-#'     "bcbio-nextgen.log",
-#'     sep = "/"
-#' )
-#' readLogFile(url) %>% head()
+#' readLogFile(
+#'     "http://bcbiobase.seq.cloud/bcbio-nextgen.log"
+#' ) %>%
+#'     head()
 readLogFile <- function(file) {
     assert_is_a_string(file)
     file <- localOrRemoteFile(file)

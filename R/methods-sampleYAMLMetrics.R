@@ -8,13 +8,9 @@
 #' @inherit sampleYAML
 #'
 #' @examples
-#' url <- paste(
-#'     "http://bcbiobase.seq.cloud",
-#'     "bcbio",
-#'     "project-summary.yaml",
-#'     sep = "/"
+#' yaml <- basejump::readYAML(
+#'     "http://bcbiobase.seq.cloud/project-summary.yaml"
 #' )
-#' yaml <- basejump::readYAML(url)
 #' sampleYAMLMetrics(yaml) %>% glimpse()
 NULL
 
@@ -50,7 +46,7 @@ NULL
         mutate_if(is.factor, as.character) %>%
         mutate_if(numericAsCharacter, as.numeric) %>%
         mutate_if(is.character, as.factor) %>%
-        .prepareSampleMetadata() %>%
+        prepareSampleMetadata() %>%
         # Drop any sample metadata ID columns
         .[, setdiff(
             x = colnames(.),

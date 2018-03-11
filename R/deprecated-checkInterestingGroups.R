@@ -15,17 +15,13 @@
 #' @export
 #'
 #' @examples
-#' demultiplexed <- paste(
-#'     "http://bcbiobase.seq.cloud",
-#'     "sample_metadata",
-#'     "demultiplexed.xlsx",
-#'     sep = "/"
+#' data <- readSampleMetadataFile(
+#'     "http://bcbiobase.seq.cloud/demultiplexed.xlsx"
 #' )
-#' meta <- readSampleMetadataFile(demultiplexed)
 #'
 #' # Deprecated
 #' tryCatch(
-#'     checkInterestingGroups(object = meta, interestingGroups = "genotype"),
+#'     checkInterestingGroups(object = data, interestingGroups = "genotype"),
 #'     warning = function(w) w
 #' )
 checkInterestingGroups <- function(

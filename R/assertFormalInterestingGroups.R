@@ -15,12 +15,7 @@
 #'
 #' @examples
 #' data <- readSampleMetadataFile(
-#'     file = paste(
-#'         "http://bcbiobase.seq.cloud",
-#'         "sample_metadata",
-#'         "demultiplexed.xlsx",
-#'         sep = "/"
-#'     )
+#'     "http://bcbiobase.seq.cloud/demultiplexed.xlsx"
 #' )
 #'
 #' # Success

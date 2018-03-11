@@ -15,13 +15,9 @@
 #' @return `tibble`.
 #'
 #' @examples
-#' url <- paste(
-#'     "http://bcbiobase.seq.cloud",
-#'     "bcbio",
-#'     "project-summary.yaml",
-#'     sep = "/"
+#' yaml <- basejump::readYAML(
+#'     "http://bcbiobase.seq.cloud/project-summary.yaml"
 #' )
-#' yaml <- basejump::readYAML(url)
 #' sampleYAML(yaml, "metadata") %>% glimpse()
 NULL
 

@@ -4,6 +4,8 @@
 #' @importFrom magrittr set_rownames
 #' @importFrom tibble as_tibble
 #'
+#' @inheritParams general
+#'
 #' @return `data.frame`.
 #' @export
 prepareSampleMetadata <- function(object) {

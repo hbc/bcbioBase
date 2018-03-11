@@ -16,13 +16,9 @@
 #' @export
 #'
 #' @examples
-#' url <- paste(
-#'     "http://bcbiobase.seq.cloud",
-#'     "bcbio",
-#'     "programs.txt",
-#'     sep = "/"
+#' readProgramVersions(
+#'     "http://bcbiobase.seq.cloud/programs.txt"
 #' )
-#' readProgramVersions(url)
 readProgramVersions <- function(file) {
     assert_is_a_string(file)
     file <- localOrRemoteFile(file, severity = "warning")

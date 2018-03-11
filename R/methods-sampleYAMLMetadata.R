@@ -6,13 +6,9 @@
 #' @inherit sampleYAML
 #'
 #' @examples
-#' url <- paste(
-#'     "http://bcbiobase.seq.cloud",
-#'     "bcbio",
-#'     "project-summary.yaml",
-#'     sep = "/"
+#' yaml <- basejump::readYAML(
+#'     "http://bcbiobase.seq.cloud/project-summary.yaml"
 #' )
-#' yaml <- basejump::readYAML(url)
 #' sampleYAMLMetadata(yaml) %>% glimpse()
 NULL
 
@@ -23,7 +19,7 @@ NULL
 .sampleYAMLMetadata <- function(yaml) {
     sampleYAML(yaml = yaml, keys = "metadata") %>%
         mutate_all(as.factor) %>%
-        .prepareSampleMetadata()
+        prepareSampleMetadata()
 }
 
 

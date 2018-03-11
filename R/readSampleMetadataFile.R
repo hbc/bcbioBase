@@ -5,9 +5,8 @@
 #'
 #' @importFrom basejump camel readFileByExtension removeNA
 #' @importFrom Biostrings reverseComplement
-#' @importFrom dplyr group_by left_join mutate mutate_all rename ungroup
+#' @importFrom dplyr group_by left_join mutate mutate_all ungroup
 #' @importFrom stringr str_pad
-#' @importFrom tidyr expand
 #'
 #' @inheritParams general
 #'
@@ -20,22 +19,16 @@
 #'
 #' @examples
 #' # Demultiplexed
-#' demultiplexed <- paste(
-#'     "http://bcbiobase.seq.cloud",
-#'     "sample_metadata",
-#'     "demultiplexed.xlsx",
-#'     sep = "/"
-#' )
-#' readSampleMetadataFile(demultiplexed) %>% glimpse()
+#' readSampleMetadataFile(
+#'     "http://bcbiobase.seq.cloud/demultiplexed.xlsx"
+#' ) %>%
+#'     glimpse()
 #'
 #' # Multiplexed (e.g. inDrop single-cell RNA-seq)
-#' multiplexed <- paste(
-#'     "http://bcbiobase.seq.cloud",
-#'     "sample_metadata",
-#'     "multiplexed.xlsx",
-#'     sep = "/"
-#' )
-#' readSampleMetadataFile(multiplexed) %>% glimpse()
+#' readSampleMetadataFile(
+#'     "http://bcbiobase.seq.cloud/multiplexed.xlsx"
+#' ) %>%
+#'     glimpse()
 readSampleMetadataFile <- function(file, lanes = 1L) {
     assert_is_a_string(file)
     assert_is_integer(lanes)
@@ -60,7 +53,7 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
             "(e.g. `control replicate 1`, and `sampleName` for multiplexed",
             "sample names (i.e. inDrop barcoded samples)."
         ))
-        data <- rename(data, fileName = .data[["samplename"]])
+        data <- dplyr::rename(data, fileName = .data[["samplename"]])
     }
 
     # Check for basic required columns
@@ -100,7 +93,7 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
         data <- data %>%
             group_by(!!sym("description")) %>%
             # Expand by lane (e.g. "L001")
-            expand(
+            tidyr::expand(
                 lane = paste0("L", str_pad(1L:lanes, 3L, pad = "0"))
             ) %>%
             left_join(data, by = "description") %>%
@@ -156,5 +149,5 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
     data %>%
         mutate_all(as.factor) %>%
         mutate_all(droplevels) %>%
-        .prepareSampleMetadata()
+        prepareSampleMetadata()
 }
