@@ -1,7 +1,12 @@
+#' Prepare Sample Metadata
+#'
 #' @importFrom dplyr arrange everything mutate mutate_if select
 #' @importFrom magrittr set_rownames
 #' @importFrom tibble as_tibble
-.prepareSampleMetadata <- function(object) {
+#'
+#' @return `data.frame`.
+#' @export
+prepareSampleMetadata <- function(object) {
     assert_has_dimnames(object)
     object <- as_tibble(object)
     assert_is_subset("description", colnames(object))
