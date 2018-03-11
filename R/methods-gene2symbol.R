@@ -11,8 +11,8 @@
 #'
 #' @inheritParams general
 #'
-#' @return `data.frame` containing Ensembl gene identifier (`ensgene`) and
-#'   symbol (`symbol`) mappings.
+#' @return `data.frame` containing Ensembl gene identifier and gene name
+#'   (aka symbol) mappings.
 #'
 #' @examples
 #' \dontrun{
@@ -37,7 +37,7 @@ setMethod(
         data <- rowData(object)
         data <- as.data.frame(data)
         rownames(data) <- slot(object, "NAMES")
-        cols <- c("ensgene", "symbol")
+        cols <- c("geneID", "geneName")
         assert_is_subset(cols, colnames(data))
         data <- data[, cols, drop = FALSE]
         assertIsGene2symbol(data)
