@@ -16,13 +16,10 @@ Character vector.
 Read Log File
 }
 \examples{
-url <- paste(
-    "http://bcbiobase.seq.cloud",
-    "bcbio",
-    "bcbio-nextgen.log",
-    sep = "/"
-)
-readLogFile(url) \%>\% head()
+readLogFile(
+    "http://bcbiobase.seq.cloud/bcbio-nextgen.log"
+) \%>\%
+    head()
 }
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},

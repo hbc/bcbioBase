@@ -20,22 +20,16 @@ Read Sample Metadata File
 }
 \examples{
 # Demultiplexed
-demultiplexed <- paste(
-    "http://bcbiobase.seq.cloud",
-    "sample_metadata",
-    "demultiplexed.xlsx",
-    sep = "/"
-)
-readSampleMetadataFile(demultiplexed) \%>\% glimpse()
+readSampleMetadataFile(
+    "http://bcbiobase.seq.cloud/demultiplexed.xlsx"
+) \%>\%
+    glimpse()
 
 # Multiplexed (e.g. inDrop single-cell RNA-seq)
-multiplexed <- paste(
-    "http://bcbiobase.seq.cloud",
-    "sample_metadata",
-    "multiplexed.xlsx",
-    sep = "/"
-)
-readSampleMetadataFile(multiplexed) \%>\% glimpse()
+readSampleMetadataFile(
+    "http://bcbiobase.seq.cloud/multiplexed.xlsx"
+) \%>\%
+    glimpse()
 }
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},

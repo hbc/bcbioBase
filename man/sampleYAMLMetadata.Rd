@@ -23,13 +23,9 @@ sampleYAMLMetadata(yaml, ...)
 Sample Metadata from YAML
 }
 \examples{
-url <- paste(
-    "http://bcbiobase.seq.cloud",
-    "bcbio",
-    "project-summary.yaml",
-    sep = "/"
+yaml <- basejump::readYAML(
+    "http://bcbiobase.seq.cloud/project-summary.yaml"
 )
-yaml <- basejump::readYAML(url)
 sampleYAMLMetadata(yaml) \%>\% glimpse()
 }
 \seealso{

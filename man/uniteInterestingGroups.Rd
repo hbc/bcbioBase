@@ -21,13 +21,9 @@ coloring in plots. When multiple interesting groups are present, unite into a
 single column, delimited by "\code{:}".
 }
 \examples{
-demultiplexed <- paste(
-    "http://bcbiobase.seq.cloud",
-    "sample_metadata",
-    "demultiplexed.xlsx",
-    sep = "/"
+meta <- readSampleMetadataFile(
+    "http://bcbiobase.seq.cloud/demultiplexed.xlsx"
 )
-meta <- readSampleMetadataFile(demultiplexed)
 meta <- uniteInterestingGroups(
     object = meta,
     interestingGroups = c("genotype", "sampleName")

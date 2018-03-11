@@ -50,8 +50,7 @@ genes <- c(
     "EGFP",  # spike
     "gene_1",
     "gene_2",
-    "gene_3",
-    "dead_gene"
+    "gene_3"
 )
 samples <- c(
     "sample_1",
@@ -60,11 +59,12 @@ samples <- c(
     "sample_4"
 )
 mat <- matrix(
-    seq(1L:20L),
-    nrow = 5L,
+    seq(1L:16L),
+    nrow = 4L,
     ncol = 4L,
     dimnames = list(genes, samples)
 )
+assays = list(assay = mat)
 # Leave out the unannotated EGFP spike-in
 rowRanges <- GRanges(
     seqnames = c("1", "1", "1"),
@@ -85,7 +85,7 @@ colData <- data.frame(
     row.names = samples
 )
 prepareSummarizedExperiment(
-    assays = list(assay = mat),
+    assays = assays,
     rowRanges = rowRanges,
     colData = colData,
     isSpike = "EGFP"

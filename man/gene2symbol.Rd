@@ -12,8 +12,8 @@
 \item{object}{Object.}
 }
 \value{
-\code{data.frame} containing Ensembl gene identifier (\code{ensgene}) and
-symbol (\code{symbol}) mappings.
+\code{data.frame} containing Ensembl gene identifier and gene name
+(aka symbol) mappings.
 }
 \description{
 Gene to Symbol Mappings

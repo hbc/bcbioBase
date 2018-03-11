@@ -19,13 +19,9 @@ Read Program Versions
 bcbio doesn't save program versions when run in fast mode.
 }
 \examples{
-url <- paste(
-    "http://bcbiobase.seq.cloud",
-    "bcbio",
-    "programs.txt",
-    sep = "/"
+readProgramVersions(
+    "http://bcbiobase.seq.cloud/programs.txt"
 )
-readProgramVersions(url)
 }
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},
