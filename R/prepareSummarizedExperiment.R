@@ -17,7 +17,6 @@
 #' @importFrom scales percent
 #' @importFrom sessioninfo session_info
 #' @importFrom SummarizedExperiment SummarizedExperiment
-#' @importFrom S4Vectors mcols mcols<-
 #' @importFrom tibble has_rownames
 #' @importFrom utils sessionInfo
 #'
@@ -41,8 +40,7 @@
 #'     "EGFP",  # spike
 #'     "gene_1",
 #'     "gene_2",
-#'     "gene_3",
-#'     "dead_gene"
+#'     "gene_3"
 #' )
 #' samples <- c(
 #'     "sample_1",
@@ -51,11 +49,12 @@
 #'     "sample_4"
 #' )
 #' mat <- matrix(
-#'     seq(1L:20L),
-#'     nrow = 5L,
+#'     seq(1L:16L),
+#'     nrow = 4L,
 #'     ncol = 4L,
 #'     dimnames = list(genes, samples)
 #' )
+#' assays = list(assay = mat)
 #' # Leave out the unannotated EGFP spike-in
 #' rowRanges <- GRanges(
 #'     seqnames = c("1", "1", "1"),
@@ -76,7 +75,7 @@
 #'     row.names = samples
 #' )
 #' prepareSummarizedExperiment(
-#'     assays = list(assay = mat),
+#'     assays = assays,
 #'     rowRanges = rowRanges,
 #'     colData = colData,
 #'     isSpike = "EGFP"
@@ -118,10 +117,9 @@ prepareSummarizedExperiment <- function(
 
     # Row ranges ===============================================================
     assert_are_intersecting_sets(rownames(assay), names(rowRanges))
-    intersect <- intersect(rownames(assay), names(rowRanges))
-    setdiff <- setdiff(rownames(assay), names(rowRanges))
 
     # FASTA spike-ins: Create placeholder ranges
+    setdiff <- setdiff(rownames(assay), names(rowRanges))
     if (length(setdiff) && is.character(isSpike)) {
         assert_is_subset(isSpike, setdiff)
         setdiff <- setdiff %>%
@@ -142,6 +140,7 @@ prepareSummarizedExperiment <- function(
             as("DataFrame")
         # Warning about no sequence levels in common is expected here
         rowRanges <- suppressWarnings(c(spikes, rowRanges))
+        setdiff <- setdiff(rownames(assay), names(rowRanges))
     }
 
     # Warn and drop remaining unannotated rows that aren't spike-ins
@@ -155,6 +154,7 @@ prepareSummarizedExperiment <- function(
             ),
             toString(setdiff)
         ))
+        intersect <- intersect(rownames(assay), names(rowRanges))
         assays <- mapply(
             assay = assays,
             MoreArgs = list(intersect = intersect),
@@ -167,6 +167,7 @@ prepareSummarizedExperiment <- function(
     }
 
     # Subset the rowRanges to match the assays
+    intersect <- intersect(rownames(assay), names(rowRanges))
     rowRanges <- rowRanges[intersect]
 
     # Column data ==============================================================
