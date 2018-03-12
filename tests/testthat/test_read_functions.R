@@ -2,14 +2,7 @@ context("Read Functions")
 
 # readDataVersions =============================================================
 test_that("readDataVersions", {
-    versions <- readDataVersions(
-        file = paste(
-            "http://bcbiobase.seq.cloud",
-            "bcbio",
-            "data_versions.csv",
-            sep = "/"
-        )
-    )
+    versions <- readDataVersions("data_versions.csv")
     expect_is(versions, "tbl_df")
     expect_identical(
         colnames(versions),
@@ -34,13 +27,7 @@ test_that("readDataVersions : Missing file", {
 
 # readLogFile ==================================================================
 test_that("readLogFile", {
-    log <- readLogFile(
-        paste(
-            "http://bcbiobase.seq.cloud",
-            "bcbio",
-            "bcbio-nextgen.log",
-            sep = "/")
-    )
+    log <- readLogFile("bcbio-nextgen.log")
     expect_true(is.character(log))
     expect_identical(
         log[[1L]],
@@ -64,14 +51,7 @@ test_that("readLogFile : Missing file", {
 
 # readProgramVersions ==========================================================
 test_that("readProgramVersions", {
-    versions <- readProgramVersions(
-        paste(
-            "http://bcbiobase.seq.cloud",
-            "bcbio",
-            "programs.txt",
-            sep = "/"
-        )
-    )
+    versions <- readProgramVersions("programs.txt")
     expect_is(versions, "tbl_df")
     expect_identical(
         colnames(versions),
@@ -96,12 +76,7 @@ test_that("readProgramVersions : Missing file", {
 
 # readSampleMetadataFile =======================================================
 test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
-    file <- paste(
-        "http://bcbiobase.seq.cloud",
-        "sample_metadata",
-        "demultiplexed.xlsx",
-        sep = "/"
-    )
+    file <- "demultiplexed.xlsx"
     meta <- readSampleMetadataFile(file)
 
     # Check that names are sanitized correctly
@@ -151,14 +126,7 @@ test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
 
     # Error on file containing redundant `description` and `sampleName` columns
     expect_error(
-        readSampleMetadataFile(
-            paste(
-                "http://bcbiobase.seq.cloud",
-                "sample_metadata",
-                "demultiplexed_with_sampleName.csv",
-                sep = "/"
-            )
-        ),
+        readSampleMetadataFile("demultiplexed_with_sampleName.csv"),
         paste(
             "are_disjoint_sets :",
             "\"sampleName\" and colnames\\(data\\) have common elements:",
@@ -168,14 +136,7 @@ test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
 
     # Required column check failure
     expect_error(
-        readSampleMetadataFile(
-            paste(
-                "http://bcbiobase.seq.cloud",
-                "sample_metadata",
-                "demultiplexed_missing_cols.csv",
-                sep = "/"
-            )
-        ),
+        readSampleMetadataFile("demultiplexed_missing_cols.csv"),
         paste(
             "is_subset :",
             "The element 'description' in requiredCols is not in",
@@ -185,14 +146,7 @@ test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
 
     # Duplicated description
     expect_error(
-        readSampleMetadataFile(
-            paste(
-                "http://bcbiobase.seq.cloud",
-                "sample_metadata",
-                "demultiplexed_duplicated_description.csv",
-                sep = "/"
-            )
-        ),
+        readSampleMetadataFile("demultiplexed_duplicated_description.csv"),
         paste(
             "has_no_duplicates :",
             "data\\[\\[\"description\"\\]\\] has a duplicate at position 2."
@@ -201,14 +155,8 @@ test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
 })
 
 test_that("readSampleMetadataFile : Multiplexed FASTQ", {
-    file <- paste(
-        "http://bcbiobase.seq.cloud",
-        "sample_metadata",
-        "multiplexed.xlsx",
-        sep = "/"
-    )
+    file <- "multiplexed.xlsx"
     meta <- readSampleMetadataFile(file)
-
     expect_identical(
         rownames(meta),
         c(
@@ -260,14 +208,7 @@ test_that("readSampleMetadataFile : Multiplexed FASTQ", {
 
     # Required column check failure
     expect_error(
-        readSampleMetadataFile(
-            paste(
-                "http://bcbiobase.seq.cloud",
-                "sample_metadata",
-                "multiplexed_missing_cols.csv",
-                sep = "/"
-            )
-        ),
+        readSampleMetadataFile("multiplexed_missing_cols.csv"),
         paste(
             "is_subset :",
             "The element 'index' in requiredCols is not in",
@@ -277,14 +218,7 @@ test_that("readSampleMetadataFile : Multiplexed FASTQ", {
 
     # Duplicate rows in `sampleName` column
     expect_error(
-        readSampleMetadataFile(
-            paste(
-                "http://bcbiobase.seq.cloud",
-                "sample_metadata",
-                "multiplexed_duplicated_sampleName.csv",
-                sep = "/"
-            )
-        ),
+        readSampleMetadataFile("multiplexed_duplicated_sampleName.csv"),
         paste(
             "has_no_duplicates :",
             "data\\[\\[\"sampleName\"\\]\\] has duplicates at positions 2, 4."
@@ -293,12 +227,7 @@ test_that("readSampleMetadataFile : Multiplexed FASTQ", {
 })
 
 test_that("readSampleMetadataFile : Legacy bcbio samplename column", {
-    file <- paste(
-        "http://bcbiobase.seq.cloud",
-        "sample_metadata",
-        "bcbio_legacy_samplename.csv",
-        sep = "/"
-    )
+    file <- "bcbio_legacy_samplename.csv"
     meta <- suppressWarnings(readSampleMetadataFile(file))
     expect_identical(
         meta,
@@ -334,14 +263,8 @@ test_that("readSampleMetadataFile : Legacy bcbio samplename column", {
 })
 
 test_that("readSampleMetadataFile : sampleID defined by user", {
-    file <- paste(
-        "http://bcbiobase.seq.cloud",
-        "sample_metadata",
-        "sampleID_column_defined.xlsx",
-        sep = "/"
-    )
     expect_error(
-        readSampleMetadataFile(file),
+        readSampleMetadataFile("sampleID_column_defined.xlsx"),
         paste(
             "are_disjoint_sets :",
             "\"sampleID\" and colnames\\(data\\) have common elements:",

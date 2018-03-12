@@ -1,13 +1,6 @@
 context("YAML Functions")
 
-yaml <- readYAML(
-    paste(
-        "http://bcbiobase.seq.cloud",
-        "bcbio",
-        "project-summary.yaml",
-        sep = "/"
-    )
-)
+yaml <- readYAML("project-summary.yaml")
 
 
 
@@ -80,14 +73,7 @@ test_that("sampleYAMLMetrics", {
     )
 
     # Check for proper handling of metrics with mismatched number of values
-    yaml2 <- readYAML(
-        paste(
-            "http://bcbiobase.seq.cloud",
-            "bcbio",
-            "project-summary-metrics-mismatch.yaml",
-            sep = "/"
-        )
-    )
+    yaml2 <- readYAML("project-summary-metrics-mismatch.yaml")
     metrics2 <- sampleYAMLMetrics(yaml2)
     expect_identical(
         lapply(metrics2, class),
