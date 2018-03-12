@@ -8,10 +8,4 @@
 #' @return No value.
 NULL
 
-
-
-# checkInterestingGroups
-
-
-
 # nocov end
