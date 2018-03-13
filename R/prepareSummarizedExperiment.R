@@ -183,7 +183,7 @@ prepareSummarizedExperiment <- function(
     # Metadata =================================================================
     metadata <- as.list(metadata)
     metadata[["date"]] <- Sys.Date()
-    metadata[["wd"]] <- normalizePath(".")
+    metadata[["wd"]] <- normalizePath(".", winslash = "/", mustWork = TRUE)
     metadata[["utilsSessionInfo"]] <- sessionInfo()
     metadata[["devtoolsSessionInfo"]] <- session_info(include_base = TRUE)
     metadata[["isSpike"]] <- as.character(isSpike)
