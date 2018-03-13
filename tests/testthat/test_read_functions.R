@@ -76,7 +76,7 @@ test_that("readProgramVersions : Missing file", {
 
 # readSampleMetadataFile =======================================================
 test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
-    file <- "demultiplexed.xlsx"
+    file <- "demultiplexed.csv"
     meta <- readSampleMetadataFile(file)
 
     # Check that names are sanitized correctly
@@ -155,7 +155,7 @@ test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
 })
 
 test_that("readSampleMetadataFile : Multiplexed FASTQ", {
-    file <- "multiplexed.xlsx"
+    file <- "multiplexed.csv"
     meta <- readSampleMetadataFile(file)
     expect_identical(
         rownames(meta),
@@ -264,7 +264,7 @@ test_that("readSampleMetadataFile : Legacy bcbio samplename column", {
 
 test_that("readSampleMetadataFile : sampleID defined by user", {
     expect_error(
-        readSampleMetadataFile("sampleID_column_defined.xlsx"),
+        readSampleMetadataFile("sampleID_column_defined.csv"),
         paste(
             "are_disjoint_sets :",
             "\"sampleID\" and colnames\\(data\\) have common elements:",

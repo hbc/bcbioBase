@@ -3,17 +3,17 @@ files <- c(
     "bcbio_legacy_samplename.csv",
     "bcbio-nextgen.log",
     "data_versions.csv",
-    "demultiplexed.xlsx",
+    "demultiplexed.csv",
     "demultiplexed_duplicated_description.csv",
     "demultiplexed_missing_cols.csv",
     "demultiplexed_with_sampleName.csv",
-    "multiplexed.xlsx",
+    "multiplexed.csv",
     "multiplexed_duplicated_sampleName.csv",
     "multiplexed_missing_cols.csv",
     "project-summary.yaml",
     "project-summary-metrics-mismatch.yaml",
     "programs.txt",
-    "sampleID_column_defined.xlsx"
+    "sampleID_column_defined.csv"
 )
 mapply(
     FUN = function(cacheURL, file, envir) {

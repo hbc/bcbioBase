@@ -10,7 +10,7 @@
 #'
 #' @inheritParams general
 #'
-#' @param file Metadata file. Supports CSV and XLSX file formats.
+#' @param file Metadata file. Supports CSV, TSV, and XLSX file formats.
 #' @param lanes *Optional*. Number of lanes used to split the samples into
 #'   technical replicates (`_LXXX`) suffix.
 #'
@@ -20,20 +20,19 @@
 #' @examples
 #' # Demultiplexed
 #' readSampleMetadataFile(
-#'     "http://bcbiobase.seq.cloud/demultiplexed.xlsx"
+#'     "http://bcbiobase.seq.cloud/demultiplexed.csv"
 #' ) %>%
 #'     glimpse()
 #'
 #' # Multiplexed (e.g. inDrop single-cell RNA-seq)
 #' readSampleMetadataFile(
-#'     "http://bcbiobase.seq.cloud/multiplexed.xlsx"
+#'     "http://bcbiobase.seq.cloud/multiplexed.csv"
 #' ) %>%
 #'     glimpse()
 readSampleMetadataFile <- function(file, lanes = 1L) {
     assert_is_a_string(file)
     assert_is_integer(lanes)
 
-    # Support CSV, TSV, or XLSX files automatically.
     # Works with local or remote files.
     data <- readFileByExtension(file)
 
