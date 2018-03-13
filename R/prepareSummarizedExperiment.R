@@ -120,7 +120,7 @@ prepareSummarizedExperiment <- function(
 
     # FASTA spike-ins: Create placeholder ranges
     setdiff <- setdiff(rownames(assay), names(rowRanges))
-    if (length(setdiff) && is.character(isSpike)) {
+    if (length(setdiff) && length(isSpike)) {
         assert_is_subset(isSpike, setdiff)
         setdiff <- setdiff %>%
             .[-match(isSpike, .)]
