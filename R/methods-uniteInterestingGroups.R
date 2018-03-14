@@ -7,6 +7,7 @@
 #' @name uniteInterestingGroups
 #' @author Michael Steinbaugh
 #'
+#' @inheritParams general
 #' @param object Object containing interesting groups in multiple columns.
 #' @param interestingGroups Character vector of interesting groups.
 #'

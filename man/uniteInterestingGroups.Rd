@@ -21,6 +21,8 @@ uniteInterestingGroups(object, ...)
 \arguments{
 \item{object}{Object containing interesting groups in multiple columns.}
 
+\item{...}{Additional arguments.}
+
 \item{interestingGroups}{Character vector of interesting groups.}
 }
 \value{
