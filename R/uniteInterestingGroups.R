@@ -4,6 +4,9 @@
 #' coloring in plots. When multiple interesting groups are present, unite into a
 #' single column, delimited by "`:`".
 #'
+#' @importFrom tibble is_tibble
+#' @importFrom tidyr unite
+#'
 #' @param object Object (e.g. `data.frame`) containing interesting groups
 #'   columns.
 #' @param interestingGroups Character vector of interesting groups.
@@ -24,16 +27,28 @@ uniteInterestingGroups <- function(object, interestingGroups) {
     assert_has_colnames(object)
     assert_is_character(interestingGroups)
     assertFormalInterestingGroups(object, interestingGroups)
-    class <- class(object)[[1L]]
-    # FIXME DataFrame is returning weird V_recycle error, so coerce
-    object <- as.data.frame(object)
-    object[["interestingGroups"]] <- apply(
-        X = object[, interestingGroups, drop = FALSE],
-        MARGIN = 1L,  # rows
-        FUN = paste,
-        collapse = ":"
-    ) %>%
-        # Ensure `interestingGroups` column is factor
-        factor()
-    as(object, class)
+    object[["interestingGroups"]] <- NULL
+    if (is_tibble(object)) {
+        object <- unite(
+            data = object,
+            col = interestingGroups,
+            !!!syms(interestingGroups),
+            sep = ":",
+            remove = FALSE
+        )
+    } else {
+        class <- class(object)[[1L]]
+        # DataFrame is returning weird V_recycle error, so coerce
+        object <- as.data.frame(object)
+        object[["interestingGroups"]] <- apply(
+            X = object[, interestingGroups, drop = FALSE],
+            MARGIN = 1L,  # rows
+            FUN = paste,
+            collapse = ":"
+        )
+        object <- as(object, class)
+    }
+    # Set the `interestingGroups` column as factor
+    object[["interestingGroups"]] <- as.factor(object[["interestingGroups"]])
+    object
 }
