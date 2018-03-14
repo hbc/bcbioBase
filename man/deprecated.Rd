@@ -8,6 +8,7 @@
 \alias{sampleMetadata}
 \alias{sampleMetadata<-}
 \alias{deprecated}
+\alias{annotable,SummarizedExperiment-method}
 \title{Defunct or Deprecated Functions}
 \usage{
 flatFiles(object, ...)
@@ -17,6 +18,8 @@ flatFiles(object, ...)
 sampleMetadata(object, ...)
 
 sampleMetadata(object, ...) <- value
+
+\S4method{annotable}{SummarizedExperiment}(object)
 }
 \value{
 No value.
