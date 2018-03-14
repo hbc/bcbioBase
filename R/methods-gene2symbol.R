@@ -35,8 +35,9 @@ setMethod(
     function(object) {
         validObject(object)
         data <- rowData(object)
+        assert_is_non_empty(data)
         data <- as.data.frame(data)
-        rownames(data) <- slot(object, "NAMES")
+        rownames(data) <- rownames(object)
         cols <- c("geneID", "geneName")
         assert_is_subset(cols, colnames(data))
         data <- data[, cols, drop = FALSE]
