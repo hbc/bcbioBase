@@ -7,11 +7,10 @@
 #' @name uniteInterestingGroups
 #' @author Michael Steinbaugh
 #'
-#' @param object Object (e.g. `data.frame`) containing interesting groups
-#'   columns.
+#' @param object Object containing interesting groups in multiple columns.
 #' @param interestingGroups Character vector of interesting groups.
 #'
-#' @return Object of same class, containing `interestingGroups` column.
+#' @return Object of same class, containing a united `interestingGroups` column.
 #' @export
 #'
 #' @examples

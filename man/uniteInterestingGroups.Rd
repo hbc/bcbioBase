@@ -19,13 +19,12 @@ uniteInterestingGroups(object, ...)
 \S4method{uniteInterestingGroups}{tbl_df}(object, interestingGroups)
 }
 \arguments{
-\item{object}{Object (e.g. \code{data.frame}) containing interesting groups
-columns.}
+\item{object}{Object containing interesting groups in multiple columns.}
 
 \item{interestingGroups}{Character vector of interesting groups.}
 }
 \value{
-Object of same class, containing \code{interestingGroups} column.
+Object of same class, containing a united \code{interestingGroups} column.
 }
 \description{
 Create a single interesting groups column ("\code{interestingGroups}") used for
