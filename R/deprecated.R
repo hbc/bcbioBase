@@ -13,6 +13,7 @@ NULL
 # v0.2.0 =======================================================================
 # `annotable()` deprecated in basejump v0.4.0
 #' @rdname deprecated
+#' @importFrom basejump annotable
 #' @importFrom SummarizedExperiment rowData
 #' @export
 setMethod(
