@@ -4,8 +4,6 @@
 #' coloring in plots. When multiple interesting groups are present, unite into a
 #' single column, delimited by "`:`".
 #'
-#' @importFrom tidyr unite
-#'
 #' @param object Object (e.g. `data.frame`) containing interesting groups
 #'   columns.
 #' @param interestingGroups Character vector of interesting groups.
@@ -26,23 +24,14 @@ uniteInterestingGroups <- function(object, interestingGroups) {
     assert_has_colnames(object)
     assert_is_character(interestingGroups)
     assertFormalInterestingGroups(object, interestingGroups)
-
     object[["interestingGroups"]] <- NULL
-
-    if (length(interestingGroups) > 1L) {
-        # For multiple groups, unite to a colon-separated string
-        object <- unite(
-            data = object,
-            col = interestingGroups,
-            !!!syms(interestingGroups),
-            sep = ":",
-            remove = FALSE
-        )
-    } else {
-        object[["interestingGroups"]] <- object[[interestingGroups]]
-    }
-
-    # Set the `interestingGroups` column as factor
-    object[["interestingGroups"]] <- as.factor(object[["interestingGroups"]])
+    object[["interestingGroups"]] <- apply(
+        X = as.data.frame(object[, interestingGroups, drop = FALSE]),
+        MARGIN = 1L,  # rows
+        FUN = paste,
+        collapse = ":"
+    ) %>%
+        # Ensure `interestingGroups` column is factor
+        as.factor()
     object
 }
