@@ -22,7 +22,7 @@ single column, delimited by "\code{:}".
 }
 \examples{
 meta <- readSampleMetadataFile(
-    "http://bcbiobase.seq.cloud/demultiplexed.xlsx"
+    "http://bcbiobase.seq.cloud/demultiplexed.csv"
 )
 meta <- uniteInterestingGroups(
     object = meta,

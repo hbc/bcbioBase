@@ -22,7 +22,7 @@ is requested by the user.
 }
 \examples{
 data <- readSampleMetadataFile(
-    "http://bcbiobase.seq.cloud/demultiplexed.xlsx"
+    "http://bcbiobase.seq.cloud/demultiplexed.csv"
 )
 
 # Deprecated

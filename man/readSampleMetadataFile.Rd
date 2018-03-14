@@ -7,7 +7,7 @@
 readSampleMetadataFile(file, lanes = 1L)
 }
 \arguments{
-\item{file}{Metadata file. Supports CSV and XLSX file formats.}
+\item{file}{Metadata file. Supports CSV, TSV, and XLSX file formats.}
 
 \item{lanes}{\emph{Optional}. Number of lanes used to split the samples into
 technical replicates (\code{_LXXX}) suffix.}
@@ -21,13 +21,13 @@ Read Sample Metadata File
 \examples{
 # Demultiplexed
 readSampleMetadataFile(
-    "http://bcbiobase.seq.cloud/demultiplexed.xlsx"
+    "http://bcbiobase.seq.cloud/demultiplexed.csv"
 ) \%>\%
     glimpse()
 
 # Multiplexed (e.g. inDrop single-cell RNA-seq)
 readSampleMetadataFile(
-    "http://bcbiobase.seq.cloud/multiplexed.xlsx"
+    "http://bcbiobase.seq.cloud/multiplexed.csv"
 ) \%>\%
     glimpse()
 }
