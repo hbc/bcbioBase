@@ -24,14 +24,16 @@ uniteInterestingGroups <- function(object, interestingGroups) {
     assert_has_colnames(object)
     assert_is_character(interestingGroups)
     assertFormalInterestingGroups(object, interestingGroups)
-    object[["interestingGroups"]] <- NULL
+    class <- class(object)[[1L]]
+    # FIXME DataFrame is returning weird V_recycle error, so coerce
+    object <- as.data.frame(object)
     object[["interestingGroups"]] <- apply(
-        X = as.data.frame(object[, interestingGroups, drop = FALSE]),
+        X = object[, interestingGroups, drop = FALSE],
         MARGIN = 1L,  # rows
         FUN = paste,
         collapse = ":"
     ) %>%
         # Ensure `interestingGroups` column is factor
-        as.factor()
-    object
+        factor()
+    as(object, class)
 }
