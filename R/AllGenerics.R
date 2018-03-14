@@ -134,3 +134,11 @@ setGeneric("selectSamples", function(object, ...) {
 setGeneric("tpm", function(object) {
     standardGeneric("tpm")
 })
+
+
+
+#' @rdname uniteInterestingGroups
+#' @export
+setGeneric("uniteInterestingGroups", function(object, ...) {
+    standardGeneric("uniteInterestingGroups")
+})
