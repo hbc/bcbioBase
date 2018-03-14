@@ -4,6 +4,7 @@
 #'
 #' @name readProgramVersions
 #' @family Read Functions
+#' @author Michael Steinbaugh
 #'
 #' @importFrom basejump localOrRemoteFile
 #' @importFrom readr read_csv

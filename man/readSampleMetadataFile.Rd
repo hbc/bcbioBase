@@ -36,3 +36,6 @@ Other Read Functions: \code{\link{readDataVersions}},
   \code{\link{readLogFile}},
   \code{\link{readProgramVersions}}
 }
+\author{
+Michael Steinbaugh
+}

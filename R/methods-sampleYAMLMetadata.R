@@ -2,6 +2,7 @@
 #'
 #' @name sampleYAMLMetadata
 #' @family YAML Functions
+#' @author Michael Steinbaugh
 #'
 #' @inherit sampleYAML
 #'

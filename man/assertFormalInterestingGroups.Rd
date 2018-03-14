@@ -38,3 +38,6 @@ tryCatch(
 \seealso{
 Other Assert Check Functions: \code{\link{checkInterestingGroups}}
 }
+\author{
+Michael Steinbaugh
+}

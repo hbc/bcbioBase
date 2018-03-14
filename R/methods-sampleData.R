@@ -9,6 +9,7 @@
 #'
 #' @name sampleData
 #' @family Metadata Functions
+#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #'

@@ -1,6 +1,7 @@
 #' Interesting Groups
 #'
 #' @name interestingGroups
+#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #'

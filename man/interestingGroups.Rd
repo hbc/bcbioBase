@@ -42,3 +42,6 @@ interestingGroups(se) <- "sampleID"
 interestingGroups(se)
 }
 }
+\author{
+Michael Steinbaugh
+}

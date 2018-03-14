@@ -1,5 +1,7 @@
 #' Prepare Sample Metadata
 #'
+#' @author Michael Steinbaugh
+#'
 #' @importFrom dplyr arrange everything mutate mutate_if select
 #' @importFrom magrittr set_rownames
 #' @importFrom tibble as_tibble

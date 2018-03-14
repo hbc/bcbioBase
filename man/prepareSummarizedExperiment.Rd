@@ -91,3 +91,6 @@ prepareSummarizedExperiment(
     isSpike = "EGFP"
 )
 }
+\author{
+Michael Steinbaugh
+}

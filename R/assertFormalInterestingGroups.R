@@ -4,6 +4,7 @@
 #' is requested by the user.
 #'
 #' @family Assert Check Functions
+#' @author Michael Steinbaugh
 #'
 #' @inherit assert
 #'

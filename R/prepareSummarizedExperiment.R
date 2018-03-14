@@ -11,6 +11,8 @@
 #' - `utilsSessionInfo`: [utils::sessionInfo().
 #' - `devtoolsSessionInfo`: [sessioninfo::session_info()].
 #'
+#' @author Michael Steinbaugh
+#'
 #' @importFrom basejump sanitizeColData
 #' @importFrom GenomeInfoDb seqnames
 #' @importFrom GenomicRanges GRanges

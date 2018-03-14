@@ -35,3 +35,6 @@ sampleYAMLMetrics(yaml) \%>\% glimpse()
 Other YAML Functions: \code{\link{sampleYAMLMetadata}},
   \code{\link{sampleYAML}}
 }
+\author{
+Michael Steinbaugh
+}

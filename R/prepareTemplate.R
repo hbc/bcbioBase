@@ -12,6 +12,7 @@
 #' - `bibliography.bib`
 #'
 #' @family R Markdown Functions
+#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #'

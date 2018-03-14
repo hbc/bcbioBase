@@ -28,3 +28,6 @@ Other Read Functions: \code{\link{readDataVersions}},
   \code{\link{readLogFile}},
   \code{\link{readSampleMetadataFile}}
 }
+\author{
+Michael Steinbaugh
+}

@@ -2,6 +2,7 @@
 #'
 #' @name sampleYAML
 #' @family YAML Functions
+#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #'

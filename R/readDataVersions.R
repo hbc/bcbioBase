@@ -3,6 +3,7 @@
 #' @note bcbio doesn't save data versions when run in fast mode.
 #'
 #' @family Read Functions
+#' @author Michael Steinbaugh
 #'
 #' @importFrom basejump localOrRemoteFile
 #' @importFrom readr read_csv

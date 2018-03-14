@@ -1,7 +1,5 @@
 # TODO Add working example
 
-
-
 #' Sample Directories
 #'
 #' @author Michael Steinbaugh

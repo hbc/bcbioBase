@@ -2,6 +2,7 @@
 #'
 #' @name readSampleMetadataFile
 #' @family Read Functions
+#' @author Michael Steinbaugh
 #'
 #' @importFrom basejump camel readFileByExtension removeNA
 #' @importFrom Biostrings reverseComplement

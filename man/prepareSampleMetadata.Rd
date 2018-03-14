@@ -15,3 +15,6 @@ prepareSampleMetadata(object)
 \description{
 Prepare Sample Metadata
 }
+\author{
+Michael Steinbaugh
+}
