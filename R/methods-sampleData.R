@@ -13,7 +13,7 @@
 #'
 #' @inheritParams general
 #'
-#' @param return `DataFrame`, `data.frame`, or unmodified (`AsIs`).
+#' @param return `data.frame` (default), `DataFrame`, or unmodified (`AsIs`).
 #'
 #' @return Sample metadata. Note that the samples are defined in the rows,
 #'   similar to [colData()].
@@ -25,11 +25,13 @@ NULL
 #' @importFrom SummarizedExperiment colData
 .sampleData <- function(
     object,
-    return = c("DataFrame", "data.frame", "AsIs"),
+    return = c("data.frame", "DataFrame", "AsIs"),
     ...
 ) {
     return <- match.arg(return)
-    data <- colData(object)
+    data <- colData(object, ...)
+    # Ensure all columns are factors
+    data <- sanitizeColData(data)
     if (return != "AsIs") {
         data <- as(data, return)
     }
@@ -41,6 +43,7 @@ NULL
 #' @importFrom basejump sanitizeColData
 #' @importFrom SummarizedExperiment colData<-
 `.sampleData<-` <- function(object, ..., value) {
+    # Ensure all columns are factors
     value <- sanitizeColData(value)
     colData(object) <- value
     object
