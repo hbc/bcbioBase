@@ -13,7 +13,7 @@ sampleData(object, ...)
 
 sampleData(object, ...) <- value
 
-\S4method{sampleData}{ANY}(object, return = c("DataFrame", "data.frame",
+\S4method{sampleData}{ANY}(object, return = c("data.frame", "DataFrame",
   "AsIs"), ...)
 
 \S4method{sampleData}{ANY}(object, ...) <- value
@@ -25,7 +25,7 @@ sampleData(object, ...) <- value
 
 \item{value}{Value to assign.}
 
-\item{return}{\code{DataFrame}, \code{data.frame}, or unmodified (\code{AsIs}).}
+\item{return}{\code{data.frame} (default), \code{DataFrame}, or unmodified (\code{AsIs}).}
 }
 \value{
 Sample metadata. Note that the samples are defined in the rows,
