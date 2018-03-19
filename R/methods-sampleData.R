@@ -22,6 +22,7 @@ NULL
 
 
 # Constructors =================================================================
+#' @importFrom basejump sanitizeSampleData
 #' @importFrom SummarizedExperiment colData
 .sampleData <- function(
     object,
@@ -31,7 +32,7 @@ NULL
     return <- match.arg(return)
     data <- colData(object, ...)
     # Ensure all columns are factors
-    data <- sanitizeColData(data)
+    data <- sanitizeSampleData(data)
     if (return != "AsIs") {
         data <- as(data, return)
     }
@@ -40,11 +41,11 @@ NULL
 
 
 
-#' @importFrom basejump sanitizeColData
+#' @importFrom basejump sanitizeSampleData
 #' @importFrom SummarizedExperiment colData<-
 `.sampleData<-` <- function(object, ..., value) {
     # Ensure all columns are factors
-    value <- sanitizeColData(value)
+    value <- sanitizeSampleData(value)
     colData(object) <- value
     object
 }
