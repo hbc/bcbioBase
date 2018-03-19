@@ -13,7 +13,6 @@
 #'
 #' @author Michael Steinbaugh
 #'
-#' @importFrom basejump sanitizeColData
 #' @importFrom GenomeInfoDb seqnames
 #' @importFrom GenomicRanges GRanges
 #' @importFrom scales percent
@@ -180,7 +179,6 @@ prepareSummarizedExperiment <- function(
             as("DataFrame")
     }
     assert_are_identical(colnames(assay), rownames(colData))
-    colData <- sanitizeColData(colData)
 
     # Metadata =================================================================
     metadata <- as.list(metadata)
