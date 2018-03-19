@@ -88,7 +88,10 @@ prepareSummarizedExperiment <- function(
     metadata = NULL,
     isSpike = NULL
 ) {
-    assert_is_any_of(assays, c("list", "ShallowSimpleListAssays"))
+    assert_is_any_of(
+        x = assays,
+        classes = c("list", "ShallowSimpleListAssays", "SimpleList")
+    )
     assert_is_all_of(rowRanges, "GRanges")
     assert_is_any_of(
         x = colData,
