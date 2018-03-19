@@ -191,6 +191,7 @@ prepareSummarizedExperiment <- function(
     metadata[["devtoolsSessionInfo"]] <- session_info(include_base = TRUE)
     metadata[["isSpike"]] <- as.character(isSpike)
     metadata[["unannotatedRows"]] <- as.character(setdiff)
+    metadata <- Filter(Negate(is.null), metadata)
 
     # Return ===================================================================
     SummarizedExperiment(
