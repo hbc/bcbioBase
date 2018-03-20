@@ -18,13 +18,12 @@
 #' @export
 #'
 #' @examples
-#' readProgramVersions(
-#'     "http://bcbiobase.seq.cloud/programs.txt"
-#' )
+#' readProgramVersions("http://bcbiobase.seq.cloud/programs.txt")
 readProgramVersions <- function(file) {
     assert_is_a_string(file)
-    # Warn if this file is missing
-    file <- localOrRemoteFile(file, severity = "warning")
+    file <- suppressWarnings(
+        localOrRemoteFile(file, severity = "warning")
+    )
     if (is.null(file)) {
         return(tibble())
     }

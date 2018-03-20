@@ -18,14 +18,13 @@
 #' @export
 #'
 #' @examples
-#' readDataVersions(
-#'     "http://bcbiobase.seq.cloud/data_versions.csv"
-#' ) %>%
+#' readDataVersions("http://bcbiobase.seq.cloud/data_versions.csv") %>%
 #'     glimpse()
 readDataVersions <- function(file) {
     assert_is_a_string(file)
-    # Warn if this file is missing
-    file <- localOrRemoteFile(file, severity = "warning")
+    file <- suppressWarnings(
+        localOrRemoteFile(file, severity = "warning")
+    )
     if (is.null(file)) {
         return(tibble())
     }
