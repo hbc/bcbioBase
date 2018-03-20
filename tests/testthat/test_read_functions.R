@@ -10,15 +10,9 @@ test_that("readDataVersions", {
     )
 })
 
-test_that("readDataVersions : Missing file", {
-    expect_warning(
-        readDataVersions("XXX.csv"),
-        "is_existing_file :"
-    )
+test_that("readDataVersions : Silent on missing file", {
     expect_identical(
-        suppressWarnings(
-            readDataVersions("XXX.csv")
-        ),
+        readDataVersions("XXX.csv"),
         tibble::tibble()
     )
 })
@@ -59,15 +53,9 @@ test_that("readProgramVersions", {
     )
 })
 
-test_that("readProgramVersions : Missing file", {
-    expect_warning(
-        readProgramVersions("XXX.txt"),
-        "is_existing_file :"
-    )
+test_that("readProgramVersions : Silent on missing file", {
     expect_identical(
-        suppressWarnings(
-            readProgramVersions("XXX.txt")
-        ),
+        readProgramVersions("XXX.txt"),
         tibble::tibble()
     )
 })
