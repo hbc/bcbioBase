@@ -10,13 +10,14 @@ readDataVersions(file)
 \item{file}{Data versions CSV file.}
 }
 \value{
-\code{data.frame}.
+\code{tbl_df}.
 }
 \description{
 Read Data Versions
 }
 \note{
-bcbio doesn't save data versions when run in fast mode.
+The \code{data_versions.csv} file is only generated for special genomes
+containing additional information (e.g. the built-in "hg38" build).
 }
 \examples{
 readDataVersions(

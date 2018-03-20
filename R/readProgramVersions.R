@@ -8,12 +8,13 @@
 #'
 #' @importFrom basejump localOrRemoteFile
 #' @importFrom readr read_csv
+#' @importFrom tibble tibble
 #'
 #' @inheritParams readSampleMetadataFile
 #'
 #' @param file Program versions TXT file.
 #'
-#' @return `data.frame`.
+#' @return `tbl_df`.
 #' @export
 #'
 #' @examples
@@ -22,9 +23,10 @@
 #' )
 readProgramVersions <- function(file) {
     assert_is_a_string(file)
+    # Warn if this file is missing
     file <- localOrRemoteFile(file, severity = "warning")
     if (is.null(file)) {
-        return(NULL)
+        return(tibble())
     }
     # bcbio outputs programs.txt, but is comma separated!
     read_csv(

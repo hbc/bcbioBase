@@ -1,18 +1,20 @@
 #' Read Data Versions
 #'
-#' @note bcbio doesn't save data versions when run in fast mode.
+#' @note The `data_versions.csv` file is only generated for special genomes
+#' containing additional information (e.g. the built-in "hg38" build).
 #'
 #' @family Read Functions
 #' @author Michael Steinbaugh
 #'
 #' @importFrom basejump localOrRemoteFile
 #' @importFrom readr read_csv
+#' @importFrom tibble tibble
 #'
 #' @inheritParams readSampleMetadataFile
 #'
 #' @param file Data versions CSV file.
 #'
-#' @return `data.frame`.
+#' @return `tbl_df`.
 #' @export
 #'
 #' @examples
@@ -22,9 +24,10 @@
 #'     glimpse()
 readDataVersions <- function(file) {
     assert_is_a_string(file)
+    # Warn if this file is missing
     file <- localOrRemoteFile(file, severity = "warning")
     if (is.null(file)) {
-        return(NULL)
+        return(tibble())
     }
     read_csv(file)
 }

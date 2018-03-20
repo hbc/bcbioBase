@@ -10,7 +10,7 @@ readProgramVersions(file)
 \item{file}{Program versions TXT file.}
 }
 \value{
-\code{data.frame}.
+\code{tbl_df}.
 }
 \description{
 Read Program Versions
