@@ -4,6 +4,8 @@
 #'
 #' @author Michael Steinbaugh
 #'
+#' @importFrom stringr str_trunc
+#'
 #' @param uploadDir bcbio run upload directory.
 #'
 #' @return Named character vector containing sample directory paths. Function
@@ -40,7 +42,8 @@ sampleDirs <- function(uploadDir) {
 
     inform(paste(
         length(sampleDirs), "samples detected:",
-        toString(names(sampleDirs))
+        str_trunc(toString(names(sampleDirs)), width = 80L),
+        sep = "\n"
     ))
 
     sampleDirs
