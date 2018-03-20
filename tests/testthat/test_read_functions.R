@@ -19,7 +19,7 @@ test_that("readDataVersions : Missing file", {
         suppressWarnings(
             readDataVersions("XXX.csv")
         ),
-        NULL
+        tibble::tibble()
     )
 })
 
@@ -68,7 +68,7 @@ test_that("readProgramVersions : Missing file", {
         suppressWarnings(
             readProgramVersions("XXX.txt")
         ),
-        NULL
+        tibble::tibble()
     )
 })
 
