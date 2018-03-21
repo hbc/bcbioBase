@@ -14,7 +14,7 @@ sampleData(object, ...)
 sampleData(object, ...) <- value
 
 \S4method{sampleData}{ANY}(object, return = c("data.frame", "DataFrame",
-  "AsIs"), ...)
+  "kable"))
 
 \S4method{sampleData}{ANY}(object, ...) <- value
 }
@@ -25,11 +25,11 @@ sampleData(object, ...) <- value
 
 \item{value}{Value to assign.}
 
-\item{return}{\code{data.frame} (default), \code{DataFrame}, or unmodified (\code{AsIs}).}
+\item{return}{Object class to return. Uses \code{\link[=match.arg]{match.arg()}} internally and picks
+the first item in the vector by default.}
 }
 \value{
-Sample metadata. Note that the samples are defined in the rows,
-similar to \code{\link[=colData]{colData()}}.
+Data describing the samples.
 }
 \description{
 Return the sample metadata.

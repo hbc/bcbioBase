@@ -13,30 +13,36 @@
 #'
 #' @inheritParams general
 #'
-#' @param return `data.frame` (default), `DataFrame`, or unmodified (`AsIs`).
-#'
-#' @return Sample metadata. Note that the samples are defined in the rows,
-#'   similar to [colData()].
+#' @return Data describing the samples.
 NULL
 
 
 
 # Constructors =================================================================
 #' @importFrom basejump sanitizeSampleData
+#' @importFrom knitr kable
 #' @importFrom SummarizedExperiment colData
 .sampleData <- function(
     object,
-    return = c("data.frame", "DataFrame", "AsIs"),
-    ...
+    return = c("data.frame", "DataFrame", "kable")
 ) {
     return <- match.arg(return)
-    data <- colData(object, ...)
+    data <- colData(object)
     # Ensure all columns are factors
     data <- sanitizeSampleData(data)
-    if (return != "AsIs") {
-        data <- as(data, return)
+    if (return == "kable") {
+        blacklist <- c("description", "fileName", "sampleID")
+        data %>%
+            as.data.frame() %>%
+            .[, setdiff(colnames(.), blacklist), drop = FALSE] %>%
+            # Ensure `sampleName` is first
+            .[, unique(c("sampleName", colnames(.))), drop = FALSE] %>%
+            # Arrange by `sampleName`
+            .[order(.[["sampleName"]]), , drop = FALSE] %>%
+            kable(row.names = FALSE)
+    } else {
+        as(data, return)
     }
-    data
 }
 
 
