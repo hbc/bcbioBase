@@ -41,7 +41,7 @@ sampleDirs <- function(uploadDir) {
     names(sampleDirs) <- names
 
     inform(paste(
-        length(sampleDirs), "samples detected:",
+        paste(length(sampleDirs), "samples detected:"),
         str_trunc(toString(names(sampleDirs)), width = 80L),
         sep = "\n"
     ))
