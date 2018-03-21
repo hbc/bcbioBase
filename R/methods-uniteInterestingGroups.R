@@ -28,7 +28,10 @@ NULL
 
 
 # Constructors =================================================================
-.uniteInterestingGroups.base <- function(object, interestingGroups) {
+.uniteInterestingGroups.base <- function(  # nolint
+    object,
+    interestingGroups
+) {
     assert_has_colnames(object)
     assert_is_character(interestingGroups)
     assertFormalInterestingGroups(object, interestingGroups)
@@ -49,7 +52,10 @@ NULL
 
 #' @importFrom tibble is_tibble
 #' @importFrom tidyr unite
-.uniteInterestingGroups.tidy <- function(object, interestingGroups) {
+.uniteInterestingGroups.tidy <- function(  # nolint
+    object,
+    interestingGroups
+) {
     assert_is_any_of(object, "tbl_df")
     assert_has_colnames(object)
     assert_is_character(interestingGroups)

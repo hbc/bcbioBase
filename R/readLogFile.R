@@ -14,9 +14,7 @@
 #' @export
 #'
 #' @examples
-#' readLogFile(
-#'     "http://bcbiobase.seq.cloud/bcbio-nextgen.log"
-#' ) %>%
+#' readLogFile("http://bcbiobase.seq.cloud/bcbio-nextgen.log") %>%
 #'     head()
 readLogFile <- function(file) {
     assert_is_a_string(file)

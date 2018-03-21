@@ -40,16 +40,6 @@
 #' prepareTemplate("bibliography.bib")
 #' file.exists("bibliography.bib")
 #' unlink("bibliography.bib")
-#'
-#' # Load the shared files from bcbioSingleCell
-#' \dontrun{
-#' prepareTemplate(
-#'     sourceDir = system.file(
-#'         "rmarkdown/shared",
-#'         package = "bcbioSingleCell"
-#'     )
-#' )
-#' }
 prepareTemplate <- function(
     file = c(
         "_output.yaml",

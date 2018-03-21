@@ -19,15 +19,11 @@
 #'
 #' @examples
 #' # Demultiplexed
-#' readSampleMetadataFile(
-#'     "http://bcbiobase.seq.cloud/demultiplexed.csv"
-#' ) %>%
+#' readSampleMetadataFile("http://bcbiobase.seq.cloud/demultiplexed.csv") %>%
 #'     glimpse()
 #'
 #' # Multiplexed (e.g. inDrop single-cell RNA-seq)
-#' readSampleMetadataFile(
-#'     "http://bcbiobase.seq.cloud/multiplexed.csv"
-#' ) %>%
+#' readSampleMetadataFile("http://bcbiobase.seq.cloud/multiplexed.csv") %>%
 #'     glimpse()
 readSampleMetadataFile <- function(file, lanes = 1L) {
     assert_is_a_string(file)

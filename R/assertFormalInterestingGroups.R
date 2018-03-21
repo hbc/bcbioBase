@@ -18,15 +18,7 @@
 #' data <- readSampleMetadataFile(
 #'     "http://bcbiobase.seq.cloud/demultiplexed.csv"
 #' )
-#'
-#' # Success
 #' assertFormalInterestingGroups(data, interestingGroups = "genotype")
-#'
-#' # Failure
-#' tryCatch(
-#'     assertFormalInterestingGroups(data, interestingGroups = "XXX"),
-#'     error = function(e) e
-#' )
 assertFormalInterestingGroups <- function(
     x,
     interestingGroups,

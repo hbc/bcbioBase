@@ -14,17 +14,6 @@
 #'
 #' @return Valid character of defined interesting groups. Stop on failure.
 #' @export
-#'
-#' @examples
-#' data <- readSampleMetadataFile(
-#'     "http://bcbiobase.seq.cloud/demultiplexed.csv"
-#' )
-#'
-#' # Deprecated
-#' tryCatch(
-#'     checkInterestingGroups(object = data, interestingGroups = "genotype"),
-#'     warning = function(w) w
-#' )
 checkInterestingGroups <- function(
     object,
     interestingGroups,

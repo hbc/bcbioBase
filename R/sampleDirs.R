@@ -1,5 +1,3 @@
-# TODO Add working example
-
 #' Sample Directories
 #'
 #' @author Michael Steinbaugh
@@ -11,12 +9,6 @@
 #' @return Named character vector containing sample directory paths. Function
 #'   will abort if no sample directories match.
 #' @export
-#'
-#' @examples
-#' \dontrun{
-#' uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
-#' sampleDirs(uploadDir)
-#' }
 sampleDirs <- function(uploadDir) {
     assert_all_are_dirs(uploadDir)
     uploadDir <- normalizePath(uploadDir, winslash = "/", mustWork = TRUE)

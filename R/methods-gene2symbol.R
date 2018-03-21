@@ -1,5 +1,3 @@
-# TODO Improve error message if dataset is transcript level?
-
 #' Gene to Symbol Mappings
 #'
 #' @name gene2symbol
@@ -11,14 +9,6 @@
 #'
 #' @return `data.frame` containing Ensembl gene identifier and gene name
 #'   (aka symbol) mappings.
-#'
-#' @examples
-#' \dontrun{
-#' load(system.file("extdata/se.rda", package = "bcbioBase"))
-#'
-#' # SummarizedExperiment
-#' gene2symbol(se) %>% head()
-#' }
 NULL
 
 
