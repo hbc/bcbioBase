@@ -6,7 +6,6 @@ files <- c(
     "demultiplexed.csv",
     "demultiplexed_duplicated_description.csv",
     "demultiplexed_missing_cols.csv",
-    "demultiplexed_with_sampleName.csv",
     "multiplexed.csv",
     "multiplexed_duplicated_sampleName.csv",
     "multiplexed_missing_cols.csv",

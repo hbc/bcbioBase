@@ -65,23 +65,23 @@ test_that("readProgramVersions : Silent on missing file", {
 # readSampleMetadataFile =======================================================
 test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
     file <- "demultiplexed.csv"
-    meta <- readSampleMetadataFile(file)
+    x <- readSampleMetadataFile(file)
 
     # Check that names are sanitized correctly
     rows <- c("sample_1", "sample_2", "sample_3", "sample_4")
-    expect_identical(as.character(meta[["sampleID"]]), rows)
-    expect_identical(rownames(meta), rows)
+    expect_identical(as.character(x[["sampleID"]]), rows)
+    expect_identical(rownames(x), rows)
 
     # Check that column names get set correctly
     expect_identical(
-        colnames(meta),
+        colnames(x),
         c("sampleID", "sampleName", "description", "fileName", "genotype")
     )
 
     # Lane-split technical replicate support
-    meta <- readSampleMetadataFile(file, lanes = 4L)
+    x <- readSampleMetadataFile(file, lanes = 4L)
     expect_identical(
-        rownames(meta)[1L:8L],
+        rownames(x)[1L:8L],
         c(
             "sample_1_L001",
             "sample_1_L002",
@@ -93,32 +93,23 @@ test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
             "sample_2_L004"
         )
     )
+    # Check that make.names is applied correctly
     expect_identical(
-        meta[1L, metadataPriorityCols],
+        x[1L, metadataPriorityCols],
         data.frame(
             sampleID = factor(
                 "sample_1_L001",
-                levels = levels(meta[["sampleID"]])
+                levels = levels(x[["sampleID"]])
             ),
             sampleName = factor(
-                "sample 1_L001",
-                levels = levels(meta[["sampleName"]])
+                "sample.1_L001",
+                levels = levels(x[["sampleName"]])
             ),
             description = factor(
-                "sample 1_L001",
-                levels = levels(meta[["description"]])
+                "sample.1_L001",
+                levels = levels(x[["description"]])
             ),
             row.names = "sample_1_L001"
-        )
-    )
-
-    # Error on file containing redundant `description` and `sampleName` columns
-    expect_error(
-        readSampleMetadataFile("demultiplexed_with_sampleName.csv"),
-        paste(
-            "are_disjoint_sets :",
-            "\"sampleName\" and colnames\\(data\\) have common elements:",
-            "sampleName."
         )
     )
 
