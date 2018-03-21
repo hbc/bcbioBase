@@ -33,8 +33,8 @@ setMethod(
 #' @rdname deprecated
 #' @export
 prepareSampleMetadata <- function(...) {
-    .Deprecated("sampleData")
-    sampleData(...)
+    .Deprecated("prepareSampleData")
+    prepareSampleData(...)
 }
 
 # nocov end
