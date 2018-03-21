@@ -30,6 +30,7 @@ Encoding: UTF-8
 LazyData: TRUE
 Depends:
     R (>= 3.4),
+    SummarizedExperiment (>= 1.6.5),
     basejump (>= 0.4)
 Imports:
     Biostrings,
@@ -37,9 +38,9 @@ Imports:
     GenomicRanges,
     IRanges,
     S4Vectors,
-    SummarizedExperiment (>= 1.6.5),
     assertive (>= 0.3),
     dplyr (>= 0.7),
+    knitr,
     magrittr (>= 1.5),
     methods,
     rdrop2 (>= 0.8),
