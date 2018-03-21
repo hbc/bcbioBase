@@ -22,6 +22,7 @@ NULL
 .sampleYAMLMetrics <- function(yaml) {
     # Early return on NULL metrics (fast mode)
     fastMode <- "Fast mode detected: No sample metrics were calculated"
+
     if (is.null(yaml[["samples"]][[1L]][["summary"]][["metrics"]])) {
         warn(fastMode)
         return(NULL)
@@ -47,12 +48,15 @@ NULL
         mutate_if(is.factor, as.character) %>%
         mutate_if(numericAsCharacter, as.numeric) %>%
         mutate_if(is.character, as.factor) %>%
-        prepareSampleMetadata() %>%
-        # Drop any sample metadata ID columns
-        .[, setdiff(
-            x = colnames(.),
-            y = c(metadataPriorityCols, "name")
-        ), drop = FALSE]
+        as.data.frame %>%
+        set_rownames(make.names(.[["description"]], unique = TRUE)) %>%
+        # Drop any metadata columns
+        .[,
+          sort(setdiff(
+              x = colnames(.),
+              y = c(metadataPriorityCols, "name")
+          )),
+          drop = FALSE]
 }
 
 
