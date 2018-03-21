@@ -2,7 +2,7 @@
 #'
 #' @author Michael Steinbaugh
 #'
-#' @importFrom dplyr arrange everything mutate mutate_if select
+#' @importFrom dplyr arrange everything mutate_all select
 #' @importFrom magrittr set_rownames
 #' @importFrom tibble as_tibble
 #'
@@ -35,8 +35,8 @@ prepareSampleData <- function(object) {
     )
 
     object %>%
-        mutate_if(is.character, as.factor) %>%
-        mutate_if(is.factor, droplevels) %>%
+        mutate_all(as.factor) %>%
+        mutate_all(droplevels) %>%
         select(metadataPriorityCols, everything()) %>%
         arrange(!!!syms(metadataPriorityCols)) %>%
         as.data.frame() %>%
