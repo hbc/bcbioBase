@@ -49,53 +49,33 @@ test_that("sampleYAMLMetadata", {
 
 # sampleYAMLMetrics ============================================================
 test_that("sampleYAMLMetrics", {
-    metrics <- sampleYAMLMetrics(yaml)
-    expect_identical(
-        lapply(metrics, class),
-        list(
-            xGC = "numeric",
-            x5x3Bias = "numeric",  # 5'3 now sanitized to 5x3 in camel
-            averageInsertSize = "numeric",
-            duplicates = "numeric",
-            duplicationRateOfMapped = "numeric",
-            exonicRate = "numeric",
-            intergenicRate = "numeric",
-            intronicRate = "numeric",
-            mappedPairedReads = "numeric",
-            mappedReads = "numeric",
-            qualityFormat = "factor",
-            sequenceLength = "factor",
-            sequencesFlaggedAsPoorQuality = "numeric",
-            totalReads = "numeric",
-            rrna = "numeric",
-            rrnaRate = "numeric"
-        )
+    classChecks <- list(
+        "averageInsertSize" = "numeric",
+        "duplicates" = "numeric",
+        "duplicationRateOfMapped" = "numeric",
+        "exonicRate" = "numeric",
+        "intergenicRate" = "numeric",
+        "intronicRate" = "numeric",
+        "mappedPairedReads" = "numeric",
+        "mappedReads" = "numeric",
+        "qualityFormat" = "factor",
+        "rrna" = "numeric",
+        "rrnaRate" = "numeric",
+        "sequenceLength" = "factor",
+        "sequencesFlaggedAsPoorQuality" = "numeric",
+        "totalReads" = "numeric",
+        "x5x3Bias" = "numeric",  # 5'3 now sanitized to 5x3 in camel
+        "xGC" = "numeric"
     )
 
+    x <- sampleYAMLMetrics(yaml)
+    expect_identical(lapply(x, class), classChecks)
+
     # Check for proper handling of metrics with mismatched number of values
-    yaml2 <- readYAML("project-summary-metrics-mismatch.yaml")
-    metrics2 <- sampleYAMLMetrics(yaml2)
-    expect_identical(
-        lapply(metrics2, class),
-        list(
-            xGC = "numeric",
-            x5x3Bias = "numeric",
-            averageInsertSize = "numeric",
-            duplicates = "numeric",
-            duplicationRateOfMapped = "numeric",
-            exonicRate = "numeric",
-            intergenicRate = "numeric",
-            intronicRate = "numeric",
-            mappedPairedReads = "numeric",
-            mappedReads = "numeric",
-            qualityFormat = "factor",
-            sequenceLength = "numeric",  # factor in the main example
-            sequencesFlaggedAsPoorQuality = "numeric",
-            totalReads = "numeric",
-            rrna = "numeric",
-            rrnaRate = "numeric"
-        )
-    )
+    yaml <- readYAML("project-summary-metrics-mismatch.yaml")
+    x <- sampleYAMLMetrics(yaml)
+    classChecks[["sequenceLength"]] <- "numeric"
+    expect_identical(lapply(x, class), classChecks)
 })
 
 test_that("sampleYAMLMetrics : Fast mode", {
