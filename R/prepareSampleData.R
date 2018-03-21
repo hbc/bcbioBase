@@ -1,4 +1,4 @@
-#' Prepare Sample Metadata
+#' Prepare Sample Data
 #'
 #' @author Michael Steinbaugh
 #'
@@ -10,7 +10,7 @@
 #'
 #' @return `data.frame`.
 #' @export
-prepareSampleMetadata <- function(object) {
+prepareSampleData <- function(object) {
     assert_has_dimnames(object)
     object <- as_tibble(object)
     assert_is_subset("description", colnames(object))

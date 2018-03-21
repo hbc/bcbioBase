@@ -19,9 +19,7 @@ Read Program Versions
 bcbio doesn't save program versions when run in fast mode.
 }
 \examples{
-readProgramVersions(
-    "http://bcbiobase.seq.cloud/programs.txt"
-)
+readProgramVersions("http://bcbiobase.seq.cloud/programs.txt")
 }
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},

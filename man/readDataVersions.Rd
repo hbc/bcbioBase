@@ -20,9 +20,7 @@ The \code{data_versions.csv} file is only generated for special genomes
 containing additional information (e.g. the built-in "hg38" build).
 }
 \examples{
-readDataVersions(
-    "http://bcbiobase.seq.cloud/data_versions.csv"
-) \%>\%
+readDataVersions("http://bcbiobase.seq.cloud/data_versions.csv") \%>\%
     glimpse()
 }
 \seealso{

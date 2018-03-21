@@ -10,7 +10,6 @@
 #' @importFrom stringr str_pad
 #'
 #' @inheritParams general
-#'
 #' @param file Metadata file. Supports CSV, TSV, and XLSX file formats.
 #' @param lanes *Optional*. Number of lanes used to split the samples into
 #'   technical replicates (`_LXXX`) suffix.
@@ -32,38 +31,46 @@
 #'     glimpse()
 readSampleMetadataFile <- function(file, lanes = 1L) {
     assert_is_a_string(file)
-    assert_is_integer(lanes)
+    assertIsAnImplicitInteger(lanes)
 
     # Works with local or remote files.
-    data <- readFileByExtension(file)
+    data <- readFileByExtension(file) %>%
+        camel() %>%
+        removeNA()
 
     # Don't allow the user to manually define `sampleID` column
     assert_are_disjoint_sets("sampleID", colnames(data))
 
-    # Warn on legacy `samplename` column. We need to work on improving the
-    # consistency in examples or the internal handlng of file and sample
-    # names in a future update.
+    # Warn on legacy `samplename` column. This is used in some bcbio
+    # documentation examples, and we need to work on improving the consistency.
     if ("samplename" %in% colnames(data)) {
         warn(paste(
             "`samplename` (note case) is used in some bcbio examples for",
             "FASTQ file names and `description` for sample names.",
-            "Here we are requiring `fileName for FASTQ file names",
+            "Here we are requiring `fileName` for FASTQ file names",
             "(e.g. `control_replicate_1.fastq.gz`),",
-            "`description` for multiplexed per file sample names",
-            "(e.g. `control replicate 1`, and `sampleName` for multiplexed",
+            "`description` for demultiplexed per file sample names",
+            "(e.g. `control_replicate_1`, and `sampleName` for multiplexed",
             "sample names (i.e. inDrop barcoded samples)."
         ))
-        data <- dplyr::rename(data, fileName = .data[["samplename"]])
+        data[["fileName"]] <- data[["samplename"]]
+        data[["samplename"]] <- NULL
     }
 
     # Check for basic required columns
     requiredCols <- c("fileName", "description")
     assert_is_subset(requiredCols, colnames(data))
 
+    # Valid rows must contain both `fileName` and `description`
+    data <- data %>%
+        .[!is.na(.[["fileName"]]), , drop = FALSE] %>%
+        .[!is.na(.[["description"]]), , drop = FALSE]
+
     # Determine whether the samples are multiplexed, based on the presence
     # of duplicate values in the `description` column
-    if (any(duplicated(data[["fileName"]])) || "index" %in% colnames(data)) {
+    if (any(duplicated(data[["fileName"]]))) {
         multiplexed <- TRUE
+        inform("Multiplexed samples detected")
     } else {
         multiplexed <- FALSE
     }
@@ -71,21 +78,12 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
     if (isTRUE(multiplexed)) {
         requiredCols <- c(requiredCols, "sampleName", "index")
         assert_is_subset(requiredCols, colnames(data))
-        assert_has_no_duplicates(data[["sampleName"]])
     } else {
-        assert_has_no_duplicates(data[["description"]])
-        assert_are_disjoint_sets("sampleName", colnames(data))
-        data[["sampleName"]] <- data[["description"]]
+        # Set `sampleName` column as `description` if unset
+        if (!"sampleName" %in% colnames(data)) {
+            data[["sampleName"]] <- data[["description"]]
+        }
     }
-
-    data <- data %>%
-        # Valid rows must contain `description` and `sampleName`. Imported Excel
-        # files can contain empty rows, so this helps correct that problem.
-        .[!is.na(.[["description"]]), , drop = FALSE] %>%
-        .[!is.na(.[["sampleName"]]), , drop = FALSE] %>%
-        # Strip all NA rows and columns
-        removeNA() %>%
-        camel()
 
     # Prepare metadata for lane split replicates. This step will expand rows
     # into the number of desired replicates.
@@ -98,13 +96,24 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
             ) %>%
             left_join(data, by = "description") %>%
             ungroup() %>%
+            # Ensure `description` and `sampleName` don't contain spaces
+            # upon lane expansion
             mutate(
                 description = paste(
-                    .data[["description"]], .data[["lane"]], sep = "_"),
+                    make.names(.data[["description"]], unique = FALSE),
+                    .data[["lane"]],
+                    sep = "_"
+                ),
                 sampleName = paste(
-                    .data[["sampleName"]], .data[["lane"]], sep = "_")
+                    make.names(.data[["sampleName"]], unique = FALSE),
+                    .data[["lane"]],
+                    sep = "_"
+                )
             )
     }
+
+    # Ensure that `sampleName` is unique
+    assert_has_no_duplicates(data[["sampleName"]])
 
     # This code is only applicable to multiplexed files used for single-cell
     # RNA-seq analysis. For bcbio single-cell RNA-seq, the multiplexed per
@@ -113,41 +122,42 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
     # (`sequence`). This is the current behavior for the inDrop pipeline.
     # Let's check for an ACGT sequence and use the revcomp if there's a
     # match. Otherwise just return the `sampleName` as the `sampleID`.
-    if (
-        isTRUE(multiplexed) &&
-        is.character(data[["sequence"]])
-    ) {
-        detectSequence <- all(grepl("^[ACGT]{6,}", data[["sequence"]]))
-        if (isTRUE(detectSequence)) {
-            data[["revcomp"]] <- vapply(
-                X = data[["sequence"]],
-                FUN = function(x) {
-                    x %>%
-                        as("character") %>%
-                        as("DNAStringSet") %>%
-                        reverseComplement() %>%
-                        as("character")
-                },
-                FUN.VALUE = character(1L)
-            )
-            # Match the sample directories exactly here, using the hyphen.
-            # We'll sanitize into valid names using `make.names()` in
-            # the final return chain.
+    if (isTRUE(multiplexed)) {
+        if (is.character(data[["sequence"]])) {
+            detectSequence <- all(grepl("^[ACGT]{6,}", data[["sequence"]]))
+            if (isTRUE(detectSequence)) {
+                data[["revcomp"]] <- vapply(
+                    X = data[["sequence"]],
+                    FUN = function(x) {
+                        x %>%
+                            as("character") %>%
+                            as("DNAStringSet") %>%
+                            reverseComplement() %>%
+                            as("character")
+                    },
+                    FUN.VALUE = character(1L)
+                )
+                # Match the sample directories exactly here, using the hyphen.
+                # We'll sanitize into valid names using `make.names()` in
+                # the final return chain.
+                data[["sampleID"]] <- paste(
+                    data[["description"]],
+                    data[["revcomp"]],
+                    sep = "-"
+                )
+            }
+        } else {
+            # Fall back to using index (e.g. cellranger)
             data[["sampleID"]] <- paste(
                 data[["description"]],
-                data[["revcomp"]],
+                data[["index"]],
                 sep = "-"
             )
         }
+    } else {
+        # Sanitize description column for demultiplexed samples
+        data[["sampleID"]] <- data[["description"]]
     }
 
-    # Default to sanitized `sampleName` column for `sampleID`
-    if (!"sampleID" %in% colnames(data)) {
-        data[["sampleID"]] <- data[["sampleName"]]
-    }
-
-    data %>%
-        mutate_all(as.factor) %>%
-        mutate_all(droplevels) %>%
-        prepareSampleMetadata()
+    prepareSampleData(data)
 }
