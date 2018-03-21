@@ -71,14 +71,12 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
     if (any(duplicated(data[["fileName"]]))) {
         multiplexed <- TRUE
         inform("Multiplexed samples detected")
-    } else {
-        multiplexed <- FALSE
-    }
-
-    if (isTRUE(multiplexed)) {
         requiredCols <- c(requiredCols, "sampleName", "index")
         assert_is_subset(requiredCols, colnames(data))
     } else {
+        multiplexed <- FALSE
+        inform("Demultiplexed samples detected")
+        assert_has_no_duplicates(data[["description"]])
         # Set `sampleName` column as `description` if unset
         if (!"sampleName" %in% colnames(data)) {
             data[["sampleName"]] <- data[["description"]]
