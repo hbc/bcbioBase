@@ -19,8 +19,7 @@ NULL
 #' @importFrom dplyr mutate_all
 .sampleYAMLMetadata <- function(yaml) {
     sampleYAML(yaml = yaml, keys = "metadata") %>%
-        mutate_all(as.factor) %>%
-        prepareSampleMetadata()
+        prepareSampleData()
 }
 
 
