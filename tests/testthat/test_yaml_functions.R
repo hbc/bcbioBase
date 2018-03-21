@@ -83,7 +83,7 @@ test_that("sampleYAMLMetrics : Fast mode", {
 
     # Subset to only include the first sample
     single <- yaml
-    single[["samples"]] <- single[["samples"]][1L]
+    single[["samples"]] <- head(single[["samples"]], 1L)
 
     # NULL metrics
     nullmetrics <- single

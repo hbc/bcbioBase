@@ -1,6 +1,6 @@
 context("uniteInterestingGroups")
 
-test_that("Single interesting group" , {
+test_that("Single interesting group", {
     data <- uniteInterestingGroups(mtcars, interestingGroups = "gear")
     expect_identical(
         data[["interestingGroups"]],
