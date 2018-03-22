@@ -20,17 +20,6 @@ Valid character of defined interesting groups. Stop on failure.
 Prevent unwanted downstream behavior when a missing interesting group
 is requested by the user.
 }
-\examples{
-data <- readSampleMetadataFile(
-    "http://bcbiobase.seq.cloud/demultiplexed.csv"
-)
-
-# Deprecated
-tryCatch(
-    checkInterestingGroups(object = data, interestingGroups = "genotype"),
-    warning = function(w) w
-)
-}
 \seealso{
 Other Assert Check Functions: \code{\link{assertFormalInterestingGroups}}
 }

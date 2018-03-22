@@ -30,18 +30,6 @@ Character vector.
 \description{
 Interesting Groups
 }
-\examples{
-\dontrun{
-load(system.file("extdata/se.rda", package = "bcbioBase"))
-
-# SummarizedExperiment
-interestingGroups(se)
-
-# Assignment support
-interestingGroups(se) <- "sampleID"
-interestingGroups(se)
-}
-}
 \author{
 Michael Steinbaugh
 }

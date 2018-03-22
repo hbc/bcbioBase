@@ -16,12 +16,6 @@ will abort if no sample directories match.
 \description{
 Sample Directories
 }
-\examples{
-\dontrun{
-uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
-sampleDirs(uploadDir)
-}
-}
 \author{
 Michael Steinbaugh
 }

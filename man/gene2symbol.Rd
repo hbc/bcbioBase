@@ -18,14 +18,6 @@
 \description{
 Gene to Symbol Mappings
 }
-\examples{
-\dontrun{
-load(system.file("extdata/se.rda", package = "bcbioBase"))
-
-# SummarizedExperiment
-gene2symbol(se) \%>\% head()
-}
-}
 \author{
 Michael Steinbaugh
 }

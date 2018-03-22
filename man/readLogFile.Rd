@@ -16,9 +16,7 @@ Character vector.
 Read Log File
 }
 \examples{
-readLogFile(
-    "http://bcbiobase.seq.cloud/bcbio-nextgen.log"
-) \%>\%
+readLogFile("http://bcbiobase.seq.cloud/bcbio-nextgen.log") \%>\%
     head()
 }
 \seealso{
