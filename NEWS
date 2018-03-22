@@ -1,3 +1,55 @@
+## bcbioBase 0.2.0 (2018-03-22)
+
+### Major changes
+
+- Added `sampleData()` generic. Providing method support for
+  `SummarizedExperiment` class. This generic provides consistent sample
+  metadata support in both the [bcbioRNASeq][] and [bcbioSingleCell][]
+  packages. For [bcbioSingleCell][], `colData()` returns information about the
+  cells, not the samples. For [bcbioRNASeq][], `colData()` and `sampleData()`
+  provide similar information on the samples.
+- Added `uniteInterestingGroups()` as a generic. Provides support for adding
+  an `interestingGroups` column to a data frame.
+- Added `SummarizedExperiment` method support for `gene2symbol()`,
+  `interestingGroups()` generics.
+- Converted `prepareSummarizedExperiment()` from a generic to a standard
+  function.
+- `prepareSummarizedExperiment()` now requires rowRanges and supports FASTA
+  spike-ins with `isSpike` argument. This helps set up a `SingleCellExperiment`
+  object in the [bcbioSingleCell][] package.
+- `prepareTemplate()` has been converted from a generic to a standard
+  function.
+- `readDataVersions()` and `readProgramVersions()` now return an empty tibble
+  if the file is missing. bcbio doesn't always output these files, so we have
+  changed the behavior from stopping on a missing file to simply warning and
+  returning empty.
+- Added `sampleDirs()` function, that informs the user about the names of the
+  sample directories in the bcbio run.
+
+### Minor changes
+
+- Improved internal factor sanitization of sample metadata for
+  `readSampleMetadataFile()` and `sampleYAMLMetadata()`.
+- Exporting `projectDirPattern` to match bcbio project directories (e.g.
+  `2018-01-01_rnaseq`) across packages.
+- Changed default of `rdsToken` in `copyToDropbox()` to be `NULL` instead of
+  `NA`.
+- Reduced the number of imports from basejump package.
+- Now using `sessioninfo::session_info()` instead of
+  `devtools::session_info()`.
+- Added AppVeyor CI support for code testing on Windows.
+- Made Travis CI checking stricter and added `BiocCheck()`.
+- Simplified package dependencies in DESCRIPTION.
+
+### Deprecations
+
+- Deprecated `sampleMetadata()` in favor of `sampleData()`.
+- Deprecated `flatFiles()` in favor of using `as(object, "list")` coercion
+  method instead.
+- Deprecated `prepareSampleMetadata()` in favor of `prepareSampleData()`.
+- Made `annotable()` method on `SummarizedExperiment` objects defunct.
+
+
 ## bcbioBase 0.1.4 (2018-02-20)
 
 - Don't include sample metadata in `summaryYAMLMetrics()` return.
