@@ -38,9 +38,6 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="news/index.html">News</a>
-</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -60,28 +57,28 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-    <div id="bcbiobase" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#bcbiobase" class="anchor"></a>bcbioBase</h1></div>
+    <div class="section level1">
+<div class="page-header"><h1>bcbioBase</h1></div>
 
 <p>Base functions and generics for <a href="https://bcbio-nextgen.readthedocs.io">bcbio</a> <a href="https://www.r-project.org">R</a> packages.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2>Installation</h2>
 <p>This is an <a href="https://www.r-project.org">R</a> package.</p>
-<div id="bioconductor-method" class="section level3">
-<h3 class="hasAnchor">
-<a href="#bioconductor-method" class="anchor"></a><a href="https://bioconductor.org">Bioconductor</a> method</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">"https://bioconductor.org/biocLite.R"</span>)
-<span class="kw">biocLite</span>(
-    <span class="st">"hbc/bcbioBase"</span>,
-    <span class="dt">dependencies =</span> <span class="kw">c</span>(<span class="st">"Depends"</span>, <span class="st">"Imports"</span>, <span class="st">"Suggests"</span>)
-)</code></pre></div>
+<div class="section level3">
+<h3>
+<a href="https://bioconductor.org">Bioconductor</a> method</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">source</span>(<span class="st">"https://bioconductor.org/biocLite.R"</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">biocLite</span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">biocLite</span>(<span class="st">"GenomeInfoDbData"</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">biocLite</span>(</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="st">"hbc/bcbioBase"</span>,</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">    <span class="dt">dependencies =</span> <span class="kw">c</span>(<span class="st">"Depends"</span>, <span class="st">"Imports"</span>, <span class="st">"Suggests"</span>)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">)</a></code></pre></div>
 </div>
-<div id="conda-method" class="section level3">
-<h3 class="hasAnchor">
-<a href="#conda-method" class="anchor"></a><a href="https://conda.io">conda</a> method</h3>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">conda</span> install -c bioconda r-bcbiobase</code></pre></div>
+<div class="section level3">
+<h3>
+<a href="https://conda.io">conda</a> method</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="ex">conda</span> install -c bioconda r-bcbiobase</a></code></pre></div>
 </div>
 </div>
 </div>
@@ -100,8 +97,10 @@
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>
-<a href="http://steinbaugh.com">Michael Steinbaugh</a> <br><small class="roles"> Author, maintainer </small> </li>
-<li>Rory Kirchner <br><small class="roles"> Author </small> </li>
+<a href="http://steinbaugh.com">Michael Steinbaugh</a> <br><small class="roles"> Author, maintainer </small> <br><small>(0000-0002-2403-2221)</small>
+</li>
+<li>
+<a href="https://github.com/roryk">Rory Kirchner</a> <br><small class="roles"> Author </small> </li>
 <li>
 <a href="http://bioinformatics.sph.harvard.edu">Harvard Chan Bioinformatics Core</a> <br><small class="roles"> Copyright holder, funder </small> </li>
 </ul>
@@ -118,7 +117,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="http://steinbaugh.com">Michael Steinbaugh</a>, Rory Kirchner, <a href="http://bioinformatics.sph.harvard.edu">Harvard Chan Bioinformatics Core</a>.</p>
+  <p>Developed by <a href="http://steinbaugh.com">Michael Steinbaugh</a>, <a href="https://github.com/roryk">Rory Kirchner</a>, <a href="http://bioinformatics.sph.harvard.edu">Harvard Chan Bioinformatics Core</a>.</p>
 </div>
 
 <div class="pkgdown">

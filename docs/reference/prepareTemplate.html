@@ -60,9 +60,6 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
-</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -91,30 +88,20 @@
 versions from the package website. <em>Existing files are never overwritten.</em></p>
     
 
-    <pre class="usage"><span class='fu'>prepareTemplate</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for missing</span>
-<span class='fu'>prepareTemplate</span>(<span class='no'>object</span>, <span class='kw'>sourceDir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-
-<span class='co'># S4 method for character</span>
-<span class='fu'>prepareTemplate</span>(<span class='no'>object</span>, <span class='kw'>sourceDir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>prepareTemplate</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"_output.yaml"</span>, <span class='st'>"_footer.Rmd"</span>, <span class='st'>"_header.Rmd"</span>,
+  <span class='st'>"_setup.R"</span>, <span class='st'>"bibliography.bib"</span>), <span class='kw'>sourceDir</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"rmarkdown/shared"</span>,
+  <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"bcbioBase"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p><em>Optional</em>. File name. If <code>NULL</code> (default), download the
-default dependency files for a new experiment.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
+      <th>file</th>
+      <td><p>File name.</p></td>
     </tr>
     <tr>
       <th>sourceDir</th>
-      <td><p>Source directory, typically a URL, where the dependency
-files are located.</p></td>
+      <td><p>Source directory.</p></td>
     </tr>
     </table>
     
@@ -144,21 +131,18 @@ files are located.</p></td>
 
 <span class='co'># Copy all of the default shared template files</span>
 <span class='fu'>prepareTemplate</span>()
-<span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_exists</a></span>(<span class='no'>defaultFiles</span>)</div><div class='output co'>#&gt;      _footer.Rmd      _header.Rmd     _output.yaml         _setup.R 
-#&gt;             TRUE             TRUE             TRUE             TRUE 
-#&gt; bibliography.bib 
-#&gt;             TRUE </div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/delete.html'>file_delete</a></span>(<span class='no'>defaultFiles</span>)
+<span class='fu'>file.exists</span>(<span class='no'>defaultFiles</span>)</div><div class='output co'>#&gt; [1] TRUE TRUE TRUE TRUE TRUE</div><div class='input'><span class='fu'>unlink</span>(<span class='no'>defaultFiles</span>)
 
 <span class='co'># Request individual files</span>
 <span class='fu'>prepareTemplate</span>(<span class='st'>"bibliography.bib"</span>)
-<span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_exists</a></span>(<span class='st'>"bibliography.bib"</span>)</div><div class='output co'>#&gt; bibliography.bib 
-#&gt;             TRUE </div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/delete.html'>file_delete</a></span>(<span class='st'>"bibliography.bib"</span>)
+<span class='fu'>file.exists</span>(<span class='st'>"bibliography.bib"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>unlink</span>(<span class='st'>"bibliography.bib"</span>)
 
 <span class='co'># Load the shared files from bcbioSingleCell</span></div><span class='co'># NOT RUN {</span>
 <span class='fu'>prepareTemplate</span>(
     <span class='kw'>sourceDir</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(
         <span class='st'>"rmarkdown/shared"</span>,
-        <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"bcbioSingleCell"</span>)
+        <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"bcbioSingleCell"</span>
+    )
 )
 <span class='co'># }</span></pre>
   </div>
@@ -174,12 +158,16 @@ files are located.</p></td>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
+    <h2>Author</h2>
+    
+Michael Steinbaugh
+
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, Rory Kirchner, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
+  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, <a href='https://github.com/roryk'>Rory Kirchner</a>, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
 </div>
 
 <div class="pkgdown">

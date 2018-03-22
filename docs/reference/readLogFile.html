@@ -60,9 +60,6 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
-</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -107,16 +104,16 @@
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>Other File Utilities: <code><a href='readDataVersions.html'>readDataVersions</a></code></p>
+    <p>Other Read Functions: <code><a href='readDataVersions.html'>readDataVersions</a></code>,
+  <code><a href='readProgramVersions.html'>readProgramVersions</a></code>,
+  <code><a href='readSampleMetadataFile.html'>readSampleMetadataFile</a></code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>url</span> <span class='kw'>&lt;-</span> <span class='fu'>paste</span>(
-    <span class='st'>"http://bcbiobase.seq.cloud"</span>,
-    <span class='st'>"bcbio"</span>,
-    <span class='st'>"bcbio-nextgen.log"</span>,
-    <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"/"</span>)
-<span class='fu'>readLogFile</span>(<span class='no'>url</span>) <span class='kw'>%&gt;%</span> <span class='fu'>head</span>()</div><div class='output co'>#&gt; [1] "[2017-08-15T14:53Z] compute-a-16-44.o2.rc.hms.harvard.edu: System YAML configuration: /n/app/bcbio/dev/galaxy/bcbio_system.yaml"                       
+    <pre class="examples"><div class='input'><span class='fu'>readLogFile</span>(
+    <span class='st'>"http://bcbiobase.seq.cloud/bcbio-nextgen.log"</span>
+) <span class='kw'>%&gt;%</span>
+    <span class='fu'>head</span>()</div><div class='output co'>#&gt; [1] "[2017-08-15T14:53Z] compute-a-16-44.o2.rc.hms.harvard.edu: System YAML configuration: /n/app/bcbio/dev/galaxy/bcbio_system.yaml"                       
 #&gt; [2] "[2017-08-15T14:54Z] compute-a-16-44.o2.rc.hms.harvard.edu: Timing: organize samples"                                                                   
 #&gt; [3] "[2017-08-15T14:54Z] compute-a-16-44.o2.rc.hms.harvard.edu: ipython: organize_samples"                                                                  
 #&gt; [4] "[2017-08-15T14:54Z] compute-a-16-44.o2.rc.hms.harvard.edu: Using input YAML configuration: /n/scratch2/XXX/indrop_rnaseq/config/indrop_rnaseq.yaml"    
@@ -135,12 +132,16 @@
       <li><a href="#examples">Examples</a></li>
     </ul>
 
+    <h2>Author</h2>
+    
+Michael Steinbaugh
+
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, Rory Kirchner, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
+  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, <a href='https://github.com/roryk'>Rory Kirchner</a>, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
 </div>
 
 <div class="pkgdown">

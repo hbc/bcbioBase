@@ -60,9 +60,6 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
-</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -97,7 +94,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>file</th>
-      <td><p>Metadata file. Supports CSV and XLSX file formats.</p></td>
+      <td><p>Metadata file. Supports CSV, TSV, and XLSX file formats.</p></td>
     </tr>
     <tr>
       <th>lanes</th>
@@ -108,17 +105,26 @@ technical replicates (<code>_LXXX</code>) suffix.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data.frame.</p>
+    <p><code>data.frame</code>.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p>Other Read Functions: <code><a href='readDataVersions.html'>readDataVersions</a></code>,
+  <code><a href='readLogFile.html'>readLogFile</a></code>,
+  <code><a href='readProgramVersions.html'>readProgramVersions</a></code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Demultiplexed</span>
-<span class='no'>demultiplexed</span> <span class='kw'>&lt;-</span> <span class='fu'>paste</span>(
-    <span class='st'>"http://bcbiobase.seq.cloud"</span>,
-    <span class='st'>"sample_metadata"</span>,
-    <span class='st'>"demultiplexed.xlsx"</span>,
-    <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"/"</span>)
-<span class='fu'>readSampleMetadataFile</span>(<span class='no'>demultiplexed</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.xlsx</span></div><div class='output co'>#&gt; Observations: 4
+<span class='fu'>readSampleMetadataFile</span>(
+    <span class='st'>"http://bcbiobase.seq.cloud/demultiplexed.csv"</span>
+) <span class='kw'>%&gt;%</span>
+    <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
+#&gt; <span class='message'>cols(</span>
+#&gt; <span class='message'>  fileName = col_character(),</span>
+#&gt; <span class='message'>  description = col_character(),</span>
+#&gt; <span class='message'>  genotype = col_character()</span>
+#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'>Demultiplexed samples detected</span></div><div class='output co'>#&gt; Observations: 4
 #&gt; Variables: 5
 #&gt; $ sampleID    &lt;fct&gt; sample_1, sample_2, sample_3, sample_4
 #&gt; $ sampleName  &lt;fct&gt; sample 1, sample 2, sample 3, sample 4
@@ -126,12 +132,17 @@ technical replicates (<code>_LXXX</code>) suffix.</p></td>
 #&gt; $ fileName    &lt;fct&gt; sample1_R1.fastq.gz, sample2_R1.fastq.gz, sample3_R1.fa...
 #&gt; $ genotype    &lt;fct&gt; wildtype, wildtype, mutant, mutant</div><div class='input'>
 <span class='co'># Multiplexed (e.g. inDrop single-cell RNA-seq)</span>
-<span class='no'>multiplexed</span> <span class='kw'>&lt;-</span> <span class='fu'>paste</span>(
-    <span class='st'>"http://bcbiobase.seq.cloud"</span>,
-    <span class='st'>"sample_metadata"</span>,
-    <span class='st'>"multiplexed.xlsx"</span>,
-    <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"/"</span>)
-<span class='fu'>readSampleMetadataFile</span>(<span class='no'>multiplexed</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; <span class='message'>Reading multiplexed.xlsx</span></div><div class='output co'>#&gt; Observations: 7
+<span class='fu'>readSampleMetadataFile</span>(
+    <span class='st'>"http://bcbiobase.seq.cloud/multiplexed.csv"</span>
+) <span class='kw'>%&gt;%</span>
+    <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; <span class='message'>Reading multiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
+#&gt; <span class='message'>cols(</span>
+#&gt; <span class='message'>  fileName = col_character(),</span>
+#&gt; <span class='message'>  description = col_character(),</span>
+#&gt; <span class='message'>  index = col_integer(),</span>
+#&gt; <span class='message'>  sequence = col_character(),</span>
+#&gt; <span class='message'>  sampleName = col_character()</span>
+#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'>Multiplexed samples detected</span></div><div class='output co'>#&gt; Observations: 7
 #&gt; Variables: 7
 #&gt; $ sampleID    &lt;fct&gt; run_1_CAGTTATG, run_1_TTACCTCC, run_2_ATAGCCTT, run_2_C...
 #&gt; $ sampleName  &lt;fct&gt; sample 2, sample 1, sample 5, sample 4, sample 6, sampl...
@@ -147,16 +158,22 @@ technical replicates (<code>_LXXX</code>) suffix.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
+
+    <h2>Author</h2>
+    
+Michael Steinbaugh
 
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, Rory Kirchner, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
+  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, <a href='https://github.com/roryk'>Rory Kirchner</a>, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
 </div>
 
 <div class="pkgdown">

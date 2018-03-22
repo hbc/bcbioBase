@@ -60,9 +60,6 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
-</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -100,7 +97,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>yaml</th>
-      <td><p>Project summary YAML list.</p></td>
+      <td><p>Project summary YAML <code>list</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -110,24 +107,23 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><a href='http://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a>.</p>
+    <p><code>tibble</code>.</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>bcbio doesn't calculate sample metrics when run in fast mode.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>Other YAML Utilities: <code>sampleYAMLMetadata</code>,
+    <p>Other YAML Functions: <code>sampleYAMLMetadata</code>,
   <code>sampleYAML</code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>url</span> <span class='kw'>&lt;-</span> <span class='fu'>paste</span>(
-    <span class='st'>"http://bcbiobase.seq.cloud"</span>,
-    <span class='st'>"bcbio"</span>,
-    <span class='st'>"project-summary.yaml"</span>,
-    <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"/"</span>)
-<span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/basejump/topics/readYAML'>readYAML</a></span>(<span class='no'>url</span>)</div><div class='output co'>#&gt; <span class='message'>Reading project-summary.yaml</span></div><div class='input'><span class='fu'>sampleYAMLMetrics</span>(<span class='no'>yaml</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; Observations: 4
+    <pre class="examples"><div class='input'><span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/basejump/topics/readYAML'>readYAML</a></span>(
+    <span class='st'>"http://bcbiobase.seq.cloud/project-summary.yaml"</span>
+)</div><div class='output co'>#&gt; <span class='message'>Reading project-summary.yaml</span></div><div class='input'><span class='fu'>sampleYAMLMetrics</span>(<span class='no'>yaml</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; Observations: 4
 #&gt; Variables: 16
-#&gt; $ xGC                           &lt;dbl&gt; 48, 48, 47, 48
-#&gt; $ x5x3Bias                      &lt;dbl&gt; 1.01, 1.04, 1.00, 0.98
 #&gt; $ averageInsertSize             &lt;dbl&gt; 0, 0, 0, 0
 #&gt; $ duplicates                    &lt;dbl&gt; 0, 0, 0, 0
 #&gt; $ duplicationRateOfMapped       &lt;dbl&gt; 0.5574675, 0.5890465, 0.5772400, 0.58...
@@ -137,11 +133,13 @@
 #&gt; $ mappedPairedReads             &lt;dbl&gt; 0, 0, 0, 0
 #&gt; $ mappedReads                   &lt;dbl&gt; 22062337, 25852621, 25172084, 25100941
 #&gt; $ qualityFormat                 &lt;fct&gt; standard, standard, standard, standard
+#&gt; $ rrna                          &lt;dbl&gt; 42218.64, 48275.49, 38893.78, 40831.69
+#&gt; $ rrnaRate                      &lt;dbl&gt; 0.002069408, 0.001970088, 0.001665623...
 #&gt; $ sequenceLength                &lt;fct&gt; 25-75, 25-75, 25-75, 25-75
 #&gt; $ sequencesFlaggedAsPoorQuality &lt;dbl&gt; 0, 0, 0, 0
 #&gt; $ totalReads                    &lt;dbl&gt; 22339941, 26168288, 25490090, 25399483
-#&gt; $ rrna                          &lt;dbl&gt; 42218.64, 48275.49, 38893.78, 40831.69
-#&gt; $ rrnaRate                      &lt;dbl&gt; 0.002069408, 0.001970088, 0.001665623...</div></pre>
+#&gt; $ x5x3Bias                      &lt;dbl&gt; 1.01, 1.04, 1.00, 0.98
+#&gt; $ xGC                           &lt;dbl&gt; 48, 48, 47, 48</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -150,17 +148,23 @@
       
       <li><a href="#value">Value</a></li>
 
+      <li><a href="#note">Note</a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
+
+    <h2>Author</h2>
+    
+Michael Steinbaugh
 
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, Rory Kirchner, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
+  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, <a href='https://github.com/roryk'>Rory Kirchner</a>, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
 </div>
 
 <div class="pkgdown">
