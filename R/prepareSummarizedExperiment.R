@@ -15,9 +15,10 @@
 #'
 #' @importFrom GenomeInfoDb seqnames
 #' @importFrom GenomicRanges GRanges
+#' @importFrom SummarizedExperiment SummarizedExperiment
+#' @importFrom basejump makeNames
 #' @importFrom scales percent
 #' @importFrom sessioninfo session_info
-#' @importFrom SummarizedExperiment SummarizedExperiment
 #' @importFrom tibble has_rownames
 #' @importFrom utils sessionInfo
 #'
@@ -111,11 +112,11 @@ prepareSummarizedExperiment <- function(
     assert_has_no_duplicates(rownames(assay))
     assert_has_no_duplicates(colnames(assay))
     assert_are_identical(
-        x = make.names(rownames(assay), unique = TRUE, allow_ = TRUE),
+        x = makeNames(rownames(assay), unique = TRUE),
         y = rownames(assay)
     )
     assert_are_identical(
-        x = make.names(colnames(assay), unique = TRUE, allow_ = TRUE),
+        x = makeNames(colnames(assay), unique = TRUE),
         y = colnames(assay)
     )
 

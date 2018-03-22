@@ -2,6 +2,7 @@
 #'
 #' @author Michael Steinbaugh
 #'
+#' @importFrom basejump makeNames
 #' @importFrom dplyr arrange everything mutate_all select
 #' @importFrom magrittr set_rownames
 #' @importFrom tibble as_tibble
@@ -28,11 +29,7 @@ prepareSampleData <- function(object) {
     # Ensure `sampleID` has valid names. This allows for input of samples
     # beginning with numbers or containing hyphens for example, which aren't
     # valid names in R.
-    object[["sampleID"]] <- gsub(
-        x = make.names(object[["sampleID"]], unique = TRUE),
-        pattern = "\\.",
-        replacement = "_"
-    )
+    object[["sampleID"]] <- makeNames(object[["sampleID"]], unique = TRUE)
 
     object %>%
         mutate_all(as.factor) %>%

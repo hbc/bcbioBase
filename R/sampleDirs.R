@@ -2,6 +2,7 @@
 #'
 #' @author Michael Steinbaugh
 #'
+#' @importFrom basejump makeNames
 #' @importFrom stringr str_trunc
 #'
 #' @param uploadDir bcbio run upload directory.
@@ -27,10 +28,7 @@ sampleDirs <- function(uploadDir) {
     assert_is_non_empty(sampleDirs)
 
     # Generate names from file paths and make valid
-    names <- basename(sampleDirs) %>%
-        make.names(unique = TRUE) %>%
-        gsub("\\.", "_", .)
-    names(sampleDirs) <- names
+    names(sampleDirs) <- makeNames(basename(sampleDirs), unique = TRUE)
 
     inform(paste(
         paste(length(sampleDirs), "samples detected:"),

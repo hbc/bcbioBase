@@ -93,7 +93,7 @@ test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
             "sample_2_L004"
         )
     )
-    # Check that make.names is applied correctly
+    # Check that makeNames is applied correctly
     expect_identical(
         x[1L, metadataPriorityCols],
         data.frame(
@@ -102,11 +102,11 @@ test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
                 levels = levels(x[["sampleID"]])
             ),
             sampleName = factor(
-                "sample.1_L001",
+                "sample_1_L001",
                 levels = levels(x[["sampleName"]])
             ),
             description = factor(
-                "sample.1_L001",
+                "sample_1_L001",
                 levels = levels(x[["description"]])
             ),
             row.names = "sample_1_L001"

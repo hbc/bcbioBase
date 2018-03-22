@@ -18,6 +18,7 @@ NULL
 
 
 # Constructors =================================================================
+#' @importFrom basejump makeNames
 #' @importFrom dplyr mutate_if
 .sampleYAMLMetrics <- function(yaml) {
     # Early return on NULL metrics (fast mode)
@@ -49,7 +50,7 @@ NULL
         mutate_if(numericAsCharacter, as.numeric) %>%
         mutate_if(is.character, as.factor) %>%
         as.data.frame %>%
-        set_rownames(make.names(.[["description"]], unique = TRUE)) %>%
+        set_rownames(makeNames(.[["description"]], unique = TRUE)) %>%
         # Drop any metadata columns
         .[,
           sort(setdiff(

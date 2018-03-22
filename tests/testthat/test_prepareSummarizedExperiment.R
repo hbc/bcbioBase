@@ -103,7 +103,7 @@ test_that("Strict names", {
             rowRanges = rowRanges,
             colData = colData
         ),
-        "are_identical : make.names\\(rownames\\(assay\\)"
+        "are_identical : makeNames\\(rownames\\(assay\\)"
     )
     matBadCols <- mat
     colnames(matBadCols) <- paste0(colnames(matBadCols), "-XXX")
@@ -113,7 +113,7 @@ test_that("Strict names", {
             rowRanges = rowRanges,
             colData = colData
         ),
-        "are_identical : make.names\\(colnames\\(assay\\)"
+        "are_identical : makeNames\\(colnames\\(assay\\)"
     )
 })
 

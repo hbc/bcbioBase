@@ -4,7 +4,7 @@
 #' @family Read Functions
 #' @author Michael Steinbaugh
 #'
-#' @importFrom basejump camel readFileByExtension removeNA
+#' @importFrom basejump camel makeNames readFileByExtension removeNA
 #' @importFrom Biostrings reverseComplement
 #' @importFrom dplyr group_by left_join mutate mutate_all ungroup
 #' @importFrom stringr str_pad
@@ -94,12 +94,12 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
             # upon lane expansion
             mutate(
                 description = paste(
-                    make.names(.data[["description"]], unique = FALSE),
+                    makeNames(.data[["description"]], unique = FALSE),
                     .data[["lane"]],
                     sep = "_"
                 ),
                 sampleName = paste(
-                    make.names(.data[["sampleName"]], unique = FALSE),
+                    makeNames(.data[["sampleName"]], unique = FALSE),
                     .data[["lane"]],
                     sep = "_"
                 )
@@ -132,8 +132,7 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
                     FUN.VALUE = character(1L)
                 )
                 # Match the sample directories exactly here, using the hyphen.
-                # We'll sanitize into valid names using `make.names()` in
-                # the final return chain.
+                # We'll sanitize into valid names in `prepareSampleData()` call
                 data[["sampleID"]] <- paste(
                     data[["description"]],
                     data[["revcomp"]],
