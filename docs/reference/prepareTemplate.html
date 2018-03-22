@@ -135,16 +135,7 @@ versions from the package website. <em>Existing files are never overwritten.</em
 
 <span class='co'># Request individual files</span>
 <span class='fu'>prepareTemplate</span>(<span class='st'>"bibliography.bib"</span>)
-<span class='fu'>file.exists</span>(<span class='st'>"bibliography.bib"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>unlink</span>(<span class='st'>"bibliography.bib"</span>)
-
-<span class='co'># Load the shared files from bcbioSingleCell</span></div><span class='co'># NOT RUN {</span>
-<span class='fu'>prepareTemplate</span>(
-    <span class='kw'>sourceDir</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(
-        <span class='st'>"rmarkdown/shared"</span>,
-        <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"bcbioSingleCell"</span>
-    )
-)
-<span class='co'># }</span></pre>
+<span class='fu'>file.exists</span>(<span class='st'>"bibliography.bib"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>unlink</span>(<span class='st'>"bibliography.bib"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

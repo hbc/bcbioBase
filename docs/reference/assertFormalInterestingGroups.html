@@ -125,15 +125,7 @@ Either "<code>stop</code>", "<code>warning</code>", "<code>message</code>", or "
 #&gt; <span class='message'>  fileName = col_character(),</span>
 #&gt; <span class='message'>  description = col_character(),</span>
 #&gt; <span class='message'>  genotype = col_character()</span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'>Demultiplexed samples detected</span></div><div class='input'>
-<span class='co'># Success</span>
-<span class='fu'>assertFormalInterestingGroups</span>(<span class='no'>data</span>, <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='st'>"genotype"</span>)
-
-<span class='co'># Failure</span>
-<span class='fu'>tryCatch</span>(
-    <span class='fu'>assertFormalInterestingGroups</span>(<span class='no'>data</span>, <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='st'>"XXX"</span>),
-    <span class='kw'>error</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>e</span>) <span class='no'>e</span>
-)</div><div class='output co'>#&gt; &lt;assertionError in assertFormalInterestingGroups(data, interestingGroups = "XXX"): is_subset : The element 'XXX' in interestingGroups is not in colnames(x).&gt;</div></pre>
+#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'>Demultiplexed samples detected</span></div><div class='input'><span class='fu'>assertFormalInterestingGroups</span>(<span class='no'>data</span>, <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='st'>"genotype"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
