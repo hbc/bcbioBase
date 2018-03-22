@@ -10,7 +10,8 @@
 
 ## bcbioBase 0.1.2 (2018-02-18)
 
-- Added back `checkInterestingGroups()` since this code is still present on bcbioRNASeq master branch.
+- Added back `checkInterestingGroups()` since this code is still present on
+  bcbioRNASeq master branch.
 
 
 ## bcbioBase 0.1.1 (2018-02-17)
@@ -18,13 +19,16 @@
 - Added internal assert checks.
 - Now exporting `sampleMetadata<-()` assignment generic.
 - Updated encrypted token for rdrop2 working example.
-- Added `assert_formal_interesting_groups()` assert checks. Deprecated `checkInterestingGroups()`.
+- Added `assert_formal_interesting_groups()` assert checks. Deprecated
+  `checkInterestingGroups()`.
 
 
 ## bcbioBase 0.1.0 (2018-02-13)
 
-- Preparing version pinning for [bioconda][]. Relaxed [rlang][] dependency from v0.1.6 to v0.1.2 and [tidyr][] dependency from v0.7.2 to v0.7.1.
-- Added `copyToDropbox()` function, which enables input of a list of local files and returns [Dropbox][] paths using [rdrop2][].
+- Preparing version pinning for [bioconda][]. Relaxed [rlang][] dependency
+  from v0.1.6 to v0.1.2 and [tidyr][] dependency from v0.7.2 to v0.7.1.
+- Added `copyToDropbox()` function, which enables input of a list of local
+  files and returns [Dropbox][] paths using [rdrop2][].
 - Updated [basejump][] dependency to v0.2.1.
 - Added assertive checks for all functions.
 
@@ -33,15 +37,18 @@
 
 - NAMESPACE export fixes.
 - Minor code cleanup to pass [lintr][] checks.
-- Switched to [rlang][] methods for errors, messages, and warnings: `abort()`, `inform()`, and `warn()`.
-- Messages now consistently use backticks instead of apostrophes, as recommended by the [tidyverse style guide][].
+- Switched to [rlang][] methods for errors, messages, and warnings:
+  `abort()`, `inform()`, and `warn()`.
+- Messages now consistently use backticks instead of apostrophes, as
+  recommended by the [tidyverse style guide][].
 - Removed [tibble][] rownames support from `prepareSampleMetadata()`.
 - Improved code coverage to 100%.
 
 
 ## bcbioBase 0.0.2 (2018-01-19)
 
-- Re-export `assignAndSaveData()`, `loadData()`, `loadRemoteData()`, `saveData()` from [basejump][] package.
+- Re-export `assignAndSaveData()`, `loadData()`, `loadRemoteData()`,
+  `saveData()` from [basejump][] package.
 - Update `prepareTemplate()` function to use internally stored data.
 
 
