@@ -59,7 +59,10 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
 
     # Determine whether the samples are multiplexed, based on the presence
     # of duplicate values in the `description` column
-    if (any(duplicated(data[["fileName"]]))) {
+    if (
+        any(duplicated(data[["fileName"]])) ||
+        any(c("index", "sequence") %in% colnames(data))
+    ) {
         multiplexed <- TRUE
         inform("Multiplexed samples detected")
         requiredCols <- c(requiredCols, "sampleName", "index")
@@ -104,47 +107,56 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
     # Ensure that `sampleName` is unique
     assert_has_no_duplicates(data[["sampleName"]])
 
-    # This code is only applicable to multiplexed files used for single-cell
-    # RNA-seq analysis. For bcbio single-cell RNA-seq, the multiplexed per
-    # sample directories are created by combining the `sampleName` column
-    # with the reverse complement (`revcomp`) of the index barcode sequence
-    # (`sequence`). This is the current behavior for the inDrop pipeline.
-    # Let's check for an ACGT sequence and use the revcomp if there's a
-    # match. Otherwise just return the `sampleName` as the `sampleID`.
+    # Demultiplexed samples ====================================================
+    if (!isTRUE(multiplexed)) {
+        # Always set sampleID by the description column (simple)
+        data[["sampleID"]] <- data[["description"]]
+    }
+
+    # Multiplexed samples ======================================================
+    # This step is more complicated and applies to single-cell RNA-seq data.
+    #
+    # loadSingleCell()
+    # bcbio subdirs (e.g. inDrop): `description`-`revcomp`
+    # Note that forward `sequence` is required in metadata file
+    # Index number is also required here for data preservation, but is not used
+    # in generation of the sample directory names.
+    #
+    # loadCellRanger()
+    # cellranger matrix: `description`-`index`
     if (isTRUE(multiplexed)) {
-        if (is.character(data[["sequence"]])) {
-            detectSequence <- all(grepl("^[ACGT]{6,}", data[["sequence"]]))
-            if (isTRUE(detectSequence)) {
-                data[["revcomp"]] <- vapply(
-                    X = data[["sequence"]],
-                    FUN = function(x) {
-                        x %>%
-                            as("character") %>%
-                            as("DNAStringSet") %>%
-                            reverseComplement() %>%
-                            as("character")
-                    },
-                    FUN.VALUE = character(1L)
-                )
-                # Match the sample directories exactly here, using the hyphen.
-                # We'll sanitize into valid names in `prepareSampleData()` call
-                data[["sampleID"]] <- paste(
-                    data[["description"]],
-                    data[["revcomp"]],
-                    sep = "-"
-                )
-            }
-        } else {
-            # Fall back to using index (e.g. cellranger)
+        # bcbio pipeline (default)
+        if ("sequence" %in% colnames(data)) {
+            sequence <- data[["sequence"]]
+            assert_all_are_matching_regex(
+                x = sequence,
+                pattern = "^[ACGT]{6,}"
+            )
+            data[["revcomp"]] <- vapply(
+                X = sequence,
+                FUN = function(x) {
+                    x %>%
+                        as("character") %>%
+                        as("DNAStringSet") %>%
+                        reverseComplement() %>%
+                        as("character")
+                },
+                FUN.VALUE = character(1L)
+            )
+            # Match the sample directories exactly here, using the hyphen
+            data[["sampleID"]] <- paste(
+                data[["description"]],
+                data[["revcomp"]],
+                sep = "-"
+            )
+        } else if ("index" %in% colnames(data)) {
+            # cellranger pipeline
             data[["sampleID"]] <- paste(
                 data[["description"]],
                 data[["index"]],
                 sep = "-"
             )
         }
-    } else {
-        # Sanitize description column for demultiplexed samples
-        data[["sampleID"]] <- data[["description"]]
     }
 
     prepareSampleData(data)
