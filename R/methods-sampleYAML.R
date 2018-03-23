@@ -77,7 +77,7 @@ NULL
 
     bind_rows(dflist) %>%
         removeNA() %>%
-        arrange(!!quo(description))
+        arrange(!!sym("description"))
 }
 
 

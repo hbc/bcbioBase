@@ -62,7 +62,7 @@ NULL
     object <- unite(
         data = object,
         col = interestingGroups,
-        !! interestingGroups,
+        !!interestingGroups,
         sep = ":",
         remove = FALSE
     )

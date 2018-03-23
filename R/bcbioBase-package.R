@@ -18,7 +18,7 @@
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
 #'   drop_get_metadata drop_share drop_upload
 #' @importFrom readr read_csv read_lines
-#' @importFrom rlang !!! !! abort inform quo syms warn
+#' @importFrom rlang !!! !! abort inform sym syms warn
 #' @importFrom scales percent
 #' @importFrom sessioninfo session_info
 #' @importFrom stringr str_pad str_trunc
