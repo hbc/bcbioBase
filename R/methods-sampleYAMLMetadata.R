@@ -16,7 +16,6 @@ NULL
 
 
 # Constructors =================================================================
-#' @importFrom dplyr mutate_all
 .sampleYAMLMetadata <- function(yaml) {
     sampleYAML(yaml = yaml, keys = "metadata") %>%
         prepareSampleData()

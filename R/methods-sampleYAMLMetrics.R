@@ -18,8 +18,6 @@ NULL
 
 
 # Constructors =================================================================
-#' @importFrom basejump makeNames
-#' @importFrom dplyr mutate_if
 .sampleYAMLMetrics <- function(yaml) {
     # Early return on NULL metrics (fast mode)
     fastMode <- "Fast mode detected: No sample metrics were calculated"

@@ -25,9 +25,6 @@ NULL
 
 
 # Constructors =================================================================
-#' @importFrom basejump removeNA
-#' @importFrom dplyr arrange bind_rows
-#' @importFrom magrittr set_rownames
 .sampleYAML <- function(yaml, keys) {
     assert_is_non_empty(yaml)
     yaml <- yaml[["samples"]]
@@ -80,7 +77,7 @@ NULL
 
     bind_rows(dflist) %>%
         removeNA() %>%
-        arrange(.data[["description"]])
+        arrange(!!sym("description"))
 }
 
 
@@ -92,6 +89,7 @@ setMethod(
     "sampleYAML",
     signature(
         yaml = "list",
-        keys = "character"),
+        keys = "character"
+    ),
     .sampleYAML
 )

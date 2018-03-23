@@ -4,11 +4,6 @@
 #' @family Read Functions
 #' @author Michael Steinbaugh
 #'
-#' @importFrom basejump camel makeNames readFileByExtension removeNA
-#' @importFrom Biostrings reverseComplement
-#' @importFrom dplyr group_by left_join mutate mutate_all ungroup
-#' @importFrom stringr str_pad
-#'
 #' @inheritParams general
 #' @param file Metadata file. Supports CSV, TSV, and XLSX file formats.
 #' @param lanes *Optional*. Number of lanes used to split the samples into

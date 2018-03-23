@@ -13,15 +13,6 @@
 #'
 #' @author Michael Steinbaugh
 #'
-#' @importFrom GenomeInfoDb seqnames
-#' @importFrom GenomicRanges GRanges
-#' @importFrom SummarizedExperiment SummarizedExperiment
-#' @importFrom basejump makeNames
-#' @importFrom scales percent
-#' @importFrom sessioninfo session_info
-#' @importFrom tibble has_rownames
-#' @importFrom utils sessionInfo
-#'
 #' @inheritParams general
 #' @param assays List containing RNA-seq count matrices with matching
 #'   dimensions. Counts can be passed in either dense (`matrix`) or sparse

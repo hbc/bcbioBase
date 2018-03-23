@@ -1,26 +1,10 @@
-#' @importFrom dplyr pull
-#' @export
-dplyr::pull
-
-
-
 #' @importFrom GenomicRanges GRanges
 #' @export
 GenomicRanges::GRanges
 
-
-
 #' @importFrom IRanges IRanges
 #' @export
 IRanges::IRanges
-
-
-
-#' @importFrom magrittr %>%
-#' @export
-magrittr::`%>%`
-
-
 
 #' @export
 S4Vectors::DataFrame
@@ -28,7 +12,13 @@ S4Vectors::DataFrame
 #' @export
 S4Vectors::metadata
 
+#' @importFrom dplyr pull
+#' @export
+dplyr::pull
 
+#' @importFrom magrittr %>%
+#' @export
+magrittr::`%>%`
 
 #' @importFrom tibble glimpse
 #' @export

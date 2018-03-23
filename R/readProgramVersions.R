@@ -6,10 +6,6 @@
 #' @family Read Functions
 #' @author Michael Steinbaugh
 #'
-#' @importFrom basejump localOrRemoteFile
-#' @importFrom readr read_csv
-#' @importFrom tibble tibble
-#'
 #' @inheritParams readSampleMetadataFile
 #'
 #' @param file Program versions TXT file.

@@ -2,11 +2,6 @@
 #'
 #' @author Michael Steinbaugh
 #'
-#' @importFrom basejump makeNames
-#' @importFrom dplyr arrange everything mutate_all select
-#' @importFrom magrittr set_rownames
-#' @importFrom tibble as_tibble
-#'
 #' @inheritParams general
 #'
 #' @return `data.frame`.
@@ -34,7 +29,7 @@ prepareSampleData <- function(object) {
     object %>%
         mutate_all(as.factor) %>%
         mutate_all(droplevels) %>%
-        select(metadataPriorityCols, everything()) %>%
+        .[, unique(c(metadataPriorityCols, colnames(.)))] %>%
         arrange(!!!syms(metadataPriorityCols)) %>%
         as.data.frame() %>%
         set_rownames(.[["sampleID"]])

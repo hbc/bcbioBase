@@ -3,9 +3,6 @@
 #' @family Write Functions
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
 #'
-#' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
-#'   drop_get_metadata drop_share drop_upload
-#'
 #' @param files Local file paths.
 #' @param dir Relative path of remote Dropbox directory.
 #' @param rdsToken RDS file token to use for Dropbox authentication.

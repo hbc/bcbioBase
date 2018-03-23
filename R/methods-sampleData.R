@@ -19,9 +19,6 @@ NULL
 
 
 # Constructors =================================================================
-#' @importFrom basejump sanitizeSampleData
-#' @importFrom knitr kable
-#' @importFrom SummarizedExperiment colData
 .sampleData <- function(
     object,
     return = c("data.frame", "DataFrame", "kable")
@@ -47,8 +44,6 @@ NULL
 
 
 
-#' @importFrom basejump sanitizeSampleData
-#' @importFrom SummarizedExperiment colData<-
 `.sampleData<-` <- function(object, ..., value) {
     # Ensure all columns are factors
     value <- sanitizeSampleData(value)

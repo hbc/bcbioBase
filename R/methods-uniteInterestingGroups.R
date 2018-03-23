@@ -50,8 +50,6 @@ NULL
 
 
 
-#' @importFrom tibble is_tibble
-#' @importFrom tidyr unite
 .uniteInterestingGroups.tidy <- function(  # nolint
     object,
     interestingGroups

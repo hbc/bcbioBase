@@ -3,9 +3,6 @@
 #' @family Read Functions
 #' @author Michael Steinbaugh
 #'
-#' @importFrom basejump localOrRemoteFile
-#' @importFrom readr read_lines
-#'
 #' @inheritParams readSampleMetadataFile
 #'
 #' @param file Log file.

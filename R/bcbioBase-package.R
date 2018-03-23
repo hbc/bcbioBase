@@ -2,37 +2,33 @@
 #'
 #' Base functions and generics for bcbio R packages.
 #'
-#' @import methods S4Vectors
-#' @importFrom assertive assert_all_are_dirs
-#' @importFrom assertive assert_all_are_existing_files
-#' @importFrom assertive assert_all_are_in_range
-#' @importFrom assertive assert_all_are_non_missing_nor_empty_character
-#' @importFrom assertive assert_are_disjoint_sets
-#' @importFrom assertive assert_are_identical
-#' @importFrom assertive assert_are_intersecting_sets
-#' @importFrom assertive assert_has_colnames
-#' @importFrom assertive assert_has_dimnames
-#' @importFrom assertive assert_has_names
-#' @importFrom assertive assert_has_rownames
-#' @importFrom assertive assert_has_no_duplicates
-#' @importFrom assertive assert_is_a_bool
-#' @importFrom assertive assert_is_a_string
-#' @importFrom assertive assert_is_all_of
-#' @importFrom assertive assert_is_any_of
-#' @importFrom assertive assert_is_character
-#' @importFrom assertive assert_is_identical_to_na
-#' @importFrom assertive assert_is_integer
-#' @importFrom assertive assert_is_list
-#' @importFrom assertive assert_is_non_empty
-#' @importFrom assertive assert_is_subset
-#' @importFrom assertive assert_is_tbl
-#' @importFrom basejump assertIsAnImplicitInteger
-#' @importFrom basejump assertIsCharacterOrNULL
-#' @importFrom basejump assertIsGene2symbol
-#' @importFrom basejump assertIsAStringOrNULL
+#' @import S4Vectors methods
+#'
+#' @importFrom Biostrings reverseComplement
+#' @importFrom GenomeInfoDb seqnames
+#' @importFrom GenomicRanges GRanges
+#' @importFrom SummarizedExperiment colData colData<- rowData
+#'   SummarizedExperiment
+#' @importFrom basejump camel localOrRemoteFile makeNames readFileByExtension
+#'   removeNA sanitizeSampleData
+#' @importFrom dplyr arrange bind_rows group_by left_join mutate mutate_all
+#'   mutate_if ungroup
+#' @importFrom knitr kable
+#' @importFrom magrittr set_rownames
+#' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
+#'   drop_get_metadata drop_share drop_upload
+#' @importFrom readr read_csv read_lines
 #' @importFrom rlang !!! !! .data abort inform sym syms warn
-#' @importFrom utils globalVariables
+#' @importFrom scales percent
+#' @importFrom sessioninfo session_info
+#' @importFrom stringr str_pad str_trunc
+#' @importFrom tibble as_tibble has_rownames is_tibble tibble
+#' @importFrom tidyr unite
+#' @importFrom utils globalVariables sessionInfo
 "_PACKAGE"
+
+
+
 
 
 

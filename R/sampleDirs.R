@@ -2,9 +2,6 @@
 #'
 #' @author Michael Steinbaugh
 #'
-#' @importFrom basejump makeNames
-#' @importFrom stringr str_trunc
-#'
 #' @param uploadDir bcbio run upload directory.
 #'
 #' @return Named character vector containing sample directory paths. Function

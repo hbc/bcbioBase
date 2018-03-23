@@ -15,7 +15,6 @@ NULL
 
 # Methods ======================================================================
 #' @rdname gene2symbol
-#' @importFrom SummarizedExperiment rowData
 #' @export
 setMethod(
     "gene2symbol",
