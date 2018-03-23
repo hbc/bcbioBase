@@ -62,13 +62,14 @@ NULL
     object <- unite(
         data = object,
         col = interestingGroups,
-        !!!syms(interestingGroups),
+        !! interestingGroups,
         sep = ":",
         remove = FALSE
     )
     object[["interestingGroups"]] <- as.factor(object[["interestingGroups"]])
     object
 }
+
 
 
 #' Methods =====================================================================

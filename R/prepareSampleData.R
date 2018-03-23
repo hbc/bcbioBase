@@ -8,7 +8,6 @@
 #' @export
 prepareSampleData <- function(object) {
     assert_has_dimnames(object)
-    object <- as_tibble(object)
     assert_is_subset("description", colnames(object))
 
     # Set `sampleName`, if necessary
@@ -27,6 +26,7 @@ prepareSampleData <- function(object) {
     object[["sampleID"]] <- makeNames(object[["sampleID"]], unique = TRUE)
 
     object %>%
+        as_tibble() %>%
         mutate_all(as.factor) %>%
         mutate_all(droplevels) %>%
         .[, unique(c(metadataPriorityCols, colnames(.)))] %>%
