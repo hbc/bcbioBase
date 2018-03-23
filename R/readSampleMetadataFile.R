@@ -78,7 +78,7 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
     # into the number of desired replicates.
     if (lanes > 1L) {
         data <- data %>%
-            group_by(!!sym("description")) %>%
+            group_by(!!quo(description)) %>%
             # Expand by lane (e.g. "L001")
             tidyr::expand(
                 lane = paste0("L", str_pad(1L:lanes, 3L, pad = "0"))
@@ -89,13 +89,13 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
             # upon lane expansion
             mutate(
                 description = paste(
-                    makeNames(.data[["description"]], unique = FALSE),
-                    .data[["lane"]],
+                    makeNames(!!quo(description), unique = FALSE),
+                    !!quo(lane),
                     sep = "_"
                 ),
                 sampleName = paste(
-                    makeNames(.data[["sampleName"]], unique = FALSE),
-                    .data[["lane"]],
+                    makeNames(!!quo(sampleName), unique = FALSE),
+                    !!quo(lane),
                     sep = "_"
                 )
             )
