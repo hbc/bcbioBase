@@ -17,7 +17,7 @@
 #'   mutate_if ungroup
 #' @importFrom grDevices colorRampPalette
 #' @importFrom knitr kable
-#' @importFrom magrittr set_rownames
+#' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom pheatmap pheatmap
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
 #'   drop_get_metadata drop_share drop_upload
@@ -27,9 +27,11 @@
 #' @importFrom sessioninfo session_info
 #' @importFrom stats hclust quantile
 #' @importFrom stringr str_pad str_trunc
-#' @importFrom tibble as_tibble has_rownames is_tibble tibble
+#' @importFrom tibble as_tibble column_to_rownames has_rownames is_tibble
+#'   rownames_to_column tibble
 #' @importFrom tidyr unite
 #' @importFrom utils globalVariables sessionInfo
+#' @importFrom viridis viridis
 "_PACKAGE"
 
 

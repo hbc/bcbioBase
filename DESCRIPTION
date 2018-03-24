@@ -55,15 +55,15 @@ Imports:
     stringr (>= 1.2),
     tibble (>= 1.4),
     tidyr (>= 0.8),
-    utils
+    utils,
+    viridis
 Suggests:
     BiocStyle,
     lintr,
     rmarkdown,
     roxygen2,
     testthat,
-    tidyverse,
-    viridis
+    tidyverse
 Remotes:
     steinbaugh/basejump@develop
 biocViews: Infrastructure
