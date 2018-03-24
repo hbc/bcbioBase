@@ -1,47 +1,27 @@
-context("prepareSummarizedExperiment")
+context("Prepare Functions")
 
-genes <- c(
-    "gene_1",
-    "gene_2",
-    "gene_3",
-    "gene_4"
-)
-samples <- c(
-    "sample_1",
-    "sample_2",
-    "sample_3",
-    "sample_4"
-)
-mat <- matrix(
-    seq(1L:16L),
-    nrow = 4L,
-    ncol = 4L,
-    dimnames = list(genes, samples)
-)
-rowRanges <- GRanges(
-    seqnames = replicate(n = 4L, expr = "1"),
-    ranges = IRanges(
-        start = c(1L, 101L, 201L, 301L),
-        end = c(100L, 200L, 300L, 400L)
+
+
+# prepareSampleData ============================================================
+test_that("prepareSampleData : Missing description column", {
+    expect_error(
+        prepareSampleData(mtcars),
+        paste(
+            "is_subset :",
+            "The element 'description' in \"description\" is not in",
+            "colnames\\(object\\)."
+        )
     )
-)
-names(rowRanges) <- genes
-colData <- data.frame(
-    "genotype" = c(
-        "wildtype",
-        "wildtype",
-        "knockout",
-        "knockout"
-    ),
-    "age" = c(3L, 6L, 3L, 6L),
-    row.names = samples
-)
+})
 
-test_that("RangedSummarizedExperiment", {
+
+
+# prepareSummarizedExperiment ==================================================
+test_that("prepareSummarizedExperiment : RangedSummarizedExperiment", {
     rse <- prepareSummarizedExperiment(
         assays = list(assay = mat),
-        rowRanges = rowRanges,
-        colData = colData
+        rowRanges = rr,
+        colData = cd
     )
     expect_s4_class(rse, "RangedSummarizedExperiment")
     expect_identical(dim(rse), c(4L, 4L))
@@ -59,18 +39,17 @@ test_that("RangedSummarizedExperiment", {
     )
 })
 
-test_that("Spike-in support", {
+test_that("prepareSummarizedExperiment : Spike-in support", {
     rownames(mat)[[1L]] <- "EGFP"
-    rowRanges <- rowRanges[2L:4L]
     rse <- prepareSummarizedExperiment(
         assays = list(mat),
-        rowRanges = rowRanges,
-        colData = colData,
+        rowRanges = rr[2L:4L],
+        colData = cd,
         isSpike = "EGFP"
     )
     expect_identical(
         rownames(rse),
-        c("EGFP", "gene_2", "gene_3", "gene_4")
+        c("EGFP", genes[2L:4L])
     )
     expect_identical(
         metadata(rse)[["isSpike"]],
@@ -78,30 +57,29 @@ test_that("Spike-in support", {
     )
 })
 
-test_that("Unannotated rows", {
-    rowRanges <- rowRanges[seq_len(3L)]
+test_that("prepareSummarizedExperiment : Unannotated rows", {
     rse <- suppressWarnings(
         prepareSummarizedExperiment(
             assays = list(mat),
-            rowRanges = rowRanges,
-            colData = colData
+            rowRanges = rr[seq_len(3L)],
+            colData = cd
         )
     )
     expect_identical(
         metadata(rse)[["unannotatedRows"]],
-        "gene_4"
+        genes[[4L]]
     )
 })
 
-test_that("Strict names", {
+test_that("prepareSummarizedExperiment : Strict names", {
     # Don't allow any dashes and other illegal characters in names
     matBadRows <- mat
     rownames(matBadRows) <- paste0(rownames(matBadRows), "-XXX")
     expect_error(
         prepareSummarizedExperiment(
             assays = list(assay = matBadRows),
-            rowRanges = rowRanges,
-            colData = colData
+            rowRanges = rr,
+            colData = cd
         ),
         "are_identical : makeNames\\(rownames\\(assay\\)"
     )
@@ -110,14 +88,14 @@ test_that("Strict names", {
     expect_error(
         prepareSummarizedExperiment(
             assays = list(assay = matBadCols),
-            rowRanges = rowRanges,
-            colData = colData
+            rowRanges = rr,
+            colData = cd
         ),
         "are_identical : makeNames\\(colnames\\(assay\\)"
     )
 })
 
-test_that("Duplicate names", {
+test_that("prepareSummarizedExperiment : Duplicate names", {
     matDupeRows <- mat
     rownames(matDupeRows) <- c(
         "gene_1",
@@ -128,8 +106,8 @@ test_that("Duplicate names", {
     expect_error(
         prepareSummarizedExperiment(
             assays = list(assay = matDupeRows),
-            rowRanges = rowRanges,
-            colData = colData
+            rowRanges = rr,
+            colData = cd
         ),
         paste(
             "has_no_duplicates :",
@@ -146,8 +124,8 @@ test_that("Duplicate names", {
     expect_error(
         prepareSummarizedExperiment(
             assays = list(assay = matDupeCols),
-            rowRanges = rowRanges,
-            colData = colData
+            rowRanges = rr,
+            colData = cd
         ),
         paste(
             "has_no_duplicates :",
@@ -156,20 +134,20 @@ test_that("Duplicate names", {
     )
 })
 
-test_that("Column data pass-in failure in assays", {
+test_that("prepareSummarizedExperiment : Column data failure", {
     # Bad pass-in of objects not supporting `dimnames()`
     expect_error(
         prepareSummarizedExperiment(
             assays = list(c(xxx = "yyy")),
-            rowRanges = rowRanges,
-            colData = colData
+            rowRanges = rr,
+            colData = cd
         ),
         "has_dimnames : The dimension names of assay are NULL."
     )
     expect_error(
         prepareSummarizedExperiment(
             assays = list(assay = mat),
-            rowRanges = rowRanges,
+            rowRanges = rr,
             colData = c(xxx = "yyy")
         ),
         "is2 : colData"
@@ -178,20 +156,49 @@ test_that("Column data pass-in failure in assays", {
         prepareSummarizedExperiment(
             assays = list(assay = mat),
             rowRanges = c(xxx = "yyy"),
-            colData = colData
+            colData = cd
         ),
         "is2 : rowRanges"
     )
 })
 
-test_that("Invalid metadata", {
+test_that("prepareSummarizedExperiment : Invalid metadata", {
     expect_error(
         prepareSummarizedExperiment(
             assays = list(assay = mat),
-            rowRanges = rowRanges,
-            colData = colData,
+            rowRanges = rr,
+            colData = cd,
             metadata = Sys.Date()
         ),
         "is2 : metadata"
+    )
+})
+
+
+
+# prepareTemplate ==============================================================
+test_that("prepareTemplate : All default shared files", {
+    files <- c(
+        "_footer.Rmd",
+        "_header.Rmd",
+        "_output.yaml",
+        "_setup.R",
+        "bibliography.bib"
+    )
+    expect_silent(prepareTemplate())
+    expect_true(all(file.exists(files)))
+    unlink(files)
+})
+
+test_that("prepareTemplate : Single file", {
+    prepareTemplate("bibliography.bib")
+    expect_true(file.exists("bibliography.bib"))
+    unlink("bibliography.bib")
+})
+
+test_that("prepareTemplate : Missing source file", {
+    expect_error(
+        prepareTemplate("XXX.R"),
+        "is_existing_file :"
     )
 })
