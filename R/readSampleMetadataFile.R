@@ -128,6 +128,8 @@ readSampleMetadataFile <- function(file, lanes = 1L) {
         # bcbio pipeline (default)
         if ("sequence" %in% colnames(data)) {
             sequence <- data[["sequence"]]
+            # Require at least 6 nucleotides in the index sequence.
+            # inDrop currently uses 8 but SureCell uses 6.
             assert_all_are_matching_regex(
                 x = sequence,
                 pattern = "^[ACGT]{6,}"
