@@ -7,20 +7,25 @@
 #' @importFrom Biostrings reverseComplement
 #' @importFrom GenomeInfoDb seqnames
 #' @importFrom GenomicRanges GRanges
+#' @importFrom RColorBrewer brewer.pal
 #' @importFrom SummarizedExperiment colData colData<- rowData
 #'   SummarizedExperiment
 #' @importFrom basejump camel localOrRemoteFile makeNames readFileByExtension
-#'   removeNA sanitizeSampleData
+#'   removeNA sanitizeSampleData snake
+#' @importFrom dendsort dendsort
 #' @importFrom dplyr arrange bind_rows group_by left_join mutate mutate_all
 #'   mutate_if ungroup
+#' @importFrom grDevices colorRampPalette
 #' @importFrom knitr kable
 #' @importFrom magrittr set_rownames
+#' @importFrom pheatmap pheatmap
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
 #'   drop_get_metadata drop_share drop_upload
 #' @importFrom readr read_csv read_lines
 #' @importFrom rlang !!! !! abort inform sym syms warn
 #' @importFrom scales percent
 #' @importFrom sessioninfo session_info
+#' @importFrom stats hclust quantile
 #' @importFrom stringr str_pad str_trunc
 #' @importFrom tibble as_tibble has_rownames is_tibble tibble
 #' @importFrom tidyr unite

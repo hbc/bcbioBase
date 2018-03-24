@@ -3,7 +3,7 @@
 #' @name assert
 #' @keywords internal
 #'
-#' @param x Object.
+#' @inheritParams general
 #' @param severity How severe should the consequences of the assertion be?
 #'   Either "`stop`", "`warning`", "`message`", or "`none`".
 #'
@@ -15,6 +15,7 @@ NULL
 #' @importFrom assertive assert_all_are_dirs
 #' @importFrom assertive assert_all_are_existing_files
 #' @importFrom assertive assert_all_are_in_range
+#' @importFrom assertive assert_all_are_matching_regex
 #' @importFrom assertive assert_all_are_non_missing_nor_empty_character
 #' @importFrom assertive assert_are_disjoint_sets
 #' @importFrom assertive assert_are_identical

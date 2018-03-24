@@ -49,6 +49,14 @@ setGeneric("metrics", function(object, ...) {
 
 
 
+#' @rdname plotCorrelationHeatmap
+#' @export
+setGeneric("plotCorrelationHeatmap", function(object, ...) {
+    standardGeneric("plotCorrelationHeatmap")
+})
+
+
+
 #' @rdname AllGenerics
 #' @export
 setGeneric("plotDot", function(object, ...) {
@@ -61,6 +69,22 @@ setGeneric("plotDot", function(object, ...) {
 #' @export
 setGeneric("plotGene", function(object, ...) {
     standardGeneric("plotGene")
+})
+
+
+
+#' @rdname plotHeatmap
+#' @export
+setGeneric("plotHeatmap", function(object, ...) {
+    standardGeneric("plotHeatmap")
+})
+
+
+
+#' @rdname plotQuantileHeatmap
+#' @export
+setGeneric("plotQuantileHeatmap", function(object, ...) {
+    standardGeneric("plotQuantileHeatmap")
 })
 
 
