@@ -51,7 +51,7 @@ metadataPriorityCols <- c("sampleID", "sampleName", "description")
 #' Project Directory Grep Pattern
 #' @keywords internal
 #' @export
-projectDirectoryPattern <- "^(\\d{4}-\\d{2}-\\d{2})_([^/]+)$"
+projectDirPattern <- "^(\\d{4}-\\d{2}-\\d{2})_([^/]+)$"
 
 #' Separator Bar
 #' @keywords internal
