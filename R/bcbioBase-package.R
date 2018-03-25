@@ -8,7 +8,7 @@
 #' @importFrom GenomeInfoDb seqnames
 #' @importFrom GenomicRanges GRanges
 #' @importFrom RColorBrewer brewer.pal
-#' @importFrom SummarizedExperiment colData colData<- rowData
+#' @importFrom SummarizedExperiment assay colData colData<- rowData
 #'   SummarizedExperiment
 #' @importFrom basejump camel localOrRemoteFile makeNames readFileByExtension
 #'   removeNA sanitizeSampleData snake
