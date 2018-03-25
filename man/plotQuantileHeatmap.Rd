@@ -5,7 +5,9 @@
 \alias{plotQuantileHeatmap}
 \alias{plotQuantileHeatmap}
 \alias{plotQuantileHeatmap,dgCMatrix-method}
+\alias{plotQuantileHeatmap,dgTMatrix-method}
 \alias{plotQuantileHeatmap,matrix-method}
+\alias{plotQuantileHeatmap,SummarizedExperiment-method}
 \title{Plot Heatmap with Quantile Breaks}
 \usage{
 plotQuantileHeatmap(object, ...)
@@ -15,9 +17,18 @@ plotQuantileHeatmap(object, ...)
   color = viridis, legendColor = viridis, borderColor = NULL,
   title = NULL, ...)
 
+\S4method{plotQuantileHeatmap}{dgTMatrix}(object, n = 5L,
+  annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
+  color = viridis, legendColor = viridis, borderColor = NULL,
+  title = NULL, ...)
+
 \S4method{plotQuantileHeatmap}{matrix}(object, n = 5L, annotationCol = NULL,
   clusterCols = TRUE, clusterRows = TRUE, color = viridis,
   legendColor = viridis, borderColor = NULL, title = NULL, ...)
+
+\S4method{plotQuantileHeatmap}{SummarizedExperiment}(object, n = 5L,
+  annotationCol = NA, clusterCols = FALSE, clusterRows = FALSE,
+  color = viridis, legendColor = viridis, title = NULL, ...)
 }
 \arguments{
 \item{object}{Object.}

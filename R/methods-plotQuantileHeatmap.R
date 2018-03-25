@@ -170,6 +170,48 @@ setMethod(
 #' @export
 setMethod(
     "plotQuantileHeatmap",
+    signature("dgTMatrix"),
+    .plotQuantileHeatmap
+)
+
+
+
+#' @rdname plotQuantileHeatmap
+#' @export
+setMethod(
+    "plotQuantileHeatmap",
     signature("matrix"),
     .plotQuantileHeatmap
+)
+
+
+
+#' @rdname plotQuantileHeatmap
+#' @export
+setMethod(
+    "plotQuantileHeatmap",
+    signature("SummarizedExperiment"),
+    function(
+        object,
+        n = 5L,
+        annotationCol = NA,
+        clusterCols = FALSE,
+        clusterRows = FALSE,
+        color = viridis,
+        legendColor = viridis,
+        title = NULL,
+        ...
+    ) {
+        plotQuantileHeatmap(
+            object = assay(object),
+            n = n,
+            annotationCol = annotationCol,
+            clusterCols = clusterCols,
+            clusterRows = clusterRows,
+            color = color,
+            legendColor = legendColor,
+            title = title,
+            ...
+        )
+    }
 )
