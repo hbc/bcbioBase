@@ -18,8 +18,13 @@
 #'     glimpse()
 readDataVersions <- function(file) {
     assert_is_a_string(file)
-    file <- suppressWarnings(
-        localOrRemoteFile(file, severity = "warning")
+    # Data versions are optional
+    file <- tryCatch(
+        localOrRemoteFile(file),
+        error = function(e) {
+            inform("Data versions are missing")
+            NULL
+        }
     )
     if (is.null(file)) {
         return(tibble())
