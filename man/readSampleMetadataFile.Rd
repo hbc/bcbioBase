@@ -30,7 +30,8 @@ readSampleMetadataFile("http://bcbiobase.seq.cloud/multiplexed.csv") \%>\%
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},
   \code{\link{readLogFile}},
-  \code{\link{readProgramVersions}}
+  \code{\link{readProgramVersions}},
+  \code{\link{readTx2gene}}
 }
 \author{
 Michael Steinbaugh

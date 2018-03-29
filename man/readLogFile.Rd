@@ -22,7 +22,8 @@ readLogFile("http://bcbiobase.seq.cloud/bcbio-nextgen.log") \%>\%
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},
   \code{\link{readProgramVersions}},
-  \code{\link{readSampleMetadataFile}}
+  \code{\link{readSampleMetadataFile}},
+  \code{\link{readTx2gene}}
 }
 \author{
 Michael Steinbaugh
