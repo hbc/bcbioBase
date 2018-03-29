@@ -7,7 +7,7 @@
 readDataVersions(file)
 }
 \arguments{
-\item{file}{Data versions CSV file.}
+\item{file}{File path.}
 }
 \value{
 \code{tbl_df}.

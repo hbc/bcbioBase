@@ -6,9 +6,7 @@
 #' @family Read Functions
 #' @author Michael Steinbaugh
 #'
-#' @inheritParams readSampleMetadataFile
-#'
-#' @param file Data versions CSV file.
+#' @inheritParams general
 #'
 #' @return `tbl_df`.
 #' @export

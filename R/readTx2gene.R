@@ -10,6 +10,7 @@
 #' @return `data.frame`.
 #' @export
 readTx2gene <- function(file) {
+    assert_is_a_string(file)
     file <- localOrRemoteFile(file)
     data <- read_csv(file, col_names = c("txID", "geneID"))
     data <- as.data.frame(data)

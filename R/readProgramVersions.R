@@ -2,13 +2,10 @@
 #'
 #' @note bcbio doesn't save program versions when run in fast mode.
 #'
-#' @name readProgramVersions
 #' @family Read Functions
 #' @author Michael Steinbaugh
 #'
-#' @inheritParams readSampleMetadataFile
-#'
-#' @param file Program versions TXT file.
+#' @inheritParams general
 #'
 #' @return `tbl_df`.
 #' @export

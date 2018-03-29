@@ -7,7 +7,7 @@
 readLogFile(file)
 }
 \arguments{
-\item{file}{Log file.}
+\item{file}{File path.}
 }
 \value{
 Character vector.

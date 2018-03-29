@@ -3,9 +3,7 @@
 #' @family Read Functions
 #' @author Michael Steinbaugh
 #'
-#' @inheritParams readSampleMetadataFile
-#'
-#' @param file Log file.
+#' @inheritParams general
 #'
 #' @return Character vector.
 #' @export

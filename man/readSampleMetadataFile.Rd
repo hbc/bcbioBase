@@ -7,10 +7,10 @@
 readSampleMetadataFile(file, lanes = 1L)
 }
 \arguments{
-\item{file}{Metadata file. Supports CSV, TSV, and XLSX file formats.}
+\item{file}{File path. Supports CSV, TSV, and XLSX file formats.}
 
-\item{lanes}{\emph{Optional}. Number of lanes used to split the samples into
-technical replicates (\code{_LXXX}) suffix.}
+\item{lanes}{Number of lanes used to split the samples into technical
+replicates (\code{_LXXX}) suffix.}
 }
 \value{
 \code{data.frame}.

@@ -7,7 +7,7 @@
 readProgramVersions(file)
 }
 \arguments{
-\item{file}{Program versions TXT file.}
+\item{file}{File path.}
 }
 \value{
 \code{tbl_df}.

@@ -6,6 +6,9 @@
 \usage{
 readTx2gene(file)
 }
+\arguments{
+\item{file}{File path.}
+}
 \value{
 \code{data.frame}.
 }
