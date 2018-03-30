@@ -1,13 +1,12 @@
 #' Read Sample Metadata File
 #'
-#' @name readSampleMetadataFile
 #' @family Read Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
-#' @param file Metadata file. Supports CSV, TSV, and XLSX file formats.
-#' @param lanes *Optional*. Number of lanes used to split the samples into
-#'   technical replicates (`_LXXX`) suffix.
+#' @param file File path. Supports CSV, TSV, and XLSX file formats.
+#' @param lanes Number of lanes used to split the samples into technical
+#'   replicates (`_LXXX`) suffix.
 #'
 #' @return `data.frame`.
 #' @export
@@ -23,6 +22,7 @@
 readSampleMetadataFile <- function(file, lanes = 1L) {
     assert_is_a_string(file)
     assertIsAnImplicitInteger(lanes)
+    assert_all_are_positive(lanes)
 
     # Works with local or remote files.
     data <- readFileByExtension(file) %>%

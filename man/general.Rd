@@ -4,6 +4,8 @@
 \alias{general}
 \title{General Arguments}
 \arguments{
+\item{file}{File path.}
+
 \item{object}{Object.}
 
 \item{return}{Object class to return. Uses \code{\link[=match.arg]{match.arg()}} internally and picks

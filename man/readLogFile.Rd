@@ -7,7 +7,7 @@
 readLogFile(file)
 }
 \arguments{
-\item{file}{Log file.}
+\item{file}{File path.}
 }
 \value{
 Character vector.
@@ -22,7 +22,8 @@ readLogFile("http://bcbiobase.seq.cloud/bcbio-nextgen.log") \%>\%
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},
   \code{\link{readProgramVersions}},
-  \code{\link{readSampleMetadataFile}}
+  \code{\link{readSampleMetadataFile}},
+  \code{\link{readTx2gene}}
 }
 \author{
 Michael Steinbaugh

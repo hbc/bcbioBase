@@ -7,10 +7,10 @@
 readSampleMetadataFile(file, lanes = 1L)
 }
 \arguments{
-\item{file}{Metadata file. Supports CSV, TSV, and XLSX file formats.}
+\item{file}{File path. Supports CSV, TSV, and XLSX file formats.}
 
-\item{lanes}{\emph{Optional}. Number of lanes used to split the samples into
-technical replicates (\code{_LXXX}) suffix.}
+\item{lanes}{Number of lanes used to split the samples into technical
+replicates (\code{_LXXX}) suffix.}
 }
 \value{
 \code{data.frame}.
@@ -30,7 +30,8 @@ readSampleMetadataFile("http://bcbiobase.seq.cloud/multiplexed.csv") \%>\%
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},
   \code{\link{readLogFile}},
-  \code{\link{readProgramVersions}}
+  \code{\link{readProgramVersions}},
+  \code{\link{readTx2gene}}
 }
 \author{
 Michael Steinbaugh

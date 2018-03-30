@@ -2,13 +2,10 @@
 #'
 #' @note bcbio doesn't save program versions when run in fast mode.
 #'
-#' @name readProgramVersions
 #' @family Read Functions
 #' @author Michael Steinbaugh
 #'
-#' @inheritParams readSampleMetadataFile
-#'
-#' @param file Program versions TXT file.
+#' @inheritParams general
 #'
 #' @return `tbl_df`.
 #' @export
@@ -17,13 +14,18 @@
 #' readProgramVersions("http://bcbiobase.seq.cloud/programs.txt")
 readProgramVersions <- function(file) {
     assert_is_a_string(file)
-    file <- suppressWarnings(
-        localOrRemoteFile(file, severity = "warning")
+    # Program versions are optional
+    file <- tryCatch(
+        localOrRemoteFile(file),
+        error = function(e) {
+            inform("Program versions are missing")
+            NULL
+        }
     )
     if (is.null(file)) {
         return(tibble())
     }
-    # bcbio outputs programs.txt, but is comma separated!
+    # bcbio outputs `programs.txt`, but it's comma separated!
     read_csv(
         file,
         col_names = c("program", "version"),

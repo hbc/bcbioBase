@@ -50,4 +50,5 @@ NULL
 #' @importFrom basejump assertIsCharacterOrNULL
 #' @importFrom basejump assertIsGene2symbol
 #' @importFrom basejump assertIsHexColorFunctionOrNULL
+#' @importFrom basejump assertIsTx2gene
 NULL
