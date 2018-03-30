@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gene to Symbol Mappings — gene2symbol • bcbioBase</title>
+<title>Transcript to Gene Annotations — readTx2gene • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,31 +80,38 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Gene to Symbol Mappings</h1>
+    <h1>Transcript to Gene Annotations</h1>
     </div>
 
     
-    <p>Gene to Symbol Mappings</p>
+    <p>Transcript to Gene Annotations</p>
     
 
-    <pre class="usage"><span class='fu'>gene2symbol</span>(<span class='no'>object</span>)
-
-<span class='co'># S4 method for SummarizedExperiment</span>
-<span class='fu'>gene2symbol</span>(<span class='no'>object</span>)</pre>
+    <pre class="usage"><span class='fu'>readTx2gene</span>(<span class='no'>file</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
+      <th>file</th>
+      <td><p>File path.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>data.frame</code> containing gene identifier and gene name (aka symbol)
-mappings.</p>
+    <p><code>data.frame</code>.</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Doesn't attempt to strip transcript versions.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p>Other Read Functions: <code><a href='readDataVersions.html'>readDataVersions</a></code>,
+  <code><a href='readLogFile.html'>readLogFile</a></code>,
+  <code><a href='readProgramVersions.html'>readProgramVersions</a></code>,
+  <code><a href='readSampleMetadataFile.html'>readSampleMetadataFile</a></code></p>
     
 
   </div>
@@ -114,6 +121,10 @@ mappings.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#note">Note</a></li>
+
+      <li><a href="#see-also">See also</a></li>
           </ul>
 
     <h2>Author</h2>
