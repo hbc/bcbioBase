@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#' meta <- readSampleMetadataFile(
+#' meta <- readSampleData(
 #'     "http://bcbiobase.seq.cloud/demultiplexed.csv"
 #' )
 #' meta <- uniteInterestingGroups(

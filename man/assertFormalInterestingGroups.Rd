@@ -22,9 +22,7 @@ Prevent unwanted downstream behavior when a missing interesting group
 is requested by the user.
 }
 \examples{
-data <- readSampleMetadataFile(
-    "http://bcbiobase.seq.cloud/demultiplexed.csv"
-)
+data <- readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv")
 assertFormalInterestingGroups(data, interestingGroups = "genotype")
 }
 \seealso{

@@ -23,8 +23,7 @@ readProgramVersions("http://bcbiobase.seq.cloud/programs.txt")
 }
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},
-  \code{\link{readLogFile}},
-  \code{\link{readSampleMetadataFile}},
+  \code{\link{readLog}}, \code{\link{readSampleData}},
   \code{\link{readTx2gene}}
 }
 \author{

@@ -19,9 +19,9 @@ test_that("readDataVersions : Silent on missing file", {
 
 
 
-# readLogFile ==================================================================
-test_that("readLogFile", {
-    log <- readLogFile("bcbio-nextgen.log")
+# readLog ==================================================================
+test_that("readLog", {
+    log <- readLog("bcbio-nextgen.log")
     expect_true(is.character(log))
     expect_identical(
         log[[1L]],
@@ -34,9 +34,9 @@ test_that("readLogFile", {
     )
 })
 
-test_that("readLogFile : Missing file", {
+test_that("readLog : Missing file", {
     expect_error(
-        readLogFile("XXX.log"),
+        readLog("XXX.log"),
         "is_existing_file :"
     )
 })
@@ -62,10 +62,10 @@ test_that("readProgramVersions : Silent on missing file", {
 
 
 
-# readSampleMetadataFile =======================================================
-test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
+# readSampleData =======================================================
+test_that("readSampleData : Demultiplexed FASTQ", {
     file <- "demultiplexed.csv"
-    x <- readSampleMetadataFile(file)
+    x <- readSampleData(file)
 
     # Check that names are sanitized correctly
     rows <- c("sample_1", "sample_2", "sample_3", "sample_4")
@@ -79,7 +79,7 @@ test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
     )
 
     # Lane-split technical replicate support
-    x <- readSampleMetadataFile(file, lanes = 4L)
+    x <- readSampleData(file, lanes = 4L)
     expect_identical(
         rownames(x)[1L:8L],
         c(
@@ -115,7 +115,7 @@ test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
 
     # Required column check failure
     expect_error(
-        readSampleMetadataFile("demultiplexed_missing_cols.csv"),
+        readSampleData("demultiplexed_missing_cols.csv"),
         paste(
             "is_subset :",
             "The element 'description' in requiredCols is not in",
@@ -125,7 +125,7 @@ test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
 
     # Duplicated description
     expect_error(
-        readSampleMetadataFile("demultiplexed_duplicated_description.csv"),
+        readSampleData("demultiplexed_duplicated_description.csv"),
         paste(
             "has_no_duplicates :",
             "data\\[\\[\"description\"\\]\\] has a duplicate at position 2."
@@ -133,9 +133,9 @@ test_that("readSampleMetadataFile : Demultiplexed FASTQ", {
     )
 })
 
-test_that("readSampleMetadataFile : Multiplexed FASTQ", {
+test_that("readSampleData : Multiplexed FASTQ", {
     file <- "multiplexed.csv"
-    meta <- readSampleMetadataFile(file)
+    meta <- readSampleData(file)
     expect_identical(
         rownames(meta),
         c(
@@ -150,7 +150,7 @@ test_that("readSampleMetadataFile : Multiplexed FASTQ", {
     )
 
     # Lane-split technical replicate support
-    meta <- readSampleMetadataFile(file, lanes = 4L)
+    meta <- readSampleData(file, lanes = 4L)
     expect_identical(
         rownames(meta),
         c(
@@ -187,7 +187,7 @@ test_that("readSampleMetadataFile : Multiplexed FASTQ", {
 
     # Required column check failure
     expect_error(
-        readSampleMetadataFile("multiplexed_missing_cols.csv"),
+        readSampleData("multiplexed_missing_cols.csv"),
         paste(
             "is_subset :",
             "The element 'index' in requiredCols is not in",
@@ -197,7 +197,7 @@ test_that("readSampleMetadataFile : Multiplexed FASTQ", {
 
     # Duplicate rows in `sampleName` column
     expect_error(
-        readSampleMetadataFile("multiplexed_duplicated_sampleName.csv"),
+        readSampleData("multiplexed_duplicated_sampleName.csv"),
         paste(
             "has_no_duplicates :",
             "data\\[\\[\"sampleName\"\\]\\] has duplicates at positions 2, 4."
@@ -205,9 +205,9 @@ test_that("readSampleMetadataFile : Multiplexed FASTQ", {
     )
 })
 
-test_that("readSampleMetadataFile : Legacy bcbio samplename column", {
+test_that("readSampleData : Legacy bcbio samplename column", {
     file <- "bcbio_legacy_samplename.csv"
-    meta <- suppressWarnings(readSampleMetadataFile(file))
+    meta <- suppressWarnings(readSampleData(file))
     expect_identical(
         meta,
         data.frame(
@@ -236,14 +236,14 @@ test_that("readSampleMetadataFile : Legacy bcbio samplename column", {
         )
     )
     expect_warning(
-        readSampleMetadataFile(file),
+        readSampleData(file),
         "`samplename` \\(note case\\) is used in some bcbio examples"
     )
 })
 
-test_that("readSampleMetadataFile : sampleID defined by user", {
+test_that("readSampleData : sampleID defined by user", {
     expect_error(
-        readSampleMetadataFile("sampleID_column_defined.csv"),
+        readSampleData("sampleID_column_defined.csv"),
         paste(
             "are_disjoint_sets :",
             "\"sampleID\" and colnames\\(data\\) have common elements:",
@@ -252,10 +252,10 @@ test_that("readSampleMetadataFile : sampleID defined by user", {
     )
 })
 
-test_that("readSampleMetadataFile : Missing file", {
+test_that("readSampleData : Missing file", {
     # Always stop on missing
     expect_error(
-        readSampleMetadataFile("XXX.csv"),
+        readSampleData("XXX.csv"),
         "is_existing_file :"
     )
 })

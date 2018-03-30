@@ -24,10 +24,9 @@ readDataVersions("http://bcbiobase.seq.cloud/data_versions.csv") \%>\%
     glimpse()
 }
 \seealso{
-Other Read Functions: \code{\link{readLogFile}},
+Other Read Functions: \code{\link{readLog}},
   \code{\link{readProgramVersions}},
-  \code{\link{readSampleMetadataFile}},
-  \code{\link{readTx2gene}}
+  \code{\link{readSampleData}}, \code{\link{readTx2gene}}
 }
 \author{
 Michael Steinbaugh

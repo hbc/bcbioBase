@@ -20,9 +20,8 @@ Doesn't attempt to strip transcript versions.
 }
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},
-  \code{\link{readLogFile}},
-  \code{\link{readProgramVersions}},
-  \code{\link{readSampleMetadataFile}}
+  \code{\link{readLog}}, \code{\link{readProgramVersions}},
+  \code{\link{readSampleData}}
 }
 \author{
 Michael Steinbaugh

@@ -11,6 +11,8 @@
 \alias{sampleMetadata<-,SummarizedExperiment-method}
 \alias{deprecated}
 \alias{prepareSampleMetadata}
+\alias{readLogFile}
+\alias{readSampleMetadataFile}
 \title{Defunct or Deprecated Functions}
 \usage{
 flatFiles(object, ...)
@@ -26,6 +28,10 @@ sampleMetadata(object, ...) <- value
 \S4method{sampleMetadata}{SummarizedExperiment}(object, ...) <- value
 
 prepareSampleMetadata(...)
+
+readLogFile(...)
+
+readSampleMetadataFile(...)
 }
 \value{
 No value.

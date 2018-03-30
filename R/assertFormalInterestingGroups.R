@@ -15,9 +15,7 @@
 #' @export
 #'
 #' @examples
-#' data <- readSampleMetadataFile(
-#'     "http://bcbiobase.seq.cloud/demultiplexed.csv"
-#' )
+#' data <- readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv")
 #' assertFormalInterestingGroups(data, interestingGroups = "genotype")
 assertFormalInterestingGroups <- function(
     x,

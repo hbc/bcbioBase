@@ -36,7 +36,7 @@ single column, delimited by "\code{:}".
 Methods =====================================================================
 }
 \examples{
-meta <- readSampleMetadataFile(
+meta <- readSampleData(
     "http://bcbiobase.seq.cloud/demultiplexed.csv"
 )
 meta <- uniteInterestingGroups(

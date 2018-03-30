@@ -20,4 +20,18 @@ prepareSampleMetadata <- function(...) {
     prepareSampleData(...)
 }
 
+#' @rdname deprecated
+#' @export
+readLogFile <- function(...) {
+    .Deprecated("readLog")
+    readLog(...)
+}
+
+#' @rdname deprecated
+#' @export
+readSampleMetadataFile <- function(...) {
+    .Deprecated("readSampleData")
+    readSampleData(...)
+}
+
 # nocov end

@@ -1,4 +1,4 @@
-#' Read Sample Metadata File
+#' Read Sample Metadata
 #'
 #' @family Read Functions
 #' @author Michael Steinbaugh
@@ -13,13 +13,13 @@
 #'
 #' @examples
 #' # Demultiplexed
-#' readSampleMetadataFile("http://bcbiobase.seq.cloud/demultiplexed.csv") %>%
+#' readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv") %>%
 #'     glimpse()
 #'
 #' # Multiplexed (e.g. inDrop single-cell RNA-seq)
-#' readSampleMetadataFile("http://bcbiobase.seq.cloud/multiplexed.csv") %>%
+#' readSampleData("http://bcbiobase.seq.cloud/multiplexed.csv") %>%
 #'     glimpse()
-readSampleMetadataFile <- function(file, lanes = 1L) {
+readSampleData <- function(file, lanes = 1L) {
     assert_is_a_string(file)
     assertIsAnImplicitInteger(lanes)
     assert_all_are_positive(lanes)
