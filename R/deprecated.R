@@ -11,23 +11,7 @@ NULL
 
 
 # v0.2.0 =======================================================================
-# `annotable()` deprecated in basejump v0.4.0
-#' @rdname deprecated
-#' @importFrom basejump annotable
-#' @export
-setMethod(
-    "annotable",
-    signature("SummarizedExperiment"),
-    function(object) {
-        warn(paste(
-            "'annotable' is deprecated.",
-            "Use 'rowData' instead.",
-            "See help(\"Deprecated\")",
-            sep = "\n"
-        ))
-        rowData(object)
-    }
-)
+# `annotable()` made defunct in basejump v0.4.0
 
 #' @rdname deprecated
 #' @export
