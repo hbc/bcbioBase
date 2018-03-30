@@ -25,6 +25,14 @@ setGeneric("bcbio<-", function(object, ..., value) {
 
 
 
+#' @rdname gene2symbol
+#' @export
+setGeneric("gene2symbol", function(object) {
+    standardGeneric("gene2symbol")
+})
+
+
+
 #' @rdname interestingGroups
 #' @export
 setGeneric("interestingGroups", function(object, ...) {

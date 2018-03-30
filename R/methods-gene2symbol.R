@@ -3,12 +3,10 @@
 #' @name gene2symbol
 #' @author Michael Steinbaugh
 #'
-#' @importFrom basejump gene2symbol
-#'
 #' @inheritParams general
 #'
-#' @return `data.frame` containing Ensembl gene identifier and gene name
-#'   (aka symbol) mappings.
+#' @return `data.frame` containing gene identifier and gene name (aka symbol)
+#'   mappings.
 NULL
 
 
