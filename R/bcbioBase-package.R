@@ -2,6 +2,8 @@
 #'
 #' Base functions and generics for bcbio R packages.
 #'
+#' @keywords internal
+#'
 #' @import S4Vectors methods
 #'
 #' @importFrom Biostrings reverseComplement

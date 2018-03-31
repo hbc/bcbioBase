@@ -44,3 +44,4 @@ Varies, depending upon the method.
 \description{
 S4 Generics
 }
+\keyword{internal}

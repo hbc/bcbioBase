@@ -1,5 +1,6 @@
 #' Prepare Sample Data
 #'
+#' @family Prepare Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

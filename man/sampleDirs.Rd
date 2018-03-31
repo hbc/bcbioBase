@@ -16,6 +16,10 @@ will abort if no sample directories match.
 \description{
 Sample Directories
 }
+\seealso{
+Other Data Functions: \code{\link{gene2symbol}},
+  \code{\link{uniteInterestingGroups}}
+}
 \author{
 Michael Steinbaugh
 }

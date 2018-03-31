@@ -25,9 +25,6 @@ is requested by the user.
 data <- readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv")
 assertFormalInterestingGroups(data, interestingGroups = "genotype")
 }
-\seealso{
-Other Assert Check Functions: \code{\link{checkInterestingGroups}}
-}
 \author{
 Michael Steinbaugh
 }

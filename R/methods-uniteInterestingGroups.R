@@ -5,6 +5,7 @@
 #' single column, delimited by "`:`".
 #'
 #' @name uniteInterestingGroups
+#' @family Data Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

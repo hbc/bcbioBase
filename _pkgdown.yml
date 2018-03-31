@@ -1,10 +1,40 @@
 template:
   params:
     bootswatch: readable
+
 authors:
   Michael Steinbaugh:
     href: http://steinbaugh.com
+  Lorena Pantano:
+    href: https://lpantano.github.io
   Rory Kirchner:
     href: https://github.com/roryk
   Harvard Chan Bioinformatics Core:
     href: http://bioinformatics.sph.harvard.edu
+
+reference:
+  - title: Assert Check Functions
+    contents:
+    - starts_with("assert")
+  - title: Data Functions
+    contents:
+    - gene2symbol
+    - interestingGroups
+    - sampleData
+    - sampleDirs
+    - uniteInterestingGroups
+  - title: Plot Functions
+    contents:
+    - starts_with("plot")
+  - title: Prepare Functions
+    contents:
+    - starts_with("prepare")
+  - title: Read Functions
+    contents:
+    - starts_with("read")
+  - title: Write Functions
+    contents:
+    - copyToDropbox
+  - title: YAML Functions
+    contents:
+    - matches("YAML")

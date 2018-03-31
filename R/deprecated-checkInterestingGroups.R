@@ -6,7 +6,7 @@
 #' Prevent unwanted downstream behavior when a missing interesting group
 #' is requested by the user.
 #'
-#' @family Assert Check Functions
+#' @keywords internal
 #'
 #' @param object Object supporting [colnames()], typically a `data.frame`.
 #' @param interestingGroups Interesting groups character vector.

@@ -1,6 +1,7 @@
 #' S4 Generics
 #'
 #' @name AllGenerics
+#' @keywords internal
 #'
 #' @inheritParams general
 #'

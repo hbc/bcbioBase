@@ -11,10 +11,18 @@ Authors@R: c(
         comment = c(ORCID = "0000-0002-2403-2221")
     ),
     person(
+        given = "Lorena",
+        family = "Pantano",
+        email = "lorena.pantano@gmail.com",
+        role = "aut",
+        comment = c(ORCID = "0000-0002-3859-3249")
+    ),
+    person(
         given = "Rory",
         family = "Kirchner",
         email = "roryk@alum.mit.edu",
-        role = "aut"
+        role = "aut",
+        comment = c(ORCID = "0000-0003-4814-5885")
     ),
     person(
         given = "Harvard Chan Bioinformatics Core",

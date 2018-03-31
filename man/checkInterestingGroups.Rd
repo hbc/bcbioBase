@@ -20,6 +20,4 @@ Valid character of defined interesting groups. Stop on failure.
 Prevent unwanted downstream behavior when a missing interesting group
 is requested by the user.
 }
-\seealso{
-Other Assert Check Functions: \code{\link{assertFormalInterestingGroups}}
-}
+\keyword{internal}

@@ -21,6 +21,10 @@ mappings.
 \description{
 Gene to Symbol Mappings
 }
+\seealso{
+Other Data Functions: \code{\link{sampleDirs}},
+  \code{\link{uniteInterestingGroups}}
+}
 \author{
 Michael Steinbaugh
 }

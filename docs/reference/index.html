@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,9 @@
 <script src="../pkgdown.js"></script>
   <link href="../extra.css" rel="stylesheet">
   
+<meta property="og:title" content="Function reference" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -32,6 +37,8 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
 
 
   </head>
@@ -47,8 +54,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">bcbioBase</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">bcbioBase</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -70,6 +81,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -77,191 +89,222 @@
       
       </header>
 
-      <div class="row">
-  <div class="col-md-9">
+<div class="row">
+  <div class="contents col-md-9">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.2.0</small>
-      </h1>
+      <h1>Reference</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    <table class="ref-index">
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <colgroup>
+      <col class="alias" />
+      <col class="title" />
+    </colgroup>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="AllGenerics.html">bcbio</a></code> <code><a href="AllGenerics.html">bcbio<-</a></code> <code><a href="AllGenerics.html">metrics</a></code> <code><a href="AllGenerics.html">plotDot</a></code> <code><a href="AllGenerics.html">plotGene</a></code> <code><a href="AllGenerics.html">plotQC</a></code> <code><a href="AllGenerics.html">plotViolin</a></code> <code><a href="AllGenerics.html">selectSamples</a></code> <code><a href="AllGenerics.html">tpm</a></code> </p>
-          </td>
-          <td><p>S4 Generics</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="assertFormalInterestingGroups.html">assertFormalInterestingGroups</a></code> </p>
-          </td>
-          <td><p>Interesting Groups Formal Assert Check</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="bcbioBase-package.html">bcbioBase-package</a></code> </p>
-          </td>
-          <td><p>bcbioBase</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="checkInterestingGroups.html">checkInterestingGroups</a></code> </p>
-          </td>
-          <td><p>Check Interesting Groups</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="copyToDropbox.html">copyToDropbox</a></code> </p>
-          </td>
-          <td><p>Copy Files to Dropbox</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="gene2symbol.html">gene2symbol</a></code> </p>
-          </td>
-          <td><p>Gene to Symbol Mappings</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="interestingGroups.html">interestingGroups</a></code> <code><a href="interestingGroups.html">interestingGroups<-</a></code> </p>
-          </td>
-          <td><p>Interesting Groups</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plotCorrelationHeatmap.html">plotCorrelationHeatmap</a></code> </p>
-          </td>
-          <td><p>Plot Correlation Heatmap</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plotHeatmap.html">plotHeatmap</a></code> </p>
-          </td>
-          <td><p>Plot Heatmap</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plotQuantileHeatmap.html">plotQuantileHeatmap</a></code> </p>
-          </td>
-          <td><p>Plot Heatmap with Quantile Breaks</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="prepareSampleData.html">prepareSampleData</a></code> </p>
-          </td>
-          <td><p>Prepare Sample Data</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="prepareSummarizedExperiment.html">prepareSummarizedExperiment</a></code> </p>
-          </td>
-          <td><p>Prepare Summarized Experiment</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="prepareTemplate.html">prepareTemplate</a></code> </p>
-          </td>
-          <td><p>Prepare R Markdown Template File</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="readDataVersions.html">readDataVersions</a></code> </p>
-          </td>
-          <td><p>Read Data Versions</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="readLog.html">readLog</a></code> </p>
-          </td>
-          <td><p>Read Log File</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="readProgramVersions.html">readProgramVersions</a></code> </p>
-          </td>
-          <td><p>Read Program Versions</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="readSampleData.html">readSampleData</a></code> </p>
-          </td>
-          <td><p>Read Sample Metadata</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="readTx2gene.html">readTx2gene</a></code> </p>
-          </td>
-          <td><p>Transcript to Gene Annotations</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="sampleData.html">sampleData</a></code> <code><a href="sampleData.html">sampleData<-</a></code> </p>
-          </td>
-          <td><p>Sample Data</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="sampleDirs.html">sampleDirs</a></code> </p>
-          </td>
-          <td><p>Sample Directories</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="sampleYAML.html">sampleYAML</a></code> </p>
-          </td>
-          <td><p>Sample YAML Metadata Utilities</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="sampleYAMLMetadata.html">sampleYAMLMetadata</a></code> </p>
-          </td>
-          <td><p>Sample Metadata from YAML</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="sampleYAMLMetrics.html">sampleYAMLMetrics</a></code> </p>
-          </td>
-          <td><p>Sample Metrics from YAML File</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="uniteInterestingGroups.html">uniteInterestingGroups</a></code> </p>
-          </td>
-          <td><p>Unite Interesting Groups</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-assert-check-functions" class="hasAnchor"><a href="#section-assert-check-functions" class="anchor"></a>Assert Check Functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="assertFormalInterestingGroups.html">assertFormalInterestingGroups()</a></code> </p>
+        </td>
+        <td><p>Interesting Groups Formal Assert Check</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-data-functions" class="hasAnchor"><a href="#section-data-functions" class="anchor"></a>Data Functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="gene2symbol.html">gene2symbol()</a></code> </p>
+        </td>
+        <td><p>Gene to Symbol Mappings</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="interestingGroups.html">interestingGroups()</a></code> <code><a href="interestingGroups.html">`interestingGroups<-`()</a></code> </p>
+        </td>
+        <td><p>Interesting Groups</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="sampleData.html">sampleData()</a></code> <code><a href="sampleData.html">`sampleData<-`()</a></code> </p>
+        </td>
+        <td><p>Sample Data</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="sampleDirs.html">sampleDirs()</a></code> </p>
+        </td>
+        <td><p>Sample Directories</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="uniteInterestingGroups.html">uniteInterestingGroups()</a></code> </p>
+        </td>
+        <td><p>Unite Interesting Groups</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-plot-functions" class="hasAnchor"><a href="#section-plot-functions" class="anchor"></a>Plot Functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plotCorrelationHeatmap.html">plotCorrelationHeatmap()</a></code> </p>
+        </td>
+        <td><p>Plot Correlation Heatmap</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plotHeatmap.html">plotHeatmap()</a></code> </p>
+        </td>
+        <td><p>Plot Heatmap</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="plotQuantileHeatmap.html">plotQuantileHeatmap()</a></code> </p>
+        </td>
+        <td><p>Plot Heatmap with Quantile Breaks</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-prepare-functions" class="hasAnchor"><a href="#section-prepare-functions" class="anchor"></a>Prepare Functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="prepareSampleData.html">prepareSampleData()</a></code> </p>
+        </td>
+        <td><p>Prepare Sample Data</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="prepareSummarizedExperiment.html">prepareSummarizedExperiment()</a></code> </p>
+        </td>
+        <td><p>Prepare Summarized Experiment</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="prepareTemplate.html">prepareTemplate()</a></code> </p>
+        </td>
+        <td><p>Prepare R Markdown Template File</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-read-functions" class="hasAnchor"><a href="#section-read-functions" class="anchor"></a>Read Functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="readDataVersions.html">readDataVersions()</a></code> </p>
+        </td>
+        <td><p>Read Data Versions</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="readLog.html">readLog()</a></code> </p>
+        </td>
+        <td><p>Read Log File</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="readProgramVersions.html">readProgramVersions()</a></code> </p>
+        </td>
+        <td><p>Read Program Versions</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="readSampleData.html">readSampleData()</a></code> </p>
+        </td>
+        <td><p>Read Sample Metadata</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="readTx2gene.html">readTx2gene()</a></code> </p>
+        </td>
+        <td><p>Transcript to Gene Annotations</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-write-functions" class="hasAnchor"><a href="#section-write-functions" class="anchor"></a>Write Functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="copyToDropbox.html">copyToDropbox()</a></code> </p>
+        </td>
+        <td><p>Copy Files to Dropbox</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-yaml-functions" class="hasAnchor"><a href="#section-yaml-functions" class="anchor"></a>YAML Functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="sampleYAML.html">sampleYAML()</a></code> </p>
+        </td>
+        <td><p>Sample YAML Metadata Utilities</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="sampleYAMLMetadata.html">sampleYAMLMetadata()</a></code> </p>
+        </td>
+        <td><p>Sample Metadata from YAML</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="sampleYAMLMetrics.html">sampleYAMLMetrics()</a></code> </p>
+        </td>
+        <td><p>Sample Metrics from YAML File</p></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-assert-check-functions">Assert Check Functions</a></li>
+      <li><a href="#section-data-functions">Data Functions</a></li>
+      <li><a href="#section-plot-functions">Plot Functions</a></li>
+      <li><a href="#section-prepare-functions">Prepare Functions</a></li>
+      <li><a href="#section-read-functions">Read Functions</a></li>
+      <li><a href="#section-write-functions">Write Functions</a></li>
+      <li><a href="#section-yaml-functions">YAML Functions</a></li>
     </ul>
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, <a href='https://github.com/roryk'>Rory Kirchner</a>, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
+  <p>Developed by <a href='http://steinbaugh.com'>Michael Steinbaugh</a>, <a href='https://lpantano.github.io'>Lorena Pantano</a>, <a href='https://github.com/roryk'>Rory Kirchner</a>, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
 </div>
 
 <div class="pkgdown">
@@ -271,5 +314,8 @@
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

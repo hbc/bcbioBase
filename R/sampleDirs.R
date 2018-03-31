@@ -1,5 +1,6 @@
 #' Sample Directories
 #'
+#' @family Data Functions
 #' @author Michael Steinbaugh
 #'
 #' @param uploadDir bcbio run upload directory.
