@@ -26,6 +26,14 @@ setGeneric("bcbio<-", function(object, ..., value) {
 
 
 
+#' @rdname deprecated
+#' @export
+setGeneric("flatFiles", function(object, ...) {
+    standardGeneric("flatFiles")
+})
+
+
+
 #' @rdname gene2symbol
 #' @export
 setGeneric("gene2symbol", function(object) {

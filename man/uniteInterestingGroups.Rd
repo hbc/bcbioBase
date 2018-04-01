@@ -46,8 +46,8 @@ meta <- uniteInterestingGroups(
 meta[, "interestingGroups"]
 }
 \seealso{
-Other Data Functions: \code{\link{gene2symbol}},
-  \code{\link{sampleDirs}}
+Other Data Functions: \code{\link{flatFiles}},
+  \code{\link{gene2symbol}}, \code{\link{sampleDirs}}
 }
 \author{
 Michael Steinbaugh

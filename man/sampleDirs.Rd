@@ -17,7 +17,8 @@ will abort if no sample directories match.
 Sample Directories
 }
 \seealso{
-Other Data Functions: \code{\link{gene2symbol}},
+Other Data Functions: \code{\link{flatFiles}},
+  \code{\link{gene2symbol}},
   \code{\link{uniteInterestingGroups}}
 }
 \author{
