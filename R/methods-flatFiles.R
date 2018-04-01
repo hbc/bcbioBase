@@ -18,12 +18,14 @@ setMethod(
     "flatFiles",
     signature("SummarizedExperiment"),
     function(object) {
-        # Coerce to RSE prior to SE to keep rowRanges/rowData intact
-        if (is(object, "RangedSummarizedExperiment")) {
-            object <- as(object, "RangedSummarizedExperiment")
-        }
-        object <- as(object, "SummarizedExperiment")
-        list <- as(object, "list")
+        list <- lapply(slotNames(object), function(slot) {
+            if (.hasSlot(object, slot)) {
+                slot(object, slot)
+            } else {
+                NULL
+            }
+        })
+        names(list) <- slotNames(object)
         list
     }
 )
