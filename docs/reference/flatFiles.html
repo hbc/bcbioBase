@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sample YAML Metadata Utilities — sampleYAML • bcbioBase</title>
+<title>Flat Files from S4 Object — flatFiles • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -27,9 +27,9 @@
 <script src="../pkgdown.js"></script>
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Sample YAML Metadata Utilities — sampleYAML" />
+<meta property="og:title" content="Flat Files from S4 Object — flatFiles" />
 
-<meta property="og:description" content="Sample YAML Metadata Utilities" />
+<meta property="og:description" content="Extract the slots inside an S4 object for archival storage." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -95,73 +95,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Sample YAML Metadata Utilities</h1>
-    <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-sampleYAML.R'><code>R/methods-sampleYAML.R</code></a></small>
+    <h1>Flat Files from S4 Object</h1>
+    <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-flatFiles.R'><code>R/methods-flatFiles.R</code></a></small>
     </div>
 
     
-    <p>Sample YAML Metadata Utilities</p>
+    <p>Extract the slots inside an S4 object for archival storage.</p>
     
 
-    <pre class="usage"><span class='fu'>sampleYAML</span>(<span class='no'>yaml</span>, <span class='no'>keys</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>flatFiles</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for list,character</span>
-<span class='fu'>sampleYAML</span>(<span class='no'>yaml</span>, <span class='no'>keys</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>yaml</th>
-      <td><p>Project summary YAML <code>list</code>.</p></td>
-    </tr>
-    <tr>
-      <th>keys</th>
-      <td><p>Nested operator keys, supplied as a character vector.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
-    </tr>
-    </table>
-    
+<span class='co'># S4 method for SummarizedExperiment</span>
+<span class='fu'>flatFiles</span>(<span class='no'>object</span>)</pre>
+        
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>tbl_df</code>.</p>
-    
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Metrics are only generated for a standard RNA-seq run with aligned
-counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
-output the same metrics into the YAML.</p>
+    <p><code>list</code> containing the slots of an S4 object.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other YAML Functions: <code>sampleYAMLMetadata</code>,
-  <code>sampleYAMLMetrics</code></p></div>
+    <div class='dont-index'><p>Other Data Functions: <code>gene2symbol</code>,
+  <code><a href='sampleDirs.html'>sampleDirs</a></code>,
+  <code>uniteInterestingGroups</code></p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/basejump/topics/readYAML'>readYAML</a></span>(
-    <span class='st'>"http://bcbiobase.seq.cloud/project-summary.yaml"</span>
-)</div><div class='output co'>#&gt; <span class='message'>Reading project-summary.yaml</span></div><div class='input'><span class='fu'>sampleYAML</span>(<span class='no'>yaml</span>, <span class='st'>"metadata"</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; Observations: 4
-#&gt; Variables: 2
-#&gt; $ description &lt;chr&gt; "group1_1", "group1_2", "group2_1", "group2_2"
-#&gt; $ group       &lt;chr&gt; "ctrl", "ctrl", "ko", "ko"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#note">Note</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
     <h2>Author</h2>
     
