@@ -5,18 +5,20 @@
 \alias{sampleData}
 \alias{sampleData<-}
 \alias{sampleData}
-\alias{sampleData,ANY-method}
-\alias{sampleData<-,ANY-method}
+\alias{sampleData,SummarizedExperiment-method}
+\alias{sampleData<-,SummarizedExperiment-method}
+\alias{sampleMetadata}
+\alias{sampleMetadata<-}
 \title{Sample Data}
 \usage{
 sampleData(object, ...)
 
 sampleData(object, ...) <- value
 
-\S4method{sampleData}{ANY}(object, return = c("data.frame", "DataFrame",
-  "kable"))
+\S4method{sampleData}{SummarizedExperiment}(object, return = c("data.frame",
+  "DataFrame", "kable"))
 
-\S4method{sampleData}{ANY}(object, ...) <- value
+\S4method{sampleData}{SummarizedExperiment}(object, ...) <- value
 }
 \arguments{
 \item{object}{Object.}
