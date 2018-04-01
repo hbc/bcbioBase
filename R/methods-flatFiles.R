@@ -18,12 +18,6 @@ setMethod(
     "flatFiles",
     signature("SummarizedExperiment"),
     function(object) {
-        # Need to coerce to RSE prior to SE to keep rowRanges/rowData intact
-        if (is(object, "RangedSummarizedExperiment")) {
-            object <- as(object, "RangedSummarizedExperiment")
-        }
-        object <- as(object, "SummarizedExperiment")
-        list <- as(object, "list")
-        list
+        as(object, "list")
     }
 )
