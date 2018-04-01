@@ -6,6 +6,8 @@
 #' @family Data Functions
 #' @author Michael Steinbaugh
 #'
+#' @inheritParams general
+#'
 #' @return `list` containing the slots of an S4 object.
 NULL
 

@@ -11,6 +11,11 @@ flatFiles(object, ...)
 
 \S4method{flatFiles}{SummarizedExperiment}(object)
 }
+\arguments{
+\item{object}{Object.}
+
+\item{...}{Additional arguments.}
+}
 \value{
 \code{list} containing the slots of an S4 object.
 }
