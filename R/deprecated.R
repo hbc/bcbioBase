@@ -11,7 +11,11 @@ NULL
 
 
 # v0.2.0 =======================================================================
-# `annotable()` made defunct in basejump v0.4.0
+#' @rdname deprecated
+#' @export
+checkInterestingGroups <- function(...) {
+    .Defunct("assertFormalInterestingGroups")
+}
 
 #' @rdname deprecated
 #' @export

@@ -5,6 +5,7 @@
 \name{flatFiles}
 \alias{flatFiles}
 \alias{deprecated}
+\alias{checkInterestingGroups}
 \alias{prepareSampleMetadata}
 \alias{readLogFile}
 \alias{readSampleMetadataFile}
@@ -12,6 +13,8 @@
 \title{Defunct or Deprecated Functions}
 \usage{
 flatFiles(object, ...)
+
+checkInterestingGroups(...)
 
 prepareSampleMetadata(...)
 
