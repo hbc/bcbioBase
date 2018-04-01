@@ -58,7 +58,7 @@ setMethod(
         object = "SummarizedExperiment",
         value = "ANY"
     ),
-    function(object, ..., value) {
+    function(object, value) {
         value <- as(value, "DataFrame")
         # Ensure all columns are factors
         value <- sanitizeSampleData(value)
@@ -80,6 +80,7 @@ sampleMetadata <- function(object, ...) {
 #' @rdname sampleData
 #' @usage NULL
 #' @export
-`sampleMetadata<-` <- function(object, ..., value) {
+`sampleMetadata<-` <- function(object, value) {
     sampleData(object) <- value
+    object
 }
