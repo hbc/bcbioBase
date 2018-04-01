@@ -10,7 +10,6 @@
 \alias{plotQC}
 \alias{plotViolin}
 \alias{selectSamples}
-\alias{tpm}
 \title{S4 Generics}
 \usage{
 bcbio(object, ...)
@@ -28,8 +27,6 @@ plotQC(object, ...)
 plotViolin(object, ...)
 
 selectSamples(object, ...)
-
-tpm(object)
 }
 \arguments{
 \item{object}{Object.}

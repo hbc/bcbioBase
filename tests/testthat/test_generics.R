@@ -17,8 +17,7 @@ withoutMethods <- c(
     "plotGene",
     "plotQC",
     "plotViolin",
-    "selectSamples",
-    "tpm"
+    "selectSamples"
 )
 
 test_that("S4 generics", {
