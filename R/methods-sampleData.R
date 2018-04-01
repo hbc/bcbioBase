@@ -18,48 +18,34 @@ NULL
 
 
 
-# Constructors =================================================================
-.sampleData <- function(
-    object,
-    return = c("data.frame", "DataFrame", "kable")
-) {
-    return <- match.arg(return)
-    data <- colData(object)
-    # Ensure all columns are factors
-    data <- sanitizeSampleData(data)
-    if (return == "kable") {
-        blacklist <- c("description", "fileName", "sampleID")
-        data %>%
-            as.data.frame() %>%
-            .[, setdiff(colnames(.), blacklist), drop = FALSE] %>%
-            # Ensure `sampleName` is first
-            .[, unique(c("sampleName", colnames(.))), drop = FALSE] %>%
-            # Arrange by `sampleName`
-            .[order(.[["sampleName"]]), , drop = FALSE] %>%
-            kable(row.names = FALSE)
-    } else {
-        as(data, return)
-    }
-}
-
-
-
-`.sampleData<-` <- function(object, ..., value) {
-    # Ensure all columns are factors
-    value <- sanitizeSampleData(value)
-    colData(object) <- value
-    object
-}
-
-
-
 # Methods ======================================================================
 #' @rdname sampleData
 #' @export
 setMethod(
     "sampleData",
-    signature("ANY"),
-    .sampleData
+    signature("SummarizedExperiment"),
+    function(
+        object,
+        return = c("data.frame", "DataFrame", "kable")
+    ) {
+        return <- match.arg(return)
+        data <- colData(object)
+        # Ensure all columns are factors
+        data <- sanitizeSampleData(data)
+        if (return == "kable") {
+            blacklist <- c("description", "fileName", "sampleID")
+            data %>%
+                as.data.frame() %>%
+                .[, setdiff(colnames(.), blacklist), drop = FALSE] %>%
+                # Ensure `sampleName` is first
+                .[, unique(c("sampleName", colnames(.))), drop = FALSE] %>%
+                # Arrange by `sampleName`
+                .[order(.[["sampleName"]]), , drop = FALSE] %>%
+                kable(row.names = FALSE)
+        } else {
+            as(data, return)
+        }
+    }
 )
 
 
@@ -68,6 +54,32 @@ setMethod(
 #' @export
 setMethod(
     "sampleData<-",
-    signature("ANY"),
-    `.sampleData<-`
+    signature(
+        object = "SummarizedExperiment",
+        value = "ANY"
+    ),
+    function(object, ..., value) {
+        value <- as(value, "DataFrame")
+        # Ensure all columns are factors
+        value <- sanitizeSampleData(value)
+        colData(object) <- value
+        object
+    }
 )
+
+
+
+# Aliases ======================================================================
+#' @rdname sampleData
+#' @usage NULL
+#' @export
+sampleMetadata <- function(object, ...) {
+    sampleData(object, ...)
+}
+
+#' @rdname sampleData
+#' @usage NULL
+#' @export
+`sampleMetadata<-` <- function(object, ..., value) {
+    sampleData(object) <- value
+}
