@@ -19,7 +19,7 @@ sampleYAML(yaml, keys, ...)
 \item{...}{Additional arguments.}
 }
 \value{
-\code{tibble}.
+\code{tbl_df}.
 }
 \description{
 Sample YAML Metadata Utilities

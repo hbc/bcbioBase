@@ -13,7 +13,7 @@
 #'   counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
 #'   output the same metrics into the YAML.
 #'
-#' @return `tibble`.
+#' @return `tbl_df`.
 #'
 #' @examples
 #' yaml <- basejump::readYAML(

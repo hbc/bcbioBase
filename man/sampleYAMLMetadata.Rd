@@ -17,7 +17,7 @@ sampleYAMLMetadata(yaml, ...)
 \item{...}{Additional arguments.}
 }
 \value{
-\code{tibble}.
+\code{tbl_df}.
 }
 \description{
 Sample Metadata from YAML

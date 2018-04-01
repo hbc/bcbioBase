@@ -12,7 +12,7 @@ NULL
 
 
 # Methods ======================================================================
-#' @rdname deprecated
+#' @rdname flatFiles
 #' @export
 setMethod(
     "flatFiles",

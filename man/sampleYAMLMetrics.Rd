@@ -17,7 +17,7 @@ sampleYAMLMetrics(yaml, ...)
 \item{...}{Additional arguments.}
 }
 \value{
-\code{tibble}.
+\code{tbl_df}.
 }
 \description{
 Sample Metrics from YAML File
