@@ -2,6 +2,7 @@ cacheURL <- "http://bcbiobase.seq.cloud"
 files <- c(
     "bcbio_legacy_samplename.csv",
     "bcbio-nextgen.log",
+    "cellranger_metadata.csv",
     "data_versions.csv",
     "demultiplexed.csv",
     "demultiplexed_duplicated_description.csv",
