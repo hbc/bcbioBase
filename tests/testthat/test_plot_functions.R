@@ -2,6 +2,22 @@ context("Plot Functions")
 
 
 
+# plotCorrelationHeatmap =======================================================
+test_that("plotCorrelationHeatmap : matrix", {
+    mat <- assay(rse_small)
+    p <- plotCorrelationHeatmap(mat)
+    expect_is(p, "list")
+    expect_identical(names(p), heatmapList)
+})
+
+test_that("plotCorrelationHeatmap : SummarizedExperiment", {
+    p <- plotCorrelationHeatmap(rse_small)
+    expect_is(p, "list")
+    expect_identical(names(p), heatmapList)
+})
+
+
+
 # plotHeatmap ==================================================================
 test_that("plotHeatmap : matrix", {
     p <- plotHeatmap(mat)
@@ -9,7 +25,13 @@ test_that("plotHeatmap : matrix", {
     expect_identical(names(p), heatmapList)
 })
 
-test_that("Annotation columns support", {
+test_that("plotHeatmap : SummarizedExperiment", {
+    p <- plotHeatmap(rse_small)
+    expect_is(p, "list")
+    expect_identical(names(p), heatmapList)
+})
+
+test_that("plotHeatmap : Annotation columns support", {
     annotationCol <- data.frame(
         genotype = c(
             "wildtype",
@@ -56,6 +78,14 @@ test_that("plotQuantileHeatmap : matrix", {
     expect_identical(names(p), c("quantiles", "plot"))
     expect_identical(names(p[["plot"]]), heatmapList)
     expect_length(p[["plot"]][["gtable"]], 5L)
+})
+
+test_that("plotQuantileHeatmap : SummarizedExperiment", {
+    p <- plotQuantileHeatmap(rse_small)
+    expect_is(p, "list")
+    expect_identical(names(p), c("quantiles", "plot"))
+    expect_identical(names(p[["plot"]]), heatmapList)
+    expect_length(p[["plot"]][["gtable"]], 6L)
 })
 
 test_that("plotQuantileHeatmap : Annotation columns support", {
