@@ -2,6 +2,53 @@ context("Data Functions")
 
 
 
+# sampleData ===================================================================
+test_that("sampleData : SummarizedExperiment", {
+    # Check output of `return` parameter
+    return <- methodFormals(
+        f = "sampleData",
+        signature = "SummarizedExperiment"
+    ) %>%
+        .[["return"]] %>%
+        as.character() %>%
+        .[-1L]
+    list <- lapply(return, function(x) {
+        sampleData(rse_small, return = x)
+    })
+    expect_identical(
+        lapply(list, class),
+        list(
+            "data.frame",
+            structure("DataFrame", package = "S4Vectors"),
+            "knitr_kable"
+        )
+    )
+    # Check dimensions
+    expect_identical(
+        lapply(list, dim),
+        list(
+            c(6L, 8L),
+            c(6L, 8L),
+            NULL
+        )
+    )
+    # Check rownames
+    expect_identical(
+        lapply(list, rownames),
+        list(
+            colnames(rse_small),
+            colnames(rse_small),
+            NULL
+        )
+    )
+    # Ensure all columns are factor
+    invisible(lapply(list[[1L]], function(x) {
+        expect_is(x, "factor")
+    }))
+})
+
+
+
 # uniteInterestingGroups =======================================================
 test_that("uniteInterestingGroups : Single interesting group", {
     data <- uniteInterestingGroups(mtcars, interestingGroups = "gear")
@@ -29,7 +76,7 @@ test_that("uniteInterestingGroups : Two interesting groups", {
     )
 })
 
-test_that("Missing interesting group", {
+test_that("uniteInterestingGroups : Missing groups", {
     expect_error(
         uniteInterestingGroups(mtcars, interestingGroups = c("XXX", "YYY")),
         paste(
