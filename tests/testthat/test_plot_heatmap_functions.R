@@ -20,8 +20,13 @@ test_that("SummarizedExperiment", {
         gtable <- p[["gtable"]]
         expect_true("annotation_legend" %in% gtable[["layout"]][["name"]])
 
-        # Test color palette support
-        expect_silent(f(object, color = NULL, legendColor = NULL))
+        # Test color and title support
+        expect_silent(f(
+            object,
+            color = NULL,
+            legendColor = NULL,
+            title = NULL
+        ))
     }))
 })
 
@@ -38,8 +43,12 @@ test_that("matrix", {
         # Test that plots do not contain annotation data
         gtable <- p[["gtable"]]
         expect_false("annotation_legend" %in% gtable[["layout"]][["name"]])
-
-        # Test color palette support
-        expect_silent(f(object, color = NULL, legendColor = NULL))
     }))
+})
+
+test_that("Invalid pheatmap passthrough", {
+    expect_error(
+        plotHeatmap(rse_small, show_colnames = FALSE),
+        "Define formalArgs in camel case: show_colnames"
+    )
 })

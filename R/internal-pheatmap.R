@@ -11,14 +11,7 @@
             toString(invalidNames)
         ))
     }
-    # Abort on duplicate arguments
     names(args) <- snake(names(args))
-    if (any(duplicated(names(args)))) {
-        abort(paste(
-            "Duplicate formalArgs detected:",
-            toString(camel(names(args)[duplicated(names(args))]))
-        ))
-    }
     assert_is_subset(names(args), formalArgs(pheatmap))
     args
 }
