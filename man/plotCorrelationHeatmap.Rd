@@ -36,7 +36,8 @@ plotCorrelationHeatmap(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Passthrough arguments to \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}.}
+\item{...}{Passthrough arguments to \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}. The names of the
+arguments must be formatted in camel case, not snake case.}
 
 \item{method}{Correlation coefficient (or covariance) method to be computed.
 Defaults to "\code{pearson}" but "\code{spearman}" can also be used. Consult the
@@ -59,7 +60,7 @@ palette.}
 \item{title}{\emph{Optional.} Plot title.}
 }
 \value{
-Show heatmap and return \code{list}, containing \code{gtable}.
+Show heatmap and invisibly return a \code{list} of the components.
 }
 \description{
 Construct a correlation heatmap comparing the columns of the matrix.
@@ -79,7 +80,7 @@ plotCorrelationHeatmap(mat)
 \item \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}.
 }
 
-Other Plot Functions: \code{\link{plotHeatmap}},
+Other Plot Heatmap Functions: \code{\link{plotHeatmap}},
   \code{\link{plotQuantileHeatmap}}
 }
 \author{

@@ -14,18 +14,18 @@ plotHeatmap(object, ...)
 
 \S4method{plotHeatmap}{dgCMatrix}(object, scale = c("row", "column", "none"),
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
-  color = viridis, legendColor = viridis, borderColor = NULL,
-  title = NULL, ...)
+  showColnames = TRUE, showRownames = TRUE, color = viridis,
+  legendColor = viridis, borderColor = NULL, title = NULL, ...)
 
 \S4method{plotHeatmap}{dgTMatrix}(object, scale = c("row", "column", "none"),
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
-  color = viridis, legendColor = viridis, borderColor = NULL,
-  title = NULL, ...)
+  showColnames = TRUE, showRownames = TRUE, color = viridis,
+  legendColor = viridis, borderColor = NULL, title = NULL, ...)
 
 \S4method{plotHeatmap}{matrix}(object, scale = c("row", "column", "none"),
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
-  color = viridis, legendColor = viridis, borderColor = NULL,
-  title = NULL, ...)
+  showColnames = TRUE, showRownames = TRUE, color = viridis,
+  legendColor = viridis, borderColor = NULL, title = NULL, ...)
 
 \S4method{plotHeatmap}{SummarizedExperiment}(object, scale = c("row",
   "column", "none"), annotationCol, clusterCols = TRUE, clusterRows = TRUE,
@@ -35,7 +35,8 @@ plotHeatmap(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Passthrough arguments to \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}.}
+\item{...}{Passthrough arguments to \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}. The names of the
+arguments must be formatted in camel case, not snake case.}
 
 \item{scale}{Character indicating if the values should be centered and scaled
 in either the row direction or the column direction, or none. Corresponding
@@ -61,7 +62,7 @@ palette.}
 \item{title}{\emph{Optional.} Plot title.}
 }
 \value{
-Show heatmap and return \code{list}, containing \code{gtable}.
+Show heatmap and invisibly return a \code{list} of the components.
 }
 \description{
 Construct a simple heatmap. By default, row- and column-wise hierarchical
@@ -79,6 +80,6 @@ plotHeatmap(mat)
 \seealso{
 \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}.
 
-Other Plot Functions: \code{\link{plotCorrelationHeatmap}},
+Other Plot Heatmap Functions: \code{\link{plotCorrelationHeatmap}},
   \code{\link{plotQuantileHeatmap}}
 }

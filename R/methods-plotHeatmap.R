@@ -23,11 +23,12 @@
 #' @param legendColor Colors to use for legend labels. Defaults to the
 #'   [viridis()] palette.
 #' @param title *Optional.* Plot title.
-#' @param ... Passthrough arguments to [pheatmap::pheatmap()].
+#' @param ... Passthrough arguments to [pheatmap::pheatmap()]. The names of the
+#'   arguments must be formatted in camel case, not snake case.
 #'
 #' @seealso [pheatmap::pheatmap()].
 #'
-#' @return Show heatmap and return `list`, containing `gtable`.
+#' @return Show heatmap and invisibly return a `list` of the components.
 #'
 #' @examples
 #' # SummarizedExperiment ====
@@ -41,20 +42,26 @@ NULL
 
 
 # Constructors =================================================================
-.prepareAnnotationCol <- function(object) {
-    # pheatmap requires `NA` argument if empty
-    if (!has_dims(object)) {
-        return(NA)
+# Sanitize formals into snake case and abort on duplicates.
+# Duplicates may arise if user is mixing and matching camel/snake case.
+.pheatmapArgs <- function(args, .call) {
+    assert_is_list(args)
+    names(args) <- snake(names(args))
+    if (any(duplicated(names(args)))) {
+        abort(paste(
+            paste(
+                "Duplicate formalArgs detected:",
+                toString(camel(
+                    names(args)[duplicated(names(args))]
+                ))
+            ),
+            "Note: Formals must be formatted in camel case.",
+            deparse(.call),
+            sep = "\n"
+        ))
     }
-    assertHasRownames(object)
-    object %>%
-        as.data.frame() %>%
-        # Remove sample name columns
-        .[, setdiff(colnames(.), metadataPriorityCols), drop = FALSE] %>%
-        rownames_to_column() %>%
-        # Ensure all columns are factor
-        mutate_all(factor) %>%
-        column_to_rownames()
+    assert_is_subset(names(args), formalArgs(pheatmap))
+    args
 }
 
 
@@ -65,6 +72,8 @@ NULL
     annotationCol = NULL,
     clusterCols = TRUE,
     clusterRows = TRUE,
+    showColnames = TRUE,
+    showRownames = TRUE,
     color = viridis,
     legendColor = viridis,
     borderColor = NULL,
@@ -80,6 +89,8 @@ NULL
     annotationCol <- .prepareAnnotationCol(annotationCol)
     assert_is_a_bool(clusterCols)
     assert_is_a_bool(clusterRows)
+    assert_is_a_bool(showColnames)
+    assert_is_a_bool(showRownames)
     assertIsHexColorFunctionOrNULL(color)
     assertIsHexColorFunctionOrNULL(legendColor)
     assertIsAStringOrNULL(borderColor)
@@ -125,18 +136,6 @@ NULL
         borderColor <- NA
     }
 
-    # Dynamic column and row labeling
-    if (ncol(object) <= 50L) {
-        showColnames <- TRUE
-    } else{
-        showColnames <- FALSE
-    }
-    if (nrow(object) <= 50L) {
-        showRownames <- TRUE
-    } else {
-        showRownames <- FALSE
-    }
-
     # pheatmap will error if `NULL` title is passed as `main`
     if (is.null(title)) {
         title <- ""
@@ -157,11 +156,26 @@ NULL
         "showRownames" = showRownames,
         ...
     )
-    # Sanitize all argument names into snake case
-    names(args) <- snake(names(args))
-    assert_is_subset(names(args), formalArgs(pheatmap))
-
+    args <- .pheatmapArgs(args, .call = match.call())
     do.call(pheatmap, args)
+}
+
+
+
+.prepareAnnotationCol <- function(object) {
+    # pheatmap requires `NA` argument if empty
+    if (!has_dims(object)) {
+        return(NA)
+    }
+    assertHasRownames(object)
+    object %>%
+        as.data.frame() %>%
+        # Remove sample name columns
+        .[, setdiff(colnames(.), metadataPriorityCols), drop = FALSE] %>%
+        rownames_to_column() %>%
+        # Ensure all columns are factor
+        mutate_all(factor) %>%
+        column_to_rownames()
 }
 
 

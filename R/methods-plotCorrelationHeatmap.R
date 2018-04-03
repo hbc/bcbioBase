@@ -7,7 +7,6 @@
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams plotHeatmap
-#'
 #' @param method Correlation coefficient (or covariance) method to be computed.
 #'   Defaults to "`pearson`" but "`spearman`" can also be used. Consult the
 #'   [stats::cor()] documentation for more information.
@@ -19,7 +18,7 @@
 #' - [stats::hclust()].
 #' - [pheatmap::pheatmap()].
 #'
-#' @return Show heatmap and return `list`, containing `gtable`.
+#' @return Show heatmap and invisibly return a `list` of the components.
 #'
 #' @examples
 #' # SummarizedExperiment ====
@@ -108,10 +107,7 @@ NULL
         "showRownames" = TRUE,
         ...
     )
-    # Sanitize all argument names into snake case
-    names(args) <- snake(names(args))
-    assert_is_subset(names(args), formalArgs(pheatmap))
-
+    args <- .pheatmapArgs(args, .call = match.call())
     do.call(pheatmap, args)
 }
 

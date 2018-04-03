@@ -33,7 +33,8 @@ plotQuantileHeatmap(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Passthrough arguments to \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}.}
+\item{...}{Passthrough arguments to \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}. The names of the
+arguments must be formatted in camel case, not snake case.}
 
 \item{n}{The number of breaks to create.}
 
@@ -57,7 +58,7 @@ palette.}
 \item{title}{\emph{Optional.} Plot title.}
 }
 \value{
-Show heatmap. Invisibly return \code{list} containing breaks and \code{gtable}.
+Show heatmap and invisibly return a \code{list} of the components.
 }
 \description{
 Plot Heatmap with Quantile Breaks
@@ -71,7 +72,7 @@ mat <- assay(rse_small)
 plotQuantileHeatmap(mat)
 }
 \seealso{
-Other Plot Functions: \code{\link{plotCorrelationHeatmap}},
+Other Plot Heatmap Functions: \code{\link{plotCorrelationHeatmap}},
   \code{\link{plotHeatmap}}
 }
 \author{

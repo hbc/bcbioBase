@@ -4,11 +4,10 @@
 #' @family Plot Heatmap Functions
 #' @author Rory Kirchner, Michael Steinbaugh
 #'
-#' @inherit plotHeatmap
-#'
+#' @inheritParams plotHeatmap
 #' @param n The number of breaks to create.
 #'
-#' @return Show heatmap. Invisibly return `list` containing breaks and `gtable`.
+#' @return Show heatmap and invisibly return a `list` of the components.
 #'
 #' @examples
 #' # SummarizedExperiment ====
@@ -143,9 +142,7 @@ NULL
         "showRownames" = showRownames,
         ...
     )
-    # Sanitize all argument names into snake case
-    names(args) <- snake(names(args))
-    assert_is_subset(names(args), formalArgs(pheatmap))
+    args <- .pheatmapArgs(args, .call = match.call())
     do.call(pheatmap, args)
 }
 
