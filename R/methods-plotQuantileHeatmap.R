@@ -59,9 +59,7 @@ NULL
     object <- as.matrix(object)
     assertIsAnImplicitInteger(n)
     assertFormalAnnotationCol(object, annotationCol)
-    if (has_dims(annotationCol)) {
-        annotationCol <- as.data.frame(annotationCol)
-    }
+    annotationCol <- .prepareAnnotationCol(annotationCol)
     assert_is_a_bool(clusterCols)
     assert_is_a_bool(clusterRows)
     assertIsHexColorFunctionOrNULL(color)
@@ -195,7 +193,31 @@ setMethod(
 setMethod(
     "plotQuantileHeatmap",
     signature("SummarizedExperiment"),
-    function(object, ...) {
-        plotQuantileHeatmap(assay(object), ...)
+    function(
+        object,
+        n = 5L,
+        annotationCol,
+        clusterCols = TRUE,
+        clusterRows = TRUE,
+        color = viridis,
+        legendColor = viridis,
+        borderColor = NULL,
+        title = NULL,
+        ...
+    ) {
+        if (missing(annotationCol)) {
+            annotationCol <- sampleData(object)
+        }
+        plotQuantileHeatmap(
+            object = assay(object),
+            annotationCol = annotationCol,
+            clusterCols = clusterCols,
+            clusterRows = clusterRows,
+            color = color,
+            legendColor = legendColor,
+            borderColor = borderColor,
+            title = title,
+            ...
+        )
     }
 )

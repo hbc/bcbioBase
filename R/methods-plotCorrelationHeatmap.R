@@ -166,7 +166,7 @@ setMethod(
     ) {
         method <- match.arg(method)
         if (missing(annotationCol)) {
-            annotationCol <- sampleData(object)
+            annotationCol <- colData(object)
         }
         plotCorrelationHeatmap(
             object = assay(object),

@@ -41,9 +41,27 @@ NULL
 
 
 # Constructors =================================================================
+.prepareAnnotationCol <- function(object) {
+    # pheatmap requires `NA` argument if empty
+    if (!has_dims(object)) {
+        return(NA)
+    }
+    assertHasRownames(object)
+    object %>%
+        as.data.frame() %>%
+        # Remove sample name columns
+        .[, setdiff(colnames(.), metadataPriorityCols), drop = FALSE] %>%
+        rownames_to_column() %>%
+        # Ensure all columns are factor
+        mutate_all(factor) %>%
+        column_to_rownames()
+}
+
+
+
 .plotHeatmap.matrix <- function(  # nolint
     object,
-    scale = "row",
+    scale = c("row", "column", "none"),
     annotationCol = NULL,
     clusterCols = TRUE,
     clusterRows = TRUE,
@@ -57,12 +75,9 @@ NULL
     assert_all_are_greater_than(nrow(object), 1L)
     assert_all_are_greater_than(ncol(object), 1L)
     object <- as.matrix(object)
-    assert_is_a_string(scale)
-    assert_is_subset(scale, c("row", "column", "none"))
+    scale <- match.arg(scale)
     assertFormalAnnotationCol(object, annotationCol)
-    if (has_dims(annotationCol)) {
-        annotationCol <- as.data.frame(annotationCol)
-    }
+    annotationCol <- .prepareAnnotationCol(annotationCol)
     assert_is_a_bool(clusterCols)
     assert_is_a_bool(clusterRows)
     assertIsHexColorFunctionOrNULL(color)
@@ -70,22 +85,10 @@ NULL
     assertIsAStringOrNULL(borderColor)
     assertIsAStringOrNULL(title)
 
-    # Drop rows that are all zero, when row scaling is applied
     if (scale == "row") {
+        # Filter out any zero count rows
         object <- object %>%
             .[rowSums(.) > 0L, , drop = FALSE]
-    }
-
-    # Prepare the annotation columns, if necessary. Check for `dim()` here
-    # so we can support input of `DataFrame` class objects.
-    if (is.data.frame(annotationCol)) {
-        annotationCol <- annotationCol %>%
-            .[colnames(object), , drop = FALSE] %>%
-            rownames_to_column() %>%
-            mutate_all(factor) %>%
-            column_to_rownames()
-    } else {
-        annotationCol <- NA
     }
 
     # Define colors for each annotation column, if desired
@@ -199,7 +202,32 @@ setMethod(
 setMethod(
     "plotHeatmap",
     signature("SummarizedExperiment"),
-    function(object, ...) {
-        plotHeatmap(assay(object), ...)
+    function(
+        object,
+        scale = c("row", "column", "none"),
+        annotationCol,
+        clusterCols = TRUE,
+        clusterRows = TRUE,
+        color = viridis,
+        legendColor = viridis,
+        borderColor = NULL,
+        title = NULL,
+        ...
+    ) {
+        scale <- match.arg(scale)
+        if (missing(annotationCol)) {
+            annotationCol <- colData(object)
+        }
+        plotHeatmap(
+            object = assay(object),
+            annotationCol = annotationCol,
+            clusterCols = clusterCols,
+            clusterRows = clusterRows,
+            color = color,
+            legendColor = legendColor,
+            borderColor = borderColor,
+            title = title,
+            ...
+        )
     }
 )

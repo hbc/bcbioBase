@@ -12,21 +12,25 @@
 \usage{
 plotHeatmap(object, ...)
 
-\S4method{plotHeatmap}{dgCMatrix}(object, scale = "row",
+\S4method{plotHeatmap}{dgCMatrix}(object, scale = c("row", "column", "none"),
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
   color = viridis, legendColor = viridis, borderColor = NULL,
   title = NULL, ...)
 
-\S4method{plotHeatmap}{dgTMatrix}(object, scale = "row",
+\S4method{plotHeatmap}{dgTMatrix}(object, scale = c("row", "column", "none"),
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
   color = viridis, legendColor = viridis, borderColor = NULL,
   title = NULL, ...)
 
-\S4method{plotHeatmap}{matrix}(object, scale = "row", annotationCol = NULL,
-  clusterCols = TRUE, clusterRows = TRUE, color = viridis,
-  legendColor = viridis, borderColor = NULL, title = NULL, ...)
+\S4method{plotHeatmap}{matrix}(object, scale = c("row", "column", "none"),
+  annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
+  color = viridis, legendColor = viridis, borderColor = NULL,
+  title = NULL, ...)
 
-\S4method{plotHeatmap}{SummarizedExperiment}(object, ...)
+\S4method{plotHeatmap}{SummarizedExperiment}(object, scale = c("row",
+  "column", "none"), annotationCol, clusterCols = TRUE, clusterRows = TRUE,
+  color = viridis, legendColor = viridis, borderColor = NULL,
+  title = NULL, ...)
 }
 \arguments{
 \item{object}{Object.}
