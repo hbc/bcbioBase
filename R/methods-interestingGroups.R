@@ -6,6 +6,10 @@
 #' @inheritParams general
 #'
 #' @return Character vector.
+#'
+#' @examples
+#' # SummarizedExperiment ====
+#' interestingGroups(rse_small)
 NULL
 
 

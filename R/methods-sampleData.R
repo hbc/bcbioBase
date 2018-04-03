@@ -14,6 +14,10 @@
 #' @inheritParams general
 #'
 #' @return Data describing the samples.
+#'
+#' @examples
+#' # SummarizedExperiment ====
+#' sampleData(rse_small)
 NULL
 
 

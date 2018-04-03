@@ -9,6 +9,12 @@
 #' @inheritParams general
 #'
 #' @return `list` containing the slots of an S4 object.
+#'
+#' @examples
+#' # SummarizedExperiment ====
+#' x <- flatFiles(rse_small)
+#' class(x)
+#' names(x)
 NULL
 
 

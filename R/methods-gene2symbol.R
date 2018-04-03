@@ -8,6 +8,10 @@
 #'
 #' @return `data.frame` containing gene identifier and gene name (aka symbol)
 #'   mappings.
+#'
+#' @examples
+#' # SummarizedExperiment ====
+#' gene2symbol(rse_small)
 NULL
 
 
