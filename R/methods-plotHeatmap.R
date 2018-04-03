@@ -44,20 +44,23 @@ NULL
 # Constructors =================================================================
 # Sanitize formals into snake case and abort on duplicates.
 # Duplicates may arise if user is mixing and matching camel/snake case.
-.pheatmapArgs <- function(args, .call) {
+.pheatmapArgs <- function(args) {
     assert_is_list(args)
+    assert_has_names(args)
+    # Abort on snake case formatted formalArgs
+    invalidNames <- grep("[._]", names(args), value = TRUE)
+    if (length(invalidNames)) {
+        abort(paste(
+            "Define formalArgs in camel case:",
+            toString(invalidNames)
+        ))
+    }
+    # Abort on duplicate arguments
     names(args) <- snake(names(args))
     if (any(duplicated(names(args)))) {
         abort(paste(
-            paste(
-                "Duplicate formalArgs detected:",
-                toString(camel(
-                    names(args)[duplicated(names(args))]
-                ))
-            ),
-            "Note: Formals must be formatted in camel case.",
-            deparse(.call),
-            sep = "\n"
+            "Duplicate formalArgs detected:",
+            toString(camel(names(args)[duplicated(names(args))]))
         ))
     }
     assert_is_subset(names(args), formalArgs(pheatmap))
@@ -156,7 +159,7 @@ NULL
         "showRownames" = showRownames,
         ...
     )
-    args <- .pheatmapArgs(args, .call = match.call())
+    args <- .pheatmapArgs(args)
     do.call(pheatmap, args)
 }
 
