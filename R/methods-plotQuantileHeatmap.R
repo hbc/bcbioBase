@@ -11,7 +11,11 @@
 #' @return Show heatmap. Invisibly return `list` containing breaks and `gtable`.
 #'
 #' @examples
-#' mat <- matrix(1:10000, nrow = 100, ncol = 100)
+#' # SummarizedExperiment ====
+#' plotQuantileHeatmap(rse_small)
+#'
+#' # matrix ====
+#' mat <- assay(rse_small)
 #' plotQuantileHeatmap(mat)
 NULL
 
@@ -37,7 +41,7 @@ NULL
 
 
 
-.plotQuantileHeatmap <- function(
+.plotQuantileHeatmap.matrix <- function(  # nolint
     object,
     n = 5L,
     annotationCol = NULL,
@@ -161,7 +165,7 @@ NULL
 setMethod(
     "plotQuantileHeatmap",
     signature("dgCMatrix"),
-    .plotQuantileHeatmap
+    .plotQuantileHeatmap.matrix
 )
 
 
@@ -171,7 +175,7 @@ setMethod(
 setMethod(
     "plotQuantileHeatmap",
     signature("dgTMatrix"),
-    .plotQuantileHeatmap
+    .plotQuantileHeatmap.matrix
 )
 
 
@@ -181,7 +185,7 @@ setMethod(
 setMethod(
     "plotQuantileHeatmap",
     signature("matrix"),
-    .plotQuantileHeatmap
+    .plotQuantileHeatmap.matrix
 )
 
 
@@ -191,27 +195,7 @@ setMethod(
 setMethod(
     "plotQuantileHeatmap",
     signature("SummarizedExperiment"),
-    function(
-        object,
-        n = 5L,
-        annotationCol = NA,
-        clusterCols = FALSE,
-        clusterRows = FALSE,
-        color = viridis,
-        legendColor = viridis,
-        title = NULL,
-        ...
-    ) {
-        plotQuantileHeatmap(
-            object = assay(object),
-            n = n,
-            annotationCol = annotationCol,
-            clusterCols = clusterCols,
-            clusterRows = clusterRows,
-            color = color,
-            legendColor = legendColor,
-            title = title,
-            ...
-        )
+    function(object, ...) {
+        plotQuantileHeatmap(assay(object), ...)
     }
 )

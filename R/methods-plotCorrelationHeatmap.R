@@ -22,14 +22,18 @@
 #' @return Show heatmap and return `list`, containing `gtable`.
 #'
 #' @examples
-#' mat <- as.matrix(mtcars)
+#' # SummarizedExperiment ====
+#' plotCorrelationHeatmap(rse_small)
+#'
+#' # matrix ====
+#' mat <- assay(rse_small)
 #' plotCorrelationHeatmap(mat)
 NULL
 
 
 
 # Constructors =================================================================
-.plotCorrelationHeatmap <- function(
+.plotCorrelationHeatmap.matrix <- function(  # nolint
     object,
     method = c("pearson", "spearman"),
     clusteringMethod = "ward.D2",
@@ -129,6 +133,38 @@ NULL
 #' @export
 setMethod(
     "plotCorrelationHeatmap",
+    signature("dgCMatrix"),
+    .plotCorrelationHeatmap.matrix
+)
+
+
+
+#' @rdname plotCorrelationHeatmap
+#' @export
+setMethod(
+    "plotCorrelationHeatmap",
+    signature("dgTMatrix"),
+    .plotCorrelationHeatmap.matrix
+)
+
+
+
+#' @rdname plotCorrelationHeatmap
+#' @export
+setMethod(
+    "plotCorrelationHeatmap",
     signature("matrix"),
-    .plotCorrelationHeatmap
+    .plotCorrelationHeatmap.matrix
+)
+
+
+
+#' @rdname plotCorrelationHeatmap
+#' @export
+setMethod(
+    "plotCorrelationHeatmap",
+    signature("SummarizedExperiment"),
+    function(object, ...) {
+        plotCorrelationHeatmap(assay(object), ...)
+    }
 )

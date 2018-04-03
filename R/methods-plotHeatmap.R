@@ -30,14 +30,18 @@
 #' @return Show heatmap and return `list`, containing `gtable`.
 #'
 #' @examples
-#' mat <- as.matrix(mtcars[, c("disp", "hp", "mpg")])
+#' # SummarizedExperiment ====
+#' plotHeatmap(rse_small)
+#'
+#' # matrix ====
+#' mat <- assay(rse_small)
 #' plotHeatmap(mat)
 NULL
 
 
 
 # Constructors =================================================================
-.plotHeatmap <- function(
+.plotHeatmap.matrix <- function(  # nolint
     object,
     scale = "row",
     annotationCol = NULL,
@@ -165,7 +169,17 @@ NULL
 setMethod(
     "plotHeatmap",
     signature("dgCMatrix"),
-    .plotHeatmap
+    .plotHeatmap.matrix
+)
+
+
+
+#' @rdname plotHeatmap
+#' @export
+setMethod(
+    "plotHeatmap",
+    signature("dgTMatrix"),
+    .plotHeatmap.matrix
 )
 
 
@@ -175,5 +189,17 @@ setMethod(
 setMethod(
     "plotHeatmap",
     signature("matrix"),
-    .plotHeatmap
+    .plotHeatmap.matrix
+)
+
+
+
+#' @rdname plotHeatmap
+#' @export
+setMethod(
+    "plotHeatmap",
+    signature("SummarizedExperiment"),
+    function(object, ...) {
+        plotHeatmap(assay(object), ...)
+    }
 )
