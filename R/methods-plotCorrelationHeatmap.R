@@ -49,9 +49,7 @@ NULL
     assert_all_are_greater_than(ncol(object), 1L)
     method <- match.arg(method)
     assertFormalAnnotationCol(object, annotationCol)
-    if (has_dims(annotationCol)) {
-        annotationCol <- as.data.frame(annotationCol)
-    }
+    annotationCol <- .prepareAnnotationCol(annotationCol)
     assertIsHexColorFunctionOrNULL(color)
     assertIsHexColorFunctionOrNULL(legendColor)
 
@@ -64,15 +62,6 @@ NULL
 
     # Correlation matrix
     mat <- cor(object, method = method)
-
-    # Prepare the annotation columns
-    if (is.data.frame(annotationCol)) {
-        # Coerce annotation columns to factors
-        annotationCol <- annotationCol %>%
-            rownames_to_column() %>%
-            mutate_all(factor) %>%
-            column_to_rownames()
-    }
 
     # Define colors for each annotation column, if desired
     if (is.data.frame(annotationCol) && is.function(legendColor)) {
@@ -164,7 +153,31 @@ setMethod(
 setMethod(
     "plotCorrelationHeatmap",
     signature("SummarizedExperiment"),
-    function(object, ...) {
-        plotCorrelationHeatmap(assay(object), ...)
+    function(
+        object,
+        method = c("pearson", "spearman"),
+        clusteringMethod = "ward.D2",
+        annotationCol,
+        color = viridis,
+        legendColor = viridis,
+        borderColor = NULL,
+        title = TRUE,
+        ...
+    ) {
+        method <- match.arg(method)
+        if (missing(annotationCol)) {
+            annotationCol <- sampleData(object)
+        }
+        plotCorrelationHeatmap(
+            object = assay(object),
+            method = method,
+            clusteringMethod = clusteringMethod,
+            annotationCol = annotationCol,
+            color = color,
+            legendColor = legendColor,
+            borderColor = borderColor,
+            title = title,
+            ...
+        )
     }
 )
