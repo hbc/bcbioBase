@@ -258,20 +258,35 @@ test_that("sampleYAMLMetrics : Fast mode", {
 
 # uniteInterestingGroups =======================================================
 test_that("uniteInterestingGroups : Single interesting group", {
-    data <- uniteInterestingGroups(mtcars, interestingGroups = "gear")
+    x <- uniteInterestingGroups(mtcars, interestingGroups = "gear")
     expect_identical(
-        data[["interestingGroups"]],
+        x[["interestingGroups"]],
         as.factor(mtcars[["gear"]])
     )
 })
 
+test_that("uniteInterestingGroups : tidy (tibble) mode", {
+    x <- uniteInterestingGroups(
+        object = dplyr::starwars,
+        interestingGroups = c("hair_color", "skin_color")
+    )
+    expect_is(x, "tbl_df")
+    expect_is(x[["interestingGroups"]], "factor")
+    expect_identical(
+        x[["interestingGroups"]] %>%
+            as.character() %>%
+            head(2L),
+        c("blond:fair", "NA:gold")
+    )
+})
+
 test_that("uniteInterestingGroups : Two interesting groups", {
-    data <- uniteInterestingGroups(
+    x <- uniteInterestingGroups(
         mtcars,
         interestingGroups = c("gear", "carb")
     )
     expect_identical(
-        head(data[["interestingGroups"]]),
+        head(x[["interestingGroups"]]),
         factor(
             c("4:4", "4:4", "4:1", "3:1", "3:2", "3:1"),
             levels = c(
