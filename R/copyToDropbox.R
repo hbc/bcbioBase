@@ -28,7 +28,7 @@ copyToDropbox <- function(
         assert_is_a_string(rdsToken)
         assert_all_are_existing_files(rdsToken)
     } else {
-        rdsToken <- NA
+        rdsToken <- NA  # nocov
     }
 
     # Ensure user is authenticated with Dropbox
