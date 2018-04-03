@@ -45,6 +45,7 @@ NULL
 #' @importFrom assertive is_a_string
 #'
 #' @importFrom basejump assertFormalAnnotationCol
+#' @importFrom basejump assertHasRownames
 #' @importFrom basejump assertIsAnImplicitInteger
 #' @importFrom basejump assertIsAStringOrNULL
 #' @importFrom basejump assertIsCharacterOrNULL

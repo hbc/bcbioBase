@@ -18,6 +18,8 @@
 #'   hierarchical clustering. Alternatively, can define an `hclust` object.
 #' @param clusterRows Logical determining if rows should be arranged with
 #'   hierarchical clustering. Alternatively, can define an `hclust` object.
+#' @param showColnames Show column names.
+#' @param showRownames Show row names.
 #' @param color Colors to use for plot. Defaults to the [viridis()]
 #'   palette.
 #' @param legendColor Colors to use for legend labels. Defaults to the

@@ -48,6 +48,10 @@ hierarchical clustering. Alternatively, can define an \code{hclust} object.}
 \item{clusterRows}{Logical determining if rows should be arranged with
 hierarchical clustering. Alternatively, can define an \code{hclust} object.}
 
+\item{showColnames}{Show column names.}
+
+\item{showRownames}{Show row names.}
+
 \item{color}{Colors to use for plot. Defaults to the \code{\link[=viridis]{viridis()}}
 palette.}
 
