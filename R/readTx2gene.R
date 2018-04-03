@@ -9,6 +9,9 @@
 #'
 #' @return `data.frame`.
 #' @export
+#'
+#' @examples
+#' readTx2gene("http://bcbiobase.seq.cloud/tx2gene.csv")
 readTx2gene <- function(file) {
     assert_is_a_string(file)
     file <- localOrRemoteFile(file)

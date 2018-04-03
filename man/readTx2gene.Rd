@@ -18,6 +18,9 @@ Transcript to Gene Annotations
 \note{
 Doesn't attempt to strip transcript versions.
 }
+\examples{
+readTx2gene("http://bcbiobase.seq.cloud/tx2gene.csv")
+}
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},
   \code{\link{readLog}}, \code{\link{readProgramVersions}},
