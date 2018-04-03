@@ -5,7 +5,7 @@
 #' overrided by setting `clusterRows` or `clusterCols` to `FALSE`.
 #'
 #' @name plotHeatmap
-#' @family Plot Functions
+#' @family Plot Heatmap Functions
 #'
 #' @inheritParams general
 #' @param scale Character indicating if the values should be centered and scaled

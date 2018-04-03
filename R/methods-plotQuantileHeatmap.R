@@ -1,7 +1,7 @@
 #' Plot Heatmap with Quantile Breaks
 #'
 #' @name plotQuantileHeatmap
-#' @family Plot Functions
+#' @family Plot Heatmap Functions
 #' @author Rory Kirchner, Michael Steinbaugh
 #'
 #' @inherit plotHeatmap
@@ -146,13 +146,7 @@ NULL
     # Sanitize all argument names into snake case
     names(args) <- snake(names(args))
     assert_is_subset(names(args), formalArgs(pheatmap))
-    p <- do.call(pheatmap, args)
-    p
-
-    invisible(list(
-        quantiles = breaks,
-        plot = p
-    ))
+    do.call(pheatmap, args)
 }
 
 

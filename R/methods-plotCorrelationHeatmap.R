@@ -3,7 +3,7 @@
 #' Construct a correlation heatmap comparing the columns of the matrix.
 #'
 #' @name plotCorrelationHeatmap
-#' @family Plot Functions
+#' @family Plot Heatmap Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams plotHeatmap
