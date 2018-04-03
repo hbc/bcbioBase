@@ -30,7 +30,7 @@ setMethod(
             if (.hasSlot(object, slot)) {
                 slot(object, slot)
             } else {
-                NULL
+                NULL  # nocov
             }
         })
         names(list) <- slotNames(object)

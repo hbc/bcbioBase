@@ -4,6 +4,58 @@ yaml <- readYAML("project-summary.yaml")
 
 
 
+# gene2symbol ==================================================================
+test_that("gene2symbol", {
+    x <- gene2symbol(rse_small)
+    expect_is(x, "data.frame")
+    expect_identical(colnames(x), c("geneID", "geneName"))
+    expect_true(tibble::has_rownames(x))
+})
+
+
+
+# flatFiles ====================================================================
+test_that("flatFiles : SummarizedExperiment", {
+    x <- flatFiles(rse_small)
+    expect_is(x, "list")
+    expect_identical(
+        names(x),
+        c(
+            "rowRanges",
+            "colData",
+            "assays",
+            "NAMES",
+            "elementMetadata",
+            "metadata"
+        )
+    )
+})
+
+
+
+# interestingGroups ============================================================
+test_that("interestingGroups : SummarizedExperiment", {
+    expect_identical(
+        interestingGroups(rse_small),
+        "treatment"
+    )
+})
+
+test_that("interestingGroups : Assignment method", {
+    x <- rse_small
+    interestingGroups(x) <- "sampleName"
+    expect_identical(
+        interestingGroups(x),
+        "sampleName"
+    )
+    expect_error(
+        interestingGroups(x) <- "XXX",
+        "is_subset : The element 'XXX' in interestingGroups"
+    )
+})
+
+
+
 # sampleData ===================================================================
 test_that("sampleData : SummarizedExperiment", {
     # Check output of `return` parameter

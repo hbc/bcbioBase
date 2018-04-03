@@ -12,7 +12,8 @@ files <- c(
     "project-summary.yaml",
     "project-summary-metrics-mismatch.yaml",
     "programs.txt",
-    "sampleID_column_defined.csv"
+    "sampleID_column_defined.csv",
+    "tx2gene.csv"
 )
 mapply(
     FUN = function(cacheURL, file, envir) {

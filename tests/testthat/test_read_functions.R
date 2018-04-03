@@ -259,3 +259,15 @@ test_that("readSampleData : Missing file", {
         "is_existing_file :"
     )
 })
+
+
+
+# readTx2gene ==================================================================
+test_that("readTx2gene", {
+    x <- readTx2gene("tx2gene.csv")
+    expect_is(x, "data.frame")
+    expect_identical(
+        colnames(x),
+        c("txID", "geneID")
+    )
+})

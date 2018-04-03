@@ -80,6 +80,8 @@ setMethod(
 
 
 # Aliases ======================================================================
+# nocov start
+
 #' @rdname sampleData
 #' @usage NULL
 #' @export
@@ -94,3 +96,5 @@ sampleMetadata <- function(object, ...) {
     sampleData(object) <- value
     object
 }
+
+# nocov end
