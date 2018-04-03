@@ -42,33 +42,6 @@ NULL
 
 
 # Constructors =================================================================
-# Sanitize formals into snake case and abort on duplicates.
-# Duplicates may arise if user is mixing and matching camel/snake case.
-.pheatmapArgs <- function(args) {
-    assert_is_list(args)
-    assert_has_names(args)
-    # Abort on snake case formatted formalArgs
-    invalidNames <- grep("[._]", names(args), value = TRUE)
-    if (length(invalidNames)) {
-        abort(paste(
-            "Define formalArgs in camel case:",
-            toString(invalidNames)
-        ))
-    }
-    # Abort on duplicate arguments
-    names(args) <- snake(names(args))
-    if (any(duplicated(names(args)))) {
-        abort(paste(
-            "Duplicate formalArgs detected:",
-            toString(camel(names(args)[duplicated(names(args))]))
-        ))
-    }
-    assert_is_subset(names(args), formalArgs(pheatmap))
-    args
-}
-
-
-
 .plotHeatmap.matrix <- function(  # nolint
     object,
     scale = c("row", "column", "none"),
@@ -76,7 +49,7 @@ NULL
     clusterCols = TRUE,
     clusterRows = TRUE,
     showColnames = TRUE,
-    showRownames = TRUE,
+    showRownames = FALSE,
     color = viridis,
     legendColor = viridis,
     borderColor = NULL,
@@ -89,7 +62,6 @@ NULL
     object <- as.matrix(object)
     scale <- match.arg(scale)
     assertFormalAnnotationCol(object, annotationCol)
-    annotationCol <- .prepareAnnotationCol(annotationCol)
     assert_is_a_bool(clusterCols)
     assert_is_a_bool(clusterRows)
     assert_is_a_bool(showColnames)
@@ -97,7 +69,13 @@ NULL
     assertIsHexColorFunctionOrNULL(color)
     assertIsHexColorFunctionOrNULL(legendColor)
     assertIsAStringOrNULL(borderColor)
+    if (!is_a_string(borderColor)) {
+        borderColor <- NA
+    }
     assertIsAStringOrNULL(title)
+    if (!is_a_string(title)) {
+        title <- NA
+    }
 
     if (scale == "row") {
         # Filter out any zero count rows
@@ -105,44 +83,12 @@ NULL
             .[rowSums(.) > 0L, , drop = FALSE]
     }
 
-    # Define colors for each annotation column, if desired
-    if (is.data.frame(annotationCol) && is.function(legendColor)) {
-        annotationColors <- lapply(
-            X = seq_along(colnames(annotationCol)),
-            FUN = function(a) {
-                col <- annotationCol[[a]] %>%
-                    levels()
-                colors <- annotationCol[[a]] %>%
-                    levels() %>%
-                    length() %>%
-                    legendColor
-                names(colors) <- col
-                colors
-            }
-        ) %>%
-            set_names(colnames(annotationCol))
-    } else {
-        annotationColors <- NULL
-    }
-
-    # If `color = NULL`, use the pheatmap default
-    nColor <- 256L
-    if (!is.function(color)) {
-        color <- colorRampPalette(rev(
-            brewer.pal(n = 7L, name = "RdYlBu")
-        ))(nColor)
-    } else {
-        color <- color(nColor)
-    }
-
-    if (is.null(borderColor)) {
-        borderColor <- NA
-    }
-
-    # pheatmap will error if `NULL` title is passed as `main`
-    if (is.null(title)) {
-        title <- ""
-    }
+    annotationCol <- .pheatmapAnnotationCol(annotationCol)
+    annotationColors <- .pheatmapAnnotationColors(
+        annotationCol = annotationCol,
+        legendColor = legendColor
+    )
+    color <- .pheatmapColor(color)
 
     # Return pretty heatmap with modified defaults
     args <- list(
@@ -161,24 +107,6 @@ NULL
     )
     args <- .pheatmapArgs(args)
     do.call(pheatmap, args)
-}
-
-
-
-.prepareAnnotationCol <- function(object) {
-    # pheatmap requires `NA` argument if empty
-    if (!has_dims(object)) {
-        return(NA)
-    }
-    assertHasRownames(object)
-    object %>%
-        as.data.frame() %>%
-        # Remove sample name columns
-        .[, setdiff(colnames(.), metadataPriorityCols), drop = FALSE] %>%
-        rownames_to_column() %>%
-        # Ensure all columns are factor
-        mutate_all(factor) %>%
-        column_to_rownames()
 }
 
 

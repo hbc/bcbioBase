@@ -46,6 +46,8 @@ NULL
     annotationCol = NULL,
     clusterCols = TRUE,
     clusterRows = TRUE,
+    showColnames = TRUE,
+    showRownames = FALSE,
     color = viridis,
     legendColor = viridis,
     borderColor = NULL,
@@ -58,74 +60,28 @@ NULL
     object <- as.matrix(object)
     assertIsAnImplicitInteger(n)
     assertFormalAnnotationCol(object, annotationCol)
-    annotationCol <- .prepareAnnotationCol(annotationCol)
     assert_is_a_bool(clusterCols)
     assert_is_a_bool(clusterRows)
     assertIsHexColorFunctionOrNULL(color)
     assertIsHexColorFunctionOrNULL(legendColor)
+    assertIsAStringOrNULL(borderColor)
+    if (!is_a_string(borderColor)) {
+        borderColor <- NA
+    }
     assertIsAStringOrNULL(title)
+    if (!is_a_string(title)) {
+        title <- NA
+    }
 
     # Calculate the quantile breaks
     breaks <- .quantileBreaks(object, n = n)
 
-    # Prepare the annotation columns, if necessary. Check for `dim()` here
-    # so we can support input of `DataFrame` class objects.
-    if (is.data.frame(annotationCol)) {
-        annotationCol <- annotationCol %>%
-            .[colnames(object), , drop = FALSE] %>%
-            rownames_to_column() %>%
-            mutate_all(factor) %>%
-            column_to_rownames()
-    } else {
-        annotationCol <- NA
-    }
-
-    # Define colors for each annotation column, if desired
-    if (is.data.frame(annotationCol) & is.function(legendColor)) {
-        annotationColors <- lapply(
-            X = seq_along(colnames(annotationCol)),
-            FUN = function(a) {
-                col <- annotationCol[[a]] %>%
-                    levels()
-                colors <- annotationCol[[a]] %>%
-                    levels() %>%
-                    length() %>%
-                    legendColor
-                names(colors) <- col
-                colors
-            }
-        ) %>%
-            set_names(colnames(annotationCol))
-    } else {
-        annotationColors <- NULL
-    }
-
-    if (is.function(color)) {
-        color <- color(length(breaks) - 1L)
-    } else {
-        color <- rev(brewer.pal(n = 7L, name = "RdYlBu"))
-        color <- colorRampPalette(color)(length(breaks) - 1L)
-    }
-
-    if (is.null(borderColor)) {
-        borderColor <- NA
-    }
-
-    # Dynamic column and row labeling
-    if (ncol(object) <= 50L) {
-        showColnames <- TRUE
-    } else{
-        showColnames <- FALSE
-    }
-    if (nrow(object) <= 50L) {
-        showRownames <- TRUE
-    } else {
-        showRownames <- FALSE
-    }
-
-    if (!is.character(title)) {
-        title <- ""
-    }
+    annotationCol <- .pheatmapAnnotationCol(annotationCol)
+    annotationColors <- .pheatmapAnnotationColors(
+        annotationCol = annotationCol,
+        legendColor = legendColor
+    )
+    color <- .pheatmapColor(color)
 
     # Return pretty heatmap with modified defaults
     args <- list(

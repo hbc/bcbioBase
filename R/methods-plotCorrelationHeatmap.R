@@ -48,49 +48,27 @@ NULL
     assert_all_are_greater_than(ncol(object), 1L)
     method <- match.arg(method)
     assertFormalAnnotationCol(object, annotationCol)
-    annotationCol <- .prepareAnnotationCol(annotationCol)
     assertIsHexColorFunctionOrNULL(color)
     assertIsHexColorFunctionOrNULL(legendColor)
-
-    # Title
+    assertIsAStringOrNULL(borderColor)
+    if (!is_a_string(borderColor)) {
+        borderColor <- NA
+    }
     if (isTRUE(title)) {
         title <- paste(method, "correlation")
     } else if (!is_a_string(title)) {
-        title <- NULL
+        title <- NA
     }
 
     # Correlation matrix
     mat <- cor(object, method = method)
 
-    # Define colors for each annotation column, if desired
-    if (is.data.frame(annotationCol) && is.function(legendColor)) {
-        annotationColors <- lapply(
-            seq_along(colnames(annotationCol)), function(a) {
-                col <- levels(annotationCol[[a]])
-                colors <- annotationCol[[a]] %>%
-                    levels() %>%
-                    length() %>%
-                    legendColor()
-                names(colors) <- col
-                colors
-            }) %>%
-            set_names(colnames(annotationCol))
-    } else {
-        annotationColors <- NULL
-    }
-
-    # If `color = NULL`, use the pheatmap default
-    if (is.function(color)) {
-        color <- color(256L)
-    } else if (!is.character(color)) {
-        color <- colorRampPalette(rev(
-            brewer.pal(n = 7L, name = "RdYlBu")
-        ))(100L)
-    }
-
-    if (is.null(borderColor)) {
-        borderColor <- NA
-    }
+    annotationCol <- .pheatmapAnnotationCol(annotationCol)
+    annotationColors <- .pheatmapAnnotationColors(
+        annotationCol = annotationCol,
+        legendColor = legendColor
+    )
+    color <- .pheatmapColor(color)
 
     # Return pretty heatmap with modified defaults
     args <- list(

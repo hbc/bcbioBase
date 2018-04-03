@@ -14,17 +14,17 @@ plotHeatmap(object, ...)
 
 \S4method{plotHeatmap}{dgCMatrix}(object, scale = c("row", "column", "none"),
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
-  showColnames = TRUE, showRownames = TRUE, color = viridis,
+  showColnames = TRUE, showRownames = FALSE, color = viridis,
   legendColor = viridis, borderColor = NULL, title = NULL, ...)
 
 \S4method{plotHeatmap}{dgTMatrix}(object, scale = c("row", "column", "none"),
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
-  showColnames = TRUE, showRownames = TRUE, color = viridis,
+  showColnames = TRUE, showRownames = FALSE, color = viridis,
   legendColor = viridis, borderColor = NULL, title = NULL, ...)
 
 \S4method{plotHeatmap}{matrix}(object, scale = c("row", "column", "none"),
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
-  showColnames = TRUE, showRownames = TRUE, color = viridis,
+  showColnames = TRUE, showRownames = FALSE, color = viridis,
   legendColor = viridis, borderColor = NULL, title = NULL, ...)
 
 \S4method{plotHeatmap}{SummarizedExperiment}(object, scale = c("row",
