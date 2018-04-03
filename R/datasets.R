@@ -1,4 +1,4 @@
-#' `RangedSummarizedExperiment` Exmaple
+#' `RangedSummarizedExperiment` Example
 #'
 #' @family Minimal Example Data
 #' @author Michael Steinbaugh

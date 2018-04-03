@@ -21,6 +21,10 @@ mappings.
 \description{
 Gene to Symbol Mappings
 }
+\examples{
+# SummarizedExperiment ====
+gene2symbol(rse_small)
+}
 \seealso{
 Other Data Functions: \code{\link{flatFiles}},
   \code{\link{sampleDirs}},

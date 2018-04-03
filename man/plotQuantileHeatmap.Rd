@@ -26,9 +26,7 @@ plotQuantileHeatmap(object, ...)
   clusterCols = TRUE, clusterRows = TRUE, color = viridis,
   legendColor = viridis, borderColor = NULL, title = NULL, ...)
 
-\S4method{plotQuantileHeatmap}{SummarizedExperiment}(object, n = 5L,
-  annotationCol = NA, clusterCols = FALSE, clusterRows = FALSE,
-  color = viridis, legendColor = viridis, title = NULL, ...)
+\S4method{plotQuantileHeatmap}{SummarizedExperiment}(object, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -63,7 +61,11 @@ Show heatmap. Invisibly return \code{list} containing breaks and \code{gtable}.
 Plot Heatmap with Quantile Breaks
 }
 \examples{
-mat <- matrix(1:10000, nrow = 100, ncol = 100)
+# SummarizedExperiment ====
+plotQuantileHeatmap(rse_small)
+
+# matrix ====
+mat <- assay(rse_small)
 plotQuantileHeatmap(mat)
 }
 \seealso{

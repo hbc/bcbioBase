@@ -30,6 +30,10 @@ Character vector.
 \description{
 Interesting Groups
 }
+\examples{
+# SummarizedExperiment ====
+interestingGroups(rse_small)
+}
 \author{
 Michael Steinbaugh
 }

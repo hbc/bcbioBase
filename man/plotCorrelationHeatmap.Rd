@@ -5,15 +5,30 @@
 \name{plotCorrelationHeatmap}
 \alias{plotCorrelationHeatmap}
 \alias{plotCorrelationHeatmap}
+\alias{plotCorrelationHeatmap,dgCMatrix-method}
+\alias{plotCorrelationHeatmap,dgTMatrix-method}
 \alias{plotCorrelationHeatmap,matrix-method}
+\alias{plotCorrelationHeatmap,SummarizedExperiment-method}
 \title{Plot Correlation Heatmap}
 \usage{
 plotCorrelationHeatmap(object, ...)
+
+\S4method{plotCorrelationHeatmap}{dgCMatrix}(object, method = c("pearson",
+  "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
+  color = viridis, legendColor = viridis, borderColor = NULL,
+  title = TRUE, ...)
+
+\S4method{plotCorrelationHeatmap}{dgTMatrix}(object, method = c("pearson",
+  "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
+  color = viridis, legendColor = viridis, borderColor = NULL,
+  title = TRUE, ...)
 
 \S4method{plotCorrelationHeatmap}{matrix}(object, method = c("pearson",
   "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
   color = viridis, legendColor = viridis, borderColor = NULL,
   title = TRUE, ...)
+
+\S4method{plotCorrelationHeatmap}{SummarizedExperiment}(object, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -47,7 +62,11 @@ Show heatmap and return \code{list}, containing \code{gtable}.
 Construct a correlation heatmap comparing the columns of the matrix.
 }
 \examples{
-mat <- as.matrix(mtcars)
+# SummarizedExperiment ====
+plotCorrelationHeatmap(rse_small)
+
+# matrix ====
+mat <- assay(rse_small)
 plotCorrelationHeatmap(mat)
 }
 \seealso{

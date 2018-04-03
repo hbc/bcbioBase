@@ -4,7 +4,7 @@ template:
 
 authors:
   Michael Steinbaugh:
-    href: http://steinbaugh.com
+    href: https://steinbaugh.com
   Lorena Pantano:
     href: https://lpantano.github.io
   Rory Kirchner:
@@ -13,16 +13,12 @@ authors:
     href: http://bioinformatics.sph.harvard.edu
 
 reference:
-  - title: Assert Check Functions
-    contents:
-    - starts_with("assert")
   - title: Data Functions
     contents:
     - flatFiles
     - gene2symbol
     - interestingGroups
-    - sampleData
-    - sampleDirs
+    - starts_with("sample")
     - uniteInterestingGroups
   - title: Plot Functions
     contents:
@@ -36,6 +32,9 @@ reference:
   - title: Write Functions
     contents:
     - copyToDropbox
-  - title: YAML Functions
+  - title: Assert Check Functions
     contents:
-    - matches("YAML")
+    - starts_with("assert")
+  - title: Example Data
+    contents:
+    - ends_with("_small")

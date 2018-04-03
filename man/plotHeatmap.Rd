@@ -5,7 +5,9 @@
 \alias{plotHeatmap}
 \alias{plotHeatmap}
 \alias{plotHeatmap,dgCMatrix-method}
+\alias{plotHeatmap,dgTMatrix-method}
 \alias{plotHeatmap,matrix-method}
+\alias{plotHeatmap,SummarizedExperiment-method}
 \title{Plot Heatmap}
 \usage{
 plotHeatmap(object, ...)
@@ -15,9 +17,16 @@ plotHeatmap(object, ...)
   color = viridis, legendColor = viridis, borderColor = NULL,
   title = NULL, ...)
 
+\S4method{plotHeatmap}{dgTMatrix}(object, scale = "row",
+  annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
+  color = viridis, legendColor = viridis, borderColor = NULL,
+  title = NULL, ...)
+
 \S4method{plotHeatmap}{matrix}(object, scale = "row", annotationCol = NULL,
   clusterCols = TRUE, clusterRows = TRUE, color = viridis,
   legendColor = viridis, borderColor = NULL, title = NULL, ...)
+
+\S4method{plotHeatmap}{SummarizedExperiment}(object, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -56,7 +65,11 @@ clustering is performed using the Ward method, but this behavior can be
 overrided by setting \code{clusterRows} or \code{clusterCols} to \code{FALSE}.
 }
 \examples{
-mat <- as.matrix(mtcars[, c("disp", "hp", "mpg")])
+# SummarizedExperiment ====
+plotHeatmap(rse_small)
+
+# matrix ====
+mat <- assay(rse_small)
 plotHeatmap(mat)
 }
 \seealso{
