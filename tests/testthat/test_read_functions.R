@@ -205,6 +205,19 @@ test_that("readSampleData : Multiplexed FASTQ", {
     )
 })
 
+test_that("readSampleData : CellRanger pipeline", {
+    x <- readSampleData("cellranger_metadata.csv")
+    y <- data.frame(
+        "sampleID" = factor(c("aggregation_1", "aggregation_2")),
+        "sampleName" = factor(c("proximal", "distal")),
+        "description" = factor("aggregation"),
+        "fileName" = factor("aggregation.fastq.gz"),
+        "index" = factor(c(1L, 2L)),
+        row.names = c("aggregation_1", "aggregation_2")
+    )
+    assert_are_identical(x, y)
+})
+
 test_that("readSampleData : Legacy bcbio samplename column", {
     file <- "bcbio_legacy_samplename.csv"
     meta <- suppressWarnings(readSampleData(file))
