@@ -1,6 +1,6 @@
 #' Sample Data
 #'
-#' Return the sample metadata.
+#' Return the sample metadata. Columns are always sanitized to factor.
 #'
 #' @note This is a complement to the standard [colData()] function, but improves
 #'   support for accessing sample metadata for datasets where multiple items in
@@ -18,6 +18,12 @@
 #' @examples
 #' # SummarizedExperiment ====
 #' sampleData(rse_small)
+#'
+#' # Assignment support
+#' x <- rse_small
+#' sampleData(x)[["test"]] <- seq_len(ncol(x))
+#' # `test` column should be now defined
+#' glimpse(sampleData(x))
 NULL
 
 

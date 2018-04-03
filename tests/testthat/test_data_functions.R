@@ -47,6 +47,12 @@ test_that("sampleData : SummarizedExperiment", {
     }))
 })
 
+test_that("sampleData : Assignment method", {
+    x <- rse_small
+    sampleData(x)[["test"]] <- seq_len(ncol(x))
+    expect_is(sampleData(x)[["test"]], "factor")
+})
+
 
 
 # uniteInterestingGroups =======================================================

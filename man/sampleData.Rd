@@ -34,7 +34,7 @@ the first item in the vector by default.}
 Data describing the samples.
 }
 \description{
-Return the sample metadata.
+Return the sample metadata. Columns are always sanitized to factor.
 }
 \note{
 This is a complement to the standard \code{\link[=colData]{colData()}} function, but improves
@@ -45,6 +45,12 @@ experiment).
 \examples{
 # SummarizedExperiment ====
 sampleData(rse_small)
+
+# Assignment support
+x <- rse_small
+sampleData(x)[["test"]] <- seq_len(ncol(x))
+# `test` column should be now defined
+glimpse(sampleData(x))
 }
 \author{
 Michael Steinbaugh
