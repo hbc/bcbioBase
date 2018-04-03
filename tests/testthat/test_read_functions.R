@@ -205,7 +205,7 @@ test_that("readSampleData : Multiplexed FASTQ", {
     )
 })
 
-test_that("readSampleData : CellRanger pipeline", {
+test_that("readSampleData : Multiplexed CellRanger data", {
     x <- readSampleData("cellranger_metadata.csv")
     y <- data.frame(
         "sampleID" = factor(c("aggregation_1", "aggregation_2")),
