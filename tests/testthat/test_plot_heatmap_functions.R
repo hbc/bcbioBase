@@ -1,8 +1,5 @@
 context("Plot Heatmap Functions")
 
-
-
-# All heatmap functions ========================================================
 fxns <- c(
     "plotCorrelationHeatmap",
     "plotHeatmap",
@@ -28,14 +25,21 @@ test_that("SummarizedExperiment", {
     }))
 })
 
+test_that("matrix", {
+    invisible(lapply(fxns, function(f) {
+        object = as.matrix(datasets::USArrests)
+        f <- get(f)
+        p <- f(object)
 
+        # Expect pheatmap return
+        expect_is(p, "list")
+        expect_identical(names(p), heatmapList)
 
-# plotHeatmap ==================================================================
-test_that("plotHeatmap : Turn off column names for many samples", {
-    p <- plotHeatmap(
-        object = matrix(seq(1L:1000L), ncol = 100L)
-    )
-    layout <- p[["gtable"]][["layout"]]
-    expect_is(layout, "data.frame")
-    expect_false("col_names" %in% layout[["name"]])
+        # Test that plots do not contain annotation data
+        gtable <- p[["gtable"]]
+        expect_false("annotation_legend" %in% gtable[["layout"]][["name"]])
+
+        # Test color palette support
+        expect_silent(f(object, color = NULL, legendColor = NULL))
+    }))
 })

@@ -107,7 +107,7 @@ NULL
         "showRownames" = TRUE,
         ...
     )
-    args <- .pheatmapArgs(args, .call = match.call())
+    args <- .pheatmapArgs(args)
     do.call(pheatmap, args)
 }
 

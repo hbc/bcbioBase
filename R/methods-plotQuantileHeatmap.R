@@ -142,7 +142,7 @@ NULL
         "showRownames" = showRownames,
         ...
     )
-    args <- .pheatmapArgs(args, .call = match.call())
+    args <- .pheatmapArgs(args)
     do.call(pheatmap, args)
 }
 
