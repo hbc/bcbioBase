@@ -16,6 +16,10 @@ will abort if no sample directories match.
 \description{
 Sample Directories
 }
+\examples{
+uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
+sampleDirs(uploadDir)
+}
 \seealso{
 Other Data Functions: \code{\link{flatFiles}},
   \code{\link{gene2symbol}},
