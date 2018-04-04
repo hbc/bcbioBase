@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/readable/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -29,7 +29,7 @@
   
 <meta property="og:title" content="Sample Data — sampleData" />
 
-<meta property="og:description" content="Return the sample metadata." />
+<meta property="og:description" content="Return the sample metadata. Columns are always sanitized to factor." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -97,10 +97,11 @@
     <div class="page-header">
     <h1>Sample Data</h1>
     <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-sampleData.R'><code>R/methods-sampleData.R</code></a></small>
+    <p class="hidden name"><code>sampleData.Rd</code></p>
     </div>
 
     
-    <p>Return the sample metadata.</p>
+    <p>Return the sample metadata. Columns are always sanitized to factor.</p>
     
 
     <pre class="usage"><span class='fu'>sampleData</span>(<span class='no'>object</span>, <span class='no'>...</span>)
@@ -108,8 +109,8 @@
 <span class='fu'>sampleData</span>(<span class='no'>object</span>, <span class='no'>...</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
 <span class='co'># S4 method for SummarizedExperiment</span>
-<span class='fu'>sampleData</span>(<span class='no'>object</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"data.frame"</span>,
-  <span class='st'>"DataFrame"</span>, <span class='st'>"kable"</span>))
+<span class='fu'>sampleData</span>(<span class='no'>object</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"DataFrame"</span>,
+  <span class='st'>"data.frame"</span>, <span class='st'>"kable"</span>))
 
 <span class='co'># S4 method for SummarizedExperiment</span>
 <span class='fu'>sampleData</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
@@ -150,20 +151,41 @@ experiment).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># SummarizedExperiment ====</span>
-<span class='fu'>sampleData</span>(<span class='no'>rse_small</span>)</div><div class='output co'>#&gt;                  sampleID   sampleName  description day replicate strain tissue
-#&gt; control_rep1 control_rep1 control_rep1 control_rep1   0         1 Balb/c kidney
-#&gt; control_rep2 control_rep2 control_rep2 control_rep2   0         2 Balb/c kidney
-#&gt; control_rep3 control_rep3 control_rep3 control_rep3   0         3 Balb/c kidney
-#&gt; fa_day7_rep1 fa_day7_rep1 fa_day7_rep1 fa_day7_rep1   7         1 Balb/c kidney
-#&gt; fa_day7_rep2 fa_day7_rep2 fa_day7_rep2 fa_day7_rep2   7         2 Balb/c kidney
-#&gt; fa_day7_rep3 fa_day7_rep3 fa_day7_rep3 fa_day7_rep3   7         3 Balb/c kidney
-#&gt;               treatment
-#&gt; control_rep1    control
-#&gt; control_rep2    control
-#&gt; control_rep3    control
-#&gt; fa_day7_rep1 folic_acid
-#&gt; fa_day7_rep2 folic_acid
-#&gt; fa_day7_rep3 folic_acid</div></pre>
+<span class='fu'>sampleData</span>(<span class='no'>rse_small</span>)</div><div class='output co'>#&gt; DataFrame with 6 rows and 9 columns
+#&gt;                  sampleID   sampleName  description      day replicate   strain
+#&gt;                  &lt;factor&gt;     &lt;factor&gt;     &lt;factor&gt; &lt;factor&gt;  &lt;factor&gt; &lt;factor&gt;
+#&gt; control_rep1 control_rep1 control_rep1 control_rep1        0         1   Balb/c
+#&gt; control_rep2 control_rep2 control_rep2 control_rep2        0         2   Balb/c
+#&gt; control_rep3 control_rep3 control_rep3 control_rep3        0         3   Balb/c
+#&gt; fa_day7_rep1 fa_day7_rep1 fa_day7_rep1 fa_day7_rep1        7         1   Balb/c
+#&gt;                tissue  treatment interestingGroups
+#&gt;              &lt;factor&gt;   &lt;factor&gt;          &lt;factor&gt;
+#&gt; control_rep1   kidney    control           control
+#&gt; control_rep2   kidney    control           control
+#&gt; control_rep3   kidney    control           control
+#&gt; fa_day7_rep1   kidney folic_acid        folic_acid
+#&gt;  [ reached getOption("max.print") -- omitted 2 rows ]</div><div class='input'>
+<span class='co'># Assignment support</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>rse_small</span>
+<span class='fu'>sampleData</span>(<span class='no'>x</span>)<span class='kw'>[[</span><span class='st'>"test"</span>]] <span class='kw'>&lt;-</span> <span class='fu'>seq_len</span>(<span class='fu'>ncol</span>(<span class='no'>x</span>))
+<span class='co'># `test` column should be now defined</span>
+<span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='fu'>sampleData</span>(<span class='no'>x</span>))</div><div class='output co'>#&gt; Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
+#&gt;   ..@ rownames       : chr [1:6] "control_rep1" "control_rep2" "control_rep3" "fa_day7_rep1" ...
+#&gt;   ..@ nrows          : int 6
+#&gt;   ..@ listData       :List of 10
+#&gt;   .. ..$ sampleID         : Factor w/ 6 levels "control_rep1",..: 1 2 3 4 5 6
+#&gt;   .. ..$ sampleName       : Factor w/ 6 levels "control_rep1",..: 1 2 3 4 5 6
+#&gt;   .. ..$ description      : Factor w/ 6 levels "control_rep1",..: 1 2 3 4 5 6
+#&gt;   .. ..$ day              : Factor w/ 2 levels "0","7": 1 1 1 2 2 2
+#&gt;   .. ..$ replicate        : Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3
+#&gt;   .. ..$ strain           : Factor w/ 1 level "Balb/c": 1 1 1 1 1 1
+#&gt;   .. ..$ tissue           : Factor w/ 1 level "kidney": 1 1 1 1 1 1
+#&gt;   .. ..$ treatment        : Factor w/ 2 levels "control","folic_acid": 1 1 1 2 2 2
+#&gt;   .. ..$ interestingGroups: Factor w/ 2 levels "control","folic_acid": 1 1 1 2 2 2
+#&gt;   .. ..$ test             : Factor w/ 6 levels "1","2","3","4",..: 1 2 3 4 5 6
+#&gt;   ..@ elementType    : chr "ANY"
+#&gt;   ..@ elementMetadata: NULL
+#&gt;   ..@ metadata       : list()</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
