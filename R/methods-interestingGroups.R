@@ -38,7 +38,7 @@ setMethod(
     ),
     function(object, value) {
         assertFormalInterestingGroups(
-            x = colData(object),
+            x = sampleData(object),
             interestingGroups = value
         )
         metadata(object)[["interestingGroups"]] <- value
