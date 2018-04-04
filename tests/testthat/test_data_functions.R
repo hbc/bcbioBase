@@ -72,8 +72,8 @@ test_that("sampleData : SummarizedExperiment", {
     expect_identical(
         lapply(list, class),
         list(
-            "data.frame",
             structure("DataFrame", package = "S4Vectors"),
+            "data.frame",
             "knitr_kable"
         )
     )
@@ -81,8 +81,8 @@ test_that("sampleData : SummarizedExperiment", {
     expect_identical(
         lapply(list, dim),
         list(
-            c(6L, 8L),
-            c(6L, 8L),
+            c(6L, 9L),
+            c(6L, 9L),
             NULL
         )
     )
