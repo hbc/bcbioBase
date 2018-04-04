@@ -130,7 +130,7 @@ setMethod(
     function(object, ...) {
         plotCorrelationHeatmap(
             object = assay(object),
-            annotationCol = sampleData(object),
+            annotationCol = colData(object),
             ...
         )
     }

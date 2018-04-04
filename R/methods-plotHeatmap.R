@@ -152,7 +152,7 @@ setMethod(
     function(object, ...) {
         plotHeatmap(
             object = assay(object),
-            annotationCol = sampleData(object),
+            annotationCol = colData(object),
             ...
         )
     }

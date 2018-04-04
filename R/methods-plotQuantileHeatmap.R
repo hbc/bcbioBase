@@ -143,7 +143,7 @@ setMethod(
     function(object, ...) {
         plotQuantileHeatmap(
             object = assay(object),
-            annotationCol = sampleData(object),
+            annotationCol = colData(object),
             ...
         )
     }
