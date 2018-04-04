@@ -36,12 +36,15 @@ setMethod(
     signature("SummarizedExperiment"),
     function(
         object,
-        return = c("data.frame", "DataFrame", "kable")
+        return = c("DataFrame", "data.frame", "kable")
     ) {
+        validObject(object)
+        interestingGroups <- interestingGroups(object)
         return <- match.arg(return)
         data <- colData(object)
-        # Ensure all columns are factors
+        data <- uniteInterestingGroups(data, interestingGroups)
         data <- sanitizeSampleData(data)
+        assertHasRownames(data)
         if (return == "kable") {
             blacklist <- c("description", "fileName", "sampleID")
             data %>%
