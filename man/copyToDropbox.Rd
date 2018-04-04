@@ -4,7 +4,7 @@
 \alias{copyToDropbox}
 \title{Copy Files to Dropbox}
 \usage{
-copyToDropbox(files, dir, rdsToken = NA)
+copyToDropbox(files, dir, rdsToken = NULL)
 }
 \arguments{
 \item{files}{Local file paths.}
@@ -14,21 +14,15 @@ copyToDropbox(files, dir, rdsToken = NA)
 \item{rdsToken}{RDS file token to use for Dropbox authentication.}
 }
 \value{
-Invisibly return \link{list} of rdrop2 output.
+Invisible \code{list} of rdrop2 output.
 }
 \description{
 Copy Files to Dropbox
 }
 \examples{
-prepareTemplate("bibliography.bib")
-dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
-suppressMessages(copyToDropbox(
-    files = "bibliography.bib",
-    dir = dropboxDir,
-    rdsToken = system.file("extdata/token.rds", package = "bcbioBase")
-))
-rdrop2::drop_exists(file.path(dropboxDir, "bibliography.bib"))
-unlink("bibliography.bib")
+\dontrun{
+copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
+}
 }
 \author{
 Michael Steinbaugh, Victor Barerra, John Hutchinson

@@ -4,27 +4,28 @@
 \alias{readProgramVersions}
 \title{Read Program Versions}
 \usage{
-readProgramVersions(file, quiet = FALSE)
+readProgramVersions(file)
 }
 \arguments{
-\item{file}{Program versions TXT file.}
-
-\item{quiet}{If \code{TRUE}, suppress any status messages and/or progress bars.}
+\item{file}{File path.}
 }
 \value{
-\link{data.frame}.
+\code{tbl_df}.
 }
 \description{
 Read Program Versions
 }
+\note{
+bcbio doesn't save program versions when run in fast mode.
+}
 \examples{
-url <- file.path(
-    "http://bcbiobase.seq.cloud",
-    "bcbio",
-    "programs.txt")
-readProgramVersions(url)
+readProgramVersions("http://bcbiobase.seq.cloud/programs.txt")
 }
 \seealso{
-Other bcbio Utilities: \code{\link{prepareSummarizedExperiment}}
+Other Read Functions: \code{\link{readDataVersions}},
+  \code{\link{readLog}}, \code{\link{readSampleData}},
+  \code{\link{readTx2gene}}
 }
-\keyword{internal}
+\author{
+Michael Steinbaugh
+}

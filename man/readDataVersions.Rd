@@ -4,26 +4,30 @@
 \alias{readDataVersions}
 \title{Read Data Versions}
 \usage{
-readDataVersions(file, quiet = FALSE)
+readDataVersions(file)
 }
 \arguments{
-\item{file}{Data versions CSV file.}
-
-\item{quiet}{If \code{TRUE}, suppress any status messages and/or progress bars.}
+\item{file}{File path.}
 }
 \value{
-\link{data.frame}.
+\code{tbl_df}.
 }
 \description{
 Read Data Versions
 }
+\note{
+The \code{data_versions.csv} file is only generated for special genomes
+containing additional information (e.g. the built-in "hg38" build).
+}
 \examples{
-url <- file.path(
-    "http://bcbiobase.seq.cloud",
-    "bcbio",
-    "data_versions.csv")
-readDataVersions(url) \%>\% glimpse()
+readDataVersions("http://bcbiobase.seq.cloud/data_versions.csv") \%>\%
+    glimpse()
 }
 \seealso{
-Other File Utilities: \code{\link{readLogFile}}
+Other Read Functions: \code{\link{readLog}},
+  \code{\link{readProgramVersions}},
+  \code{\link{readSampleData}}, \code{\link{readTx2gene}}
+}
+\author{
+Michael Steinbaugh
 }

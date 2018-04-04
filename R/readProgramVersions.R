@@ -1,40 +1,35 @@
 #' Read Program Versions
 #'
-#' @rdname readProgramVersions
-#' @name readProgramVersions
-#' @family bcbio Utilities
-#' @keywords internal
+#' @note bcbio doesn't save program versions when run in fast mode.
 #'
-#' @importFrom basejump localOrRemoteFile
-#' @importFrom readr read_csv
+#' @family Read Functions
+#' @author Michael Steinbaugh
 #'
-#' @inheritParams readSampleMetadataFile
+#' @inheritParams general
 #'
-#' @param file Program versions TXT file.
-#'
-#' @return [data.frame].
+#' @return `tbl_df`.
 #' @export
 #'
 #' @examples
-#' url <- file.path(
-#'     "http://bcbiobase.seq.cloud",
-#'     "bcbio",
-#'     "programs.txt")
-#' readProgramVersions(url)
-readProgramVersions <- function(
-    file,
-    quiet = FALSE) {
+#' readProgramVersions("http://bcbiobase.seq.cloud/programs.txt")
+readProgramVersions <- function(file) {
     assert_is_a_string(file)
-    assert_is_a_bool(quiet)
-    file <- localOrRemoteFile(file, severity = "warning", quiet = quiet)
+    # Program versions are optional
+    file <- tryCatch(
+        localOrRemoteFile(file),
+        error = function(e) {
+            inform("Program versions are missing")
+            NULL
+        }
+    )
     if (is.null(file)) {
-        return(invisible())
+        return(tibble())
     }
-    # programs.txt, but is comma separated!
+    # bcbio outputs `programs.txt`, but it's comma separated!
     read_csv(
         file,
         col_names = c("program", "version"),
         # `c` denotes character here
-        col_types = "cc",
-        progress = quiet)
+        col_types = "cc"
+    )
 }

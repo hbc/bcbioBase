@@ -18,11 +18,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Michael Steinbaugh \email{mike@steinbaugh.com}
+\strong{Maintainer}: Michael Steinbaugh \email{mike@steinbaugh.com} (0000-0002-2403-2221)
 
 Authors:
 \itemize{
-  \item Rory Kirchner \email{roryk@alum.mit.edu}
+  \item Lorena Pantano \email{lorena.pantano@gmail.com} (0000-0002-3859-3249)
+  \item Rory Kirchner \email{roryk@alum.mit.edu} (0000-0003-4814-5885)
 }
 
 Other contributors:
@@ -31,3 +32,4 @@ Other contributors:
 }
 
 }
+\keyword{internal}

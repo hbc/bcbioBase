@@ -1,0 +1,7 @@
+.httr-oauth
+*.bib
+*.csv
+*.log
+*.txt
+*.xlsx
+*.yaml

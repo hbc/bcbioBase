@@ -1,42 +1,34 @@
 #' Copy Files to Dropbox
 #'
+#' @family Write Functions
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
-#'
-#' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
-#'   drop_get_metadata drop_share drop_upload
 #'
 #' @param files Local file paths.
 #' @param dir Relative path of remote Dropbox directory.
 #' @param rdsToken RDS file token to use for Dropbox authentication.
 #'
-#' @return Invisibly return [list] of rdrop2 output.
+#' @return Invisible `list` of rdrop2 output.
 #' @export
 #'
 #' @examples
-#' prepareTemplate("bibliography.bib")
-#' dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
-#' suppressMessages(copyToDropbox(
-#'     files = "bibliography.bib",
-#'     dir = dropboxDir,
-#'     rdsToken = system.file("extdata/token.rds", package = "bcbioBase")
-#' ))
-#' rdrop2::drop_exists(file.path(dropboxDir, "bibliography.bib"))
-#' unlink("bibliography.bib")
+#' \dontrun{
+#' copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
+#' }
 copyToDropbox <- function(
     files,
     dir,
-    rdsToken = NA) {
+    rdsToken = NULL
+) {
     assert_is_any_of(files, c("character", "list"))
     assert_all_are_existing_files(files)
     assert_is_a_string(dir)
     dir <- gsub("/$", "", dir)
     assert_all_are_non_missing_nor_empty_character(dir)
-    assert_is_any_of(rdsToken, c("character", "logical"))
     if (is.character(rdsToken)) {
         assert_is_a_string(rdsToken)
         assert_all_are_existing_files(rdsToken)
-    } else if (is.logical(rdsToken)) {
-        assert_is_identical_to_na(rdsToken)
+    } else {
+        rdsToken <- NA  # nocov
     }
 
     # Ensure user is authenticated with Dropbox

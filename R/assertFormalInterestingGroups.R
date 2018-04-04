@@ -3,31 +3,25 @@
 #' Prevent unwanted downstream behavior when a missing interesting group
 #' is requested by the user.
 #'
-#' @family Assert Checks
+#' @family Assert Check Functions
+#' @author Michael Steinbaugh
+#'
 #' @inherit assert
 #'
-#' @param x Object supporting [colnames()], typically a [data.frame].
+#' @param x Object supporting [colnames()], typically a `data.frame`.
 #' @param interestingGroups Interesting groups character vector.
 #'
+#' @return Silent, stop on error.
 #' @export
 #'
 #' @examples
-#' meta <- readSampleMetadataFile(file.path(
-#'     "http://bcbiobase.seq.cloud",
-#'     "sample_metadata",
-#'     "demultiplexed.xlsx"))
-#'
-#' # Success
-#' assertFormalInterestingGroups(meta, interestingGroups = "genotype")
-#'
-#' # Failure
-#' tryCatch(
-#'     assertFormalInterestingGroups(meta, interestingGroups = "XXX"),
-#'     error = function(e) e)
+#' data <- readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv")
+#' assertFormalInterestingGroups(data, interestingGroups = "genotype")
 assertFormalInterestingGroups <- function(
     x,
     interestingGroups,
-    severity = "stop") {
+    severity = "stop"
+) {
     assert_has_colnames(x, severity = severity)
     assert_is_subset(
         x = interestingGroups,

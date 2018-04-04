@@ -7,28 +7,24 @@
 assertFormalInterestingGroups(x, interestingGroups, severity = "stop")
 }
 \arguments{
-\item{x}{Object supporting \code{\link[=colnames]{colnames()}}, typically a \link{data.frame}.}
+\item{x}{Object supporting \code{\link[=colnames]{colnames()}}, typically a \code{data.frame}.}
 
 \item{interestingGroups}{Interesting groups character vector.}
 
 \item{severity}{How severe should the consequences of the assertion be?
 Either "\code{stop}", "\code{warning}", "\code{message}", or "\code{none}".}
 }
+\value{
+Silent, stop on error.
+}
 \description{
 Prevent unwanted downstream behavior when a missing interesting group
 is requested by the user.
 }
 \examples{
-meta <- readSampleMetadataFile(file.path(
-    "http://bcbiobase.seq.cloud",
-    "sample_metadata",
-    "demultiplexed.xlsx"))
-
-# Success
-assertFormalInterestingGroups(meta, interestingGroups = "genotype")
-
-# Failure
-tryCatch(
-    assertFormalInterestingGroups(meta, interestingGroups = "XXX"),
-    error = function(e) e)
+data <- readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv")
+assertFormalInterestingGroups(data, interestingGroups = "genotype")
+}
+\author{
+Michael Steinbaugh
 }

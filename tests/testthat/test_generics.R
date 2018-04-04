@@ -1,8 +1,10 @@
-context("bcbioGenerics")
+context("Generics")
 
 withMethods <- c(
-    "prepareSummarizedExperiment",
-    "prepareTemplate",
+    "interestingGroups",
+    "interestingGroups<-",
+    "sampleData",
+    "sampleData<-",
     "sampleYAML",
     "sampleYAMLMetadata",
     "sampleYAMLMetrics"
@@ -10,18 +12,12 @@ withMethods <- c(
 withoutMethods <- c(
     "bcbio",
     "bcbio<-",
-    "flatFiles",
-    "interestingGroups",
-    "interestingGroups<-",
     "metrics",
     "plotDot",
     "plotGene",
     "plotQC",
     "plotViolin",
-    "sampleMetadata",
-    "sampleMetadata<-",
-    "selectSamples",
-    "tpm"
+    "selectSamples"
 )
 
 test_that("S4 generics", {
@@ -32,7 +28,8 @@ test_that("S4 generics", {
         vapply(
             X = generics,
             FUN = isS4,
-            FUN.VALUE = logical(1L))
+            FUN.VALUE = logical(1L)
+        )
     ))
 })
 

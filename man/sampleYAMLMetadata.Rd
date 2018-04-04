@@ -12,25 +12,26 @@ sampleYAMLMetadata(yaml, ...)
 \S4method{sampleYAMLMetadata}{list}(yaml)
 }
 \arguments{
-\item{yaml}{Project summary YAML list.}
+\item{yaml}{Project summary YAML \code{list}.}
 
 \item{...}{Additional arguments.}
 }
 \value{
-\link{tibble}.
+\code{tbl_df}.
 }
 \description{
 Sample Metadata from YAML
 }
 \examples{
-url <- file.path(
-    "http://bcbiobase.seq.cloud",
-    "bcbio",
-    "project-summary.yaml")
-yaml <- basejump::readYAML(url)
+yaml <- basejump::readYAML(
+    "http://bcbiobase.seq.cloud/project-summary.yaml"
+)
 sampleYAMLMetadata(yaml) \%>\% glimpse()
 }
 \seealso{
-Other YAML Utilities: \code{\link{sampleYAMLMetrics}},
+Other YAML Functions: \code{\link{sampleYAMLMetrics}},
   \code{\link{sampleYAML}}
+}
+\author{
+Michael Steinbaugh
 }

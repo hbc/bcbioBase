@@ -1,6 +1,7 @@
-library(bcbioBase)
 library(knitr)
 library(ggplot2)
+library(basejump)
+library(bcbioBase)
 library(tidyverse)
 
 opts_chunk[["set"]](

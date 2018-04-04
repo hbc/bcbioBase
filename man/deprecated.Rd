@@ -2,11 +2,24 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
-\title{Deprecated Functions}
+\alias{checkInterestingGroups}
+\alias{prepareSampleMetadata}
+\alias{readLogFile}
+\alias{readSampleMetadataFile}
+\title{Defunct or Deprecated Functions}
+\usage{
+checkInterestingGroups(...)
+
+prepareSampleMetadata(...)
+
+readLogFile(...)
+
+readSampleMetadataFile(...)
+}
 \value{
 No value.
 }
 \description{
-Deprecated Functions
+Defunct or Deprecated Functions
 }
 \keyword{internal}

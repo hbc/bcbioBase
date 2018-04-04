@@ -12,25 +12,29 @@ sampleYAMLMetrics(yaml, ...)
 \S4method{sampleYAMLMetrics}{list}(yaml)
 }
 \arguments{
-\item{yaml}{Project summary YAML list.}
+\item{yaml}{Project summary YAML \code{list}.}
 
 \item{...}{Additional arguments.}
 }
 \value{
-\link{tibble}.
+\code{tbl_df}.
 }
 \description{
 Sample Metrics from YAML File
 }
+\note{
+bcbio doesn't calculate sample metrics when run in fast mode.
+}
 \examples{
-url <- file.path(
-    "http://bcbiobase.seq.cloud",
-    "bcbio",
-    "project-summary.yaml")
-yaml <- basejump::readYAML(url)
+yaml <- basejump::readYAML(
+    "http://bcbiobase.seq.cloud/project-summary.yaml"
+)
 sampleYAMLMetrics(yaml) \%>\% glimpse()
 }
 \seealso{
-Other YAML Utilities: \code{\link{sampleYAMLMetadata}},
+Other YAML Functions: \code{\link{sampleYAMLMetadata}},
   \code{\link{sampleYAML}}
+}
+\author{
+Michael Steinbaugh
 }

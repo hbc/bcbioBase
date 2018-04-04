@@ -2,24 +2,24 @@
 # https://docs.travis-ci.com/user/languages/r
 
 language: r
-sudo: false
 cache: packages
-warnings_are_errors: false
+warnings_are_errors: true
 
 # Temporarily enable to cache R packages
 # script: true
 
 before_install:
-- openssl aes-256-cbc -K $encrypted_548ab35dca07_key -iv $encrypted_548ab35dca07_iv -in inst/extdata/token.rds.enc -out inst/extdata/token.rds -d
+- openssl aes-256-cbc -K $encrypted_548ab35dca07_key -iv $encrypted_548ab35dca07_iv -in tests/testthat/token.rds.enc -out tests/testthat/token.rds -d
 
 r:
   - bioc-release
-  # - bioc-devel
+  - bioc-devel
+
 r_packages:
   - covr
-  - rlang
-r_github_packages:
-  - karthik/rdrop2
+bioc_packages:
+  - BiocCheck
 
 after_success:
   - Rscript -e 'covr::codecov()'
+  - R CMD BiocCheck .

@@ -4,29 +4,17 @@
 \alias{AllGenerics}
 \alias{bcbio}
 \alias{bcbio<-}
-\alias{flatFiles}
-\alias{interestingGroups}
-\alias{interestingGroups<-}
 \alias{metrics}
 \alias{plotDot}
 \alias{plotGene}
 \alias{plotQC}
 \alias{plotViolin}
-\alias{sampleMetadata}
-\alias{sampleMetadata<-}
 \alias{selectSamples}
-\alias{tpm}
 \title{S4 Generics}
 \usage{
 bcbio(object, ...)
 
 bcbio(object, ...) <- value
-
-flatFiles(object, ...)
-
-interestingGroups(object, ...)
-
-interestingGroups(object, ...) <- value
 
 metrics(object, ...)
 
@@ -38,13 +26,7 @@ plotQC(object, ...)
 
 plotViolin(object, ...)
 
-sampleMetadata(object, ...)
-
-sampleMetadata(object, ...) <- value
-
 selectSamples(object, ...)
-
-tpm(object)
 }
 \arguments{
 \item{object}{Object.}
@@ -59,3 +41,4 @@ Varies, depending upon the method.
 \description{
 S4 Generics
 }
+\keyword{internal}

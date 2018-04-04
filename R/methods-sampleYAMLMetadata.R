@@ -1,28 +1,24 @@
 #' Sample Metadata from YAML
 #'
-#' @rdname sampleYAMLMetadata
 #' @name sampleYAMLMetadata
-#' @family YAML Utilities
+#' @family YAML Functions
+#' @author Michael Steinbaugh
 #'
 #' @inherit sampleYAML
 #'
 #' @examples
-#' url <- file.path(
-#'     "http://bcbiobase.seq.cloud",
-#'     "bcbio",
-#'     "project-summary.yaml")
-#' yaml <- basejump::readYAML(url)
+#' yaml <- basejump::readYAML(
+#'     "http://bcbiobase.seq.cloud/project-summary.yaml"
+#' )
 #' sampleYAMLMetadata(yaml) %>% glimpse()
 NULL
 
 
 
 # Constructors =================================================================
-#' @importFrom dplyr mutate_all
 .sampleYAMLMetadata <- function(yaml) {
     sampleYAML(yaml = yaml, keys = "metadata") %>%
-        mutate_all(as.factor) %>%
-        .prepareSampleMetadata()
+        prepareSampleData()
 }
 
 
@@ -33,4 +29,5 @@ NULL
 setMethod(
     "sampleYAMLMetadata",
     signature("list"),
-    .sampleYAMLMetadata)
+    .sampleYAMLMetadata
+)

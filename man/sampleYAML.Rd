@@ -12,14 +12,14 @@ sampleYAML(yaml, keys, ...)
 \S4method{sampleYAML}{list,character}(yaml, keys)
 }
 \arguments{
-\item{yaml}{Project summary YAML list.}
+\item{yaml}{Project summary YAML \code{list}.}
 
 \item{keys}{Nested operator keys, supplied as a character vector.}
 
 \item{...}{Additional arguments.}
 }
 \value{
-\link{tibble}.
+\code{tbl_df}.
 }
 \description{
 Sample YAML Metadata Utilities
@@ -30,14 +30,15 @@ counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
 output the same metrics into the YAML.
 }
 \examples{
-url <- file.path(
-    "http://bcbiobase.seq.cloud",
-    "bcbio",
-    "project-summary.yaml")
-yaml <- basejump::readYAML(url)
+yaml <- basejump::readYAML(
+    "http://bcbiobase.seq.cloud/project-summary.yaml"
+)
 sampleYAML(yaml, "metadata") \%>\% glimpse()
 }
 \seealso{
-Other YAML Utilities: \code{\link{sampleYAMLMetadata}},
+Other YAML Functions: \code{\link{sampleYAMLMetadata}},
   \code{\link{sampleYAMLMetrics}}
+}
+\author{
+Michael Steinbaugh
 }

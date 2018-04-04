@@ -1,35 +1,30 @@
 #' Sample YAML Metadata Utilities
 #'
-#' @rdname sampleYAML
 #' @name sampleYAML
-#' @family YAML Utilities
+#' @family YAML Functions
+#' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #'
-#' @param yaml Project summary YAML list.
+#' @param yaml Project summary YAML `list`.
 #' @param keys Nested operator keys, supplied as a character vector.
 #'
 #' @note Metrics are only generated for a standard RNA-seq run with aligned
 #'   counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
 #'   output the same metrics into the YAML.
 #'
-#' @return [tibble].
+#' @return `tbl_df`.
 #'
 #' @examples
-#' url <- file.path(
-#'     "http://bcbiobase.seq.cloud",
-#'     "bcbio",
-#'     "project-summary.yaml")
-#' yaml <- basejump::readYAML(url)
+#' yaml <- basejump::readYAML(
+#'     "http://bcbiobase.seq.cloud/project-summary.yaml"
+#' )
 #' sampleYAML(yaml, "metadata") %>% glimpse()
 NULL
 
 
 
 # Constructors =================================================================
-#' @importFrom basejump removeNA
-#' @importFrom dplyr arrange bind_rows
-#' @importFrom magrittr set_rownames
 .sampleYAML <- function(yaml, keys) {
     assert_is_non_empty(yaml)
     yaml <- yaml[["samples"]]
@@ -82,7 +77,7 @@ NULL
 
     bind_rows(dflist) %>%
         removeNA() %>%
-        arrange(.data[["description"]])
+        arrange(!!sym("description"))
 }
 
 
@@ -94,5 +89,7 @@ setMethod(
     "sampleYAML",
     signature(
         yaml = "list",
-        keys = "character"),
-    .sampleYAML)
+        keys = "character"
+    ),
+    .sampleYAML
+)

@@ -1,7 +1,7 @@
 #' S4 Generics
 #'
-#' @rdname AllGenerics
 #' @name AllGenerics
+#' @keywords internal
 #'
 #' @inheritParams general
 #'
@@ -12,150 +12,229 @@ NULL
 
 #' @rdname AllGenerics
 #' @export
-setGeneric("bcbio", function(object, ...) {
-    standardGeneric("bcbio")
-})
+setGeneric(
+    "bcbio",
+    function(object, ...) {
+        standardGeneric("bcbio")
+    }
+)
 
 
 
 #' @rdname AllGenerics
 #' @export
-setGeneric("bcbio<-", function(object, ..., value) {
-    standardGeneric("bcbio<-")
-})
+setGeneric(
+    "bcbio<-",
+    function(object, ..., value) {
+        standardGeneric("bcbio<-")
+    }
+)
+
+
+
+#' @rdname flatFiles
+#' @export
+setGeneric(
+    "flatFiles",
+    function(object, ...) {
+        standardGeneric("flatFiles")
+    }
+)
+
+
+
+#' @rdname gene2symbol
+#' @export
+setGeneric(
+    "gene2symbol",
+    function(object) {
+        standardGeneric("gene2symbol")
+    }
+)
+
+
+
+#' @rdname interestingGroups
+#' @export
+setGeneric(
+    "interestingGroups",
+    function(object, ...) {
+        standardGeneric("interestingGroups")
+    }
+)
+
+
+
+#' @rdname interestingGroups
+#' @export
+setGeneric(
+    "interestingGroups<-",
+    function(object, ..., value) {
+        standardGeneric("interestingGroups<-")
+    }
+)
 
 
 
 #' @rdname AllGenerics
 #' @export
-setGeneric("flatFiles", function(object, ...) {
-    standardGeneric("flatFiles")
-})
+setGeneric(
+    "metrics",
+    function(object, ...) {
+        standardGeneric("metrics")
+    }
+)
+
+
+
+#' @rdname plotCorrelationHeatmap
+#' @export
+setGeneric(
+    "plotCorrelationHeatmap",
+    function(object, ...) {
+        standardGeneric("plotCorrelationHeatmap")
+    }
+)
 
 
 
 #' @rdname AllGenerics
 #' @export
-setGeneric("interestingGroups", function(object, ...) {
-    standardGeneric("interestingGroups")
-})
+setGeneric(
+    "plotDot",
+    function(object, ...) {
+        standardGeneric("plotDot")
+    }
+)
 
 
 
 #' @rdname AllGenerics
 #' @export
-setGeneric("interestingGroups<-", function(object, ..., value) {
-    standardGeneric("interestingGroups<-")
-})
+setGeneric(
+    "plotGene",
+    function(object, ...) {
+        standardGeneric("plotGene")
+    }
+)
+
+
+
+#' @rdname plotHeatmap
+#' @export
+setGeneric(
+    "plotHeatmap",
+    function(object, ...) {
+        standardGeneric("plotHeatmap")
+    }
+)
+
+
+
+#' @rdname plotQuantileHeatmap
+#' @export
+setGeneric(
+    "plotQuantileHeatmap",
+    function(object, ...) {
+        standardGeneric("plotQuantileHeatmap")
+    }
+)
 
 
 
 #' @rdname AllGenerics
 #' @export
-setGeneric("metrics", function(object, ...) {
-    standardGeneric("metrics")
-})
+setGeneric(
+    "plotQC",
+    function(object, ...) {
+        standardGeneric("plotQC")
+    }
+)
 
 
 
 #' @rdname AllGenerics
 #' @export
-setGeneric("plotDot", function(object, ...) {
-    standardGeneric("plotDot")
-})
+setGeneric(
+    "plotViolin",
+    function(object, ...) {
+        standardGeneric("plotViolin")
+    }
+)
 
 
 
-#' @rdname AllGenerics
+#' @rdname sampleData
 #' @export
-setGeneric("plotGene", function(object, ...) {
-    standardGeneric("plotGene")
-})
+setGeneric(
+    "sampleData",
+    function(object, ...) {
+        standardGeneric("sampleData")
+    }
+)
 
 
 
-#' @rdname AllGenerics
+#' @rdname sampleData
 #' @export
-setGeneric("plotQC", function(object, ...) {
-    standardGeneric("plotQC")
-})
-
-
-
-#' @rdname AllGenerics
-#' @export
-setGeneric("plotViolin", function(object, ...) {
-    standardGeneric("plotViolin")
-})
-
-
-
-#' @rdname prepareSummarizedExperiment
-#' @export
-setGeneric("prepareSummarizedExperiment", function(assays, ...) {
-    standardGeneric("prepareSummarizedExperiment")
-})
-
-
-
-#' @rdname prepareTemplate
-#' @export
-setGeneric("prepareTemplate", function(object, ...) {
-    standardGeneric("prepareTemplate")
-})
-
-
-
-#' @rdname AllGenerics
-#' @export
-setGeneric("sampleMetadata", function(object, ...) {
-    standardGeneric("sampleMetadata")
-})
-
-
-
-#' @rdname AllGenerics
-#' @export
-setGeneric("sampleMetadata<-", function(object, ..., value) {
-    standardGeneric("sampleMetadata<-")
-})
+setGeneric(
+    "sampleData<-",
+    function(object, ..., value) {
+        standardGeneric("sampleData<-")
+    }
+)
 
 
 
 #' @rdname sampleYAML
 #' @export
-setGeneric("sampleYAML", function(yaml, keys, ...) {
-    standardGeneric("sampleYAML")
-})
+setGeneric(
+    "sampleYAML",
+    function(yaml, keys, ...) {
+        standardGeneric("sampleYAML")
+    }
+)
 
 
 
 #' @rdname sampleYAMLMetadata
 #' @export
-setGeneric("sampleYAMLMetadata", function(yaml, ...) {
-    standardGeneric("sampleYAMLMetadata")
-})
+setGeneric(
+    "sampleYAMLMetadata",
+    function(yaml, ...) {
+        standardGeneric("sampleYAMLMetadata")
+    }
+)
 
 
 
 #' @rdname sampleYAMLMetrics
 #' @export
-setGeneric("sampleYAMLMetrics", function(yaml, ...) {
-    standardGeneric("sampleYAMLMetrics")
-})
+setGeneric(
+    "sampleYAMLMetrics",
+    function(yaml, ...) {
+        standardGeneric("sampleYAMLMetrics")
+    }
+)
 
 
 
 #' @rdname AllGenerics
 #' @export
-setGeneric("selectSamples", function(object, ...) {
-    standardGeneric("selectSamples")
-})
+setGeneric(
+    "selectSamples",
+    function(object, ...) {
+        standardGeneric("selectSamples")
+    }
+)
 
 
 
-#' @rdname AllGenerics
+#' @rdname uniteInterestingGroups
 #' @export
-setGeneric("tpm", function(object) {
-    standardGeneric("tpm")
-})
+setGeneric(
+    "uniteInterestingGroups",
+    function(object, ...) {
+        standardGeneric("uniteInterestingGroups")
+    }
+)
