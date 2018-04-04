@@ -47,7 +47,6 @@ NULL
     assert_all_are_greater_than(nrow(object), 1L)
     assert_all_are_greater_than(ncol(object), 1L)
     method <- match.arg(method)
-    assertFormalAnnotationCol(object, annotationCol)
     assertIsHexColorFunctionOrNULL(color)
     assertIsHexColorFunctionOrNULL(legendColor)
     assertIsAStringOrNULL(borderColor)
@@ -64,6 +63,7 @@ NULL
     mat <- cor(object, method = method)
 
     annotationCol <- .pheatmapAnnotationCol(annotationCol)
+    assertFormalAnnotationCol(object, annotationCol)
     annotationColors <- .pheatmapAnnotationColors(
         annotationCol = annotationCol,
         legendColor = legendColor

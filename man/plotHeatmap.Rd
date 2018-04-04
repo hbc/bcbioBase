@@ -27,10 +27,7 @@ plotHeatmap(object, ...)
   showColnames = TRUE, showRownames = FALSE, color = viridis,
   legendColor = viridis, borderColor = NULL, title = NULL, ...)
 
-\S4method{plotHeatmap}{SummarizedExperiment}(object, scale = c("row",
-  "column", "none"), annotationCol, clusterCols = TRUE, clusterRows = TRUE,
-  color = viridis, legendColor = viridis, borderColor = NULL,
-  title = NULL, ...)
+\S4method{plotHeatmap}{SummarizedExperiment}(object, ...)
 }
 \arguments{
 \item{object}{Object.}

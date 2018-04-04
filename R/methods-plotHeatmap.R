@@ -58,12 +58,11 @@ NULL
     title = NULL,
     ...
 ) {
+    object <- as.matrix(object)
     assert_has_dims(object)
     assert_all_are_greater_than(nrow(object), 1L)
     assert_all_are_greater_than(ncol(object), 1L)
-    object <- as.matrix(object)
     scale <- match.arg(scale)
-    assertFormalAnnotationCol(object, annotationCol)
     assert_is_a_bool(clusterCols)
     assert_is_a_bool(clusterRows)
     assert_is_a_bool(showColnames)
@@ -86,6 +85,7 @@ NULL
     }
 
     annotationCol <- .pheatmapAnnotationCol(annotationCol)
+    assertFormalAnnotationCol(object, annotationCol)
     annotationColors <- .pheatmapAnnotationColors(
         annotationCol = annotationCol,
         legendColor = legendColor
@@ -149,31 +149,10 @@ setMethod(
 setMethod(
     "plotHeatmap",
     signature("SummarizedExperiment"),
-    function(
-        object,
-        scale = c("row", "column", "none"),
-        annotationCol,
-        clusterCols = TRUE,
-        clusterRows = TRUE,
-        color = viridis,
-        legendColor = viridis,
-        borderColor = NULL,
-        title = NULL,
-        ...
-    ) {
-        scale <- match.arg(scale)
-        if (missing(annotationCol)) {
-            annotationCol <- colData(object)
-        }
+    function(object, ...) {
         plotHeatmap(
             object = assay(object),
-            annotationCol = annotationCol,
-            clusterCols = clusterCols,
-            clusterRows = clusterRows,
-            color = color,
-            legendColor = legendColor,
-            borderColor = borderColor,
-            title = title,
+            annotationCol = colData(object),
             ...
         )
     }

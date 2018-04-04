@@ -59,7 +59,6 @@ NULL
     assert_all_are_greater_than(ncol(object), 1L)
     object <- as.matrix(object)
     assertIsAnImplicitInteger(n)
-    assertFormalAnnotationCol(object, annotationCol)
     assert_is_a_bool(clusterCols)
     assert_is_a_bool(clusterRows)
     assertIsHexColorFunctionOrNULL(color)
@@ -77,6 +76,7 @@ NULL
     breaks <- .quantileBreaks(object, n = n)
 
     annotationCol <- .pheatmapAnnotationCol(annotationCol)
+    assertFormalAnnotationCol(object, annotationCol)
     annotationColors <- .pheatmapAnnotationColors(
         annotationCol = annotationCol,
         legendColor = legendColor

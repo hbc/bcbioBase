@@ -16,7 +16,7 @@
 #'   removeNA sanitizeSampleData snake
 #' @importFrom dendsort dendsort
 #' @importFrom dplyr arrange bind_rows group_by left_join mutate mutate_all
-#'   mutate_if ungroup
+#'   mutate_if select_if ungroup
 #' @importFrom grDevices colorRampPalette
 #' @importFrom knitr kable
 #' @importFrom magrittr %>% set_names set_rownames

@@ -30,8 +30,10 @@
         # Remove sample name columns
         .[, setdiff(colnames(.), metadataPriorityCols), drop = FALSE] %>%
         rownames_to_column() %>%
-        # Ensure all columns are factor
-        mutate_all(factor) %>%
+        # Ensure all strings are factor
+        mutate_if(is.character, as.factor) %>%
+        # Ensure unwanted columns like `sizeFactor` are dropped
+        select_if(is.factor) %>%
         column_to_rownames()
 }
 
