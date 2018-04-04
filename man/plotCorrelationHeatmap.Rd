@@ -28,10 +28,7 @@ plotCorrelationHeatmap(object, ...)
   color = viridis, legendColor = viridis, borderColor = NULL,
   title = TRUE, ...)
 
-\S4method{plotCorrelationHeatmap}{SummarizedExperiment}(object,
-  method = c("pearson", "spearman"), clusteringMethod = "ward.D2",
-  annotationCol, color = viridis, legendColor = viridis,
-  borderColor = NULL, title = TRUE, ...)
+\S4method{plotCorrelationHeatmap}{SummarizedExperiment}(object, ...)
 }
 \arguments{
 \item{object}{Object.}

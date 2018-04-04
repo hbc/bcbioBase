@@ -140,30 +140,10 @@ setMethod(
 setMethod(
     "plotQuantileHeatmap",
     signature("SummarizedExperiment"),
-    function(
-        object,
-        n = 5L,
-        annotationCol,
-        clusterCols = TRUE,
-        clusterRows = TRUE,
-        color = viridis,
-        legendColor = viridis,
-        borderColor = NULL,
-        title = NULL,
-        ...
-    ) {
-        if (missing(annotationCol)) {
-            annotationCol <- sampleData(object)
-        }
+    function(object, ...) {
         plotQuantileHeatmap(
             object = assay(object),
-            annotationCol = annotationCol,
-            clusterCols = clusterCols,
-            clusterRows = clusterRows,
-            color = color,
-            legendColor = legendColor,
-            borderColor = borderColor,
-            title = title,
+            annotationCol = sampleData(object),
             ...
         )
     }

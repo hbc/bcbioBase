@@ -27,9 +27,7 @@ plotQuantileHeatmap(object, ...)
   showRownames = FALSE, color = viridis, legendColor = viridis,
   borderColor = NULL, title = NULL, ...)
 
-\S4method{plotQuantileHeatmap}{SummarizedExperiment}(object, n = 5L,
-  annotationCol, clusterCols = TRUE, clusterRows = TRUE, color = viridis,
-  legendColor = viridis, borderColor = NULL, title = NULL, ...)
+\S4method{plotQuantileHeatmap}{SummarizedExperiment}(object, ...)
 }
 \arguments{
 \item{object}{Object.}

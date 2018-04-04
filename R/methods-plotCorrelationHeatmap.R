@@ -127,30 +127,10 @@ setMethod(
 setMethod(
     "plotCorrelationHeatmap",
     signature("SummarizedExperiment"),
-    function(
-        object,
-        method = c("pearson", "spearman"),
-        clusteringMethod = "ward.D2",
-        annotationCol,
-        color = viridis,
-        legendColor = viridis,
-        borderColor = NULL,
-        title = TRUE,
-        ...
-    ) {
-        method <- match.arg(method)
-        if (missing(annotationCol)) {
-            annotationCol <- colData(object)
-        }
+    function(object, ...) {
         plotCorrelationHeatmap(
             object = assay(object),
-            method = method,
-            clusteringMethod = clusteringMethod,
-            annotationCol = annotationCol,
-            color = color,
-            legendColor = legendColor,
-            borderColor = borderColor,
-            title = title,
+            annotationCol = sampleData(object),
             ...
         )
     }
