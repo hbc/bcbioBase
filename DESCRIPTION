@@ -1,7 +1,7 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions and generics for bcbio R packages.
-Version: 0.2.1
+Version: 0.99.0
 Authors@R: c(
     person(
         given = "Michael",
@@ -37,9 +37,9 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: TRUE
 Depends:
-    R (>= 3.4),
+    R (>= 3.5),
     SummarizedExperiment,
-    basejump (>= 0.4)
+    basejump (>= 0.99)
 Imports:
     Biostrings,
     GenomeInfoDb,
@@ -73,7 +73,7 @@ Suggests:
     testthat,
     tidyverse
 Remotes:
-    steinbaugh/basejump
+    steinbaugh/basejump@develop
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
