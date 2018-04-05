@@ -37,7 +37,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: TRUE
 Depends:
-    R (>= 3.5),
+    R (>= 3.4),
     SummarizedExperiment,
     basejump (>= 0.99)
 Imports:
