@@ -35,32 +35,3 @@
 #' @importFrom utils globalVariables sessionInfo
 #' @importFrom viridis viridis
 "_PACKAGE"
-
-
-
-globalVariables(".")
-
-#' Lane Grep Pattern
-#' @keywords internal
-#' @export
-lanePattern <- "_L(\\d{3})"
-
-#' Metadata Priority Columns
-#' @keywords internal
-#' @export
-metadataPriorityCols <- c("sampleID", "sampleName", "description")
-
-#' Project Directory Grep Pattern
-#' @keywords internal
-#' @export
-projectDirPattern <- "^(\\d{4}-\\d{2}-\\d{2})_([^/]+)$"
-
-#' Separator Bar
-#' @keywords internal
-#' @export
-separatorBar <- "============================================================"
-
-#' Update Message
-#' @keywords internal
-#' @export
-updateMessage <- "Run `updateObject()` to update your object"
