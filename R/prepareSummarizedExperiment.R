@@ -1,7 +1,8 @@
 #' Prepare Summarized Experiment
 #'
 #' This is a utility wrapper for [SummarizedExperiment::SummarizedExperiment()]
-#' that provides automatic subsetting for row and column data.
+#' that provides automatic subsetting for row and column data. It also provides
+#' automatic handling of FASTA spike-ins.
 #'
 #' This function also provides automatic metadata slotting of multiple useful
 #' environment parameters:
@@ -23,7 +24,8 @@
 #' @param colData `DataFrame` `data.frame`, or `matrix` describing assay
 #'   columns.
 #' @param metadata *Optional*. Metadata `list`.
-#' @param isSpike Character vector of spike-in sequence rownames.
+#' @param isSpike Character vector of spike-in sequence names
+#'   (matches against the rownames of the object).
 #'
 #' @return `RangedSummarizedExperiment`.
 #' @export
@@ -139,27 +141,17 @@ prepareSummarizedExperiment <- function(
         setdiff <- setdiff(rownames(assay), names(rowRanges))
     }
 
-    # Warn and drop remaining unannotated rows that aren't spike-ins
+    # Abort if unannotated rows are present that aren't spike-ins
     if (length(setdiff)) {
-        warn(paste(
-            "Dropping", length(setdiff), "unannotated rows",
-            paste0(
-                "(",
-                percent(length(setdiff) / nrow(assay)),
-                "):"
+        abort(paste(
+            paste(
+                "Unannotated rows detected",
+                paste0("(", length(setdiff), "):")
             ),
-            toString(setdiff)
+            str_trunc(toString(setdiff), width = 80L),
+            "FASTA spike-ins can be defined using the `isSpike` argument.",
+            sep = "\n"
         ))
-        intersect <- intersect(rownames(assay), names(rowRanges))
-        assays <- mapply(
-            assay = assays,
-            MoreArgs = list(intersect = intersect),
-            FUN = function(assay, intersect) {
-                assay[intersect, , drop = FALSE]
-            },
-            USE.NAMES = TRUE,
-            SIMPLIFY = FALSE
-        )
     }
 
     # Subset the rowRanges to match the assays
@@ -182,7 +174,6 @@ prepareSummarizedExperiment <- function(
     metadata[["utilsSessionInfo"]] <- sessionInfo()
     metadata[["devtoolsSessionInfo"]] <- session_info(include_base = TRUE)
     metadata[["isSpike"]] <- as.character(isSpike)
-    metadata[["unannotatedRows"]] <- as.character(setdiff)
     metadata <- Filter(Negate(is.null), metadata)
 
     # Return ===================================================================

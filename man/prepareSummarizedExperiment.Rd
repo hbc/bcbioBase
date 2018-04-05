@@ -21,14 +21,16 @@ columns.}
 
 \item{metadata}{\emph{Optional}. Metadata \code{list}.}
 
-\item{isSpike}{Character vector of spike-in sequence rownames.}
+\item{isSpike}{Character vector of spike-in sequence names
+(matches against the rownames of the object).}
 }
 \value{
 \code{RangedSummarizedExperiment}.
 }
 \description{
 This is a utility wrapper for \code{\link[SummarizedExperiment:SummarizedExperiment]{SummarizedExperiment::SummarizedExperiment()}}
-that provides automatic subsetting for row and column data.
+that provides automatic subsetting for row and column data. It also provides
+automatic handling of FASTA spike-ins.
 }
 \details{
 This function also provides automatic metadata slotting of multiple useful

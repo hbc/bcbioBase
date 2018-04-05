@@ -33,8 +33,7 @@ test_that("prepareSummarizedExperiment : RangedSummarizedExperiment", {
             "wd" = "character",
             "utilsSessionInfo" = "sessionInfo",
             "devtoolsSessionInfo" = "session_info",
-            "isSpike" = "character",
-            "unannotatedRows" = "character"
+            "isSpike" = "character"
         )
     )
 })
@@ -58,16 +57,13 @@ test_that("prepareSummarizedExperiment : Spike-in support", {
 })
 
 test_that("prepareSummarizedExperiment : Unannotated rows", {
-    rse <- suppressWarnings(
-        prepareSummarizedExperiment(
+    expect_error(
+        rse <- prepareSummarizedExperiment(
             assays = list(mat),
             rowRanges = rr[seq_len(3L)],
             colData = cd
-        )
-    )
-    expect_identical(
-        metadata(rse)[["unannotatedRows"]],
-        genes[[4L]]
+        ),
+        "Unannotated rows detected"
     )
 })
 
