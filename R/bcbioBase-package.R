@@ -4,12 +4,11 @@
 #'
 #' @keywords internal
 #'
-#' @import S4Vectors methods
-#'
 #' @importFrom Biostrings reverseComplement
 #' @importFrom GenomeInfoDb seqnames
 #' @importFrom GenomicRanges GRanges
 #' @importFrom RColorBrewer brewer.pal
+#' @importFrom S4Vectors as.data.frame
 #' @importFrom SummarizedExperiment assay colData colData<- rowData
 #'   SummarizedExperiment
 #' @importFrom basejump camel localOrRemoteFile makeNames readFileByExtension
