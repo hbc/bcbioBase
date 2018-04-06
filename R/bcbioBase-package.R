@@ -8,7 +8,7 @@
 #' @importFrom GenomeInfoDb seqnames
 #' @importFrom GenomicRanges GRanges
 #' @importFrom RColorBrewer brewer.pal
-#' @importFrom S4Vectors as.data.frame
+#' @importFrom S4Vectors as.data.frame cor mcols mcols<- metadata<-
 #' @importFrom SummarizedExperiment assay colData colData<- rowData
 #'   SummarizedExperiment
 #' @importFrom basejump camel localOrRemoteFile makeNames readFileByExtension
@@ -19,6 +19,7 @@
 #' @importFrom grDevices colorRampPalette
 #' @importFrom knitr kable
 #' @importFrom magrittr %>% set_names set_rownames
+#' @importFrom methods .hasSlot as formalArgs is slotNames validObject
 #' @importFrom pheatmap pheatmap
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
 #'   drop_get_metadata drop_share drop_upload
