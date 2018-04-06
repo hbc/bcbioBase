@@ -30,11 +30,8 @@ setMethod(
             warn("`rowData(object)` does not contain gene-to-symbol mappings")
             return(NULL)
         }
-        assert_is_non_empty(data)
-        data <- as.data.frame(data)
-        rownames(data) <- rownames(object)
-        assert_is_subset(cols, colnames(data))
-        data <- data[, cols, drop = FALSE]
+        rownames(rowData) <- rownames(object)
+        data <- as.data.frame(rowData[, cols, drop = FALSE])
         assertIsGene2symbol(data)
         data
     }
