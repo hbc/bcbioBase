@@ -25,7 +25,6 @@ setMethod(
     function(object) {
         validObject(object)
         gene2symbol <- gene2symbol(object)
-        assertIsGene2symbol(gene2symbol)
         symbols <- gene2symbol[, "geneName", drop = TRUE]
         symbols <- make.unique(symbols)
         rownames(object) <- symbols
