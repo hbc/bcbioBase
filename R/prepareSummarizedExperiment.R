@@ -95,6 +95,9 @@ prepareSummarizedExperiment <- function(
     assertIsCharacterOrNULL(isSpike)
 
     # Assays ===================================================================
+    # Require the primary assay matrix to be named counts. This helps ensure
+    # consistency with the conventions for SingleCellExperiment.
+    assert_are_identical(names(assays)[[1L]], "counts")
     if (is.list(assays)) {
         assays <- Filter(Negate(is.null), assays)
     }
