@@ -43,7 +43,7 @@ setMethod(
         clusteringMethod = "ward.D2",
         annotationCol = NULL,
         color = viridis,
-        legendColor = inferno,
+        legendColor = NULL,
         borderColor = NULL,
         title = TRUE,
         ...

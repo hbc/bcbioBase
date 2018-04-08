@@ -15,18 +15,18 @@ plotCorrelationHeatmap(object, ...)
 
 \S4method{plotCorrelationHeatmap}{matrix}(object, method = c("pearson",
   "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  color = viridis, legendColor = inferno, borderColor = NULL,
-  title = TRUE, ...)
+  color = viridis, legendColor = NULL, borderColor = NULL, title = TRUE,
+  ...)
 
 \S4method{plotCorrelationHeatmap}{dgCMatrix}(object, method = c("pearson",
   "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  color = viridis, legendColor = inferno, borderColor = NULL,
-  title = TRUE, ...)
+  color = viridis, legendColor = NULL, borderColor = NULL, title = TRUE,
+  ...)
 
 \S4method{plotCorrelationHeatmap}{dgTMatrix}(object, method = c("pearson",
   "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  color = viridis, legendColor = inferno, borderColor = NULL,
-  title = TRUE, ...)
+  color = viridis, legendColor = NULL, borderColor = NULL, title = TRUE,
+  ...)
 
 \S4method{plotCorrelationHeatmap}{SummarizedExperiment}(object, ...)
 }

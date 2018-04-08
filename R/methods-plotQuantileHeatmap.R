@@ -55,7 +55,7 @@ setMethod(
         showColnames = TRUE,
         showRownames = FALSE,
         color = viridis,
-        legendColor = inferno,
+        legendColor = NULL,
         borderColor = NULL,
         title = NULL,
         ...
