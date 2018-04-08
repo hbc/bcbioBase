@@ -4,13 +4,18 @@
 \name{plotHeatmap}
 \alias{plotHeatmap}
 \alias{plotHeatmap}
+\alias{plotHeatmap,matrix-method}
 \alias{plotHeatmap,dgCMatrix-method}
 \alias{plotHeatmap,dgTMatrix-method}
-\alias{plotHeatmap,matrix-method}
 \alias{plotHeatmap,SummarizedExperiment-method}
 \title{Plot Heatmap}
 \usage{
 plotHeatmap(object, ...)
+
+\S4method{plotHeatmap}{matrix}(object, scale = c("row", "column", "none"),
+  annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
+  showColnames = TRUE, showRownames = FALSE, color = viridis,
+  legendColor = viridis, borderColor = NULL, title = NULL, ...)
 
 \S4method{plotHeatmap}{dgCMatrix}(object, scale = c("row", "column", "none"),
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
@@ -18,11 +23,6 @@ plotHeatmap(object, ...)
   legendColor = viridis, borderColor = NULL, title = NULL, ...)
 
 \S4method{plotHeatmap}{dgTMatrix}(object, scale = c("row", "column", "none"),
-  annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
-  showColnames = TRUE, showRownames = FALSE, color = viridis,
-  legendColor = viridis, borderColor = NULL, title = NULL, ...)
-
-\S4method{plotHeatmap}{matrix}(object, scale = c("row", "column", "none"),
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
   showColnames = TRUE, showRownames = FALSE, color = viridis,
   legendColor = viridis, borderColor = NULL, title = NULL, ...)
