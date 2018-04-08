@@ -1,21 +1,17 @@
 library(devtools)
 library(pryr)
+library(bcbioRNASeq)
 library(DESeq2)
 
-# bcbioRNASeq coercion
-# rse_small <- as(
-#     object = bcbioRNASeq::bcb_small,
-#     Class = "RangedSummarizedExperiment"
-# )
-# assays(rse_small) <- assays(rse_small)[1L]
-
 # DESeqDataSet coercion
-dds_small <- makeExampleDESeqDataSet()
-rse_small <- as(dds_small, "RangedSummarizedExperiment")
+dds <- makeExampleDESeqDataSet()
+rse_dds <- as(dds, "RangedSummarizedExperiment")
+object_size(rse_dds)
 
-stopifnot(identical(
-    names(assays(rse_small)),
-    "counts"
-))
-object_size(rse_small)
-use_data(rse_small, compress = "xz", overwrite = TRUE)
+# bcbioRNASeq coercion
+bcb <- bcbioRNASeq::bcb_small
+rse_bcb <- as(bcb, "RangedSummarizedExperiment")
+assays(rse_bcb) <- assays(rse_bcb)[1L]
+object_size(rse_bcb)
+
+use_data(rse_dds, rse_bcb, compress = "xz", overwrite = TRUE)
