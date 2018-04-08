@@ -33,6 +33,10 @@ Interesting Groups
 \examples{
 # SummarizedExperiment ====
 interestingGroups(rse_small)
+
+colnames(colData(rse_small))
+interestingGroups(rse_small) <- colnames(colData(rse_small))[[1L]]
+interestingGroups(rse_small)
 }
 \author{
 Michael Steinbaugh

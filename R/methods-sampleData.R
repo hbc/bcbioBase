@@ -39,22 +39,22 @@ setMethod(
         return = c("DataFrame", "data.frame", "kable")
     ) {
         validObject(object)
-        interestingGroups <- interestingGroups(object)
         return <- match.arg(return)
+
         data <- colData(object)
-        data <- uniteInterestingGroups(data, interestingGroups)
+        interestingGroups <- interestingGroups(object)
+        if (is.character(interestingGroups)) {
+            data <- uniteInterestingGroups(data, interestingGroups)
+        }
         data <- sanitizeSampleData(data)
         assertHasRownames(data)
+
         if (return == "kable") {
             blacklist <- c("description", "fileName", "sampleID")
             data %>%
                 as.data.frame() %>%
                 .[, setdiff(colnames(.), blacklist), drop = FALSE] %>%
-                # Ensure `sampleName` is first
-                .[, unique(c("sampleName", colnames(.))), drop = FALSE] %>%
-                # Arrange by `sampleName`
-                .[order(.[["sampleName"]]), , drop = FALSE] %>%
-                kable(row.names = FALSE)
+                kable(row.names = TRUE)
         } else {
             as(data, return)
         }
