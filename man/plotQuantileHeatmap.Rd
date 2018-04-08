@@ -4,28 +4,28 @@
 \name{plotQuantileHeatmap}
 \alias{plotQuantileHeatmap}
 \alias{plotQuantileHeatmap}
+\alias{plotQuantileHeatmap,matrix-method}
 \alias{plotQuantileHeatmap,dgCMatrix-method}
 \alias{plotQuantileHeatmap,dgTMatrix-method}
-\alias{plotQuantileHeatmap,matrix-method}
 \alias{plotQuantileHeatmap,SummarizedExperiment-method}
 \title{Plot Heatmap with Quantile Breaks}
 \usage{
 plotQuantileHeatmap(object, ...)
 
-\S4method{plotQuantileHeatmap}{dgCMatrix}(object, n = 5L,
+\S4method{plotQuantileHeatmap}{matrix}(object, n = 10L,
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
   showColnames = TRUE, showRownames = FALSE, color = viridis,
   legendColor = viridis, borderColor = NULL, title = NULL, ...)
 
-\S4method{plotQuantileHeatmap}{dgTMatrix}(object, n = 5L,
+\S4method{plotQuantileHeatmap}{dgCMatrix}(object, n = 10L,
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
   showColnames = TRUE, showRownames = FALSE, color = viridis,
   legendColor = viridis, borderColor = NULL, title = NULL, ...)
 
-\S4method{plotQuantileHeatmap}{matrix}(object, n = 5L, annotationCol = NULL,
-  clusterCols = TRUE, clusterRows = TRUE, showColnames = TRUE,
-  showRownames = FALSE, color = viridis, legendColor = viridis,
-  borderColor = NULL, title = NULL, ...)
+\S4method{plotQuantileHeatmap}{dgTMatrix}(object, n = 10L,
+  annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
+  showColnames = TRUE, showRownames = FALSE, color = viridis,
+  legendColor = viridis, borderColor = NULL, title = NULL, ...)
 
 \S4method{plotQuantileHeatmap}{SummarizedExperiment}(object, ...)
 }
