@@ -17,7 +17,7 @@
 #' @examples
 #' assertFormalInterestingGroups(
 #'     x = colData(rse_bcb),
-#'     interestingGroups = "genotype"
+#'     interestingGroups = "treatment"
 #' )
 assertFormalInterestingGroups <- function(
     x,

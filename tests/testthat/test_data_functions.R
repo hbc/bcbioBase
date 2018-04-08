@@ -6,7 +6,7 @@ yaml <- readYAML("project-summary.yaml")
 
 # gene2symbol ==================================================================
 test_that("gene2symbol", {
-    x <- gene2symbol(rse_small)
+    x <- gene2symbol(rse_bcb)
     expect_is(x, "data.frame")
     expect_identical(colnames(x), c("geneID", "geneName"))
     expect_true(tibble::has_rownames(x))
@@ -16,7 +16,7 @@ test_that("gene2symbol", {
 
 # flatFiles ====================================================================
 test_that("flatFiles : SummarizedExperiment", {
-    x <- flatFiles(rse_small)
+    x <- flatFiles(rse_bcb)
     expect_is(x, "list")
     expect_identical(
         names(x),
@@ -36,13 +36,13 @@ test_that("flatFiles : SummarizedExperiment", {
 # interestingGroups ============================================================
 test_that("interestingGroups : SummarizedExperiment", {
     expect_identical(
-        interestingGroups(rse_small),
+        interestingGroups(rse_bcb),
         "treatment"
     )
 })
 
 test_that("interestingGroups : Assignment method", {
-    x <- rse_small
+    x <- rse_bcb
     interestingGroups(x) <- "sampleName"
     expect_identical(
         interestingGroups(x),
@@ -67,7 +67,7 @@ test_that("sampleData : SummarizedExperiment", {
         as.character() %>%
         .[-1L]
     list <- lapply(return, function(x) {
-        sampleData(rse_small, return = x)
+        sampleData(rse_bcb, return = x)
     })
     expect_identical(
         lapply(list, class),
@@ -90,8 +90,8 @@ test_that("sampleData : SummarizedExperiment", {
     expect_identical(
         lapply(list, rownames),
         list(
-            colnames(rse_small),
-            colnames(rse_small),
+            colnames(rse_bcb),
+            colnames(rse_bcb),
             NULL
         )
     )
@@ -102,7 +102,7 @@ test_that("sampleData : SummarizedExperiment", {
 })
 
 test_that("sampleData : Assignment method", {
-    x <- rse_small
+    x <- rse_bcb
     sampleData(x)[["test"]] <- seq_len(ncol(x))
     expect_is(sampleData(x)[["test"]], "factor")
 })

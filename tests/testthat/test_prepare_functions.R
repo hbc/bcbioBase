@@ -19,7 +19,7 @@ test_that("prepareSampleData : Missing description column", {
 # prepareSummarizedExperiment ==================================================
 test_that("prepareSummarizedExperiment : RangedSummarizedExperiment", {
     rse <- prepareSummarizedExperiment(
-        assays = list(assay = mat),
+        assays = list("counts" = mat),
         rowRanges = rr,
         colData = cd
     )
@@ -41,7 +41,7 @@ test_that("prepareSummarizedExperiment : RangedSummarizedExperiment", {
 test_that("prepareSummarizedExperiment : Spike-in support", {
     rownames(mat)[[1L]] <- "EGFP"
     rse <- prepareSummarizedExperiment(
-        assays = list(mat),
+        assays = list("counts" = mat),
         rowRanges = rr[2L:4L],
         colData = cd,
         isSpike = "EGFP"
@@ -59,7 +59,7 @@ test_that("prepareSummarizedExperiment : Spike-in support", {
 test_that("prepareSummarizedExperiment : Unannotated rows", {
     expect_error(
         rse <- prepareSummarizedExperiment(
-            assays = list(mat),
+            assays = list("counts" = mat),
             rowRanges = rr[seq_len(3L)],
             colData = cd
         ),
@@ -73,7 +73,7 @@ test_that("prepareSummarizedExperiment : Strict names", {
     rownames(matBadRows) <- paste0(rownames(matBadRows), "-XXX")
     expect_error(
         prepareSummarizedExperiment(
-            assays = list(assay = matBadRows),
+            assays = list("counts" = matBadRows),
             rowRanges = rr,
             colData = cd
         ),
@@ -83,7 +83,7 @@ test_that("prepareSummarizedExperiment : Strict names", {
     colnames(matBadCols) <- paste0(colnames(matBadCols), "-XXX")
     expect_error(
         prepareSummarizedExperiment(
-            assays = list(assay = matBadCols),
+            assays = list("counts" = matBadCols),
             rowRanges = rr,
             colData = cd
         ),
@@ -101,7 +101,7 @@ test_that("prepareSummarizedExperiment : Duplicate names", {
     )
     expect_error(
         prepareSummarizedExperiment(
-            assays = list(assay = matDupeRows),
+            assays = list("counts" = matDupeRows),
             rowRanges = rr,
             colData = cd
         ),
@@ -119,7 +119,7 @@ test_that("prepareSummarizedExperiment : Duplicate names", {
     )
     expect_error(
         prepareSummarizedExperiment(
-            assays = list(assay = matDupeCols),
+            assays = list("counts" = matDupeCols),
             rowRanges = rr,
             colData = cd
         ),
@@ -134,7 +134,7 @@ test_that("prepareSummarizedExperiment : Column data failure", {
     # Bad pass-in of objects not supporting `dimnames()`
     expect_error(
         prepareSummarizedExperiment(
-            assays = list(c(xxx = "yyy")),
+            assays = list("counts" = "yyy"),
             rowRanges = rr,
             colData = cd
         ),
@@ -142,7 +142,7 @@ test_that("prepareSummarizedExperiment : Column data failure", {
     )
     expect_error(
         prepareSummarizedExperiment(
-            assays = list(assay = mat),
+            assays = list("counts" = mat),
             rowRanges = rr,
             colData = c(xxx = "yyy")
         ),
@@ -150,7 +150,7 @@ test_that("prepareSummarizedExperiment : Column data failure", {
     )
     expect_error(
         prepareSummarizedExperiment(
-            assays = list(assay = mat),
+            assays = list("counts" = mat),
             rowRanges = c(xxx = "yyy"),
             colData = cd
         ),
@@ -161,7 +161,7 @@ test_that("prepareSummarizedExperiment : Column data failure", {
 test_that("prepareSummarizedExperiment : Invalid metadata", {
     expect_error(
         prepareSummarizedExperiment(
-            assays = list(assay = mat),
+            assays = list("counts" = mat),
             rowRanges = rr,
             colData = cd,
             metadata = Sys.Date()

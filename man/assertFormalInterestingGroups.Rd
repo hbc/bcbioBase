@@ -24,7 +24,7 @@ is requested by the user.
 \examples{
 assertFormalInterestingGroups(
     x = colData(rse_bcb),
-    interestingGroups = "genotype"
+    interestingGroups = "treatment"
 )
 }
 \author{
