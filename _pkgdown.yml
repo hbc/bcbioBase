@@ -11,6 +11,7 @@ authors:
 reference:
   - title: Data Functions
     contents:
+    - starts_with("convert")
     - flatFiles
     - gene2symbol
     - interestingGroups

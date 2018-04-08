@@ -59,7 +59,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -97,7 +97,7 @@
     <div class="page-header">
     <h1>Sample Data</h1>
     <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-sampleData.R'><code>R/methods-sampleData.R</code></a></small>
-    <p class="hidden name"><code>sampleData.Rd</code></p>
+    <div class="hidden name"><code>sampleData.Rd</code></div>
     </div>
 
     
@@ -151,38 +151,30 @@ experiment).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># SummarizedExperiment ====</span>
-<span class='fu'>sampleData</span>(<span class='no'>rse_small</span>)</div><div class='output co'>#&gt; DataFrame with 6 rows and 9 columns
-#&gt;                  sampleID   sampleName  description      day replicate   strain
-#&gt;                  &lt;factor&gt;     &lt;factor&gt;     &lt;factor&gt; &lt;factor&gt;  &lt;factor&gt; &lt;factor&gt;
-#&gt; control_rep1 control_rep1 control_rep1 control_rep1        0         1   Balb/c
-#&gt; control_rep2 control_rep2 control_rep2 control_rep2        0         2   Balb/c
-#&gt; control_rep3 control_rep3 control_rep3 control_rep3        0         3   Balb/c
-#&gt; fa_day7_rep1 fa_day7_rep1 fa_day7_rep1 fa_day7_rep1        7         1   Balb/c
-#&gt;                tissue  treatment interestingGroups
-#&gt;              &lt;factor&gt;   &lt;factor&gt;          &lt;factor&gt;
-#&gt; control_rep1   kidney    control           control
-#&gt; control_rep2   kidney    control           control
-#&gt; control_rep3   kidney    control           control
-#&gt; fa_day7_rep1   kidney folic_acid        folic_acid
-#&gt;  [ reached getOption("max.print") -- omitted 2 rows ]</div><div class='input'>
+<span class='fu'>sampleData</span>(<span class='no'>rse_dds</span>)</div><div class='output co'>#&gt; DataFrame with 12 rows and 1 column
+#&gt;          condition
+#&gt;           &lt;factor&gt;
+#&gt; sample1          A
+#&gt; sample2          A
+#&gt; sample3          A
+#&gt; sample4          A
+#&gt; sample5          A
+#&gt; ...            ...
+#&gt; sample8          B
+#&gt; sample9          B
+#&gt; sample10         B
+#&gt; sample11         B
+#&gt; sample12         B</div><div class='input'>
 <span class='co'># Assignment support</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>rse_small</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>rse_dds</span>
 <span class='fu'>sampleData</span>(<span class='no'>x</span>)<span class='kw'>[[</span><span class='st'>"test"</span>]] <span class='kw'>&lt;-</span> <span class='fu'>seq_len</span>(<span class='fu'>ncol</span>(<span class='no'>x</span>))
 <span class='co'># `test` column should be now defined</span>
 <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='fu'>sampleData</span>(<span class='no'>x</span>))</div><div class='output co'>#&gt; Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
-#&gt;   ..@ rownames       : chr [1:6] "control_rep1" "control_rep2" "control_rep3" "fa_day7_rep1" ...
-#&gt;   ..@ nrows          : int 6
-#&gt;   ..@ listData       :List of 10
-#&gt;   .. ..$ sampleID         : Factor w/ 6 levels "control_rep1",..: 1 2 3 4 5 6
-#&gt;   .. ..$ sampleName       : Factor w/ 6 levels "control_rep1",..: 1 2 3 4 5 6
-#&gt;   .. ..$ description      : Factor w/ 6 levels "control_rep1",..: 1 2 3 4 5 6
-#&gt;   .. ..$ day              : Factor w/ 2 levels "0","7": 1 1 1 2 2 2
-#&gt;   .. ..$ replicate        : Factor w/ 3 levels "1","2","3": 1 2 3 1 2 3
-#&gt;   .. ..$ strain           : Factor w/ 1 level "Balb/c": 1 1 1 1 1 1
-#&gt;   .. ..$ tissue           : Factor w/ 1 level "kidney": 1 1 1 1 1 1
-#&gt;   .. ..$ treatment        : Factor w/ 2 levels "control","folic_acid": 1 1 1 2 2 2
-#&gt;   .. ..$ interestingGroups: Factor w/ 2 levels "control","folic_acid": 1 1 1 2 2 2
-#&gt;   .. ..$ test             : Factor w/ 6 levels "1","2","3","4",..: 1 2 3 4 5 6
+#&gt;   ..@ rownames       : chr [1:12] "sample1" "sample2" "sample3" "sample4" ...
+#&gt;   ..@ nrows          : int 12
+#&gt;   ..@ listData       :List of 2
+#&gt;   .. ..$ condition: Factor w/ 2 levels "A","B": 1 1 1 1 1 1 2 2 2 2 ...
+#&gt;   .. ..$ test     : Factor w/ 12 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
 #&gt;   ..@ elementType    : chr "ANY"
 #&gt;   ..@ elementMetadata: NULL
 #&gt;   ..@ metadata       : list()</div></pre>

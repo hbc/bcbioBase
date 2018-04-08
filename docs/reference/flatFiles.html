@@ -59,7 +59,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -97,7 +97,7 @@
     <div class="page-header">
     <h1>Flat Files from S4 Object</h1>
     <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-flatFiles.R'><code>R/methods-flatFiles.R</code></a></small>
-    <p class="hidden name"><code>flatFiles.Rd</code></p>
+    <div class="hidden name"><code>flatFiles.Rd</code></div>
     </div>
 
     
@@ -135,7 +135,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># SummarizedExperiment ====</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>flatFiles</span>(<span class='no'>rse_small</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>flatFiles</span>(<span class='no'>rse_dds</span>)
 <span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "list"</div><div class='input'><span class='fu'>names</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "rowRanges"       "colData"         "assays"          "NAMES"          
 #&gt; [5] "elementMetadata" "metadata"       </div></pre>
   </div>

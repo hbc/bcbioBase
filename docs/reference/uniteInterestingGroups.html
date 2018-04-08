@@ -62,7 +62,7 @@ Methods =====================================================================" /
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -100,7 +100,7 @@ Methods =====================================================================" /
     <div class="page-header">
     <h1>Unite Interesting Groups</h1>
     <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-uniteInterestingGroups.R'><code>R/methods-uniteInterestingGroups.R</code></a></small>
-    <p class="hidden name"><code>uniteInterestingGroups.Rd</code></p>
+    <div class="hidden name"><code>uniteInterestingGroups.Rd</code></div>
     </div>
 
     
@@ -149,19 +149,13 @@ single column, delimited by "<code>:</code>".</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>meta</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='readSampleData.html'>readSampleData</a></span>(
-    <span class='st'>"http://bcbiobase.seq.cloud/demultiplexed.csv"</span>
-)</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
-#&gt; <span class='message'>cols(</span>
-#&gt; <span class='message'>  fileName = col_character(),</span>
-#&gt; <span class='message'>  description = col_character(),</span>
-#&gt; <span class='message'>  genotype = col_character()</span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'>Demultiplexed samples detected</span></div><div class='input'><span class='no'>meta</span> <span class='kw'>&lt;-</span> <span class='fu'>uniteInterestingGroups</span>(
-    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>meta</span>,
-    <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"genotype"</span>, <span class='st'>"sampleName"</span>)
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>uniteInterestingGroups</span>(
+    <span class='kw'>object</span> <span class='kw'>=</span> <span class='fu'>colData</span>(<span class='no'>rse_bcb</span>),
+    <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"treatment"</span>, <span class='st'>"day"</span>)
 )
-<span class='no'>meta</span>[, <span class='st'>"interestingGroups"</span>]</div><div class='output co'>#&gt; [1] wildtype:sample 1 wildtype:sample 2 mutant:sample 3   mutant:sample 4  
-#&gt; 4 Levels: mutant:sample 3 mutant:sample 4 ... wildtype:sample 2</div></pre>
+<span class='no'>x</span>[, <span class='st'>"interestingGroups"</span>]</div><div class='output co'>#&gt; [1] control:0    control:0    control:0    folic_acid:7 folic_acid:7
+#&gt; [6] folic_acid:7
+#&gt; Levels: control:0 folic_acid:7</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

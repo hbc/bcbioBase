@@ -7,9 +7,9 @@
 #' This function also provides automatic metadata slotting of multiple useful
 #' environment parameters:
 #'
-#' - `date`: Today's date, returned from [Sys.Date()].
-#' - `wd`: Working directory, returned from [getwd()].
-#' - `utilsSessionInfo`: [utils::sessionInfo().
+#' - `date`: Today's date, returned from [base::Sys.Date()].
+#' - `wd`: Working directory, returned from [base::getwd()].
+#' - `utilsSessionInfo`: [utils::sessionInfo()].
 #' - `devtoolsSessionInfo`: [sessioninfo::session_info()].
 #'
 #' @author Michael Steinbaugh

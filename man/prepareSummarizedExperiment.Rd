@@ -36,15 +36,10 @@ automatic handling of FASTA spike-ins.
 This function also provides automatic metadata slotting of multiple useful
 environment parameters:
 \itemize{
-\item \code{date}: Today's date, returned from \code{\link[=Sys.Date]{Sys.Date()}}.
-\item \code{wd}: Working directory, returned from \code{\link[=getwd]{getwd()}}.
-\item \code{utilsSessionInfo}: [utils::sessionInfo().
-\item \code{devtoolsSessionInfo}: [sessioninfo::session_info()].
-}
-
-[utils::sessionInfo().
-\itemize{
-\item \code{devtoolsSessionInfo}: [sessioninfo::session_info()]: R:utils::sessionInfo().%0A-%20%60devtoolsSessionInfo%60:%20[sessioninfo::session_info()
+\item \code{date}: Today's date, returned from \code{\link[base:Sys.Date]{base::Sys.Date()}}.
+\item \code{wd}: Working directory, returned from \code{\link[base:getwd]{base::getwd()}}.
+\item \code{utilsSessionInfo}: \code{\link[utils:sessionInfo]{utils::sessionInfo()}}.
+\item \code{devtoolsSessionInfo}: \code{\link[sessioninfo:session_info]{sessioninfo::session_info()}}.
 }
 }
 \examples{
