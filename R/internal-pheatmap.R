@@ -65,13 +65,12 @@
 
 
 # If `color = NULL`, use the pheatmap default palette
-.pheatmapColor <- function(color) {
-    nColor <- 256L
+.pheatmapColor <- function(color = NULL, n = 256L) {
     if (!is.function(color)) {
-        color <- colorRampPalette(rev(
+        colorRampPalette(rev(
             brewer.pal(n = 7L, name = "RdYlBu")
-        ))(nColor)
+        ))(n)
     } else {
-        color <- color(nColor)
+        color(n)
     }
 }
