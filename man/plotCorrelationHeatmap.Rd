@@ -5,27 +5,27 @@
 \name{plotCorrelationHeatmap}
 \alias{plotCorrelationHeatmap}
 \alias{plotCorrelationHeatmap}
+\alias{plotCorrelationHeatmap,matrix-method}
 \alias{plotCorrelationHeatmap,dgCMatrix-method}
 \alias{plotCorrelationHeatmap,dgTMatrix-method}
-\alias{plotCorrelationHeatmap,matrix-method}
 \alias{plotCorrelationHeatmap,SummarizedExperiment-method}
 \title{Plot Correlation Heatmap}
 \usage{
 plotCorrelationHeatmap(object, ...)
 
+\S4method{plotCorrelationHeatmap}{matrix}(object, method = c("pearson",
+  "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
+  color = viridis, legendColor = inferno, borderColor = NULL,
+  title = TRUE, ...)
+
 \S4method{plotCorrelationHeatmap}{dgCMatrix}(object, method = c("pearson",
   "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  color = viridis, legendColor = viridis, borderColor = NULL,
+  color = viridis, legendColor = inferno, borderColor = NULL,
   title = TRUE, ...)
 
 \S4method{plotCorrelationHeatmap}{dgTMatrix}(object, method = c("pearson",
   "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  color = viridis, legendColor = viridis, borderColor = NULL,
-  title = TRUE, ...)
-
-\S4method{plotCorrelationHeatmap}{matrix}(object, method = c("pearson",
-  "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  color = viridis, legendColor = viridis, borderColor = NULL,
+  color = viridis, legendColor = inferno, borderColor = NULL,
   title = TRUE, ...)
 
 \S4method{plotCorrelationHeatmap}{SummarizedExperiment}(object, ...)

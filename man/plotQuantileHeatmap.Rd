@@ -15,17 +15,17 @@ plotQuantileHeatmap(object, ...)
 \S4method{plotQuantileHeatmap}{matrix}(object, n = 10L,
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
   showColnames = TRUE, showRownames = FALSE, color = viridis,
-  legendColor = viridis, borderColor = NULL, title = NULL, ...)
+  legendColor = inferno, borderColor = NULL, title = NULL, ...)
 
 \S4method{plotQuantileHeatmap}{dgCMatrix}(object, n = 10L,
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
   showColnames = TRUE, showRownames = FALSE, color = viridis,
-  legendColor = viridis, borderColor = NULL, title = NULL, ...)
+  legendColor = inferno, borderColor = NULL, title = NULL, ...)
 
 \S4method{plotQuantileHeatmap}{dgTMatrix}(object, n = 10L,
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
   showColnames = TRUE, showRownames = FALSE, color = viridis,
-  legendColor = viridis, borderColor = NULL, title = NULL, ...)
+  legendColor = inferno, borderColor = NULL, title = NULL, ...)
 
 \S4method{plotQuantileHeatmap}{SummarizedExperiment}(object, ...)
 }
