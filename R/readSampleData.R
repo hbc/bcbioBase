@@ -35,7 +35,7 @@ readSampleData <- function(file, lanes = 1L) {
     # Warn on legacy `samplename` column. This is used in some bcbio
     # documentation examples, and we need to work on improving the consistency.
     if ("samplename" %in% colnames(data)) {
-        warn(paste(
+        warning(paste(
             "`samplename` (note case) is used in some bcbio examples for",
             "FASTQ file names and `description` for sample names.",
             "Here we are requiring `fileName` for FASTQ file names",
@@ -64,12 +64,12 @@ readSampleData <- function(file, lanes = 1L) {
         any(c("index", "sequence") %in% colnames(data))
     ) {
         multiplexed <- TRUE
-        inform("Multiplexed samples detected")
+        message("Multiplexed samples detected")
         requiredCols <- c(requiredCols, "sampleName", "index")
         assert_is_subset(requiredCols, colnames(data))
     } else {
         multiplexed <- FALSE
-        inform("Demultiplexed samples detected")
+        message("Demultiplexed samples detected")
         assert_has_no_duplicates(data[["description"]])
         # Set `sampleName` column as `description` if unset
         if (!"sampleName" %in% colnames(data)) {

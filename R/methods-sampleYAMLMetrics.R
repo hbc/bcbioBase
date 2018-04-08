@@ -23,7 +23,7 @@ NULL
     fastMode <- "Fast mode detected: No sample metrics were calculated"
 
     if (is.null(yaml[["samples"]][[1L]][["summary"]][["metrics"]])) {
-        warn(fastMode)
+        warning(fastMode)
         return(NULL)
     }
 
@@ -34,7 +34,7 @@ NULL
     assert_is_tbl(data)
 
     if (identical(colnames(data), "description")) {
-        warn(fastMode)
+        warning(fastMode)
         return(NULL)
     }
 

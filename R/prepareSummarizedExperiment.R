@@ -146,7 +146,7 @@ prepareSummarizedExperiment <- function(
 
     # Abort if unannotated rows are present that aren't spike-ins
     if (length(setdiff)) {
-        abort(paste(
+        stop(paste(
             paste(
                 "Unannotated rows detected",
                 paste0("(", length(setdiff), "):")

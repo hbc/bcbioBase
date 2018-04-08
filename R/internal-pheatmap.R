@@ -6,7 +6,7 @@
     # Abort on snake case formatted formalArgs
     invalidNames <- grep("[._]", names(args), value = TRUE)
     if (length(invalidNames)) {
-        abort(paste(
+        stop(paste(
             "Define formalArgs in camel case:",
             toString(invalidNames)
         ))

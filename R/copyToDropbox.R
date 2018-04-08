@@ -37,7 +37,7 @@ copyToDropbox <- function(
     # Display account information
     acc <- drop_acc()
 
-    inform(paste(
+    message(paste(
         "Dropbox:",
         acc[["name"]][["display_name"]],
         paste0("<", acc[["email"]], ">")
@@ -53,7 +53,7 @@ copyToDropbox <- function(
     if (any(
         c("parent_shared_folder_id", "sharing_info") %in% names(metadata)
     )) {
-        warn(paste(
+        warning(paste(
             "rdrop2 currently isn't working well with shared directories.",
             "For the time being, please write to an unshared directory.",
             "The files can be then moved manually on your Dropbox account",

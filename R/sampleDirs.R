@@ -32,7 +32,7 @@ sampleDirs <- function(uploadDir) {
     # Generate names from file paths and make valid
     names(sampleDirs) <- makeNames(basename(sampleDirs), unique = TRUE)
 
-    inform(paste(
+    message(paste(
         paste(length(sampleDirs), "samples detected:"),
         str_trunc(toString(names(sampleDirs)), width = 80L),
         sep = "\n"
