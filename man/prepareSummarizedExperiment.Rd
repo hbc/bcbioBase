@@ -48,17 +48,18 @@ environment parameters:
 }
 }
 \examples{
+# Example matrix
 genes <- c(
     "EGFP",  # spike
-    "gene_1",
-    "gene_2",
-    "gene_3"
+    "gene1",
+    "gene2",
+    "gene3"
 )
 samples <- c(
-    "sample_1",
-    "sample_2",
-    "sample_3",
-    "sample_4"
+    "sample1",
+    "sample2",
+    "sample3",
+    "sample4"
 )
 mat <- matrix(
     seq(1L:16L),
@@ -66,7 +67,10 @@ mat <- matrix(
     ncol = 4L,
     dimnames = list(genes, samples)
 )
-assays = list(assay = mat)
+
+# Primary assay must be named "counts"
+assays = list("counts" = mat)
+
 # Leave out the unannotated EGFP spike-in
 rowRanges <- GRanges(
     seqnames = c("1", "1", "1"),
@@ -75,7 +79,8 @@ rowRanges <- GRanges(
         end = c(100L, 200L, 300L)
     )
 )
-names(rowRanges) <- c("gene_1", "gene_2", "gene_3")
+names(rowRanges) <- c("gene1", "gene2", "gene3")
+
 colData <- data.frame(
     "genotype" = c(
         "wildtype",
@@ -86,6 +91,7 @@ colData <- data.frame(
     "age" = c(3L, 6L, 3L, 6L),
     row.names = samples
 )
+
 prepareSummarizedExperiment(
     assays = assays,
     rowRanges = rowRanges,
