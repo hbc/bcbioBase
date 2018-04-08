@@ -22,8 +22,7 @@ setMethod(
     signature("SummarizedExperiment"),
     function(object) {
         validObject(object)
-        x <- metadata(object)[["interestingGroups"]]
-        ifelse(is.character(x), x, "sampleName")
+        metadata(object)[["interestingGroups"]]
     }
 )
 
