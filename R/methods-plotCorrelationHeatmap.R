@@ -22,10 +22,10 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' plotCorrelationHeatmap(rse_small)
+#' plotCorrelationHeatmap(rse_dds)
 #'
 #' # matrix ====
-#' mat <- assay(rse_small)
+#' mat <- assay(rse_dds)
 #' plotCorrelationHeatmap(mat)
 NULL
 

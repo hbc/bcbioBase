@@ -44,10 +44,10 @@ experiment).
 }
 \examples{
 # SummarizedExperiment ====
-sampleData(rse_small)
+sampleData(rse_dds)
 
 # Assignment support
-x <- rse_small
+x <- rse_dds
 sampleData(x)[["test"]] <- seq_len(ncol(x))
 # `test` column should be now defined
 glimpse(sampleData(x))

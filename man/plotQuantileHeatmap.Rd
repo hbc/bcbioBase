@@ -68,10 +68,10 @@ Plot Heatmap with Quantile Breaks
 }
 \examples{
 # SummarizedExperiment ====
-plotQuantileHeatmap(rse_small)
+plotQuantileHeatmap(rse_dds)
 
 # matrix ====
-mat <- assay(rse_small)
+mat <- assay(rse_dds)
 plotQuantileHeatmap(mat)
 }
 \seealso{

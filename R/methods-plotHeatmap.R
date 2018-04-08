@@ -34,10 +34,10 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' plotHeatmap(rse_small)
+#' plotHeatmap(rse_dds)
 #'
 #' # matrix ====
-#' mat <- assay(rse_small)
+#' mat <- assay(rse_dds)
 #' plotHeatmap(mat)
 NULL
 

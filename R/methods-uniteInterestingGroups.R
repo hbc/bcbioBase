@@ -16,14 +16,11 @@
 #' @export
 #'
 #' @examples
-#' meta <- readSampleData(
-#'     "http://bcbiobase.seq.cloud/demultiplexed.csv"
+#' x <- uniteInterestingGroups(
+#'     object = colData(rse_bcb),
+#'     interestingGroups = c("treatment", "day")
 #' )
-#' meta <- uniteInterestingGroups(
-#'     object = meta,
-#'     interestingGroups = c("genotype", "sampleName")
-#' )
-#' meta[, "interestingGroups"]
+#' x[, "interestingGroups"]
 NULL
 
 

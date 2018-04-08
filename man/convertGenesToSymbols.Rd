@@ -19,7 +19,7 @@ Convert Genes to Symbols
 }
 \examples{
 # SummarizedExperiment ====
-x <- convertGenesToSymbols(rse_small)
+x <- convertGenesToSymbols(rse_bcb)
 show(x)
 head(rownames(x))
 }

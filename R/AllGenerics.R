@@ -197,7 +197,7 @@ setGeneric(
 
 
 
-#' @rdname sampleYAMLMetadata
+#' @rdname sampleYAML
 #' @export
 setGeneric(
     "sampleYAMLMetadata",
@@ -208,7 +208,7 @@ setGeneric(
 
 
 
-#' @rdname sampleYAMLMetrics
+#' @rdname sampleYAML
 #' @export
 setGeneric(
     "sampleYAMLMetrics",

@@ -64,10 +64,10 @@ Construct a correlation heatmap comparing the columns of the matrix.
 }
 \examples{
 # SummarizedExperiment ====
-plotCorrelationHeatmap(rse_small)
+plotCorrelationHeatmap(rse_dds)
 
 # matrix ====
-mat <- assay(rse_small)
+mat <- assay(rse_dds)
 plotCorrelationHeatmap(mat)
 }
 \seealso{

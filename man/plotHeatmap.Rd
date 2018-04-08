@@ -72,10 +72,10 @@ overrided by setting \code{clusterRows} or \code{clusterCols} to \code{FALSE}.
 }
 \examples{
 # SummarizedExperiment ====
-plotHeatmap(rse_small)
+plotHeatmap(rse_dds)
 
 # matrix ====
-mat <- assay(rse_small)
+mat <- assay(rse_dds)
 plotHeatmap(mat)
 }
 \seealso{

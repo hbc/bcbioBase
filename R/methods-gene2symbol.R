@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' gene2symbol(rse_small)
+#' gene2symbol(rse_bcb)
 NULL
 
 

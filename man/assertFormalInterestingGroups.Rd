@@ -22,8 +22,10 @@ Prevent unwanted downstream behavior when a missing interesting group
 is requested by the user.
 }
 \examples{
-data <- readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv")
-assertFormalInterestingGroups(data, interestingGroups = "genotype")
+assertFormalInterestingGroups(
+    x = colData(rse_bcb),
+    interestingGroups = "genotype"
+)
 }
 \author{
 Michael Steinbaugh
