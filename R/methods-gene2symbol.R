@@ -27,7 +27,6 @@ setMethod(
         rowData <- rowData(object)
         cols <- c("geneID", "geneName")
         if (!all(cols %in% colnames(rowData))) {
-            warning("`rowData(object)` does not contain gene-to-symbol mappings")
             return(NULL)
         }
         rownames(rowData) <- rownames(object)
