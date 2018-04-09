@@ -55,6 +55,7 @@ setMethod(
         showColnames = TRUE,
         showRownames = FALSE,
         color = viridis,
+        legend = FALSE,
         legendColor = NULL,
         borderColor = NULL,
         title = NULL,
@@ -70,6 +71,7 @@ setMethod(
         assert_is_a_bool(clusterCols)
         assert_is_a_bool(clusterRows)
         assertIsHexColorFunctionOrNULL(color)
+        assert_is_a_bool(legend)
         assertIsHexColorFunctionOrNULL(legendColor)
         assertIsAStringOrNULL(borderColor)
         if (!is_a_string(borderColor)) {
@@ -101,9 +103,11 @@ setMethod(
             "clusterCols" = clusterCols,
             "clusterRows" = clusterRows,
             "color" = color,
+            "legend" = legend,
             "legendBreaks" = breaks,
             "legendLabels" = round(breaks, digits = 2L),
             "main" = title,
+            "scale" = "none",
             "showColnames" = showColnames,
             "showRownames" = showRownames,
             ...
