@@ -36,16 +36,21 @@ setMethod(
     signature("SummarizedExperiment"),
     function(
         object,
+        interestingGroups,
         return = c("DataFrame", "data.frame", "kable")
     ) {
         validObject(object)
         return <- match.arg(return)
 
         data <- colData(object)
-        interestingGroups <- interestingGroups(object)
-        if (is.character(interestingGroups)) {
-            data <- uniteInterestingGroups(data, interestingGroups)
+
+        if (missing(interestingGroups)) {
+            interestingGroups <- bcbioBase::interestingGroups(object)
+            if (is.character(interestingGroups)) {
+                data <- uniteInterestingGroups(data, interestingGroups)
+            }
         }
+
         data <- sanitizeSampleData(data)
         assertHasRownames(data)
 

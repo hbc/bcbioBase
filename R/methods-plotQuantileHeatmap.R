@@ -102,6 +102,7 @@ setMethod(
             "clusterRows" = clusterRows,
             "color" = color,
             "legendBreaks" = breaks,
+            "legendLabels" = round(breaks, digits = 2L),
             "main" = title,
             "showColnames" = showColnames,
             "showRownames" = showRownames,
@@ -140,9 +141,10 @@ setMethod(
     "plotQuantileHeatmap",
     signature("SummarizedExperiment"),
     function(object, ...) {
+        annotationCol <- sampleData(object, interestingGroups = NULL)
         plotQuantileHeatmap(
             object = assay(object),
-            annotationCol = colData(object),
+            annotationCol = annotationCol,
             ...
         )
     }

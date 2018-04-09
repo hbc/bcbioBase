@@ -145,9 +145,10 @@ setMethod(
     "plotHeatmap",
     signature("SummarizedExperiment"),
     function(object, ...) {
+        annotationCol <- sampleData(object, interestingGroups = NULL)
         plotHeatmap(
             object = assay(object),
-            annotationCol = colData(object),
+            annotationCol = annotationCol,
             ...
         )
     }

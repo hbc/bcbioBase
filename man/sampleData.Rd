@@ -15,8 +15,8 @@ sampleData(object, ...)
 
 sampleData(object, ...) <- value
 
-\S4method{sampleData}{SummarizedExperiment}(object, return = c("DataFrame",
-  "data.frame", "kable"))
+\S4method{sampleData}{SummarizedExperiment}(object, interestingGroups,
+  return = c("DataFrame", "data.frame", "kable"))
 
 \S4method{sampleData}{SummarizedExperiment}(object) <- value
 }
