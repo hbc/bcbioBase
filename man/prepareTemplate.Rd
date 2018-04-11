@@ -49,6 +49,10 @@ prepareTemplate("bibliography.bib")
 file.exists("bibliography.bib")
 unlink("bibliography.bib")
 }
+\seealso{
+Other Prepare Functions: \code{\link{prepareSampleData}},
+  \code{\link{prepareSummarizedExperiment}}
+}
 \author{
 Michael Steinbaugh
 }

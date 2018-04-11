@@ -11,7 +11,7 @@
 #' - `_setup.R`
 #' - `bibliography.bib`
 #'
-#' @family R Markdown Functions
+#' @family Prepare Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
