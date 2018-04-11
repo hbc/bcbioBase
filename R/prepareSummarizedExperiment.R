@@ -12,6 +12,7 @@
 #' - `utilsSessionInfo`: [utils::sessionInfo()].
 #' - `devtoolsSessionInfo`: [sessioninfo::session_info()].
 #'
+#' @family Prepare Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
@@ -137,14 +138,15 @@ prepareSummarizedExperiment <- function(
     )
 
     # Row ranges ===============================================================
+    # Detect rows that don't contain annotations.
+    # Transgenes should contain `transgene` seqname
+    # Spike-ins should contain `spike` seqname
+    # Otherwise, unannotated genes will be given `unknown` seqname
+    setdiff <- setdiff(rownames(assay), names(rowRanges))
+
     if (is(rowRanges, "GRanges")) {
         assert_are_intersecting_sets(rownames(assay), names(rowRanges))
         mcolsNames <- names(mcols(rowRanges))
-
-        # Detect rows that don't contain annotations. These can be labeled as
-        # transgenes or spike-ins. Dead genes are no longer allowed and the
-        # function will stop unless everything is labeled here.
-        setdiff <- setdiff(rownames(assay), names(rowRanges))
 
         # Transgenes
         if (length(setdiff) && length(transgeneNames)) {
@@ -169,37 +171,41 @@ prepareSummarizedExperiment <- function(
             rowRanges <- suppressWarnings(c(spikeRanges, rowRanges))
             setdiff <- setdiff(rownames(assay), names(rowRanges))
         }
-
-        # Fall back to labeling as "unknown" (likely dead genes here)
-        if (length(setdiff)) {
-            warning(paste(
-                paste(
-                    "Unannotated rows detected",
-                    paste0("(", length(setdiff), "):")
-                ),
-                str_trunc(toString(setdiff), width = 80L),
-                "Transgenes (e.g. EGFP) should be set with `transgeneNames`.",
-                "Spike-ins (e.g. ERCCs) should be set with `spikeNames`.",
-                sep = "\n"
-            ))
-            unknownRanges <- emptyRanges(
-                names = setdiff,
-                seqname = "unknown",
-                mcolsNames = mcolsNames
-            )
-            rowRanges <- suppressWarnings(c(unknownRanges, rowRanges))
-            setdiff <- setdiff(rownames(assay), names(rowRanges))
-        }
-
-        # Sort the rowRanges to match assay
-        assert_are_set_equal(rownames(assay), names(rowRanges))
-        rowRanges <- rowRanges[rownames(assay)]
+    } else {
+        rowRanges <- GRanges()
+        mcolsNames <- NULL
     }
 
+    # Label any unannotated genes with `unknown` seqname
+    if (length(setdiff)) {
+        warning(paste(
+            paste(
+                "Unannotated rows detected",
+                paste0("(", length(setdiff), "):")
+            ),
+            str_trunc(toString(setdiff), width = 80L),
+            "Transgenes (e.g. EGFP) should be set with `transgeneNames`.",
+            "Spike-ins (e.g. ERCCs) should be set with `spikeNames`.",
+            sep = "\n"
+        ))
+        unknownRanges <- emptyRanges(
+            names = setdiff,
+            seqname = "unknown",
+            mcolsNames = mcolsNames
+        )
+        rowRanges <- suppressWarnings(c(unknownRanges, rowRanges))
+    }
+
+    # Sort the rowRanges to match assay
+    assert_are_set_equal(rownames(assay), names(rowRanges))
+    rowRanges <- rowRanges[rownames(assay)]
+
     # Column data ==============================================================
-    if (!is.null(colData)) {
-        colData <- as(colData, "DataFrame")
+    if (is.null(colData)) {
+        colData <- DataFrame(row.names = colnames(assay))
+    } else {
         assert_are_identical(colnames(assay), rownames(colData))
+        colData <- as(colData, "DataFrame")
     }
 
     # Metadata =================================================================
