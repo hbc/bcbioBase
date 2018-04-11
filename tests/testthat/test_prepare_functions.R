@@ -32,38 +32,37 @@ test_that("prepareSummarizedExperiment : RangedSummarizedExperiment", {
             "date" = "Date",
             "wd" = "character",
             "utilsSessionInfo" = "sessionInfo",
-            "devtoolsSessionInfo" = "session_info",
-            "isSpike" = "character"
+            "devtoolsSessionInfo" = "session_info"
         )
     )
 })
 
+test_that("prepareSummarizedExperiment : Super minimal", {
+    rse <- suppressWarnings(prepareSummarizedExperiment(
+        assays = list("counts" = mat),
+        rowRanges = NULL,
+        colData = NULL
+    ))
+    expect_s4_class(rse, "RangedSummarizedExperiment")
+    expect_identical(levels(seqnames(rse)), "unknown")
+})
+
 test_that("prepareSummarizedExperiment : Spike-in support", {
-    rownames(mat)[[1L]] <- "EGFP"
+    rownames(mat)[1L:2L] <- c("EGFP", "ERCC")
     rse <- prepareSummarizedExperiment(
         assays = list("counts" = mat),
-        rowRanges = rr[2L:4L],
+        rowRanges = rr[3L:4L],
         colData = cd,
-        isSpike = "EGFP"
+        transgeneNames = "EGFP",
+        spikeNames = "ERCC"
     )
     expect_identical(
         rownames(rse),
-        c("EGFP", genes[2L:4L])
+        c("EGFP", "ERCC", genes[3L:4L])
     )
     expect_identical(
-        metadata(rse)[["isSpike"]],
-        "EGFP"
-    )
-})
-
-test_that("prepareSummarizedExperiment : Unannotated rows", {
-    expect_error(
-        rse <- prepareSummarizedExperiment(
-            assays = list("counts" = mat),
-            rowRanges = rr[seq_len(3L)],
-            colData = cd
-        ),
-        "Unannotated rows detected"
+        levels(seqnames(rse)),
+        c("spike", "transgene", "1")
     )
 })
 
