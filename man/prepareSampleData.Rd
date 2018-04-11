@@ -15,6 +15,9 @@ prepareSampleData(object)
 \description{
 Prepare Sample Data
 }
+\seealso{
+Other Prepare Functions: \code{\link{prepareSummarizedExperiment}}
+}
 \author{
 Michael Steinbaugh
 }

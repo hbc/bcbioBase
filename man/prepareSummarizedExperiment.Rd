@@ -106,6 +106,8 @@ prepareSummarizedExperiment(
 \item \code{SummarizedExperiment::SummarizedExperiment()}.
 \item \code{SingleCellExperiment::SingleCellExperiment()}.
 }
+
+Other Prepare Functions: \code{\link{prepareSampleData}}
 }
 \author{
 Michael Steinbaugh
