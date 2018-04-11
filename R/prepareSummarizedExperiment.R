@@ -24,16 +24,24 @@
 #' @param colData `DataFrame` `data.frame`, or `matrix` describing assay
 #'   columns.
 #' @param metadata *Optional*. Metadata `list`.
-#' @param isSpike Character vector of spike-in sequence names
-#'   (matches against the rownames of the object).
+#' @param transgeneNames `character` vector indicating which [assay()] rows
+#'   denote transgenes (e.g. EGFP, TDTOMATO).
+#' @param spikeNames `character` vector indicating which [assay()] rows denote
+#'   spike-in sequences (e.g. ERCCs).
 #'
 #' @return `RangedSummarizedExperiment`.
 #' @export
 #'
+#' @seealso
+#' - `help("RangedSummarizedExperiment-class", "SummarizedExperiment")`.
+#' - `help("SummarizedExperiment-class", "SummarizedExperiment")`.
+#' - `help("SingleCellExperiment-class", "SingleCellExperiment")`.
+#' - `SummarizedExperiment::SummarizedExperiment()`.
+#' - `SingleCellExperiment::SingleCellExperiment()`.
+#'
 #' @examples
-#' # Example matrix
 #' genes <- c(
-#'     "EGFP",  # spike
+#'     "EGFP",  # transgene
 #'     "gene1",
 #'     "gene2",
 #'     "gene3"
@@ -44,6 +52,8 @@
 #'     "sample3",
 #'     "sample4"
 #' )
+#'
+#' # Example matrix
 #' mat <- matrix(
 #'     seq(1L:16L),
 #'     nrow = 4L,
@@ -54,7 +64,7 @@
 #' # Primary assay must be named "counts"
 #' assays = list("counts" = mat)
 #'
-#' # Leave out the unannotated EGFP spike-in
+#' # rowRanges won't contain transgenes or spike-ins
 #' rowRanges <- GRanges(
 #'     seqnames = c("1", "1", "1"),
 #'     ranges = IRanges(
@@ -79,26 +89,30 @@
 #'     assays = assays,
 #'     rowRanges = rowRanges,
 #'     colData = colData,
-#'     isSpike = "EGFP"
+#'     transgeneNames = "EGFP"
 #' )
 prepareSummarizedExperiment <- function(
     assays,
-    rowRanges,
-    colData,
+    rowRanges = NULL,
+    colData = NULL,
     metadata = NULL,
-    isSpike = NULL
+    transgeneNames = NULL,
+    spikeNames = NULL
 ) {
-    assert_is_any_of(
-        x = assays,
-        classes = c("list", "ShallowSimpleListAssays", "SimpleList")
-    )
-    assert_is_all_of(rowRanges, "GRanges")
-    assert_is_any_of(
-        x = colData,
-        classes = c("DataFrame", "data.frame", "matrix")
-    )
+    # Legacy arguments =========================================================
+    call <- match.call()
+    if ("isSpike" %in% names(call)) {
+        warn("Use `spikeNames` instead of `isSpike`")
+        spikeNames <- call[["isSpike"]]
+    }
+
+    # Assert checks ============================================================
+    assert_is_any_of(assays, c("list", "ShallowSimpleListAssays", "SimpleList"))
+    assert_is_any_of(rowRanges, c("GRanges", "NULL"))
+    assert_is_any_of(colData, c("DataFrame", "data.frame", "NULL"))
     assert_is_any_of(metadata, c("list", "NULL"))
-    assertIsCharacterOrNULL(isSpike)
+    assert_is_any_of(transgeneNames, c("character", "NULL"))
+    assert_is_any_of(spikeNames, c("character", "NULL"))
 
     # Assays ===================================================================
     # Require the primary assay matrix to be named counts. This helps ensure
@@ -123,58 +137,70 @@ prepareSummarizedExperiment <- function(
     )
 
     # Row ranges ===============================================================
-    assert_are_intersecting_sets(rownames(assay), names(rowRanges))
+    if (is(rowRanges, "GRanges")) {
+        assert_are_intersecting_sets(rownames(assay), names(rowRanges))
+        mcolsNames <- names(mcols(rowRanges))
 
-    # FASTA spike-ins: Create placeholder ranges
-    setdiff <- setdiff(rownames(assay), names(rowRanges))
-    if (length(setdiff) && length(isSpike)) {
-        assert_is_subset(isSpike, setdiff)
-        setdiff <- setdiff %>%
-            .[-match(isSpike, .)]
-        vec <- paste("spike", "1-100", sep = ":")
-        vec <- replicate(n = length(isSpike), expr = vec)
-        spikes <- GRanges(vec)
-        names(spikes) <- isSpike
-        # Create the required empty metadata columns
-        mcols(spikes) <- matrix(
-            nrow = length(spikes),
-            ncol = ncol(mcols(rowRanges)),
-            dimnames = list(
-                isSpike,
-                colnames(mcols(rowRanges))
-            )
-        ) %>%
-            as("DataFrame")
-        # Warning about no sequence levels in common is expected here
-        rowRanges <- suppressWarnings(c(spikes, rowRanges))
+        # Detect rows that don't contain annotations. These can be labeled as
+        # transgenes or spike-ins. Dead genes are no longer allowed and the
+        # function will stop unless everything is labeled here.
         setdiff <- setdiff(rownames(assay), names(rowRanges))
-    }
 
-    # Abort if unannotated rows are present that aren't spike-ins
-    if (length(setdiff)) {
-        stop(paste(
-            paste(
-                "Unannotated rows detected",
-                paste0("(", length(setdiff), "):")
-            ),
-            str_trunc(toString(setdiff), width = 80L),
-            "FASTA spike-ins can be defined using the `isSpike` argument.",
-            sep = "\n"
-        ))
-    }
+        # Transgenes
+        if (length(setdiff) && length(transgeneNames)) {
+            assert_is_subset(transgeneNames, setdiff)
+            transgeneRanges <- emptyRanges(
+                names = transgeneNames,
+                seqname = "transgene",
+                mcolsNames = mcolsNames
+            )
+            rowRanges <- suppressWarnings(c(transgeneRanges, rowRanges))
+            setdiff <- setdiff(rownames(assay), names(rowRanges))
+        }
 
-    # Subset the rowRanges to match the assays
-    intersect <- intersect(rownames(assay), names(rowRanges))
-    rowRanges <- rowRanges[intersect]
+        # FASTA spike-ins
+        if (length(setdiff) && length(spikeNames)) {
+            assert_is_subset(spikeNames, setdiff)
+            spikeRanges <- emptyRanges(
+                names = transgeneNames,
+                seqname = "spike",
+                mcolsNames = mcolsNames
+            )
+            rowRanges <- suppressWarnings(c(spikeRanges, rowRanges))
+            setdiff <- setdiff(rownames(assay), names(rowRanges))
+        }
+
+        # Fall back to labeling as "unknown" (likely dead genes here)
+        if (length(setdiff)) {
+            warning(paste(
+                paste(
+                    "Unannotated rows detected",
+                    paste0("(", length(setdiff), "):")
+                ),
+                str_trunc(toString(setdiff), width = 80L),
+                "Transgenes (e.g. EGFP) should be set with `transgeneNames`.",
+                "Spike-ins (e.g. ERCCs) should be set with `spikeNames`.",
+                sep = "\n"
+            ))
+            unknownRanges <- emptyRanges(
+                names = setdiff,
+                seqname = "unknown",
+                mcolsNames = mcolsNames
+            )
+            rowRanges <- suppressWarnings(c(unknownRanges, rowRanges))
+            setdiff <- setdiff(rownames(assay), names(rowRanges))
+        }
+
+        # Sort the rowRanges to match assay
+        assert_are_set_equal(rownames(assay), names(rowRanges))
+        rowRanges <- rowRanges[rownames(assay)]
+    }
 
     # Column data ==============================================================
-    # Coerce to DataFrame, if necessary
-    if (!is(colData, "DataFrame")) {
-        colData <- colData %>%
-            as.data.frame() %>%
-            as("DataFrame")
+    if (!is.null(colData)) {
+        colData <- as(colData, "DataFrame")
+        assert_are_identical(colnames(assay), rownames(colData))
     }
-    assert_are_identical(colnames(assay), rownames(colData))
 
     # Metadata =================================================================
     metadata <- as.list(metadata)
@@ -182,7 +208,6 @@ prepareSummarizedExperiment <- function(
     metadata[["wd"]] <- normalizePath(".", winslash = "/", mustWork = TRUE)
     metadata[["utilsSessionInfo"]] <- sessionInfo()
     metadata[["devtoolsSessionInfo"]] <- session_info(include_base = TRUE)
-    metadata[["isSpike"]] <- as.character(isSpike)
     metadata <- Filter(Negate(is.null), metadata)
 
     # Return ===================================================================

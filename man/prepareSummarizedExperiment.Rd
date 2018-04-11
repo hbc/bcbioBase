@@ -4,8 +4,8 @@
 \alias{prepareSummarizedExperiment}
 \title{Prepare Summarized Experiment}
 \usage{
-prepareSummarizedExperiment(assays, rowRanges, colData, metadata = NULL,
-  isSpike = NULL)
+prepareSummarizedExperiment(assays, rowRanges = NULL, colData = NULL,
+  metadata = NULL, transgeneNames = NULL, spikeNames = NULL)
 }
 \arguments{
 \item{assays}{List containing RNA-seq count matrices with matching
@@ -21,8 +21,11 @@ columns.}
 
 \item{metadata}{\emph{Optional}. Metadata \code{list}.}
 
-\item{isSpike}{Character vector of spike-in sequence names
-(matches against the rownames of the object).}
+\item{transgeneNames}{\code{character} vector indicating which \code{\link[=assay]{assay()}} rows
+denote transgenes (e.g. EGFP, TDTOMATO).}
+
+\item{spikeNames}{\code{character} vector indicating which \code{\link[=assay]{assay()}} rows denote
+spike-in sequences (e.g. ERCCs).}
 }
 \value{
 \code{RangedSummarizedExperiment}.
@@ -43,9 +46,8 @@ environment parameters:
 }
 }
 \examples{
-# Example matrix
 genes <- c(
-    "EGFP",  # spike
+    "EGFP",  # transgene
     "gene1",
     "gene2",
     "gene3"
@@ -56,6 +58,8 @@ samples <- c(
     "sample3",
     "sample4"
 )
+
+# Example matrix
 mat <- matrix(
     seq(1L:16L),
     nrow = 4L,
@@ -66,7 +70,7 @@ mat <- matrix(
 # Primary assay must be named "counts"
 assays = list("counts" = mat)
 
-# Leave out the unannotated EGFP spike-in
+# rowRanges won't contain transgenes or spike-ins
 rowRanges <- GRanges(
     seqnames = c("1", "1", "1"),
     ranges = IRanges(
@@ -91,8 +95,17 @@ prepareSummarizedExperiment(
     assays = assays,
     rowRanges = rowRanges,
     colData = colData,
-    isSpike = "EGFP"
+    transgeneNames = "EGFP"
 )
+}
+\seealso{
+\itemize{
+\item \code{help("RangedSummarizedExperiment-class", "SummarizedExperiment")}.
+\item \code{help("SummarizedExperiment-class", "SummarizedExperiment")}.
+\item \code{help("SingleCellExperiment-class", "SingleCellExperiment")}.
+\item \code{SummarizedExperiment::SummarizedExperiment()}.
+\item \code{SingleCellExperiment::SingleCellExperiment()}.
+}
 }
 \author{
 Michael Steinbaugh
