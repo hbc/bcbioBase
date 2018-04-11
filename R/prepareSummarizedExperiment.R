@@ -16,14 +16,14 @@
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
-#' @param assays List containing RNA-seq count matrices with matching
-#'   dimensions. Counts can be passed in either dense (`matrix`) or sparse
-#'   (`dgCMatrix`, `dgTMatrix`) format.
-#' @param rowRanges `GRanges` describing assay rows. Must contain genomic
-#'   ranges. Can be left `NULL` if the genome is poorly annotated and/or ranges
-#'   aren't available from AnnotationHub.
-#' @param colData `DataFrame` `data.frame`, or `matrix` describing assay
-#'   columns.
+#' @param assays *Required.* List containing RNA-seq count matrices with
+#'   matching dimensions. Counts can be passed in either dense (`matrix`) or
+#'   sparse (`dgCMatrix`, `dgTMatrix`) format.
+#' @param rowRanges *Optional.* `GRanges` describing assay rows. Must contain
+#'   genomic ranges. Can be left `NULL` if the genome is poorly annotated and/or
+#'   ranges aren't available from AnnotationHub.
+#' @param colData *Optional.* `DataFrame` `data.frame`, or `matrix` describing
+#'   assay columns.
 #' @param metadata *Optional*. Metadata `list`.
 #' @param transgeneNames `character` vector indicating which [assay()] rows
 #'   denote transgenes (e.g. EGFP, TDTOMATO).
@@ -197,7 +197,7 @@ prepareSummarizedExperiment <- function(
     }
 
     # Sort the rowRanges to match assay
-    assert_are_set_equal(rownames(assay), names(rowRanges))
+    assert_is_subset(rownames(assay), names(rowRanges))
     rowRanges <- rowRanges[rownames(assay)]
 
     # Column data ==============================================================

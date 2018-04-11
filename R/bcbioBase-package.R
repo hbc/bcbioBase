@@ -46,7 +46,6 @@
 #' @importFrom assertive assert_are_disjoint_sets
 #' @importFrom assertive assert_are_identical
 #' @importFrom assertive assert_are_intersecting_sets
-#' @importFrom assertive assert_are_set_equal
 #' @importFrom assertive assert_has_colnames
 #' @importFrom assertive assert_has_dimnames
 #' @importFrom assertive assert_has_dims

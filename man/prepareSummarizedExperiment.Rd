@@ -8,16 +8,16 @@ prepareSummarizedExperiment(assays, rowRanges = NULL, colData = NULL,
   metadata = NULL, transgeneNames = NULL, spikeNames = NULL)
 }
 \arguments{
-\item{assays}{List containing RNA-seq count matrices with matching
-dimensions. Counts can be passed in either dense (\code{matrix}) or sparse
-(\code{dgCMatrix}, \code{dgTMatrix}) format.}
+\item{assays}{\emph{Required.} List containing RNA-seq count matrices with
+matching dimensions. Counts can be passed in either dense (\code{matrix}) or
+sparse (\code{dgCMatrix}, \code{dgTMatrix}) format.}
 
-\item{rowRanges}{\code{GRanges} describing assay rows. Must contain genomic
-ranges. Can be left \code{NULL} if the genome is poorly annotated and/or ranges
-aren't available from AnnotationHub.}
+\item{rowRanges}{\emph{Optional.} \code{GRanges} describing assay rows. Must contain
+genomic ranges. Can be left \code{NULL} if the genome is poorly annotated and/or
+ranges aren't available from AnnotationHub.}
 
-\item{colData}{\code{DataFrame} \code{data.frame}, or \code{matrix} describing assay
-columns.}
+\item{colData}{\emph{Optional.} \code{DataFrame} \code{data.frame}, or \code{matrix} describing
+assay columns.}
 
 \item{metadata}{\emph{Optional}. Metadata \code{list}.}
 
