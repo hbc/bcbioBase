@@ -164,7 +164,7 @@ prepareSummarizedExperiment <- function(
         if (length(setdiff) && length(spikeNames)) {
             assert_is_subset(spikeNames, setdiff)
             spikeRanges <- emptyRanges(
-                names = transgeneNames,
+                names = spikeNames,
                 seqname = "spike",
                 mcolsNames = mcolsNames
             )
