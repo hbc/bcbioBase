@@ -24,7 +24,7 @@ Extract the slots inside an S4 object for archival storage.
 }
 \examples{
 # SummarizedExperiment ====
-x <- flatFiles(rse_small)
+x <- flatFiles(rse_dds)
 class(x)
 names(x)
 }

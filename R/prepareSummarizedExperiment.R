@@ -1,54 +1,71 @@
 #' Prepare Summarized Experiment
 #'
 #' This is a utility wrapper for [SummarizedExperiment::SummarizedExperiment()]
-#' that provides automatic subsetting for row and column data.
+#' that provides automatic subsetting for row and column data. It also provides
+#' automatic handling of FASTA spike-ins.
 #'
 #' This function also provides automatic metadata slotting of multiple useful
 #' environment parameters:
 #'
-#' - `date`: Today's date, returned from [Sys.Date()].
-#' - `wd`: Working directory, returned from [getwd()].
-#' - `utilsSessionInfo`: [utils::sessionInfo().
+#' - `date`: Today's date, returned from [base::Sys.Date()].
+#' - `wd`: Working directory, returned from [base::getwd()].
+#' - `utilsSessionInfo`: [utils::sessionInfo()].
 #' - `devtoolsSessionInfo`: [sessioninfo::session_info()].
 #'
+#' @family Prepare Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
-#' @param assays List containing RNA-seq count matrices with matching
-#'   dimensions. Counts can be passed in either dense (`matrix`) or sparse
-#'   (`dgCMatrix`, `dgTMatrix`) format.
-#' @param rowRanges `GRanges` describing assay rows. Must contain genomic
-#'   ranges. Can be left `NULL` if the genome is poorly annotated and/or ranges
-#'   aren't available from AnnotationHub.
-#' @param colData `DataFrame` `data.frame`, or `matrix` describing assay
-#'   columns.
+#' @param assays *Required.* List containing RNA-seq count matrices with
+#'   matching dimensions. Counts can be passed in either dense (`matrix`) or
+#'   sparse (`dgCMatrix`, `dgTMatrix`) format.
+#' @param rowRanges *Optional.* `GRanges` describing assay rows. Must contain
+#'   genomic ranges. Can be left `NULL` if the genome is poorly annotated and/or
+#'   ranges aren't available from AnnotationHub.
+#' @param colData *Optional.* `DataFrame` `data.frame`, or `matrix` describing
+#'   assay columns.
 #' @param metadata *Optional*. Metadata `list`.
-#' @param isSpike Character vector of spike-in sequence rownames.
+#' @param transgeneNames `character` vector indicating which [assay()] rows
+#'   denote transgenes (e.g. EGFP, TDTOMATO).
+#' @param spikeNames `character` vector indicating which [assay()] rows denote
+#'   spike-in sequences (e.g. ERCCs).
 #'
 #' @return `RangedSummarizedExperiment`.
 #' @export
 #'
+#' @seealso
+#' - `help("RangedSummarizedExperiment-class", "SummarizedExperiment")`.
+#' - `help("SummarizedExperiment-class", "SummarizedExperiment")`.
+#' - `help("SingleCellExperiment-class", "SingleCellExperiment")`.
+#' - `SummarizedExperiment::SummarizedExperiment()`.
+#' - `SingleCellExperiment::SingleCellExperiment()`.
+#'
 #' @examples
 #' genes <- c(
-#'     "EGFP",  # spike
-#'     "gene_1",
-#'     "gene_2",
-#'     "gene_3"
+#'     "EGFP",  # transgene
+#'     "gene1",
+#'     "gene2",
+#'     "gene3"
 #' )
 #' samples <- c(
-#'     "sample_1",
-#'     "sample_2",
-#'     "sample_3",
-#'     "sample_4"
+#'     "sample1",
+#'     "sample2",
+#'     "sample3",
+#'     "sample4"
 #' )
+#'
+#' # Example matrix
 #' mat <- matrix(
 #'     seq(1L:16L),
 #'     nrow = 4L,
 #'     ncol = 4L,
 #'     dimnames = list(genes, samples)
 #' )
-#' assays = list(assay = mat)
-#' # Leave out the unannotated EGFP spike-in
+#'
+#' # Primary assay must be named "counts"
+#' assays = list("counts" = mat)
+#'
+#' # rowRanges won't contain transgenes or spike-ins
 #' rowRanges <- GRanges(
 #'     seqnames = c("1", "1", "1"),
 #'     ranges = IRanges(
@@ -56,7 +73,8 @@
 #'         end = c(100L, 200L, 300L)
 #'     )
 #' )
-#' names(rowRanges) <- c("gene_1", "gene_2", "gene_3")
+#' names(rowRanges) <- c("gene1", "gene2", "gene3")
+#'
 #' colData <- data.frame(
 #'     "genotype" = c(
 #'         "wildtype",
@@ -67,32 +85,40 @@
 #'     "age" = c(3L, 6L, 3L, 6L),
 #'     row.names = samples
 #' )
+#'
 #' prepareSummarizedExperiment(
 #'     assays = assays,
 #'     rowRanges = rowRanges,
 #'     colData = colData,
-#'     isSpike = "EGFP"
+#'     transgeneNames = "EGFP"
 #' )
 prepareSummarizedExperiment <- function(
     assays,
-    rowRanges,
-    colData,
+    rowRanges = NULL,
+    colData = NULL,
     metadata = NULL,
-    isSpike = NULL
+    transgeneNames = NULL,
+    spikeNames = NULL
 ) {
-    assert_is_any_of(
-        x = assays,
-        classes = c("list", "ShallowSimpleListAssays", "SimpleList")
-    )
-    assert_is_all_of(rowRanges, "GRanges")
-    assert_is_any_of(
-        x = colData,
-        classes = c("DataFrame", "data.frame", "matrix")
-    )
+    # Legacy arguments =========================================================
+    call <- match.call()
+    if ("isSpike" %in% names(call)) {
+        warning("Use `spikeNames` instead of `isSpike`")
+        spikeNames <- call[["isSpike"]]
+    }
+
+    # Assert checks ============================================================
+    assert_is_any_of(assays, c("list", "ShallowSimpleListAssays", "SimpleList"))
+    assert_is_any_of(rowRanges, c("GRanges", "NULL"))
+    assert_is_any_of(colData, c("DataFrame", "data.frame", "NULL"))
     assert_is_any_of(metadata, c("list", "NULL"))
-    assertIsCharacterOrNULL(isSpike)
+    assert_is_any_of(transgeneNames, c("character", "NULL"))
+    assert_is_any_of(spikeNames, c("character", "NULL"))
 
     # Assays ===================================================================
+    # Require the primary assay matrix to be named counts. This helps ensure
+    # consistency with the conventions for SingleCellExperiment.
+    assert_are_identical(names(assays)[[1L]], "counts")
     if (is.list(assays)) {
         assays <- Filter(Negate(is.null), assays)
     }
@@ -112,68 +138,75 @@ prepareSummarizedExperiment <- function(
     )
 
     # Row ranges ===============================================================
-    assert_are_intersecting_sets(rownames(assay), names(rowRanges))
-
-    # FASTA spike-ins: Create placeholder ranges
+    # Detect rows that don't contain annotations.
+    # Transgenes should contain `transgene` seqname
+    # Spike-ins should contain `spike` seqname
+    # Otherwise, unannotated genes will be given `unknown` seqname
     setdiff <- setdiff(rownames(assay), names(rowRanges))
-    if (length(setdiff) && length(isSpike)) {
-        assert_is_subset(isSpike, setdiff)
-        setdiff <- setdiff %>%
-            .[-match(isSpike, .)]
-        vec <- paste("spike", "1-100", sep = ":")
-        vec <- replicate(n = length(isSpike), expr = vec)
-        spikes <- GRanges(vec)
-        names(spikes) <- isSpike
-        # Create the required empty metadata columns
-        mcols(spikes) <- matrix(
-            nrow = length(spikes),
-            ncol = ncol(mcols(rowRanges)),
-            dimnames = list(
-                isSpike,
-                colnames(mcols(rowRanges))
+
+    if (is(rowRanges, "GRanges")) {
+        assert_are_intersecting_sets(rownames(assay), names(rowRanges))
+        mcolsNames <- names(mcols(rowRanges))
+
+        # Transgenes
+        if (length(setdiff) && length(transgeneNames)) {
+            assert_is_subset(transgeneNames, setdiff)
+            transgeneRanges <- emptyRanges(
+                names = transgeneNames,
+                seqname = "transgene",
+                mcolsNames = mcolsNames
             )
-        ) %>%
-            as("DataFrame")
-        # Warning about no sequence levels in common is expected here
-        rowRanges <- suppressWarnings(c(spikes, rowRanges))
-        setdiff <- setdiff(rownames(assay), names(rowRanges))
+            rowRanges <- suppressWarnings(c(transgeneRanges, rowRanges))
+            setdiff <- setdiff(rownames(assay), names(rowRanges))
+        }
+
+        # FASTA spike-ins
+        if (length(setdiff) && length(spikeNames)) {
+            assert_is_subset(spikeNames, setdiff)
+            spikeRanges <- emptyRanges(
+                names = spikeNames,
+                seqname = "spike",
+                mcolsNames = mcolsNames
+            )
+            rowRanges <- suppressWarnings(c(spikeRanges, rowRanges))
+            setdiff <- setdiff(rownames(assay), names(rowRanges))
+        }
+    } else {
+        rowRanges <- GRanges()
+        mcolsNames <- NULL
     }
 
-    # Warn and drop remaining unannotated rows that aren't spike-ins
+    # Label any unannotated genes with `unknown` seqname
     if (length(setdiff)) {
-        warn(paste(
-            "Dropping", length(setdiff), "unannotated rows",
-            paste0(
-                "(",
-                percent(length(setdiff) / nrow(assay)),
-                "):"
+        warning(paste(
+            paste(
+                "Unannotated rows detected",
+                paste0("(", length(setdiff), "):")
             ),
-            toString(setdiff)
+            str_trunc(toString(setdiff), width = 80L),
+            "Transgenes (e.g. EGFP) should be set with `transgeneNames`.",
+            "Spike-ins (e.g. ERCCs) should be set with `spikeNames`.",
+            sep = "\n"
         ))
-        intersect <- intersect(rownames(assay), names(rowRanges))
-        assays <- mapply(
-            assay = assays,
-            MoreArgs = list(intersect = intersect),
-            FUN = function(assay, intersect) {
-                assay[intersect, , drop = FALSE]
-            },
-            USE.NAMES = TRUE,
-            SIMPLIFY = FALSE
+        unknownRanges <- emptyRanges(
+            names = setdiff,
+            seqname = "unknown",
+            mcolsNames = mcolsNames
         )
+        rowRanges <- suppressWarnings(c(unknownRanges, rowRanges))
     }
 
-    # Subset the rowRanges to match the assays
-    intersect <- intersect(rownames(assay), names(rowRanges))
-    rowRanges <- rowRanges[intersect]
+    # Sort the rowRanges to match assay
+    assert_is_subset(rownames(assay), names(rowRanges))
+    rowRanges <- rowRanges[rownames(assay)]
 
     # Column data ==============================================================
-    # Coerce to DataFrame, if necessary
-    if (!is(colData, "DataFrame")) {
-        colData <- colData %>%
-            as.data.frame() %>%
-            as("DataFrame")
+    if (is.null(colData)) {
+        colData <- DataFrame(row.names = colnames(assay))
+    } else {
+        assert_are_identical(colnames(assay), rownames(colData))
+        colData <- as(colData, "DataFrame")
     }
-    assert_are_identical(colnames(assay), rownames(colData))
 
     # Metadata =================================================================
     metadata <- as.list(metadata)
@@ -181,8 +214,6 @@ prepareSummarizedExperiment <- function(
     metadata[["wd"]] <- normalizePath(".", winslash = "/", mustWork = TRUE)
     metadata[["utilsSessionInfo"]] <- sessionInfo()
     metadata[["devtoolsSessionInfo"]] <- session_info(include_base = TRUE)
-    metadata[["isSpike"]] <- as.character(isSpike)
-    metadata[["unannotatedRows"]] <- as.character(setdiff)
     metadata <- Filter(Negate(is.null), metadata)
 
     # Return ===================================================================

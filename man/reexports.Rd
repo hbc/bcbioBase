@@ -18,6 +18,16 @@
 \alias{glimpse}
 \alias{reexports}
 \alias{tibble}
+\alias{reexports}
+\alias{magma}
+\alias{reexports}
+\alias{plasma}
+\alias{reexports}
+\alias{scale_color_viridis}
+\alias{reexports}
+\alias{scale_fill_viridis}
+\alias{reexports}
+\alias{viridis}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -36,5 +46,7 @@ below to see their documentation.
   \item{S4Vectors}{\code{\link[S4Vectors]{DataFrame}}, \code{\link[S4Vectors]{metadata}}}
 
   \item{tibble}{\code{\link[tibble]{glimpse}}, \code{\link[tibble]{tibble}}}
+
+  \item{viridis}{\code{\link[viridis]{magma}}, \code{\link[viridis]{plasma}}, \code{\link[viridis]{scale_color_viridis}}, \code{\link[viridis]{scale_fill_viridis}}, \code{\link[viridis]{viridis}}}
 }}
 

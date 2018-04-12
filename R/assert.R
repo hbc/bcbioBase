@@ -1,3 +1,17 @@
+#' Assert Checks
+#'
+#' @name assert
+#' @keywords internal
+#'
+#' @inheritParams general
+#' @param severity How severe should the consequences of the assertion be?
+#'   Either "`stop`", "`warning`", "`message`", or "`none`".
+#'
+#' @return Silent on success, stop on failure.
+NULL
+
+
+
 #' Interesting Groups Formal Assert Check
 #'
 #' Prevent unwanted downstream behavior when a missing interesting group
@@ -8,15 +22,17 @@
 #'
 #' @inherit assert
 #'
+#' @inheritParams general
 #' @param x Object supporting [colnames()], typically a `data.frame`.
-#' @param interestingGroups Interesting groups character vector.
 #'
 #' @return Silent, stop on error.
 #' @export
 #'
 #' @examples
-#' data <- readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv")
-#' assertFormalInterestingGroups(data, interestingGroups = "genotype")
+#' assertFormalInterestingGroups(
+#'     x = colData(rse_bcb),
+#'     interestingGroups = "treatment"
+#' )
 assertFormalInterestingGroups <- function(
     x,
     interestingGroups,

@@ -59,7 +59,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -97,7 +97,7 @@
     <div class="page-header">
     <h1>Interesting Groups</h1>
     <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-interestingGroups.R'><code>R/methods-interestingGroups.R</code></a></small>
-    <p class="hidden name"><code>interestingGroups.Rd</code></p>
+    <div class="hidden name"><code>interestingGroups.Rd</code></div>
     </div>
 
     
@@ -138,7 +138,8 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># SummarizedExperiment ====</span>
-<span class='fu'>interestingGroups</span>(<span class='no'>rse_small</span>)</div><div class='output co'>#&gt; [1] "treatment"</div></pre>
+<span class='fu'>interestingGroups</span>(<span class='no'>rse_dds</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='fu'>colnames</span>(<span class='fu'>colData</span>(<span class='no'>rse_dds</span>))</div><div class='output co'>#&gt; [1] "condition"</div><div class='input'><span class='fu'>interestingGroups</span>(<span class='no'>rse_dds</span>) <span class='kw'>&lt;-</span> <span class='fu'>colnames</span>(<span class='fu'>colData</span>(<span class='no'>rse_dds</span>))<span class='kw'>[[</span><span class='fl'>1L</span>]]
+<span class='fu'>interestingGroups</span>(<span class='no'>rse_dds</span>)</div><div class='output co'>#&gt; [1] "condition"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

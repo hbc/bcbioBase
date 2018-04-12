@@ -61,7 +61,7 @@ overrided by setting clusterRows or clusterCols to FALSE." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -99,7 +99,7 @@ overrided by setting clusterRows or clusterCols to FALSE." />
     <div class="page-header">
     <h1>Plot Heatmap</h1>
     <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-plotHeatmap.R'><code>R/methods-plotHeatmap.R</code></a></small>
-    <p class="hidden name"><code>plotHeatmap.Rd</code></p>
+    <div class="hidden name"><code>plotHeatmap.Rd</code></div>
     </div>
 
     
@@ -110,23 +110,23 @@ overrided by setting <code>clusterRows</code> or <code>clusterCols</code> to <co
 
     <pre class="usage"><span class='fu'>plotHeatmap</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
+<span class='co'># S4 method for matrix</span>
+<span class='fu'>plotHeatmap</span>(<span class='no'>object</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"row"</span>, <span class='st'>"column"</span>, <span class='st'>"none"</span>),
+  <span class='kw'>annotationCol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>clusterCols</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>clusterRows</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>showColnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>showRownames</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>viridis</span>,
+  <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+
 <span class='co'># S4 method for dgCMatrix</span>
 <span class='fu'>plotHeatmap</span>(<span class='no'>object</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"row"</span>, <span class='st'>"column"</span>, <span class='st'>"none"</span>),
   <span class='kw'>annotationCol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>clusterCols</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>clusterRows</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>showColnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>showRownames</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>viridis</span>,
-  <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='no'>viridis</span>, <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+  <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for dgTMatrix</span>
 <span class='fu'>plotHeatmap</span>(<span class='no'>object</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"row"</span>, <span class='st'>"column"</span>, <span class='st'>"none"</span>),
   <span class='kw'>annotationCol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>clusterCols</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>clusterRows</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>showColnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>showRownames</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>viridis</span>,
-  <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='no'>viridis</span>, <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for matrix</span>
-<span class='fu'>plotHeatmap</span>(<span class='no'>object</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"row"</span>, <span class='st'>"column"</span>, <span class='st'>"none"</span>),
-  <span class='kw'>annotationCol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>clusterCols</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>clusterRows</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>showColnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>showRownames</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>viridis</span>,
-  <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='no'>viridis</span>, <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+  <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SummarizedExperiment</span>
 <span class='fu'>plotHeatmap</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
@@ -174,13 +174,13 @@ hierarchical clustering. Alternatively, can define an <code>hclust</code> object
     </tr>
     <tr>
       <th>color</th>
-      <td><p>Colors to use for plot. Defaults to the <code>viridis()</code>
+      <td><p>Colors to use for plot. Defaults to the <code><a href='http://www.rdocumentation.org/packages/viridisLite/topics/viridis'>viridis()</a></code>
 palette.</p></td>
     </tr>
     <tr>
       <th>legendColor</th>
       <td><p>Colors to use for legend labels. Defaults to the
-<code>viridis()</code> palette.</p></td>
+<code><a href='http://www.rdocumentation.org/packages/viridisLite/topics/viridis'>viridis()</a></code> palette.</p></td>
     </tr>
     <tr>
       <th>borderColor</th>
@@ -205,9 +205,9 @@ palette.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># SummarizedExperiment ====</span>
-<span class='fu'>plotHeatmap</span>(<span class='no'>rse_small</span>)</div><div class='img'><img src='plotHeatmap-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>plotHeatmap</span>(<span class='no'>rse_dds</span>)</div><div class='img'><img src='plotHeatmap-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># matrix ====</span>
-<span class='no'>mat</span> <span class='kw'>&lt;-</span> <span class='fu'>assay</span>(<span class='no'>rse_small</span>)
+<span class='no'>mat</span> <span class='kw'>&lt;-</span> <span class='fu'>assay</span>(<span class='no'>rse_dds</span>)
 <span class='fu'>plotHeatmap</span>(<span class='no'>mat</span>)</div><div class='img'><img src='plotHeatmap-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -22,72 +22,12 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' plotCorrelationHeatmap(rse_small)
+#' plotCorrelationHeatmap(rse_dds)
 #'
 #' # matrix ====
-#' mat <- assay(rse_small)
+#' mat <- assay(rse_dds)
 #' plotCorrelationHeatmap(mat)
 NULL
-
-
-
-# Constructors =================================================================
-.plotCorrelationHeatmap.matrix <- function(  # nolint
-    object,
-    method = c("pearson", "spearman"),
-    clusteringMethod = "ward.D2",
-    annotationCol = NULL,
-    color = viridis,
-    legendColor = viridis,
-    borderColor = NULL,
-    title = TRUE,
-    ...
-) {
-    assert_has_dims(object)
-    assert_all_are_greater_than(nrow(object), 1L)
-    assert_all_are_greater_than(ncol(object), 1L)
-    method <- match.arg(method)
-    assertIsHexColorFunctionOrNULL(color)
-    assertIsHexColorFunctionOrNULL(legendColor)
-    assertIsAStringOrNULL(borderColor)
-    if (!is_a_string(borderColor)) {
-        borderColor <- NA
-    }
-    if (isTRUE(title)) {
-        title <- paste(method, "correlation")
-    } else if (!is_a_string(title)) {
-        title <- NA
-    }
-
-    # Correlation matrix
-    mat <- cor(object, method = method)
-
-    annotationCol <- .pheatmapAnnotationCol(annotationCol)
-    assertFormalAnnotationCol(object, annotationCol)
-    annotationColors <- .pheatmapAnnotationColors(
-        annotationCol = annotationCol,
-        legendColor = legendColor
-    )
-    color <- .pheatmapColor(color)
-
-    # Return pretty heatmap with modified defaults
-    args <- list(
-        "mat" = mat,
-        "annotationCol" = annotationCol,
-        "annotationColors" = annotationColors,
-        "borderColor" = borderColor,
-        "clusteringMethod" = clusteringMethod,
-        "clusteringDistanceRows" = "correlation",
-        "clusteringDistanceCols" = "correlation",
-        "color" = color,
-        "main" = title,
-        "showColnames" = TRUE,
-        "showRownames" = TRUE,
-        ...
-    )
-    args <- .pheatmapArgs(args)
-    do.call(pheatmap, args)
-}
 
 
 
@@ -96,8 +36,73 @@ NULL
 #' @export
 setMethod(
     "plotCorrelationHeatmap",
+    signature("matrix"),
+    function(
+        object,
+        method = c("pearson", "spearman"),
+        clusteringMethod = "ward.D2",
+        annotationCol = NULL,
+        color = viridis,
+        legendColor = NULL,
+        borderColor = NULL,
+        title = TRUE,
+        ...
+    ) {
+        assert_has_dims(object)
+        assert_all_are_greater_than(nrow(object), 1L)
+        assert_all_are_greater_than(ncol(object), 1L)
+        method <- match.arg(method)
+        assertIsHexColorFunctionOrNULL(color)
+        assertIsHexColorFunctionOrNULL(legendColor)
+        assertIsAStringOrNULL(borderColor)
+        if (!is_a_string(borderColor)) {
+            borderColor <- NA
+        }
+        if (isTRUE(title)) {
+            title <- paste(method, "correlation")
+        } else if (!is_a_string(title)) {
+            title <- NA
+        }
+
+        # Correlation matrix
+        mat <- cor(object, method = method)
+
+        annotationCol <- .pheatmapAnnotationCol(annotationCol)
+        assertFormalAnnotationCol(object, annotationCol)
+        annotationColors <- .pheatmapAnnotationColors(
+            annotationCol = annotationCol,
+            legendColor = legendColor
+        )
+        color <- .pheatmapColor(color)
+
+        # Return pretty heatmap with modified defaults
+        args <- list(
+            "mat" = mat,
+            "annotationCol" = annotationCol,
+            "annotationColors" = annotationColors,
+            "borderColor" = borderColor,
+            "clusteringMethod" = clusteringMethod,
+            "clusteringDistanceRows" = "correlation",
+            "clusteringDistanceCols" = "correlation",
+            "color" = color,
+            "main" = title,
+            "showColnames" = TRUE,
+            "showRownames" = TRUE,
+            ...
+        )
+        args <- .pheatmapArgs(args)
+        do.call(pheatmap, args)
+    }
+)
+
+
+
+#' @rdname plotCorrelationHeatmap
+#' @export
+setMethod(
+    "plotCorrelationHeatmap",
     signature("dgCMatrix"),
-    .plotCorrelationHeatmap.matrix
+    getMethod("plotCorrelationHeatmap", "matrix")
 )
 
 
@@ -107,17 +112,7 @@ setMethod(
 setMethod(
     "plotCorrelationHeatmap",
     signature("dgTMatrix"),
-    .plotCorrelationHeatmap.matrix
-)
-
-
-
-#' @rdname plotCorrelationHeatmap
-#' @export
-setMethod(
-    "plotCorrelationHeatmap",
-    signature("matrix"),
-    .plotCorrelationHeatmap.matrix
+    getMethod("plotCorrelationHeatmap", "matrix")
 )
 
 
@@ -128,9 +123,10 @@ setMethod(
     "plotCorrelationHeatmap",
     signature("SummarizedExperiment"),
     function(object, ...) {
+        annotationCol <- sampleData(object, interestingGroups = NULL)
         plotCorrelationHeatmap(
             object = assay(object),
-            annotationCol = colData(object),
+            annotationCol = annotationCol,
             ...
         )
     }

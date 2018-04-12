@@ -11,6 +11,7 @@ authors:
 reference:
   - title: Data Functions
     contents:
+    - starts_with("convert")
     - flatFiles
     - gene2symbol
     - interestingGroups
@@ -33,4 +34,4 @@ reference:
     - starts_with("assert")
   - title: Example Data
     contents:
-    - ends_with("_small")
+    - starts_with("rse_")

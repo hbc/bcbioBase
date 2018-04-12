@@ -4,27 +4,28 @@
 #'
 #' @keywords internal
 #'
-#' @import S4Vectors methods
-#'
 #' @importFrom Biostrings reverseComplement
 #' @importFrom GenomeInfoDb seqnames
 #' @importFrom GenomicRanges GRanges
 #' @importFrom RColorBrewer brewer.pal
+#' @importFrom S4Vectors as.data.frame cor mcols mcols<- metadata<-
 #' @importFrom SummarizedExperiment assay colData colData<- rowData
 #'   SummarizedExperiment
-#' @importFrom basejump camel localOrRemoteFile makeNames readFileByExtension
-#'   removeNA sanitizeSampleData snake
+#' @importFrom basejump camel convertGenesToSymbols emptyRanges
+#'   localOrRemoteFile makeNames readFileByExtension removeNA sanitizeSampleData
+#'   snake
 #' @importFrom dendsort dendsort
 #' @importFrom dplyr arrange bind_rows group_by left_join mutate mutate_all
 #'   mutate_if select_if ungroup
 #' @importFrom grDevices colorRampPalette
 #' @importFrom knitr kable
 #' @importFrom magrittr %>% set_names set_rownames
+#' @importFrom methods .hasSlot as formalArgs getMethod is slotNames validObject
 #' @importFrom pheatmap pheatmap
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
 #'   drop_get_metadata drop_share drop_upload
 #' @importFrom readr read_csv read_lines
-#' @importFrom rlang !!! !! abort inform sym syms warn
+#' @importFrom rlang !!! !! sym syms
 #' @importFrom scales percent
 #' @importFrom sessioninfo session_info
 #' @importFrom stats hclust quantile
@@ -34,33 +35,45 @@
 #' @importFrom tidyr unite
 #' @importFrom utils globalVariables sessionInfo
 #' @importFrom viridis viridis
+#'
+#' @importFrom assertive assert_all_are_dirs
+#' @importFrom assertive assert_all_are_existing_files
+#' @importFrom assertive assert_all_are_greater_than
+#' @importFrom assertive assert_all_are_in_range
+#' @importFrom assertive assert_all_are_matching_regex
+#' @importFrom assertive assert_all_are_non_missing_nor_empty_character
+#' @importFrom assertive assert_all_are_positive
+#' @importFrom assertive assert_are_disjoint_sets
+#' @importFrom assertive assert_are_identical
+#' @importFrom assertive assert_are_intersecting_sets
+#' @importFrom assertive assert_has_colnames
+#' @importFrom assertive assert_has_dimnames
+#' @importFrom assertive assert_has_dims
+#' @importFrom assertive assert_has_names
+#' @importFrom assertive assert_has_rownames
+#' @importFrom assertive assert_has_no_duplicates
+#' @importFrom assertive assert_is_a_bool
+#' @importFrom assertive assert_is_a_string
+#' @importFrom assertive assert_is_all_of
+#' @importFrom assertive assert_is_an_integer
+#' @importFrom assertive assert_is_any_of
+#' @importFrom assertive assert_is_character
+#' @importFrom assertive assert_is_identical_to_na
+#' @importFrom assertive assert_is_integer
+#' @importFrom assertive assert_is_list
+#' @importFrom assertive assert_is_matrix
+#' @importFrom assertive assert_is_non_empty
+#' @importFrom assertive assert_is_subset
+#' @importFrom assertive assert_is_tbl
+#' @importFrom assertive has_dims
+#' @importFrom assertive is_a_string
+#'
+#' @importFrom basejump assertFormalAnnotationCol
+#' @importFrom basejump assertHasRownames
+#' @importFrom basejump assertIsAnImplicitInteger
+#' @importFrom basejump assertIsAStringOrNULL
+#' @importFrom basejump assertIsCharacterOrNULL
+#' @importFrom basejump assertIsGene2symbol
+#' @importFrom basejump assertIsHexColorFunctionOrNULL
+#' @importFrom basejump assertIsTx2gene
 "_PACKAGE"
-
-
-
-globalVariables(".")
-
-#' Lane Grep Pattern
-#' @keywords internal
-#' @export
-lanePattern <- "_L(\\d{3})"
-
-#' Metadata Priority Columns
-#' @keywords internal
-#' @export
-metadataPriorityCols <- c("sampleID", "sampleName", "description")
-
-#' Project Directory Grep Pattern
-#' @keywords internal
-#' @export
-projectDirPattern <- "^(\\d{4}-\\d{2}-\\d{2})_([^/]+)$"
-
-#' Separator Bar
-#' @keywords internal
-#' @export
-separatorBar <- "============================================================"
-
-#' Update Message
-#' @keywords internal
-#' @export
-updateMessage <- "Run `updateObject()` to update your object"

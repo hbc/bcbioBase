@@ -17,10 +17,10 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' sampleData(rse_small)
+#' sampleData(rse_dds)
 #'
 #' # Assignment support
-#' x <- rse_small
+#' x <- rse_dds
 #' sampleData(x)[["test"]] <- seq_len(ncol(x))
 #' # `test` column should be now defined
 #' glimpse(sampleData(x))
@@ -36,25 +36,30 @@ setMethod(
     signature("SummarizedExperiment"),
     function(
         object,
+        interestingGroups,
         return = c("DataFrame", "data.frame", "kable")
     ) {
         validObject(object)
-        interestingGroups <- interestingGroups(object)
         return <- match.arg(return)
+
         data <- colData(object)
-        data <- uniteInterestingGroups(data, interestingGroups)
+
+        if (missing(interestingGroups)) {
+            interestingGroups <- bcbioBase::interestingGroups(object)
+            if (is.character(interestingGroups)) {
+                data <- uniteInterestingGroups(data, interestingGroups)
+            }
+        }
+
         data <- sanitizeSampleData(data)
         assertHasRownames(data)
+
         if (return == "kable") {
             blacklist <- c("description", "fileName", "sampleID")
             data %>%
                 as.data.frame() %>%
                 .[, setdiff(colnames(.), blacklist), drop = FALSE] %>%
-                # Ensure `sampleName` is first
-                .[, unique(c("sampleName", colnames(.))), drop = FALSE] %>%
-                # Arrange by `sampleName`
-                .[order(.[["sampleName"]]), , drop = FALSE] %>%
-                kable(row.names = FALSE)
+                kable(row.names = TRUE)
         } else {
             as(data, return)
         }

@@ -4,68 +4,73 @@
 \alias{prepareSummarizedExperiment}
 \title{Prepare Summarized Experiment}
 \usage{
-prepareSummarizedExperiment(assays, rowRanges, colData, metadata = NULL,
-  isSpike = NULL)
+prepareSummarizedExperiment(assays, rowRanges = NULL, colData = NULL,
+  metadata = NULL, transgeneNames = NULL, spikeNames = NULL)
 }
 \arguments{
-\item{assays}{List containing RNA-seq count matrices with matching
-dimensions. Counts can be passed in either dense (\code{matrix}) or sparse
-(\code{dgCMatrix}, \code{dgTMatrix}) format.}
+\item{assays}{\emph{Required.} List containing RNA-seq count matrices with
+matching dimensions. Counts can be passed in either dense (\code{matrix}) or
+sparse (\code{dgCMatrix}, \code{dgTMatrix}) format.}
 
-\item{rowRanges}{\code{GRanges} describing assay rows. Must contain genomic
-ranges. Can be left \code{NULL} if the genome is poorly annotated and/or ranges
-aren't available from AnnotationHub.}
+\item{rowRanges}{\emph{Optional.} \code{GRanges} describing assay rows. Must contain
+genomic ranges. Can be left \code{NULL} if the genome is poorly annotated and/or
+ranges aren't available from AnnotationHub.}
 
-\item{colData}{\code{DataFrame} \code{data.frame}, or \code{matrix} describing assay
-columns.}
+\item{colData}{\emph{Optional.} \code{DataFrame} \code{data.frame}, or \code{matrix} describing
+assay columns.}
 
 \item{metadata}{\emph{Optional}. Metadata \code{list}.}
 
-\item{isSpike}{Character vector of spike-in sequence rownames.}
+\item{transgeneNames}{\code{character} vector indicating which \code{\link[=assay]{assay()}} rows
+denote transgenes (e.g. EGFP, TDTOMATO).}
+
+\item{spikeNames}{\code{character} vector indicating which \code{\link[=assay]{assay()}} rows denote
+spike-in sequences (e.g. ERCCs).}
 }
 \value{
 \code{RangedSummarizedExperiment}.
 }
 \description{
 This is a utility wrapper for \code{\link[SummarizedExperiment:SummarizedExperiment]{SummarizedExperiment::SummarizedExperiment()}}
-that provides automatic subsetting for row and column data.
+that provides automatic subsetting for row and column data. It also provides
+automatic handling of FASTA spike-ins.
 }
 \details{
 This function also provides automatic metadata slotting of multiple useful
 environment parameters:
 \itemize{
-\item \code{date}: Today's date, returned from \code{\link[=Sys.Date]{Sys.Date()}}.
-\item \code{wd}: Working directory, returned from \code{\link[=getwd]{getwd()}}.
-\item \code{utilsSessionInfo}: [utils::sessionInfo().
-\item \code{devtoolsSessionInfo}: [sessioninfo::session_info()].
-}
-
-[utils::sessionInfo().
-\itemize{
-\item \code{devtoolsSessionInfo}: [sessioninfo::session_info()]: R:utils::sessionInfo().%0A-%20%60devtoolsSessionInfo%60:%20[sessioninfo::session_info()
+\item \code{date}: Today's date, returned from \code{\link[base:Sys.Date]{base::Sys.Date()}}.
+\item \code{wd}: Working directory, returned from \code{\link[base:getwd]{base::getwd()}}.
+\item \code{utilsSessionInfo}: \code{\link[utils:sessionInfo]{utils::sessionInfo()}}.
+\item \code{devtoolsSessionInfo}: \code{\link[sessioninfo:session_info]{sessioninfo::session_info()}}.
 }
 }
 \examples{
 genes <- c(
-    "EGFP",  # spike
-    "gene_1",
-    "gene_2",
-    "gene_3"
+    "EGFP",  # transgene
+    "gene1",
+    "gene2",
+    "gene3"
 )
 samples <- c(
-    "sample_1",
-    "sample_2",
-    "sample_3",
-    "sample_4"
+    "sample1",
+    "sample2",
+    "sample3",
+    "sample4"
 )
+
+# Example matrix
 mat <- matrix(
     seq(1L:16L),
     nrow = 4L,
     ncol = 4L,
     dimnames = list(genes, samples)
 )
-assays = list(assay = mat)
-# Leave out the unannotated EGFP spike-in
+
+# Primary assay must be named "counts"
+assays = list("counts" = mat)
+
+# rowRanges won't contain transgenes or spike-ins
 rowRanges <- GRanges(
     seqnames = c("1", "1", "1"),
     ranges = IRanges(
@@ -73,7 +78,8 @@ rowRanges <- GRanges(
         end = c(100L, 200L, 300L)
     )
 )
-names(rowRanges) <- c("gene_1", "gene_2", "gene_3")
+names(rowRanges) <- c("gene1", "gene2", "gene3")
+
 colData <- data.frame(
     "genotype" = c(
         "wildtype",
@@ -84,12 +90,25 @@ colData <- data.frame(
     "age" = c(3L, 6L, 3L, 6L),
     row.names = samples
 )
+
 prepareSummarizedExperiment(
     assays = assays,
     rowRanges = rowRanges,
     colData = colData,
-    isSpike = "EGFP"
+    transgeneNames = "EGFP"
 )
+}
+\seealso{
+\itemize{
+\item \code{help("RangedSummarizedExperiment-class", "SummarizedExperiment")}.
+\item \code{help("SummarizedExperiment-class", "SummarizedExperiment")}.
+\item \code{help("SingleCellExperiment-class", "SingleCellExperiment")}.
+\item \code{SummarizedExperiment::SummarizedExperiment()}.
+\item \code{SingleCellExperiment::SingleCellExperiment()}.
+}
+
+Other Prepare Functions: \code{\link{prepareSampleData}},
+  \code{\link{prepareTemplate}}
 }
 \author{
 Michael Steinbaugh

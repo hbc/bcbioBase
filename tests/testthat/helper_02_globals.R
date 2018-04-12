@@ -1,15 +1,5 @@
-genes <- c(
-    "ENSG00000000001",
-    "ENSG00000000002",
-    "ENSG00000000003",
-    "ENSG00000000004"
-)
-samples <- c(
-    "sample_1",
-    "sample_2",
-    "sample_3",
-    "sample_4"
-)
+genes <- paste0("gene", seq_len(4L))
+samples <- paste0("sample", seq_len(4L))
 
 mat <- matrix(
     data = seq(1L:16L),

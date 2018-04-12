@@ -3,13 +3,25 @@
 \docType{methods}
 \name{sampleYAML}
 \alias{sampleYAML}
+\alias{sampleYAMLMetadata}
+\alias{sampleYAMLMetrics}
 \alias{sampleYAML}
 \alias{sampleYAML,list,character-method}
-\title{Sample YAML Metadata Utilities}
+\alias{sampleYAMLMetadata,list-method}
+\alias{sampleYAMLMetrics,list-method}
+\title{Sample YAML Metadata}
 \usage{
 sampleYAML(yaml, keys, ...)
 
+sampleYAMLMetadata(yaml, ...)
+
+sampleYAMLMetrics(yaml, ...)
+
 \S4method{sampleYAML}{list,character}(yaml, keys)
+
+\S4method{sampleYAMLMetadata}{list}(yaml)
+
+\S4method{sampleYAMLMetrics}{list}(yaml)
 }
 \arguments{
 \item{yaml}{Project summary YAML \code{list}.}
@@ -22,7 +34,7 @@ sampleYAML(yaml, keys, ...)
 \code{tbl_df}.
 }
 \description{
-Sample YAML Metadata Utilities
+Sample YAML Metadata
 }
 \note{
 Metrics are only generated for a standard RNA-seq run with aligned
@@ -33,11 +45,10 @@ output the same metrics into the YAML.
 yaml <- basejump::readYAML(
     "http://bcbiobase.seq.cloud/project-summary.yaml"
 )
-sampleYAML(yaml, "metadata") \%>\% glimpse()
-}
-\seealso{
-Other YAML Functions: \code{\link{sampleYAMLMetadata}},
-  \code{\link{sampleYAMLMetrics}}
+
+sampleYAML(yaml, keys = "metadata") \%>\% glimpse()
+sampleYAMLMetadata(yaml) \%>\% glimpse()
+sampleYAMLMetrics(yaml) \%>\% glimpse()
 }
 \author{
 Michael Steinbaugh

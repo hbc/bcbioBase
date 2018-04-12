@@ -18,7 +18,7 @@ readProgramVersions <- function(file) {
     file <- tryCatch(
         localOrRemoteFile(file),
         error = function(e) {
-            inform("Program versions are missing")
+            message("Program versions are missing")
             NULL
         }
     )

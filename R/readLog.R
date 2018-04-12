@@ -13,8 +13,6 @@
 #'     head()
 readLog <- function(file) {
     assert_is_a_string(file)
-    # Log files are always required
     file <- localOrRemoteFile(file)
-    assert_all_are_existing_files(file)
     read_lines(file)
 }

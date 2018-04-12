@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' x <- flatFiles(rse_small)
+#' x <- flatFiles(rse_dds)
 #' class(x)
 #' names(x)
 NULL

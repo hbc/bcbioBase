@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' gene2symbol(rse_small)
+#' gene2symbol(rse_bcb)
 NULL
 
 
@@ -24,13 +24,13 @@ setMethod(
     signature("SummarizedExperiment"),
     function(object) {
         validObject(object)
-        data <- rowData(object)
-        assert_is_non_empty(data)
-        data <- as.data.frame(data)
-        rownames(data) <- rownames(object)
+        rowData <- rowData(object)
         cols <- c("geneID", "geneName")
-        assert_is_subset(cols, colnames(data))
-        data <- data[, cols, drop = FALSE]
+        if (!all(cols %in% colnames(rowData))) {
+            return(NULL)
+        }
+        rownames(rowData) <- rownames(object)
+        data <- as.data.frame(rowData[, cols, drop = FALSE])
         assertIsGene2symbol(data)
         data
     }

@@ -4,28 +4,31 @@
 \name{plotQuantileHeatmap}
 \alias{plotQuantileHeatmap}
 \alias{plotQuantileHeatmap}
+\alias{plotQuantileHeatmap,matrix-method}
 \alias{plotQuantileHeatmap,dgCMatrix-method}
 \alias{plotQuantileHeatmap,dgTMatrix-method}
-\alias{plotQuantileHeatmap,matrix-method}
 \alias{plotQuantileHeatmap,SummarizedExperiment-method}
 \title{Plot Heatmap with Quantile Breaks}
 \usage{
 plotQuantileHeatmap(object, ...)
 
-\S4method{plotQuantileHeatmap}{dgCMatrix}(object, n = 5L,
+\S4method{plotQuantileHeatmap}{matrix}(object, n = 10L,
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
-  showColnames = TRUE, showRownames = FALSE, color = viridis,
-  legendColor = viridis, borderColor = NULL, title = NULL, ...)
+  showColnames = TRUE, showRownames = FALSE, legend = FALSE,
+  color = viridis, legendColor = NULL, borderColor = NULL, title = NULL,
+  ...)
 
-\S4method{plotQuantileHeatmap}{dgTMatrix}(object, n = 5L,
+\S4method{plotQuantileHeatmap}{dgCMatrix}(object, n = 10L,
   annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
-  showColnames = TRUE, showRownames = FALSE, color = viridis,
-  legendColor = viridis, borderColor = NULL, title = NULL, ...)
+  showColnames = TRUE, showRownames = FALSE, legend = FALSE,
+  color = viridis, legendColor = NULL, borderColor = NULL, title = NULL,
+  ...)
 
-\S4method{plotQuantileHeatmap}{matrix}(object, n = 5L, annotationCol = NULL,
-  clusterCols = TRUE, clusterRows = TRUE, showColnames = TRUE,
-  showRownames = FALSE, color = viridis, legendColor = viridis,
-  borderColor = NULL, title = NULL, ...)
+\S4method{plotQuantileHeatmap}{dgTMatrix}(object, n = 10L,
+  annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
+  showColnames = TRUE, showRownames = FALSE, legend = FALSE,
+  color = viridis, legendColor = NULL, borderColor = NULL, title = NULL,
+  ...)
 
 \S4method{plotQuantileHeatmap}{SummarizedExperiment}(object, ...)
 }
@@ -50,6 +53,8 @@ hierarchical clustering. Alternatively, can define an \code{hclust} object.}
 
 \item{showRownames}{Show row names.}
 
+\item{legend}{Show the color legend.}
+
 \item{color}{Colors to use for plot. Defaults to the \code{\link[=viridis]{viridis()}}
 palette.}
 
@@ -68,10 +73,10 @@ Plot Heatmap with Quantile Breaks
 }
 \examples{
 # SummarizedExperiment ====
-plotQuantileHeatmap(rse_small)
+plotQuantileHeatmap(rse_dds)
 
 # matrix ====
-mat <- assay(rse_small)
+mat <- assay(rse_dds)
 plotQuantileHeatmap(mat)
 }
 \seealso{

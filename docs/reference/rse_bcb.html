@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sample Metadata from YAML — sampleYAMLMetadata • bcbioBase</title>
+<title><code>RangedSummarizedExperiment</code> Coerced from <code>bcbioRNASeq</code> — rse_bcb • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -27,9 +27,9 @@
 <script src="../pkgdown.js"></script>
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Sample Metadata from YAML — sampleYAMLMetadata" />
+<meta property="og:title" content="<code>RangedSummarizedExperiment</code> Coerced from <code>bcbioRNASeq</code> — rse_bcb" />
 
-<meta property="og:description" content="Sample Metadata from YAML" />
+<meta property="og:description" content="RangedSummarizedExperiment Coerced from bcbioRNASeq" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -59,7 +59,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -95,64 +95,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Sample Metadata from YAML</h1>
-    <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-sampleYAMLMetadata.R'><code>R/methods-sampleYAMLMetadata.R</code></a></small>
-    <p class="hidden name"><code>sampleYAMLMetadata.Rd</code></p>
+    <h1><code>RangedSummarizedExperiment</code> Coerced from <code>bcbioRNASeq</code></h1>
+    <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/datasets.R'><code>R/datasets.R</code></a></small>
+    <div class="hidden name"><code>rse_bcb.Rd</code></div>
     </div>
 
     
-    <p>Sample Metadata from YAML</p>
+    <p><code>RangedSummarizedExperiment</code> Coerced from <code>bcbioRNASeq</code></p>
     
 
-    <pre class="usage"><span class='fu'>sampleYAMLMetadata</span>(<span class='no'>yaml</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='no'>rse_bcb</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-<span class='co'># S4 method for list</span>
-<span class='fu'>sampleYAMLMetadata</span>(<span class='no'>yaml</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>yaml</th>
-      <td><p>Project summary YAML <code>list</code>.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>tbl_df</code>.</p>
+    <p>An object of class <code>RangedSummarizedExperiment</code> with 500 rows and 6 columns.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other YAML Functions: <code>sampleYAMLMetrics</code>,
-  <code>sampleYAML</code></p></div>
+    <div class='dont-index'><p>Other Minimal Example Data: <code><a href='rse_dds.html'>rse_dds</a></code></p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/basejump/topics/readYAML'>readYAML</a></span>(
-    <span class='st'>"http://bcbiobase.seq.cloud/project-summary.yaml"</span>
-)</div><div class='output co'>#&gt; <span class='message'>Reading project-summary.yaml</span></div><div class='input'><span class='fu'>sampleYAMLMetadata</span>(<span class='no'>yaml</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; Observations: 4
-#&gt; Variables: 4
-#&gt; $ sampleID    &lt;fct&gt; group1_1, group1_2, group2_1, group2_2
-#&gt; $ sampleName  &lt;fct&gt; group1_1, group1_2, group2_1, group2_2
-#&gt; $ description &lt;fct&gt; group1_1, group1_2, group2_1, group2_2
-#&gt; $ group       &lt;fct&gt; ctrl, ctrl, ko, ko</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#format">Format</a></li>
 
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
     <h2>Author</h2>
     

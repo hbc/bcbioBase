@@ -30,7 +30,8 @@
 <meta property="og:title" content="Prepare Summarized Experiment — prepareSummarizedExperiment" />
 
 <meta property="og:description" content="This is a utility wrapper for SummarizedExperiment::SummarizedExperiment()
-that provides automatic subsetting for row and column data." />
+that provides automatic subsetting for row and column data. It also provides
+automatic handling of FASTA spike-ins." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -60,7 +61,7 @@ that provides automatic subsetting for row and column data." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -98,44 +99,51 @@ that provides automatic subsetting for row and column data." />
     <div class="page-header">
     <h1>Prepare Summarized Experiment</h1>
     <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/prepareSummarizedExperiment.R'><code>R/prepareSummarizedExperiment.R</code></a></small>
-    <p class="hidden name"><code>prepareSummarizedExperiment.Rd</code></p>
+    <div class="hidden name"><code>prepareSummarizedExperiment.Rd</code></div>
     </div>
 
     
     <p>This is a utility wrapper for <code><a href='http://www.rdocumentation.org/packages/SummarizedExperiment/topics/RangedSummarizedExperiment-class'>SummarizedExperiment::SummarizedExperiment()</a></code>
-that provides automatic subsetting for row and column data.</p>
+that provides automatic subsetting for row and column data. It also provides
+automatic handling of FASTA spike-ins.</p>
     
 
-    <pre class="usage"><span class='fu'>prepareSummarizedExperiment</span>(<span class='no'>assays</span>, <span class='no'>rowRanges</span>, <span class='no'>colData</span>, <span class='kw'>metadata</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>isSpike</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>prepareSummarizedExperiment</span>(<span class='no'>assays</span>, <span class='kw'>rowRanges</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>colData</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>metadata</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>transgeneNames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>spikeNames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>assays</th>
-      <td><p>List containing RNA-seq count matrices with matching
-dimensions. Counts can be passed in either dense (<code>matrix</code>) or sparse
-(<code>dgCMatrix</code>, <code>dgTMatrix</code>) format.</p></td>
+      <td><p><em>Required.</em> List containing RNA-seq count matrices with
+matching dimensions. Counts can be passed in either dense (<code>matrix</code>) or
+sparse (<code>dgCMatrix</code>, <code>dgTMatrix</code>) format.</p></td>
     </tr>
     <tr>
       <th>rowRanges</th>
-      <td><p><code>GRanges</code> describing assay rows. Must contain genomic
-ranges. Can be left <code>NULL</code> if the genome is poorly annotated and/or ranges
-aren't available from AnnotationHub.</p></td>
+      <td><p><em>Optional.</em> <code>GRanges</code> describing assay rows. Must contain
+genomic ranges. Can be left <code>NULL</code> if the genome is poorly annotated and/or
+ranges aren't available from AnnotationHub.</p></td>
     </tr>
     <tr>
       <th>colData</th>
-      <td><p><code>DataFrame</code> <code>data.frame</code>, or <code>matrix</code> describing assay
-columns.</p></td>
+      <td><p><em>Optional.</em> <code>DataFrame</code> <code>data.frame</code>, or <code>matrix</code> describing
+assay columns.</p></td>
     </tr>
     <tr>
       <th>metadata</th>
       <td><p><em>Optional</em>. Metadata <code>list</code>.</p></td>
     </tr>
     <tr>
-      <th>isSpike</th>
-      <td><p>Character vector of spike-in sequence rownames.</p></td>
+      <th>transgeneNames</th>
+      <td><p><code>character</code> vector indicating which <code>assay()</code> rows
+denote transgenes (e.g. EGFP, TDTOMATO).</p></td>
+    </tr>
+    <tr>
+      <th>spikeNames</th>
+      <td><p><code>character</code> vector indicating which <code>assay()</code> rows denote
+spike-in sequences (e.g. ERCCs).</p></td>
     </tr>
     </table>
     
@@ -147,37 +155,51 @@ columns.</p></td>
 
     <p>This function also provides automatic metadata slotting of multiple useful
 environment parameters:</p><ul>
-<li><p><code>date</code>: Today's date, returned from <code>Sys.Date()</code>.</p></li>
-<li><p><code>wd</code>: Working directory, returned from <code>getwd()</code>.</p></li>
-<li><p><code>utilsSessionInfo</code>: [utils::sessionInfo().</p></li>
-<li><p><code>devtoolsSessionInfo</code>: [sessioninfo::session_info()].</p></li>
+<li><p><code>date</code>: Today's date, returned from <code><a href='http://www.rdocumentation.org/packages/base/topics/Sys.time'>base::Sys.Date()</a></code>.</p></li>
+<li><p><code>wd</code>: Working directory, returned from <code><a href='http://www.rdocumentation.org/packages/base/topics/getwd'>base::getwd()</a></code>.</p></li>
+<li><p><code>utilsSessionInfo</code>: <code><a href='http://www.rdocumentation.org/packages/utils/topics/sessionInfo'>utils::sessionInfo()</a></code>.</p></li>
+<li><p><code>devtoolsSessionInfo</code>: <code><a href='http://www.rdocumentation.org/packages/sessioninfo/topics/session_info'>sessioninfo::session_info()</a></code>.</p></li>
 </ul>
-    <p>[utils::sessionInfo().</p><ul>
-<li><p><code>devtoolsSessionInfo</code>: [sessioninfo::session_info()]: R:utils::sessionInfo().<!-- %0A-%20%60devtoolsSessionInfo%60:%20[sessioninfo::session_info() --></p></li>
-</ul>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><ul>
+<li><p><code>help("RangedSummarizedExperiment-class", "SummarizedExperiment")</code>.</p></li>
+<li><p><code>help("SummarizedExperiment-class", "SummarizedExperiment")</code>.</p></li>
+<li><p><code>help("SingleCellExperiment-class", "SingleCellExperiment")</code>.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/SummarizedExperiment/topics/RangedSummarizedExperiment-class'>SummarizedExperiment::SummarizedExperiment()</a></code>.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/SingleCellExperiment/topics/SingleCellExperiment'>SingleCellExperiment::SingleCellExperiment()</a></code>.</p></li>
+</ul></div>
+    <div class='dont-index'><p>Other Prepare Functions: <code><a href='prepareSampleData.html'>prepareSampleData</a></code>,
+  <code><a href='prepareTemplate.html'>prepareTemplate</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>genes</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(
-    <span class='st'>"EGFP"</span>,  <span class='co'># spike</span>
-    <span class='st'>"gene_1"</span>,
-    <span class='st'>"gene_2"</span>,
-    <span class='st'>"gene_3"</span>
+    <span class='st'>"EGFP"</span>,  <span class='co'># transgene</span>
+    <span class='st'>"gene1"</span>,
+    <span class='st'>"gene2"</span>,
+    <span class='st'>"gene3"</span>
 )
 <span class='no'>samples</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(
-    <span class='st'>"sample_1"</span>,
-    <span class='st'>"sample_2"</span>,
-    <span class='st'>"sample_3"</span>,
-    <span class='st'>"sample_4"</span>
+    <span class='st'>"sample1"</span>,
+    <span class='st'>"sample2"</span>,
+    <span class='st'>"sample3"</span>,
+    <span class='st'>"sample4"</span>
 )
+
+<span class='co'># Example matrix</span>
 <span class='no'>mat</span> <span class='kw'>&lt;-</span> <span class='fu'>matrix</span>(
     <span class='fu'>seq</span>(<span class='fl'>1L</span>:<span class='fl'>16L</span>),
     <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>4L</span>,
     <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>4L</span>,
     <span class='kw'>dimnames</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='no'>genes</span>, <span class='no'>samples</span>)
 )
-<span class='no'>assays</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>assay</span> <span class='kw'>=</span> <span class='no'>mat</span>)
-<span class='co'># Leave out the unannotated EGFP spike-in</span>
+
+<span class='co'># Primary assay must be named "counts"</span>
+<span class='no'>assays</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='st'>"counts"</span> <span class='kw'>=</span> <span class='no'>mat</span>)
+
+<span class='co'># rowRanges won't contain transgenes or spike-ins</span>
 <span class='no'>rowRanges</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/GenomicRanges/topics/GRanges-class'>GRanges</a></span>(
     <span class='kw'>seqnames</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1"</span>, <span class='st'>"1"</span>, <span class='st'>"1"</span>),
     <span class='kw'>ranges</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/IRanges/topics/IRanges-constructor'>IRanges</a></span>(
@@ -185,7 +207,8 @@ environment parameters:</p><ul>
         <span class='kw'>end</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>100L</span>, <span class='fl'>200L</span>, <span class='fl'>300L</span>)
     )
 )
-<span class='fu'>names</span>(<span class='no'>rowRanges</span>) <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"gene_1"</span>, <span class='st'>"gene_2"</span>, <span class='st'>"gene_3"</span>)
+<span class='fu'>names</span>(<span class='no'>rowRanges</span>) <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"gene1"</span>, <span class='st'>"gene2"</span>, <span class='st'>"gene3"</span>)
+
 <span class='no'>colData</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
     <span class='st'>"genotype"</span> <span class='kw'>=</span> <span class='fu'>c</span>(
         <span class='st'>"wildtype"</span>,
@@ -196,18 +219,19 @@ environment parameters:</p><ul>
     <span class='st'>"age"</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>3L</span>, <span class='fl'>6L</span>, <span class='fl'>3L</span>, <span class='fl'>6L</span>),
     <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='no'>samples</span>
 )
+
 <span class='fu'>prepareSummarizedExperiment</span>(
     <span class='kw'>assays</span> <span class='kw'>=</span> <span class='no'>assays</span>,
     <span class='kw'>rowRanges</span> <span class='kw'>=</span> <span class='no'>rowRanges</span>,
     <span class='kw'>colData</span> <span class='kw'>=</span> <span class='no'>colData</span>,
-    <span class='kw'>isSpike</span> <span class='kw'>=</span> <span class='st'>"EGFP"</span>
+    <span class='kw'>transgeneNames</span> <span class='kw'>=</span> <span class='st'>"EGFP"</span>
 )</div><div class='output co'>#&gt; class: RangedSummarizedExperiment 
 #&gt; dim: 4 4 
-#&gt; metadata(6): date wd ... isSpike unannotatedRows
-#&gt; assays(1): assay
-#&gt; rownames(4): EGFP gene_1 gene_2 gene_3
+#&gt; metadata(4): date wd utilsSessionInfo devtoolsSessionInfo
+#&gt; assays(1): counts
+#&gt; rownames(4): EGFP gene1 gene2 gene3
 #&gt; rowData names(0):
-#&gt; colnames(4): sample_1 sample_2 sample_3 sample_4
+#&gt; colnames(4): sample1 sample2 sample3 sample4
 #&gt; colData names(2): genotype age</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -218,6 +242,8 @@ environment parameters:</p><ul>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

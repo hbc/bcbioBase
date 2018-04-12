@@ -8,7 +8,7 @@ fxns <- c(
 
 test_that("SummarizedExperiment", {
     invisible(lapply(fxns, function(f) {
-        object <- rse_small
+        object <- rse_bcb
         f <- get(f)
         p <- f(object)
 
@@ -48,7 +48,7 @@ test_that("matrix", {
 
 test_that("Invalid pheatmap passthrough", {
     expect_error(
-        plotHeatmap(rse_small, show_colnames = FALSE),
+        plotHeatmap(rse_bcb, show_colnames = FALSE),
         "Define formalArgs in camel case: show_colnames"
     )
 })

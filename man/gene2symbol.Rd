@@ -23,7 +23,7 @@ Gene to Symbol Mappings
 }
 \examples{
 # SummarizedExperiment ====
-gene2symbol(rse_small)
+gene2symbol(rse_bcb)
 }
 \seealso{
 Other Data Functions: \code{\link{flatFiles}},

@@ -15,8 +15,8 @@ sampleData(object, ...)
 
 sampleData(object, ...) <- value
 
-\S4method{sampleData}{SummarizedExperiment}(object, return = c("DataFrame",
-  "data.frame", "kable"))
+\S4method{sampleData}{SummarizedExperiment}(object, interestingGroups,
+  return = c("DataFrame", "data.frame", "kable"))
 
 \S4method{sampleData}{SummarizedExperiment}(object) <- value
 }
@@ -26,6 +26,8 @@ sampleData(object, ...) <- value
 \item{...}{Additional arguments.}
 
 \item{value}{Value to assign.}
+
+\item{interestingGroups}{\code{character} vector defining the groups of interest.}
 
 \item{return}{Object class to return. Uses \code{\link[=match.arg]{match.arg()}} internally and picks
 the first item in the vector by default.}
@@ -44,10 +46,10 @@ experiment).
 }
 \examples{
 # SummarizedExperiment ====
-sampleData(rse_small)
+sampleData(rse_dds)
 
 # Assignment support
-x <- rse_small
+x <- rse_dds
 sampleData(x)[["test"]] <- seq_len(ncol(x))
 # `test` column should be now defined
 glimpse(sampleData(x))

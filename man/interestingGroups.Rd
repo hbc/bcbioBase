@@ -32,7 +32,10 @@ Interesting Groups
 }
 \examples{
 # SummarizedExperiment ====
-interestingGroups(rse_small)
+interestingGroups(rse_dds)
+colnames(colData(rse_dds))
+interestingGroups(rse_dds) <- colnames(colData(rse_dds))[[1L]]
+interestingGroups(rse_dds)
 }
 \author{
 Michael Steinbaugh

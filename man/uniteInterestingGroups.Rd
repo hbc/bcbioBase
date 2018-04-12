@@ -5,16 +5,16 @@
 \name{uniteInterestingGroups}
 \alias{uniteInterestingGroups}
 \alias{uniteInterestingGroups}
-\alias{uniteInterestingGroups,DataFrame-method}
 \alias{uniteInterestingGroups,data.frame-method}
+\alias{uniteInterestingGroups,DataFrame-method}
 \alias{uniteInterestingGroups,tbl_df-method}
 \title{Unite Interesting Groups}
 \usage{
 uniteInterestingGroups(object, ...)
 
-\S4method{uniteInterestingGroups}{DataFrame}(object, interestingGroups)
-
 \S4method{uniteInterestingGroups}{data.frame}(object, interestingGroups)
+
+\S4method{uniteInterestingGroups}{DataFrame}(object, interestingGroups)
 
 \S4method{uniteInterestingGroups}{tbl_df}(object, interestingGroups)
 }
@@ -23,7 +23,7 @@ uniteInterestingGroups(object, ...)
 
 \item{...}{Additional arguments.}
 
-\item{interestingGroups}{Character vector of interesting groups.}
+\item{interestingGroups}{\code{character} vector defining the groups of interest.}
 }
 \value{
 Object of same class, containing a united \code{interestingGroups} column.
@@ -36,14 +36,11 @@ single column, delimited by "\code{:}".
 Methods =====================================================================
 }
 \examples{
-meta <- readSampleData(
-    "http://bcbiobase.seq.cloud/demultiplexed.csv"
+x <- uniteInterestingGroups(
+    object = colData(rse_bcb),
+    interestingGroups = c("treatment", "day")
 )
-meta <- uniteInterestingGroups(
-    object = meta,
-    interestingGroups = c("genotype", "sampleName")
-)
-meta[, "interestingGroups"]
+x[, "interestingGroups"]
 }
 \seealso{
 Other Data Functions: \code{\link{flatFiles}},
