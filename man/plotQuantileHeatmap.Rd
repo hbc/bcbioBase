@@ -53,6 +53,8 @@ hierarchical clustering. Alternatively, can define an \code{hclust} object.}
 
 \item{showRownames}{Show row names.}
 
+\item{legend}{Show the color legend.}
+
 \item{color}{Colors to use for plot. Defaults to the \code{\link[=viridis]{viridis()}}
 palette.}
 

@@ -4,16 +4,18 @@
 \alias{general}
 \title{General Arguments}
 \arguments{
-\item{file}{File path.}
-
 \item{object}{Object.}
-
-\item{return}{Object class to return. Uses \code{\link[=match.arg]{match.arg()}} internally and picks
-the first item in the vector by default.}
 
 \item{value}{Value to assign.}
 
 \item{...}{Additional arguments.}
+
+\item{file}{File path.}
+
+\item{interestingGroups}{\code{character} vector defining the groups of interest.}
+
+\item{return}{Object class to return. Uses \code{\link[=match.arg]{match.arg()}} internally and picks
+the first item in the vector by default.}
 }
 \value{
 No value.

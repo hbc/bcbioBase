@@ -10,7 +10,6 @@
 #'
 #' @inheritParams general
 #' @param object Object containing interesting groups in multiple columns.
-#' @param interestingGroups Character vector of interesting groups.
 #'
 #' @return Object of same class, containing a united `interestingGroups` column.
 #' @export

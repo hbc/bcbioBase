@@ -27,6 +27,8 @@ sampleData(object, ...) <- value
 
 \item{value}{Value to assign.}
 
+\item{interestingGroups}{\code{character} vector defining the groups of interest.}
+
 \item{return}{Object class to return. Uses \code{\link[=match.arg]{match.arg()}} internally and picks
 the first item in the vector by default.}
 }

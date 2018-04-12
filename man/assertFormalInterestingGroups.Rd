@@ -9,7 +9,7 @@ assertFormalInterestingGroups(x, interestingGroups, severity = "stop")
 \arguments{
 \item{x}{Object supporting \code{\link[=colnames]{colnames()}}, typically a \code{data.frame}.}
 
-\item{interestingGroups}{Interesting groups character vector.}
+\item{interestingGroups}{\code{character} vector defining the groups of interest.}
 
 \item{severity}{How severe should the consequences of the assertion be?
 Either "\code{stop}", "\code{warning}", "\code{message}", or "\code{none}".}

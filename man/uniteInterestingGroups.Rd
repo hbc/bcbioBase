@@ -23,7 +23,7 @@ uniteInterestingGroups(object, ...)
 
 \item{...}{Additional arguments.}
 
-\item{interestingGroups}{Character vector of interesting groups.}
+\item{interestingGroups}{\code{character} vector defining the groups of interest.}
 }
 \value{
 Object of same class, containing a united \code{interestingGroups} column.

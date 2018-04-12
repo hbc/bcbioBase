@@ -103,7 +103,7 @@ prepareSummarizedExperiment <- function(
     # Legacy arguments =========================================================
     call <- match.call()
     if ("isSpike" %in% names(call)) {
-        warn("Use `spikeNames` instead of `isSpike`")
+        warning("Use `spikeNames` instead of `isSpike`")
         spikeNames <- call[["isSpike"]]
     }
 

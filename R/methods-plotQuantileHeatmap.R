@@ -6,6 +6,7 @@
 #'
 #' @inheritParams plotHeatmap
 #' @param n The number of breaks to create.
+#' @param legend Show the color legend.
 #'
 #' @return Show heatmap and invisibly return a `list` of the components.
 #'
