@@ -68,7 +68,6 @@ setMethod(
         object <- as.matrix(object)
         assertIsAnImplicitInteger(n)
         n <- as.integer(n)
-        assertFormalAnnotationCol(object, annotationCol)
         assert_is_a_bool(clusterCols)
         assert_is_a_bool(clusterRows)
         assertIsHexColorFunctionOrNULL(color)

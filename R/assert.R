@@ -18,6 +18,7 @@ NULL
 #' @author Michael Steinbaugh
 #' @inherit assert
 #'
+#' @param x Object supporting `dimnames`, such as a `matrix` or `data.frame`.
 #' @param sampleData Sample data.
 #'
 #' @export
