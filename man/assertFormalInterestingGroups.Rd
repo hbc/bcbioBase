@@ -23,9 +23,12 @@ is requested by the user.
 }
 \examples{
 assertFormalInterestingGroups(
-    x = colData(rse_bcb),
+    x = sampleData(rse_bcb),
     interestingGroups = "treatment"
 )
+}
+\seealso{
+Other Assert Check Functions: \code{\link{assertFormalAnnotationCol}}
 }
 \author{
 Michael Steinbaugh

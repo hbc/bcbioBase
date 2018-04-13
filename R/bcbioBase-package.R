@@ -58,6 +58,7 @@
 #' @importFrom assertive assert_is_an_integer
 #' @importFrom assertive assert_is_any_of
 #' @importFrom assertive assert_is_character
+#' @importFrom assertive assert_is_factor
 #' @importFrom assertive assert_is_identical_to_na
 #' @importFrom assertive assert_is_integer
 #' @importFrom assertive assert_is_list
@@ -68,7 +69,6 @@
 #' @importFrom assertive has_dims
 #' @importFrom assertive is_a_string
 #'
-#' @importFrom basejump assertFormalAnnotationCol
 #' @importFrom basejump assertHasRownames
 #' @importFrom basejump assertIsAnImplicitInteger
 #' @importFrom basejump assertIsAStringOrNULL
