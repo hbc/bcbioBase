@@ -68,6 +68,8 @@ Imports:
     viridis (>= 0.5)
 Suggests:
     testthat (>= 2.0)
+Remotes:
+    steinbaugh/basejump
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
