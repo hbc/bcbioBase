@@ -4,12 +4,35 @@ yaml <- readYAML("project-summary.yaml")
 
 
 
+# convertGenesToSymbols ========================================================
+test_that("convertGenesToSymbols", {
+    x <- convertGenesToSymbols(rse_bcb)
+    expect_identical(
+        head(rownames(x)),
+        c("Cox5a", "Comt", "Dazap2", "Rpl13", "Calm1", "Ddt")
+    )
+})
+
+test_that("convertGenesToSymbols : unmodified return", {
+    x <- convertGenesToSymbols(rse_dds)
+    expect_identical(rownames(x), rownames(rse_dds))
+})
+
+
+
 # gene2symbol ==================================================================
 test_that("gene2symbol", {
     x <- gene2symbol(rse_bcb)
     expect_is(x, "data.frame")
     expect_identical(colnames(x), c("geneID", "geneName"))
     expect_true(tibble::has_rownames(x))
+})
+
+test_that("gene2symbol : NULL return", {
+    expect_identical(
+        gene2symbol(rse_dds),
+        NULL
+    )
 })
 
 

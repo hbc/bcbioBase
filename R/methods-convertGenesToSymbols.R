@@ -1,6 +1,7 @@
 #' Convert Genes to Symbols
 #'
 #' @name convertGenesToSymbols
+#' @family Data Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

@@ -101,11 +101,13 @@ prepareSummarizedExperiment <- function(
     spikeNames = NULL
 ) {
     # Legacy arguments =========================================================
+    # nocov start
     call <- match.call()
     if ("isSpike" %in% names(call)) {
         warning("Use `spikeNames` instead of `isSpike`")
         spikeNames <- call[["isSpike"]]
     }
+    # nocov end
 
     # Assert checks ============================================================
     assert_is_any_of(assays, c("list", "ShallowSimpleListAssays", "SimpleList"))

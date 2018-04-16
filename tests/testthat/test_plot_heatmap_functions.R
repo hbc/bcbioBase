@@ -22,10 +22,15 @@ test_that("SummarizedExperiment", {
 
         # Test color and title support
         expect_silent(f(
-            object,
+            object = object,
             color = NULL,
             legendColor = NULL,
             title = NULL
+        ))
+        expect_silent(f(
+            object = object,
+            color = viridis,
+            legendColor = viridis
         ))
     }))
 })
