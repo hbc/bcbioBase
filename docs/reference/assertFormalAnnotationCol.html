@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sample Data — sampleData • bcbioBase</title>
+<title>Assert Formal Annotation Column — assertFormalAnnotationCol • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -27,9 +27,9 @@
 <script src="../pkgdown.js"></script>
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Sample Data — sampleData" />
+<meta property="og:title" content="Assert Formal Annotation Column — assertFormalAnnotationCol" />
 
-<meta property="og:description" content="Return the sample metadata. Columns are always sanitized to factor." />
+<meta property="og:description" content="Assert Formal Annotation Column" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -95,93 +95,58 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Sample Data</h1>
-    <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-sampleData.R'><code>R/methods-sampleData.R</code></a></small>
-    <div class="hidden name"><code>sampleData.Rd</code></div>
+    <h1>Assert Formal Annotation Column</h1>
+    <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/assert.R'><code>R/assert.R</code></a></small>
+    <div class="hidden name"><code>assertFormalAnnotationCol.Rd</code></div>
     </div>
 
     
-    <p>Return the sample metadata. Columns are always sanitized to factor.</p>
+    <p>Assert Formal Annotation Column</p>
     
 
-    <pre class="usage"><span class='fu'>sampleData</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='fu'>sampleData</span>(<span class='no'>object</span>, <span class='no'>...</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
-
-<span class='co'># S4 method for SummarizedExperiment</span>
-<span class='fu'>sampleData</span>(<span class='no'>object</span>, <span class='no'>interestingGroups</span>,
-  <span class='kw'>return</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"DataFrame"</span>, <span class='st'>"data.frame"</span>, <span class='st'>"kable"</span>))
-
-<span class='co'># S4 method for SummarizedExperiment</span>
-<span class='fu'>sampleData</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+    <pre class="usage"><span class='fu'>assertFormalAnnotationCol</span>(<span class='no'>x</span>, <span class='no'>sampleData</span>,
+  <span class='kw'>severity</span> <span class='kw'>=</span> <span class='fu'>getOption</span>(<span class='st'>"assertive.severity"</span>, <span class='st'>"stop"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
+      <th>x</th>
+      <td><p>Object supporting <code>dimnames</code>, such as a <code>matrix</code> or <code>data.frame</code>.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
+      <th>sampleData</th>
+      <td><p>Sample data.</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>Value to assign.</p></td>
-    </tr>
-    <tr>
-      <th>interestingGroups</th>
-      <td><p><code>character</code> vector defining the groups of interest.</p></td>
-    </tr>
-    <tr>
-      <th>return</th>
-      <td><p>Object class to return. Uses <code>match.arg()</code> internally and picks
-the first item in the vector by default.</p></td>
+      <th>severity</th>
+      <td><p>How severe should the consequences of the assertion be?
+Either "<code>stop</code>", "<code>warning</code>", "<code>message</code>", or "<code>none</code>".</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data describing the samples.</p>
+    <p>Silent on success, stop on failure.</p>
     
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>This is a complement to the standard <code>colData()</code> function, but improves
-support for accessing sample metadata for datasets where multiple items in
-the columns map to a single sample (e.g. cells for a single-cell RNA-seq
-experiment).</p>
+    <div class='dont-index'><p>Other Assert Check Functions: <code><a href='assertFormalInterestingGroups.html'>assertFormalInterestingGroups</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># SummarizedExperiment ====</span>
-<span class='fu'>sampleData</span>(<span class='no'>rse_dds</span>)</div><div class='output co'>#&gt; DataFrame with 12 rows and 1 column
-#&gt;          condition
-#&gt;           &lt;factor&gt;
-#&gt; sample1          A
-#&gt; sample2          A
-#&gt; sample3          A
-#&gt; sample4          A
-#&gt; sample5          A
-#&gt; ...            ...
-#&gt; sample8          B
-#&gt; sample9          B
-#&gt; sample10         B
-#&gt; sample11         B
-#&gt; sample12         B</div><div class='input'>
-<span class='co'># Assignment support</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>rse_dds</span>
-<span class='fu'>sampleData</span>(<span class='no'>x</span>)<span class='kw'>[[</span><span class='st'>"test"</span>]] <span class='kw'>&lt;-</span> <span class='fu'>seq_len</span>(<span class='fu'>ncol</span>(<span class='no'>x</span>))
-<span class='co'># `test` column should be now defined</span>
-<span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='fu'>sampleData</span>(<span class='no'>x</span>))</div><div class='output co'>#&gt; Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
-#&gt;   ..@ rownames       : chr [1:12] "sample1" "sample2" "sample3" "sample4" ...
-#&gt;   ..@ nrows          : int 12
-#&gt;   ..@ listData       :List of 2
-#&gt;   .. ..$ condition: Factor w/ 2 levels "A","B": 1 1 1 1 1 1 2 2 2 2 ...
-#&gt;   .. ..$ test     : Factor w/ 12 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
-#&gt;   ..@ elementType    : chr "ANY"
-#&gt;   ..@ elementMetadata: NULL
-#&gt;   ..@ metadata       : list()</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
+    <span class='st'>"sample_1"</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1L</span>, <span class='fl'>2L</span>),
+    <span class='st'>"sample_2"</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>3L</span>, <span class='fl'>4L</span>),
+    <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"gene_1"</span>, <span class='st'>"gene_2"</span>),
+    <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
+<span class='no'>sampleData</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
+    <span class='st'>"genotype"</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"wt"</span>, <span class='st'>"ko"</span>),
+    <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"sample_1"</span>, <span class='st'>"sample_2"</span>),
+    <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)
+<span class='fu'>assertFormalAnnotationCol</span>(<span class='no'>x</span>, <span class='no'>sampleData</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -190,7 +155,7 @@ experiment).</p>
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#note">Note</a></li>
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

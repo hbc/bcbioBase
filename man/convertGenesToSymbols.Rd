@@ -23,6 +23,11 @@ x <- convertGenesToSymbols(rse_bcb)
 show(x)
 head(rownames(x))
 }
+\seealso{
+Other Data Functions: \code{\link{flatFiles}},
+  \code{\link{gene2symbol}}, \code{\link{sampleDirs}},
+  \code{\link{uniteInterestingGroups}}
+}
 \author{
 Michael Steinbaugh
 }

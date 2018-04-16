@@ -26,8 +26,8 @@ Gene to Symbol Mappings
 gene2symbol(rse_bcb)
 }
 \seealso{
-Other Data Functions: \code{\link{flatFiles}},
-  \code{\link{sampleDirs}},
+Other Data Functions: \code{\link{convertGenesToSymbols}},
+  \code{\link{flatFiles}}, \code{\link{sampleDirs}},
   \code{\link{uniteInterestingGroups}}
 }
 \author{
