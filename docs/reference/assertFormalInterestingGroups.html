@@ -60,7 +60,7 @@ is requested by the user." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.2</span>
       </span>
     </div>
 
@@ -97,7 +97,7 @@ is requested by the user." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Interesting Groups Formal Assert Check</h1>
-    <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/assertFormalInterestingGroups.R'><code>R/assertFormalInterestingGroups.R</code></a></small>
+    <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/assert.R'><code>R/assert.R</code></a></small>
     <div class="hidden name"><code>assertFormalInterestingGroups.Rd</code></div>
     </div>
 
@@ -130,10 +130,14 @@ Either "<code>stop</code>", "<code>warning</code>", "<code>message</code>", or "
 
     <p>Silent, stop on error.</p>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other Assert Check Functions: <code><a href='assertFormalAnnotationCol.html'>assertFormalAnnotationCol</a></code></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>assertFormalInterestingGroups</span>(
-    <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>colData</span>(<span class='no'>rse_bcb</span>),
+    <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>sampleData</span>(<span class='no'>rse_bcb</span>),
     <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='st'>"treatment"</span>
 )</div></pre>
   </div>
@@ -143,6 +147,8 @@ Either "<code>stop</code>", "<code>warning</code>", "<code>message</code>", or "
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
