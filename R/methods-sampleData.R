@@ -41,9 +41,9 @@ setMethod(
     ) {
         validObject(object)
         return <- match.arg(return)
-
         data <- colData(object)
 
+        # Include `interestingGroups` column
         if (missing(interestingGroups)) {
             interestingGroups <- bcbioBase::interestingGroups(object)
             if (is.character(interestingGroups)) {
@@ -51,9 +51,7 @@ setMethod(
             }
         }
 
-        data <- sanitizeSampleData(data)
-        assertHasRownames(data)
-
+        # Return
         if (return == "kable") {
             blacklist <- c("description", "fileName", "sampleID")
             data %>%
