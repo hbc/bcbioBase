@@ -145,6 +145,7 @@ setMethod(
     "plotQuantileHeatmap",
     signature("SummarizedExperiment"),
     function(object, ...) {
+        object <- convertGenesToSymbols(object)
         annotationCol <- sampleData(object, interestingGroups = NULL)
         plotQuantileHeatmap(
             object = assay(object),
