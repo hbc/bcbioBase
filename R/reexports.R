@@ -42,6 +42,10 @@ tibble::tibble
 
 
 
+#' @importFrom viridis inferno
+#' @export
+viridis::inferno
+
 #' @importFrom viridis magma
 #' @export
 viridis::magma
