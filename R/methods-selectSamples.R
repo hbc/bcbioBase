@@ -18,7 +18,6 @@ NULL
 
 
 # Methods ======================================================================
-#' @importFrom assertive assert_is_atomic
 #' @rdname selectSamples
 #' @export
 setMethod(

@@ -57,6 +57,7 @@
 #' @importFrom assertive assert_is_all_of
 #' @importFrom assertive assert_is_an_integer
 #' @importFrom assertive assert_is_any_of
+#' @importFrom assertive assert_is_atomic
 #' @importFrom assertive assert_is_character
 #' @importFrom assertive assert_is_factor
 #' @importFrom assertive assert_is_identical_to_na
