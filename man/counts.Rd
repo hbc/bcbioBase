@@ -8,6 +8,9 @@
 \usage{
 \S4method{counts}{SummarizedExperiment}(object)
 }
+\arguments{
+\item{object}{Object.}
+}
 \description{
 Counts
 }

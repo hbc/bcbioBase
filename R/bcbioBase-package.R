@@ -9,7 +9,7 @@
 #' @importFrom GenomicRanges GRanges
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom S4Vectors as.data.frame cor mcols mcols<- metadata<-
-#' @importFrom SummarizedExperiment assay colData colData<- rowData
+#' @importFrom SummarizedExperiment assay assays colData colData<- rowData
 #'   SummarizedExperiment
 #' @importFrom basejump camel convertGenesToSymbols emptyRanges
 #'   localOrRemoteFile makeNames readFileByExtension removeNA sanitizeSampleData

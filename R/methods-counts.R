@@ -5,6 +5,8 @@
 #'
 #' @importFrom BiocGenerics counts
 #'
+#' @inheritParams general
+#'
 #' @examples
 #' # SummarizedExperiment ====
 #' x <- counts(rse_bcb)
