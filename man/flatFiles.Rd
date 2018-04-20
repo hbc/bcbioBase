@@ -31,6 +31,7 @@ names(x)
 \seealso{
 Other Data Functions: \code{\link{convertGenesToSymbols}},
   \code{\link{gene2symbol}}, \code{\link{sampleDirs}},
+  \code{\link{selectSamples}},
   \code{\link{uniteInterestingGroups}}
 }
 \author{

@@ -23,6 +23,7 @@ sampleDirs(uploadDir)
 \seealso{
 Other Data Functions: \code{\link{convertGenesToSymbols}},
   \code{\link{flatFiles}}, \code{\link{gene2symbol}},
+  \code{\link{selectSamples}},
   \code{\link{uniteInterestingGroups}}
 }
 \author{

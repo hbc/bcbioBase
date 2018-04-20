@@ -28,6 +28,7 @@ gene2symbol(rse_bcb)
 \seealso{
 Other Data Functions: \code{\link{convertGenesToSymbols}},
   \code{\link{flatFiles}}, \code{\link{sampleDirs}},
+  \code{\link{selectSamples}},
   \code{\link{uniteInterestingGroups}}
 }
 \author{

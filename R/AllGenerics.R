@@ -219,7 +219,7 @@ setGeneric(
 
 
 
-#' @rdname AllGenerics
+#' @rdname selectSamples
 #' @export
 setGeneric(
     "selectSamples",
