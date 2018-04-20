@@ -16,14 +16,14 @@ withoutMethods <- c(
     "plotDot",
     "plotGene",
     "plotQC",
-    "plotViolin",
-    "selectSamples"
+    "plotViolin"
 )
 
 test_that("S4 generics", {
     generics <- lapply(
         X = c(withMethods, withoutMethods),
-        FUN = get)
+        FUN = get
+    )
     expect_true(all(
         vapply(
             X = generics,
@@ -34,9 +34,7 @@ test_that("S4 generics", {
 })
 
 test_that("No methods defined", {
-    generics <- lapply(
-        X = withoutMethods,
-        FUN = get)
+    generics <- lapply(withoutMethods, get)
 
     methods <- vapply(
         X = withoutMethods,
@@ -44,7 +42,8 @@ test_that("No methods defined", {
             showMethods(x, printTo = FALSE) %>%
                 .[[2L]]
         },
-        FUN.VALUE = "character")
+        FUN.VALUE = "character"
+    )
     expect_true(all(grepl("<No methods>", methods)))
 
     invisible(lapply(
