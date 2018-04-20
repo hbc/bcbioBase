@@ -279,6 +279,15 @@ test_that("sampleYAMLMetrics : Fast mode", {
 
 
 
+# selectSamples ================================================================
+test_that("selectSamples : SummarizedExperiment", {
+    x <- selectSamples(rse_bcb, treatment = "folic_acid")
+    expect_identical(dim(x), c(500L, 3L))
+    expect_identical(names(assays(x)), "counts")
+})
+
+
+
 # uniteInterestingGroups =======================================================
 test_that("uniteInterestingGroups : Single interesting group", {
     x <- uniteInterestingGroups(mtcars, interestingGroups = "gear")
