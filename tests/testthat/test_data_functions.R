@@ -20,6 +20,14 @@ test_that("convertGenesToSymbols : unmodified return", {
 
 
 
+# counts =======================================================================
+test_that("counts", {
+    x <- counts(rse_bcb)
+    expect_is(x, "matrix")
+})
+
+
+
 # gene2symbol ==================================================================
 test_that("gene2symbol", {
     x <- gene2symbol(rse_bcb)
