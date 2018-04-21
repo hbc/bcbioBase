@@ -186,39 +186,6 @@ setGeneric(
 
 
 
-#' @rdname sampleYAML
-#' @export
-setGeneric(
-    "sampleYAML",
-    function(yaml, keys, ...) {
-        standardGeneric("sampleYAML")
-    }
-)
-
-
-
-#' @rdname sampleYAML
-#' @export
-setGeneric(
-    "sampleYAMLMetadata",
-    function(yaml, ...) {
-        standardGeneric("sampleYAMLMetadata")
-    }
-)
-
-
-
-#' @rdname sampleYAML
-#' @export
-setGeneric(
-    "sampleYAMLMetrics",
-    function(yaml, ...) {
-        standardGeneric("sampleYAMLMetrics")
-    }
-)
-
-
-
 #' @rdname selectSamples
 #' @export
 setGeneric(
