@@ -154,19 +154,30 @@ test_that("sampleDirs", {
 
 # readYAMLSampleData ===========================================================
 test_that("readYAMLSampleData", {
-    samples <- c("group1_1", "group1_2", "group2_1", "group2_2")
     x <- readYAMLSampleData("project-summary.yaml")
+    samples <- c("group1_1", "group1_2", "group2_1", "group2_2")
     expect_identical(
         x,
         data.frame(
-            sampleID = factor(samples, levels = samples),
-            sampleName = factor(samples, levels = samples),
-            description = factor(samples, levels = samples),
-            group = factor(
-                c("ctrl", "ctrl", "ko", "ko"),
-                levels = c("ctrl", "ko")
+            "sampleID" = samples,
+            "sampleName" = samples,
+            "description" = samples,
+            "genomeBuild" = "mm10",
+            "group" = c("ctrl", "ctrl", "ko", "ko"),
+            "samRef" = paste(
+                "",
+                "groups",
+                "bcbio",
+                "bcbio_dev",
+                "genomes",
+                "Mmusculus",
+                "mm10",
+                "seq",
+                "mm10.fa",
+                sep = "/"
             ),
-            row.names = samples
+            row.names = samples,
+            stringsAsFactors = TRUE
         )
     )
 })
