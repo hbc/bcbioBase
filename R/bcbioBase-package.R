@@ -12,11 +12,11 @@
 #' @importFrom SummarizedExperiment assay assays colData colData<- rowData
 #'   SummarizedExperiment
 #' @importFrom basejump camel convertGenesToSymbols emptyRanges fixNA
-#'   localOrRemoteFile makeNames readFileByExtension removeNA sanitizeSampleData
-#'   snake
+#'   localOrRemoteFile makeNames readFileByExtension readYAML removeNA
+#'   sanitizeSampleData snake
 #' @importFrom dendsort dendsort
-#' @importFrom dplyr arrange bind_rows group_by left_join mutate mutate_all
-#'   mutate_if select_if ungroup
+#' @importFrom dplyr arrange group_by mutate mutate_all mutate_if select_if
+#'   ungroup
 #' @importFrom grDevices colorRampPalette
 #' @importFrom knitr kable
 #' @importFrom magrittr %>% set_names set_rownames

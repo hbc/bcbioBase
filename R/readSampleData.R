@@ -86,7 +86,7 @@ readSampleData <- function(file, lanes = 1L) {
             tidyr::expand(
                 lane = paste0("L", str_pad(1L:lanes, 3L, pad = "0"))
             ) %>%
-            left_join(data, by = "description") %>%
+            merge(data, by = "description", all.x = TRUE) %>%
             ungroup() %>%
             # Ensure `description` and `sampleName` don't contain spaces
             # upon lane expansion
