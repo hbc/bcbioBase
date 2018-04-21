@@ -1,43 +1,17 @@
-context("Generics")
-
-withMethods <- c(
-    "interestingGroups",
-    "interestingGroups<-",
-    "sampleData",
-    "sampleData<-",
-    "sampleYAML",
-    "sampleYAMLMetadata",
-    "sampleYAMLMetrics"
-)
-withoutMethods <- c(
-    "bcbio",
-    "bcbio<-",
-    "metrics",
-    "plotDot",
-    "plotGene",
-    "plotQC",
-    "plotViolin"
-)
-
-test_that("S4 generics", {
-    generics <- lapply(
-        X = c(withMethods, withoutMethods),
-        FUN = get
-    )
-    expect_true(all(
-        vapply(
-            X = generics,
-            FUN = isS4,
-            FUN.VALUE = logical(1L)
-        )
-    ))
-})
+context("S4 Generics")
 
 test_that("No methods defined", {
-    generics <- lapply(withoutMethods, get)
-
+    s4 <- list(
+        bcbio,
+        `bcbio<-`,
+        metrics,
+        plotDot,
+        plotGene,
+        plotQC,
+        plotViolin
+    )
     methods <- vapply(
-        X = withoutMethods,
+        X = s4,
         FUN = function(x) {
             showMethods(x, printTo = FALSE) %>%
                 .[[2L]]
@@ -45,9 +19,8 @@ test_that("No methods defined", {
         FUN.VALUE = "character"
     )
     expect_true(all(grepl("<No methods>", methods)))
-
     invisible(lapply(
-        X = generics,
+        X = s4,
         FUN = function(x) {
             expect_error(
                 x(),
