@@ -36,32 +36,34 @@ plotQuantileHeatmap(object, ...)
 \item{object}{Object.}
 
 \item{...}{Passthrough arguments to \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}. The names of the
-arguments must be formatted in camel case, not snake case.}
+arguments should be formatted in camel case, not snake case.}
 
 \item{n}{The number of breaks to create.}
 
 \item{annotationCol}{\emph{Optional.} \code{data.frame} that defines annotation
 mappings for the columns.}
 
-\item{clusterCols}{Logical determining if columns should be arranged with
-hierarchical clustering. Alternatively, can define an \code{hclust} object.}
+\item{clusterCols}{\code{logical} determining if rows or columns
+should be arranged with hierarchical clustering. Alternatively, can define
+an \code{hclust} object.}
 
-\item{clusterRows}{Logical determining if rows should be arranged with
-hierarchical clustering. Alternatively, can define an \code{hclust} object.}
+\item{clusterRows}{\code{logical} determining if rows or columns
+should be arranged with hierarchical clustering. Alternatively, can define
+an \code{hclust} object.}
 
-\item{showColnames}{Show column names.}
+\item{showColnames}{Show row or column names.}
 
-\item{showRownames}{Show row names.}
+\item{showRownames}{Show row or column names.}
 
 \item{legend}{Show the color legend.}
 
-\item{color}{Colors to use for plot. Defaults to the \code{\link[=viridis]{viridis()}}
+\item{color}{Colors to use for plot. Defaults to the \code{\link[viridis:viridis]{viridis::viridis()}}
 palette.}
 
-\item{legendColor}{Colors to use for legend labels. Defaults to the
-\code{\link[=viridis]{viridis()}} palette.}
+\item{legendColor}{Colors to use for legend labels.}
 
-\item{borderColor}{Border color.}
+\item{borderColor}{\emph{Optional.} Border color. Disabled by default for
+improved aesthetics.}
 
 \item{title}{\emph{Optional.} Plot title.}
 }

@@ -14,13 +14,16 @@ selectSamples(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Additional arguments.}
+\item{...}{Selection arguments that map to the column names of
+\code{\link[=sampleData]{sampleData()}}. \code{atomic} values are supported. Avoid using \code{logical} or
+\code{numeric} indices (e.g. \code{\link[base:which]{base::which()}} calls) here, for improved code
+readability.}
 }
 \value{
 \code{SummarizedExperiment}.
 }
 \description{
-Select Samples
+Sample selection utility function designed for interactive use.
 }
 \examples{
 # SummarizedExperiment ====

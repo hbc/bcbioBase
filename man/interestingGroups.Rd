@@ -25,7 +25,7 @@ interestingGroups(object, ...) <- value
 \item{value}{Value to assign.}
 }
 \value{
-Character vector.
+\code{character}.
 }
 \description{
 Interesting Groups

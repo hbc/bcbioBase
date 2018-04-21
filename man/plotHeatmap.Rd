@@ -13,19 +13,22 @@
 plotHeatmap(object, ...)
 
 \S4method{plotHeatmap}{matrix}(object, scale = c("row", "column", "none"),
-  annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
-  showColnames = TRUE, showRownames = FALSE, color = viridis,
-  legendColor = NULL, borderColor = NULL, title = NULL, ...)
+  annotationCol = NULL, clusterRows = TRUE, clusterCols = TRUE,
+  showRownames = FALSE, showColnames = TRUE, treeheightRow = 0L,
+  treeheightCol = 50L, color = viridis, legendColor = NULL,
+  borderColor = NULL, title = NULL, ...)
 
 \S4method{plotHeatmap}{dgCMatrix}(object, scale = c("row", "column", "none"),
-  annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
-  showColnames = TRUE, showRownames = FALSE, color = viridis,
-  legendColor = NULL, borderColor = NULL, title = NULL, ...)
+  annotationCol = NULL, clusterRows = TRUE, clusterCols = TRUE,
+  showRownames = FALSE, showColnames = TRUE, treeheightRow = 0L,
+  treeheightCol = 50L, color = viridis, legendColor = NULL,
+  borderColor = NULL, title = NULL, ...)
 
 \S4method{plotHeatmap}{dgTMatrix}(object, scale = c("row", "column", "none"),
-  annotationCol = NULL, clusterCols = TRUE, clusterRows = TRUE,
-  showColnames = TRUE, showRownames = FALSE, color = viridis,
-  legendColor = NULL, borderColor = NULL, title = NULL, ...)
+  annotationCol = NULL, clusterRows = TRUE, clusterCols = TRUE,
+  showRownames = FALSE, showColnames = TRUE, treeheightRow = 0L,
+  treeheightCol = 50L, color = viridis, legendColor = NULL,
+  borderColor = NULL, title = NULL, ...)
 
 \S4method{plotHeatmap}{SummarizedExperiment}(object, ...)
 }
@@ -33,32 +36,31 @@ plotHeatmap(object, ...)
 \item{object}{Object.}
 
 \item{...}{Passthrough arguments to \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}. The names of the
-arguments must be formatted in camel case, not snake case.}
+arguments should be formatted in camel case, not snake case.}
 
-\item{scale}{Character indicating if the values should be centered and scaled
-in either the row direction or the column direction, or none. Corresponding
-values are "row", "column" and "none".}
+\item{scale}{\code{character} indicating whether the values should be centered and
+scaled in either the row or column direction ("\code{row}", "\code{column}"), or
+remain unscaled ("\code{none}").}
 
 \item{annotationCol}{\emph{Optional.} \code{data.frame} that defines annotation
 mappings for the columns.}
 
-\item{clusterCols}{Logical determining if columns should be arranged with
-hierarchical clustering. Alternatively, can define an \code{hclust} object.}
+\item{clusterRows, clusterCols}{\code{logical} determining if rows or columns
+should be arranged with hierarchical clustering. Alternatively, can define
+an \code{hclust} object.}
 
-\item{clusterRows}{Logical determining if rows should be arranged with
-hierarchical clustering. Alternatively, can define an \code{hclust} object.}
+\item{showRownames, showColnames}{Show row or column names.}
 
-\item{showColnames}{Show column names.}
+\item{treeheightRow, treeheightCol}{Size of the row and column dendrograms.
+Use "\code{0}" to disable.}
 
-\item{showRownames}{Show row names.}
-
-\item{color}{Colors to use for plot. Defaults to the \code{\link[=viridis]{viridis()}}
+\item{color}{Colors to use for plot. Defaults to the \code{\link[viridis:viridis]{viridis::viridis()}}
 palette.}
 
-\item{legendColor}{Colors to use for legend labels. Defaults to the
-\code{\link[=viridis]{viridis()}} palette.}
+\item{legendColor}{Colors to use for legend labels.}
 
-\item{borderColor}{Border color.}
+\item{borderColor}{\emph{Optional.} Border color. Disabled by default for
+improved aesthetics.}
 
 \item{title}{\emph{Optional.} Plot title.}
 }

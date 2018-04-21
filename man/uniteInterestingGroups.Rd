@@ -26,12 +26,12 @@ uniteInterestingGroups(object, ...)
 \item{interestingGroups}{\code{character} vector defining the groups of interest.}
 }
 \value{
-Object of same class, containing a united \code{interestingGroups} column.
+Data frame, now containing an \code{interestingGroups} column.
 }
 \description{
 Create a single interesting groups column ("\code{interestingGroups}") used for
 coloring in plots. When multiple interesting groups are present, unite into a
-single column, delimited by "\code{:}".
+single column, delimited by a colon.
 
 Methods =====================================================================
 }
