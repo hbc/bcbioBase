@@ -220,6 +220,13 @@ test_that("sampleYAMLMetadata", {
     )
 })
 
+test_that("sampleYAML : nested metadata", {
+    # Using Kayleigh's bcbio example
+    yaml <- suppressWarnings(readYAML("project-summary-nested-metadata.yaml"))
+    x <- sampleYAMLMetadata(yaml)
+    expect_is(x, "data.frame")
+})
+
 
 
 # sampleYAMLMetrics ============================================================
