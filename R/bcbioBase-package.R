@@ -11,7 +11,7 @@
 #' @importFrom S4Vectors as.data.frame cor mcols mcols<- metadata<-
 #' @importFrom SummarizedExperiment assay assays colData colData<- rowData
 #'   SummarizedExperiment
-#' @importFrom basejump camel convertGenesToSymbols emptyRanges
+#' @importFrom basejump camel convertGenesToSymbols emptyRanges fixNA
 #'   localOrRemoteFile makeNames readFileByExtension removeNA sanitizeSampleData
 #'   snake
 #' @importFrom dendsort dendsort
