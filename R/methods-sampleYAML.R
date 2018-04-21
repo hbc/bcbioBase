@@ -139,7 +139,8 @@ setMethod(
             mutate_if(numericAsCharacter, as.numeric) %>%
             mutate_if(is.character, as.factor) %>%
             column_to_rownames() %>%
-            # Drop any metadata columns
+            # Drop any metadata columns. Note we're also dropping the duplicate
+            # `name` column present in the metrics YAML.
             .[,
               sort(setdiff(
                   x = colnames(.),
