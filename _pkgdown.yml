@@ -11,11 +11,13 @@ authors:
 reference:
   - title: Data Functions
     contents:
+    - counts
     - starts_with("convert")
     - flatFiles
     - gene2symbol
     - interestingGroups
     - starts_with("sample")
+    - starts_with("select")
     - uniteInterestingGroups
   - title: Plot Functions
     contents:

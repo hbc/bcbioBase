@@ -2,7 +2,7 @@
 #'
 #' Create a single interesting groups column ("`interestingGroups`") used for
 #' coloring in plots. When multiple interesting groups are present, unite into a
-#' single column, delimited by "`:`".
+#' single column, delimited by a colon.
 #'
 #' @name uniteInterestingGroups
 #' @family Data Functions
@@ -11,7 +11,7 @@
 #' @inheritParams general
 #' @param object Object containing interesting groups in multiple columns.
 #'
-#' @return Object of same class, containing a united `interestingGroups` column.
+#' @return Data frame, now containing an `interestingGroups` column.
 #' @export
 #'
 #' @examples

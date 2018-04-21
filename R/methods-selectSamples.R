@@ -1,10 +1,16 @@
 #' Select Samples
 #'
+#' Sample selection utility function designed for interactive use.
+#'
 #' @name selectSamples
 #' @family Data Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
+#' @param ... Selection arguments that map to the column names of
+#'   [sampleData()]. `atomic` values are supported. Avoid using `logical` or
+#'   `numeric` indices (e.g. [base::which()] calls) here, for improved code
+#'   readability.
 #'
 #' @return `SummarizedExperiment`.
 #'

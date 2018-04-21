@@ -7,6 +7,8 @@
 #'
 #' @inheritParams general
 #'
+#' @return `matrix`.
+#'
 #' @examples
 #' # SummarizedExperiment ====
 #' x <- counts(rse_bcb)
