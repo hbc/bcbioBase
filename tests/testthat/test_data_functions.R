@@ -1,7 +1,5 @@
 context("Data Functions")
 
-yaml <- readYAML("project-summary.yaml")
-
 
 
 # convertGenesToSymbols ========================================================
@@ -154,59 +152,12 @@ test_that("sampleDirs", {
 
 
 
-# sampleYAML ===================================================================
-test_that("sampleYAML", {
-    expect_identical(
-        sampleYAML(yaml, "metadata"),
-        tibble(
-            "description" = c(
-                "group1_1",
-                "group1_2",
-                "group2_1",
-                "group2_2"
-            ),
-            "group" = c(
-                "ctrl",
-                "ctrl",
-                "ko",
-                "ko"
-            )
-        )
-    )
-})
-
-test_that("sampleYAML : Invalid parameters", {
-    expect_error(
-        sampleYAML(yaml = list(), keys = "metadata"),
-        "is_non_empty : yaml has length 0."
-    )
-    # Primary key failure
-    expect_error(
-        sampleYAML(yaml, keys = "XXX"),
-        paste(
-            "is_subset :",
-            "The element 'XXX' in keys\\[\\[1L\\]\\] is not in",
-            "names\\(yaml\\[\\[1L\\]\\]\\)."
-        )
-    )
-    # Secondary key failure
-    expect_error(
-        sampleYAML(yaml, keys = c("summary", "XXX")),
-        paste(
-            "is_subset :",
-            "The element 'XXX' in keys\\[\\[2L\\]\\] is not in",
-            "names\\(yaml\\[\\[1L\\]\\]\\[\\[keys\\[\\[1L\\]\\]\\]\\]\\)."
-        )
-    )
-})
-
-
-
-# sampleYAMLMetadata ===========================================================
-test_that("sampleYAMLMetadata", {
+# readYAMLSampleData ===========================================================
+test_that("readYAMLSampleData", {
     samples <- c("group1_1", "group1_2", "group2_1", "group2_2")
+    x <- readYAMLSampleData("project-summary.yaml")
     expect_identical(
-        sampleYAMLMetadata(yaml),
+        x,
         data.frame(
             sampleID = factor(samples, levels = samples),
             sampleName = factor(samples, levels = samples),
@@ -220,10 +171,11 @@ test_that("sampleYAMLMetadata", {
     )
 })
 
-test_that("sampleYAML : nested metadata", {
-    # Using Kayleigh's bcbio example
-    yaml <- suppressWarnings(readYAML("project-summary-nested-metadata.yaml"))
-    x <- sampleYAMLMetadata(yaml)
+test_that("readYAMLSampleData : nested metadata", {
+    # Testing against Kayleigh's example
+    x <- suppressWarnings(
+        readYAMLSampleData("project-summary-nested-metadata.yaml")
+    )
     expect_is(x, "data.frame")
 })
 
@@ -264,30 +216,30 @@ test_that("sampleYAMLMetrics : Fast mode", {
     fastmode <- "Fast mode detected: No sample metrics were calculated"
 
     # Subset to only include the first sample
-    single <- yaml
-    single[["samples"]] <- head(single[["samples"]], 1L)
+    x <- yaml
+    x[["samples"]] <- head(x[["samples"]], 1L)
 
     # NULL metrics
-    nullmetrics <- single
-    nullmetrics[["samples"]][[1L]][["summary"]][["metrics"]] <- NULL
+    null <- x
+    null[["samples"]][[1L]][["summary"]][["metrics"]] <- NULL
     expect_warning(
-        sampleYAMLMetrics(nullmetrics),
+        sampleYAMLMetrics(null),
         fastmode
     )
     expect_identical(
-        suppressWarnings(sampleYAMLMetrics(nullmetrics)),
+        suppressWarnings(sampleYAMLMetrics(null)),
         NULL
     )
 
     # Empty metrics
-    emptymetrics <- single
-    emptymetrics[["samples"]][[1L]][["summary"]][["metrics"]] <- list()
+    empty <- x
+    empty[["samples"]][[1L]][["summary"]][["metrics"]] <- list()
     expect_warning(
-        sampleYAMLMetrics(emptymetrics),
+        sampleYAMLMetrics(empty),
         fastmode
     )
     expect_identical(
-        suppressWarnings(sampleYAMLMetrics(emptymetrics)),
+        suppressWarnings(sampleYAMLMetrics(empty)),
         NULL
     )
 })

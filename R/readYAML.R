@@ -73,11 +73,15 @@ yamlFlatCols <- c("description", "genome_build", "sam_ref")
     nested <- lapply(yaml, function(x) {
         x <- x[[keys]]
         assert_is_non_empty(x)
-        # Coerce nested elements to string, if necessary.
-        # Consider adding a warning here about this behavior for metadata.
+
         x <- lapply(x, function(x) {
             if (length(x) > 1L) {
-                toString(x)
+                # Detect and coerce nested metadata back to a string, if
+                # necessary. bcbio allows nesting with a semicolon delimiter.
+                # Warn the user here about discouraging with R data.
+                # http://bit.ly/2Je1xgO
+                warning("Nested sample metadata detected")
+                paste(x, collapse = "; ")
             } else {
                 x
             }
