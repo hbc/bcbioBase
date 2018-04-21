@@ -15,18 +15,21 @@ plotCorrelationHeatmap(object, ...)
 
 \S4method{plotCorrelationHeatmap}{matrix}(object, method = c("pearson",
   "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  color = viridis, legendColor = NULL, borderColor = NULL, title = TRUE,
-  ...)
+  showRownames = TRUE, showColnames = TRUE, treeheightRow = 0L,
+  treeheightCol = 50L, color = viridis, legendColor = NULL,
+  borderColor = NULL, title = TRUE, ...)
 
 \S4method{plotCorrelationHeatmap}{dgCMatrix}(object, method = c("pearson",
   "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  color = viridis, legendColor = NULL, borderColor = NULL, title = TRUE,
-  ...)
+  showRownames = TRUE, showColnames = TRUE, treeheightRow = 0L,
+  treeheightCol = 50L, color = viridis, legendColor = NULL,
+  borderColor = NULL, title = TRUE, ...)
 
 \S4method{plotCorrelationHeatmap}{dgTMatrix}(object, method = c("pearson",
   "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  color = viridis, legendColor = NULL, borderColor = NULL, title = TRUE,
-  ...)
+  showRownames = TRUE, showColnames = TRUE, treeheightRow = 0L,
+  treeheightCol = 50L, color = viridis, legendColor = NULL,
+  borderColor = NULL, title = TRUE, ...)
 
 \S4method{plotCorrelationHeatmap}{SummarizedExperiment}(object, ...)
 }
@@ -45,6 +48,16 @@ Defaults to "\code{pearson}" but "\code{spearman}" can also be used. Consult the
 
 \item{annotationCol}{\emph{Optional.} \code{data.frame} that defines annotation
 mappings for the columns.}
+
+\item{showRownames}{Show row or column names.}
+
+\item{showColnames}{Show row or column names.}
+
+\item{treeheightRow}{Size of the row and column dendrograms.
+Use "\code{0}" to disable.}
+
+\item{treeheightCol}{Size of the row and column dendrograms.
+Use "\code{0}" to disable.}
 
 \item{color}{Colors to use for plot. Defaults to the \code{\link[viridis:viridis]{viridis::viridis()}}
 palette.}

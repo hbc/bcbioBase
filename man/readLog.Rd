@@ -10,7 +10,7 @@ readLog(file)
 \item{file}{File path.}
 }
 \value{
-Character vector.
+\code{character}.
 }
 \description{
 Read Log File

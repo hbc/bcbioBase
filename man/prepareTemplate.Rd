@@ -18,7 +18,7 @@ No value.
 }
 \description{
 If the required template dependency files aren't present, download latest
-versions from the package website. \emph{Existing files are never overwritten.}
+versions from the package website. Existing files are never overwritten.
 }
 \details{
 By default, this function will create local copies of these files:

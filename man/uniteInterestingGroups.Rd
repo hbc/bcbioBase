@@ -32,8 +32,6 @@ Data frame, now containing an \code{interestingGroups} column.
 Create a single interesting groups column ("\code{interestingGroups}") used for
 coloring in plots. When multiple interesting groups are present, unite into a
 single column, delimited by a colon.
-
-Methods =====================================================================
 }
 \examples{
 x <- uniteInterestingGroups(
