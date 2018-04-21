@@ -181,8 +181,8 @@ test_that("readYAMLSampleData : nested metadata", {
 
 
 
-# sampleYAMLMetrics ============================================================
-test_that("sampleYAMLMetrics", {
+# readYAMLSampleMetrics ========================================================
+test_that("readYAMLSampleMetrics", {
     classChecks <- list(
         "averageInsertSize" = "numeric",
         "duplicates" = "numeric",
@@ -198,50 +198,17 @@ test_that("sampleYAMLMetrics", {
         "sequenceLength" = "factor",
         "sequencesFlaggedAsPoorQuality" = "numeric",
         "totalReads" = "numeric",
-        "x5x3Bias" = "numeric",  # 5'3 now sanitized to 5x3 in camel
+        "x5x3Bias" = "numeric",
         "xGC" = "numeric"
     )
 
-    x <- sampleYAMLMetrics(yaml)
+    x <- readYAMLSampleMetrics("project-summary.yaml")
     expect_identical(lapply(x, class), classChecks)
 
     # Check for proper handling of metrics with mismatched number of values
-    yaml <- readYAML("project-summary-metrics-mismatch.yaml")
-    x <- sampleYAMLMetrics(yaml)
+    x <- readYAMLSampleMetrics("project-summary-metrics-mismatch.yaml")
     classChecks[["sequenceLength"]] <- "numeric"
     expect_identical(lapply(x, class), classChecks)
-})
-
-test_that("sampleYAMLMetrics : Fast mode", {
-    fastmode <- "Fast mode detected: No sample metrics were calculated"
-
-    # Subset to only include the first sample
-    x <- yaml
-    x[["samples"]] <- head(x[["samples"]], 1L)
-
-    # NULL metrics
-    null <- x
-    null[["samples"]][[1L]][["summary"]][["metrics"]] <- NULL
-    expect_warning(
-        sampleYAMLMetrics(null),
-        fastmode
-    )
-    expect_identical(
-        suppressWarnings(sampleYAMLMetrics(null)),
-        NULL
-    )
-
-    # Empty metrics
-    empty <- x
-    empty[["samples"]][[1L]][["summary"]][["metrics"]] <- list()
-    expect_warning(
-        sampleYAMLMetrics(empty),
-        fastmode
-    )
-    expect_identical(
-        suppressWarnings(sampleYAMLMetrics(empty)),
-        NULL
-    )
 })
 
 
