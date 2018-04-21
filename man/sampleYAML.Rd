@@ -31,7 +31,7 @@ sampleYAMLMetrics(yaml, ...)
 \item{...}{Additional arguments.}
 }
 \value{
-\code{tbl_df}.
+\code{data.frame}.
 }
 \description{
 Sample YAML Metadata

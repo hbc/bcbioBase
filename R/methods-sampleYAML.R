@@ -13,7 +13,7 @@
 #'   counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
 #'   output the same metrics into the YAML.
 #'
-#' @return `tbl_df`.
+#' @return `data.frame`.
 #'
 #' @examples
 #' yaml <- basejump::readYAML(
@@ -56,39 +56,43 @@ setMethod(
             )
         }
 
-        data <- lapply(yaml, function(sample) {
+        list <- lapply(yaml, function(x) {
             # Always get the sample description
-            assert_is_character(sample[["description"]])
-            description <- sample[["description"]]
+            description <- x[["description"]]
+            assert_is_character(description)
+            assert_is_non_empty(description)
 
-            # Fix NULL batch and phenotype values found in metadata
-            if (rev(keys)[[1L]] == "metadata") {
-                if (is.null(sample[[keys]][["batch"]])) {
-                    sample[[keys]][["batch"]] <- NA
-                }
-                if (length(sample[[keys]][["phenotype"]])) {
-                    if (grepl("^$", sample[[keys]][["phenotype"]])) {
-                        sample[[keys]][["phenotype"]] <- NA
-                    }
+            x <- x[[keys]]
+            # Always sanitize names to camel case
+            x <- camel(x)
+            x[["description"]] <- description
+
+            if (identical(keys, "metadata")) {
+                if (identical(x[["phenotype"]], "")) {
+                    x[["phenotype"]] <- NULL
                 }
             }
 
-            unlist <- unlist(sample[[keys]])
-            names(unlist) <- camel(names(unlist))
-            # Add back the description
-            unlist <- c(description = description, unlist)
-            unlist
+            # Coerce nested elements to string, if necessary.
+            # Consider adding a warning here about this behavior for metadata.
+            x <- lapply(x, function(x) {
+                if (length(x) > 1L) {
+                    toString(x)
+                } else {
+                    x
+                }
+            })
+
+            # Remove any `NULL` items
+            Filter(Negate(is.null), x)
         })
 
-        # Use this method to handle an uneven number of lengths.
-        # This can happen for sample metrics values that vary in lengths per sample.
-        dflist <- lapply(data, function(x) {
-            as_tibble(t(x), stringsAsFactors = FALSE)
-        })
-
-        bind_rows(dflist) %>%
+        # Use this method to coerce a list with uneven lengths
+        ldply(list, data.frame, stringsAsFactors = FALSE) %>%
             removeNA() %>%
-            arrange(!!sym("description"))
+            .[, sort(colnames(.))] %>%
+            arrange(!!sym("description")) %>%
+            set_rownames(.[["description"]])
     }
 )
 
@@ -113,11 +117,9 @@ setMethod(
     "sampleYAMLMetrics",
     signature("list"),
     function(yaml) {
-        # Early return on NULL metrics (fast mode)
-        fastMode <- "Fast mode detected: No sample metrics were calculated"
-
+        # Early return on `NULL` metrics (fast mode)
         if (is.null(yaml[["samples"]][[1L]][["summary"]][["metrics"]])) {
-            warning(fastMode)
+            warning("Fast mode detected: No sample metrics were calculated")
             return(NULL)
         }
 
@@ -125,12 +127,6 @@ setMethod(
             yaml = yaml,
             keys = c("summary", "metrics")
         )
-        assert_is_tbl(data)
-
-        if (identical(colnames(data), "description")) {
-            warning(fastMode)
-            return(NULL)
-        }
 
         # Fix numerics set as characters
         numericAsCharacter <- function(x) {
@@ -138,11 +134,11 @@ setMethod(
         }
 
         data %>%
+            rownames_to_column() %>%
             mutate_if(is.factor, as.character) %>%
             mutate_if(numericAsCharacter, as.numeric) %>%
             mutate_if(is.character, as.factor) %>%
-            as.data.frame %>%
-            set_rownames(makeNames(.[["description"]], unique = TRUE)) %>%
+            column_to_rownames() %>%
             # Drop any metadata columns
             .[,
               sort(setdiff(

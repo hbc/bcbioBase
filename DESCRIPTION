@@ -56,6 +56,7 @@ Imports:
     magrittr (>= 1.5),
     methods,
     pheatmap (>= 1.0),
+    plyr (>= 1.8),
     rdrop2 (>= 0.8),
     readr (>= 1.1),
     rlang (>= 0.2),

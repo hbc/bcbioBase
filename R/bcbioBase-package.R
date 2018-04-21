@@ -22,6 +22,7 @@
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom methods .hasSlot as formalArgs getMethod is slotNames validObject
 #' @importFrom pheatmap pheatmap
+#' @importFrom plyr ldply
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
 #'   drop_get_metadata drop_share drop_upload
 #' @importFrom readr read_csv read_lines
