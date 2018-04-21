@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Copy Files to Dropbox — copyToDropbox • bcbioBase</title>
+<title>Counts — counts • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -29,9 +29,9 @@
 <script src="../pkgdown.js"></script>
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Copy Files to Dropbox — copyToDropbox" />
+<meta property="og:title" content="Counts — counts" />
 
-<meta property="og:description" content="Copy Files to Dropbox" />
+<meta property="og:description" content="Counts" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -97,45 +97,48 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Copy Files to Dropbox</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/copyToDropbox.R'><code>R/copyToDropbox.R</code></a></small>
-    <div class="hidden name"><code>copyToDropbox.Rd</code></div>
+    <h1>Counts</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-counts.R'><code>R/methods-counts.R</code></a></small>
+    <div class="hidden name"><code>counts.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Copy Files to Dropbox</p>
+    <p>Counts</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>copyToDropbox</span>(<span class='no'>files</span>, <span class='no'>dir</span>, <span class='kw'>rdsToken</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='co'># S4 method for SummarizedExperiment</span>
+<span class='fu'>counts</span>(<span class='no'>object</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>files</th>
-      <td><p>Local file paths.</p></td>
-    </tr>
-    <tr>
-      <th>dir</th>
-      <td><p>Relative path of remote Dropbox directory.</p></td>
-    </tr>
-    <tr>
-      <th>rdsToken</th>
-      <td><p>RDS file token to use for Dropbox authentication.</p></td>
+      <th>object</th>
+      <td><p>Object.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Invisible <code>list</code> of rdrop2 output.</p>
+    <p><code>matrix</code>.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other Data Functions: <code><a href='convertGenesToSymbols.html'>convertGenesToSymbols</a></code>,
+  <code>flatFiles</code>, <code>gene2symbol</code>,
+  <code><a href='sampleDirs.html'>sampleDirs</a></code>, <code>selectSamples</code>,
+  <code>uniteInterestingGroups</code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>copyToDropbox</span>(<span class='kw'>files</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"raw_counts.csv"</span>, <span class='st'>"tpm.csv"</span>), <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"counts"</span>)
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'><span class='co'># SummarizedExperiment ====</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>counts</span>(<span class='no'>rse_bcb</span>)
+<span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;  num [1:500, 1:6] 1928 1006 2904 832 1705 ...
+#&gt;  - attr(*, "dimnames")=List of 2
+#&gt;   ..$ : chr [1:500] "ENSMUSG00000000088" "ENSMUSG00000000326" "ENSMUSG00000000346" "ENSMUSG00000000740" ...
+#&gt;   ..$ : chr [1:6] "control_rep1" "control_rep2" "control_rep3" "fa_day7_rep1" ...</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -143,13 +146,11 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
-
-    <h2>Author</h2>
-    
-Michael Steinbaugh, Victor Barerra, John Hutchinson
 
   </div>
 </div>

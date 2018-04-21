@@ -21,6 +21,8 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
@@ -59,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.4</span>
       </span>
     </div>
 
@@ -96,33 +98,38 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot Correlation Heatmap</h1>
-    <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-plotCorrelationHeatmap.R'><code>R/methods-plotCorrelationHeatmap.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-plotCorrelationHeatmap.R'><code>R/methods-plotCorrelationHeatmap.R</code></a></small>
     <div class="hidden name"><code>plotCorrelationHeatmap.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Construct a correlation heatmap comparing the columns of the matrix.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for matrix</span>
 <span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>object</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"pearson"</span>,
   <span class='st'>"spearman"</span>), <span class='kw'>clusteringMethod</span> <span class='kw'>=</span> <span class='st'>"ward.D2"</span>, <span class='kw'>annotationCol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>viridis</span>, <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>)
+  <span class='kw'>showRownames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>showColnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>treeheightRow</span> <span class='kw'>=</span> <span class='fl'>0L</span>,
+  <span class='kw'>treeheightCol</span> <span class='kw'>=</span> <span class='fl'>50L</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>viridis</span>, <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for dgCMatrix</span>
 <span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>object</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"pearson"</span>,
   <span class='st'>"spearman"</span>), <span class='kw'>clusteringMethod</span> <span class='kw'>=</span> <span class='st'>"ward.D2"</span>, <span class='kw'>annotationCol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>viridis</span>, <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>)
+  <span class='kw'>showRownames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>showColnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>treeheightRow</span> <span class='kw'>=</span> <span class='fl'>0L</span>,
+  <span class='kw'>treeheightCol</span> <span class='kw'>=</span> <span class='fl'>50L</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>viridis</span>, <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for dgTMatrix</span>
 <span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>object</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"pearson"</span>,
   <span class='st'>"spearman"</span>), <span class='kw'>clusteringMethod</span> <span class='kw'>=</span> <span class='st'>"ward.D2"</span>, <span class='kw'>annotationCol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>viridis</span>, <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>)
+  <span class='kw'>showRownames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>showColnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>treeheightRow</span> <span class='kw'>=</span> <span class='fl'>0L</span>,
+  <span class='kw'>treeheightCol</span> <span class='kw'>=</span> <span class='fl'>50L</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>viridis</span>, <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for SummarizedExperiment</span>
 <span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
@@ -137,7 +144,7 @@
     <tr>
       <th>...</th>
       <td><p>Passthrough arguments to <code><a href='http://www.rdocumentation.org/packages/pheatmap/topics/pheatmap'>pheatmap::pheatmap()</a></code>. The names of the
-arguments must be formatted in camel case, not snake case.</p></td>
+arguments should be formatted in camel case, not snake case.</p></td>
     </tr>
     <tr>
       <th>method</th>
@@ -156,18 +163,36 @@ Defaults to "<code>pearson</code>" but "<code>spearman</code>" can also be used.
 mappings for the columns.</p></td>
     </tr>
     <tr>
+      <th>showRownames</th>
+      <td><p>Show row or column names.</p></td>
+    </tr>
+    <tr>
+      <th>showColnames</th>
+      <td><p>Show row or column names.</p></td>
+    </tr>
+    <tr>
+      <th>treeheightRow</th>
+      <td><p>Size of the row and column dendrograms.
+Use "<code>0</code>" to disable.</p></td>
+    </tr>
+    <tr>
+      <th>treeheightCol</th>
+      <td><p>Size of the row and column dendrograms.
+Use "<code>0</code>" to disable.</p></td>
+    </tr>
+    <tr>
       <th>color</th>
-      <td><p>Colors to use for plot. Defaults to the <code><a href='http://www.rdocumentation.org/packages/viridisLite/topics/viridis'>viridis()</a></code>
+      <td><p>Colors to use for plot. Defaults to the <code><a href='http://www.rdocumentation.org/packages/viridis/topics/reexports'>viridis::viridis()</a></code>
 palette.</p></td>
     </tr>
     <tr>
       <th>legendColor</th>
-      <td><p>Colors to use for legend labels. Defaults to the
-<code><a href='http://www.rdocumentation.org/packages/viridisLite/topics/viridis'>viridis()</a></code> palette.</p></td>
+      <td><p>Colors to use for legend labels.</p></td>
     </tr>
     <tr>
       <th>borderColor</th>
-      <td><p>Border color.</p></td>
+      <td><p><em>Optional.</em> Border color. Disabled by default for
+improved aesthetics.</p></td>
     </tr>
     <tr>
       <th>title</th>

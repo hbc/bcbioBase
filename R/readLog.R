@@ -5,7 +5,7 @@
 #'
 #' @inheritParams general
 #'
-#' @return Character vector.
+#' @return `character`.
 #' @export
 #'
 #' @examples

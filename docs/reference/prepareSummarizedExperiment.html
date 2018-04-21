@@ -21,6 +21,8 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
@@ -61,7 +63,7 @@ automatic handling of FASTA spike-ins." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.4</span>
       </span>
     </div>
 
@@ -98,15 +100,17 @@ automatic handling of FASTA spike-ins." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Prepare Summarized Experiment</h1>
-    <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/prepareSummarizedExperiment.R'><code>R/prepareSummarizedExperiment.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/prepareSummarizedExperiment.R'><code>R/prepareSummarizedExperiment.R</code></a></small>
     <div class="hidden name"><code>prepareSummarizedExperiment.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>This is a utility wrapper for <code><a href='http://www.rdocumentation.org/packages/SummarizedExperiment/topics/RangedSummarizedExperiment-class'>SummarizedExperiment::SummarizedExperiment()</a></code>
 that provides automatic subsetting for row and column data. It also provides
 automatic handling of FASTA spike-ins.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>prepareSummarizedExperiment</span>(<span class='no'>assays</span>, <span class='kw'>rowRanges</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>colData</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>metadata</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>transgeneNames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>spikeNames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>

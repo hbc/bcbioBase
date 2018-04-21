@@ -1,7 +1,7 @@
 #' Prepare R Markdown Template File
 #'
 #' If the required template dependency files aren't present, download latest
-#' versions from the package website. *Existing files are never overwritten.*
+#' versions from the package website. Existing files are never overwritten.
 #'
 #' By default, this function will create local copies of these files:
 #'
