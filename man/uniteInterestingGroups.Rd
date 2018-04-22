@@ -26,14 +26,12 @@ uniteInterestingGroups(object, ...)
 \item{interestingGroups}{\code{character} vector defining the groups of interest.}
 }
 \value{
-Object of same class, containing a united \code{interestingGroups} column.
+Data frame, now containing an \code{interestingGroups} column.
 }
 \description{
 Create a single interesting groups column ("\code{interestingGroups}") used for
 coloring in plots. When multiple interesting groups are present, unite into a
-single column, delimited by "\code{:}".
-
-Methods =====================================================================
+single column, delimited by a colon.
 }
 \examples{
 x <- uniteInterestingGroups(
@@ -44,8 +42,9 @@ x[, "interestingGroups"]
 }
 \seealso{
 Other Data Functions: \code{\link{convertGenesToSymbols}},
-  \code{\link{flatFiles}}, \code{\link{gene2symbol}},
-  \code{\link{sampleDirs}}
+  \code{\link{counts}}, \code{\link{flatFiles}},
+  \code{\link{gene2symbol}}, \code{\link{sampleDirs}},
+  \code{\link{selectSamples}}
 }
 \author{
 Michael Steinbaugh

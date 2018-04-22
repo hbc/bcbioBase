@@ -38,4 +38,25 @@ readSampleMetadataFile <- function(...) {
     readSampleData(...)
 }
 
+
+
+# v0.2.4 =======================================================================
+#' @rdname deprecated
+#' @export
+sampleYAML <- function(...) {
+    .Defunct("readYAMLSampleData or readYAMLSampleMetrics")
+}
+
+#' @rdname deprecated
+#' @export
+sampleYAMLMetadata <- function(...) {
+    .Defunct("readYAMLSampleData")
+}
+
+#' @rdname deprecated
+#' @export
+sampleYAMLMetrics <- function(...) {
+    .Defunct("readSampleYAMLMetrics")
+}
+
 # nocov end

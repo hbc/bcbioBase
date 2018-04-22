@@ -51,10 +51,12 @@ setMethod(
         object,
         n = 10L,
         annotationCol = NULL,
-        clusterCols = TRUE,
         clusterRows = TRUE,
-        showColnames = TRUE,
+        clusterCols = TRUE,
         showRownames = FALSE,
+        showColnames = TRUE,
+        treeheightRow = 0L,
+        treeheightCol = 50L,
         legend = FALSE,
         color = viridis,
         legendColor = NULL,
@@ -110,6 +112,8 @@ setMethod(
             "scale" = "none",
             "showColnames" = showColnames,
             "showRownames" = showRownames,
+            "treeheightCol" = treeheightCol,
+            "treeheightRow" = treeheightRow,
             ...
         )
         args <- .pheatmapArgs(args)

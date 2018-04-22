@@ -1,7 +1,5 @@
 context("Data Functions")
 
-yaml <- readYAML("project-summary.yaml")
-
 
 
 # convertGenesToSymbols ========================================================
@@ -16,6 +14,14 @@ test_that("convertGenesToSymbols", {
 test_that("convertGenesToSymbols : unmodified return", {
     x <- convertGenesToSymbols(rse_dds)
     expect_identical(rownames(x), rownames(rse_dds))
+})
+
+
+
+# counts =======================================================================
+test_that("counts", {
+    x <- counts(rse_bcb)
+    expect_is(x, "matrix")
 })
 
 
@@ -146,76 +152,48 @@ test_that("sampleDirs", {
 
 
 
-# sampleYAML ===================================================================
-test_that("sampleYAML", {
-    expect_identical(
-        sampleYAML(yaml, "metadata"),
-        tibble(
-            "description" = c(
-                "group1_1",
-                "group1_2",
-                "group2_1",
-                "group2_2"
-            ),
-            "group" = c(
-                "ctrl",
-                "ctrl",
-                "ko",
-                "ko"
-            )
-        )
-    )
-})
-
-test_that("sampleYAML : Invalid parameters", {
-    expect_error(
-        sampleYAML(yaml = list(), keys = "metadata"),
-        "is_non_empty : yaml has length 0."
-    )
-    # Primary key failure
-    expect_error(
-        sampleYAML(yaml, keys = "XXX"),
-        paste(
-            "is_subset :",
-            "The element 'XXX' in keys\\[\\[1L\\]\\] is not in",
-            "names\\(yaml\\[\\[1L\\]\\]\\)."
-        )
-    )
-    # Secondary key failure
-    expect_error(
-        sampleYAML(yaml, keys = c("summary", "XXX")),
-        paste(
-            "is_subset :",
-            "The element 'XXX' in keys\\[\\[2L\\]\\] is not in",
-            "names\\(yaml\\[\\[1L\\]\\]\\[\\[keys\\[\\[1L\\]\\]\\]\\]\\)."
-        )
-    )
-})
-
-
-
-# sampleYAMLMetadata ===========================================================
-test_that("sampleYAMLMetadata", {
+# readYAMLSampleData ===========================================================
+test_that("readYAMLSampleData", {
+    x <- readYAMLSampleData("project-summary.yaml")
     samples <- c("group1_1", "group1_2", "group2_1", "group2_2")
     expect_identical(
-        sampleYAMLMetadata(yaml),
+        x,
         data.frame(
-            sampleID = factor(samples, levels = samples),
-            sampleName = factor(samples, levels = samples),
-            description = factor(samples, levels = samples),
-            group = factor(
-                c("ctrl", "ctrl", "ko", "ko"),
-                levels = c("ctrl", "ko")
+            "sampleID" = samples,
+            "sampleName" = samples,
+            "description" = samples,
+            "genomeBuild" = "mm10",
+            "group" = c("ctrl", "ctrl", "ko", "ko"),
+            "samRef" = paste(
+                "",
+                "groups",
+                "bcbio",
+                "bcbio_dev",
+                "genomes",
+                "Mmusculus",
+                "mm10",
+                "seq",
+                "mm10.fa",
+                sep = "/"
             ),
-            row.names = samples
+            row.names = samples,
+            stringsAsFactors = TRUE
         )
     )
 })
 
+test_that("readYAMLSampleData : nested metadata", {
+    # Testing against Kayleigh's example
+    x <- suppressWarnings(
+        readYAMLSampleData("project-summary-nested-metadata.yaml")
+    )
+    expect_is(x, "data.frame")
+})
 
 
-# sampleYAMLMetrics ============================================================
-test_that("sampleYAMLMetrics", {
+
+# readYAMLSampleMetrics ========================================================
+test_that("readYAMLSampleMetrics", {
     classChecks <- list(
         "averageInsertSize" = "numeric",
         "duplicates" = "numeric",
@@ -231,50 +209,26 @@ test_that("sampleYAMLMetrics", {
         "sequenceLength" = "factor",
         "sequencesFlaggedAsPoorQuality" = "numeric",
         "totalReads" = "numeric",
-        "x5x3Bias" = "numeric",  # 5'3 now sanitized to 5x3 in camel
+        "x5x3Bias" = "numeric",
         "xGC" = "numeric"
     )
 
-    x <- sampleYAMLMetrics(yaml)
+    x <- readYAMLSampleMetrics("project-summary.yaml")
     expect_identical(lapply(x, class), classChecks)
 
     # Check for proper handling of metrics with mismatched number of values
-    yaml <- readYAML("project-summary-metrics-mismatch.yaml")
-    x <- sampleYAMLMetrics(yaml)
+    x <- readYAMLSampleMetrics("project-summary-metrics-mismatch.yaml")
     classChecks[["sequenceLength"]] <- "numeric"
     expect_identical(lapply(x, class), classChecks)
 })
 
-test_that("sampleYAMLMetrics : Fast mode", {
-    fastmode <- "Fast mode detected: No sample metrics were calculated"
 
-    # Subset to only include the first sample
-    single <- yaml
-    single[["samples"]] <- head(single[["samples"]], 1L)
 
-    # NULL metrics
-    nullmetrics <- single
-    nullmetrics[["samples"]][[1L]][["summary"]][["metrics"]] <- NULL
-    expect_warning(
-        sampleYAMLMetrics(nullmetrics),
-        fastmode
-    )
-    expect_identical(
-        suppressWarnings(sampleYAMLMetrics(nullmetrics)),
-        NULL
-    )
-
-    # Empty metrics
-    emptymetrics <- single
-    emptymetrics[["samples"]][[1L]][["summary"]][["metrics"]] <- list()
-    expect_warning(
-        sampleYAMLMetrics(emptymetrics),
-        fastmode
-    )
-    expect_identical(
-        suppressWarnings(sampleYAMLMetrics(emptymetrics)),
-        NULL
-    )
+# selectSamples ================================================================
+test_that("selectSamples : SummarizedExperiment", {
+    x <- selectSamples(rse_bcb, treatment = "folic_acid")
+    expect_identical(dim(x), c(500L, 3L))
+    expect_identical(names(assays(x)), "counts")
 })
 
 

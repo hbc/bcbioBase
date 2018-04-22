@@ -15,18 +15,21 @@ plotCorrelationHeatmap(object, ...)
 
 \S4method{plotCorrelationHeatmap}{matrix}(object, method = c("pearson",
   "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  color = viridis, legendColor = NULL, borderColor = NULL, title = TRUE,
-  ...)
+  showRownames = TRUE, showColnames = TRUE, treeheightRow = 0L,
+  treeheightCol = 50L, color = viridis, legendColor = NULL,
+  borderColor = NULL, title = TRUE, ...)
 
 \S4method{plotCorrelationHeatmap}{dgCMatrix}(object, method = c("pearson",
   "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  color = viridis, legendColor = NULL, borderColor = NULL, title = TRUE,
-  ...)
+  showRownames = TRUE, showColnames = TRUE, treeheightRow = 0L,
+  treeheightCol = 50L, color = viridis, legendColor = NULL,
+  borderColor = NULL, title = TRUE, ...)
 
 \S4method{plotCorrelationHeatmap}{dgTMatrix}(object, method = c("pearson",
   "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  color = viridis, legendColor = NULL, borderColor = NULL, title = TRUE,
-  ...)
+  showRownames = TRUE, showColnames = TRUE, treeheightRow = 0L,
+  treeheightCol = 50L, color = viridis, legendColor = NULL,
+  borderColor = NULL, title = TRUE, ...)
 
 \S4method{plotCorrelationHeatmap}{SummarizedExperiment}(object, ...)
 }
@@ -34,7 +37,7 @@ plotCorrelationHeatmap(object, ...)
 \item{object}{Object.}
 
 \item{...}{Passthrough arguments to \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}. The names of the
-arguments must be formatted in camel case, not snake case.}
+arguments should be formatted in camel case, not snake case.}
 
 \item{method}{Correlation coefficient (or covariance) method to be computed.
 Defaults to "\code{pearson}" but "\code{spearman}" can also be used. Consult the
@@ -46,13 +49,23 @@ Defaults to "\code{pearson}" but "\code{spearman}" can also be used. Consult the
 \item{annotationCol}{\emph{Optional.} \code{data.frame} that defines annotation
 mappings for the columns.}
 
-\item{color}{Colors to use for plot. Defaults to the \code{\link[=viridis]{viridis()}}
+\item{showRownames}{Show row or column names.}
+
+\item{showColnames}{Show row or column names.}
+
+\item{treeheightRow}{Size of the row and column dendrograms.
+Use "\code{0}" to disable.}
+
+\item{treeheightCol}{Size of the row and column dendrograms.
+Use "\code{0}" to disable.}
+
+\item{color}{Colors to use for plot. Defaults to the \code{\link[viridis:viridis]{viridis::viridis()}}
 palette.}
 
-\item{legendColor}{Colors to use for legend labels. Defaults to the
-\code{\link[=viridis]{viridis()}} palette.}
+\item{legendColor}{Colors to use for legend labels.}
 
-\item{borderColor}{Border color.}
+\item{borderColor}{\emph{Optional.} Border color. Disabled by default for
+improved aesthetics.}
 
 \item{title}{\emph{Optional.} Plot title.}
 }

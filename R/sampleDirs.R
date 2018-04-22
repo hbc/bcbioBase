@@ -1,12 +1,13 @@
 #' Sample Directories
 #'
+#' @note Function will stop if no sample directories match.
+#'
 #' @family Data Functions
 #' @author Michael Steinbaugh
 #'
-#' @param uploadDir bcbio run upload directory.
+#' @param uploadDir File path to bcbio run upload directory.
 #'
-#' @return Named character vector containing sample directory paths. Function
-#'   will abort if no sample directories match.
+#' @return Named `character` vector containing sample directory paths.
 #' @export
 #'
 #' @examples

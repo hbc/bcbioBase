@@ -1,7 +1,7 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions and generics for bcbio R packages.
-Version: 0.2.3
+Version: 0.2.4
 Authors@R: c(
     person(
         given = "Michael",
@@ -41,6 +41,7 @@ Depends:
     SummarizedExperiment,
     basejump (>= 0.5)
 Imports:
+    BiocGenerics,
     Biostrings,
     GenomeInfoDb,
     GenomicRanges,
@@ -55,6 +56,7 @@ Imports:
     magrittr (>= 1.5),
     methods,
     pheatmap (>= 1.0),
+    plyr (>= 1.8),
     rdrop2 (>= 0.8),
     readr (>= 1.1),
     rlang (>= 0.2),

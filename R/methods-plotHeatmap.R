@@ -8,25 +8,25 @@
 #' @family Plot Heatmap Functions
 #'
 #' @inheritParams general
-#' @param scale Character indicating if the values should be centered and scaled
-#'   in either the row direction or the column direction, or none. Corresponding
-#'   values are "row", "column" and "none".
+#' @param scale `character` indicating whether the values should be centered and
+#'   scaled in either the row or column direction ("`row`", "`column`"), or
+#'   remain unscaled ("`none`").
 #' @param annotationCol *Optional.* `data.frame` that defines annotation
 #'   mappings for the columns.
-#' @param borderColor Border color.
-#' @param clusterCols Logical determining if columns should be arranged with
-#'   hierarchical clustering. Alternatively, can define an `hclust` object.
-#' @param clusterRows Logical determining if rows should be arranged with
-#'   hierarchical clustering. Alternatively, can define an `hclust` object.
-#' @param showColnames Show column names.
-#' @param showRownames Show row names.
-#' @param color Colors to use for plot. Defaults to the [viridis()]
+#' @param clusterRows,clusterCols `logical` determining if rows or columns
+#'   should be arranged with hierarchical clustering. Alternatively, can define
+#'   an `hclust` object.
+#' @param showRownames,showColnames Show row or column names.
+#' @param treeheightRow,treeheightCol Size of the row and column dendrograms.
+#'   Use "`0`" to disable.
+#' @param color Colors to use for plot. Defaults to the [viridis::viridis()]
 #'   palette.
-#' @param legendColor Colors to use for legend labels. Defaults to the
-#'   [viridis()] palette.
+#' @param legendColor Colors to use for legend labels.
+#' @param borderColor *Optional.* Border color. Disabled by default for
+#'   improved aesthetics.
 #' @param title *Optional.* Plot title.
 #' @param ... Passthrough arguments to [pheatmap::pheatmap()]. The names of the
-#'   arguments must be formatted in camel case, not snake case.
+#'   arguments should be formatted in camel case, not snake case.
 #'
 #' @seealso [pheatmap::pheatmap()].
 #'
@@ -53,10 +53,12 @@ setMethod(
         object,
         scale = c("row", "column", "none"),
         annotationCol = NULL,
-        clusterCols = TRUE,
         clusterRows = TRUE,
-        showColnames = TRUE,
+        clusterCols = TRUE,
         showRownames = FALSE,
+        showColnames = TRUE,
+        treeheightRow = 0L,
+        treeheightCol = 50L,
         color = viridis,
         legendColor = NULL,
         borderColor = NULL,
@@ -72,6 +74,9 @@ setMethod(
         assert_is_a_bool(clusterRows)
         assert_is_a_bool(showColnames)
         assert_is_a_bool(showRownames)
+        assert_is_a_number(treeheightRow)
+        assert_is_a_number(treeheightCol)
+        assert_all_are_non_negative(treeheightRow, treeheightCol)
         assertIsHexColorFunctionOrNULL(color)
         assertIsHexColorFunctionOrNULL(legendColor)
         assertIsAStringOrNULL(borderColor)
@@ -110,6 +115,8 @@ setMethod(
             "scale" = scale,
             "showColnames" = showColnames,
             "showRownames" = showRownames,
+            "treeheightCol" = treeheightCol,
+            "treeheightRow" = treeheightRow,
             ...
         )
         args <- .pheatmapArgs(args)

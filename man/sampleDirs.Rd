@@ -7,14 +7,16 @@
 sampleDirs(uploadDir)
 }
 \arguments{
-\item{uploadDir}{bcbio run upload directory.}
+\item{uploadDir}{File path to bcbio run upload directory.}
 }
 \value{
-Named character vector containing sample directory paths. Function
-will abort if no sample directories match.
+Named \code{character} vector containing sample directory paths.
 }
 \description{
 Sample Directories
+}
+\note{
+Function will stop if no sample directories match.
 }
 \examples{
 uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
@@ -22,7 +24,8 @@ sampleDirs(uploadDir)
 }
 \seealso{
 Other Data Functions: \code{\link{convertGenesToSymbols}},
-  \code{\link{flatFiles}}, \code{\link{gene2symbol}},
+  \code{\link{counts}}, \code{\link{flatFiles}},
+  \code{\link{gene2symbol}}, \code{\link{selectSamples}},
   \code{\link{uniteInterestingGroups}}
 }
 \author{

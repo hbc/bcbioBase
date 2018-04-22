@@ -9,7 +9,6 @@
 \alias{plotGene}
 \alias{plotQC}
 \alias{plotViolin}
-\alias{selectSamples}
 \title{S4 Generics}
 \usage{
 bcbio(object, ...)
@@ -25,8 +24,6 @@ plotGene(object, ...)
 plotQC(object, ...)
 
 plotViolin(object, ...)
-
-selectSamples(object, ...)
 }
 \arguments{
 \item{object}{Object.}

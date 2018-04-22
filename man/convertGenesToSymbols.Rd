@@ -24,8 +24,9 @@ show(x)
 head(rownames(x))
 }
 \seealso{
-Other Data Functions: \code{\link{flatFiles}},
-  \code{\link{gene2symbol}}, \code{\link{sampleDirs}},
+Other Data Functions: \code{\link{counts}},
+  \code{\link{flatFiles}}, \code{\link{gene2symbol}},
+  \code{\link{sampleDirs}}, \code{\link{selectSamples}},
   \code{\link{uniteInterestingGroups}}
 }
 \author{

@@ -42,6 +42,10 @@ setMethod(
         method = c("pearson", "spearman"),
         clusteringMethod = "ward.D2",
         annotationCol = NULL,
+        showRownames = TRUE,
+        showColnames = TRUE,
+        treeheightRow = 0L,
+        treeheightCol = 50L,
         color = viridis,
         legendColor = NULL,
         borderColor = NULL,
@@ -52,6 +56,11 @@ setMethod(
         assert_all_are_greater_than(nrow(object), 1L)
         assert_all_are_greater_than(ncol(object), 1L)
         method <- match.arg(method)
+        assert_is_a_bool(showColnames)
+        assert_is_a_bool(showRownames)
+        assert_is_a_number(treeheightRow)
+        assert_is_a_number(treeheightCol)
+        assert_all_are_non_negative(treeheightRow, treeheightCol)
         assertIsHexColorFunctionOrNULL(color)
         assertIsHexColorFunctionOrNULL(legendColor)
         assertIsAStringOrNULL(borderColor)
@@ -86,8 +95,10 @@ setMethod(
             "clusteringDistanceCols" = "correlation",
             "color" = color,
             "main" = title,
-            "showColnames" = TRUE,
-            "showRownames" = TRUE,
+            "showColnames" = showColnames,
+            "showRownames" = showRownames,
+            "treeheightCol" = treeheightCol,
+            "treeheightRow" = treeheightRow,
             ...
         )
         args <- .pheatmapArgs(args)

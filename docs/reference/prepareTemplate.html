@@ -21,6 +21,8 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
@@ -60,7 +62,7 @@ versions from the package website. Existing files are never overwritten." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.4</span>
       </span>
     </div>
 
@@ -97,14 +99,16 @@ versions from the package website. Existing files are never overwritten." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Prepare R Markdown Template File</h1>
-    <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/prepareTemplate.R'><code>R/prepareTemplate.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/prepareTemplate.R'><code>R/prepareTemplate.R</code></a></small>
     <div class="hidden name"><code>prepareTemplate.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>If the required template dependency files aren't present, download latest
-versions from the package website. <em>Existing files are never overwritten.</em></p>
+versions from the package website. Existing files are never overwritten.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>prepareTemplate</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"_output.yaml"</span>, <span class='st'>"_footer.Rmd"</span>, <span class='st'>"_header.Rmd"</span>,
   <span class='st'>"_setup.R"</span>, <span class='st'>"bibliography.bib"</span>), <span class='kw'>sourceDir</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"rmarkdown/shared"</span>,

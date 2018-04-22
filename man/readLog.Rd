@@ -10,7 +10,7 @@ readLog(file)
 \item{file}{File path.}
 }
 \value{
-Character vector.
+\code{character}.
 }
 \description{
 Read Log File
@@ -22,7 +22,8 @@ readLog("http://bcbiobase.seq.cloud/bcbio-nextgen.log") \%>\%
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},
   \code{\link{readProgramVersions}},
-  \code{\link{readSampleData}}, \code{\link{readTx2gene}}
+  \code{\link{readSampleData}}, \code{\link{readTx2gene}},
+  \code{\link{readYAML}}
 }
 \author{
 Michael Steinbaugh

@@ -9,19 +9,20 @@
 #' @importFrom GenomicRanges GRanges
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom S4Vectors as.data.frame cor mcols mcols<- metadata<-
-#' @importFrom SummarizedExperiment assay colData colData<- rowData
+#' @importFrom SummarizedExperiment assay assays colData colData<- rowData
 #'   SummarizedExperiment
-#' @importFrom basejump camel convertGenesToSymbols emptyRanges
-#'   localOrRemoteFile makeNames readFileByExtension removeNA sanitizeSampleData
-#'   snake
+#' @importFrom basejump camel convertGenesToSymbols emptyRanges fixNA
+#'   localOrRemoteFile makeNames readFileByExtension readYAML removeNA
+#'   sanitizeSampleData snake
 #' @importFrom dendsort dendsort
-#' @importFrom dplyr arrange bind_rows group_by left_join mutate mutate_all
-#'   mutate_if select_if ungroup
+#' @importFrom dplyr arrange group_by mutate mutate_all mutate_if select_if
+#'   ungroup
 #' @importFrom grDevices colorRampPalette
 #' @importFrom knitr kable
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom methods .hasSlot as formalArgs getMethod is slotNames validObject
 #' @importFrom pheatmap pheatmap
+#' @importFrom plyr ldply
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
 #'   drop_get_metadata drop_share drop_upload
 #' @importFrom readr read_csv read_lines
@@ -42,6 +43,7 @@
 #' @importFrom assertive assert_all_are_in_range
 #' @importFrom assertive assert_all_are_matching_regex
 #' @importFrom assertive assert_all_are_non_missing_nor_empty_character
+#' @importFrom assertive assert_all_are_non_negative
 #' @importFrom assertive assert_all_are_positive
 #' @importFrom assertive assert_are_disjoint_sets
 #' @importFrom assertive assert_are_identical
@@ -53,10 +55,12 @@
 #' @importFrom assertive assert_has_rownames
 #' @importFrom assertive assert_has_no_duplicates
 #' @importFrom assertive assert_is_a_bool
+#' @importFrom assertive assert_is_a_number
 #' @importFrom assertive assert_is_a_string
 #' @importFrom assertive assert_is_all_of
 #' @importFrom assertive assert_is_an_integer
 #' @importFrom assertive assert_is_any_of
+#' @importFrom assertive assert_is_atomic
 #' @importFrom assertive assert_is_character
 #' @importFrom assertive assert_is_factor
 #' @importFrom assertive assert_is_identical_to_na

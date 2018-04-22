@@ -12,6 +12,7 @@ files <- c(
     "multiplexed_missing_cols.csv",
     "project-summary.yaml",
     "project-summary-metrics-mismatch.yaml",
+    "project-summary-nested-metadata.yaml",
     "programs.txt",
     "sampleID_column_defined.csv",
     "tx2gene.csv"
