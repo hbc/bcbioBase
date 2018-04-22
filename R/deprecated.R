@@ -43,6 +43,21 @@ readSampleMetadataFile <- function(...) {
 # v0.2.4 =======================================================================
 #' @rdname deprecated
 #' @export
+sampleMetadata <- function(object, ...) {
+    .Deprecated("sampleData")
+    sampleData(object, ...)
+}
+
+#' @rdname deprecated
+#' @export
+`sampleMetadata<-` <- function(object, value) {
+    .Deprecated("sampleData<-")
+    sampleData(object) <- value
+    object
+}
+
+#' @rdname deprecated
+#' @export
 sampleYAML <- function(...) {
     .Defunct("readYAMLSampleData or readYAMLSampleMetrics")
 }
