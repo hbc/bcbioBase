@@ -12,7 +12,7 @@
 #' @examples
 #' # SummarizedExperiment ====
 #' x <- counts(rse_bcb)
-#' glimpse(x)
+#' summary(x)
 NULL
 
 
