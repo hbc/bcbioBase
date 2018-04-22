@@ -23,7 +23,7 @@ Gene to Symbol Mappings
 }
 \examples{
 # SummarizedExperiment ====
-gene2symbol(rse_bcb)
+gene2symbol(rse_bcb) \%>\% head()
 }
 \seealso{
 Other Data Functions: \code{\link{convertGenesToSymbols}},
