@@ -4,7 +4,7 @@
 \name{metadataPriorityCols}
 \alias{metadataPriorityCols}
 \title{Metadata Priority Columns}
-\format{An object of class \code{character} of length 3.}
+\format{An object of class \code{character} of length 2.}
 \usage{
 metadataPriorityCols
 }

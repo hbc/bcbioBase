@@ -12,7 +12,7 @@ lanePattern <- "_L(\\d{3})"
 #' @export
 #' @examples
 #' metadataPriorityCols
-metadataPriorityCols <- c("sampleID", "sampleName", "description")
+metadataPriorityCols <- c("description", "sampleName")
 
 #' Project Directory Grep Pattern
 #' @keywords internal
