@@ -2,8 +2,6 @@
 #'
 #' Base functions and generics for bcbio R packages.
 #'
-#' @keywords internal
-#'
 #' @importFrom Biostrings reverseComplement
 #' @importFrom GenomeInfoDb seqnames
 #' @importFrom GenomicRanges GRanges
