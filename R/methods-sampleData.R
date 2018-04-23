@@ -72,7 +72,7 @@ setMethod(
     "sampleData<-",
     signature(
         object = "SummarizedExperiment",
-        value = "ANY"
+        value = "DataFrame"
     ),
     function(object, value) {
         value <- as(value, "DataFrame")
@@ -82,25 +82,3 @@ setMethod(
         object
     }
 )
-
-
-
-# Aliases ======================================================================
-# nocov start
-
-#' @rdname sampleData
-#' @usage NULL
-#' @export
-sampleMetadata <- function(object, ...) {
-    sampleData(object, ...)
-}
-
-#' @rdname sampleData
-#' @usage NULL
-#' @export
-`sampleMetadata<-` <- function(object, value) {
-    sampleData(object) <- value
-    object
-}
-
-# nocov end
