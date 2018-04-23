@@ -1,3 +1,7 @@
+# FIXME This needs a working example
+
+
+
 #' Prepare Sample Data
 #'
 #' @family Prepare Functions
@@ -33,5 +37,5 @@ prepareSampleData <- function(object) {
         .[, unique(c(metadataPriorityCols, colnames(.)))] %>%
         arrange(!!!syms(metadataPriorityCols)) %>%
         as.data.frame() %>%
-        set_rownames(.[["sampleID"]])
+        column_to_rownames("sampleID")
 }

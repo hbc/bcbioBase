@@ -3,6 +3,8 @@ context("Prepare Functions")
 
 
 # prepareSampleData ============================================================
+# FIXME This needs more coverage
+
 test_that("prepareSampleData : Missing description column", {
     expect_error(
         prepareSampleData(mtcars),
