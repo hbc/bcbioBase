@@ -12,8 +12,14 @@
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
+#' @param isFactor Only include `factor` columns. Generally recommended. This
+#'   helps easily discard columns in [colData()] that are `numeric` metrics.
+#' @param blacklist Drop blacklisted columns defined in [metadataBlacklist].
+#'   Only applies when `isFactor = TRUE`.
 #'
 #' @return Data describing the samples.
+#'
+#' @seealso [metadataBlacklist].
 #'
 #' @examples
 #' # SummarizedExperiment ====
@@ -37,11 +43,24 @@ setMethod(
     function(
         object,
         interestingGroups,
+        isFactor = TRUE,
+        blacklist = TRUE,
         return = c("DataFrame", "data.frame", "kable")
     ) {
         validObject(object)
         return <- match.arg(return)
+
         data <- colData(object)
+
+        # Only include factor columns
+        if (isTRUE(isFactor)) {
+            data <- data[, vapply(data, is.factor, logical(1L)), drop = FALSE]
+            # Drop blacklisted factor columns (recommended)
+            if (isTRUE(blacklist)) {
+                setdiff <- setdiff(colnames(data), metadataBlacklist)
+                data <- data[, setdiff, drop = FALSE]
+            }
+        }
 
         # Include `interestingGroups` column
         if (missing(interestingGroups)) {
@@ -53,11 +72,9 @@ setMethod(
 
         # Return
         if (return == "kable") {
-            blacklist <- c("description", "fileName", "sampleID")
             data %>%
                 as.data.frame() %>%
-                .[, setdiff(colnames(.), blacklist), drop = FALSE] %>%
-                kable(row.names = TRUE)
+                kable(row.names = FALSE)
         } else {
             as(data, return)
         }
@@ -75,9 +92,6 @@ setMethod(
         value = "DataFrame"
     ),
     function(object, value) {
-        value <- as(value, "DataFrame")
-        # Ensure all columns are factors
-        value <- sanitizeSampleData(value)
         colData(object) <- value
         object
     }
