@@ -18,7 +18,8 @@
 #' @importFrom grDevices colorRampPalette
 #' @importFrom knitr kable
 #' @importFrom magrittr %>% set_names set_rownames
-#' @importFrom methods .hasSlot as formalArgs getMethod is slotNames validObject
+#' @importFrom methods .hasSlot as formalArgs getMethod is setAs slotNames
+#'   validObject
 #' @importFrom pheatmap pheatmap
 #' @importFrom plyr ldply
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
