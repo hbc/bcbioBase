@@ -104,8 +104,7 @@ test_that("readSampleData : Demultiplexed FASTQ", {
         readSampleData("demultiplexed_missing_cols.csv"),
         paste(
             "is_subset :",
-            "The element 'description' in requiredCols is not in",
-            "colnames\\(data\\)."
+            "The element 'description' in requiredCols"
         )
     )
 
@@ -113,8 +112,8 @@ test_that("readSampleData : Demultiplexed FASTQ", {
     expect_error(
         readSampleData("demultiplexed_duplicated_description.csv"),
         paste(
-            "has_no_duplicates :",
-            "data\\[\\[\"description\"\\]\\] has a duplicate at position 2."
+            "is_subset :",
+            "The elements 'sampleName', 'index' in requiredCols"
         )
     )
 })
@@ -224,13 +223,9 @@ test_that("readSampleData : Legacy bcbio samplename column", {
 })
 
 test_that("readSampleData : sampleID defined by user", {
-    expect_error(
+    expect_warning(
         readSampleData("sampleID_column_defined.csv"),
-        paste(
-            "are_disjoint_sets :",
-            "\"sampleID\" and colnames\\(data\\) have common elements:",
-            "sampleID."
-        )
+        "Invalid metadata columns detected."
     )
 })
 

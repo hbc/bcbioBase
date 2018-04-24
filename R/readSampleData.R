@@ -1,7 +1,3 @@
-# FIXME Only return description if multiplexed!
-
-
-
 #' Read Sample Metadata
 #'
 #' @family Read Functions
