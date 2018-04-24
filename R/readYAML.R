@@ -22,8 +22,6 @@ NULL
 
 
 
-yamlFlatCols <- c("description", "genome_build", "sam_ref")
-
 .readYAMLSample <- function(file, keys) {
     assert_is_character(keys)
     # Currently max 2 keys are supported (e.g. summary, metrics)
@@ -132,20 +130,10 @@ readYAMLSampleMetrics <- function(file) {
         any(grepl(x = x, pattern = "^[0-9\\.]+$"))
     }
 
+    # Drop any metadata columns. Note we're also dropping the duplicate `name`
+    # column present in the metrics YAML.
     data %>%
-        # Drop any metadata columns. Note we're also dropping the duplicate
-        # `name` column present in the metrics YAML.
-        .[,
-            sort(setdiff(
-                x = colnames(.),
-                y = c(
-                    metadataBlacklist,
-                    camel(yamlFlatCols),
-                    "name"
-                )
-            )),
-            drop = FALSE
-        ] %>%
+        .[, sort(setdiff(colnames(.), metadataBlacklist)), drop = FALSE] %>%
         rownames_to_column() %>%
         mutate_if(numericAsCharacter, as.numeric) %>%
         mutate_if(is.character, as.factor) %>%
