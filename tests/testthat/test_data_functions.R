@@ -159,7 +159,6 @@ test_that("readYAMLSampleData", {
     expect_identical(
         x,
         data.frame(
-            "sampleID" = samples,
             "sampleName" = samples,
             "description" = samples,
             "genomeBuild" = "mm10",

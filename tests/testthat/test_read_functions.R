@@ -68,18 +68,23 @@ test_that("readSampleData : Demultiplexed FASTQ", {
     x <- readSampleData(file)
 
     # Check that names are sanitized correctly
-    rows <- c("sample_1", "sample_2", "sample_3", "sample_4")
-    expect_identical(as.character(x[["sampleID"]]), rows)
-    expect_identical(rownames(x), rows)
+    expect_identical(
+        rownames(x),
+        c("sample_1", "sample_2", "sample_3", "sample_4")
+    )
 
     # Check that column names get set correctly
     expect_identical(
         colnames(x),
-        c("sampleID", "sampleName", "description", "fileName", "genotype")
+        c("sampleName", "fileName", "genotype")
     )
 
     # Lane-split technical replicate support
     x <- readSampleData(file, lanes = 4L)
+    expect_identical(
+        colnames(x),
+        c("sampleName", "lane", "fileName", "genotype")
+    )
     expect_identical(
         rownames(x)[1L:8L],
         c(
@@ -91,25 +96,6 @@ test_that("readSampleData : Demultiplexed FASTQ", {
             "sample_2_L002",
             "sample_2_L003",
             "sample_2_L004"
-        )
-    )
-    # Check that makeNames is applied correctly
-    expect_identical(
-        x[1L, metadataPriorityCols],
-        data.frame(
-            sampleID = factor(
-                "sample_1_L001",
-                levels = levels(x[["sampleID"]])
-            ),
-            sampleName = factor(
-                "sample_1_L001",
-                levels = levels(x[["sampleName"]])
-            ),
-            description = factor(
-                "sample_1_L001",
-                levels = levels(x[["description"]])
-            ),
-            row.names = "sample_1_L001"
         )
     )
 
@@ -135,9 +121,10 @@ test_that("readSampleData : Demultiplexed FASTQ", {
 
 test_that("readSampleData : Multiplexed FASTQ", {
     file <- "multiplexed.csv"
-    meta <- readSampleData(file)
+
+    x <- readSampleData(file)
     expect_identical(
-        rownames(meta),
+        rownames(x),
         c(
             "run_1_CAGTTATG",
             "run_1_TTACCTCC",
@@ -150,9 +137,9 @@ test_that("readSampleData : Multiplexed FASTQ", {
     )
 
     # Lane-split technical replicate support
-    meta <- readSampleData(file, lanes = 4L)
+    x <- readSampleData(file, lanes = 4L)
     expect_identical(
-        rownames(meta),
+        rownames(x),
         c(
             "run_1_L001_CAGTTATG",
             "run_1_L001_TTACCTCC",
@@ -208,49 +195,31 @@ test_that("readSampleData : Multiplexed FASTQ", {
 test_that("readSampleData : Multiplexed CellRanger data", {
     x <- readSampleData("cellranger_metadata.csv")
     y <- data.frame(
-        "sampleID" = factor(c("aggregation_1", "aggregation_2")),
-        "sampleName" = factor(c("proximal", "distal")),
-        "description" = factor("aggregation"),
-        "fileName" = factor("aggregation.fastq.gz"),
-        "index" = factor(c(1L, 2L)),
-        row.names = c("aggregation_1", "aggregation_2")
+        "sampleName" = c("proximal", "distal"),
+        "fileName" = "aggregation.fastq.gz",
+        "description" = "aggregation",
+        "index" = c("1", "2"),
+        row.names = c("aggregation_1", "aggregation_2"),
+        stringsAsFactors = TRUE
     )
-    assert_are_identical(x, y)
+    expect_identical(x, y)
 })
 
 test_that("readSampleData : Legacy bcbio samplename column", {
     file <- "bcbio_legacy_samplename.csv"
-    meta <- suppressWarnings(readSampleData(file))
-    expect_identical(
-        meta,
-        data.frame(
-            # sanitized
-            sampleID = factor(
-                "sample_1",
-                levels = "sample_1"
-            ),
-            # matches description
-            sampleName = factor(
-                "sample-1",
-                levels = "sample-1"
-            ),
-            # unmodified
-            description = factor(
-                "sample-1",
-                levels = "sample-1"
-            ),
-            # renamed `samplename`
-            fileName = factor(
-                "sample-1.fastq.gz",
-                levels = "sample-1.fastq.gz"
-            ),
-            # sanitized
-            row.names = "sample_1"
-        )
-    )
+    # Warn on `samplename`
     expect_warning(
         readSampleData(file),
-        "`samplename` \\(note case\\) is used in some bcbio examples"
+        "Invalid metadata columns detected."
+    )
+    expect_identical(
+        suppressWarnings(readSampleData(file)),
+        data.frame(
+            sampleName = "sample-1",
+            fileName = "sample-1.fastq.gz",
+            row.names = "sample_1",
+            stringsAsFactors = TRUE
+        )
     )
 })
 
