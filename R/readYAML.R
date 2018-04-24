@@ -139,7 +139,7 @@ readYAMLSampleMetrics <- function(file) {
             sort(setdiff(
                 x = colnames(.),
                 y = c(
-                    metadataPriorityCols,
+                    metadataBlacklist,
                     camel(yamlFlatCols),
                     "name"
                 )

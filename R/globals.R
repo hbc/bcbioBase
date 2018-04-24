@@ -1,5 +1,15 @@
 globalVariables(".")
 
+metadataBlacklist <- c(
+    "description",
+    "fileName",
+    "genomeBuild",
+    "name",  # from metrics YAML
+    "samRef",
+    "sampleID",
+    "sampleName"
+)
+
 #' Lane Grep Pattern
 #' @keywords internal
 #' @export

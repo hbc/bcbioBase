@@ -28,7 +28,7 @@
     object %>%
         as.data.frame() %>%
         # Remove sample name columns
-        .[, setdiff(colnames(.), metadataPriorityCols), drop = FALSE] %>%
+        .[, setdiff(colnames(.), metadataBlacklist), drop = FALSE] %>%
         rownames_to_column() %>%
         # Ensure all strings are factor
         mutate_if(is.character, as.factor) %>%
