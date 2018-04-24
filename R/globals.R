@@ -4,10 +4,12 @@ metadataBlacklist <- c(
     "description",
     "fileName",
     "genomeBuild",
-    "name",  # from metrics YAML
+    "name",  # metrics
+    "qualityFormat",
     "samRef",
     "sampleID",
-    "sampleName"
+    "sampleName",
+    "sequenceLength"
 )
 
 #' Lane Grep Pattern
