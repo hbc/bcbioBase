@@ -110,7 +110,7 @@ yamlFlatCols <- c("description", "genome_build", "sam_ref")
 #' @export
 readYAMLSampleData <- function(file) {
     .readYAMLSample(file, keys = "metadata") %>%
-        prepareSampleData()
+        .returnSampleData()
 
 }
 
