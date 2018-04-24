@@ -7,13 +7,6 @@ globalVariables(".")
 #' lanePattern
 lanePattern <- "_L(\\d{3})"
 
-#' Metadata Priority Columns
-#' @keywords internal
-#' @export
-#' @examples
-#' metadataPriorityCols
-metadataPriorityCols <- c("sampleName", "description")
-
 #' Project Directory Grep Pattern
 #' @keywords internal
 #' @export
