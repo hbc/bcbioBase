@@ -1,15 +1,14 @@
 globalVariables(".")
 
-metricsBlacklist <- c(
-    "name",
-    "qualityFormat",
-    "sequenceLength"
-)
-
 yamlFlatCols <- c(
     "description",
     "genome_build",
     "sam_ref"
+)
+
+metricsBlacklist <- c(
+    camel(yamlFlatCols),
+    "name"
 )
 
 #' Metadata Blacklist
@@ -18,10 +17,11 @@ yamlFlatCols <- c(
 #' @examples
 #' metadataBlacklist
 metadataBlacklist <- sort(c(
-    metricsBlacklist,
-    camel(yamlFlatCols),
     "fileName",
-    "sampleID"
+    "sampleID",
+    metricsBlacklist,
+    "qualityFormat",
+    "sequenceLength"
 ))
 
 #' Lane Grep Pattern

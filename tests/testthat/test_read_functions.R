@@ -291,7 +291,7 @@ test_that("readYAMLSampleData : nested metadata", {
 
 # readYAMLSampleMetrics ========================================================
 test_that("readYAMLSampleMetrics", {
-    classChecks <- list(
+    y <- list(
         "averageInsertSize" = "numeric",
         "duplicates" = "numeric",
         "duplicationRateOfMapped" = "numeric",
@@ -311,10 +311,10 @@ test_that("readYAMLSampleMetrics", {
     )
 
     x <- readYAMLSampleMetrics("project-summary.yaml")
-    expect_identical(lapply(x, class), classChecks)
+    expect_identical(lapply(x, class), y)
 
     # Check for proper handling of metrics with mismatched number of values
     x <- readYAMLSampleMetrics("project-summary-metrics-mismatch.yaml")
-    classChecks[["sequenceLength"]] <- "numeric"
-    expect_identical(lapply(x, class), classChecks)
+    y[["sequenceLength"]] <- "numeric"
+    expect_identical(lapply(x, class), y)
 })

@@ -133,7 +133,7 @@ readYAMLSampleMetrics <- function(file) {
     # Drop any metadata columns. Note we're also dropping the duplicate `name`
     # column present in the metrics YAML.
     data %>%
-        .[, sort(setdiff(colnames(.), metadataBlacklist)), drop = FALSE] %>%
+        .[, sort(setdiff(colnames(.), metricsBlacklist)), drop = FALSE] %>%
         rownames_to_column() %>%
         mutate_if(numericAsCharacter, as.numeric) %>%
         mutate_if(is.character, as.factor) %>%
