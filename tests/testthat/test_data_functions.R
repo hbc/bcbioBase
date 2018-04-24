@@ -108,7 +108,11 @@ test_that("sampleData : SummarizedExperiment", {
         as.character() %>%
         .[-1L]
     list <- lapply(return, function(x) {
-        sampleData(rse_bcb, return = x)
+        sampleData(
+            rse_bcb,
+            clean = TRUE,
+            return = x
+        )
     })
     expect_identical(
         lapply(list, class),
@@ -122,8 +126,8 @@ test_that("sampleData : SummarizedExperiment", {
     expect_identical(
         lapply(list, dim),
         list(
-            c(6L, 9L),
-            c(6L, 9L),
+            c(6L, 7L),
+            c(6L, 7L),
             NULL
         )
     )
@@ -144,7 +148,7 @@ test_that("sampleData : SummarizedExperiment", {
 
 test_that("sampleData : Assignment method", {
     x <- rse_bcb
-    sampleData(x)[["test"]] <- seq_len(ncol(x))
+    sampleData(x)[["test"]] <- as.factor(seq_len(ncol(x)))
     expect_is(sampleData(x)[["test"]], "factor")
 })
 
