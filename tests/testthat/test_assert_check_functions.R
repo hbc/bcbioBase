@@ -19,8 +19,8 @@ test_that("assertFormalInterestingGroups", {
 
 
 test_that("assertFormalAnnotationCol", {
-    x <- assay(rse_bcb)
-    y <- sampleData(rse_bcb)
+    x <- assay(rse_dds)
+    y <- sampleData(rse_dds)
     expect_silent(assertFormalAnnotationCol(x, y))
     expect_silent(assertFormalAnnotationCol(x, NA))
     expect_silent(assertFormalAnnotationCol(x, NULL))

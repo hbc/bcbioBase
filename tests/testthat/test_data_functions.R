@@ -12,7 +12,11 @@ test_that("convertGenesToSymbols", {
 })
 
 test_that("convertGenesToSymbols : unmodified return", {
-    x <- convertGenesToSymbols(rse_dds)
+    expect_warning(
+        convertGenesToSymbols(rse_dds),
+        "Object does not contain gene-to-symbol mappings"
+    )
+    x <- suppressWarnings(convertGenesToSymbols(rse_dds))
     expect_identical(rownames(x), rownames(rse_dds))
 })
 
@@ -20,7 +24,7 @@ test_that("convertGenesToSymbols : unmodified return", {
 
 # counts =======================================================================
 test_that("counts", {
-    x <- counts(rse_bcb)
+    x <- counts(rse_dds)
     expect_is(x, "matrix")
 })
 
@@ -35,8 +39,12 @@ test_that("gene2symbol", {
 })
 
 test_that("gene2symbol : NULL return", {
-    expect_identical(
+    expect_warning(
         gene2symbol(rse_dds),
+        "Object does not contain gene-to-symbol mappings"
+    )
+    expect_identical(
+        suppressWarnings(gene2symbol(rse_dds)),
         NULL
     )
 })
@@ -45,7 +53,7 @@ test_that("gene2symbol : NULL return", {
 
 # flatFiles ====================================================================
 test_that("flatFiles : SummarizedExperiment", {
-    x <- flatFiles(rse_bcb)
+    x <- flatFiles(rse_dds)
     expect_is(x, "list")
     expect_identical(
         names(x),
@@ -67,6 +75,10 @@ test_that("interestingGroups : SummarizedExperiment", {
     expect_identical(
         interestingGroups(rse_bcb),
         "treatment"
+    )
+    expect_identical(
+        interestingGroups(rse_dds),
+        NULL
     )
 })
 
@@ -154,16 +166,19 @@ test_that("sampleDirs", {
 
 # selectSamples ================================================================
 test_that("selectSamples : SummarizedExperiment", {
-    x <- selectSamples(rse_bcb, treatment = "folic_acid")
-    expect_identical(dim(x), c(500L, 3L))
-    expect_identical(names(assays(x)), "counts")
+    x <- selectSamples(rse_dds, condition = "A")
+    expect_identical(dim(x), c(1000L, 6L))
+    expect_identical(colnames(x), paste0("sample", seq(6L)))
 })
 
 
 
 # uniteInterestingGroups =======================================================
 test_that("uniteInterestingGroups : Single interesting group", {
-    x <- uniteInterestingGroups(mtcars, interestingGroups = "gear")
+    x <- uniteInterestingGroups(
+        object = datasets::mtcars,
+        interestingGroups = "gear"
+    )
     expect_identical(
         x[["interestingGroups"]],
         as.factor(mtcars[["gear"]])
@@ -187,7 +202,7 @@ test_that("uniteInterestingGroups : tidy (tibble) mode", {
 
 test_that("uniteInterestingGroups : Two interesting groups", {
     x <- uniteInterestingGroups(
-        mtcars,
+        object = datasets::mtcars,
         interestingGroups = c("gear", "carb")
     )
     expect_identical(
@@ -205,7 +220,10 @@ test_that("uniteInterestingGroups : Two interesting groups", {
 
 test_that("uniteInterestingGroups : Missing groups", {
     expect_error(
-        uniteInterestingGroups(mtcars, interestingGroups = c("XXX", "YYY")),
+        uniteInterestingGroups(
+            object = datasets::mtcars,
+            interestingGroups = c("XXX", "YYY")
+        ),
         paste(
             "is_subset :",
             "The elements 'XXX', 'YYY' in interestingGroups are not in",
