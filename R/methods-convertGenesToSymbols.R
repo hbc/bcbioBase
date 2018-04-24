@@ -27,6 +27,7 @@ setMethod(
         validObject(object)
         gene2symbol <- gene2symbol(object)
         if (is.null(gene2symbol)) {
+            warning("Object does not contain gene-to-symbol mappings")
             return(object)
         }
         symbols <- gene2symbol[, "geneName", drop = TRUE]
