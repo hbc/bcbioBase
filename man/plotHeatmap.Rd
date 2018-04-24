@@ -76,13 +76,12 @@ overrided by setting \code{clusterRows} or \code{clusterCols} to \code{FALSE}.
 # SummarizedExperiment ====
 plotHeatmap(rse_dds)
 
-# matrix ====
-mat <- assay(rse_dds)
-plotHeatmap(mat)
+# Disable column clustering
+plotHeatmap(rse_dds, clusterCols = FALSE)
 }
 \seealso{
 \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}.
 
-Other Plot Heatmap Functions: \code{\link{plotCorrelationHeatmap}},
+Other Plot Functions: \code{\link{plotCorrelationHeatmap}},
   \code{\link{plotQuantileHeatmap}}
 }

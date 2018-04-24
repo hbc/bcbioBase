@@ -21,12 +21,13 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
-
-
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
   <link href="../extra.css" rel="stylesheet">
   
 <meta property="og:title" content="Unite Interesting Groups — uniteInterestingGroups" />
@@ -46,8 +47,6 @@ single column, delimited by a colon." />
 <![endif]-->
 
 
-
-
   </head>
 
   <body>
@@ -63,7 +62,7 @@ single column, delimited by a colon." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.5</span>
       </span>
     </div>
 
@@ -157,7 +156,7 @@ single column, delimited by a colon.</p>
     <span class='kw'>object</span> <span class='kw'>=</span> <span class='fu'>colData</span>(<span class='no'>rse_bcb</span>),
     <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"treatment"</span>, <span class='st'>"day"</span>)
 )
-<span class='no'>x</span>[, <span class='st'>"interestingGroups"</span>]</div><div class='output co'>#&gt; [1] control:0    control:0    control:0    folic_acid:7 folic_acid:7
+<span class='no'>x</span><span class='kw'>[[</span><span class='st'>"interestingGroups"</span>]]</div><div class='output co'>#&gt; [1] control:0    control:0    control:0    folic_acid:7 folic_acid:7
 #&gt; [6] folic_acid:7
 #&gt; Levels: control:0 folic_acid:7</div></pre>
   </div>

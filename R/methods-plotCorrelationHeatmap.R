@@ -3,7 +3,7 @@
 #' Construct a correlation heatmap comparing the columns of the matrix.
 #'
 #' @name plotCorrelationHeatmap
-#' @family Plot Heatmap Functions
+#' @family Plot Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams plotHeatmap
@@ -23,10 +23,6 @@
 #' @examples
 #' # SummarizedExperiment ====
 #' plotCorrelationHeatmap(rse_dds)
-#'
-#' # matrix ====
-#' mat <- assay(rse_dds)
-#' plotCorrelationHeatmap(mat)
 NULL
 
 

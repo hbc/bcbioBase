@@ -21,12 +21,13 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
-
-
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
   <link href="../extra.css" rel="stylesheet">
   
 <meta property="og:title" content="Counts — counts" />
@@ -44,8 +45,6 @@
 <![endif]-->
 
 
-
-
   </head>
 
   <body>
@@ -61,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.5</span>
       </span>
     </div>
 
@@ -134,11 +133,23 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># SummarizedExperiment ====</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>counts</span>(<span class='no'>rse_bcb</span>)
-<span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;  num [1:500, 1:6] 1928 1006 2904 832 1705 ...
-#&gt;  - attr(*, "dimnames")=List of 2
-#&gt;   ..$ : chr [1:500] "ENSMUSG00000000088" "ENSMUSG00000000326" "ENSMUSG00000000346" "ENSMUSG00000000740" ...
-#&gt;   ..$ : chr [1:6] "control_rep1" "control_rep2" "control_rep3" "fa_day7_rep1" ...</div></pre>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>counts</span>(<span class='no'>rse_dds</span>)
+<span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;     sample1           sample2           sample3          sample4      
+#&gt;  Min.   :   0.00   Min.   :   0.00   Min.   :  0.00   Min.   :  0.00  
+#&gt;  1st Qu.:   4.00   1st Qu.:   4.00   1st Qu.:  4.00   1st Qu.:  4.00  
+#&gt;  Median :  15.00   Median :  15.00   Median : 14.00   Median : 14.00  
+#&gt;  Mean   :  41.63   Mean   :  44.45   Mean   : 42.58   Mean   : 40.81  
+#&gt;     sample5           sample6           sample7           sample8      
+#&gt;  Min.   :   0.00   Min.   :   0.00   Min.   :   0.00   Min.   :  0.00  
+#&gt;  1st Qu.:   4.00   1st Qu.:   4.00   1st Qu.:   4.00   1st Qu.:  4.00  
+#&gt;  Median :  16.50   Median :  14.00   Median :  14.00   Median : 15.00  
+#&gt;  Mean   :  43.31   Mean   :  44.81   Mean   :  43.06   Mean   : 43.95  
+#&gt;     sample9           sample10         sample11         sample12      
+#&gt;  Min.   :   0.00   Min.   :  0.00   Min.   :   0.0   Min.   :   0.00  
+#&gt;  1st Qu.:   4.00   1st Qu.:  4.00   1st Qu.:   4.0   1st Qu.:   4.00  
+#&gt;  Median :  15.00   Median : 14.00   Median :  14.0   Median :  15.00  
+#&gt;  Mean   :  43.57   Mean   : 41.43   Mean   :  43.1   Mean   :  42.44  
+#&gt;  [ reached getOption("max.print") -- omitted 2 rows ]</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

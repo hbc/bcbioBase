@@ -78,10 +78,6 @@ Construct a correlation heatmap comparing the columns of the matrix.
 \examples{
 # SummarizedExperiment ====
 plotCorrelationHeatmap(rse_dds)
-
-# matrix ====
-mat <- assay(rse_dds)
-plotCorrelationHeatmap(mat)
 }
 \seealso{
 \itemize{
@@ -90,7 +86,7 @@ plotCorrelationHeatmap(mat)
 \item \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}.
 }
 
-Other Plot Heatmap Functions: \code{\link{plotHeatmap}},
+Other Plot Functions: \code{\link{plotHeatmap}},
   \code{\link{plotQuantileHeatmap}}
 }
 \author{
