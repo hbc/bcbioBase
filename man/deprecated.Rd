@@ -11,6 +11,7 @@
 \alias{sampleYAML}
 \alias{sampleYAMLMetadata}
 \alias{sampleYAMLMetrics}
+\alias{prepareSampleData}
 \title{Defunct or Deprecated Functions}
 \usage{
 checkInterestingGroups(...)
@@ -30,6 +31,8 @@ sampleYAML(...)
 sampleYAMLMetadata(...)
 
 sampleYAMLMetrics(...)
+
+prepareSampleData(...)
 }
 \value{
 No value.
