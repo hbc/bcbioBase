@@ -32,7 +32,6 @@ notifications:
 
 r_packages:
   - covr
-  - hexbin
 bioc_packages:
   - BiocCheck
 
