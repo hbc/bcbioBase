@@ -54,7 +54,7 @@ readSampleData <- function(file, lanes = 1L) {
     assert_is_subset(requiredCols, colnames(data))
 
     # Valid rows must non-empty description
-    data <- filter(data, !is.na(!!sym("description")))
+    data <- data[!is.na(data[["description"]]), , drop = FALSE]
     assert_is_non_empty(data)
 
     # Determine whether the samples are multiplexed, based on the presence
