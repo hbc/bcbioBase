@@ -17,12 +17,12 @@
 #'
 #' @examples
 #' # Demultiplexed
-#' readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv") %>%
-#'     glimpse()
+#' x <- readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv")
+#' glimpse(x)
 #'
 #' # Multiplexed (e.g. inDrop single-cell RNA-seq)
-#' readSampleData("http://bcbiobase.seq.cloud/multiplexed.csv") %>%
-#'     glimpse()
+#' x <- readSampleData("http://bcbiobase.seq.cloud/multiplexed.csv")
+#' glimpse(x)
 readSampleData <- function(file, lanes = 1L) {
     assert_is_a_string(file)
     assertIsAnImplicitInteger(lanes)
@@ -33,37 +33,34 @@ readSampleData <- function(file, lanes = 1L) {
         camel() %>%
         removeNA()
 
-    # Don't allow the user to manually define `sampleID` column
-    assert_are_disjoint_sets("sampleID", colnames(data))
-
     # Warn on legacy `samplename` column. This is used in some bcbio
     # documentation examples, and we need to work on improving the consistency.
-    if ("samplename" %in% colnames(data)) {
+    if (any(c("samplename", "sampleID") %in% colnames(data))) {
         warning(paste(
             "Invalid metadata columns detected.",
-            "Recommended formatting:",
-            "- fileName: FASTQ file names (e.g. sample_1.fastq.gz)",
-            "- description: Sample name per file (default; demultiplexed)",
-            "- sampleName: Multiplexed sample name (for single-cell)",
+            "Recommended values:",
+            "- description: Sample name per file (required)",
+            "- sampleName: Multiplexed sample name (only for single-cell)",
+            "- fileName: FASTQ file name (optional but recommended)",
             sep = "\n"
         ))
         data[["fileName"]] <- data[["samplename"]]
         data[["samplename"]] <- NULL
+        data[["sampleID"]] <- NULL
     }
 
-    # Check for basic required columns
-    requiredCols <- c("fileName", "description")
+    # Check for description column (always required)
+    requiredCols <- "description"
     assert_is_subset(requiredCols, colnames(data))
 
-    # Valid rows must contain both `fileName` and `description`
-    data <- data %>%
-        .[!is.na(.[["fileName"]]), , drop = FALSE] %>%
-        .[!is.na(.[["description"]]), , drop = FALSE]
+    # Valid rows must non-empty description
+    data <- filter(data, !is.na(!!sym("description")))
+    assert_is_non_empty(data)
 
     # Determine whether the samples are multiplexed, based on the presence
     # of duplicate values in the `description` column
     if (
-        any(duplicated(data[["fileName"]])) ||
+        any(duplicated(data[["description"]])) ||
         any(c("index", "sequence") %in% colnames(data))
     ) {
         multiplexed <- TRUE

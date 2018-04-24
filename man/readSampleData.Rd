@@ -20,12 +20,12 @@ Read Sample Metadata
 }
 \examples{
 # Demultiplexed
-readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv") \%>\%
-    glimpse()
+x <- readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv")
+glimpse(x)
 
 # Multiplexed (e.g. inDrop single-cell RNA-seq)
-readSampleData("http://bcbiobase.seq.cloud/multiplexed.csv") \%>\%
-    glimpse()
+x <- readSampleData("http://bcbiobase.seq.cloud/multiplexed.csv")
+glimpse(x)
 }
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},
