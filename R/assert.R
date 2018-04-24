@@ -84,8 +84,8 @@ assertFormalAnnotationCol <- function(
 #'
 #' @examples
 #' assertFormalInterestingGroups(
-#'     x = sampleData(rse_bcb),
-#'     interestingGroups = "treatment"
+#'     x = sampleData(rse_dds),
+#'     interestingGroups = "condition"
 #' )
 assertFormalInterestingGroups <- function(
     x,

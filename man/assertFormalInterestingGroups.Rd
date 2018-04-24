@@ -23,8 +23,8 @@ is requested by the user.
 }
 \examples{
 assertFormalInterestingGroups(
-    x = sampleData(rse_bcb),
-    interestingGroups = "treatment"
+    x = sampleData(rse_dds),
+    interestingGroups = "condition"
 )
 }
 \seealso{
