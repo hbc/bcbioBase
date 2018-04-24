@@ -14,8 +14,7 @@ sampleData(object, ...)
 sampleData(object, ...) <- value
 
 \S4method{sampleData}{SummarizedExperiment}(object, interestingGroups,
-  isFactor = TRUE, blacklist = TRUE, return = c("DataFrame", "data.frame",
-  "kable"))
+  clean = TRUE, return = c("DataFrame", "data.frame", "kable"))
 
 \S4method{sampleData}{SummarizedExperiment,DataFrame}(object) <- value
 }
@@ -28,11 +27,8 @@ sampleData(object, ...) <- value
 
 \item{interestingGroups}{\code{character} vector defining the groups of interest.}
 
-\item{isFactor}{Only include \code{factor} columns. Generally recommended. This
-helps easily discard columns in \code{\link[=colData]{colData()}} that are \code{numeric} metrics.}
-
-\item{blacklist}{Drop blacklisted columns defined in \link{metadataBlacklist}.
-Only applies when \code{isFactor = TRUE}.}
+\item{clean}{\emph{Recommended.} Only return \code{factor} columns not defined in
+\link{metadataBlacklist}.}
 
 \item{return}{Object class to return. Uses \code{\link[=match.arg]{match.arg()}} internally and picks
 the first item in the vector by default.}

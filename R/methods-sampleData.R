@@ -12,10 +12,8 @@
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
-#' @param isFactor Only include `factor` columns. Generally recommended. This
-#'   helps easily discard columns in [colData()] that are `numeric` metrics.
-#' @param blacklist Drop blacklisted columns defined in [metadataBlacklist].
-#'   Only applies when `isFactor = TRUE`.
+#' @param clean *Recommended.* Only return `factor` columns not defined in
+#'   [metadataBlacklist].
 #'
 #' @return Data describing the samples.
 #'
@@ -43,8 +41,7 @@ setMethod(
     function(
         object,
         interestingGroups,
-        isFactor = TRUE,
-        blacklist = TRUE,
+        clean = TRUE,
         return = c("DataFrame", "data.frame", "kable")
     ) {
         validObject(object)
@@ -52,17 +49,15 @@ setMethod(
 
         data <- colData(object)
 
-        # Only include factor columns
-        if (isTRUE(isFactor)) {
+        if (isTRUE(clean)) {
+            # Only include factor columns
             data <- data[, vapply(data, is.factor, logical(1L)), drop = FALSE]
-            # Drop blacklisted factor columns (recommended)
-            if (isTRUE(blacklist)) {
-                setdiff <- setdiff(colnames(data), metadataBlacklist)
-                data <- data[, setdiff, drop = FALSE]
-            }
+            # Drop remaining blacklisted columns (recommended)
+            setdiff <- setdiff(colnames(data), metadataBlacklist)
+            data <- data[, setdiff, drop = FALSE]
         }
 
-        # Include `interestingGroups` column
+        # Include `interestingGroups` column, if not NULL
         if (missing(interestingGroups)) {
             interestingGroups <- bcbioBase::interestingGroups(object)
             if (is.character(interestingGroups)) {
