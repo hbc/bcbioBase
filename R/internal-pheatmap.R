@@ -25,10 +25,11 @@
         return(NA)
     }
     assertHasRownames(object)
+    blacklist <- c("sampleName", metadataBlacklist)
     object %>%
         as.data.frame() %>%
         # Remove sample name columns
-        .[, setdiff(colnames(.), metadataBlacklist), drop = FALSE] %>%
+        .[, setdiff(colnames(.), blacklist), drop = FALSE] %>%
         rownames_to_column() %>%
         # Ensure all strings are factor
         mutate_if(is.character, as.factor) %>%
