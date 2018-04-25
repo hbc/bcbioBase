@@ -32,7 +32,7 @@
 #' @importFrom stringr str_pad str_trunc
 #' @importFrom tibble as_tibble column_to_rownames has_rownames is_tibble
 #'   rownames_to_column tibble
-#' @importFrom tidyr unite
+#' @importFrom tidyr expand unite
 #' @importFrom utils globalVariables sessionInfo
 #' @importFrom viridis viridis
 #'
