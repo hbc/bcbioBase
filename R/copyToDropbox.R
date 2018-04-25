@@ -1,3 +1,5 @@
+# nocov start
+
 #' Copy Files to Dropbox
 #'
 #' @family Write Functions
@@ -73,3 +75,5 @@ copyToDropbox <- function(
 
     invisible(rdrop)
 }
+
+# nocov end
