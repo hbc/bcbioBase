@@ -136,27 +136,25 @@ replicates (<code>_LXXX</code>) suffix.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Demultiplexed</span>
-<span class='fu'>readSampleData</span>(<span class='st'>"http://bcbiobase.seq.cloud/demultiplexed.csv"</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='st'>"http://bcbiobase.seq.cloud/demultiplexed.csv"</span>)</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
 #&gt; <span class='message'>cols(</span>
 #&gt; <span class='message'>  fileName = col_character(),</span>
 #&gt; <span class='message'>  description = col_character(),</span>
 #&gt; <span class='message'>  genotype = col_character()</span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'>Demultiplexed samples detected</span></div><div class='output co'>#&gt; Observations: 4
+#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'>Demultiplexed samples detected</span></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Observations: 4
 #&gt; Variables: 3
 #&gt; $ sampleName &lt;fct&gt; sample 1, sample 2, sample 3, sample 4
 #&gt; $ fileName   &lt;fct&gt; sample1_R1.fastq.gz, sample2_R1.fastq.gz, sample3_R1.fas...
 #&gt; $ genotype   &lt;fct&gt; wildtype, wildtype, mutant, mutant</div><div class='input'>
 <span class='co'># Multiplexed (e.g. inDrop single-cell RNA-seq)</span>
-<span class='fu'>readSampleData</span>(<span class='st'>"http://bcbiobase.seq.cloud/multiplexed.csv"</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; <span class='message'>Reading multiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='st'>"http://bcbiobase.seq.cloud/multiplexed.csv"</span>)</div><div class='output co'>#&gt; <span class='message'>Reading multiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
 #&gt; <span class='message'>cols(</span>
 #&gt; <span class='message'>  fileName = col_character(),</span>
 #&gt; <span class='message'>  description = col_character(),</span>
 #&gt; <span class='message'>  index = col_integer(),</span>
 #&gt; <span class='message'>  sequence = col_character(),</span>
 #&gt; <span class='message'>  sampleName = col_character()</span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'>Multiplexed samples detected</span></div><div class='output co'>#&gt; Observations: 7
+#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'>Multiplexed samples detected</span></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Observations: 7
 #&gt; Variables: 6
 #&gt; $ sampleName  &lt;fct&gt; sample 2, sample 1, sample 5, sample 4, sample 6, sampl...
 #&gt; $ fileName    &lt;fct&gt; run1_R1.fastq.gz, run1_R1.fastq.gz, run2_R1.fastq.gz, r...
