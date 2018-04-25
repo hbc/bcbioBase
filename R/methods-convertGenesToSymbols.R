@@ -30,7 +30,7 @@ setMethod(
             return(object)
         }
         symbols <- gene2symbol[, "geneName", drop = TRUE]
-        symbols <- make.unique(symbols)
+        symbols <- make.names(symbols, unique = TRUE)
         rownames(object) <- symbols
         object
     }
