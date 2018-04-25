@@ -145,11 +145,27 @@ setMethod(
 setMethod(
     "plotQuantileHeatmap",
     signature("SummarizedExperiment"),
-    function(object, ...) {
+    function(object, interestingGroups, ...) {
         object <- suppressWarnings(convertGenesToSymbols(object))
+        counts <- counts(object)
         annotationCol <- sampleData(object, interestingGroups = NULL)
+        if (missing(interestingGroups)) {
+            message("Using `sampleData()` factor columns for annotations")
+        } else if (is.character(interestingGroups)) {
+            annotationCol <- annotationCol[, interestingGroups, drop = FALSE]
+        } else {
+            annotationCol <- NULL
+        }
+        # Use `sampleName`, if defined
+        sampleName <- colData(object)[["sampleName"]]
+        if (length(sampleName)) {
+            colnames(counts) <- sampleName
+            if (length(annotationCol)) {
+                rownames(annotationCol) <- sampleName
+            }
+        }
         plotQuantileHeatmap(
-            object = assay(object),
+            object = counts,
             annotationCol = annotationCol,
             ...
         )

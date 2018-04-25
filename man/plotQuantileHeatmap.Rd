@@ -30,7 +30,8 @@ plotQuantileHeatmap(object, ...)
   treeheightCol = 50L, legend = FALSE, color = viridis,
   legendColor = NULL, borderColor = NULL, title = NULL, ...)
 
-\S4method{plotQuantileHeatmap}{SummarizedExperiment}(object, ...)
+\S4method{plotQuantileHeatmap}{SummarizedExperiment}(object, interestingGroups,
+  ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -72,6 +73,8 @@ palette.}
 improved aesthetics.}
 
 \item{title}{\emph{Optional.} Plot title.}
+
+\item{interestingGroups}{\code{character} vector defining the groups of interest.}
 }
 \value{
 Show heatmap and invisibly return a \code{list} of the components.

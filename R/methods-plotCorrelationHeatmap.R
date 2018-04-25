@@ -129,14 +129,23 @@ setMethod(
 setMethod(
     "plotCorrelationHeatmap",
     signature("SummarizedExperiment"),
-    function(object, ...) {
+    function(object, interestingGroups, ...) {
         counts <- counts(object)
         annotationCol <- sampleData(object, interestingGroups = NULL)
+        if (missing(interestingGroups)) {
+            message("Using `sampleData()` factor columns for annotations")
+        } else if (is.character(interestingGroups)) {
+            annotationCol <- annotationCol[, interestingGroups, drop = FALSE]
+        } else {
+            annotationCol <- NULL
+        }
         # Use `sampleName`, if defined
         sampleName <- colData(object)[["sampleName"]]
         if (length(sampleName)) {
             colnames(counts) <- sampleName
-            rownames(annotationCol) <- sampleName
+            if (length(annotationCol)) {
+                rownames(annotationCol) <- sampleName
+            }
         }
         plotCorrelationHeatmap(
             object = counts,

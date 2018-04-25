@@ -48,7 +48,14 @@
     )
     data <- data[, hasLevels, drop = FALSE]
 
-    column_to_rownames(data)
+    data <- column_to_rownames(data)
+
+    if (ncol(data)) {
+        data
+    } else {
+        warning("No valid annotation columns matched")
+        NA
+    }
 }
 
 
