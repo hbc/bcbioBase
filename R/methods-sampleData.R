@@ -65,6 +65,11 @@ setMethod(
             }
         }
 
+        # Arrange rows by `sampleName` column, if defined
+        if ("sampleName" %in% colnames(data)) {
+            data <- data[order(data[["sampleName"]]), , drop = FALSE]
+        }
+
         # Return
         if (return == "kable") {
             data %>%
