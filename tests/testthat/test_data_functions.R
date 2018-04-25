@@ -12,7 +12,11 @@ test_that("convertGenesToSymbols", {
 })
 
 test_that("convertGenesToSymbols : unmodified return", {
-    x <- convertGenesToSymbols(rse_dds)
+    expect_warning(
+        convertGenesToSymbols(rse_dds),
+        "Object does not contain gene-to-symbol mappings"
+    )
+    x <- suppressWarnings(convertGenesToSymbols(rse_dds))
     expect_identical(rownames(x), rownames(rse_dds))
 })
 
@@ -20,7 +24,7 @@ test_that("convertGenesToSymbols : unmodified return", {
 
 # counts =======================================================================
 test_that("counts", {
-    x <- counts(rse_bcb)
+    x <- counts(rse_dds)
     expect_is(x, "matrix")
 })
 
@@ -35,8 +39,12 @@ test_that("gene2symbol", {
 })
 
 test_that("gene2symbol : NULL return", {
-    expect_identical(
+    expect_warning(
         gene2symbol(rse_dds),
+        "Object does not contain gene-to-symbol mappings"
+    )
+    expect_identical(
+        suppressWarnings(gene2symbol(rse_dds)),
         NULL
     )
 })
@@ -45,7 +53,7 @@ test_that("gene2symbol : NULL return", {
 
 # flatFiles ====================================================================
 test_that("flatFiles : SummarizedExperiment", {
-    x <- flatFiles(rse_bcb)
+    x <- flatFiles(rse_dds)
     expect_is(x, "list")
     expect_identical(
         names(x),
@@ -67,6 +75,10 @@ test_that("interestingGroups : SummarizedExperiment", {
     expect_identical(
         interestingGroups(rse_bcb),
         "treatment"
+    )
+    expect_identical(
+        interestingGroups(rse_dds),
+        NULL
     )
 })
 
@@ -96,7 +108,11 @@ test_that("sampleData : SummarizedExperiment", {
         as.character() %>%
         .[-1L]
     list <- lapply(return, function(x) {
-        sampleData(rse_bcb, return = x)
+        sampleData(
+            rse_bcb,
+            clean = TRUE,
+            return = x
+        )
     })
     expect_identical(
         lapply(list, class),
@@ -110,8 +126,8 @@ test_that("sampleData : SummarizedExperiment", {
     expect_identical(
         lapply(list, dim),
         list(
-            c(6L, 9L),
-            c(6L, 9L),
+            c(6L, 7L),
+            c(6L, 7L),
             NULL
         )
     )
@@ -132,7 +148,7 @@ test_that("sampleData : SummarizedExperiment", {
 
 test_that("sampleData : Assignment method", {
     x <- rse_bcb
-    sampleData(x)[["test"]] <- seq_len(ncol(x))
+    sampleData(x)[["test"]] <- as.factor(seq_len(ncol(x)))
     expect_is(sampleData(x)[["test"]], "factor")
 })
 
@@ -152,90 +168,21 @@ test_that("sampleDirs", {
 
 
 
-# readYAMLSampleData ===========================================================
-test_that("readYAMLSampleData", {
-    x <- readYAMLSampleData("project-summary.yaml")
-    samples <- c("group1_1", "group1_2", "group2_1", "group2_2")
-    expect_identical(
-        x,
-        data.frame(
-            "sampleID" = samples,
-            "sampleName" = samples,
-            "description" = samples,
-            "genomeBuild" = "mm10",
-            "group" = c("ctrl", "ctrl", "ko", "ko"),
-            "samRef" = paste(
-                "",
-                "groups",
-                "bcbio",
-                "bcbio_dev",
-                "genomes",
-                "Mmusculus",
-                "mm10",
-                "seq",
-                "mm10.fa",
-                sep = "/"
-            ),
-            row.names = samples,
-            stringsAsFactors = TRUE
-        )
-    )
-})
-
-test_that("readYAMLSampleData : nested metadata", {
-    # Testing against Kayleigh's example
-    x <- suppressWarnings(
-        readYAMLSampleData("project-summary-nested-metadata.yaml")
-    )
-    expect_is(x, "data.frame")
-})
-
-
-
-# readYAMLSampleMetrics ========================================================
-test_that("readYAMLSampleMetrics", {
-    classChecks <- list(
-        "averageInsertSize" = "numeric",
-        "duplicates" = "numeric",
-        "duplicationRateOfMapped" = "numeric",
-        "exonicRate" = "numeric",
-        "intergenicRate" = "numeric",
-        "intronicRate" = "numeric",
-        "mappedPairedReads" = "numeric",
-        "mappedReads" = "numeric",
-        "qualityFormat" = "factor",
-        "rrna" = "numeric",
-        "rrnaRate" = "numeric",
-        "sequenceLength" = "factor",
-        "sequencesFlaggedAsPoorQuality" = "numeric",
-        "totalReads" = "numeric",
-        "x5x3Bias" = "numeric",
-        "xGC" = "numeric"
-    )
-
-    x <- readYAMLSampleMetrics("project-summary.yaml")
-    expect_identical(lapply(x, class), classChecks)
-
-    # Check for proper handling of metrics with mismatched number of values
-    x <- readYAMLSampleMetrics("project-summary-metrics-mismatch.yaml")
-    classChecks[["sequenceLength"]] <- "numeric"
-    expect_identical(lapply(x, class), classChecks)
-})
-
-
-
 # selectSamples ================================================================
 test_that("selectSamples : SummarizedExperiment", {
-    x <- selectSamples(rse_bcb, treatment = "folic_acid")
-    expect_identical(dim(x), c(500L, 3L))
-    expect_identical(names(assays(x)), "counts")
+    x <- selectSamples(rse_dds, condition = "A")
+    expect_identical(dim(x), c(1000L, 6L))
+    expect_identical(colnames(x), paste0("sample", seq(6L)))
 })
 
 
 
 # uniteInterestingGroups =======================================================
 test_that("uniteInterestingGroups : Single interesting group", {
-    x <- uniteInterestingGroups(mtcars, interestingGroups = "gear")
+    x <- uniteInterestingGroups(
+        object = datasets::mtcars,
+        interestingGroups = "gear"
+    )
     expect_identical(
         x[["interestingGroups"]],
         as.factor(mtcars[["gear"]])
@@ -259,7 +206,7 @@ test_that("uniteInterestingGroups : tidy (tibble) mode", {
 
 test_that("uniteInterestingGroups : Two interesting groups", {
     x <- uniteInterestingGroups(
-        mtcars,
+        object = datasets::mtcars,
         interestingGroups = c("gear", "carb")
     )
     expect_identical(
@@ -277,7 +224,10 @@ test_that("uniteInterestingGroups : Two interesting groups", {
 
 test_that("uniteInterestingGroups : Missing groups", {
     expect_error(
-        uniteInterestingGroups(mtcars, interestingGroups = c("XXX", "YYY")),
+        uniteInterestingGroups(
+            object = datasets::mtcars,
+            interestingGroups = c("XXX", "YYY")
+        ),
         paste(
             "is_subset :",
             "The elements 'XXX', 'YYY' in interestingGroups are not in",

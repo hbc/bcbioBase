@@ -27,7 +27,7 @@ Sample selection utility function designed for interactive use.
 }
 \examples{
 # SummarizedExperiment ====
-x <- selectSamples(rse_bcb, day = 7L)
+x <- selectSamples(rse_dds, condition = "A")
 show(x)
 colnames(x)
 }

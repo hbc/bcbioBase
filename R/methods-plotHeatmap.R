@@ -5,7 +5,7 @@
 #' overrided by setting `clusterRows` or `clusterCols` to `FALSE`.
 #'
 #' @name plotHeatmap
-#' @family Plot Heatmap Functions
+#' @family Plot Functions
 #'
 #' @inheritParams general
 #' @param scale `character` indicating whether the values should be centered and
@@ -36,9 +36,8 @@
 #' # SummarizedExperiment ====
 #' plotHeatmap(rse_dds)
 #'
-#' # matrix ====
-#' mat <- assay(rse_dds)
-#' plotHeatmap(mat)
+#' # Disable column clustering
+#' plotHeatmap(rse_dds, clusterCols = FALSE)
 NULL
 
 
@@ -152,7 +151,7 @@ setMethod(
     "plotHeatmap",
     signature("SummarizedExperiment"),
     function(object, ...) {
-        object <- convertGenesToSymbols(object)
+        object <- suppressWarnings(convertGenesToSymbols(object))
         annotationCol <- sampleData(object, interestingGroups = NULL)
         plotHeatmap(
             object = assay(object),

@@ -19,8 +19,8 @@ Counts
 }
 \examples{
 # SummarizedExperiment ====
-x <- counts(rse_bcb)
-glimpse(x)
+x <- counts(rse_dds)
+summary(x)
 }
 \seealso{
 Other Data Functions: \code{\link{convertGenesToSymbols}},

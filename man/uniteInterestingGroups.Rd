@@ -38,7 +38,7 @@ x <- uniteInterestingGroups(
     object = colData(rse_bcb),
     interestingGroups = c("treatment", "day")
 )
-x[, "interestingGroups"]
+x[["interestingGroups"]]
 }
 \seealso{
 Other Data Functions: \code{\link{convertGenesToSymbols}},

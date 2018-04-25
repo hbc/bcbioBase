@@ -1,22 +1,19 @@
 #' Plot Heatmap with Quantile Breaks
 #'
 #' @name plotQuantileHeatmap
-#' @family Plot Heatmap Functions
+#' @family Plot Functions
 #' @author Rory Kirchner, Michael Steinbaugh
 #'
-#' @inheritParams plotHeatmap
+#' @inherit plotHeatmap
 #' @param n The number of breaks to create.
 #' @param legend Show the color legend.
-#'
-#' @return Show heatmap and invisibly return a `list` of the components.
 #'
 #' @examples
 #' # SummarizedExperiment ====
 #' plotQuantileHeatmap(rse_dds)
 #'
-#' # matrix ====
-#' mat <- assay(rse_dds)
-#' plotQuantileHeatmap(mat)
+#' # Disable column clustering
+#' plotQuantileHeatmap(rse_dds, clusterCols = FALSE)
 NULL
 
 
@@ -149,7 +146,7 @@ setMethod(
     "plotQuantileHeatmap",
     signature("SummarizedExperiment"),
     function(object, ...) {
-        object <- convertGenesToSymbols(object)
+        object <- suppressWarnings(convertGenesToSymbols(object))
         annotationCol <- sampleData(object, interestingGroups = NULL)
         plotQuantileHeatmap(
             object = assay(object),

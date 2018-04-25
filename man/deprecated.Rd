@@ -6,9 +6,12 @@
 \alias{prepareSampleMetadata}
 \alias{readLogFile}
 \alias{readSampleMetadataFile}
+\alias{sampleMetadata}
+\alias{sampleMetadata<-}
 \alias{sampleYAML}
 \alias{sampleYAMLMetadata}
 \alias{sampleYAMLMetrics}
+\alias{prepareSampleData}
 \title{Defunct or Deprecated Functions}
 \usage{
 checkInterestingGroups(...)
@@ -19,11 +22,17 @@ readLogFile(...)
 
 readSampleMetadataFile(...)
 
+sampleMetadata(object, ...)
+
+sampleMetadata(object) <- value
+
 sampleYAML(...)
 
 sampleYAMLMetadata(...)
 
 sampleYAMLMetrics(...)
+
+prepareSampleData(...)
 }
 \value{
 No value.

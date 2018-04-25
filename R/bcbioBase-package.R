@@ -2,8 +2,6 @@
 #'
 #' Base functions and generics for bcbio R packages.
 #'
-#' @keywords internal
-#'
 #' @importFrom Biostrings reverseComplement
 #' @importFrom GenomeInfoDb seqnames
 #' @importFrom GenomicRanges GRanges
@@ -15,12 +13,13 @@
 #'   localOrRemoteFile makeNames readFileByExtension readYAML removeNA
 #'   sanitizeSampleData snake
 #' @importFrom dendsort dendsort
-#' @importFrom dplyr arrange group_by mutate mutate_all mutate_if select_if
-#'   ungroup
+#' @importFrom dplyr arrange everything funs group_by mutate mutate_all
+#'   mutate_at mutate_if select select_if ungroup
 #' @importFrom grDevices colorRampPalette
 #' @importFrom knitr kable
 #' @importFrom magrittr %>% set_names set_rownames
-#' @importFrom methods .hasSlot as formalArgs getMethod is slotNames validObject
+#' @importFrom methods .hasSlot as formalArgs getMethod is setAs slotNames
+#'   validObject
 #' @importFrom pheatmap pheatmap
 #' @importFrom plyr ldply
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists

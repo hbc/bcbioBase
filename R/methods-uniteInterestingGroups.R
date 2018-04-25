@@ -19,7 +19,7 @@
 #'     object = colData(rse_bcb),
 #'     interestingGroups = c("treatment", "day")
 #' )
-#' x[, "interestingGroups"]
+#' x[["interestingGroups"]]
 NULL
 
 

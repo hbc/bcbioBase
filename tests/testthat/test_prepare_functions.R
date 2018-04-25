@@ -2,20 +2,6 @@ context("Prepare Functions")
 
 
 
-# prepareSampleData ============================================================
-test_that("prepareSampleData : Missing description column", {
-    expect_error(
-        prepareSampleData(mtcars),
-        paste(
-            "is_subset :",
-            "The element 'description' in \"description\" is not in",
-            "colnames\\(object\\)."
-        )
-    )
-})
-
-
-
 # prepareSummarizedExperiment ==================================================
 test_that("prepareSummarizedExperiment : RangedSummarizedExperiment", {
     rse <- prepareSummarizedExperiment(

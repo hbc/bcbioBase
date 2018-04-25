@@ -21,12 +21,13 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
-
-
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
   <link href="../extra.css" rel="stylesheet">
   
 <meta property="og:title" content="Read Sample Metadata — readSampleData" />
@@ -44,8 +45,6 @@
 <![endif]-->
 
 
-
-
   </head>
 
   <body>
@@ -61,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.5</span>
       </span>
     </div>
 
@@ -137,34 +136,29 @@ replicates (<code>_LXXX</code>) suffix.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Demultiplexed</span>
-<span class='fu'>readSampleData</span>(<span class='st'>"http://bcbiobase.seq.cloud/demultiplexed.csv"</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='st'>"http://bcbiobase.seq.cloud/demultiplexed.csv"</span>)</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
 #&gt; <span class='message'>cols(</span>
 #&gt; <span class='message'>  fileName = col_character(),</span>
 #&gt; <span class='message'>  description = col_character(),</span>
 #&gt; <span class='message'>  genotype = col_character()</span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'>Demultiplexed samples detected</span></div><div class='output co'>#&gt; Observations: 4
-#&gt; Variables: 5
-#&gt; $ sampleID    &lt;fct&gt; sample_1, sample_2, sample_3, sample_4
-#&gt; $ sampleName  &lt;fct&gt; sample 1, sample 2, sample 3, sample 4
-#&gt; $ description &lt;fct&gt; sample 1, sample 2, sample 3, sample 4
-#&gt; $ fileName    &lt;fct&gt; sample1_R1.fastq.gz, sample2_R1.fastq.gz, sample3_R1.fa...
-#&gt; $ genotype    &lt;fct&gt; wildtype, wildtype, mutant, mutant</div><div class='input'>
+#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'>Demultiplexed samples detected</span></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Observations: 4
+#&gt; Variables: 3
+#&gt; $ sampleName &lt;fct&gt; sample 1, sample 2, sample 3, sample 4
+#&gt; $ fileName   &lt;fct&gt; sample1_R1.fastq.gz, sample2_R1.fastq.gz, sample3_R1.fas...
+#&gt; $ genotype   &lt;fct&gt; wildtype, wildtype, mutant, mutant</div><div class='input'>
 <span class='co'># Multiplexed (e.g. inDrop single-cell RNA-seq)</span>
-<span class='fu'>readSampleData</span>(<span class='st'>"http://bcbiobase.seq.cloud/multiplexed.csv"</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>()</div><div class='output co'>#&gt; <span class='message'>Reading multiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='st'>"http://bcbiobase.seq.cloud/multiplexed.csv"</span>)</div><div class='output co'>#&gt; <span class='message'>Reading multiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
 #&gt; <span class='message'>cols(</span>
 #&gt; <span class='message'>  fileName = col_character(),</span>
 #&gt; <span class='message'>  description = col_character(),</span>
 #&gt; <span class='message'>  index = col_integer(),</span>
 #&gt; <span class='message'>  sequence = col_character(),</span>
 #&gt; <span class='message'>  sampleName = col_character()</span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'>Multiplexed samples detected</span></div><div class='output co'>#&gt; Observations: 7
-#&gt; Variables: 7
-#&gt; $ sampleID    &lt;fct&gt; run_1_CAGTTATG, run_1_TTACCTCC, run_2_ATAGCCTT, run_2_C...
+#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='message'>Multiplexed samples detected</span></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Observations: 7
+#&gt; Variables: 6
 #&gt; $ sampleName  &lt;fct&gt; sample 2, sample 1, sample 5, sample 4, sample 6, sampl...
-#&gt; $ description &lt;fct&gt; run 1, run 1, run 2, run 2, run 2, run 2, run 2
 #&gt; $ fileName    &lt;fct&gt; run1_R1.fastq.gz, run1_R1.fastq.gz, run2_R1.fastq.gz, r...
+#&gt; $ description &lt;fct&gt; run 1, run 1, run 2, run 2, run 2, run 2, run 2
 #&gt; $ index       &lt;fct&gt; 18, 17, 14, 13, 15, 16, 12
 #&gt; $ sequence    &lt;fct&gt; CATAACTG, GGAGGTAA, AAGGCTAT, CTATTAAG, GAGCCTTA, TTATG...
 #&gt; $ revcomp     &lt;fct&gt; CAGTTATG, TTACCTCC, ATAGCCTT, CTTAATAG, TAAGGCTC, TCGCA...</div></pre>

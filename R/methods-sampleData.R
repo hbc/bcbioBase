@@ -12,8 +12,12 @@
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
+#' @param clean *Recommended.* Only return `factor` columns not defined in
+#'   [metadataBlacklist].
 #'
 #' @return Data describing the samples.
+#'
+#' @seealso [metadataBlacklist].
 #'
 #' @examples
 #' # SummarizedExperiment ====
@@ -37,13 +41,23 @@ setMethod(
     function(
         object,
         interestingGroups,
+        clean = TRUE,
         return = c("DataFrame", "data.frame", "kable")
     ) {
         validObject(object)
         return <- match.arg(return)
+
         data <- colData(object)
 
-        # Include `interestingGroups` column
+        if (isTRUE(clean)) {
+            # Only include factor columns
+            data <- data[, vapply(data, is.factor, logical(1L)), drop = FALSE]
+            # Drop remaining blacklisted columns (recommended)
+            setdiff <- setdiff(colnames(data), metadataBlacklist)
+            data <- data[, setdiff, drop = FALSE]
+        }
+
+        # Include `interestingGroups` column, if not NULL
         if (missing(interestingGroups)) {
             interestingGroups <- bcbioBase::interestingGroups(object)
             if (is.character(interestingGroups)) {
@@ -53,11 +67,9 @@ setMethod(
 
         # Return
         if (return == "kable") {
-            blacklist <- c("description", "fileName", "sampleID")
             data %>%
                 as.data.frame() %>%
-                .[, setdiff(colnames(.), blacklist), drop = FALSE] %>%
-                kable(row.names = TRUE)
+                kable(row.names = FALSE)
         } else {
             as(data, return)
         }
@@ -72,35 +84,10 @@ setMethod(
     "sampleData<-",
     signature(
         object = "SummarizedExperiment",
-        value = "ANY"
+        value = "DataFrame"
     ),
     function(object, value) {
-        value <- as(value, "DataFrame")
-        # Ensure all columns are factors
-        value <- sanitizeSampleData(value)
         colData(object) <- value
         object
     }
 )
-
-
-
-# Aliases ======================================================================
-# nocov start
-
-#' @rdname sampleData
-#' @usage NULL
-#' @export
-sampleMetadata <- function(object, ...) {
-    sampleData(object, ...)
-}
-
-#' @rdname sampleData
-#' @usage NULL
-#' @export
-`sampleMetadata<-` <- function(object, value) {
-    sampleData(object) <- value
-    object
-}
-
-# nocov end

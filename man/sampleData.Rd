@@ -6,9 +6,7 @@
 \alias{sampleData<-}
 \alias{sampleData}
 \alias{sampleData,SummarizedExperiment-method}
-\alias{sampleData<-,SummarizedExperiment-method}
-\alias{sampleMetadata}
-\alias{sampleMetadata<-}
+\alias{sampleData<-,SummarizedExperiment,DataFrame-method}
 \title{Sample Data}
 \usage{
 sampleData(object, ...)
@@ -16,9 +14,9 @@ sampleData(object, ...)
 sampleData(object, ...) <- value
 
 \S4method{sampleData}{SummarizedExperiment}(object, interestingGroups,
-  return = c("DataFrame", "data.frame", "kable"))
+  clean = TRUE, return = c("DataFrame", "data.frame", "kable"))
 
-\S4method{sampleData}{SummarizedExperiment}(object) <- value
+\S4method{sampleData}{SummarizedExperiment,DataFrame}(object) <- value
 }
 \arguments{
 \item{object}{Object.}
@@ -28,6 +26,9 @@ sampleData(object, ...) <- value
 \item{value}{Value to assign.}
 
 \item{interestingGroups}{\code{character} vector defining the groups of interest.}
+
+\item{clean}{\emph{Recommended.} Only return \code{factor} columns not defined in
+\link{metadataBlacklist}.}
 
 \item{return}{Object class to return. Uses \code{\link[=match.arg]{match.arg()}} internally and picks
 the first item in the vector by default.}
@@ -53,6 +54,9 @@ x <- rse_dds
 sampleData(x)[["test"]] <- seq_len(ncol(x))
 # `test` column should be now defined
 glimpse(sampleData(x))
+}
+\seealso{
+\link{metadataBlacklist}.
 }
 \author{
 Michael Steinbaugh

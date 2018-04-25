@@ -83,12 +83,11 @@ Plot Heatmap with Quantile Breaks
 # SummarizedExperiment ====
 plotQuantileHeatmap(rse_dds)
 
-# matrix ====
-mat <- assay(rse_dds)
-plotQuantileHeatmap(mat)
+# Disable column clustering
+plotQuantileHeatmap(rse_dds, clusterCols = FALSE)
 }
 \seealso{
-Other Plot Heatmap Functions: \code{\link{plotCorrelationHeatmap}},
+Other Plot Functions: \code{\link{plotCorrelationHeatmap}},
   \code{\link{plotHeatmap}}
 }
 \author{

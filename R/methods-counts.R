@@ -11,8 +11,8 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' x <- counts(rse_bcb)
-#' glimpse(x)
+#' x <- counts(rse_dds)
+#' summary(x)
 NULL
 
 

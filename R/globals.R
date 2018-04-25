@@ -1,18 +1,35 @@
 globalVariables(".")
 
+yamlFlatCols <- c(
+    "description",
+    "genome_build",
+    "sam_ref"
+)
+
+metricsBlacklist <- c(
+    camel(yamlFlatCols),
+    "name"
+)
+
+#' Metadata Blacklist
+#' @keywords internal
+#' @export
+#' @examples
+#' metadataBlacklist
+metadataBlacklist <- sort(c(
+    "fileName",
+    "sampleID",
+    metricsBlacklist,
+    "qualityFormat",
+    "sequenceLength"
+))
+
 #' Lane Grep Pattern
 #' @keywords internal
 #' @export
 #' @examples
 #' lanePattern
 lanePattern <- "_L(\\d{3})"
-
-#' Metadata Priority Columns
-#' @keywords internal
-#' @export
-#' @examples
-#' metadataPriorityCols
-metadataPriorityCols <- c("sampleID", "sampleName", "description")
 
 #' Project Directory Grep Pattern
 #' @keywords internal

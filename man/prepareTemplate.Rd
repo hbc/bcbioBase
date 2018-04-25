@@ -50,8 +50,7 @@ file.exists("bibliography.bib")
 unlink("bibliography.bib")
 }
 \seealso{
-Other Prepare Functions: \code{\link{prepareSampleData}},
-  \code{\link{prepareSummarizedExperiment}}
+Other Prepare Functions: \code{\link{prepareSummarizedExperiment}}
 }
 \author{
 Michael Steinbaugh

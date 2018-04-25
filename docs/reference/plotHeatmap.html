@@ -21,12 +21,13 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
-
-
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
   <link href="../extra.css" rel="stylesheet">
   
 <meta property="og:title" content="Plot Heatmap — plotHeatmap" />
@@ -46,8 +47,6 @@ overrided by setting clusterRows or clusterCols to FALSE." />
 <![endif]-->
 
 
-
-
   </head>
 
   <body>
@@ -63,7 +62,7 @@ overrided by setting clusterRows or clusterCols to FALSE." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.5</span>
       </span>
     </div>
 
@@ -203,16 +202,15 @@ improved aesthetics.</p></td>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='http://www.rdocumentation.org/packages/pheatmap/topics/pheatmap'>pheatmap::pheatmap()</a></code>.</p>
-<p>Other Plot Heatmap Functions: <code>plotCorrelationHeatmap</code>,
+<p>Other Plot Functions: <code>plotCorrelationHeatmap</code>,
   <code>plotQuantileHeatmap</code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># SummarizedExperiment ====</span>
 <span class='fu'>plotHeatmap</span>(<span class='no'>rse_dds</span>)</div><div class='img'><img src='plotHeatmap-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># matrix ====</span>
-<span class='no'>mat</span> <span class='kw'>&lt;-</span> <span class='fu'>assay</span>(<span class='no'>rse_dds</span>)
-<span class='fu'>plotHeatmap</span>(<span class='no'>mat</span>)</div><div class='img'><img src='plotHeatmap-2.png' alt='' width='700' height='433' /></div></pre>
+<span class='co'># Disable column clustering</span>
+<span class='fu'>plotHeatmap</span>(<span class='no'>rse_dds</span>, <span class='kw'>clusterCols</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plotHeatmap-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -20,8 +20,7 @@ checkInterestingGroups <- function(...) {
 #' @rdname deprecated
 #' @export
 prepareSampleMetadata <- function(...) {
-    .Deprecated("prepareSampleData")
-    prepareSampleData(...)
+    .Defunct()
 }
 
 #' @rdname deprecated
@@ -43,6 +42,21 @@ readSampleMetadataFile <- function(...) {
 # v0.2.4 =======================================================================
 #' @rdname deprecated
 #' @export
+sampleMetadata <- function(object, ...) {
+    .Deprecated("sampleData")
+    sampleData(object, ...)
+}
+
+#' @rdname deprecated
+#' @export
+`sampleMetadata<-` <- function(object, value) {
+    .Deprecated("sampleData<-")
+    sampleData(object) <- value
+    object
+}
+
+#' @rdname deprecated
+#' @export
 sampleYAML <- function(...) {
     .Defunct("readYAMLSampleData or readYAMLSampleMetrics")
 }
@@ -57,6 +71,15 @@ sampleYAMLMetadata <- function(...) {
 #' @export
 sampleYAMLMetrics <- function(...) {
     .Defunct("readSampleYAMLMetrics")
+}
+
+
+
+# v0.2.5 =======================================================================
+#' @rdname deprecated
+#' @export
+prepareSampleData <- function(...) {
+    .Defunct()
 }
 
 # nocov end
