@@ -13,8 +13,8 @@
 #'   localOrRemoteFile makeNames readFileByExtension readYAML removeNA
 #'   sanitizeSampleData snake
 #' @importFrom dendsort dendsort
-#' @importFrom dplyr arrange everything funs group_by mutate mutate_all
-#'   mutate_at mutate_if select select_if ungroup
+#' @importFrom dplyr arrange everything funs group_by left_join mutate
+#'   mutate_all mutate_at mutate_if select select_if ungroup
 #' @importFrom grDevices colorRampPalette
 #' @importFrom knitr kable
 #' @importFrom magrittr %>% set_names set_rownames
@@ -32,7 +32,7 @@
 #' @importFrom stringr str_pad str_trunc
 #' @importFrom tibble as_tibble column_to_rownames has_rownames is_tibble
 #'   rownames_to_column tibble
-#' @importFrom tidyr unite
+#' @importFrom tidyr expand unite
 #' @importFrom utils globalVariables sessionInfo
 #' @importFrom viridis viridis
 #'

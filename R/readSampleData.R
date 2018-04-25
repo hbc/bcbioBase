@@ -64,25 +64,26 @@ readSampleData <- function(file, lanes = 1L) {
         requiredCols <- c(requiredCols, "sampleName", "index")
         assert_is_subset(requiredCols, colnames(data))
         assert_has_no_duplicates(data[["sampleName"]])
-        nameCols <- c("sampleName", "description")
     } else {
         multiplexed <- FALSE
         message("Demultiplexed samples detected")
         assert_has_no_duplicates(data[["description"]])
-        assert_are_disjoint_sets("sampleName", colnames(data))
-        nameCols <- "description"
+        if (!"sampleName" %in% colnames(data)) {
+            data[["sampleName"]] <- data[["description"]]
+        }
     }
+    nameCols <- c("sampleName", "description")
 
     # Prepare metadata for lane split replicates. This step will expand rows
     # into the number of desired replicates.
     if (lanes > 1L) {
         data <- data %>%
-            group_by(!!sym("description")) %>%
+            group_by(!!!syms(nameCols)) %>%
             # Expand by lane (e.g. "L001")
-            tidyr::expand(
+            expand(
                 lane = paste0("L", str_pad(1L:lanes, 3L, pad = "0"))
             ) %>%
-            merge(data, by = "description", all.x = TRUE) %>%
+            left_join(data, by = nameCols) %>%
             ungroup() %>%
             # Ensure lane-split metadata doesn't contain spaces
             mutate_at(
@@ -120,14 +121,14 @@ readSampleData <- function(file, lanes = 1L) {
                 FUN.VALUE = character(1L)
             )
             # Match the sample directories exactly here, using the hyphen
-            data[["sampleID"]] <- paste(
+            data[["description"]] <- paste(
                 data[["description"]],
                 data[["revcomp"]],
                 sep = "-"
             )
         } else if ("index" %in% colnames(data)) {
             # CellRanger: `description`-`index`
-            data[["sampleID"]] <- paste(
+            data[["description"]] <- paste(
                 data[["description"]],
                 data[["index"]],
                 sep = "-"
@@ -144,28 +145,24 @@ readSampleData <- function(file, lanes = 1L) {
 .returnSampleData <- function(data) {
     assert_has_dimnames(data)
     assert_is_subset("description", colnames(data))
+    assert_are_disjoint_sets("sampleID", colnames(data))
 
-    # Rename `description` to `sampleName`, if necessary.
-    # The `description` column is kept for multiplexed data (e.g. inDrop).
+    # Set sampleName from description, if necessary
     if (!"sampleName" %in% colnames(data)) {
         data[["sampleName"]] <- data[["description"]]
-        data[["description"]] <- NULL
     }
 
-    # Set `sampleID`, if necessary
-    if (!"sampleID" %in% colnames(data)) {
-        data[["sampleID"]] <- data[["sampleName"]]
-    }
-
-    data %>%
+    data <- data %>%
         # Ensure `sampleID` has valid names. This allows for input of samples
         # beginning with numbers or containing hyphens for example, which aren't
         # valid names in R.
-        mutate(sampleID = makeNames(!!sym("sampleID"), unique = TRUE)) %>%
+        mutate(rowname = makeNames(!!sym("description"), unique = TRUE)) %>%
         mutate_all(as.factor) %>%
         mutate_all(droplevels) %>%
-        arrange(!!sym("sampleID")) %>%
+        arrange(!!sym("rowname")) %>%
         select(!!sym("sampleName"), everything()) %>%
         as.data.frame() %>%
-        column_to_rownames("sampleID")
+        column_to_rownames()
+
+    data
 }

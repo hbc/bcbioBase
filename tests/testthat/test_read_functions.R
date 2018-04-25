@@ -76,14 +76,14 @@ test_that("readSampleData : Demultiplexed FASTQ", {
     # Check that column names get set correctly
     expect_identical(
         colnames(x),
-        c("sampleName", "fileName", "genotype")
+        c("sampleName", "fileName", "description", "genotype")
     )
 
     # Lane-split technical replicate support
     x <- readSampleData(file, lanes = 4L)
     expect_identical(
         colnames(x),
-        c("sampleName", "lane", "fileName", "genotype")
+        c("sampleName", "description", "lane", "fileName", "genotype")
     )
     expect_identical(
         rownames(x)[1L:8L],
@@ -125,13 +125,13 @@ test_that("readSampleData : Multiplexed FASTQ", {
     expect_identical(
         rownames(x),
         c(
-            "run_1_CAGTTATG",
-            "run_1_TTACCTCC",
-            "run_2_ATAGCCTT",
-            "run_2_CTTAATAG",
-            "run_2_TAAGGCTC",
-            "run_2_TCGCATAA",
-            "run_2_TCTTACGC"
+            "run1_CAGTTATG",
+            "run1_TTACCTCC",
+            "run2_ATAGCCTT",
+            "run2_CTTAATAG",
+            "run2_TAAGGCTC",
+            "run2_TCGCATAA",
+            "run2_TCTTACGC"
         )
     )
 
@@ -140,34 +140,34 @@ test_that("readSampleData : Multiplexed FASTQ", {
     expect_identical(
         rownames(x),
         c(
-            "run_1_L001_CAGTTATG",
-            "run_1_L001_TTACCTCC",
-            "run_1_L002_CAGTTATG",
-            "run_1_L002_TTACCTCC",
-            "run_1_L003_CAGTTATG",
-            "run_1_L003_TTACCTCC",
-            "run_1_L004_CAGTTATG",
-            "run_1_L004_TTACCTCC",
-            "run_2_L001_ATAGCCTT",
-            "run_2_L001_CTTAATAG",
-            "run_2_L001_TAAGGCTC",
-            "run_2_L001_TCGCATAA",
-            "run_2_L001_TCTTACGC",
-            "run_2_L002_ATAGCCTT",
-            "run_2_L002_CTTAATAG",
-            "run_2_L002_TAAGGCTC",
-            "run_2_L002_TCGCATAA",
-            "run_2_L002_TCTTACGC",
-            "run_2_L003_ATAGCCTT",
-            "run_2_L003_CTTAATAG",
-            "run_2_L003_TAAGGCTC",
-            "run_2_L003_TCGCATAA",
-            "run_2_L003_TCTTACGC",
-            "run_2_L004_ATAGCCTT",
-            "run_2_L004_CTTAATAG",
-            "run_2_L004_TAAGGCTC",
-            "run_2_L004_TCGCATAA",
-            "run_2_L004_TCTTACGC"
+            "run1_L001_CAGTTATG",
+            "run1_L001_TTACCTCC",
+            "run1_L002_CAGTTATG",
+            "run1_L002_TTACCTCC",
+            "run1_L003_CAGTTATG",
+            "run1_L003_TTACCTCC",
+            "run1_L004_CAGTTATG",
+            "run1_L004_TTACCTCC",
+            "run2_L001_ATAGCCTT",
+            "run2_L001_CTTAATAG",
+            "run2_L001_TAAGGCTC",
+            "run2_L001_TCGCATAA",
+            "run2_L001_TCTTACGC",
+            "run2_L002_ATAGCCTT",
+            "run2_L002_CTTAATAG",
+            "run2_L002_TAAGGCTC",
+            "run2_L002_TCGCATAA",
+            "run2_L002_TCTTACGC",
+            "run2_L003_ATAGCCTT",
+            "run2_L003_CTTAATAG",
+            "run2_L003_TAAGGCTC",
+            "run2_L003_TCGCATAA",
+            "run2_L003_TCTTACGC",
+            "run2_L004_ATAGCCTT",
+            "run2_L004_CTTAATAG",
+            "run2_L004_TAAGGCTC",
+            "run2_L004_TCGCATAA",
+            "run2_L004_TCTTACGC"
         )
     )
 
@@ -196,7 +196,7 @@ test_that("readSampleData : Multiplexed CellRanger data", {
     y <- data.frame(
         "sampleName" = c("proximal", "distal"),
         "fileName" = "aggregation.fastq.gz",
-        "description" = "aggregation",
+        "description" = c("aggregation-1", "aggregation-2"),
         "index" = c("1", "2"),
         row.names = c("aggregation_1", "aggregation_2"),
         stringsAsFactors = TRUE
@@ -214,8 +214,9 @@ test_that("readSampleData : Legacy bcbio samplename column", {
     expect_identical(
         suppressWarnings(readSampleData(file)),
         data.frame(
-            sampleName = "sample-1",
-            fileName = "sample-1.fastq.gz",
+            "sampleName" = "sample-1",
+            "description" = "sample-1",
+            "fileName" = "sample-1.fastq.gz",
             row.names = "sample_1",
             stringsAsFactors = TRUE
         )
@@ -259,6 +260,7 @@ test_that("readYAMLSampleData", {
         x,
         data.frame(
             "sampleName" = samples,
+            "description" = samples,
             "genomeBuild" = "mm10",
             "group" = c("ctrl", "ctrl", "ko", "ko"),
             "samRef" = paste(
