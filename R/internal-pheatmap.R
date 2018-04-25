@@ -18,15 +18,17 @@
 
 
 
-# Automatically handle the annotation columns
-.pheatmapAnnotationCol <- function(object) {
+# Automatically handle the annotation columns.
+# Factors with a single level are automatically dropped.
+.pheatmapAnnotationCol <- function(data) {
     # pheatmap requires `NA` argument if empty
-    if (!has_dims(object)) {
+    if (!has_dims(data)) {
         return(NA)
     }
-    assertHasRownames(object)
+    assertHasRownames(data)
     blacklist <- c("sampleName", metadataBlacklist)
-    object %>%
+
+    data <- data %>%
         as.data.frame() %>%
         # Remove sample name columns
         .[, setdiff(colnames(.), blacklist), drop = FALSE] %>%
@@ -34,8 +36,19 @@
         # Ensure all strings are factor
         mutate_if(is.character, as.factor) %>%
         # Ensure unwanted columns like `sizeFactor` are dropped
-        select_if(is.factor) %>%
-        column_to_rownames()
+        select_if(is.factor)
+
+    # Drop any remaining factor columns that contain a single level
+    hasLevels <- vapply(
+        data,
+        FUN = function(x) {
+            length(levels(x)) > 1L
+        },
+        FUN.VALUE = logical(1L)
+    )
+    data <- data[, hasLevels, drop = FALSE]
+
+    column_to_rownames(data)
 }
 
 
