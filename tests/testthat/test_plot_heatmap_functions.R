@@ -21,17 +21,23 @@ test_that("SummarizedExperiment", {
         expect_true("annotation_legend" %in% gtable[["layout"]][["name"]])
 
         # Test color and title support
-        expect_silent(f(
-            object = object,
-            color = NULL,
-            legendColor = NULL,
-            title = NULL
-        ))
-        expect_silent(f(
-            object = object,
-            color = viridis,
-            legendColor = viridis
-        ))
+        expect_is(
+            f(
+                object = object,
+                color = NULL,
+                legendColor = NULL,
+                title = NULL
+            ),
+            "list"
+        )
+        expect_is(
+            f(
+                object = object,
+                color = viridis,
+                legendColor = viridis
+            ),
+            "list"
+        )
     }))
 })
 
