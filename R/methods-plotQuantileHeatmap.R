@@ -147,7 +147,7 @@ setMethod(
     signature("SummarizedExperiment"),
     function(object, interestingGroups, ...) {
         object <- suppressWarnings(convertGenesToSymbols(object))
-        counts <- counts(object)
+        counts <- assay(object)
         annotationCol <- sampleData(object, interestingGroups = NULL)
         if (missing(interestingGroups)) {
             message("Using `sampleData()` factor columns for annotations")

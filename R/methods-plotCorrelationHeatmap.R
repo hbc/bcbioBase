@@ -130,7 +130,7 @@ setMethod(
     "plotCorrelationHeatmap",
     signature("SummarizedExperiment"),
     function(object, interestingGroups, ...) {
-        counts <- counts(object)
+        counts <- assay(object)
         annotationCol <- sampleData(object, interestingGroups = NULL)
         if (missing(interestingGroups)) {
             message("Using `sampleData()` factor columns for annotations")
