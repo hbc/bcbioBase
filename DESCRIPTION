@@ -1,7 +1,7 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions and generics for bcbio R packages.
-Version: 0.2.9
+Version: 0.2.8
 Authors@R: c(
     person(
         given = "Michael",
@@ -48,7 +48,13 @@ Imports:
     IRanges,
     RColorBrewer,
     S4Vectors,
-    assertive (>= 0.3),
+    assertive.base,
+    assertive.files,
+    assertive.numbers,
+    assertive.properties,
+    assertive.sets,
+    assertive.strings,
+    assertive.types,
     dendsort,
     dplyr (>= 0.7),
     grDevices,
