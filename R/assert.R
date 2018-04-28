@@ -90,12 +90,6 @@ assertFormalInterestingGroups <- function(
 ) {
     fun <- get(severity)
 
-    assert_is_any_of(
-        x = x,
-        classes = c("data.frame", "DataFrame", "SummarizedExperiment"),
-        severity = severity
-    )
-
     # Early return on `NULL` value (e.g. DESeqDataSet)
     if (is.null(interestingGroups)) {
         return(invisible())
@@ -103,8 +97,8 @@ assertFormalInterestingGroups <- function(
 
     assert_is_character(interestingGroups)
 
-    # Obtain sampleData automatically from SummarizedExperiment
-    if (is(x, "SummarizedExperiment")) {
+    # Obtain sampleData is S4 object is passed in
+    if (!is(x, c("DataFrame", "data.frame"))) {
         # Don't want clean return, so we can check to see if interesting
         # groups are present but defined as non factor columns
         x <- sampleData(x, clean = FALSE, interestingGroups = NULL)

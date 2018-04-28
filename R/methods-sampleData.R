@@ -45,9 +45,9 @@ setMethod(
         return = c("DataFrame", "data.frame", "kable")
     ) {
         validObject(object)
-        return <- match.arg(return)
-
         data <- colData(object)
+        assert_is_a_bool(clean)
+        return <- match.arg(return)
 
         if (isTRUE(clean)) {
             # Only include factor columns
