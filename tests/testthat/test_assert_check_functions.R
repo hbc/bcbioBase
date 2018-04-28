@@ -4,15 +4,36 @@ context("Assert Check Functions")
 
 test_that("assertFormalInterestingGroups", {
     expect_silent(
-        assertFormalInterestingGroups(mtcars, colnames(mtcars)[1L:2L])
-    )
-    expect_error(
-        assertFormalInterestingGroups(mtcars, interestingGroups = "XXX"),
-        paste(
-            "is_subset :",
-            "The element 'XXX' in interestingGroups is not in",
-            "colnames\\(x\\)."
+        assertFormalInterestingGroups(
+            x = rse_bcb,
+            interestingGroups = c("tissue", "treatment")
         )
+    )
+    # Must exist as columns in sampleData
+    expect_error(
+        assertFormalInterestingGroups(
+            x = rse_bcb,
+            interestingGroups = "XXX"
+        ),
+        paste(
+            "The interesting groups \"XXX\" are not defined"
+        )
+    )
+    # Require interesting groups to be defined as factor columns
+    expect_error(
+        assertFormalInterestingGroups(
+            x = rse_bcb,
+            interestingGroups = c("totalReads", "exonicRate")
+        ),
+        "The interesting groups \"totalReads, exonicRate\" are not factor"
+    )
+    # Error on blacklisted columns
+    expect_error(
+        assertFormalInterestingGroups(
+            x = rse_bcb,
+            interestingGroups = "genomeBuild"
+        ),
+        "The interesting groups \"genomeBuild\" are blacklisted."
     )
 })
 
