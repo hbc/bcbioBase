@@ -25,7 +25,12 @@ setMethod(
     signature("SummarizedExperiment"),
     function(object) {
         validObject(object)
-        metadata(object)[["interestingGroups"]]
+        value <- metadata(object)[["interestingGroups"]]
+        assertFormalInterestingGroups(
+            x = sampleData(object, clean = FALSE, interestingGroups = NULL),
+            interestingGroups = value
+        )
+        value
     }
 )
 
@@ -41,7 +46,7 @@ setMethod(
     ),
     function(object, value) {
         assertFormalInterestingGroups(
-            x = sampleData(object),
+            x = sampleData(object, clean = FALSE, interestingGroups = NULL),
             interestingGroups = value
         )
         metadata(object)[["interestingGroups"]] <- value
