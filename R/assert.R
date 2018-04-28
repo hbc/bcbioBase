@@ -83,16 +83,20 @@ assertFormalAnnotationCol <- function(
 #' @export
 #'
 #' @examples
-#' assertFormalInterestingGroups(
-#'     x = sampleData(rse_dds),
-#'     interestingGroups = "condition"
-#' )
+#' assertFormalInterestingGroups(rse_bcb, "treatment")
+#' assertFormalInterestingGroups(rse_dds, "condition")
 assertFormalInterestingGroups <- function(
     x,
     interestingGroups,
     severity = getOption("assertive.severity", "stop")
 ) {
     fun <- get(severity)
+
+    assert_is_any_of(
+        x = x,
+        classes = c("data.frame", "DataFrame", "SummarizedExperiment"),
+        severity = severity
+    )
 
     # Early return on `NULL` value (e.g. DESeqDataSet)
     if (is.null(interestingGroups)) {

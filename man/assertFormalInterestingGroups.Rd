@@ -23,10 +23,8 @@ Prevent unwanted downstream behavior when a missing interesting group
 is requested by the user.
 }
 \examples{
-assertFormalInterestingGroups(
-    x = sampleData(rse_dds),
-    interestingGroups = "condition"
-)
+assertFormalInterestingGroups(rse_bcb, "treatment")
+assertFormalInterestingGroups(rse_dds, "condition")
 }
 \seealso{
 Other Assert Check Functions: \code{\link{assertFormalAnnotationCol}}
