@@ -16,7 +16,7 @@
 #'
 #' @examples
 #' x <- sampleData(rse_bcb, interestingGroups = NULL)
-#' y <- uniteInterestingGroups(x, c("treatment", "day"))
+#' y <- uniteInterestingGroups(x, interestingGroups = c("treatment", "day"))
 #' y[["interestingGroups"]]
 NULL
 
@@ -29,19 +29,19 @@ setMethod(
     "uniteInterestingGroups",
     signature("data.frame"),
     function(object, interestingGroups) {
-        assert_has_colnames(object)
         assert_is_character(interestingGroups)
-        assertFormalInterestingGroups(object, interestingGroups)
-        class <- class(object)[[1L]]
-        object <- as.data.frame(object)
-        intgroup <- apply(
-            X = object[, interestingGroups, drop = FALSE],
+        assert_is_subset(interestingGroups, colnames(object))
+        # This approach will return numerics for DataFrame class, so
+        # coercing columns to data.frame
+        data <- as.data.frame(object[, interestingGroups, drop = FALSE])
+        value <- apply(
+            X = data,
             MARGIN = 1L,
             FUN = paste,
             collapse = ":"
         )
-        object[["interestingGroups"]] <- as.factor(intgroup)
-        as(object, class)
+        object[["interestingGroups"]] <- as.factor(value)
+        object
     }
 )
 
@@ -57,16 +57,15 @@ setMethod(
 
 
 
+
 #' @rdname uniteInterestingGroups
 #' @export
 setMethod(
     "uniteInterestingGroups",
     signature("tbl_df"),
     function(object, interestingGroups) {
-        assert_is_any_of(object, "tbl_df")
-        assert_has_colnames(object)
         assert_is_character(interestingGroups)
-        assertFormalInterestingGroups(object, interestingGroups)
+        assert_is_subset(interestingGroups, colnames(object))
         object[["interestingGroups"]] <- NULL
         object <- unite(
             data = object,

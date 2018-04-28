@@ -34,11 +34,9 @@ coloring in plots. When multiple interesting groups are present, unite into a
 single column, delimited by a colon.
 }
 \examples{
-x <- uniteInterestingGroups(
-    object = colData(rse_bcb),
-    interestingGroups = c("treatment", "day")
-)
-x[["interestingGroups"]]
+x <- sampleData(rse_bcb, interestingGroups = NULL)
+y <- uniteInterestingGroups(x, interestingGroups = c("treatment", "day"))
+y[["interestingGroups"]]
 }
 \seealso{
 Other Data Functions: \code{\link{convertGenesToSymbols}},
