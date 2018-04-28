@@ -45,14 +45,15 @@ setMethod(
         return = c("DataFrame", "data.frame", "kable")
     ) {
         validObject(object)
-        data <- colData(object)
         assert_is_a_bool(clean)
         return <- match.arg(return)
 
+        data <- colData(object)
+
+        # Only return factor columns, if desired
         if (isTRUE(clean)) {
-            # Only include factor columns
             data <- data[, vapply(data, is.factor, logical(1L)), drop = FALSE]
-            # Drop remaining blacklisted columns (recommended)
+            # Drop remaining blacklisted columns
             setdiff <- setdiff(colnames(data), metadataBlacklist)
             data <- data[, setdiff, drop = FALSE]
         }
@@ -60,9 +61,9 @@ setMethod(
         # Include `interestingGroups` column, if not NULL
         if (missing(interestingGroups)) {
             interestingGroups <- bcbioBase::interestingGroups(object)
-            if (is.character(interestingGroups)) {
-                data <- uniteInterestingGroups(data, interestingGroups)
-            }
+        }
+        if (length(interestingGroups)) {
+            data <- uniteInterestingGroups(data, interestingGroups)
         }
 
         # Arrange rows by `sampleName` column, if defined
@@ -72,9 +73,7 @@ setMethod(
 
         # Return
         if (return == "kable") {
-            data %>%
-                as.data.frame() %>%
-                kable(row.names = FALSE)
+            kable(as.data.frame(data), row.names = FALSE)
         } else {
             as(data, return)
         }
