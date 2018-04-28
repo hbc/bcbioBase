@@ -26,10 +26,7 @@ setMethod(
     function(object) {
         validObject(object)
         value <- metadata(object)[["interestingGroups"]]
-        assertFormalInterestingGroups(
-            x = sampleData(object, clean = FALSE, interestingGroups = NULL),
-            interestingGroups = value
-        )
+        assertFormalInterestingGroups(object, value)
         value
     }
 )
@@ -45,10 +42,7 @@ setMethod(
         value = "character"
     ),
     function(object, value) {
-        assertFormalInterestingGroups(
-            x = sampleData(object, clean = FALSE, interestingGroups = NULL),
-            interestingGroups = value
-        )
+        assertFormalInterestingGroups(object, value)
         metadata(object)[["interestingGroups"]] <- value
         validObject(object)
         object
