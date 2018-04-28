@@ -90,12 +90,62 @@ assertFormalAnnotationCol <- function(
 assertFormalInterestingGroups <- function(
     x,
     interestingGroups,
-    severity = "stop"
+    severity = getOption("assertive.severity", "stop")
 ) {
-    assert_has_colnames(x, severity = severity)
-    assert_is_subset(
-        x = interestingGroups,
-        y = colnames(x),
-        severity = severity
+    fun <- get(severity)
+
+    # Early return on `NULL` value (e.g. DESeqDataSet)
+    if (is.null(interestingGroups)) {
+        return(invisible())
+    }
+
+    assert_is_character(interestingGroups)
+
+    # Obtain sampleData automatically from SummarizedExperiment
+    if (is(x, "SummarizedExperiment")) {
+        # Don't want clean return, so we can check to see if interesting
+        # groups are present but defined as non factor columns
+        x <- sampleData(x, clean = FALSE, interestingGroups = NULL)
+    }
+
+    # Check that interesting groups are slotted into sampleData
+    if (!all(interestingGroups %in% colnames(x))) {
+        setdiff <- setdiff(interestingGroups, colnames(x))
+        fun(paste(
+            "The interesting groups",
+            deparse(toString(setdiff)),
+            "are not defined as columns in `sampleData()`"
+        ))
+    }
+
+    # Check that interesting groups are factors
+    isFactor <- vapply(
+        X = x[, interestingGroups, drop = FALSE],
+        FUN = is.factor,
+        FUN.VALUE = logical(1L),
+        USE.NAMES = TRUE
     )
+    if (!all(isFactor)) {
+        invalid <- names(isFactor)[which(!isFactor)]
+        fun(paste(
+            "The interesting groups",
+            deparse(toString(invalid)),
+            "are not factor"
+        ))
+    }
+
+    # Don't allow interesting groups from our defined blacklist
+    if (any(interestingGroups %in% metadataBlacklist)) {
+        intersect <- intersect(interestingGroups, metadataBlacklist)
+        fun(paste(
+            paste(
+                "The interesting groups",
+                deparse(toString(intersect)),
+                "are blacklisted."
+            ),
+            "Blacklist (bcbioBase::metadataBlacklist) :",
+            basejump::printString(metadataBlacklist),
+            sep = "\n"
+        ))
+    }
 }
