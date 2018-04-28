@@ -18,7 +18,7 @@ NULL
 #' @author Michael Steinbaugh
 #' @inherit assert
 #'
-#' @param x Object supporting `dimnames`, such as a `matrix` or `data.frame`.
+#' @inheritParams general
 #' @param sampleData Sample data.
 #'
 #' @export
@@ -73,11 +73,9 @@ assertFormalAnnotationCol <- function(
 #'
 #' @family Assert Check Functions
 #' @author Michael Steinbaugh
-#'
 #' @inherit assert
 #'
 #' @inheritParams general
-#' @param x Object supporting [colnames()], typically a `data.frame`.
 #'
 #' @return Silent, stop on error.
 #' @export

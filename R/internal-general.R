@@ -5,6 +5,7 @@
 #'
 #' @param object Object.
 #' @param value Value to assign.
+#' @param x Object.
 #' @param ... Additional arguments.
 #'
 #' @param file File path.

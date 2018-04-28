@@ -8,7 +8,7 @@ assertFormalInterestingGroups(x, interestingGroups,
   severity = getOption("assertive.severity", "stop"))
 }
 \arguments{
-\item{x}{Object supporting \code{\link[=colnames]{colnames()}}, typically a \code{data.frame}.}
+\item{x}{Object.}
 
 \item{interestingGroups}{\code{character} vector defining the groups of interest.}
 

@@ -8,6 +8,8 @@
 
 \item{value}{Value to assign.}
 
+\item{x}{Object.}
+
 \item{...}{Additional arguments.}
 
 \item{file}{File path.}

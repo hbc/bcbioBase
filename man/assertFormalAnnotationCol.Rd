@@ -8,7 +8,7 @@ assertFormalAnnotationCol(x, sampleData,
   severity = getOption("assertive.severity", "stop"))
 }
 \arguments{
-\item{x}{Object supporting \code{dimnames}, such as a \code{matrix} or \code{data.frame}.}
+\item{x}{Object.}
 
 \item{sampleData}{Sample data.}
 
