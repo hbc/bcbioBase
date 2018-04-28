@@ -4,7 +4,8 @@
 \alias{assertFormalInterestingGroups}
 \title{Interesting Groups Formal Assert Check}
 \usage{
-assertFormalInterestingGroups(x, interestingGroups, severity = "stop")
+assertFormalInterestingGroups(x, interestingGroups,
+  severity = getOption("assertive.severity", "stop"))
 }
 \arguments{
 \item{x}{Object supporting \code{\link[=colnames]{colnames()}}, typically a \code{data.frame}.}
