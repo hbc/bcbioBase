@@ -10,8 +10,8 @@
 #' @importFrom SummarizedExperiment assay assays colData colData<- rowData
 #'   SummarizedExperiment
 #' @importFrom basejump camel convertGenesToSymbols emptyRanges fixNA
-#'   localOrRemoteFile makeNames readFileByExtension readYAML removeNA
-#'   sanitizeSampleData snake
+#'   localOrRemoteFile makeNames printString readFileByExtension readYAML
+#'   removeNA sanitizeSampleData snake
 #' @importFrom dendsort dendsort
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select select_if ungroup
