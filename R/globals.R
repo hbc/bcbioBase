@@ -17,10 +17,9 @@ metricsBlacklist <- c(
 #' @examples
 #' metadataBlacklist
 metadataBlacklist <- sort(c(
-    "description",
+    metricsBlacklist,
     "fileName",
     "sampleID",
-    metricsBlacklist,
     "qualityFormat",
     "sequenceLength"
 ))

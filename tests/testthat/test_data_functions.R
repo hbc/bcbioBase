@@ -91,7 +91,7 @@ test_that("interestingGroups : Assignment method", {
     )
     expect_error(
         interestingGroups(x) <- "XXX",
-        "is_subset : The element 'XXX' in interestingGroups"
+        "The interesting groups \"XXX\" are not defined"
     )
 })
 
@@ -181,11 +181,11 @@ test_that("selectSamples : SummarizedExperiment", {
 test_that("uniteInterestingGroups : Single interesting group", {
     x <- uniteInterestingGroups(
         object = datasets::mtcars,
-        interestingGroups = "gear"
+        interestingGroups = c("vs", "am", "gear")
     )
     expect_identical(
-        x[["interestingGroups"]],
-        as.factor(mtcars[["gear"]])
+        levels(x[["interestingGroups"]]),
+        c("0:0:3", "0:1:4", "0:1:5", "1:0:3", "1:0:4", "1:1:4", "1:1:5")
     )
 })
 
@@ -228,10 +228,6 @@ test_that("uniteInterestingGroups : Missing groups", {
             object = datasets::mtcars,
             interestingGroups = c("XXX", "YYY")
         ),
-        paste(
-            "is_subset :",
-            "The elements 'XXX', 'YYY' in interestingGroups are not in",
-            "colnames\\(x\\)."
-        )
+        "is_subset : The elements 'XXX', 'YYY' in interestingGroups"
     )
 })

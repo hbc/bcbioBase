@@ -1,10 +1,7 @@
 library(devtools)
 library(pryr)
 library(bcbioRNASeq)
-
-bcb <- bcbioRNASeq::bcb_small
-rse_bcb <- as(bcb, "RangedSummarizedExperiment")
-assays(rse_bcb) <- assays(rse_bcb)[1L]
+rse_bcb <- as(bcbioRNASeq::bcb_small, "RangedSummarizedExperiment")
+assays(rse_bcb) <- assays(rse_bcb)["counts"]
 object_size(rse_bcb)
-
 use_data(rse_bcb, compress = "xz", overwrite = TRUE)

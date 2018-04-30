@@ -4,10 +4,11 @@
 \alias{assertFormalInterestingGroups}
 \title{Interesting Groups Formal Assert Check}
 \usage{
-assertFormalInterestingGroups(x, interestingGroups, severity = "stop")
+assertFormalInterestingGroups(x, interestingGroups,
+  severity = getOption("assertive.severity", "stop"))
 }
 \arguments{
-\item{x}{Object supporting \code{\link[=colnames]{colnames()}}, typically a \code{data.frame}.}
+\item{x}{Object.}
 
 \item{interestingGroups}{\code{character} vector defining the groups of interest.}
 
@@ -22,10 +23,8 @@ Prevent unwanted downstream behavior when a missing interesting group
 is requested by the user.
 }
 \examples{
-assertFormalInterestingGroups(
-    x = sampleData(rse_dds),
-    interestingGroups = "condition"
-)
+assertFormalInterestingGroups(rse_bcb, "treatment")
+assertFormalInterestingGroups(rse_dds, "condition")
 }
 \seealso{
 Other Assert Check Functions: \code{\link{assertFormalAnnotationCol}}
