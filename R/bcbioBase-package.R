@@ -15,7 +15,10 @@
 #' @importFrom dendsort dendsort
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select select_if ungroup
+#' @importFrom ggplot2 geom_hline geom_vline
+#' @importFrom ggrepel geom_label_repel
 #' @importFrom grDevices colorRampPalette
+#' @importFrom grid arrow unit
 #' @importFrom knitr kable
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom methods .hasSlot as formalArgs getMethod is setAs slotNames
