@@ -23,6 +23,8 @@
 #' @examples
 #' # SummarizedExperiment ====
 #' plotCorrelationHeatmap(rse_dds)
+#' plotCorrelationHeatmap(rse_dds, color = magma, legendColor = viridis)
+#' plotCorrelationHeatmap(rse_dds, color = NULL)
 NULL
 
 
@@ -133,7 +135,7 @@ setMethod(
         counts <- assay(object)
         annotationCol <- sampleData(object, interestingGroups = NULL)
         if (missing(interestingGroups)) {
-            message("Using `sampleData()` factor columns for annotations")
+            invisible()
         } else if (is.character(interestingGroups)) {
             annotationCol <- annotationCol[, interestingGroups, drop = FALSE]
         } else {

@@ -12,6 +12,10 @@ r:
 branches:
   except:
   - develop
+  
+env:
+  global:
+    - LINTR_COMMENT_BOT=true
 
 # r_build_args: "--no-build-vignettes"
 # r_check_args: "--no-vignettes"
@@ -31,7 +35,10 @@ r_packages:
   - covr
 bioc_packages:
   - BiocCheck
+r_github_packages:
+  - jimhester/lintr
 
 after_success:
+  - Rscript -e 'lintr::lint_package()'
   - Rscript -e 'covr::codecov()'
   - R CMD BiocCheck .
