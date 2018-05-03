@@ -81,6 +81,8 @@ Construct a correlation heatmap comparing the columns of the matrix.
 \examples{
 # SummarizedExperiment ====
 plotCorrelationHeatmap(rse_dds)
+plotCorrelationHeatmap(rse_dds, color = magma, legendColor = inferno)
+plotCorrelationHeatmap(rse_dds, color = NULL)
 }
 \seealso{
 \itemize{

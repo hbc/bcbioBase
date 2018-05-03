@@ -23,6 +23,8 @@
 #' @examples
 #' # SummarizedExperiment ====
 #' plotCorrelationHeatmap(rse_dds)
+#' plotCorrelationHeatmap(rse_dds, color = magma, legendColor = viridis)
+#' plotCorrelationHeatmap(rse_dds, color = NULL)
 NULL
 
 
