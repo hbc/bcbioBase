@@ -43,7 +43,7 @@ test_that("SummarizedExperiment", {
 
 test_that("matrix", {
     invisible(lapply(fxns, function(f) {
-        object = as.matrix(datasets::USArrests)
+        object <- as.matrix(datasets::USArrests)
         f <- get(f)
         p <- f(object)
 
