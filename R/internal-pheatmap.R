@@ -66,18 +66,15 @@
     legendColor
 ) {
     if (is.data.frame(annotationCol) && is.function(legendColor)) {
-        # FIXME Switch to mapply
-        lapply(
-            seq_along(colnames(annotationCol)), function(a) {
-                col <- levels(annotationCol[[a]])
-                colors <- annotationCol[[a]] %>%
-                    levels() %>%
-                    length() %>%
-                    legendColor()
-                names(colors) <- col
-                colors
-            }) %>%
-            set_names(colnames(annotationCol))
+        colors <- lapply(
+            X = annotationCol,
+            FUN = function(col) {
+                assert_is_factor(col)
+                levels <- levels(col)
+                legendColor(length(levels))
+            })
+        names(colors) <- colnames(annotationCol)
+        colors
     } else {
         NA
     }
