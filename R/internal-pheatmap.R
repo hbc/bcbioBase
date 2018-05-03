@@ -61,20 +61,19 @@
 
 
 # Define colors for each annotation column
-.pheatmapAnnotationColors <- function(
-    annotationCol,
-    legendColor
-) {
+.pheatmapAnnotationColors <- function(annotationCol, legendColor) {
     if (is.data.frame(annotationCol) && is.function(legendColor)) {
-        colors <- lapply(
+        list <- lapply(
             X = annotationCol,
             FUN = function(col) {
                 assert_is_factor(col)
                 levels <- levels(col)
-                legendColor(length(levels))
+                colors <- legendColor(length(levels))
+                names(colors) <- levels
+                colors
             })
-        names(colors) <- colnames(annotationCol)
-        colors
+        names(list) <- colnames(annotationCol)
+        list
     } else {
         NA
     }
