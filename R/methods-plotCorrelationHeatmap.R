@@ -133,7 +133,7 @@ setMethod(
         counts <- assay(object)
         annotationCol <- sampleData(object, interestingGroups = NULL)
         if (missing(interestingGroups)) {
-            message("Using `sampleData()` factor columns for annotations")
+            invisible()
         } else if (is.character(interestingGroups)) {
             annotationCol <- annotationCol[, interestingGroups, drop = FALSE]
         } else {
