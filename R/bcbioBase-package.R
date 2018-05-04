@@ -32,7 +32,7 @@
 #' @importFrom rlang !!! !! sym syms
 #' @importFrom scales percent
 #' @importFrom sessioninfo session_info
-#' @importFrom stats hclust quantile
+#' @importFrom stats as.formula hclust quantile
 #' @importFrom stringr str_pad str_trunc
 #' @importFrom tibble as_tibble column_to_rownames has_rownames is_tibble
 #'   rownames_to_column tibble

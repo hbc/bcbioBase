@@ -19,6 +19,9 @@ bcbio_geom_label_repel(data = NULL, mapping = NULL, color = NULL,
   size = 4L, ...)
 }
 \arguments{
+\item{xintercept, yintercept}{\code{numeric} \code{scalar} denoting x- or y-axis cutoff.
+Specify one but not both.}
+
 \item{data}{\code{data.frame}.}
 
 \item{mapping}{Set of aesthetic mappings created by \code{\link{aes}} or
@@ -37,6 +40,10 @@ to the paired geom/stat.}
 "\code{mean}" or "\code{median}".}
 
 \item{digits}{Number of significant digits to use. Defaults to rounded.}
+
+\item{color}{Text color.}
+
+\item{size}{Font size.}
 }
 \value{
 \code{ggproto}.
