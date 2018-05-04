@@ -1,5 +1,16 @@
 globalVariables(".")
 
+
+
+#' Plot Label Separator
+#' @keywords internal
+#' @export
+#' @examples
+#' labelSep
+labelSep <- " : "
+
+
+
 yamlFlatCols <- c(
     "description",
     "genome_build",
@@ -28,12 +39,16 @@ metadataBlacklist <- sort(c(
     "sequenceLength"
 ))
 
+
+
 #' Lane Grep Pattern
 #' @keywords internal
 #' @export
 #' @examples
 #' lanePattern
 lanePattern <- "_L(\\d{3})"
+
+
 
 #' Project Directory Grep Pattern
 #' @keywords internal
@@ -42,12 +57,16 @@ lanePattern <- "_L(\\d{3})"
 #' projectDirPattern
 projectDirPattern <- "^(\\d{4}-\\d{2}-\\d{2})_([^/]+)$"
 
+
+
 #' Separator Bar
 #' @keywords internal
 #' @export
 #' @examples
 #' separatorBar
 separatorBar <- "============================================================"
+
+
 
 #' Update Message
 #' @keywords internal

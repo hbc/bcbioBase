@@ -6,7 +6,8 @@
 #' @importFrom GenomeInfoDb seqnames
 #' @importFrom GenomicRanges GRanges
 #' @importFrom RColorBrewer brewer.pal
-#' @importFrom S4Vectors as.data.frame cor mcols mcols<- metadata<-
+#' @importFrom S4Vectors aggregate as.data.frame cor mcols mcols<- merge
+#'   metadata<-
 #' @importFrom SummarizedExperiment assay assays colData colData<- rowData
 #'   SummarizedExperiment
 #' @importFrom basejump camel convertGenesToSymbols emptyRanges fixNA
@@ -15,7 +16,10 @@
 #' @importFrom dendsort dendsort
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select select_if ungroup
+#' @importFrom ggplot2 aes_string geom_hline geom_label geom_vline
+#' @importFrom ggrepel geom_label_repel
 #' @importFrom grDevices colorRampPalette
+#' @importFrom grid arrow unit
 #' @importFrom knitr kable
 #' @importFrom magrittr %>% set_names set_rownames
 #' @importFrom methods .hasSlot as formalArgs getMethod is setAs slotNames
@@ -28,7 +32,7 @@
 #' @importFrom rlang !!! !! sym syms
 #' @importFrom scales percent
 #' @importFrom sessioninfo session_info
-#' @importFrom stats hclust quantile
+#' @importFrom stats as.formula hclust quantile
 #' @importFrom stringr str_pad str_trunc
 #' @importFrom tibble as_tibble column_to_rownames has_rownames is_tibble
 #'   rownames_to_column tibble
@@ -66,6 +70,7 @@
 #' @importFrom assertive.types assert_is_any_of
 #' @importFrom assertive.types assert_is_character
 #' @importFrom assertive.types assert_is_factor
+#' @importFrom assertive.types assert_is_function
 #' @importFrom assertive.types assert_is_integer
 #' @importFrom assertive.types assert_is_list
 #' @importFrom assertive.types assert_is_matrix
