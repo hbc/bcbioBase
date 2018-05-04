@@ -186,17 +186,6 @@ setGeneric(
 
 
 
-#' @rdname sampleNames
-#' @export
-setGeneric(
-    "sampleNames",
-    function(object, ...) {
-        standardGeneric("sampleNames")
-    }
-)
-
-
-
 #' @rdname selectSamples
 #' @export
 setGeneric(

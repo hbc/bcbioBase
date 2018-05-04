@@ -1,18 +1,23 @@
 #' Sample Names
 #'
-#' Requires that `sampleName` column is defined in [sampleData()].
+#' This function will return the human readable sample names if defined
+#' in the `sampleName` column of [sampleData()]. Otherwise it will return
+#' the syntactically valid names defined as the rownames of [sampleData()].
 #'
 #' @name sampleNames
 #' @family Metadata Functions
 #' @author Michael Steinbaugh
 #'
+#' @importFrom Biobase sampleNames
+#'
 #' @inheritParams general
 #'
-#' @return `character` vector of the human readable sample names.
+#' @return `character` vector of the sample names.
 #'
 #' @examples
 #' # SummarizedExperiment ====
 #' sampleNames(rse_bcb)
+#' sampleNames(rse_dds)
 NULL
 
 
@@ -25,10 +30,12 @@ setMethod(
     signature("SummarizedExperiment"),
     function(object) {
         validObject(object)
-        assert_is_subset("sampleName", colnames(sampleData(object)))
-        sampleData(object) %>%
-            .[, "sampleName", drop = TRUE] %>%
-            as.character() %>%
-            sort()
+        data <- sampleData(object)
+        if ("sampleName" %in% colnames(data)) {
+            names <- data[, "sampleName", drop = TRUE]
+        } else {
+            names <- rownames(data)
+        }
+        sort(as.character(names))
     }
 )
