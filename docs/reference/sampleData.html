@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.10</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.11</span>
       </span>
     </div>
 
@@ -97,7 +97,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Sample Data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-sampleData.R'><code>R/methods-sampleData.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-sampleData.R'><code>R/methods-sampleData.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-sampleNames.R'><code>R/methods-sampleNames.R</code></a></small>
     <div class="hidden name"><code>sampleData.Rd</code></div>
     </div>
 
@@ -116,7 +116,10 @@
   <span class='kw'>clean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"DataFrame"</span>, <span class='st'>"data.frame"</span>, <span class='st'>"kable"</span>))
 
 <span class='co'># S4 method for SummarizedExperiment,DataFrame</span>
-<span class='fu'>sampleData</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+<span class='fu'>sampleData</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+
+<span class='co'># S4 method for SummarizedExperiment</span>
+<span class='fu'><a href='sampleNames.html'>sampleNames</a></span>(<span class='no'>object</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,7 +165,8 @@ experiment).</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='metadataBlacklist.html'>metadataBlacklist</a>.</p></div>
+    <div class='dont-index'><p><a href='metadataBlacklist.html'>metadataBlacklist</a>.</p>
+<p>Other Metadata Functions: <code><a href='sampleNames.html'>sampleNames</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
