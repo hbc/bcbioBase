@@ -79,6 +79,7 @@ Imports:
     utils,
     viridis (>= 0.5)
 Suggests:
+    pkgdown (>= 1.0),
     testthat (>= 2.0)
 Remotes:
     steinbaugh/basejump
