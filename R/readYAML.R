@@ -38,17 +38,17 @@ NULL
     assert_is_list(yaml)
     assert_is_non_empty(yaml)
 
-    assert_are_identical(
-        names(yaml[[1L]]),
-        c(
+    # `summary` is only returned for RNA-seq pipeline, not single cell
+    assert_is_subset(
+        x = c(
             "description",
             "dirs",
             "genome_build",
             "genome_resources",
             "metadata",
-            "sam_ref",
-            "summary"
-        )
+            "sam_ref"
+        ),
+        y = names(yaml[[1L]])
     )
 
     # Check that nested keys are present and early return on failure
@@ -56,10 +56,6 @@ NULL
         length(keys) == 2L &&
         !keys[[2L]] %in% names(yaml[[1L]][[keys[[1L]]]])
     ) {
-        warning(paste(
-            deparse(keys[[2L]]),
-            "missing in sample YAML"
-        ))
         return(NULL)
     }
 
@@ -121,7 +117,6 @@ readYAMLSampleMetrics <- function(file) {
 
     # Early return on empty metrics
     if (!length(data)) {
-        warning("Fast mode detected: No sample metrics were calculated")
         return(NULL)
     }
 
