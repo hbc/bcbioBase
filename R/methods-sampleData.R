@@ -21,7 +21,8 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' sampleData(rse_dds)
+#' sampleData(rse_bcb, clean = TRUE) %>% glimpse()
+#' sampleData(rse_bcb, clean = FALSE) %>% glimpse()
 #'
 #' # Assignment support
 #' x <- rse_dds
@@ -40,8 +41,8 @@ setMethod(
     signature("SummarizedExperiment"),
     function(
         object,
-        interestingGroups,
         clean = TRUE,
+        interestingGroups,
         return = c("DataFrame", "data.frame", "kable")
     ) {
         validObject(object)
@@ -56,14 +57,14 @@ setMethod(
             # Drop remaining blacklisted columns
             setdiff <- setdiff(colnames(data), metadataBlacklist)
             data <- data[, setdiff, drop = FALSE]
-        }
-
-        # Include `interestingGroups` column, if not NULL
-        if (missing(interestingGroups)) {
-            interestingGroups <- bcbioBase::interestingGroups(object)
-        }
-        if (length(interestingGroups)) {
-            data <- uniteInterestingGroups(data, interestingGroups)
+        } else {
+            # Include `interestingGroups` column, if not NULL
+            if (missing(interestingGroups)) {
+                interestingGroups <- bcbioBase::interestingGroups(object)
+            }
+            if (length(interestingGroups)) {
+                data <- uniteInterestingGroups(data, interestingGroups)
+            }
         }
 
         # Arrange rows by `sampleName` column, if defined
