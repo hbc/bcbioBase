@@ -34,18 +34,24 @@ sanitizeSampleData <- function(object) {
     assert_is_non_empty(object)
     assert_has_colnames(object)
     class <- class(object)[[1L]]
+
     object <- as(object, "DataFrame")
     object <- camel(object)
+
     list <- lapply(
         X = object,
         FUN = function(x) {
             droplevels(as.factor(x))
         }
     )
-    # Don't allow manual definition of `interestingGroups` column
-    data[["interestingGroups"]] <- NULL
+
     # DataFrame class supports coercion from list; data.frame does not
     data <- as(list, "DataFrame")
+
+    # Don't allow manual definition of automatic columns
+    blacklist <- c("interestingGroups", "sampleID")
+    data <- data[, setdiff(colnames(data), blacklist), drop = FALSE]
+
     data <- as(data, class)
     rownames(data) <- rownames(object)
     data
