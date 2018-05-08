@@ -1,3 +1,7 @@
+# nocov start
+
+
+
 #' Prepare R Markdown Template File
 #'
 #' If the required template dependency files aren't present, download latest
@@ -62,3 +66,7 @@ prepareTemplate <- function(
         MoreArgs = list(sourceDir = sourceDir)
     ))
 }
+
+
+
+# nocov end
