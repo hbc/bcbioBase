@@ -5,11 +5,10 @@
 \title{Prepare R Markdown Template File}
 \usage{
 prepareTemplate(file = c("_output.yaml", "_footer.Rmd", "_header.Rmd",
-  "_setup.R", "bibliography.bib"), sourceDir = system.file("rmarkdown/shared",
-  package = "bcbioBase"))
+  "_setup.R", "bibliography.bib"), sourceDir)
 }
 \arguments{
-\item{file}{File name.}
+\item{file}{File name(s).}
 
 \item{sourceDir}{Source directory.}
 }
@@ -29,25 +28,20 @@ By default, this function will create local copies of these files:
 \item \code{_setup.R}
 \item \code{bibliography.bib}
 }
+
+This code is used internally by:
+\itemize{
+\item \code{\link[bcbioRNASeq:prepareRNASeqTemplate]{bcbioRNASeq::prepareRNASeqTemplate()}}.
+\item \code{\link[bcbioSingleCell:prepareSingleCellTemplate]{bcbioSingleCell::prepareSingleCellTemplate()}}.
+}
 }
 \examples{
-defaultFiles <- c(
-    "_footer.Rmd",
-    "_header.Rmd",
-    "_output.yaml",
-    "_setup.R",
-    "bibliography.bib"
+# RNA-seq pipeline
+\dontrun{
+prepareTemplate(
+    sourceDir = system.file("rmarkdown/shared", package = "bcbioRNASeq")
 )
-
-# Copy all of the default shared template files
-prepareTemplate()
-file.exists(defaultFiles)
-unlink(defaultFiles)
-
-# Request individual files
-prepareTemplate("bibliography.bib")
-file.exists("bibliography.bib")
-unlink("bibliography.bib")
+}
 }
 \seealso{
 Other Prepare Functions: \code{\link{prepareSummarizedExperiment}}

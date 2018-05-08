@@ -11,35 +11,29 @@
 #' - `_setup.R`
 #' - `bibliography.bib`
 #'
+#' This code is used internally by:
+#'
+#' - [bcbioRNASeq::prepareRNASeqTemplate()].
+#' - [bcbioSingleCell::prepareSingleCellTemplate()].
+#'
 #' @family Prepare Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
 #'
-#' @param file File name.
+#' @param file File name(s).
 #' @param sourceDir Source directory.
 #'
 #' @return No value.
 #' @export
 #'
 #' @examples
-#' defaultFiles <- c(
-#'     "_footer.Rmd",
-#'     "_header.Rmd",
-#'     "_output.yaml",
-#'     "_setup.R",
-#'     "bibliography.bib"
+#' # RNA-seq pipeline
+#' \dontrun{
+#' prepareTemplate(
+#'     sourceDir = system.file("rmarkdown/shared", package = "bcbioRNASeq")
 #' )
-#'
-#' # Copy all of the default shared template files
-#' prepareTemplate()
-#' file.exists(defaultFiles)
-#' unlink(defaultFiles)
-#'
-#' # Request individual files
-#' prepareTemplate("bibliography.bib")
-#' file.exists("bibliography.bib")
-#' unlink("bibliography.bib")
+#' }
 prepareTemplate <- function(
     file = c(
         "_output.yaml",
@@ -48,7 +42,7 @@ prepareTemplate <- function(
         "_setup.R",
         "bibliography.bib"
     ),
-    sourceDir = system.file("rmarkdown/shared", package = "bcbioBase")
+    sourceDir
 ) {
     assert_is_character(file)
     assert_all_are_dirs(sourceDir)
