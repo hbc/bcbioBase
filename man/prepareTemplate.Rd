@@ -31,8 +31,8 @@ By default, this function will create local copies of these files:
 
 This code is used internally by:
 \itemize{
-\item \code{\link[bcbioRNASeq:prepareRNASeqTemplate]{bcbioRNASeq::prepareRNASeqTemplate()}}.
-\item \code{\link[bcbioSingleCell:prepareSingleCellTemplate]{bcbioSingleCell::prepareSingleCellTemplate()}}.
+\item \code{bcbioRNASeq::prepareRNASeqTemplate()}.
+\item \code{bcbioSingleCell::prepareSingleCellTemplate()}.
 }
 }
 \examples{

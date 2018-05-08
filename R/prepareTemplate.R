@@ -17,8 +17,8 @@
 #'
 #' This code is used internally by:
 #'
-#' - [bcbioRNASeq::prepareRNASeqTemplate()].
-#' - [bcbioSingleCell::prepareSingleCellTemplate()].
+#' - `bcbioRNASeq::prepareRNASeqTemplate()`.
+#' - `bcbioSingleCell::prepareSingleCellTemplate()`.
 #'
 #' @family Prepare Functions
 #' @author Michael Steinbaugh
