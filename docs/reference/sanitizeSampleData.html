@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Flat Files from S4 Object — flatFiles • bcbioBase</title>
+<title>Sanitize Sample Data — sanitizeSampleData • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Flat Files from S4 Object — flatFiles" />
+<meta property="og:title" content="Sanitize Sample Data — sanitizeSampleData" />
 
-<meta property="og:description" content="Extract the slots inside an S4 object for archival storage." />
+<meta property="og:description" content="Sanitize Sample Data" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -96,21 +96,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Flat Files from S4 Object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/hbc/bcbioBase/blob/master/R/methods-flatFiles.R'><code>R/methods-flatFiles.R</code></a></small>
-    <div class="hidden name"><code>flatFiles.Rd</code></div>
+    <h1>Sanitize Sample Data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/sanitizeSampleData.R'><code>R/sanitizeSampleData.R</code></a></small>
+    <div class="hidden name"><code>sanitizeSampleData.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Extract the slots inside an S4 object for archival storage.</p>
+    <p>Sanitize Sample Data</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>flatFiles</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for SummarizedExperiment</span>
-<span class='fu'>flatFiles</span>(<span class='no'>object</span>)</pre>
+    <pre class="usage"><span class='fu'>sanitizeSampleData</span>(<span class='no'>object</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -119,29 +116,53 @@
       <th>object</th>
       <td><p>Object.</p></td>
     </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>list</code> containing the slots of an S4 object.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other Data Functions: <code><a href='convertGenesToSymbols.html'>convertGenesToSymbols</a></code>,
-  <code><a href='counts.html'>counts</a></code>, <code>gene2symbol</code>,
-  <code><a href='sampleDirs.html'>sampleDirs</a></code>, <code>selectSamples</code>,
-  <code>uniteInterestingGroups</code></p></div>
+    <p><code>DataFrame</code> or <code>data.frame</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># SummarizedExperiment ====</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>flatFiles</span>(<span class='no'>rse_dds</span>)
-<span class='fu'>class</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "list"</div><div class='input'><span class='fu'>names</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "rowRanges"       "colData"         "assays"          "NAMES"          
-#&gt; [5] "elementMetadata" "metadata"       </div></pre>
+    <pre class="examples"><div class='input'><span class='co'># DataFrame ====</span>
+<span class='no'>from</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/S4Vectors/topics/DataFrame-class'>DataFrame</a></span>(
+    <span class='st'>"genotype"</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"wt"</span>, <span class='st'>"ko"</span>, <span class='st'>"wt"</span>, <span class='st'>"ko"</span>),
+    <span class='st'>"batch"</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
+    <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"sample_1"</span>, <span class='st'>"sample_2"</span>, <span class='st'>"sample_3"</span>, <span class='st'>"sample_4"</span>)
+)
+<span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>from</span>)</div><div class='output co'>#&gt; Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
+#&gt;   ..@ rownames       : chr [1:4] "sample_1" "sample_2" "sample_3" "sample_4"
+#&gt;   ..@ nrows          : int 4
+#&gt;   ..@ listData       :List of 2
+#&gt;   .. ..$ genotype: chr [1:4] "wt" "ko" "wt" "ko"
+#&gt;   .. ..$ batch   : int [1:4] 1 1 2 2
+#&gt;   ..@ elementType    : chr "ANY"
+#&gt;   ..@ elementMetadata: NULL
+#&gt;   ..@ metadata       : list()</div><div class='input'><span class='no'>to</span> <span class='kw'>&lt;-</span> <span class='fu'>sanitizeSampleData</span>(<span class='no'>from</span>)
+<span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>to</span>)</div><div class='output co'>#&gt; Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
+#&gt;   ..@ rownames       : chr [1:4] "sample_1" "sample_2" "sample_3" "sample_4"
+#&gt;   ..@ nrows          : int 4
+#&gt;   ..@ listData       :List of 2
+#&gt;   .. ..$ genotype: Factor w/ 2 levels "ko","wt": 2 1 2 1
+#&gt;   .. ..$ batch   : Factor w/ 2 levels "1","2": 1 1 2 2
+#&gt;   ..@ elementType    : chr "ANY"
+#&gt;   ..@ elementMetadata: NULL
+#&gt;   ..@ metadata       : list()</div><div class='input'>
+<span class='co'># data.frame ====</span>
+<span class='no'>from</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
+    <span class='st'>"genotype"</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"wt"</span>, <span class='st'>"ko"</span>, <span class='st'>"wt"</span>, <span class='st'>"ko"</span>),
+    <span class='st'>"batch"</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
+    <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"sample_1"</span>, <span class='st'>"sample_2"</span>, <span class='st'>"sample_3"</span>, <span class='st'>"sample_4"</span>),
+    <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
+<span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>from</span>)</div><div class='output co'>#&gt; Observations: 4
+#&gt; Variables: 2
+#&gt; $ genotype &lt;chr&gt; "wt", "ko", "wt", "ko"
+#&gt; $ batch    &lt;int&gt; 1, 1, 2, 2</div><div class='input'><span class='no'>to</span> <span class='kw'>&lt;-</span> <span class='fu'>sanitizeSampleData</span>(<span class='no'>from</span>)
+<span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>to</span>)</div><div class='output co'>#&gt; Observations: 4
+#&gt; Variables: 2
+#&gt; $ genotype &lt;fct&gt; wt, ko, wt, ko
+#&gt; $ batch    &lt;fct&gt; 1, 1, 2, 2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -149,8 +170,6 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

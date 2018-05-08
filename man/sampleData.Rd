@@ -15,8 +15,8 @@ sampleData(object, ...)
 
 sampleData(object, ...) <- value
 
-\S4method{sampleData}{SummarizedExperiment}(object, interestingGroups,
-  clean = TRUE, return = c("DataFrame", "data.frame", "kable"))
+\S4method{sampleData}{SummarizedExperiment}(object, clean = TRUE,
+  interestingGroups, return = c("DataFrame", "data.frame", "kable"))
 
 \S4method{sampleData}{SummarizedExperiment,DataFrame}(object) <- value
 
@@ -29,10 +29,10 @@ sampleData(object, ...) <- value
 
 \item{value}{Value to assign.}
 
-\item{interestingGroups}{\code{character} vector defining the groups of interest.}
-
 \item{clean}{\emph{Recommended.} Only return \code{factor} columns not defined in
 \link{metadataBlacklist}.}
+
+\item{interestingGroups}{\code{character} vector defining the groups of interest.}
 
 \item{return}{Object class to return. Uses \code{\link[=match.arg]{match.arg()}} internally and picks
 the first item in the vector by default.}
@@ -51,7 +51,8 @@ experiment).
 }
 \examples{
 # SummarizedExperiment ====
-sampleData(rse_dds)
+sampleData(rse_bcb, clean = TRUE) \%>\% glimpse()
+sampleData(rse_bcb, clean = FALSE) \%>\% glimpse()
 
 # Assignment support
 x <- rse_dds

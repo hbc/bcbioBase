@@ -122,21 +122,30 @@ test_that("sampleData : SummarizedExperiment", {
             "knitr_kable"
         )
     )
-    # Check dimensions
-    expect_identical(
-        lapply(list, dim),
-        list(
-            c(6L, 7L),
-            c(6L, 7L),
-            NULL
+    # Check dimnames
+    expected <- list(
+        c(
+            "control_rep1",
+            "control_rep2",
+            "control_rep3",
+            "fa_day7_rep1",
+            "fa_day7_rep2",
+            "fa_day7_rep3"
+        ),
+        c(
+            "sampleName",
+            "day",
+            "replicate",
+            "strain",
+            "tissue",
+            "treatment"
         )
     )
-    # Check rownames
     expect_identical(
-        lapply(list, rownames),
+        lapply(list, dimnames),
         list(
-            colnames(rse_bcb),
-            colnames(rse_bcb),
+            expected,
+            expected,
             NULL
         )
     )

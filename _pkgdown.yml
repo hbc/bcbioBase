@@ -7,33 +7,3 @@ authors:
     href: https://github.com/roryk
   Harvard Chan Bioinformatics Core:
     href: http://bioinformatics.sph.harvard.edu
-
-reference:
-  - title: Data Functions
-    contents:
-    - counts
-    - starts_with("convert")
-    - flatFiles
-    - gene2symbol
-    - interestingGroups
-    - starts_with("sample")
-    - starts_with("select")
-    - uniteInterestingGroups
-  - title: Plot Functions
-    contents:
-    - starts_with("plot")
-  - title: Prepare Functions
-    contents:
-    - starts_with("prepare")
-  - title: Read Functions
-    contents:
-    - starts_with("read")
-  - title: Write Functions
-    contents:
-    - copyToDropbox
-  - title: Assert Check Functions
-    contents:
-    - starts_with("assert")
-  - title: Example Data
-    contents:
-    - starts_with("rse_")
