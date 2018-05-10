@@ -29,7 +29,7 @@
 #' @param overwrite `logical`. Should existing destination files be overwritten?
 #' @param sourceDir `string`. Source directory.
 #'
-#' @return No value.
+#' @return Invisible `logical` vector indicating which files were copied.
 #' @export
 #'
 #' @examples
@@ -55,6 +55,8 @@ prepareTemplate <- function(
     assert_is_a_string(sourceDir)
     assert_all_are_existing_files(file.path(sourceDir, file))
     invisible(mapply(
+        file = file,
+        MoreArgs = list(sourceDir = sourceDir),
         FUN = function(file, sourceDir) {
             file.copy(
                 from = file.path(sourceDir, file),
@@ -62,8 +64,8 @@ prepareTemplate <- function(
                 overwrite = overwrite
             )
         },
-        file = file,
-        MoreArgs = list(sourceDir = sourceDir)
+        SIMPLIFY = TRUE,
+        USE.NAMES = TRUE
     ))
 }
 

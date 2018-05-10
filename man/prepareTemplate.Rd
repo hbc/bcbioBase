@@ -15,7 +15,7 @@ prepareTemplate(file = c("_output.yaml", "_footer.Rmd", "_header.Rmd",
 \item{overwrite}{\code{logical}. Should existing destination files be overwritten?}
 }
 \value{
-No value.
+Invisible \code{logical} vector indicating which files were copied.
 }
 \description{
 If the required template dependency files aren't present, download latest
