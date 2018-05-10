@@ -25,8 +25,9 @@
 #'
 #' @inheritParams general
 #'
-#' @param file File name(s).
-#' @param sourceDir Source directory.
+#' @param file `character`. File name(s).
+#' @param overwrite `logical`. Should existing destination files be overwritten?
+#' @param sourceDir `string`. Source directory.
 #'
 #' @return No value.
 #' @export
@@ -46,7 +47,8 @@ prepareTemplate <- function(
         "_setup.R",
         "bibliography.bib"
     ),
-    sourceDir
+    sourceDir,
+    overwrite = FALSE
 ) {
     assert_is_character(file)
     assert_all_are_dirs(sourceDir)
@@ -54,13 +56,11 @@ prepareTemplate <- function(
     assert_all_are_existing_files(file.path(sourceDir, file))
     invisible(mapply(
         FUN = function(file, sourceDir) {
-            if (!file.exists(file)) {
-                file.copy(
-                    from = file.path(sourceDir, file),
-                    to = file,
-                    overwrite = FALSE
-                )
-            }
+            file.copy(
+                from = file.path(sourceDir, file),
+                to = file,
+                overwrite = overwrite
+            )
         },
         file = file,
         MoreArgs = list(sourceDir = sourceDir)
