@@ -32,10 +32,12 @@ setMethod(
         validObject(object)
         data <- sampleData(object)
         if ("sampleName" %in% colnames(data)) {
-            names <- data[, "sampleName", drop = TRUE]
+            vec <- data[, "sampleName", drop = TRUE]
         } else {
-            names <- rownames(data)
+            vec <- rownames(data)
         }
-        sort(as.character(names))
+        vec <- as.character(vec)
+        names(vec) <- rownames(data)
+        vec
     }
 )
