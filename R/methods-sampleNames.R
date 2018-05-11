@@ -12,7 +12,7 @@
 #'
 #' @inheritParams general
 #'
-#' @return `character` vector of the sample names.
+#' @return Named `character` vector of the sample names.
 #'
 #' @examples
 #' # SummarizedExperiment ====
