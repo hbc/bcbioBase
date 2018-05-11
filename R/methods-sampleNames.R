@@ -31,6 +31,7 @@ setMethod(
     function(object) {
         validObject(object)
         data <- sampleData(object)
+        data <- data[sort(rownames(data)), , drop = FALSE]
         if ("sampleName" %in% colnames(data)) {
             vec <- data[, "sampleName", drop = TRUE]
         } else {
