@@ -61,7 +61,7 @@ versions from the package website. Existing files are never overwritten." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.12</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.13</span>
       </span>
     </div>
 
@@ -110,24 +110,28 @@ versions from the package website. Existing files are never overwritten.</p>
     </div>
 
     <pre class="usage"><span class='fu'>prepareTemplate</span>(<span class='kw'>file</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"_output.yaml"</span>, <span class='st'>"_footer.Rmd"</span>, <span class='st'>"_header.Rmd"</span>,
-  <span class='st'>"_setup.R"</span>, <span class='st'>"bibliography.bib"</span>), <span class='no'>sourceDir</span>)</pre>
+  <span class='st'>"_setup.R"</span>, <span class='st'>"bibliography.bib"</span>), <span class='no'>sourceDir</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>file</th>
-      <td><p>File name(s).</p></td>
+      <td><p><code>character</code>. File name(s).</p></td>
     </tr>
     <tr>
       <th>sourceDir</th>
-      <td><p>Source directory.</p></td>
+      <td><p><code>string</code>. Source directory.</p></td>
+    </tr>
+    <tr>
+      <th>overwrite</th>
+      <td><p><code>logical</code>. Should existing destination files be overwritten?</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>No value.</p>
+    <p>Invisible <code>logical</code> vector indicating which files were copied.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
