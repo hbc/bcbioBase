@@ -39,7 +39,7 @@ LazyData: TRUE
 Depends:
     R (>= 3.4),
     SummarizedExperiment,
-    basejump (>= 0.5)
+    basejump (>= 0.5.4)
 Imports:
     Biobase,
     BiocGenerics,
