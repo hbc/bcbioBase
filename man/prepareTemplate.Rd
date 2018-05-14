@@ -5,15 +5,17 @@
 \title{Prepare R Markdown Template File}
 \usage{
 prepareTemplate(file = c("_output.yaml", "_footer.Rmd", "_header.Rmd",
-  "_setup.R", "bibliography.bib"), sourceDir)
+  "_setup.R", "bibliography.bib"), sourceDir, overwrite = FALSE)
 }
 \arguments{
-\item{file}{File name(s).}
+\item{file}{\code{character}. File name(s).}
 
-\item{sourceDir}{Source directory.}
+\item{sourceDir}{\code{string}. Source directory.}
+
+\item{overwrite}{\code{logical}. Should existing destination files be overwritten?}
 }
 \value{
-No value.
+Invisible \code{logical} vector indicating which files were copied.
 }
 \description{
 If the required template dependency files aren't present, download latest

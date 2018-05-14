@@ -4,7 +4,7 @@
 \alias{sampleNames}
 \title{Sample Names}
 \value{
-\code{character} vector of the sample names.
+Named \code{character} vector of the sample names.
 }
 \description{
 This function will return the human readable sample names if defined

@@ -45,11 +45,9 @@ setMethod(
         interestingGroups,
         return = c("DataFrame", "data.frame", "kable")
     ) {
-        validObject(object)
+        data <- colData(object)
         assert_is_a_bool(clean)
         return <- match.arg(return)
-
-        data <- colData(object)
 
         # Only return factor columns, if desired
         if (isTRUE(clean)) {

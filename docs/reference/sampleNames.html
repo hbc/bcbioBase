@@ -62,7 +62,7 @@ the syntactically valid names defined as the rownames of sampleData()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.12</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.13</span>
       </span>
     </div>
 
@@ -114,7 +114,7 @@ the syntactically valid names defined as the rownames of <code>sampleData()</cod
         
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>character</code> vector of the sample names.</p>
+    <p>Named <code>character</code> vector of the sample names.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -123,9 +123,11 @@ the syntactically valid names defined as the rownames of <code>sampleData()</cod
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># SummarizedExperiment ====</span>
-<span class='fu'>sampleNames</span>(<span class='no'>rse_bcb</span>)</div><div class='output co'>#&gt; [1] "control_rep1" "control_rep2" "control_rep3" "fa_day7_rep1" "fa_day7_rep2"
-#&gt; [6] "fa_day7_rep3"</div><div class='input'><span class='fu'>sampleNames</span>(<span class='no'>rse_dds</span>)</div><div class='output co'>#&gt;  [1] "sample1"  "sample10" "sample11" "sample12" "sample2"  "sample3" 
-#&gt;  [7] "sample4"  "sample5"  "sample6"  "sample7"  "sample8"  "sample9" </div></pre>
+<span class='fu'>sampleNames</span>(<span class='no'>rse_bcb</span>)</div><div class='output co'>#&gt;   control_rep1   control_rep2   control_rep3   fa_day7_rep1   fa_day7_rep2   fa_day7_rep3 
+#&gt; "control_rep1" "control_rep2" "control_rep3" "fa_day7_rep1" "fa_day7_rep2" "fa_day7_rep3" </div><div class='input'><span class='fu'>sampleNames</span>(<span class='no'>rse_dds</span>)</div><div class='output co'>#&gt;    sample1   sample10   sample11   sample12    sample2    sample3    sample4    sample5    sample6 
+#&gt;  "sample1" "sample10" "sample11" "sample12"  "sample2"  "sample3"  "sample4"  "sample5"  "sample6" 
+#&gt;    sample7    sample8    sample9 
+#&gt;  "sample7"  "sample8"  "sample9" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

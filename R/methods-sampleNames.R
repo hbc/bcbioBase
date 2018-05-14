@@ -12,7 +12,7 @@
 #'
 #' @inheritParams general
 #'
-#' @return `character` vector of the sample names.
+#' @return Named `character` vector of the sample names.
 #'
 #' @examples
 #' # SummarizedExperiment ====
@@ -29,13 +29,15 @@ setMethod(
     "sampleNames",
     signature("SummarizedExperiment"),
     function(object) {
-        validObject(object)
         data <- sampleData(object)
+        data <- data[sort(rownames(data)), , drop = FALSE]
         if ("sampleName" %in% colnames(data)) {
-            names <- data[, "sampleName", drop = TRUE]
+            vec <- data[, "sampleName", drop = TRUE]
         } else {
-            names <- rownames(data)
+            vec <- rownames(data)
         }
-        sort(as.character(names))
+        vec <- as.character(vec)
+        names(vec) <- rownames(data)
+        vec
     }
 )
