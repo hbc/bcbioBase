@@ -41,7 +41,8 @@ y[["interestingGroups"]]
 \seealso{
 Other Data Functions: \code{\link{convertGenesToSymbols}},
   \code{\link{counts}}, \code{\link{flatFiles}},
-  \code{\link{gene2symbol}}, \code{\link{sampleDirs}},
+  \code{\link{gene2symbol}}, \code{\link{sampleData}},
+  \code{\link{sampleDirs}}, \code{\link{sampleNames}},
   \code{\link{selectSamples}}
 }
 \author{

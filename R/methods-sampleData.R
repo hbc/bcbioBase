@@ -8,7 +8,7 @@
 #'   experiment).
 #'
 #' @name sampleData
-#' @family Metadata Functions
+#' @family Data Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

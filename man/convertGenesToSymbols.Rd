@@ -26,7 +26,8 @@ head(rownames(x))
 \seealso{
 Other Data Functions: \code{\link{counts}},
   \code{\link{flatFiles}}, \code{\link{gene2symbol}},
-  \code{\link{sampleDirs}}, \code{\link{selectSamples}},
+  \code{\link{sampleData}}, \code{\link{sampleDirs}},
+  \code{\link{sampleNames}}, \code{\link{selectSamples}},
   \code{\link{uniteInterestingGroups}}
 }
 \author{

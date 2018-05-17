@@ -63,7 +63,11 @@ glimpse(sampleData(x))
 \seealso{
 \link{metadataBlacklist}.
 
-Other Metadata Functions: \code{\link{sampleNames}}
+Other Data Functions: \code{\link{convertGenesToSymbols}},
+  \code{\link{counts}}, \code{\link{flatFiles}},
+  \code{\link{gene2symbol}}, \code{\link{sampleDirs}},
+  \code{\link{sampleNames}}, \code{\link{selectSamples}},
+  \code{\link{uniteInterestingGroups}}
 }
 \author{
 Michael Steinbaugh
