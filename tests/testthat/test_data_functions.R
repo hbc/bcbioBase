@@ -177,6 +177,30 @@ test_that("sampleDirs", {
 
 
 
+# sampleNames ==================================================================
+test_that("sampleNames", {
+    x <- sampleNames(rse_bcb)
+    expect_identical(
+        x[seq_len(2L)],
+        c(
+            control_rep1 = "control_rep1",
+            control_rep2 = "control_rep2"
+        )
+    )
+
+    # TODO Consider not sorting the sampleData rows on import
+    x <- sampleNames(rse_dds)
+    expect_identical(
+        x[seq_len(2L)],
+        c(
+            sample1 = "sample1",
+            sample10 = "sample10"
+        )
+    )
+})
+
+
+
 # selectSamples ================================================================
 test_that("selectSamples : SummarizedExperiment", {
     x <- selectSamples(rse_dds, condition = "A")
