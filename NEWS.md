@@ -1,3 +1,13 @@
+# bcbioBase 0.2.4 (2018-05-18)
+
+## Minor changes
+
+- Improved formatting of package NEWS
+- Improved code coverage by adding ggplot2 unit testing.
+- Added `sampleData<-` method support for standard `data.frame`.
+
+
+
 # bcbioBase 0.2.13 (2018-05-07)
 
 ## Minor changes
