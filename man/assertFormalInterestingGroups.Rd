@@ -10,7 +10,7 @@ assertFormalInterestingGroups(x, interestingGroups,
 \arguments{
 \item{x}{Object.}
 
-\item{interestingGroups}{\code{character} vector defining the groups of interest.}
+\item{interestingGroups}{\code{character}. Groups of interest.}
 
 \item{severity}{How severe should the consequences of the assertion be?
 Either "\code{stop}", "\code{warning}", "\code{message}", or "\code{none}".}
