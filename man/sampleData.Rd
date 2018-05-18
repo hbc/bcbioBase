@@ -32,7 +32,7 @@ sampleData(object, ...) <- value
 
 \item{value}{Value to assign.}
 
-\item{clean}{\emph{Recommended.} Only return \code{factor} columns not defined in
+\item{clean}{\code{logical}. Only return \code{factor} columns not defined in
 \link{metadataBlacklist}.}
 
 \item{interestingGroups}{\code{character} vector defining the groups of interest.}

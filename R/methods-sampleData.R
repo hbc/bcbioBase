@@ -12,7 +12,7 @@
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
-#' @param clean *Recommended.* Only return `factor` columns not defined in
+#' @param clean `logical`. Only return `factor` columns not defined in
 #'   [metadataBlacklist].
 #'
 #' @return Data describing the samples.
