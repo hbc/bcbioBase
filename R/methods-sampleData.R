@@ -65,11 +65,6 @@ setMethod(
             }
         }
 
-        # Arrange rows by `sampleName` column, if defined
-        if ("sampleName" %in% colnames(data)) {
-            data <- data[order(data[["sampleName"]]), , drop = FALSE]
-        }
-
         # Return
         if (return == "kable") {
             kable(as.data.frame(data), row.names = FALSE)
@@ -90,7 +85,26 @@ setMethod(
         value = "DataFrame"
     ),
     function(object, value) {
-        colData(object) <- value
+        colData(object) <- as(value, "DataFrame")
         object
     }
+)
+
+
+
+#' @rdname sampleData
+#' @export
+setMethod(
+    "sampleData<-",
+    signature(
+        object = "SummarizedExperiment",
+        value = "data.frame"
+    ),
+    getMethod(
+        "sampleData<-",
+        signature(
+            object = "SummarizedExperiment",
+            value = "DataFrame"
+        )
+    )
 )
