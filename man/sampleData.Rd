@@ -8,6 +8,7 @@
 \alias{sampleData}
 \alias{sampleData,SummarizedExperiment-method}
 \alias{sampleData<-,SummarizedExperiment,DataFrame-method}
+\alias{sampleData<-,SummarizedExperiment,data.frame-method}
 \alias{sampleNames,SummarizedExperiment-method}
 \title{Sample Data}
 \usage{
@@ -20,6 +21,8 @@ sampleData(object, ...) <- value
 
 \S4method{sampleData}{SummarizedExperiment,DataFrame}(object) <- value
 
+\S4method{sampleData}{SummarizedExperiment,data.frame}(object) <- value
+
 \S4method{sampleNames}{SummarizedExperiment}(object)
 }
 \arguments{
@@ -29,7 +32,7 @@ sampleData(object, ...) <- value
 
 \item{value}{Value to assign.}
 
-\item{clean}{\emph{Recommended.} Only return \code{factor} columns not defined in
+\item{clean}{\code{logical}. Only return \code{factor} columns not defined in
 \link{metadataBlacklist}.}
 
 \item{interestingGroups}{\code{character} vector defining the groups of interest.}
@@ -63,7 +66,11 @@ glimpse(sampleData(x))
 \seealso{
 \link{metadataBlacklist}.
 
-Other Metadata Functions: \code{\link{sampleNames}}
+Other Data Functions: \code{\link{convertGenesToSymbols}},
+  \code{\link{counts}}, \code{\link{flatFiles}},
+  \code{\link{gene2symbol}}, \code{\link{sampleDirs}},
+  \code{\link{sampleNames}}, \code{\link{selectSamples}},
+  \code{\link{uniteInterestingGroups}}
 }
 \author{
 Michael Steinbaugh

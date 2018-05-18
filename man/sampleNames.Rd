@@ -17,7 +17,11 @@ sampleNames(rse_bcb)
 sampleNames(rse_dds)
 }
 \seealso{
-Other Metadata Functions: \code{\link{sampleData}}
+Other Data Functions: \code{\link{convertGenesToSymbols}},
+  \code{\link{counts}}, \code{\link{flatFiles}},
+  \code{\link{gene2symbol}}, \code{\link{sampleData}},
+  \code{\link{sampleDirs}}, \code{\link{selectSamples}},
+  \code{\link{uniteInterestingGroups}}
 }
 \author{
 Michael Steinbaugh

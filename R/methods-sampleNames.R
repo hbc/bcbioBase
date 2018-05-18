@@ -5,7 +5,7 @@
 #' the syntactically valid names defined as the rownames of [sampleData()].
 #'
 #' @name sampleNames
-#' @family Metadata Functions
+#' @family Data Functions
 #' @author Michael Steinbaugh
 #'
 #' @importFrom Biobase sampleNames

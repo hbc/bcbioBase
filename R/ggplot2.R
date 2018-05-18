@@ -51,7 +51,7 @@ bcbio_geom_abline <- function(
     if (is.null(xintercept) && is.null(yintercept)) {
         stop("`xintercept` and `yintercept` are both NULL")
     } else if (is.numeric(xintercept) && is.numeric(yintercept)) {
-        stop("Specifcly only `xintercept` or `yintercept` as numeric")
+        stop("Specify only `xintercept` or `yintercept` but not both")
     } else if (is.numeric(xintercept)) {
         geom_vline(
             xintercept = xintercept,
