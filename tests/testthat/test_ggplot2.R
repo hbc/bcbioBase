@@ -26,8 +26,8 @@ test_that("bcbio_geom_label", {
 
 test_that("bcbio_geom_label_average", {
     data <- data.frame(
-        sampleName = c("sample1", "sample1", "sample1", "sample1"),
-        counts = c(1, 2, 3, 4)
+        sampleName = "sample1",
+        counts = seq_len(4L)
     )
     g <- bcbio_geom_label_average(data, col = "counts")
     expect_is(g, "Layer")

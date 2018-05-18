@@ -188,7 +188,6 @@ test_that("sampleNames", {
         )
     )
 
-    # TODO Consider not sorting the sampleData rows on import
     x <- sampleNames(rse_dds)
     expect_identical(
         x[seq_len(2L)],
