@@ -13,8 +13,10 @@
 ## Minor changes
 
 - Migrated `sanitizeSampleData()` from basejump to bcbioBase.
-- Don't return `interestingGroups` column in `sampleData()` return when `clean = TRUE`.
-- Removed internal R Markdown shared files. These are already saved per bcbio R package.
+- Don't return `interestingGroups` column in `sampleData()` return when
+  `clean = TRUE`.
+- Removed internal R Markdown shared files. These are already saved per bcbio R
+  package.
 
 
 
@@ -144,7 +146,7 @@
 - Updated example datasets to use `rse_bcb` and `rse_dds`.
 - Simplified internal S4 method code for heatmap functions.
 - `prepareSummarizedExperiment()` now supports transgenes with the
-  `transgeneNames` argument (e.g. "EGFP")_, and FASTA spike-ins with the
+  `transgeneNames` argument (e.g. "EGFP"), and FASTA spike-ins with the
   `spikeNames` argument (e.g. "ERCCs"). Additionally, `rowRanges` and `colData`
   are no longer required and can be left `NULL`, although this isn't generally
   recommended.
