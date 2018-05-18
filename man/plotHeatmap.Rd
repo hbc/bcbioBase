@@ -64,7 +64,7 @@ improved aesthetics.}
 
 \item{title}{\emph{Optional.} Plot title.}
 
-\item{interestingGroups}{\code{character} vector defining the groups of interest.}
+\item{interestingGroups}{\code{character}. Groups of interest.}
 }
 \value{
 Show heatmap and invisibly return a \code{list} of the components.

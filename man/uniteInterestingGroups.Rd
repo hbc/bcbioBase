@@ -23,7 +23,7 @@ uniteInterestingGroups(object, ...)
 
 \item{...}{Additional arguments.}
 
-\item{interestingGroups}{\code{character} vector defining the groups of interest.}
+\item{interestingGroups}{\code{character}. Groups of interest.}
 }
 \value{
 Data frame, now containing an \code{interestingGroups} column.
