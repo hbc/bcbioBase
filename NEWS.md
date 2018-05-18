@@ -1,4 +1,4 @@
-# bcbioBase 0.2.4 (2018-05-18)
+# bcbioBase 0.2.14 (2018-05-18)
 
 ## Minor changes
 
