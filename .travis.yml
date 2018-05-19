@@ -8,11 +8,25 @@ r:
   - bioc-release
   - bioc-devel
 
+os:
+  - linux
+  - osx
+
+matrix:
+  exclude:
+  - os: osx
+    r: bioc-devel
+
 # blocklist
 branches:
   except:
   - develop
-  
+
+# safelist
+# branches:
+#   only:
+#   - master
+
 env:
   global:
     - LINTR_COMMENT_BOT=true
@@ -28,6 +42,8 @@ warnings_are_errors: true
 
 notifications:
   email:
+    recipients:
+      - mike@steinbaugh.com
     on_success: change
     on_failure: change
 
@@ -35,6 +51,7 @@ r_packages:
   - covr
 bioc_packages:
   - BiocCheck
+  - GenomeInfoDbData
 r_github_packages:
   - jimhester/lintr
 
