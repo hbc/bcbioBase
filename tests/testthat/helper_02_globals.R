@@ -10,7 +10,7 @@ mat <- matrix(
 )
 dgc <- as(mat, "dgCMatrix")
 
-heatmapList <- c("tree_row", "tree_col", "kmeans", "gtable")
+pheatmapList <- c("tree_row", "tree_col", "kmeans", "gtable")
 
 rr <- GRanges(
     seqnames = replicate(n = 4L, expr = "1"),
