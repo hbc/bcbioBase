@@ -56,7 +56,7 @@ if (file.exists("token.rds")) {
             )
         )
         expect_error(
-            copyToDropbox(files = "bibliography.bib", dir = NULL),
+            copyToDropbox(files = files, dir = NULL),
             paste(
                 "is_a_string :",
                 "dir is not of class 'character'; it has class 'NULL'"
