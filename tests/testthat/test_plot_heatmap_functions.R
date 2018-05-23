@@ -13,8 +13,8 @@ test_that("SummarizedExperiment", {
         p <- f(object)
 
         # Expect pheatmap return
-        expect_is(p, "list")
-        expect_identical(names(p), heatmapList)
+        expect_is(p, "pheatmap")
+        expect_identical(names(p), pheatmapList)
 
         # Test that plots contain annotation data
         gtable <- p[["gtable"]]
@@ -28,7 +28,7 @@ test_that("SummarizedExperiment", {
                 legendColor = NULL,
                 title = NULL
             ),
-            "list"
+            "pheatmap"
         )
         expect_is(
             f(
@@ -36,7 +36,7 @@ test_that("SummarizedExperiment", {
                 color = viridis,
                 legendColor = viridis
             ),
-            "list"
+            "pheatmap"
         )
     }))
 })
@@ -48,8 +48,8 @@ test_that("matrix", {
         p <- f(object)
 
         # Expect pheatmap return
-        expect_is(p, "list")
-        expect_identical(names(p), heatmapList)
+        expect_is(p, "pheatmap")
+        expect_identical(names(p), pheatmapList)
 
         # Test that plots do not contain annotation data
         gtable <- p[["gtable"]]

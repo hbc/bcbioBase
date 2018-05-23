@@ -65,7 +65,7 @@ Imports:
     knitr,
     magrittr (>= 1.5),
     methods,
-    pheatmap (>= 1.0),
+    pheatmap (>= 1.0.10),
     plyr (>= 1.8),
     rdrop2 (>= 0.8),
     readr (>= 1.1),
