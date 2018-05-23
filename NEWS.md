@@ -304,6 +304,8 @@
 
 
 [basejump]: http://steinbaugh.com/basejump
+[bcbioRNASeq]: http://bioinformatics.sph.harvard.edu/bcbioRNASeq
+[bcbioSingleCell]: http://bioinformatics.sph.harvard.edu/bcbioSingleCell
 [bioconda]: https://bioconda.github.io
 [Dropbox]: https://www.dropbox.com
 [lintr]: https://github.com/jimhester/lintr
