@@ -5,10 +5,8 @@ test_that("No methods defined", {
         bcbio,
         `bcbio<-`,
         metrics,
-        plotDot,
         plotGene,
-        plotQC,
-        plotViolin
+        plotQC
     )
     methods <- vapply(
         X = s4,

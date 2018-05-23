@@ -101,17 +101,6 @@ setGeneric(
 #' @rdname AllGenerics
 #' @export
 setGeneric(
-    "plotDot",
-    function(object, ...) {
-        standardGeneric("plotDot")
-    }
-)
-
-
-
-#' @rdname AllGenerics
-#' @export
-setGeneric(
     "plotGene",
     function(object, ...) {
         standardGeneric("plotGene")
@@ -148,17 +137,6 @@ setGeneric(
     "plotQC",
     function(object, ...) {
         standardGeneric("plotQC")
-    }
-)
-
-
-
-#' @rdname AllGenerics
-#' @export
-setGeneric(
-    "plotViolin",
-    function(object, ...) {
-        standardGeneric("plotViolin")
     }
 )
 
