@@ -5,8 +5,10 @@
 \alias{bcbio}
 \alias{bcbio<-}
 \alias{metrics}
+\alias{plotDot}
 \alias{plotGene}
 \alias{plotQC}
+\alias{plotViolin}
 \title{S4 Generics}
 \usage{
 bcbio(object, ...)
@@ -15,9 +17,13 @@ bcbio(object, ...) <- value
 
 metrics(object, ...)
 
+plotDot(object, ...)
+
 plotGene(object, ...)
 
 plotQC(object, ...)
+
+plotViolin(object, ...)
 }
 \arguments{
 \item{object}{Object.}

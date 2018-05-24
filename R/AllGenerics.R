@@ -101,6 +101,17 @@ setGeneric(
 #' @rdname AllGenerics
 #' @export
 setGeneric(
+    "plotDot",
+    function(object, ...) {
+        standardGeneric("plotDot")
+    }
+)
+
+
+
+#' @rdname AllGenerics
+#' @export
+setGeneric(
     "plotGene",
     function(object, ...) {
         standardGeneric("plotGene")
@@ -120,6 +131,17 @@ setGeneric(
 
 
 
+#' @rdname AllGenerics
+#' @export
+setGeneric(
+    "plotQC",
+    function(object, ...) {
+        standardGeneric("plotQC")
+    }
+)
+
+
+
 #' @rdname plotQuantileHeatmap
 #' @export
 setGeneric(
@@ -134,9 +156,9 @@ setGeneric(
 #' @rdname AllGenerics
 #' @export
 setGeneric(
-    "plotQC",
+    "plotViolin",
     function(object, ...) {
-        standardGeneric("plotQC")
+        standardGeneric("plotViolin")
     }
 )
 

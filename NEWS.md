@@ -1,9 +1,5 @@
 # bcbioBase 0.2.15 (2018-05-23)
 
-## Major changes
-
-- Removed `plotDot()` and `plotViolin()` generics used in [bcbioSingleCell][].
-
 ## Minor changes
 
 - Improved internal `interestingGroups` handling inside `plotHeatmap()` family
