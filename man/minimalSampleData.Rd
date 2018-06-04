@@ -15,3 +15,6 @@ minimalSampleData(sample)
 \description{
 Minimal Sample Data
 }
+\examples{
+minimalSampleData(c("sample 1", "sample 2"))
+}
