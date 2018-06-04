@@ -186,8 +186,6 @@ prepareSummarizedExperiment <- function(
                 paste0("(", length(setdiff), "):")
             ),
             str_trunc(toString(setdiff), width = 80L),
-            "Transgenes (e.g. EGFP) should be set with `transgeneNames`.",
-            "Spike-ins (e.g. ERCCs) should be set with `spikeNames`.",
             sep = "\n"
         ))
         unknownRanges <- emptyRanges(
