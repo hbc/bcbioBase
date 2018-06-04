@@ -13,6 +13,7 @@ minimalSampleData <- function(sample) {
     data.frame(
         sampleName = sample,
         description = sample,
-        row.names = makeNames(sample)
+        row.names = makeNames(sample),
+        stringsAsFactors = TRUE
     )
 }
