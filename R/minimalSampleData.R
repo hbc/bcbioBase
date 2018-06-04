@@ -12,6 +12,7 @@ minimalSampleData <- function(sample) {
     assert_has_no_duplicates(sample)
     data.frame(
         sampleName = sample,
+        description = sample,
         row.names = makeNames(sample)
     )
 }
