@@ -153,11 +153,11 @@ setMethod(
     function(object, interestingGroups, ...) {
         object <- suppressWarnings(convertGenesToSymbols(object))
         counts <- assay(object)
-        annotationCol <- sampleData(object, interestingGroups = NULL)
         if (missing(interestingGroups)) {
-            invisible()
-        } else if (is.character(interestingGroups)) {
-            annotationCol <- annotationCol[, interestingGroups, drop = FALSE]
+            interestingGroups <- bcbioBase::interestingGroups(object)
+        }
+        if (length(interestingGroups)) {
+            annotationCol <- colData(object)[, interestingGroups, drop = FALSE]
         } else {
             annotationCol <- NULL
         }

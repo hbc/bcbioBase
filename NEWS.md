@@ -1,3 +1,25 @@
+# bcbioBase 0.2.15 (2018-06-05)
+
+## New functions
+
+- `minimalSampleData()` enables easy creation of a sample metadata `data.frame`
+  by simplify specifying the sample names (e.g. "description" in [bcbio][]
+  YAML). This function was added for easy metadata handling for 10X Cell Ranger
+  in the [bcbioSingleCell][] package, but is generally applicable to other
+  [bcbio][] datasets and may be incorporated into [bcbioRNASeq][] in a future
+  update.
+
+## Minor changes
+
+- Improved internal `interestingGroups` handling inside `plotHeatmap()` family
+  of functions.
+- Removed message about transgeneNames and spikeNames in 
+  `prepareSummarizedExperiment()` if missing transcripts are present. Now the
+  function simply lists the genes that don't have metadata in `rowRanges()`.
+- Reorganized assert checks imports in `bcbioBase-package.R` file.
+
+
+
 # bcbioBase 0.2.14 (2018-05-18)
 
 ## Minor changes
@@ -291,6 +313,8 @@
 
 
 [basejump]: http://steinbaugh.com/basejump
+[bcbioRNASeq]: http://bioinformatics.sph.harvard.edu/bcbioRNASeq
+[bcbioSingleCell]: http://bioinformatics.sph.harvard.edu/bcbioSingleCell
 [bioconda]: https://bioconda.github.io
 [Dropbox]: https://www.dropbox.com
 [lintr]: https://github.com/jimhester/lintr

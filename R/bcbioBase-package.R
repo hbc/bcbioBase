@@ -10,7 +10,24 @@
 #'   metadata<-
 #' @importFrom SummarizedExperiment assay assays colData colData<- rowData
 #'   SummarizedExperiment
-#' @importFrom basejump camel convertGenesToSymbols emptyRanges fixNA
+#' @importFrom assertive.base assert_are_identical assert_is_identical_to_na
+#' @importFrom assertive.files assert_all_are_dirs assert_all_are_existing_files
+#' @importFrom assertive.numbers assert_all_are_greater_than
+#'   assert_all_are_in_range assert_all_are_non_negative assert_all_are_positive
+#' @importFrom assertive.properties assert_has_colnames assert_has_dimnames
+#'   assert_has_dims assert_has_names assert_has_no_duplicates
+#'   assert_has_rownames assert_is_atomic assert_is_non_empty has_dims
+#' @importFrom assertive.sets assert_are_disjoint_sets
+#'   assert_are_intersecting_sets assert_is_subset
+#' @importFrom assertive.strings assert_all_are_matching_regex
+#'   assert_all_are_non_missing_nor_empty_character
+#' @importFrom assertive.types assert_is_a_bool assert_is_a_number
+#'   assert_is_a_string assert_is_all_of assert_is_an_integer assert_is_any_of
+#'   assert_is_character assert_is_factor assert_is_function assert_is_integer
+#'   assert_is_list assert_is_matrix assert_is_tbl is_a_string
+#' @importFrom basejump assertHasRownames assertIsAnImplicitInteger
+#'   assertIsAStringOrNULL assertIsGene2symbol assertIsHexColorFunctionOrNULL
+#'   assertIsTx2gene camel convertGenesToSymbols emptyRanges fixNA
 #'   localOrRemoteFile makeNames printString readFileByExtension readYAML
 #'   removeNA snake
 #' @importFrom dendsort dendsort
@@ -39,49 +56,4 @@
 #' @importFrom tidyr expand unite
 #' @importFrom utils globalVariables sessionInfo
 #' @importFrom viridis viridis
-#'
-#' @importFrom assertive.base assert_are_identical
-#' @importFrom assertive.base assert_is_identical_to_na
-#' @importFrom assertive.files assert_all_are_dirs
-#' @importFrom assertive.files assert_all_are_existing_files
-#' @importFrom assertive.numbers assert_all_are_greater_than
-#' @importFrom assertive.numbers assert_all_are_in_range
-#' @importFrom assertive.numbers assert_all_are_non_negative
-#' @importFrom assertive.numbers assert_all_are_positive
-#' @importFrom assertive.properties assert_has_colnames
-#' @importFrom assertive.properties assert_has_dimnames
-#' @importFrom assertive.properties assert_has_dims
-#' @importFrom assertive.properties assert_has_names
-#' @importFrom assertive.properties assert_has_no_duplicates
-#' @importFrom assertive.properties assert_has_rownames
-#' @importFrom assertive.properties assert_is_atomic
-#' @importFrom assertive.properties assert_is_non_empty
-#' @importFrom assertive.properties has_dims
-#' @importFrom assertive.sets assert_are_disjoint_sets
-#' @importFrom assertive.sets assert_are_intersecting_sets
-#' @importFrom assertive.sets assert_is_subset
-#' @importFrom assertive.strings assert_all_are_matching_regex
-#' @importFrom assertive.strings assert_all_are_non_missing_nor_empty_character
-#' @importFrom assertive.types assert_is_a_bool
-#' @importFrom assertive.types assert_is_a_number
-#' @importFrom assertive.types assert_is_a_string
-#' @importFrom assertive.types assert_is_all_of
-#' @importFrom assertive.types assert_is_an_integer
-#' @importFrom assertive.types assert_is_any_of
-#' @importFrom assertive.types assert_is_character
-#' @importFrom assertive.types assert_is_factor
-#' @importFrom assertive.types assert_is_function
-#' @importFrom assertive.types assert_is_integer
-#' @importFrom assertive.types assert_is_list
-#' @importFrom assertive.types assert_is_matrix
-#' @importFrom assertive.types assert_is_tbl
-#' @importFrom assertive.types is_a_string
-#'
-#' @importFrom basejump assertHasRownames
-#' @importFrom basejump assertIsAnImplicitInteger
-#' @importFrom basejump assertIsAStringOrNULL
-#' @importFrom basejump assertIsCharacterOrNULL
-#' @importFrom basejump assertIsGene2symbol
-#' @importFrom basejump assertIsHexColorFunctionOrNULL
-#' @importFrom basejump assertIsTx2gene
 "_PACKAGE"
