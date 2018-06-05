@@ -103,14 +103,24 @@
       <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="bcbiobase-0-2-15-2018-05-23" class="section level1">
+    <div id="bcbiobase-0-2-15-2018-06-05" class="section level1">
 <h1 class="page-header">
-<a href="#bcbiobase-0-2-15-2018-05-23" class="anchor"></a>bcbioBase 0.2.15 (2018-05-23)</h1>
+<a href="#bcbiobase-0-2-15-2018-06-05" class="anchor"></a>bcbioBase 0.2.15 (2018-06-05)</h1>
+<div id="new-functions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-functions" class="anchor"></a>New functions</h2>
+<ul>
+<li>
+<code><a href="../reference/minimalSampleData.html">minimalSampleData()</a></code> enables easy creation of a sample metadata <code>data.frame</code> by simplify specifying the sample names (e.g. “description” in [bcbio][] YAML). This function was added for easy metadata handling for 10X Cell Ranger in the <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> package, but is generally applicable to other [bcbio][] datasets and may be incorporated into <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> in a future update.</li>
+</ul>
+</div>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Improved internal <code>interestingGroups</code> handling inside <code>plotHeatmap()</code> family of functions.</li>
+<li>Removed message about transgeneNames and spikeNames in <code><a href="../reference/prepareSummarizedExperiment.html">prepareSummarizedExperiment()</a></code> if missing transcripts are present. Now the function simply lists the genes that don’t have metadata in <code>rowRanges()</code>.</li>
+<li>Reorganized assert checks imports in <code>bcbioBase-package.R</code> file.</li>
 </ul>
 </div>
 </div>
@@ -167,9 +177,9 @@
     <div id="bcbiobase-0-2-10-2018-05-03" class="section level1">
 <h1 class="page-header">
 <a href="#bcbiobase-0-2-10-2018-05-03" class="anchor"></a>bcbioBase 0.2.10 (2018-05-03)</h1>
-<div id="new-functions" class="section level2">
+<div id="new-functions-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-functions" class="anchor"></a>New functions</h2>
+<a href="#new-functions-1" class="anchor"></a>New functions</h2>
 <ul>
 <li>Exporting [ggplot2][] convenience functions for easier plotting in <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> packages: <code><a href="../reference/ggplot2.html">bcbio_geom_abline()</a></code>, <code><a href="../reference/ggplot2.html">bcbio_geom_label()</a></code>, <code><a href="../reference/ggplot2.html">bcbio_geom_label_average()</a></code>, and <code><a href="../reference/ggplot2.html">bcbio_geom_label_repel()</a></code>.</li>
 </ul>
@@ -432,7 +442,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#bcbiobase-0-2-15-2018-05-23">0.2.15</a></li>
+        <li><a href="#bcbiobase-0-2-15-2018-06-05">0.2.15</a></li>
         <li><a href="#bcbiobase-0-2-14-2018-05-18">0.2.14</a></li>
         <li><a href="#bcbiobase-0-2-13-2018-05-07">0.2.13</a></li>
         <li><a href="#bcbiobase-0-2-12-2018-05-08">0.2.12</a></li>
