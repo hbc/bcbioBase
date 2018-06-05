@@ -102,7 +102,6 @@ setMethod(
         color <- .pheatmapColor(color)
 
         # Return pretty heatmap with modified defaults
-        # FIXME Can we use `match.call()` here instead?
         args <- list(
             "mat" = object,
             "annotationCol" = annotationCol,
