@@ -2,14 +2,6 @@
 #'
 #' Base functions and generics for bcbio R packages.
 #'
-#' @importFrom Biostrings reverseComplement
-#' @importFrom GenomeInfoDb seqnames
-#' @importFrom GenomicRanges GRanges
-#' @importFrom RColorBrewer brewer.pal
-#' @importFrom S4Vectors aggregate as.data.frame cor mcols mcols<- merge
-#'   metadata<-
-#' @importFrom SummarizedExperiment assay assays colData colData<- rowData
-#'   SummarizedExperiment
 #' @importFrom assertive.base assert_are_identical assert_is_identical_to_na
 #' @importFrom assertive.files assert_all_are_dirs assert_all_are_existing_files
 #' @importFrom assertive.numbers assert_all_are_greater_than
@@ -26,13 +18,16 @@
 #'   assert_is_character assert_is_factor assert_is_function assert_is_integer
 #'   assert_is_list assert_is_matrix assert_is_tbl is_a_string
 #' @importFrom basejump assertHasRownames assertIsAnImplicitInteger
-#'   assertIsAStringOrNULL assertIsCharacterOrNULL assertIsGene2symbol
-#'   assertIsHexColorFunctionOrNULL assertIsTx2gene camel convertGenesToSymbols
-#'   emptyRanges fixNA localOrRemoteFile makeNames printString
-#'   readFileByExtension readYAML removeNA snake
+#'   assertIsAStringOrNULL assertIsGene2symbol assertIsHexColorFunctionOrNULL
+#'   assertIsTx2gene camel convertGenesToSymbols emptyRanges fixNA
+#'   localOrRemoteFile makeNames printString readFileByExtension readYAML
+#'   removeNA snake
+#' @importFrom Biostrings reverseComplement
 #' @importFrom dendsort dendsort
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select select_if ungroup
+#' @importFrom GenomeInfoDb seqnames
+#' @importFrom GenomicRanges GRanges
 #' @importFrom ggplot2 aes_string geom_hline geom_label geom_vline
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grDevices colorRampPalette
@@ -43,14 +38,19 @@
 #'   validObject
 #' @importFrom pheatmap pheatmap
 #' @importFrom plyr ldply
+#' @importFrom RColorBrewer brewer.pal
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
 #'   drop_get_metadata drop_share drop_upload
 #' @importFrom readr read_csv read_lines
 #' @importFrom rlang !!! !! sym syms
+#' @importFrom S4Vectors aggregate as.data.frame cor mcols mcols<- merge
+#'   metadata<-
 #' @importFrom scales percent
 #' @importFrom sessioninfo session_info
 #' @importFrom stats as.formula hclust quantile
 #' @importFrom stringr str_pad str_trunc
+#' @importFrom SummarizedExperiment assay assays colData colData<- rowData
+#'   SummarizedExperiment
 #' @importFrom tibble as_tibble column_to_rownames has_rownames is_tibble
 #'   rownames_to_column tibble
 #' @importFrom tidyr expand unite
