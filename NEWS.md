@@ -1,3 +1,13 @@
+# bcbioBase 0.2.16 (2018-06-28)
+
+## Minor changes
+
+- Improved code coverage back to 100%.
+- Reorganized R methods files to use `-methods.R` as a suffix, as recommended
+  by [Bioconductor][], in preparation for package submission.
+
+
+
 # bcbioBase 0.2.15 (2018-06-05)
 
 ## New functions
@@ -316,6 +326,7 @@
 [bcbioRNASeq]: http://bioinformatics.sph.harvard.edu/bcbioRNASeq
 [bcbioSingleCell]: http://bioinformatics.sph.harvard.edu/bcbioSingleCell
 [bioconda]: https://bioconda.github.io
+[Bioconductor]: http://bioconductor.org
 [Dropbox]: https://www.dropbox.com
 [lintr]: https://github.com/jimhester/lintr
 [pheatmap]: https://github.com/raivokolde/pheatmap
