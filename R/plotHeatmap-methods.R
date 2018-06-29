@@ -150,7 +150,11 @@ setMethod(
 setMethod(
     "plotHeatmap",
     signature("SummarizedExperiment"),
-    function(object, interestingGroups, ...) {
+    function(
+        object,
+        interestingGroups,
+        ...
+    ) {
         object <- suppressWarnings(convertGenesToSymbols(object))
         counts <- assay(object)
         if (missing(interestingGroups)) {

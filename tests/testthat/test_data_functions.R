@@ -66,6 +66,9 @@ test_that("flatFiles : SummarizedExperiment", {
             "metadata"
         )
     )
+    # S4 coercion to list method support
+    y <- as(rse_dds, "list")
+    expect_identical(x, y)
 })
 
 
@@ -97,23 +100,41 @@ test_that("interestingGroups : Assignment method", {
 
 
 
+# minimalSampleData ============================================================
+test_that("minimalSampleData", {
+    expect_identical(
+        minimalSampleData(c("sample 1", "sample 2")),
+        data.frame(
+            sampleName = c("sample 1", "sample 2"),
+            description = c("sample 1", "sample 2"),
+            row.names = c("sample_1", "sample_2"),
+            stringsAsFactors = TRUE
+        )
+    )
+})
+
+
+
 # sampleData ===================================================================
-test_that("sampleData : SummarizedExperiment", {
-    # Check output of `return` parameter
-    return <- methodFormals(
-        f = "sampleData",
-        signature = "SummarizedExperiment"
-    ) %>%
-        .[["return"]] %>%
-        as.character() %>%
-        .[-1L]
+# Check output of `return` parameter
+return <- methodFormals(
+    f = "sampleData",
+    signature = "SummarizedExperiment"
+) %>%
+    .[["return"]] %>%
+    as.character() %>%
+    .[-1L]
+
+test_that("sampleData: Verbose mode", {
     list <- lapply(return, function(x) {
         sampleData(
             rse_bcb,
-            clean = TRUE,
+            clean = FALSE,
             return = x
         )
     })
+
+    # Check returns
     expect_identical(
         lapply(list, class),
         list(
@@ -122,16 +143,44 @@ test_that("sampleData : SummarizedExperiment", {
             "knitr_kable"
         )
     )
+
     # Check dimnames
     expected <- list(
-        c(
-            "control_rep1",
-            "control_rep2",
-            "control_rep3",
-            "fa_day7_rep1",
-            "fa_day7_rep2",
-            "fa_day7_rep3"
-        ),
+        colnames(rse_bcb),
+        c(colnames(colData(rse_bcb)), "interestingGroups")
+    )
+    expect_identical(
+        lapply(list, dimnames),
+        list(
+            expected,
+            expected,
+            NULL
+        )
+    )
+})
+
+test_that("sampleData : Clean mode", {
+    list <- lapply(return, function(x) {
+        sampleData(
+            rse_bcb,
+            clean = TRUE,
+            return = x
+        )
+    })
+
+    # Check returns
+    expect_identical(
+        lapply(list, class),
+        list(
+            structure("DataFrame", package = "S4Vectors"),
+            "data.frame",
+            "knitr_kable"
+        )
+    )
+
+    # Check dimnames
+    expected <- list(
+        colnames(rse_bcb),
         c(
             "sampleName",
             "day",
@@ -149,10 +198,23 @@ test_that("sampleData : SummarizedExperiment", {
             NULL
         )
     )
+
     # Ensure all columns are factor
     invisible(lapply(list[[1L]], function(x) {
         expect_is(x, "factor")
     }))
+
+    # Interesting groups
+    x <- sampleData(rse_bcb, clean = FALSE, interestingGroups = NULL)
+    expect_identical(
+        x[["interestingGruops"]],
+        NULL
+    )
+    x <- sampleData(rse_bcb, clean = FALSE, interestingGroups = "day")
+    expect_identical(
+        levels(x[["interestingGroups"]]),
+        c("0", "7")
+    )
 })
 
 test_that("sampleData : Assignment method", {

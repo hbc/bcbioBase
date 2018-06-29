@@ -1,5 +1,8 @@
 #' Minimal Sample Data
 #'
+#' @family Data Functions
+#' @author Michael Steinbaugh
+#'
 #' @param sample Sample name (e.g. "description" in bcbio YAML).
 #'
 #' @return `data.frame`.

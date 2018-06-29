@@ -6,16 +6,10 @@ cache: packages
 
 r:
   - bioc-release
-  - bioc-devel
 
 os:
   - linux
   - osx
-
-matrix:
-  exclude:
-  - os: osx
-    r: bioc-devel
 
 # blocklist
 branches:
@@ -40,13 +34,6 @@ warnings_are_errors: true
 # Temporarily enable when caching Bioconductor packages
 # script: true
 
-notifications:
-  email:
-    recipients:
-      - mike@steinbaugh.com
-    on_success: change
-    on_failure: change
-
 r_packages:
   - covr
 bioc_packages:
@@ -59,3 +46,10 @@ after_success:
   - Rscript -e 'lintr::lint_package()'
   - Rscript -e 'covr::codecov()'
   - R CMD BiocCheck .
+
+notifications:
+  email:
+    recipients:
+      - mike@steinbaugh.com
+    on_success: change
+    on_failure: change

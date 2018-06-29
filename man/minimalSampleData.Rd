@@ -18,3 +18,14 @@ Minimal Sample Data
 \examples{
 minimalSampleData(c("sample 1", "sample 2"))
 }
+\seealso{
+Other Data Functions: \code{\link{convertGenesToSymbols}},
+  \code{\link{counts}}, \code{\link{flatFiles}},
+  \code{\link{gene2symbol}}, \code{\link{sampleData}},
+  \code{\link{sampleDirs}}, \code{\link{sampleNames}},
+  \code{\link{selectSamples}},
+  \code{\link{uniteInterestingGroups}}
+}
+\author{
+Michael Steinbaugh
+}
