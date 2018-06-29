@@ -200,6 +200,18 @@ test_that("sampleData : Clean mode", {
     invisible(lapply(list[[1L]], function(x) {
         expect_is(x, "factor")
     }))
+
+    # Interesting groups
+    x <- sampleData(rse_bcb, clean = FALSE, interestingGroups = NULL)
+    expect_identical(
+        x[["interestingGruops"]],
+        NULL
+    )
+    x <- sampleData(rse_bcb, clean = FALSE, interestingGroups = "day")
+    expect_identical(
+        levels(x[["interestingGroups"]]),
+        c("0", "7")
+    )
 })
 
 test_that("sampleData : Assignment method", {
