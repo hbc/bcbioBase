@@ -97,6 +97,21 @@ test_that("interestingGroups : Assignment method", {
 
 
 
+# minimalSampleData ============================================================
+test_that("minimalSampleData", {
+    expect_identical(
+        minimalSampleData(c("sample 1", "sample 2")),
+        data.frame(
+            sampleName = c("sample 1", "sample 2"),
+            description = c("sample 1", "sample 2"),
+            row.names = c("sample_1", "sample_2"),
+            stringsAsFactors = TRUE
+        )
+    )
+})
+
+
+
 # sampleData ===================================================================
 test_that("sampleData : SummarizedExperiment", {
     # Check output of `return` parameter
