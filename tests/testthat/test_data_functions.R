@@ -66,6 +66,9 @@ test_that("flatFiles : SummarizedExperiment", {
             "metadata"
         )
     )
+    # S4 coercion to list method support
+    y <- as(rse_dds, "list")
+    expect_identical(x, y)
 })
 
 
