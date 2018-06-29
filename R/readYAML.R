@@ -56,12 +56,15 @@ NULL
         length(keys) == 2L &&
         !keys[[2L]] %in% names(yaml[[1L]][[keys[[1L]]]])
     ) {
-        return(NULL)
+        return(NULL)  # nocov
     }
 
-    flat <- lapply(yaml, function(x) {
-        x[yamlFlatCols]
-    }) %>%
+    flat <- lapply(
+        X = yaml,
+        FUN = function(x) {
+            x[yamlFlatCols]
+        }
+    ) %>%
         ldply(data.frame, stringsAsFactors = FALSE)
 
     nested <- lapply(yaml, function(x) {
@@ -117,7 +120,7 @@ readYAMLSampleMetrics <- function(file) {
 
     # Early return on empty metrics
     if (!length(data)) {
-        return(NULL)
+        return(NULL)  # nocov
     }
 
     # Fix numerics set as characters
