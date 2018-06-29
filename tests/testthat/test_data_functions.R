@@ -113,22 +113,25 @@ test_that("minimalSampleData", {
 
 
 # sampleData ===================================================================
-test_that("sampleData : SummarizedExperiment", {
-    # Check output of `return` parameter
-    return <- methodFormals(
-        f = "sampleData",
-        signature = "SummarizedExperiment"
-    ) %>%
-        .[["return"]] %>%
-        as.character() %>%
-        .[-1L]
+# Check output of `return` parameter
+return <- methodFormals(
+    f = "sampleData",
+    signature = "SummarizedExperiment"
+) %>%
+    .[["return"]] %>%
+    as.character() %>%
+    .[-1L]
+
+test_that("sampleData: Verbose mode", {
     list <- lapply(return, function(x) {
         sampleData(
             rse_bcb,
-            clean = TRUE,
+            clean = FALSE,
             return = x
         )
     })
+
+    # Check returns
     expect_identical(
         lapply(list, class),
         list(
@@ -137,16 +140,44 @@ test_that("sampleData : SummarizedExperiment", {
             "knitr_kable"
         )
     )
+
     # Check dimnames
     expected <- list(
-        c(
-            "control_rep1",
-            "control_rep2",
-            "control_rep3",
-            "fa_day7_rep1",
-            "fa_day7_rep2",
-            "fa_day7_rep3"
-        ),
+        colnames(rse_bcb),
+        c(colnames(colData(rse_bcb)), "interestingGroups")
+    )
+    expect_identical(
+        lapply(list, dimnames),
+        list(
+            expected,
+            expected,
+            NULL
+        )
+    )
+})
+
+test_that("sampleData : Clean mode", {
+    list <- lapply(return, function(x) {
+        sampleData(
+            rse_bcb,
+            clean = TRUE,
+            return = x
+        )
+    })
+
+    # Check returns
+    expect_identical(
+        lapply(list, class),
+        list(
+            structure("DataFrame", package = "S4Vectors"),
+            "data.frame",
+            "knitr_kable"
+        )
+    )
+
+    # Check dimnames
+    expected <- list(
+        colnames(rse_bcb),
         c(
             "sampleName",
             "day",
@@ -164,6 +195,7 @@ test_that("sampleData : SummarizedExperiment", {
             NULL
         )
     )
+
     # Ensure all columns are factor
     invisible(lapply(list[[1L]], function(x) {
         expect_is(x, "factor")
