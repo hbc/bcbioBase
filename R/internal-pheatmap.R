@@ -36,7 +36,8 @@
         # Ensure all strings are factor
         mutate_if(is.character, as.factor) %>%
         # Ensure unwanted columns like `sizeFactor` are dropped
-        select_if(is.factor)
+        select_if(is.factor) %>%
+        column_to_rownames()
 
     # Drop any remaining factor columns that contain a single level
     hasLevels <- vapply(
@@ -48,12 +49,9 @@
     )
     data <- data[, hasLevels, drop = FALSE]
 
-    data <- column_to_rownames(data)
-
-    if (ncol(data)) {
+    if (length(data)) {
         data
     } else {
-        warning("No valid annotation columns matched")
         NA
     }
 }
