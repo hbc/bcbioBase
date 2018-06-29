@@ -38,6 +38,15 @@ test_that("SummarizedExperiment", {
             ),
             "pheatmap"
         )
+
+        # Disable interesting groups
+        expect_is(
+            f(
+                object = object,
+                interestingGroups = NULL
+            ),
+            "pheatmap"
+        )
     }))
 })
 
