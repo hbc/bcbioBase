@@ -2,6 +2,7 @@
 
 ## Minor changes
 
+- Improved aggregate column handling in `bcbio_geom_abline()`.
 - Improved code coverage back to 100%.
 - Reorganized R methods files to use `-methods.R` as a suffix, as recommended
   by [Bioconductor][], in preparation for package submission.
