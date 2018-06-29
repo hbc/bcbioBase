@@ -9,8 +9,8 @@ test_that("bcbio_geom_abline", {
     g <- bcbio_geom_abline(yintercept = 1L)
     expect_is(g, "Layer")
 
-    # Require either xintercept or yintercept
-    e <- "Specify either `xintercept` or `yintercept`"
+    # Require single xintercept or yintercept
+    e <- "Either `xintercept` or `yintercept` is required"
     expect_error(bcbio_geom_abline(), e)
     expect_error(bcbio_geom_abline(xintercept = 1L, yintercept = 1L), e)
 })
