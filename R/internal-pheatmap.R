@@ -47,13 +47,12 @@
         },
         FUN.VALUE = logical(1L)
     )
-    data <- data[, hasLevels, drop = FALSE]
 
-    if (length(data)) {
-        data
-    } else {
-        NA
+    if (!length(hasLevels)) {
+        return(NA)  # nocov
     }
+
+    data[, hasLevels, drop = FALSE]
 }
 
 
