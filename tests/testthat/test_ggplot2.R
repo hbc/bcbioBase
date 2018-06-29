@@ -9,10 +9,10 @@ test_that("bcbio_geom_abline", {
     g <- bcbio_geom_abline(yintercept = 1L)
     expect_is(g, "Layer")
 
-    expect_error(
-        bcbio_geom_abline(xintercept = 1L, yintercept = 1L),
-        "Specify only `xintercept` or `yintercept` but not both"
-    )
+    # Require either xintercept or yintercept
+    e <- "Specify either `xintercept` or `yintercept`"
+    expect_error(bcbio_geom_abline(), e)
+    expect_error(bcbio_geom_abline(xintercept = 1L, yintercept = 1L), e)
 })
 
 
@@ -25,9 +25,19 @@ test_that("bcbio_geom_label", {
 
 
 test_that("bcbio_geom_label_average", {
+    # Normal mode
     data <- data.frame(
-        sampleName = "sample1",
-        counts = seq_len(4L)
+        sampleName = c("sample1", "sample2"),
+        counts = seq_len(8L)
+    )
+    g <- bcbio_geom_label_average(data, col = "counts")
+    expect_is(g, "Layer")
+
+    # Aggregate mode, for facet wrapping
+    data <- data.frame(
+        sampleName = c("sample1", "sample2"),
+        aggregate = "sample",
+        counts = seq_len(8L)
     )
     g <- bcbio_geom_label_average(data, col = "counts")
     expect_is(g, "Layer")
@@ -38,4 +48,11 @@ test_that("bcbio_geom_label_average", {
 test_that("bcbio_geom_label_repel", {
     g <- bcbio_geom_label_repel()
     expect_is(g, "Layer")
+
+    # Single color mode
+    g <- bcbio_geom_label_repel(color = "orange")
+    expect_identical(
+        g[["aes_params"]][["colour"]],
+        "orange"
+    )
 })

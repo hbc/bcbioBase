@@ -48,10 +48,11 @@ bcbio_geom_abline <- function(
     color <- "black"
     linetype <- "dashed"
     size <- 1L
-    if (is.null(xintercept) && is.null(yintercept)) {
-        stop("`xintercept` and `yintercept` are both NULL")
-    } else if (is.numeric(xintercept) && is.numeric(yintercept)) {
-        stop("Specify only `xintercept` or `yintercept` but not both")
+    if (
+        (is.null(xintercept) && is.null(yintercept)) ||
+        (is.numeric(xintercept) && is.numeric(yintercept))
+    ) {
+        stop("Either `xintercept` or `yintercept` is required")
     } else if (is.numeric(xintercept)) {
         geom_vline(
             xintercept = xintercept,
@@ -140,23 +141,26 @@ bcbio_geom_label_average <- function(
     fun <- get(fun)
     assert_is_function(fun)
 
-    data <- aggregate(
+    aggdata <- aggregate(
         formula = as.formula(paste(col, "sampleName", sep = " ~ ")),
         data = data,
         FUN = fun
     )
-    data[["roundedAverage"]] <- round(data[[col]], digits = digits)
+    aggdata[["roundedAverage"]] <- round(aggdata[[col]], digits = digits)
 
     # Add `aggregate` column for facet wrapping, if necessary
     if ("aggregate" %in% colnames(data)) {
-        sampleFacet <- data[, c("sampleName", "aggregate")] %>%
+        sampleFacet <- data %>%
+            .[, c("sampleName", "aggregate")] %>%
             unique()
         data <- merge(
-            x = data,
+            x = aggdata,
             y = sampleFacet,
             by = "sampleName",
             all.x = TRUE
         )
+    } else {
+        data <- aggdata
     }
 
     bcbio_geom_label(
