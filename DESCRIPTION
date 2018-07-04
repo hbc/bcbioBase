@@ -55,7 +55,7 @@ Imports:
     dplyr (>= 0.7),
     GenomeInfoDb,
     GenomicRanges,
-    ggplot2 (>= 2.2.1),
+    ggplot2 (>= 3.0),
     ggrepel (>= 0.7),
     grDevices,
     grid,
