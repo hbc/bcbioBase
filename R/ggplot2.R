@@ -165,7 +165,7 @@ bcbio_geom_label_average <- function(
 
     bcbio_geom_label(
         data = data,
-        mapping = aes_string(label = "roundedAverage"),
+        mapping = aes(label = !!sym("roundedAverage")),
         ...
     )
 }

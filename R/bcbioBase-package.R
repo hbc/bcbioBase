@@ -28,7 +28,7 @@
 #'   mutate_all mutate_at mutate_if select select_if ungroup
 #' @importFrom GenomeInfoDb seqnames
 #' @importFrom GenomicRanges GRanges
-#' @importFrom ggplot2 aes_string geom_hline geom_label geom_vline
+#' @importFrom ggplot2 aes geom_hline geom_label geom_vline
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grDevices colorRampPalette
 #' @importFrom grid arrow unit
