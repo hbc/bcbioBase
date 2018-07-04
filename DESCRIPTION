@@ -39,7 +39,7 @@ LazyData: TRUE
 Depends:
     R (>= 3.4),
     SummarizedExperiment,
-    basejump (>= 0.5.8)
+    basejump (>= 0.5.10)
 Imports:
     assertive.base,
     assertive.files,
@@ -51,7 +51,7 @@ Imports:
     Biobase,
     BiocGenerics,
     Biostrings,
-    dendsort,
+    dendsort (>= 0.3),
     dplyr (>= 0.7),
     GenomeInfoDb,
     GenomicRanges,
@@ -60,12 +60,12 @@ Imports:
     grDevices,
     grid,
     IRanges,
-    knitr,
+    knitr (>= 1.20),
     magrittr (>= 1.5),
     methods,
     pheatmap (>= 1.0.10),
     plyr (>= 1.8),
-    RColorBrewer,
+    RColorBrewer (>= 1.1),
     rdrop2 (>= 0.8),
     readr (>= 1.1),
     rlang (>= 0.2),
