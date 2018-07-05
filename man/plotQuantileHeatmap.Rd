@@ -64,10 +64,16 @@ Use "\code{0}" to disable.}
 
 \item{legend}{Show the color legend.}
 
-\item{color}{Hexadecimal colors to use for plot. Defaults to the
-\code{\link[viridis:viridis]{viridis::viridis()}} palette.}
+\item{color}{Hexadecimal color function to use for plot. We recommend any of
+these from the viridis package:
+\itemize{
+\item \code{\link[viridis:viridis]{viridis::viridis()}} (\emph{default}).
+\item \code{\link[viridis:inferno]{viridis::inferno()}}.
+\item \code{\link[viridis:magma]{viridis::magma()}}.
+\item \code{\link[viridis:plasma]{viridis::plasma()}}.
+}}
 
-\item{legendColor}{Colors to use for legend labels.}
+\item{legendColor}{Hexadecimal color function to use for legend labels.}
 
 \item{borderColor}{\emph{Optional.} Border color. Disabled by default for
 improved aesthetics.}
