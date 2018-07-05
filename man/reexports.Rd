@@ -3,17 +3,31 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
+\alias{pull}
+\alias{reexports}
 \alias{GRanges}
 \alias{reexports}
+\alias{ggplot}
+\alias{reexports}
+\alias{scale_color_hue}
+\alias{reexports}
+\alias{scale_color_manual}
+\alias{reexports}
+\alias{scale_colour_hue}
+\alias{reexports}
+\alias{scale_colour_manual}
+\alias{reexports}
+\alias{scale_fill_hue}
+\alias{reexports}
+\alias{scale_fill_manual}
+\alias{reexports}
 \alias{IRanges}
+\alias{reexports}
+\alias{\%>\%}
 \alias{reexports}
 \alias{DataFrame}
 \alias{reexports}
 \alias{metadata}
-\alias{reexports}
-\alias{pull}
-\alias{reexports}
-\alias{\%>\%}
 \alias{reexports}
 \alias{glimpse}
 \alias{reexports}
@@ -36,6 +50,8 @@ below to see their documentation.
   \item{dplyr}{\code{\link[dplyr]{pull}}}
 
   \item{GenomicRanges}{\code{\link[GenomicRanges]{GRanges}}}
+
+  \item{ggplot2}{\code{\link[ggplot2]{ggplot}}, \code{\link[ggplot2]{scale_color_hue}}, \code{\link[ggplot2]{scale_color_manual}}, \code{\link[ggplot2]{scale_colour_hue}}, \code{\link[ggplot2]{scale_colour_manual}}, \code{\link[ggplot2]{scale_fill_hue}}, \code{\link[ggplot2]{scale_fill_manual}}}
 
   \item{IRanges}{\code{\link[IRanges]{IRanges}}}
 
