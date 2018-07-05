@@ -9,17 +9,37 @@
 \alias{reexports}
 \alias{ggplot}
 \alias{reexports}
+\alias{scale_color_gradient}
+\alias{reexports}
+\alias{scale_color_gradientn}
+\alias{reexports}
 \alias{scale_color_hue}
 \alias{reexports}
 \alias{scale_color_manual}
+\alias{reexports}
+\alias{scale_color_viridis_c}
+\alias{reexports}
+\alias{scale_color_viridis_d}
+\alias{reexports}
+\alias{scale_colour_gradient}
+\alias{reexports}
+\alias{scale_colour_gradientn}
 \alias{reexports}
 \alias{scale_colour_hue}
 \alias{reexports}
 \alias{scale_colour_manual}
 \alias{reexports}
+\alias{scale_colour_viridis_c}
+\alias{reexports}
+\alias{scale_colour_viridis_d}
+\alias{reexports}
 \alias{scale_fill_hue}
 \alias{reexports}
 \alias{scale_fill_manual}
+\alias{reexports}
+\alias{scale_fill_viridis_c}
+\alias{reexports}
+\alias{scale_fill_viridis_d}
 \alias{reexports}
 \alias{IRanges}
 \alias{reexports}
@@ -39,6 +59,12 @@
 \alias{reexports}
 \alias{plasma}
 \alias{reexports}
+\alias{scale_color_viridis}
+\alias{reexports}
+\alias{scale_colour_viridis}
+\alias{reexports}
+\alias{scale_fill_viridis}
+\alias{reexports}
 \alias{viridis}
 \title{Objects exported from other packages}
 \keyword{internal}
@@ -51,7 +77,7 @@ below to see their documentation.
 
   \item{GenomicRanges}{\code{\link[GenomicRanges]{GRanges}}}
 
-  \item{ggplot2}{\code{\link[ggplot2]{ggplot}}, \code{\link[ggplot2]{scale_color_hue}}, \code{\link[ggplot2]{scale_color_manual}}, \code{\link[ggplot2]{scale_colour_hue}}, \code{\link[ggplot2]{scale_colour_manual}}, \code{\link[ggplot2]{scale_fill_hue}}, \code{\link[ggplot2]{scale_fill_manual}}}
+  \item{ggplot2}{\code{\link[ggplot2]{ggplot}}, \code{\link[ggplot2]{scale_color_gradient}}, \code{\link[ggplot2]{scale_color_gradientn}}, \code{\link[ggplot2]{scale_color_hue}}, \code{\link[ggplot2]{scale_color_manual}}, \code{\link[ggplot2]{scale_color_viridis_c}}, \code{\link[ggplot2]{scale_color_viridis_d}}, \code{\link[ggplot2]{scale_colour_gradient}}, \code{\link[ggplot2]{scale_colour_gradientn}}, \code{\link[ggplot2]{scale_colour_hue}}, \code{\link[ggplot2]{scale_colour_manual}}, \code{\link[ggplot2]{scale_colour_viridis_c}}, \code{\link[ggplot2]{scale_colour_viridis_d}}, \code{\link[ggplot2]{scale_fill_hue}}, \code{\link[ggplot2]{scale_fill_manual}}, \code{\link[ggplot2]{scale_fill_viridis_c}}, \code{\link[ggplot2]{scale_fill_viridis_d}}}
 
   \item{IRanges}{\code{\link[IRanges]{IRanges}}}
 
@@ -61,6 +87,6 @@ below to see their documentation.
 
   \item{tibble}{\code{\link[tibble]{glimpse}}, \code{\link[tibble]{tibble}}}
 
-  \item{viridis}{\code{\link[viridis]{inferno}}, \code{\link[viridis]{magma}}, \code{\link[viridis]{plasma}}, \code{\link[viridis]{viridis}}}
+  \item{viridis}{\code{\link[viridis]{inferno}}, \code{\link[viridis]{magma}}, \code{\link[viridis]{plasma}}, \code{\link[viridis]{scale_color_viridis}}, \code{\link[viridis]{scale_colour_viridis}}, \code{\link[viridis]{scale_fill_viridis}}, \code{\link[viridis]{viridis}}}
 }}
 
