@@ -54,18 +54,6 @@ viridis::magma
 #' @export
 viridis::plasma
 
-#' @importFrom viridis scale_color_viridis
-#' @export
-viridis::scale_color_viridis
-
-#' @importFrom viridis scale_colour_viridis
-#' @export
-viridis::scale_colour_viridis
-
-#' @importFrom viridis scale_fill_viridis
-#' @export
-viridis::scale_fill_viridis
-
 #' @importFrom viridis viridis
 #' @export
 viridis::viridis

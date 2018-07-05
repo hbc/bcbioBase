@@ -19,8 +19,8 @@
 #' @param showRownames,showColnames Show row or column names.
 #' @param treeheightRow,treeheightCol Size of the row and column dendrograms.
 #'   Use "`0`" to disable.
-#' @param color Colors to use for plot. Defaults to the [viridis::viridis()]
-#'   palette.
+#' @param color Hexadecimal colors to use for plot. Defaults to the
+#'   [viridis::viridis()] palette.
 #' @param legendColor Colors to use for legend labels.
 #' @param borderColor *Optional.* Border color. Disabled by default for
 #'   improved aesthetics.

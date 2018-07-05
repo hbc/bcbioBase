@@ -54,8 +54,8 @@ an \code{hclust} object.}
 \item{treeheightRow, treeheightCol}{Size of the row and column dendrograms.
 Use "\code{0}" to disable.}
 
-\item{color}{Colors to use for plot. Defaults to the \code{\link[viridis:viridis]{viridis::viridis()}}
-palette.}
+\item{color}{Hexadecimal colors to use for plot. Defaults to the
+\code{\link[viridis:viridis]{viridis::viridis()}} palette.}
 
 \item{legendColor}{Colors to use for legend labels.}
 

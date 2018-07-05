@@ -64,8 +64,8 @@ Use "\code{0}" to disable.}
 
 \item{legend}{Show the color legend.}
 
-\item{color}{Colors to use for plot. Defaults to the \code{\link[viridis:viridis]{viridis::viridis()}}
-palette.}
+\item{color}{Hexadecimal colors to use for plot. Defaults to the
+\code{\link[viridis:viridis]{viridis::viridis()}} palette.}
 
 \item{legendColor}{Colors to use for legend labels.}
 

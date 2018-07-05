@@ -25,12 +25,6 @@
 \alias{reexports}
 \alias{plasma}
 \alias{reexports}
-\alias{scale_color_viridis}
-\alias{reexports}
-\alias{scale_colour_viridis}
-\alias{reexports}
-\alias{scale_fill_viridis}
-\alias{reexports}
 \alias{viridis}
 \title{Objects exported from other packages}
 \keyword{internal}
@@ -51,6 +45,6 @@ below to see their documentation.
 
   \item{tibble}{\code{\link[tibble]{glimpse}}, \code{\link[tibble]{tibble}}}
 
-  \item{viridis}{\code{\link[viridis]{inferno}}, \code{\link[viridis]{magma}}, \code{\link[viridis]{plasma}}, \code{\link[viridis]{scale_color_viridis}}, \code{\link[viridis]{scale_colour_viridis}}, \code{\link[viridis]{scale_fill_viridis}}, \code{\link[viridis]{viridis}}}
+  \item{viridis}{\code{\link[viridis]{inferno}}, \code{\link[viridis]{magma}}, \code{\link[viridis]{plasma}}, \code{\link[viridis]{viridis}}}
 }}
 
