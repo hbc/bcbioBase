@@ -5,31 +5,10 @@
 \name{plotCorrelationHeatmap}
 \alias{plotCorrelationHeatmap}
 \alias{plotCorrelationHeatmap}
-\alias{plotCorrelationHeatmap,matrix-method}
-\alias{plotCorrelationHeatmap,dgCMatrix-method}
-\alias{plotCorrelationHeatmap,dgTMatrix-method}
 \alias{plotCorrelationHeatmap,SummarizedExperiment-method}
 \title{Plot Correlation Heatmap}
 \usage{
 plotCorrelationHeatmap(object, ...)
-
-\S4method{plotCorrelationHeatmap}{matrix}(object, method = c("pearson",
-  "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  showRownames = TRUE, showColnames = TRUE, treeheightRow = 0L,
-  treeheightCol = 50L, color = viridis, legendColor = NULL,
-  borderColor = NULL, title = TRUE, ...)
-
-\S4method{plotCorrelationHeatmap}{dgCMatrix}(object, method = c("pearson",
-  "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  showRownames = TRUE, showColnames = TRUE, treeheightRow = 0L,
-  treeheightCol = 50L, color = viridis, legendColor = NULL,
-  borderColor = NULL, title = TRUE, ...)
-
-\S4method{plotCorrelationHeatmap}{dgTMatrix}(object, method = c("pearson",
-  "spearman"), clusteringMethod = "ward.D2", annotationCol = NULL,
-  showRownames = TRUE, showColnames = TRUE, treeheightRow = 0L,
-  treeheightCol = 50L, color = viridis, legendColor = NULL,
-  borderColor = NULL, title = TRUE, ...)
 
 \S4method{plotCorrelationHeatmap}{SummarizedExperiment}(object,
   interestingGroups, ...)
@@ -40,43 +19,14 @@ plotCorrelationHeatmap(object, ...)
 \item{...}{Passthrough arguments to \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}. The names of the
 arguments should be formatted in camel case, not snake case.}
 
+\item{interestingGroups}{\code{character}. Groups of interest.}
+
 \item{method}{Correlation coefficient (or covariance) method to be computed.
 Defaults to "\code{pearson}" but "\code{spearman}" can also be used. Consult the
 \code{\link[stats:cor]{stats::cor()}} documentation for more information.}
 
 \item{clusteringMethod}{Clustering method. Accepts the same values as
 \code{\link[stats:hclust]{stats::hclust()}}.}
-
-\item{annotationCol}{\emph{Optional.} \code{data.frame} that defines annotation
-mappings for the columns.}
-
-\item{showRownames}{Show row or column names.}
-
-\item{showColnames}{Show row or column names.}
-
-\item{treeheightRow}{Size of the row and column dendrograms.
-Use "\code{0}" to disable.}
-
-\item{treeheightCol}{Size of the row and column dendrograms.
-Use "\code{0}" to disable.}
-
-\item{color}{Hexadecimal color function to use for plot. We recommend any of
-these from the viridis package:
-\itemize{
-\item \code{\link[viridis:viridis]{viridis::viridis()}} (\emph{default}).
-\item \code{\link[viridis:inferno]{viridis::inferno()}}.
-\item \code{\link[viridis:magma]{viridis::magma()}}.
-\item \code{\link[viridis:plasma]{viridis::plasma()}}.
-}}
-
-\item{legendColor}{Hexadecimal color function to use for legend labels.}
-
-\item{borderColor}{\emph{Optional.} Border color. Disabled by default for
-improved aesthetics.}
-
-\item{title}{\emph{Optional.} Plot title.}
-
-\item{interestingGroups}{\code{character}. Groups of interest.}
 }
 \value{
 Show heatmap and invisibly return a \code{list} of the components.

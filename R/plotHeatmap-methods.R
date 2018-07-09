@@ -46,109 +46,84 @@ NULL
 
 
 
-# Methods ======================================================================
-#' @rdname plotHeatmap
-#' @export
-setMethod(
-    "plotHeatmap",
-    signature("matrix"),
-    function(
-        object,
-        scale = c("row", "column", "none"),
-        annotationCol = NULL,
-        clusterRows = TRUE,
-        clusterCols = TRUE,
-        showRownames = FALSE,
-        showColnames = TRUE,
-        treeheightRow = 0L,
-        treeheightCol = 50L,
-        color = viridis,
-        legendColor = NULL,
-        borderColor = NULL,
-        title = NULL,
-        ...
-    ) {
-        object <- as.matrix(object)
-        assert_has_dims(object)
-        assert_all_are_greater_than(nrow(object), 1L)
-        assert_all_are_greater_than(ncol(object), 1L)
-        scale <- match.arg(scale)
-        assert_is_a_bool(clusterCols)
-        assert_is_a_bool(clusterRows)
-        assert_is_a_bool(showColnames)
-        assert_is_a_bool(showRownames)
-        assert_is_a_number(treeheightRow)
-        assert_is_a_number(treeheightCol)
-        assert_all_are_non_negative(treeheightRow, treeheightCol)
-        assertIsHexColorFunctionOrNULL(color)
-        assertIsHexColorFunctionOrNULL(legendColor)
-        assertIsAStringOrNULL(borderColor)
-        if (!is_a_string(borderColor)) {
-            borderColor <- NA
-        }
-        assertIsAStringOrNULL(title)
-        if (!is_a_string(title)) {
-            title <- NA
-        }
-
-        if (scale == "row") {
-            # Filter out any zero count rows
-            object <- object %>%
-                .[rowSums(.) > 0L, , drop = FALSE]
-        }
-
-        annotationCol <- .pheatmapAnnotationCol(annotationCol)
-        assertFormalAnnotationCol(object, annotationCol)
-        annotationColors <- .pheatmapAnnotationColors(
-            annotationCol = annotationCol,
-            legendColor = legendColor
-        )
-        color <- .pheatmapColor(color)
-
-        # Return pretty heatmap with modified defaults
-        args <- list(
-            "mat" = object,
-            "annotationCol" = annotationCol,
-            "annotationColors" = annotationColors,
-            "borderColor" = borderColor,
-            "clusterCols" = clusterCols,
-            "clusterRows" = clusterRows,
-            "color" = color,
-            "main" = title,
-            "scale" = scale,
-            "showColnames" = showColnames,
-            "showRownames" = showRownames,
-            "treeheightCol" = treeheightCol,
-            "treeheightRow" = treeheightRow,
-            ...
-        )
-        args <- .pheatmapArgs(args)
-        do.call(pheatmap, args)
+# Constructors =================================================================
+.plotHeatmap.matrix <- function(  # nolint
+    object,
+    scale = c("row", "column", "none"),
+    annotationCol = NULL,
+    clusterRows = TRUE,
+    clusterCols = TRUE,
+    showRownames = FALSE,
+    showColnames = TRUE,
+    treeheightRow = 0L,
+    treeheightCol = 50L,
+    color = viridis,
+    legendColor = NULL,
+    borderColor = NULL,
+    title = NULL,
+    ...
+) {
+    object <- as.matrix(object)
+    assert_has_dims(object)
+    assert_all_are_greater_than(nrow(object), 1L)
+    assert_all_are_greater_than(ncol(object), 1L)
+    scale <- match.arg(scale)
+    assert_is_a_bool(clusterCols)
+    assert_is_a_bool(clusterRows)
+    assert_is_a_bool(showColnames)
+    assert_is_a_bool(showRownames)
+    assert_is_a_number(treeheightRow)
+    assert_is_a_number(treeheightCol)
+    assert_all_are_non_negative(treeheightRow, treeheightCol)
+    assertIsHexColorFunctionOrNULL(color)
+    assertIsHexColorFunctionOrNULL(legendColor)
+    assertIsAStringOrNULL(borderColor)
+    if (!is_a_string(borderColor)) {
+        borderColor <- NA
     }
-)
+    assertIsAStringOrNULL(title)
+    if (!is_a_string(title)) {
+        title <- NA
+    }
+
+    if (scale == "row") {
+        # Filter out any zero count rows
+        object <- object %>%
+            .[rowSums(.) > 0L, , drop = FALSE]
+    }
+
+    annotationCol <- .pheatmapAnnotationCol(annotationCol)
+    assertFormalAnnotationCol(object, annotationCol)
+    annotationColors <- .pheatmapAnnotationColors(
+        annotationCol = annotationCol,
+        legendColor = legendColor
+    )
+    color <- .pheatmapColor(color)
+
+    # Return pretty heatmap with modified defaults
+    args <- list(
+        "mat" = object,
+        "annotationCol" = annotationCol,
+        "annotationColors" = annotationColors,
+        "borderColor" = borderColor,
+        "clusterCols" = clusterCols,
+        "clusterRows" = clusterRows,
+        "color" = color,
+        "main" = title,
+        "scale" = scale,
+        "showColnames" = showColnames,
+        "showRownames" = showRownames,
+        "treeheightCol" = treeheightCol,
+        "treeheightRow" = treeheightRow,
+        ...
+    )
+    args <- .pheatmapArgs(args)
+    do.call(pheatmap, args)
+}
 
 
 
-#' @rdname plotHeatmap
-#' @export
-setMethod(
-    "plotHeatmap",
-    signature("dgCMatrix"),
-    getMethod("plotHeatmap", "matrix")
-)
-
-
-
-#' @rdname plotHeatmap
-#' @export
-setMethod(
-    "plotHeatmap",
-    signature("dgTMatrix"),
-    getMethod("plotHeatmap", "matrix")
-)
-
-
-
+# Methods ======================================================================
 #' @rdname plotHeatmap
 #' @export
 setMethod(
@@ -177,7 +152,7 @@ setMethod(
                 rownames(annotationCol) <- sampleName
             }
         }
-        plotHeatmap(
+        .plotHeatmap.matrix(
             object = counts,
             annotationCol = annotationCol,
             ...

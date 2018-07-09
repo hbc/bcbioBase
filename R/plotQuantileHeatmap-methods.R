@@ -19,6 +19,81 @@ NULL
 
 
 # Constructors =================================================================
+.plotQuantileHeatmap.matrix <- function(  # nolint
+    object,
+    n = 10L,
+    annotationCol = NULL,
+    clusterRows = TRUE,
+    clusterCols = TRUE,
+    showRownames = FALSE,
+    showColnames = TRUE,
+    treeheightRow = 0L,
+    treeheightCol = 50L,
+    legend = FALSE,
+    color = viridis,
+    legendColor = NULL,
+    borderColor = NULL,
+    title = NULL,
+    ...
+) {
+    assert_has_dims(object)
+    assert_all_are_greater_than(nrow(object), 1L)
+    assert_all_are_greater_than(ncol(object), 1L)
+    object <- as.matrix(object)
+    assertIsAnImplicitInteger(n)
+    n <- as.integer(n)
+    assert_is_a_bool(clusterCols)
+    assert_is_a_bool(clusterRows)
+    assertIsHexColorFunctionOrNULL(color)
+    assert_is_a_bool(legend)
+    assertIsHexColorFunctionOrNULL(legendColor)
+    assertIsAStringOrNULL(borderColor)
+    if (!is_a_string(borderColor)) {
+        borderColor <- NA
+    }
+    assertIsAStringOrNULL(title)
+    if (!is_a_string(title)) {
+        title <- NA
+    }
+
+    # Calculate the quantile breaks
+    breaks <- .quantileBreaks(object, n = n)
+
+    annotationCol <- .pheatmapAnnotationCol(annotationCol)
+    assertFormalAnnotationCol(object, annotationCol)
+    annotationColors <- .pheatmapAnnotationColors(
+        annotationCol = annotationCol,
+        legendColor = legendColor
+    )
+    color <- .pheatmapColor(color, n = length(breaks) - 1L)
+
+    # Return pretty heatmap with modified defaults
+    args <- list(
+        "mat" = object,
+        "annotationCol" = annotationCol,
+        "annotationColors" = annotationColors,
+        "borderColor" = borderColor,
+        "breaks" = breaks,
+        "clusterCols" = clusterCols,
+        "clusterRows" = clusterRows,
+        "color" = color,
+        "legend" = legend,
+        "legendBreaks" = breaks,
+        "legendLabels" = round(breaks, digits = 2L),
+        "main" = title,
+        "scale" = "none",
+        "showColnames" = showColnames,
+        "showRownames" = showRownames,
+        "treeheightCol" = treeheightCol,
+        "treeheightRow" = treeheightRow,
+        ...
+    )
+    args <- .pheatmapArgs(args)
+    do.call(pheatmap, args)
+}
+
+
+
 #' Create Breaks Based on Quantiles of the Data
 #'
 #' @keywords internal
@@ -35,108 +110,6 @@ NULL
     breaks <- quantile(object, probs = seq(0L, 1L, length.out = n))
     breaks[!duplicated(breaks)]
 }
-
-
-
-# Methods ======================================================================
-#' @rdname plotQuantileHeatmap
-#' @export
-setMethod(
-    "plotQuantileHeatmap",
-    signature("matrix"),
-    function(
-        object,
-        n = 10L,
-        annotationCol = NULL,
-        clusterRows = TRUE,
-        clusterCols = TRUE,
-        showRownames = FALSE,
-        showColnames = TRUE,
-        treeheightRow = 0L,
-        treeheightCol = 50L,
-        legend = FALSE,
-        color = viridis,
-        legendColor = NULL,
-        borderColor = NULL,
-        title = NULL,
-        ...
-    ) {
-        assert_has_dims(object)
-        assert_all_are_greater_than(nrow(object), 1L)
-        assert_all_are_greater_than(ncol(object), 1L)
-        object <- as.matrix(object)
-        assertIsAnImplicitInteger(n)
-        n <- as.integer(n)
-        assert_is_a_bool(clusterCols)
-        assert_is_a_bool(clusterRows)
-        assertIsHexColorFunctionOrNULL(color)
-        assert_is_a_bool(legend)
-        assertIsHexColorFunctionOrNULL(legendColor)
-        assertIsAStringOrNULL(borderColor)
-        if (!is_a_string(borderColor)) {
-            borderColor <- NA
-        }
-        assertIsAStringOrNULL(title)
-        if (!is_a_string(title)) {
-            title <- NA
-        }
-
-        # Calculate the quantile breaks
-        breaks <- .quantileBreaks(object, n = n)
-
-        annotationCol <- .pheatmapAnnotationCol(annotationCol)
-        assertFormalAnnotationCol(object, annotationCol)
-        annotationColors <- .pheatmapAnnotationColors(
-            annotationCol = annotationCol,
-            legendColor = legendColor
-        )
-        color <- .pheatmapColor(color, n = length(breaks) - 1L)
-
-        # Return pretty heatmap with modified defaults
-        args <- list(
-            "mat" = object,
-            "annotationCol" = annotationCol,
-            "annotationColors" = annotationColors,
-            "borderColor" = borderColor,
-            "breaks" = breaks,
-            "clusterCols" = clusterCols,
-            "clusterRows" = clusterRows,
-            "color" = color,
-            "legend" = legend,
-            "legendBreaks" = breaks,
-            "legendLabels" = round(breaks, digits = 2L),
-            "main" = title,
-            "scale" = "none",
-            "showColnames" = showColnames,
-            "showRownames" = showRownames,
-            "treeheightCol" = treeheightCol,
-            "treeheightRow" = treeheightRow,
-            ...
-        )
-        args <- .pheatmapArgs(args)
-        do.call(pheatmap, args)
-    }
-)
-
-
-
-#' @rdname plotQuantileHeatmap
-#' @export
-setMethod(
-    "plotQuantileHeatmap",
-    signature("dgCMatrix"),
-    getMethod("plotQuantileHeatmap", "matrix")
-)
-
-
-
-#' @rdname plotQuantileHeatmap
-#' @export
-setMethod(
-    "plotQuantileHeatmap",
-    signature("dgTMatrix"),
-    getMethod("plotQuantileHeatmap", "matrix")
-)
 
 
 
@@ -164,7 +137,7 @@ setMethod(
                 rownames(annotationCol) <- sampleName
             }
         }
-        plotQuantileHeatmap(
+        .plotQuantileHeatmap.matrix(
             object = counts,
             annotationCol = annotationCol,
             ...

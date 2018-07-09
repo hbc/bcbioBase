@@ -4,31 +4,10 @@
 \name{plotQuantileHeatmap}
 \alias{plotQuantileHeatmap}
 \alias{plotQuantileHeatmap}
-\alias{plotQuantileHeatmap,matrix-method}
-\alias{plotQuantileHeatmap,dgCMatrix-method}
-\alias{plotQuantileHeatmap,dgTMatrix-method}
 \alias{plotQuantileHeatmap,SummarizedExperiment-method}
 \title{Plot Heatmap with Quantile Breaks}
 \usage{
 plotQuantileHeatmap(object, ...)
-
-\S4method{plotQuantileHeatmap}{matrix}(object, n = 10L,
-  annotationCol = NULL, clusterRows = TRUE, clusterCols = TRUE,
-  showRownames = FALSE, showColnames = TRUE, treeheightRow = 0L,
-  treeheightCol = 50L, legend = FALSE, color = viridis,
-  legendColor = NULL, borderColor = NULL, title = NULL, ...)
-
-\S4method{plotQuantileHeatmap}{dgCMatrix}(object, n = 10L,
-  annotationCol = NULL, clusterRows = TRUE, clusterCols = TRUE,
-  showRownames = FALSE, showColnames = TRUE, treeheightRow = 0L,
-  treeheightCol = 50L, legend = FALSE, color = viridis,
-  legendColor = NULL, borderColor = NULL, title = NULL, ...)
-
-\S4method{plotQuantileHeatmap}{dgTMatrix}(object, n = 10L,
-  annotationCol = NULL, clusterRows = TRUE, clusterCols = TRUE,
-  showRownames = FALSE, showColnames = TRUE, treeheightRow = 0L,
-  treeheightCol = 50L, legend = FALSE, color = viridis,
-  legendColor = NULL, borderColor = NULL, title = NULL, ...)
 
 \S4method{plotQuantileHeatmap}{SummarizedExperiment}(object, interestingGroups,
   ...)
@@ -39,48 +18,11 @@ plotQuantileHeatmap(object, ...)
 \item{...}{Passthrough arguments to \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}. The names of the
 arguments should be formatted in camel case, not snake case.}
 
+\item{interestingGroups}{\code{character}. Groups of interest.}
+
 \item{n}{The number of breaks to create.}
 
-\item{annotationCol}{\emph{Optional.} \code{data.frame} that defines annotation
-mappings for the columns.}
-
-\item{clusterRows}{\code{logical} determining if rows or columns
-should be arranged with hierarchical clustering. Alternatively, can define
-an \code{hclust} object.}
-
-\item{clusterCols}{\code{logical} determining if rows or columns
-should be arranged with hierarchical clustering. Alternatively, can define
-an \code{hclust} object.}
-
-\item{showRownames}{Show row or column names.}
-
-\item{showColnames}{Show row or column names.}
-
-\item{treeheightRow}{Size of the row and column dendrograms.
-Use "\code{0}" to disable.}
-
-\item{treeheightCol}{Size of the row and column dendrograms.
-Use "\code{0}" to disable.}
-
 \item{legend}{Show the color legend.}
-
-\item{color}{Hexadecimal color function to use for plot. We recommend any of
-these from the viridis package:
-\itemize{
-\item \code{\link[viridis:viridis]{viridis::viridis()}} (\emph{default}).
-\item \code{\link[viridis:inferno]{viridis::inferno()}}.
-\item \code{\link[viridis:magma]{viridis::magma()}}.
-\item \code{\link[viridis:plasma]{viridis::plasma()}}.
-}}
-
-\item{legendColor}{Hexadecimal color function to use for legend labels.}
-
-\item{borderColor}{\emph{Optional.} Border color. Disabled by default for
-improved aesthetics.}
-
-\item{title}{\emph{Optional.} Plot title.}
-
-\item{interestingGroups}{\code{character}. Groups of interest.}
 }
 \value{
 Show heatmap and invisibly return a \code{list} of the components.

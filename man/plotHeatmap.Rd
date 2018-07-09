@@ -4,31 +4,10 @@
 \name{plotHeatmap}
 \alias{plotHeatmap}
 \alias{plotHeatmap}
-\alias{plotHeatmap,matrix-method}
-\alias{plotHeatmap,dgCMatrix-method}
-\alias{plotHeatmap,dgTMatrix-method}
 \alias{plotHeatmap,SummarizedExperiment-method}
 \title{Plot Heatmap}
 \usage{
 plotHeatmap(object, ...)
-
-\S4method{plotHeatmap}{matrix}(object, scale = c("row", "column", "none"),
-  annotationCol = NULL, clusterRows = TRUE, clusterCols = TRUE,
-  showRownames = FALSE, showColnames = TRUE, treeheightRow = 0L,
-  treeheightCol = 50L, color = viridis, legendColor = NULL,
-  borderColor = NULL, title = NULL, ...)
-
-\S4method{plotHeatmap}{dgCMatrix}(object, scale = c("row", "column", "none"),
-  annotationCol = NULL, clusterRows = TRUE, clusterCols = TRUE,
-  showRownames = FALSE, showColnames = TRUE, treeheightRow = 0L,
-  treeheightCol = 50L, color = viridis, legendColor = NULL,
-  borderColor = NULL, title = NULL, ...)
-
-\S4method{plotHeatmap}{dgTMatrix}(object, scale = c("row", "column", "none"),
-  annotationCol = NULL, clusterRows = TRUE, clusterCols = TRUE,
-  showRownames = FALSE, showColnames = TRUE, treeheightRow = 0L,
-  treeheightCol = 50L, color = viridis, legendColor = NULL,
-  borderColor = NULL, title = NULL, ...)
 
 \S4method{plotHeatmap}{SummarizedExperiment}(object, interestingGroups, ...)
 }
@@ -37,6 +16,8 @@ plotHeatmap(object, ...)
 
 \item{...}{Passthrough arguments to \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}. The names of the
 arguments should be formatted in camel case, not snake case.}
+
+\item{interestingGroups}{\code{character}. Groups of interest.}
 
 \item{scale}{\code{character} indicating whether the values should be centered and
 scaled in either the row or column direction ("\code{row}", "\code{column}"), or
@@ -69,8 +50,6 @@ these from the viridis package:
 improved aesthetics.}
 
 \item{title}{\emph{Optional.} Plot title.}
-
-\item{interestingGroups}{\code{character}. Groups of interest.}
 }
 \value{
 Show heatmap and invisibly return a \code{list} of the components.
