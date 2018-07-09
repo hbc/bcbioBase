@@ -103,12 +103,25 @@
       <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="bcbiobase-0-2-16-2018-06-28" class="section level1">
+    <div id="bcbiobase-0-2-17-2018-07-09" class="section level1">
 <h1 class="page-header">
-<a href="#bcbiobase-0-2-16-2018-06-28" class="anchor"></a>bcbioBase 0.2.16 (2018-06-28)</h1>
+<a href="#bcbiobase-0-2-17-2018-07-09" class="anchor"></a>bcbioBase 0.2.17 (2018-07-09)</h1>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
+<ul>
+<li>Now requiring [ggplot2][] v3.0 internally.</li>
+<li>Switched to using <code>aes()</code> instead of <code>aes_string()</code> internally, using tidyeval.</li>
+<li>Updated viridis functions in reexports.</li>
+</ul>
+</div>
+</div>
+    <div id="bcbiobase-0-2-16-2018-06-28" class="section level1">
+<h1 class="page-header">
+<a href="#bcbiobase-0-2-16-2018-06-28" class="anchor"></a>bcbioBase 0.2.16 (2018-06-28)</h1>
+<div id="minor-changes-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Improved aggregate column handling in <code><a href="../reference/ggplot2.html">bcbio_geom_abline()</a></code>.</li>
 <li>Improved code coverage back to 100%.</li>
@@ -127,9 +140,9 @@
 <code><a href="../reference/minimalSampleData.html">minimalSampleData()</a></code> enables easy creation of a sample metadata <code>data.frame</code> by simplify specifying the sample names (e.g. “description” in [bcbio][] YAML). This function was added for easy metadata handling for 10X Cell Ranger in the <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> package, but is generally applicable to other [bcbio][] datasets and may be incorporated into <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> in a future update.</li>
 </ul>
 </div>
-<div id="minor-changes-1" class="section level2">
+<div id="minor-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Improved internal <code>interestingGroups</code> handling inside <code>plotHeatmap()</code> family of functions.</li>
 <li>Removed message about transgeneNames and spikeNames in <code><a href="../reference/prepareSummarizedExperiment.html">prepareSummarizedExperiment()</a></code> if missing transcripts are present. Now the function simply lists the genes that don’t have metadata in <code>rowRanges()</code>.</li>
@@ -140,9 +153,9 @@
     <div id="bcbiobase-0-2-14-2018-05-18" class="section level1">
 <h1 class="page-header">
 <a href="#bcbiobase-0-2-14-2018-05-18" class="anchor"></a>bcbioBase 0.2.14 (2018-05-18)</h1>
-<div id="minor-changes-2" class="section level2">
+<div id="minor-changes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-3" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Improved formatting of package NEWS</li>
 <li>Improved code coverage by adding ggplot2 unit testing.</li>
@@ -153,9 +166,9 @@
     <div id="bcbiobase-0-2-13-2018-05-07" class="section level1">
 <h1 class="page-header">
 <a href="#bcbiobase-0-2-13-2018-05-07" class="anchor"></a>bcbioBase 0.2.13 (2018-05-07)</h1>
-<div id="minor-changes-3" class="section level2">
+<div id="minor-changes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-3" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-4" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Added <code>overwrite</code> parameter to <code><a href="../reference/prepareTemplate.html">prepareTemplate()</a></code>, disabled by default.</li>
 <li>Removed validity check for <code>sampleData()</code> accessor.</li>
@@ -166,9 +179,9 @@
     <div id="bcbiobase-0-2-12-2018-05-08" class="section level1">
 <h1 class="page-header">
 <a href="#bcbiobase-0-2-12-2018-05-08" class="anchor"></a>bcbioBase 0.2.12 (2018-05-08)</h1>
-<div id="minor-changes-4" class="section level2">
+<div id="minor-changes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-4" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-5" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Migrated <code><a href="../reference/sanitizeSampleData.html">sanitizeSampleData()</a></code> from basejump to bcbioBase.</li>
 <li>Don’t return <code>interestingGroups</code> column in <code>sampleData()</code> return when <code>clean = TRUE</code>.</li>
@@ -201,9 +214,9 @@
     <div id="bcbiobase-0-2-9-2018-04-30" class="section level1">
 <h1 class="page-header">
 <a href="#bcbiobase-0-2-9-2018-04-30" class="anchor"></a>bcbioBase 0.2.9 (2018-04-30)</h1>
-<div id="minor-changes-5" class="section level2">
+<div id="minor-changes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-5" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-6" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Improved assert check messages for interesting groups.</li>
 <li>Switched back to internally using <code>make.unique()</code> instead of <code>make.names()</code> for <code><a href="../reference/convertGenesToSymbols.html">convertGenesToSymbols()</a></code> coercion on SummarizedExperiment objects. We’re using <code>make.names()</code> only when coercing seurat objects (see <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> code).</li>
@@ -214,9 +227,9 @@
     <div id="bcbiobase-0-2-8-2018-04-25" class="section level1">
 <h1 class="page-header">
 <a href="#bcbiobase-0-2-8-2018-04-25" class="anchor"></a>bcbioBase 0.2.8 (2018-04-25)</h1>
-<div id="minor-changes-6" class="section level2">
+<div id="minor-changes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-6" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-7" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Split out assertive imports so we can pin release to <a href="https://bioconda.github.io">bioconda</a>.</li>
 </ul>
@@ -225,9 +238,9 @@
     <div id="bcbiobase-0-2-7-2018-04-25" class="section level1">
 <h1 class="page-header">
 <a href="#bcbiobase-0-2-7-2018-04-25" class="anchor"></a>bcbioBase 0.2.7 (2018-04-25)</h1>
-<div id="minor-changes-7" class="section level2">
+<div id="minor-changes-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-7" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-8" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Updated recommended Bioconductor installation method for 3.7 release.</li>
 <li>Attempt to add <code>description</code> to <code>metadataBlacklist</code>.</li>
@@ -239,9 +252,9 @@
     <div id="bcbiobase-0-2-6-2018-04-25" class="section level1">
 <h1 class="page-header">
 <a href="#bcbiobase-0-2-6-2018-04-25" class="anchor"></a>bcbioBase 0.2.6 (2018-04-25)</h1>
-<div id="minor-changes-8" class="section level2">
+<div id="minor-changes-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-8" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-9" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Using <code>make.names()</code> instead of <code>make.unique()</code> in <code><a href="../reference/convertGenesToSymbols.html">convertGenesToSymbols()</a></code> method for <code>SummarizedExperiment</code> class.</li>
 </ul>
@@ -264,9 +277,9 @@
 <code><a href="../reference/readSampleData.html">readSampleData()</a></code> no longer requires or recommended <code>fileName</code> column. Only the <code>description</code> column is required for demultiplexed data. In the case of multiplexed samples (e.g. inDrops single-cell RNA-seq), then <code>sampleName</code>, <code>index</code> and <code>sequence</code> names are also required. Multiplexed cell ranger data only requires <code>sampleName</code> and <code>index</code>, since the index barcode isn’t present in the counts matrix.</li>
 </ul>
 </div>
-<div id="minor-changes-9" class="section level2">
+<div id="minor-changes-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-9" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-10" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>
 <code>sampleID</code> is no longer included in metadata priority columns. This is only to be used internally and should be hidden from the user where possible.</li>
@@ -278,9 +291,9 @@
     <div id="bcbiobase-0-2-4-2018-04-22" class="section level1">
 <h1 class="page-header">
 <a href="#bcbiobase-0-2-4-2018-04-22" class="anchor"></a>bcbioBase 0.2.4 (2018-04-22)</h1>
-<div id="minor-changes-10" class="section level2">
+<div id="minor-changes-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-10" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-11" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Reworked internal code for <code><a href="../reference/readYAML.html">readYAML()</a></code> family of functions.</li>
 <li>Reorganized and improved default arguments for heatmap functions.</li>
@@ -301,9 +314,9 @@
     <div id="bcbiobase-0-2-2-2018-04-16" class="section level1">
 <h1 class="page-header">
 <a href="#bcbiobase-0-2-2-2018-04-16" class="anchor"></a>bcbioBase 0.2.2 (2018-04-16)</h1>
-<div id="minor-changes-11" class="section level2">
+<div id="minor-changes-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-11" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-12" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Improved unit tests for <code><a href="../reference/convertGenesToSymbols.html">convertGenesToSymbols()</a></code> and <code>gene2symbol()</code>.</li>
 <li>Miscellaneous documentation fixes.</li>
@@ -325,9 +338,9 @@
 <code><a href="../reference/prepareSummarizedExperiment.html">prepareSummarizedExperiment()</a></code> now supports transgenes with the <code>transgeneNames</code> argument (e.g. “EGFP”), and FASTA spike-ins with the <code>spikeNames</code> argument (e.g. “ERCCs”). Additionally, <code>rowRanges</code> and <code>colData</code> are no longer required and can be left <code>NULL</code>, although this isn’t generally recommended.</li>
 </ul>
 </div>
-<div id="minor-changes-12" class="section level2">
+<div id="minor-changes-13" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-12" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-13" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Consolidated <code><a href="../reference/deprecated.html">sampleYAML()</a></code> function code.</li>
 <li>Consolidated assert check imports into <code>bcbioBase-package.R</code> file.</li>
@@ -356,9 +369,9 @@
 <li>Added <code><a href="../reference/sampleDirs.html">sampleDirs()</a></code> function, that informs the user about the names of the sample directories in the bcbio run.</li>
 </ul>
 </div>
-<div id="minor-changes-13" class="section level2">
+<div id="minor-changes-14" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-13" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-14" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Improved internal factor sanitization of sample metadata for <code><a href="../reference/deprecated.html">readSampleMetadataFile()</a></code> and <code><a href="../reference/deprecated.html">sampleYAMLMetadata()</a></code>.</li>
 <li>Exporting <code>projectDirPattern</code> to match bcbio project directories (e.g. <code>2018-01-01_rnaseq</code>) across packages.</li>
@@ -455,6 +468,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#bcbiobase-0-2-17-2018-07-09">0.2.17</a></li>
         <li><a href="#bcbiobase-0-2-16-2018-06-28">0.2.16</a></li>
         <li><a href="#bcbiobase-0-2-15-2018-06-05">0.2.15</a></li>
         <li><a href="#bcbiobase-0-2-14-2018-05-18">0.2.14</a></li>
