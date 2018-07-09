@@ -50,22 +50,6 @@ test_that("SummarizedExperiment", {
     }))
 })
 
-test_that("matrix", {
-    invisible(lapply(fxns, function(f) {
-        object <- as.matrix(datasets::USArrests)
-        f <- get(f)
-        p <- f(object)
-
-        # Expect pheatmap return
-        expect_is(p, "pheatmap")
-        expect_identical(names(p), pheatmapList)
-
-        # Test that plots do not contain annotation data
-        gtable <- p[["gtable"]]
-        expect_false("annotation_legend" %in% gtable[["layout"]][["name"]])
-    }))
-})
-
 test_that("Invalid pheatmap passthrough", {
     expect_error(
         plotHeatmap(rse_bcb, show_colnames = FALSE),
