@@ -19,11 +19,9 @@ Minimal Sample Data
 minimalSampleData(c("sample 1", "sample 2"))
 }
 \seealso{
-Other Data Functions: \code{\link{convertGenesToSymbols}},
-  \code{\link{counts}}, \code{\link{flatFiles}},
-  \code{\link{gene2symbol}}, \code{\link{sampleData}},
-  \code{\link{sampleDirs}}, \code{\link{sampleNames}},
-  \code{\link{selectSamples}},
+Other Data Functions: \code{\link{flatFiles}},
+  \code{\link{sampleData}}, \code{\link{sampleDirs}},
+  \code{\link{sampleNames}},
   \code{\link{uniteInterestingGroups}}
 }
 \author{

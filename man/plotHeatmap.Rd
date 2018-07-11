@@ -4,33 +4,16 @@
 \name{plotHeatmap}
 \alias{plotHeatmap}
 \alias{plotHeatmap}
-\alias{plotHeatmap,matrix-method}
-\alias{plotHeatmap,dgCMatrix-method}
-\alias{plotHeatmap,dgTMatrix-method}
 \alias{plotHeatmap,SummarizedExperiment-method}
 \title{Plot Heatmap}
 \usage{
 plotHeatmap(object, ...)
 
-\S4method{plotHeatmap}{matrix}(object, scale = c("row", "column", "none"),
-  annotationCol = NULL, clusterRows = TRUE, clusterCols = TRUE,
-  showRownames = FALSE, showColnames = TRUE, treeheightRow = 0L,
-  treeheightCol = 50L, color = viridis, legendColor = NULL,
-  borderColor = NULL, title = NULL, ...)
-
-\S4method{plotHeatmap}{dgCMatrix}(object, scale = c("row", "column", "none"),
-  annotationCol = NULL, clusterRows = TRUE, clusterCols = TRUE,
-  showRownames = FALSE, showColnames = TRUE, treeheightRow = 0L,
-  treeheightCol = 50L, color = viridis, legendColor = NULL,
-  borderColor = NULL, title = NULL, ...)
-
-\S4method{plotHeatmap}{dgTMatrix}(object, scale = c("row", "column", "none"),
-  annotationCol = NULL, clusterRows = TRUE, clusterCols = TRUE,
-  showRownames = FALSE, showColnames = TRUE, treeheightRow = 0L,
-  treeheightCol = 50L, color = viridis, legendColor = NULL,
-  borderColor = NULL, title = NULL, ...)
-
-\S4method{plotHeatmap}{SummarizedExperiment}(object, interestingGroups, ...)
+\S4method{plotHeatmap}{SummarizedExperiment}(object, interestingGroups,
+  scale = c("row", "column", "none"), clusterRows = TRUE,
+  clusterCols = TRUE, showRownames = FALSE, showColnames = TRUE,
+  treeheightRow = 0L, treeheightCol = 50L, color = viridis,
+  legendColor = NULL, borderColor = NULL, title = NULL, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -38,12 +21,11 @@ plotHeatmap(object, ...)
 \item{...}{Passthrough arguments to \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}. The names of the
 arguments should be formatted in camel case, not snake case.}
 
+\item{interestingGroups}{\code{character}. Groups of interest.}
+
 \item{scale}{\code{character} indicating whether the values should be centered and
 scaled in either the row or column direction ("\code{row}", "\code{column}"), or
 remain unscaled ("\code{none}").}
-
-\item{annotationCol}{\emph{Optional.} \code{data.frame} that defines annotation
-mappings for the columns.}
 
 \item{clusterRows, clusterCols}{\code{logical} determining if rows or columns
 should be arranged with hierarchical clustering. Alternatively, can define
@@ -54,17 +36,21 @@ an \code{hclust} object.}
 \item{treeheightRow, treeheightCol}{Size of the row and column dendrograms.
 Use "\code{0}" to disable.}
 
-\item{color}{Colors to use for plot. Defaults to the \code{\link[viridis:viridis]{viridis::viridis()}}
-palette.}
+\item{color}{Hexadecimal color function to use for plot. We recommend any of
+these from the viridis package:
+\itemize{
+\item \code{\link[viridis:viridis]{viridis::viridis()}} (\emph{default}).
+\item \code{\link[viridis:inferno]{viridis::inferno()}}.
+\item \code{\link[viridis:magma]{viridis::magma()}}.
+\item \code{\link[viridis:plasma]{viridis::plasma()}}.
+}}
 
-\item{legendColor}{Colors to use for legend labels.}
+\item{legendColor}{Hexadecimal color function to use for legend labels.}
 
 \item{borderColor}{\emph{Optional.} Border color. Disabled by default for
 improved aesthetics.}
 
 \item{title}{\emph{Optional.} Plot title.}
-
-\item{interestingGroups}{\code{character}. Groups of interest.}
 }
 \value{
 Show heatmap and invisibly return a \code{list} of the components.
@@ -76,7 +62,7 @@ overrided by setting \code{clusterRows} or \code{clusterCols} to \code{FALSE}.
 }
 \examples{
 # SummarizedExperiment ====
-plotHeatmap(rse_dds)
+plotHeatmap(rse_dds, interestingGroups = "condition")
 
 # Disable column clustering
 plotHeatmap(rse_dds, clusterCols = FALSE)

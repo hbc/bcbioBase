@@ -2,6 +2,8 @@
 #'
 #' Base functions and generics for bcbio R packages.
 #'
+#' @importClassesFrom SummarizedExperiment SummarizedExperiment
+#'
 #' @importFrom assertive.base assert_are_identical assert_is_identical_to_na
 #' @importFrom assertive.files assert_all_are_dirs assert_all_are_existing_files
 #' @importFrom assertive.numbers assert_all_are_greater_than
@@ -18,17 +20,16 @@
 #'   assert_is_character assert_is_factor assert_is_function assert_is_integer
 #'   assert_is_list assert_is_matrix assert_is_tbl is_a_string
 #' @importFrom basejump assertHasRownames assertIsAnImplicitInteger
-#'   assertIsAStringOrNULL assertIsGene2symbol assertIsHexColorFunctionOrNULL
-#'   assertIsTx2gene camel convertGenesToSymbols emptyRanges fixNA
-#'   localOrRemoteFile makeNames printString readFileByExtension readYAML
-#'   removeNA snake
+#'   assertIsAStringOrNULL assertIsHexColorFunctionOrNULL assertIsTx2gene camel
+#'   emptyRanges fixNA localOrRemoteFile makeNames printString
+#'   readFileByExtension readYAML removeNA snake
 #' @importFrom Biostrings reverseComplement
 #' @importFrom dendsort dendsort
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select select_if ungroup
 #' @importFrom GenomeInfoDb seqnames
 #' @importFrom GenomicRanges GRanges
-#' @importFrom ggplot2 aes_string geom_hline geom_label geom_vline
+#' @importFrom ggplot2 aes geom_hline geom_label geom_vline
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grDevices colorRampPalette
 #' @importFrom grid arrow unit

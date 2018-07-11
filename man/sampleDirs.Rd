@@ -23,12 +23,9 @@ uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
 sampleDirs(uploadDir)
 }
 \seealso{
-Other Data Functions: \code{\link{convertGenesToSymbols}},
-  \code{\link{counts}}, \code{\link{flatFiles}},
-  \code{\link{gene2symbol}},
+Other Data Functions: \code{\link{flatFiles}},
   \code{\link{minimalSampleData}},
   \code{\link{sampleData}}, \code{\link{sampleNames}},
-  \code{\link{selectSamples}},
   \code{\link{uniteInterestingGroups}}
 }
 \author{

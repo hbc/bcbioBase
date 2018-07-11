@@ -39,12 +39,10 @@ y <- uniteInterestingGroups(x, interestingGroups = c("treatment", "day"))
 y[["interestingGroups"]]
 }
 \seealso{
-Other Data Functions: \code{\link{convertGenesToSymbols}},
-  \code{\link{counts}}, \code{\link{flatFiles}},
-  \code{\link{gene2symbol}},
+Other Data Functions: \code{\link{flatFiles}},
   \code{\link{minimalSampleData}},
   \code{\link{sampleData}}, \code{\link{sampleDirs}},
-  \code{\link{sampleNames}}, \code{\link{selectSamples}}
+  \code{\link{sampleNames}}
 }
 \author{
 Michael Steinbaugh

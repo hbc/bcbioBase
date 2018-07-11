@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.16</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.17</span>
       </span>
     </div>
 
@@ -115,30 +115,12 @@
 
     <pre class="usage"><span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for matrix</span>
-<span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>object</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"pearson"</span>,
-  <span class='st'>"spearman"</span>), <span class='kw'>clusteringMethod</span> <span class='kw'>=</span> <span class='st'>"ward.D2"</span>, <span class='kw'>annotationCol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>showRownames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>showColnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>treeheightRow</span> <span class='kw'>=</span> <span class='fl'>0L</span>,
-  <span class='kw'>treeheightCol</span> <span class='kw'>=</span> <span class='fl'>50L</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>viridis</span>, <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for dgCMatrix</span>
-<span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>object</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"pearson"</span>,
-  <span class='st'>"spearman"</span>), <span class='kw'>clusteringMethod</span> <span class='kw'>=</span> <span class='st'>"ward.D2"</span>, <span class='kw'>annotationCol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>showRownames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>showColnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>treeheightRow</span> <span class='kw'>=</span> <span class='fl'>0L</span>,
-  <span class='kw'>treeheightCol</span> <span class='kw'>=</span> <span class='fl'>50L</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>viridis</span>, <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
-<span class='co'># S4 method for dgTMatrix</span>
-<span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>object</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"pearson"</span>,
-  <span class='st'>"spearman"</span>), <span class='kw'>clusteringMethod</span> <span class='kw'>=</span> <span class='st'>"ward.D2"</span>, <span class='kw'>annotationCol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>showRownames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>showColnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>treeheightRow</span> <span class='kw'>=</span> <span class='fl'>0L</span>,
-  <span class='kw'>treeheightCol</span> <span class='kw'>=</span> <span class='fl'>50L</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>viridis</span>, <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
-
 <span class='co'># S4 method for SummarizedExperiment</span>
 <span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>object</span>,
-  <span class='no'>interestingGroups</span>, <span class='no'>...</span>)</pre>
+  <span class='no'>interestingGroups</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"pearson"</span>, <span class='st'>"spearman"</span>),
+  <span class='kw'>clusteringMethod</span> <span class='kw'>=</span> <span class='st'>"ward.D2"</span>, <span class='kw'>showRownames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>showColnames</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>treeheightRow</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>treeheightCol</span> <span class='kw'>=</span> <span class='fl'>50L</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>viridis</span>,
+  <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>borderColor</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,6 +135,10 @@
 arguments should be formatted in camel case, not snake case.</p></td>
     </tr>
     <tr>
+      <th>interestingGroups</th>
+      <td><p><code>character</code>. Groups of interest.</p></td>
+    </tr>
+    <tr>
       <th>method</th>
       <td><p>Correlation coefficient (or covariance) method to be computed.
 Defaults to "<code>pearson</code>" but "<code>spearman</code>" can also be used. Consult the
@@ -162,11 +148,6 @@ Defaults to "<code>pearson</code>" but "<code>spearman</code>" can also be used.
       <th>clusteringMethod</th>
       <td><p>Clustering method. Accepts the same values as
 <code><a href='http://www.rdocumentation.org/packages/stats/topics/hclust'>stats::hclust()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>annotationCol</th>
-      <td><p><em>Optional.</em> <code>data.frame</code> that defines annotation
-mappings for the columns.</p></td>
     </tr>
     <tr>
       <th>showRownames</th>
@@ -188,12 +169,17 @@ Use "<code>0</code>" to disable.</p></td>
     </tr>
     <tr>
       <th>color</th>
-      <td><p>Colors to use for plot. Defaults to the <code><a href='http://www.rdocumentation.org/packages/viridis/topics/reexports'>viridis::viridis()</a></code>
-palette.</p></td>
+      <td><p>Hexadecimal color function to use for plot. We recommend any of
+these from the viridis package:</p><ul>
+<li><p><code><a href='http://www.rdocumentation.org/packages/viridis/topics/reexports'>viridis::viridis()</a></code> (<em>default</em>).</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/viridis/topics/reexports'>viridis::inferno()</a></code>.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/viridis/topics/reexports'>viridis::magma()</a></code>.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/viridis/topics/reexports'>viridis::plasma()</a></code>.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>legendColor</th>
-      <td><p>Colors to use for legend labels.</p></td>
+      <td><p>Hexadecimal color function to use for legend labels.</p></td>
     </tr>
     <tr>
       <th>borderColor</th>
@@ -203,10 +189,6 @@ improved aesthetics.</p></td>
     <tr>
       <th>title</th>
       <td><p><em>Optional.</em> Plot title.</p></td>
-    </tr>
-    <tr>
-      <th>interestingGroups</th>
-      <td><p><code>character</code>. Groups of interest.</p></td>
     </tr>
     </table>
     
@@ -227,7 +209,7 @@ improved aesthetics.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># SummarizedExperiment ====</span>
-<span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>rse_dds</span>)</div><div class='img'><img src='plotCorrelationHeatmap-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>rse_dds</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>magma</span>, <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='no'>viridis</span>)</div><div class='img'><img src='plotCorrelationHeatmap-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>rse_dds</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</div><div class='img'><img src='plotCorrelationHeatmap-3.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>rse_dds</span>, <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='st'>"condition"</span>)</div><div class='img'><img src='plotCorrelationHeatmap-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>rse_dds</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>magma</span>, <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='no'>viridis</span>)</div><div class='img'><img src='plotCorrelationHeatmap-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plotCorrelationHeatmap</span>(<span class='no'>rse_dds</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</div><div class='img'><img src='plotCorrelationHeatmap-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

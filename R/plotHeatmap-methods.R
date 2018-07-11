@@ -11,17 +11,19 @@
 #' @param scale `character` indicating whether the values should be centered and
 #'   scaled in either the row or column direction ("`row`", "`column`"), or
 #'   remain unscaled ("`none`").
-#' @param annotationCol *Optional.* `data.frame` that defines annotation
-#'   mappings for the columns.
 #' @param clusterRows,clusterCols `logical` determining if rows or columns
 #'   should be arranged with hierarchical clustering. Alternatively, can define
 #'   an `hclust` object.
 #' @param showRownames,showColnames Show row or column names.
 #' @param treeheightRow,treeheightCol Size of the row and column dendrograms.
 #'   Use "`0`" to disable.
-#' @param color Colors to use for plot. Defaults to the [viridis::viridis()]
-#'   palette.
-#' @param legendColor Colors to use for legend labels.
+#' @param color Hexadecimal color function to use for plot. We recommend any of
+#'   these from the viridis package:
+#'   - [viridis::viridis()] (*default*).
+#'   - [viridis::inferno()].
+#'   - [viridis::magma()].
+#'   - [viridis::plasma()].
+#' @param legendColor Hexadecimal color function to use for legend labels.
 #' @param borderColor *Optional.* Border color. Disabled by default for
 #'   improved aesthetics.
 #' @param title *Optional.* Plot title.
@@ -34,7 +36,7 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' plotHeatmap(rse_dds)
+#' plotHeatmap(rse_dds, interestingGroups = "condition")
 #'
 #' # Disable column clustering
 #' plotHeatmap(rse_dds, clusterCols = FALSE)
@@ -47,11 +49,11 @@ NULL
 #' @export
 setMethod(
     "plotHeatmap",
-    signature("matrix"),
+    signature("SummarizedExperiment"),
     function(
         object,
+        interestingGroups,
         scale = c("row", "column", "none"),
-        annotationCol = NULL,
         clusterRows = TRUE,
         clusterCols = TRUE,
         showRownames = FALSE,
@@ -64,10 +66,11 @@ setMethod(
         title = NULL,
         ...
     ) {
-        object <- as.matrix(object)
-        assert_has_dims(object)
         assert_all_are_greater_than(nrow(object), 1L)
         assert_all_are_greater_than(ncol(object), 1L)
+        if (missing(interestingGroups)) {
+            interestingGroups <- bcbioBase::interestingGroups(object)
+        }
         scale <- match.arg(scale)
         assert_is_a_bool(clusterCols)
         assert_is_a_bool(clusterRows)
@@ -87,10 +90,27 @@ setMethod(
             title <- NA
         }
 
+        object <- suppressWarnings(convertGenesToSymbols(object))
+
+        mat <- as.matrix(assay(object))
         if (scale == "row") {
             # Filter out any zero count rows
-            object <- object %>%
-                .[rowSums(.) > 0L, , drop = FALSE]
+            mat <- mat[rowSums(mat) > 0L, , drop = FALSE]
+        }
+
+        if (length(interestingGroups)) {
+            annotationCol <- colData(object)[, interestingGroups, drop = FALSE]
+        } else {
+            annotationCol <- NULL
+        }
+
+        # Use `sampleName`, if defined
+        sampleName <- colData(object)[["sampleName"]]
+        if (length(sampleName)) {
+            colnames(mat) <- sampleName
+            if (length(annotationCol)) {
+                rownames(annotationCol) <- sampleName
+            }
         }
 
         annotationCol <- .pheatmapAnnotationCol(annotationCol)
@@ -103,80 +123,22 @@ setMethod(
 
         # Return pretty heatmap with modified defaults
         args <- list(
-            "mat" = object,
-            "annotationCol" = annotationCol,
-            "annotationColors" = annotationColors,
-            "borderColor" = borderColor,
-            "clusterCols" = clusterCols,
-            "clusterRows" = clusterRows,
-            "color" = color,
-            "main" = title,
-            "scale" = scale,
-            "showColnames" = showColnames,
-            "showRownames" = showRownames,
-            "treeheightCol" = treeheightCol,
-            "treeheightRow" = treeheightRow,
+            mat = mat,
+            annotationCol = annotationCol,
+            annotationColors = annotationColors,
+            borderColor = borderColor,
+            clusterCols = clusterCols,
+            clusterRows = clusterRows,
+            color = color,
+            main = title,
+            scale = scale,
+            showColnames = showColnames,
+            showRownames = showRownames,
+            treeheightCol = treeheightCol,
+            treeheightRow = treeheightRow,
             ...
         )
         args <- .pheatmapArgs(args)
         do.call(pheatmap, args)
-    }
-)
-
-
-
-#' @rdname plotHeatmap
-#' @export
-setMethod(
-    "plotHeatmap",
-    signature("dgCMatrix"),
-    getMethod("plotHeatmap", "matrix")
-)
-
-
-
-#' @rdname plotHeatmap
-#' @export
-setMethod(
-    "plotHeatmap",
-    signature("dgTMatrix"),
-    getMethod("plotHeatmap", "matrix")
-)
-
-
-
-#' @rdname plotHeatmap
-#' @export
-setMethod(
-    "plotHeatmap",
-    signature("SummarizedExperiment"),
-    function(
-        object,
-        interestingGroups,
-        ...
-    ) {
-        object <- suppressWarnings(convertGenesToSymbols(object))
-        counts <- assay(object)
-        if (missing(interestingGroups)) {
-            interestingGroups <- bcbioBase::interestingGroups(object)
-        }
-        if (length(interestingGroups)) {
-            annotationCol <- colData(object)[, interestingGroups, drop = FALSE]
-        } else {
-            annotationCol <- NULL
-        }
-        # Use `sampleName`, if defined
-        sampleName <- colData(object)[["sampleName"]]
-        if (length(sampleName)) {
-            colnames(counts) <- sampleName
-            if (length(annotationCol)) {
-                rownames(annotationCol) <- sampleName
-            }
-        }
-        plotHeatmap(
-            object = counts,
-            annotationCol = annotationCol,
-            ...
-        )
     }
 )

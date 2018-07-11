@@ -10,7 +10,7 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' plotQuantileHeatmap(rse_dds)
+#' plotQuantileHeatmap(rse_dds, interestingGroups = "condition")
 #'
 #' # Disable column clustering
 #' plotQuantileHeatmap(rse_dds, clusterCols = FALSE)
@@ -38,16 +38,15 @@ NULL
 
 
 
-# Methods ======================================================================
 #' @rdname plotQuantileHeatmap
 #' @export
 setMethod(
     "plotQuantileHeatmap",
-    signature("matrix"),
+    signature("SummarizedExperiment"),
     function(
         object,
+        interestingGroups,
         n = 10L,
-        annotationCol = NULL,
         clusterRows = TRUE,
         clusterCols = TRUE,
         showRownames = FALSE,
@@ -61,10 +60,11 @@ setMethod(
         title = NULL,
         ...
     ) {
-        assert_has_dims(object)
         assert_all_are_greater_than(nrow(object), 1L)
         assert_all_are_greater_than(ncol(object), 1L)
-        object <- as.matrix(object)
+        if (missing(interestingGroups)) {
+            interestingGroups <- bcbioBase::interestingGroups(object)
+        }
         assertIsAnImplicitInteger(n)
         n <- as.integer(n)
         assert_is_a_bool(clusterCols)
@@ -81,8 +81,26 @@ setMethod(
             title <- NA
         }
 
+        object <- suppressWarnings(convertGenesToSymbols(object))
+        mat <- as.matrix(assay(object))
+
+        if (length(interestingGroups)) {
+            annotationCol <- colData(object)[, interestingGroups, drop = FALSE]
+        } else {
+            annotationCol <- NULL
+        }
+
+        # Use `sampleName`, if defined
+        sampleName <- colData(object)[["sampleName"]]
+        if (length(sampleName)) {
+            colnames(mat) <- sampleName
+            if (length(annotationCol)) {
+                rownames(annotationCol) <- sampleName
+            }
+        }
+
         # Calculate the quantile breaks
-        breaks <- .quantileBreaks(object, n = n)
+        breaks <- .quantileBreaks(mat, n = n)
 
         annotationCol <- .pheatmapAnnotationCol(annotationCol)
         assertFormalAnnotationCol(object, annotationCol)
@@ -94,80 +112,26 @@ setMethod(
 
         # Return pretty heatmap with modified defaults
         args <- list(
-            "mat" = object,
-            "annotationCol" = annotationCol,
-            "annotationColors" = annotationColors,
-            "borderColor" = borderColor,
-            "breaks" = breaks,
-            "clusterCols" = clusterCols,
-            "clusterRows" = clusterRows,
-            "color" = color,
-            "legend" = legend,
-            "legendBreaks" = breaks,
-            "legendLabels" = round(breaks, digits = 2L),
-            "main" = title,
-            "scale" = "none",
-            "showColnames" = showColnames,
-            "showRownames" = showRownames,
-            "treeheightCol" = treeheightCol,
-            "treeheightRow" = treeheightRow,
+            mat = mat,
+            annotationCol = annotationCol,
+            annotationColors = annotationColors,
+            borderColor = borderColor,
+            breaks = breaks,
+            clusterCols = clusterCols,
+            clusterRows = clusterRows,
+            color = color,
+            legend = legend,
+            legendBreaks = breaks,
+            legendLabels = round(breaks, digits = 2L),
+            main = title,
+            scale = "none",
+            showColnames = showColnames,
+            showRownames = showRownames,
+            treeheightCol = treeheightCol,
+            treeheightRow = treeheightRow,
             ...
         )
         args <- .pheatmapArgs(args)
         do.call(pheatmap, args)
-    }
-)
-
-
-
-#' @rdname plotQuantileHeatmap
-#' @export
-setMethod(
-    "plotQuantileHeatmap",
-    signature("dgCMatrix"),
-    getMethod("plotQuantileHeatmap", "matrix")
-)
-
-
-
-#' @rdname plotQuantileHeatmap
-#' @export
-setMethod(
-    "plotQuantileHeatmap",
-    signature("dgTMatrix"),
-    getMethod("plotQuantileHeatmap", "matrix")
-)
-
-
-
-#' @rdname plotQuantileHeatmap
-#' @export
-setMethod(
-    "plotQuantileHeatmap",
-    signature("SummarizedExperiment"),
-    function(object, interestingGroups, ...) {
-        object <- suppressWarnings(convertGenesToSymbols(object))
-        counts <- assay(object)
-        if (missing(interestingGroups)) {
-            interestingGroups <- bcbioBase::interestingGroups(object)
-        }
-        if (length(interestingGroups)) {
-            annotationCol <- colData(object)[, interestingGroups, drop = FALSE]
-        } else {
-            annotationCol <- NULL
-        }
-        # Use `sampleName`, if defined
-        sampleName <- colData(object)[["sampleName"]]
-        if (length(sampleName)) {
-            colnames(counts) <- sampleName
-            if (length(annotationCol)) {
-                rownames(annotationCol) <- sampleName
-            }
-        }
-        plotQuantileHeatmap(
-            object = counts,
-            annotationCol = annotationCol,
-            ...
-        )
     }
 )
