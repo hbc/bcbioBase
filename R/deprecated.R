@@ -1,6 +1,18 @@
 # nocov start
 
-#' Defunct or Deprecated Functions
+
+
+#' Defunct Functions
+#'
+#' @name defunct
+#' @keywords internal
+#'
+#' @return No value.
+NULL
+
+
+
+#' Deprecated Functions
 #'
 #' @name deprecated
 #' @keywords internal
@@ -11,13 +23,13 @@ NULL
 
 
 # v0.2.0 =======================================================================
-#' @rdname deprecated
+#' @rdname defunct
 #' @export
 checkInterestingGroups <- function(...) {
     .Defunct("assertFormalInterestingGroups")
 }
 
-#' @rdname deprecated
+#' @rdname defunct
 #' @export
 prepareSampleMetadata <- function(...) {
     .Defunct()
@@ -55,19 +67,19 @@ sampleMetadata <- function(object, ...) {
     object
 }
 
-#' @rdname deprecated
+#' @rdname defunct
 #' @export
 sampleYAML <- function(...) {
     .Defunct("readYAMLSampleData or readYAMLSampleMetrics")
 }
 
-#' @rdname deprecated
+#' @rdname defunct
 #' @export
 sampleYAMLMetadata <- function(...) {
     .Defunct("readYAMLSampleData")
 }
 
-#' @rdname deprecated
+#' @rdname defunct
 #' @export
 sampleYAMLMetrics <- function(...) {
     .Defunct("readSampleYAMLMetrics")
@@ -76,10 +88,21 @@ sampleYAMLMetrics <- function(...) {
 
 
 # v0.2.5 =======================================================================
-#' @rdname deprecated
+#' @rdname defunct
 #' @export
 prepareSampleData <- function(...) {
     .Defunct()
 }
+
+
+
+# v0.3.0 =======================================================================
+#' @rdname defunct
+#' @export
+assertFormalAnnotationCol <- function(...) {
+    .Defunct()
+}
+
+
 
 # nocov end
