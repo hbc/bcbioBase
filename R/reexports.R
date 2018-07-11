@@ -1,3 +1,13 @@
+#' @importFrom basejump interestingGroups
+#' @export
+basejump::interestingGroups
+
+#' @importFrom basejump interestingGroups<-
+#' @export
+basejump::`interestingGroups<-`
+
+
+
 #' @importFrom dplyr pull
 #' @export
 dplyr::pull
