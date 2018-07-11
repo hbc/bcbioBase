@@ -10,7 +10,10 @@
 plotQuantileHeatmap(object, ...)
 
 \S4method{plotQuantileHeatmap}{SummarizedExperiment}(object, interestingGroups,
-  ...)
+  n = 10L, clusterRows = TRUE, clusterCols = TRUE, showRownames = FALSE,
+  showColnames = TRUE, treeheightRow = 0L, treeheightCol = 50L,
+  legend = FALSE, color = viridis, legendColor = NULL,
+  borderColor = NULL, title = NULL, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -22,7 +25,41 @@ arguments should be formatted in camel case, not snake case.}
 
 \item{n}{The number of breaks to create.}
 
+\item{clusterRows}{\code{logical} determining if rows or columns
+should be arranged with hierarchical clustering. Alternatively, can define
+an \code{hclust} object.}
+
+\item{clusterCols}{\code{logical} determining if rows or columns
+should be arranged with hierarchical clustering. Alternatively, can define
+an \code{hclust} object.}
+
+\item{showRownames}{Show row or column names.}
+
+\item{showColnames}{Show row or column names.}
+
+\item{treeheightRow}{Size of the row and column dendrograms.
+Use "\code{0}" to disable.}
+
+\item{treeheightCol}{Size of the row and column dendrograms.
+Use "\code{0}" to disable.}
+
 \item{legend}{Show the color legend.}
+
+\item{color}{Hexadecimal color function to use for plot. We recommend any of
+these from the viridis package:
+\itemize{
+\item \code{\link[viridis:viridis]{viridis::viridis()}} (\emph{default}).
+\item \code{\link[viridis:inferno]{viridis::inferno()}}.
+\item \code{\link[viridis:magma]{viridis::magma()}}.
+\item \code{\link[viridis:plasma]{viridis::plasma()}}.
+}}
+
+\item{legendColor}{Hexadecimal color function to use for legend labels.}
+
+\item{borderColor}{\emph{Optional.} Border color. Disabled by default for
+improved aesthetics.}
+
+\item{title}{\emph{Optional.} Plot title.}
 }
 \value{
 Show heatmap and invisibly return a \code{list} of the components.

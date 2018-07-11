@@ -21,8 +21,8 @@ NULL
 # Constructors =================================================================
 .plotQuantileHeatmap.matrix <- function(  # nolint
     object,
-    n = 10L,
     annotationCol = NULL,
+    n = 10L,
     clusterRows = TRUE,
     clusterCols = TRUE,
     showRownames = FALSE,
@@ -118,7 +118,23 @@ NULL
 setMethod(
     "plotQuantileHeatmap",
     signature("SummarizedExperiment"),
-    function(object, interestingGroups, ...) {
+    function(
+        object,
+        interestingGroups,
+        n = 10L,
+        clusterRows = TRUE,
+        clusterCols = TRUE,
+        showRownames = FALSE,
+        showColnames = TRUE,
+        treeheightRow = 0L,
+        treeheightCol = 50L,
+        legend = FALSE,
+        color = viridis,
+        legendColor = NULL,
+        borderColor = NULL,
+        title = NULL,
+        ...
+    ) {
         object <- suppressWarnings(convertGenesToSymbols(object))
         counts <- assay(object)
         if (missing(interestingGroups)) {
