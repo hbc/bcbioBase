@@ -156,6 +156,18 @@ setMethod(
         .plotQuantileHeatmap.matrix(
             object = counts,
             annotationCol = annotationCol,
+            n = n,
+            clusterRows = clusterRows,
+            clusterCols = clusterCols,
+            showRownames = showRownames,
+            showColnames = showColnames,
+            treeheightRow = treeheightRow,
+            treeheightCol = treeheightCol,
+            legend = legend,
+            color = color,
+            legendColor = legendColor,
+            borderColor = borderColor,
+            title = title,
             ...
         )
     }
