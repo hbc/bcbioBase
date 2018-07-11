@@ -23,8 +23,8 @@ uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
 sampleDirs(uploadDir)
 }
 \seealso{
-Other Data Functions: \code{\link{counts}},
-  \code{\link{flatFiles}}, \code{\link{minimalSampleData}},
+Other Data Functions: \code{\link{flatFiles}},
+  \code{\link{minimalSampleData}},
   \code{\link{sampleData}}, \code{\link{sampleNames}},
   \code{\link{uniteInterestingGroups}}
 }

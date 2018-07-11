@@ -19,9 +19,9 @@ Minimal Sample Data
 minimalSampleData(c("sample 1", "sample 2"))
 }
 \seealso{
-Other Data Functions: \code{\link{counts}},
-  \code{\link{flatFiles}}, \code{\link{sampleData}},
-  \code{\link{sampleDirs}}, \code{\link{sampleNames}},
+Other Data Functions: \code{\link{flatFiles}},
+  \code{\link{sampleData}}, \code{\link{sampleDirs}},
+  \code{\link{sampleNames}},
   \code{\link{uniteInterestingGroups}}
 }
 \author{

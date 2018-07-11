@@ -66,8 +66,8 @@ glimpse(sampleData(x))
 \seealso{
 \link{metadataBlacklist}.
 
-Other Data Functions: \code{\link{counts}},
-  \code{\link{flatFiles}}, \code{\link{minimalSampleData}},
+Other Data Functions: \code{\link{flatFiles}},
+  \code{\link{minimalSampleData}},
   \code{\link{sampleDirs}}, \code{\link{sampleNames}},
   \code{\link{uniteInterestingGroups}}
 }

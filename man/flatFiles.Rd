@@ -29,8 +29,7 @@ class(x)
 names(x)
 }
 \seealso{
-Other Data Functions: \code{\link{counts}},
-  \code{\link{minimalSampleData}},
+Other Data Functions: \code{\link{minimalSampleData}},
   \code{\link{sampleData}}, \code{\link{sampleDirs}},
   \code{\link{sampleNames}},
   \code{\link{uniteInterestingGroups}}

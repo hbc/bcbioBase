@@ -11,9 +11,6 @@ rse_bcb
 \description{
 \code{RangedSummarizedExperiment} Coerced from \code{bcbioRNASeq}
 }
-\seealso{
-Other Minimal Example Data: \code{\link{rse_dds}}
-}
 \author{
 Michael Steinbaugh
 }

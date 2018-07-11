@@ -17,8 +17,8 @@ sampleNames(rse_bcb)
 sampleNames(rse_dds)
 }
 \seealso{
-Other Data Functions: \code{\link{counts}},
-  \code{\link{flatFiles}}, \code{\link{minimalSampleData}},
+Other Data Functions: \code{\link{flatFiles}},
+  \code{\link{minimalSampleData}},
   \code{\link{sampleData}}, \code{\link{sampleDirs}},
   \code{\link{uniteInterestingGroups}}
 }
