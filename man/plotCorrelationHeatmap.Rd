@@ -65,7 +65,11 @@ Construct a correlation heatmap comparing the columns of the matrix.
 }
 \examples{
 # SummarizedExperiment ====
+plotCorrelationHeatmap(rse_bcb)
+
 plotCorrelationHeatmap(rse_dds, interestingGroups = "condition")
+
+# Custom color palettes
 plotCorrelationHeatmap(rse_dds, color = magma, legendColor = viridis)
 plotCorrelationHeatmap(rse_dds, color = NULL)
 }

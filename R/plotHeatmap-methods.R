@@ -36,6 +36,8 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
+#' plotHeatmap(rse_bcb)
+#'
 #' plotHeatmap(rse_dds, interestingGroups = "condition")
 #'
 #' # Disable column clustering
