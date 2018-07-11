@@ -69,7 +69,7 @@ Plot Heatmap with Quantile Breaks
 }
 \examples{
 # SummarizedExperiment ====
-plotQuantileHeatmap(rse_dds)
+plotQuantileHeatmap(rse_dds, interestingGroups = "condition")
 
 # Disable column clustering
 plotQuantileHeatmap(rse_dds, clusterCols = FALSE)

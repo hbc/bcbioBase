@@ -10,7 +10,7 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' plotQuantileHeatmap(rse_dds)
+#' plotQuantileHeatmap(rse_dds, interestingGroups = "condition")
 #'
 #' # Disable column clustering
 #' plotQuantileHeatmap(rse_dds, clusterCols = FALSE)
@@ -100,7 +100,7 @@ setMethod(
         }
 
         # Calculate the quantile breaks
-        breaks <- .quantileBreaks(object, n = n)
+        breaks <- .quantileBreaks(mat, n = n)
 
         annotationCol <- .pheatmapAnnotationCol(annotationCol)
         assertFormalAnnotationCol(object, annotationCol)
