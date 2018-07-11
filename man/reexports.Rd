@@ -3,6 +3,10 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
+\alias{interestingGroups}
+\alias{reexports}
+\alias{interestingGroups<-}
+\alias{reexports}
 \alias{pull}
 \alias{reexports}
 \alias{GRanges}
@@ -73,6 +77,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{basejump}{\code{\link[basejump]{interestingGroups}}, \code{\link[basejump]{interestingGroups<-}}}
+
   \item{dplyr}{\code{\link[dplyr]{pull}}}
 
   \item{GenomicRanges}{\code{\link[GenomicRanges]{GRanges}}}
