@@ -103,6 +103,50 @@ assertFormalAnnotationCol <- function(...) {
     .Defunct()
 }
 
+#' @importFrom basejump assertFormalInterestingGroups
+#' @export
+basejump::assertFormalInterestingGroups
+
+#' @importFrom basejump convertGenesToSymbols
+#' @export
+basejump::convertGenesToSymbols
+
+#' @importFrom basejump gene2symbol
+#' @export
+basejump::gene2symbol
+
+#' @importFrom basejump interestingGroups
+#' @export
+basejump::interestingGroups
+
+#' @importFrom basejump interestingGroups<-
+#' @export
+basejump::`interestingGroups<-`
+
+#' @importFrom basejump sampleData
+#' @export
+basejump::sampleData
+
+#' @importFrom basejump sampleData<-
+#' @export
+basejump::`sampleData<-`
+
+#' @importFrom basejump sampleNames
+#' @export
+basejump::sampleNames
+
+#' @importFrom basejump sanitizeSampleData
+#' @export
+basejump::sanitizeSampleData
+
+#' @importFrom basejump selectSamples
+#' @export
+basejump::selectSamples
+
+#' @importFrom basejump uniteInterestingGroups
+#' @export
+basejump::uniteInterestingGroups
+
 
 
 # nocov end
