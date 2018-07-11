@@ -38,7 +38,7 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' plotHeatmap(rse_dds)
+#' plotHeatmap(rse_dds, interestingGroups = "condition")
 #'
 #' # Disable column clustering
 #' plotHeatmap(rse_dds, clusterCols = FALSE)
@@ -132,6 +132,17 @@ setMethod(
     function(
         object,
         interestingGroups,
+        scale = c("row", "column", "none"),
+        clusterRows = TRUE,
+        clusterCols = TRUE,
+        showRownames = FALSE,
+        showColnames = TRUE,
+        treeheightRow = 0L,
+        treeheightCol = 50L,
+        color = viridis,
+        legendColor = NULL,
+        borderColor = NULL,
+        title = NULL,
         ...
     ) {
         object <- suppressWarnings(convertGenesToSymbols(object))
@@ -154,7 +165,18 @@ setMethod(
         }
         .plotHeatmap.matrix(
             object = counts,
+            scale = scale,
             annotationCol = annotationCol,
+            clusterRows = clusterRows,
+            clusterCols = clusterCols,
+            showRownames = showRownames,
+            showColnames = showColnames,
+            treeheightRow = treeheightRow,
+            treeheightCol = treeheightCol,
+            color = color,
+            legendColor = legendColor,
+            borderColor = borderColor,
+            title = title,
             ...
         )
     }

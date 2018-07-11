@@ -9,7 +9,11 @@
 \usage{
 plotHeatmap(object, ...)
 
-\S4method{plotHeatmap}{SummarizedExperiment}(object, interestingGroups, ...)
+\S4method{plotHeatmap}{SummarizedExperiment}(object, interestingGroups,
+  scale = c("row", "column", "none"), clusterRows = TRUE,
+  clusterCols = TRUE, showRownames = FALSE, showColnames = TRUE,
+  treeheightRow = 0L, treeheightCol = 50L, color = viridis,
+  legendColor = NULL, borderColor = NULL, title = NULL, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -22,9 +26,6 @@ arguments should be formatted in camel case, not snake case.}
 \item{scale}{\code{character} indicating whether the values should be centered and
 scaled in either the row or column direction ("\code{row}", "\code{column}"), or
 remain unscaled ("\code{none}").}
-
-\item{annotationCol}{\emph{Optional.} \code{data.frame} that defines annotation
-mappings for the columns.}
 
 \item{clusterRows, clusterCols}{\code{logical} determining if rows or columns
 should be arranged with hierarchical clustering. Alternatively, can define
@@ -50,6 +51,9 @@ these from the viridis package:
 improved aesthetics.}
 
 \item{title}{\emph{Optional.} Plot title.}
+
+\item{annotationCol}{\emph{Optional.} \code{data.frame} that defines annotation
+mappings for the columns.}
 }
 \value{
 Show heatmap and invisibly return a \code{list} of the components.
@@ -61,7 +65,7 @@ overrided by setting \code{clusterRows} or \code{clusterCols} to \code{FALSE}.
 }
 \examples{
 # SummarizedExperiment ====
-plotHeatmap(rse_dds)
+plotHeatmap(rse_dds, interestingGroups = "condition")
 
 # Disable column clustering
 plotHeatmap(rse_dds, clusterCols = FALSE)
