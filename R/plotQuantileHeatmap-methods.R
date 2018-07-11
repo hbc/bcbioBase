@@ -103,7 +103,6 @@ setMethod(
         breaks <- .quantileBreaks(mat, n = n)
 
         annotationCol <- .pheatmapAnnotationCol(annotationCol)
-        assertFormalAnnotationCol(object, annotationCol)
         annotationColors <- .pheatmapAnnotationColors(
             annotationCol = annotationCol,
             legendColor = legendColor

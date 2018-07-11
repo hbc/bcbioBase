@@ -94,7 +94,6 @@ setMethod(
         }
 
         annotationCol <- .pheatmapAnnotationCol(annotationCol)
-        assertFormalAnnotationCol(object, annotationCol)
         annotationColors <- .pheatmapAnnotationColors(
             annotationCol = annotationCol,
             legendColor = legendColor
