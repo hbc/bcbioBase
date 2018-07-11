@@ -43,17 +43,6 @@ setGeneric(
 
 
 
-#' @rdname gene2symbol
-#' @export
-setGeneric(
-    "gene2symbol",
-    function(object) {
-        standardGeneric("gene2symbol")
-    }
-)
-
-
-
 #' @rdname interestingGroups
 #' @export
 setGeneric(
@@ -181,17 +170,6 @@ setGeneric(
     "sampleData<-",
     function(object, ..., value) {
         standardGeneric("sampleData<-")
-    }
-)
-
-
-
-#' @rdname selectSamples
-#' @export
-setGeneric(
-    "selectSamples",
-    function(object, ...) {
-        standardGeneric("selectSamples")
     }
 )
 

@@ -7,6 +7,8 @@
   `SummarizedExperiment` class objects, for better simplicity and metadata
   handling. The internal method code has been consolidated and simplified,
   working internally on the main assay inside the S4 object.
+- Migrated `convertGenesToSymbols()`, `gene2symbol()`, and `selectSamples()`
+  S4 methods for `SummarizedExperiment` to the [basejump][] package.
 
 ## Minor changes
 

@@ -39,7 +39,7 @@ LazyData: TRUE
 Depends:
     R (>= 3.4),
     SummarizedExperiment,
-    basejump (>= 0.5.10)
+    basejump (>= 0.6)
 Imports:
     assertive.base,
     assertive.files,

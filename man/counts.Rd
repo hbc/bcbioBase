@@ -23,10 +23,9 @@ x <- counts(rse_dds)
 summary(x)
 }
 \seealso{
-Other Data Functions: \code{\link{convertGenesToSymbols}},
-  \code{\link{flatFiles}}, \code{\link{gene2symbol}},
+Other Data Functions: \code{\link{flatFiles}},
   \code{\link{minimalSampleData}},
   \code{\link{sampleData}}, \code{\link{sampleDirs}},
-  \code{\link{sampleNames}}, \code{\link{selectSamples}},
+  \code{\link{sampleNames}},
   \code{\link{uniteInterestingGroups}}
 }
