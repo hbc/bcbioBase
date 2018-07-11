@@ -22,81 +22,10 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' plotCorrelationHeatmap(rse_dds)
+#' plotCorrelationHeatmap(rse_dds, interestingGroups = "condition")
 #' plotCorrelationHeatmap(rse_dds, color = magma, legendColor = viridis)
 #' plotCorrelationHeatmap(rse_dds, color = NULL)
 NULL
-
-
-
-# Constructors =================================================================
-.plotCorrelationHeatmap.matrix <- function(  # nolint
-    object,
-    method = c("pearson", "spearman"),
-    clusteringMethod = "ward.D2",
-    annotationCol = NULL,
-    showRownames = TRUE,
-    showColnames = TRUE,
-    treeheightRow = 0L,
-    treeheightCol = 50L,
-    color = viridis,
-    legendColor = NULL,
-    borderColor = NULL,
-    title = TRUE,
-    ...
-) {
-    assert_has_dims(object)
-    assert_all_are_greater_than(nrow(object), 1L)
-    assert_all_are_greater_than(ncol(object), 1L)
-    method <- match.arg(method)
-    assert_is_a_bool(showColnames)
-    assert_is_a_bool(showRownames)
-    assert_is_a_number(treeheightRow)
-    assert_is_a_number(treeheightCol)
-    assert_all_are_non_negative(treeheightRow, treeheightCol)
-    assertIsHexColorFunctionOrNULL(color)
-    assertIsHexColorFunctionOrNULL(legendColor)
-    assertIsAStringOrNULL(borderColor)
-    if (!is_a_string(borderColor)) {
-        borderColor <- NA
-    }
-    if (isTRUE(title)) {
-        title <- paste(method, "correlation")
-    } else if (!is_a_string(title)) {
-        title <- NA
-    }
-
-    # Correlation matrix
-    mat <- cor(object, method = method)
-
-    annotationCol <- .pheatmapAnnotationCol(annotationCol)
-    assertFormalAnnotationCol(object, annotationCol)
-    annotationColors <- .pheatmapAnnotationColors(
-        annotationCol = annotationCol,
-        legendColor = legendColor
-    )
-    color <- .pheatmapColor(color)
-
-    # Return pretty heatmap with modified defaults
-    args <- list(
-        "mat" = mat,
-        "annotationCol" = annotationCol,
-        "annotationColors" = annotationColors,
-        "borderColor" = borderColor,
-        "clusteringMethod" = clusteringMethod,
-        "clusteringDistanceRows" = "correlation",
-        "clusteringDistanceCols" = "correlation",
-        "color" = color,
-        "main" = title,
-        "showColnames" = showColnames,
-        "showRownames" = showRownames,
-        "treeheightCol" = treeheightCol,
-        "treeheightRow" = treeheightRow,
-        ...
-    )
-    args <- .pheatmapArgs(args)
-    do.call(pheatmap, args)
-}
 
 
 
@@ -106,8 +35,46 @@ NULL
 setMethod(
     "plotCorrelationHeatmap",
     signature("SummarizedExperiment"),
-    function(object, interestingGroups, ...) {
-        counts <- assay(object)
+    function(
+        object,
+        interestingGroups,
+        method = c("pearson", "spearman"),
+        clusteringMethod = "ward.D2",
+        showRownames = TRUE,
+        showColnames = TRUE,
+        treeheightRow = 0L,
+        treeheightCol = 50L,
+        color = viridis,
+        legendColor = NULL,
+        borderColor = NULL,
+        title = TRUE,
+        ...
+    ) {
+        assert_all_are_greater_than(nrow(object), 1L)
+        assert_all_are_greater_than(ncol(object), 1L)
+        method <- match.arg(method)
+        assert_is_a_string(clusteringMethod)
+        assert_is_a_bool(showColnames)
+        assert_is_a_bool(showRownames)
+        assert_is_a_number(treeheightRow)
+        assert_is_a_number(treeheightCol)
+        assert_all_are_non_negative(treeheightRow, treeheightCol)
+        assertIsHexColorFunctionOrNULL(color)
+        assertIsHexColorFunctionOrNULL(legendColor)
+        assertIsAStringOrNULL(borderColor)
+        if (!is_a_string(borderColor)) {
+            borderColor <- NA
+        }
+        if (isTRUE(title)) {
+            title <- paste(method, "correlation")
+        } else if (!is_a_string(title)) {
+            title <- NA
+        }
+
+        # Correlation matrix
+        mat <- as.matrix(assay(object))
+        mat <- cor(mat, method = method)
+
         if (missing(interestingGroups)) {
             interestingGroups <- bcbioBase::interestingGroups(object)
         }
@@ -116,18 +83,42 @@ setMethod(
         } else {
             annotationCol <- NULL
         }
+
         # Use `sampleName`, if defined
         sampleName <- colData(object)[["sampleName"]]
         if (length(sampleName)) {
-            colnames(counts) <- sampleName
+            colnames(mat) <- sampleName
             if (length(annotationCol)) {
                 rownames(annotationCol) <- sampleName
             }
         }
-        .plotCorrelationHeatmap.matrix(
-            object = counts,
+
+        annotationCol <- .pheatmapAnnotationCol(annotationCol)
+        assertFormalAnnotationCol(object, annotationCol)
+        annotationColors <- .pheatmapAnnotationColors(
             annotationCol = annotationCol,
+            legendColor = legendColor
+        )
+        color <- .pheatmapColor(color)
+
+        # Return pretty heatmap with modified defaults
+        args <- list(
+            mat = mat,
+            annotationCol = annotationCol,
+            annotationColors = annotationColors,
+            borderColor = borderColor,
+            clusteringMethod = clusteringMethod,
+            clusteringDistanceRows = "correlation",
+            clusteringDistanceCols = "correlation",
+            color = color,
+            main = title,
+            showColnames = showColnames,
+            showRownames = showRownames,
+            treeheightCol = treeheightCol,
+            treeheightRow = treeheightRow,
             ...
         )
+        args <- .pheatmapArgs(args)
+        do.call(pheatmap, args)
     }
 )
