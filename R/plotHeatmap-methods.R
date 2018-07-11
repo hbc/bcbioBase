@@ -11,8 +11,6 @@
 #' @param scale `character` indicating whether the values should be centered and
 #'   scaled in either the row or column direction ("`row`", "`column`"), or
 #'   remain unscaled ("`none`").
-#' @param annotationCol *Optional.* `data.frame` that defines annotation
-#'   mappings for the columns.
 #' @param clusterRows,clusterCols `logical` determining if rows or columns
 #'   should be arranged with hierarchical clustering. Alternatively, can define
 #'   an `hclust` object.

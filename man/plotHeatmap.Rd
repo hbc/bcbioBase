@@ -51,9 +51,6 @@ these from the viridis package:
 improved aesthetics.}
 
 \item{title}{\emph{Optional.} Plot title.}
-
-\item{annotationCol}{\emph{Optional.} \code{data.frame} that defines annotation
-mappings for the columns.}
 }
 \value{
 Show heatmap and invisibly return a \code{list} of the components.
