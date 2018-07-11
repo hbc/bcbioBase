@@ -48,7 +48,6 @@ Imports:
     assertive.sets,
     assertive.strings,
     assertive.types,
-    Biobase,
     BiocGenerics,
     Biostrings,
     dendsort (>= 0.3),
