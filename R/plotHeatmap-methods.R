@@ -70,6 +70,9 @@ setMethod(
     ) {
         assert_all_are_greater_than(nrow(object), 1L)
         assert_all_are_greater_than(ncol(object), 1L)
+        if (missing(interestingGroups)) {
+            interestingGroups <- bcbioBase::interestingGroups(object)
+        }
         scale <- match.arg(scale)
         assert_is_a_bool(clusterCols)
         assert_is_a_bool(clusterRows)
@@ -97,9 +100,6 @@ setMethod(
             mat <- mat[rowSums(mat) > 0L, , drop = FALSE]
         }
 
-        if (missing(interestingGroups)) {
-            interestingGroups <- bcbioBase::interestingGroups(object)
-        }
         if (length(interestingGroups)) {
             annotationCol <- colData(object)[, interestingGroups, drop = FALSE]
         } else {
