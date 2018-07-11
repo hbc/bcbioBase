@@ -19,10 +19,11 @@
 #'   assert_is_a_string assert_is_all_of assert_is_an_integer assert_is_any_of
 #'   assert_is_character assert_is_factor assert_is_function assert_is_integer
 #'   assert_is_list assert_is_matrix assert_is_tbl is_a_string
-#' @importFrom basejump assertHasRownames assertIsAnImplicitInteger
-#'   assertIsAStringOrNULL assertIsHexColorFunctionOrNULL assertIsTx2gene camel
-#'   emptyRanges fixNA localOrRemoteFile makeNames printString
-#'   readFileByExtension readYAML removeNA snake
+#' @importFrom basejump assertFormalInterestingGroups assertHasRownames
+#'   assertIsAnImplicitInteger assertIsAStringOrNULL
+#'   assertIsHexColorFunctionOrNULL assertIsTx2gene camel emptyRanges fixNA
+#'   localOrRemoteFile makeNames printString readFileByExtension readYAML
+#'   removeNA snake
 #' @importFrom Biostrings reverseComplement
 #' @importFrom dendsort dendsort
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
