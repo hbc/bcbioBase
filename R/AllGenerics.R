@@ -43,28 +43,6 @@ setGeneric(
 
 
 
-#' @rdname interestingGroups
-#' @export
-setGeneric(
-    "interestingGroups",
-    function(object, ...) {
-        standardGeneric("interestingGroups")
-    }
-)
-
-
-
-#' @rdname interestingGroups
-#' @export
-setGeneric(
-    "interestingGroups<-",
-    function(object, ..., value) {
-        standardGeneric("interestingGroups<-")
-    }
-)
-
-
-
 #' @rdname AllGenerics
 #' @export
 setGeneric(
@@ -148,38 +126,5 @@ setGeneric(
     "plotViolin",
     function(object, ...) {
         standardGeneric("plotViolin")
-    }
-)
-
-
-
-#' @rdname sampleData
-#' @export
-setGeneric(
-    "sampleData",
-    function(object, ...) {
-        standardGeneric("sampleData")
-    }
-)
-
-
-
-#' @rdname sampleData
-#' @export
-setGeneric(
-    "sampleData<-",
-    function(object, ..., value) {
-        standardGeneric("sampleData<-")
-    }
-)
-
-
-
-#' @rdname uniteInterestingGroups
-#' @export
-setGeneric(
-    "uniteInterestingGroups",
-    function(object, ...) {
-        standardGeneric("uniteInterestingGroups")
     }
 )

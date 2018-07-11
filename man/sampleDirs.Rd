@@ -24,9 +24,7 @@ sampleDirs(uploadDir)
 }
 \seealso{
 Other Data Functions: \code{\link{flatFiles}},
-  \code{\link{minimalSampleData}},
-  \code{\link{sampleData}}, \code{\link{sampleNames}},
-  \code{\link{uniteInterestingGroups}}
+  \code{\link{minimalSampleData}}
 }
 \author{
 Michael Steinbaugh

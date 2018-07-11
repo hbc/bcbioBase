@@ -30,9 +30,7 @@ names(x)
 }
 \seealso{
 Other Data Functions: \code{\link{minimalSampleData}},
-  \code{\link{sampleData}}, \code{\link{sampleDirs}},
-  \code{\link{sampleNames}},
-  \code{\link{uniteInterestingGroups}}
+  \code{\link{sampleDirs}}
 }
 \author{
 Michael Steinbaugh
