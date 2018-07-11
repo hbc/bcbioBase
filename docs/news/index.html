@@ -106,6 +106,13 @@
     <div id="bcbiobase-0-2-17-2018-07-09" class="section level1">
 <h1 class="page-header">
 <a href="#bcbiobase-0-2-17-2018-07-09" class="anchor"></a>bcbioBase 0.2.17 (2018-07-09)</h1>
+<div id="major-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h2>
+<ul>
+<li>Heatmap functions (<code>plotHeatmap()</code>, <code>plotCorrelationHeatmap()</code>, and <code>plotQuantileHeatmap()</code>) now only provide method support for <code>SummarizedExperiment</code> class objects, for better simplicity and metadata handling. The internal method code has been consolidated and simplified, working internally on the main assay inside the S4 object.</li>
+</ul>
+</div>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
@@ -263,9 +270,9 @@
     <div id="bcbiobase-0-2-5-2018-04-24" class="section level1">
 <h1 class="page-header">
 <a href="#bcbiobase-0-2-5-2018-04-24" class="anchor"></a>bcbioBase 0.2.5 (2018-04-24)</h1>
-<div id="major-changes" class="section level2">
+<div id="major-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-1" class="anchor"></a>Major changes</h2>
 <ul>
 <li>
 <code>sampleData()</code> now supports <code>clean = TRUE</code> argument, which will hide columns that contain metrics or other calculations from the user. This is useful when preparing an R Markdown report, where we only want to show relevant metadata (e.g. factor columns). This is enabled by default.</li>
@@ -326,9 +333,9 @@
     <div id="bcbiobase-0-2-1-2018-04-13" class="section level1">
 <h1 class="page-header">
 <a href="#bcbiobase-0-2-1-2018-04-13" class="anchor"></a>bcbioBase 0.2.1 (2018-04-13)</h1>
-<div id="major-changes-1" class="section level2">
+<div id="major-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-1" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-2" class="anchor"></a>Major changes</h2>
 <ul>
 <li>
 <code><a href="../reference/convertGenesToSymbols.html">convertGenesToSymbols()</a></code> now has method support for <code>SummarizedExperiment</code>.</li>
@@ -352,9 +359,9 @@
     <div id="bcbiobase-0-2-0-2018-03-22" class="section level1">
 <h1 class="page-header">
 <a href="#bcbiobase-0-2-0-2018-03-22" class="anchor"></a>bcbioBase 0.2.0 (2018-03-22)</h1>
-<div id="major-changes-2" class="section level2">
+<div id="major-changes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-2" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-3" class="anchor"></a>Major changes</h2>
 <ul>
 <li>Added <code>sampleData()</code> generic. Providing method support for <code>SummarizedExperiment</code> class. This generic provides consistent sample metadata support in both the <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> packages. For <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a>, <code>colData()</code> returns information about the cells, not the samples. For <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a>, <code>colData()</code> and <code>sampleData()</code> provide similar information on the samples.</li>
 <li>Added <code>uniteInterestingGroups()</code> as a generic. Provides support for adding an <code>interestingGroups</code> column to a data frame.</li>
