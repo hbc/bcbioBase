@@ -2,6 +2,8 @@
 #'
 #' Base functions and generics for bcbio R packages.
 #'
+#' @importClassesFrom SummarizedExperiment SummarizedExperiment
+#'
 #' @importFrom assertive.base assert_are_identical assert_is_identical_to_na
 #' @importFrom assertive.files assert_all_are_dirs assert_all_are_existing_files
 #' @importFrom assertive.numbers assert_all_are_greater_than
