@@ -71,7 +71,7 @@ setMethod(
         assert_all_are_greater_than(nrow(object), 1L)
         assert_all_are_greater_than(ncol(object), 1L)
         if (missing(interestingGroups)) {
-            interestingGroups <- bcbioBase::interestingGroups(object)
+            interestingGroups <- basejump::interestingGroups(object)
         }
         scale <- match.arg(scale)
         assert_is_a_bool(clusterCols)

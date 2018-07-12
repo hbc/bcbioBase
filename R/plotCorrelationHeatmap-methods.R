@@ -57,7 +57,7 @@ setMethod(
         assert_all_are_greater_than(nrow(object), 1L)
         assert_all_are_greater_than(ncol(object), 1L)
         if (missing(interestingGroups)) {
-            interestingGroups <- bcbioBase::interestingGroups(object)
+            interestingGroups <- basejump::interestingGroups(object)
         }
         method <- match.arg(method)
         assert_is_a_string(clusteringMethod)
