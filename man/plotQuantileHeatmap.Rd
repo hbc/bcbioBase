@@ -69,7 +69,7 @@ Plot Heatmap with Quantile Breaks
 }
 \examples{
 # SummarizedExperiment ====
-plotQunatileHeatmap(rse_bcb)
+plotQuantileHeatmap(rse_bcb)
 
 plotQuantileHeatmap(rse_dds, interestingGroups = "condition")
 
