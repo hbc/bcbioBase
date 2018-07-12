@@ -55,7 +55,7 @@
 #'   SummarizedExperiment
 #' @importFrom tibble as_tibble column_to_rownames has_rownames is_tibble
 #'   rownames_to_column tibble
-#' @importFrom tidyr expand unite
+#' @importFrom tidyr expand
 #' @importFrom utils globalVariables sessionInfo
 #' @importFrom viridis viridis
 "_PACKAGE"

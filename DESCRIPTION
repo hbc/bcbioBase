@@ -48,7 +48,6 @@ Imports:
     assertive.sets,
     assertive.strings,
     assertive.types,
-    Biobase,
     BiocGenerics,
     Biostrings,
     dendsort (>= 0.3),
@@ -81,7 +80,7 @@ Imports:
 Suggests:
     testthat (>= 2.0)
 Remotes:
-    steinbaugh/basejump
+    steinbaugh/basejump@develop
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
