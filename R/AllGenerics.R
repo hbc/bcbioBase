@@ -10,6 +10,7 @@ NULL
 
 
 
+# Deprecate this generic in a future release
 #' @rdname AllGenerics
 #' @export
 setGeneric(
