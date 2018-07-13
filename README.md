@@ -15,11 +15,24 @@ This is an [R][] package.
 
 ### [Bioconductor][] method
 
+#### R >= 3.5
+
 ```r
 install.packages("BiocManager")
 library(BiocManager)
+install("devtools")
 install("GenomeInfoDbData")
 install("hbc/bcbioBase")
+```
+
+#### R < 3.5
+
+```r
+## try http:// if https:// URLs are not supported
+source("https://bioconductor.org/biocLite.R")
+biocLite("devtools")
+biocLite("GenomeInfoDbData")
+biocLite("hbc/bcbioBase")
 ```
 
 ### [conda][] method
