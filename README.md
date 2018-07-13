@@ -16,12 +16,10 @@ This is an [R][] package.
 ### [Bioconductor][] method
 
 ```r
-## try http:// if https:// URLs are not supported
-source("https://bioconductor.org/biocLite.R")
-biocLite("devtools")
-biocLite("remotes")
-biocLite("GenomeInfoDbData")
-biocLite("hbc/bcbioBase")
+install.packages("BiocManager")
+library(BiocManager)
+install("GenomeInfoDbData")
+install("hbc/bcbioBase")
 ```
 
 ### [conda][] method

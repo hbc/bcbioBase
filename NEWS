@@ -1,3 +1,36 @@
+# bcbioBase 0.3.0 (2018-07-13)
+
+## Major changes
+
+- Moved some generics that provide `SummarizedExperiment` method suport to
+  [basejump][] package: `gene2symbol()`, `interestingGroups()`,
+  `interestingGroups<-()`, `sampleData()`, `sampleData<-()`,
+  `sampleNames()`, `sanitizeSampleData()`, `selectSamples()`,
+  `uniteInterestingGroups()`.
+- Moved method support for `SummarizedExperiment` to [basejump][]:
+  `convertGenesToSymbols()`, `counts()`, `gene2symbol()`, `interestingGroups()`,
+  `sampleData()`, etc.
+- Heatmap functions now only provide `SummarizedExperiment` method support.
+  The documentation for these heatmap functions has been improved (and
+  simplified), showing the supported arguments more clearly.
+
+## Minor changes
+
+- Now using `aes()` instead of `aes_string()` for all internal [ggplot2][] code,
+  which uses tidyeval (v3.0 update).
+- Moved `rse_bcb` and `rse_bcb` example data to [basejump][], for unit testing.
+  These datasets are still available in [bcbioBase][].
+- Made `assertFormalAnnotationCol()` function defunct. No longer using to check
+  `annotationCol` argument integration in heatmap functions, since we're now
+  providing only `SummarizedExperiment` method support, instead of matrix
+  method support (which is too complicated and error prone for users).
+- Moved `assertFormalInterestingGroups()` function to [basejump][], where the
+  other assert check functions are defined. This helps improve package
+  consistency.
+- Updated unit tests to reflect changes in the number of exported generics.
+
+
+
 # bcbioBase 0.2.17 (2018-07-09)
 
 ## Major changes
@@ -45,7 +78,7 @@
 
 - Improved internal `interestingGroups` handling inside `plotHeatmap()` family
   of functions.
-- Removed message about transgeneNames and spikeNames in 
+- Removed message about transgeneNames and spikeNames in
   `prepareSummarizedExperiment()` if missing transcripts are present. Now the
   function simply lists the genes that don't have metadata in `rowRanges()`.
 - Reorganized assert checks imports in `bcbioBase-package.R` file.
