@@ -31,27 +31,6 @@
 
 
 
-# bcbioBase 0.2.17 (2018-07-09)
-
-## Major changes
-
-- Heatmap functions (`plotHeatmap()`, `plotCorrelationHeatmap()`, and
-  `plotQuantileHeatmap()`) now only provide method support for
-  `SummarizedExperiment` class objects, for better simplicity and metadata
-  handling. The internal method code has been consolidated and simplified,
-  working internally on the main assay inside the S4 object.
-- Migrated `convertGenesToSymbols()`, `gene2symbol()`, and `selectSamples()`
-  S4 methods for `SummarizedExperiment` to the [basejump][] package.
-
-## Minor changes
-
-- Now requiring [ggplot2][] v3.0 internally.
-- Switched to using `aes()` instead of `aes_string()` internally, using
-  tidyeval.
-- Updated viridis functions in reexports.
-
-
-
 # bcbioBase 0.2.16 (2018-06-28)
 
 ## Minor changes
