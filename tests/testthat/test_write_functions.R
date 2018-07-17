@@ -15,16 +15,16 @@ if (file.exists("token.rds")) {
             lapply(x[[1L]], class),
             list(
                 ".tag" = "character",
-                "url" = "character",
-                "id" = "character",
-                "name" = "character",
+                url = "character",
+                id = "character",
+                name = "character",
                 "path_lower" = "character",
                 "link_permissions" = "list",
                 "preview_type" = "character",
                 "client_modified" = "character",
                 "server_modified" = "character",
-                "rev" = "character",
-                "size" = "integer"
+                rev = "character",
+                size = "integer"
             )
         )
     })

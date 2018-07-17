@@ -5,7 +5,7 @@ context("Prepare Functions")
 # prepareSummarizedExperiment ==================================================
 test_that("prepareSummarizedExperiment : RangedSummarizedExperiment", {
     rse <- prepareSummarizedExperiment(
-        assays = list("counts" = mat),
+        assays = list(counts = mat),
         rowRanges = rr,
         colData = cd
     )
@@ -15,17 +15,17 @@ test_that("prepareSummarizedExperiment : RangedSummarizedExperiment", {
     expect_identical(
         lapply(metadata(rse), class),
         list(
-            "date" = "Date",
-            "wd" = "character",
-            "utilsSessionInfo" = "sessionInfo",
-            "devtoolsSessionInfo" = "session_info"
+            date = "Date",
+            wd = "character",
+            utilsSessionInfo = "sessionInfo",
+            devtoolsSessionInfo = "session_info"
         )
     )
 })
 
 test_that("prepareSummarizedExperiment : Super minimal", {
     rse <- suppressWarnings(prepareSummarizedExperiment(
-        assays = list("counts" = mat),
+        assays = list(counts = mat),
         rowRanges = NULL,
         colData = NULL
     ))
@@ -36,7 +36,7 @@ test_that("prepareSummarizedExperiment : Super minimal", {
 test_that("prepareSummarizedExperiment : Spike-in support", {
     rownames(mat)[1L:2L] <- c("EGFP", "ERCC")
     rse <- prepareSummarizedExperiment(
-        assays = list("counts" = mat),
+        assays = list(counts = mat),
         rowRanges = rr[3L:4L],
         colData = cd,
         transgeneNames = "EGFP",
@@ -58,7 +58,7 @@ test_that("prepareSummarizedExperiment : Strict names", {
     rownames(matBadRows) <- paste0(rownames(matBadRows), "-XXX")
     expect_error(
         prepareSummarizedExperiment(
-            assays = list("counts" = matBadRows),
+            assays = list(counts = matBadRows),
             rowRanges = rr,
             colData = cd
         ),
@@ -68,7 +68,7 @@ test_that("prepareSummarizedExperiment : Strict names", {
     colnames(matBadCols) <- paste0(colnames(matBadCols), "-XXX")
     expect_error(
         prepareSummarizedExperiment(
-            assays = list("counts" = matBadCols),
+            assays = list(counts = matBadCols),
             rowRanges = rr,
             colData = cd
         ),
@@ -86,7 +86,7 @@ test_that("prepareSummarizedExperiment : Duplicate names", {
     )
     expect_error(
         prepareSummarizedExperiment(
-            assays = list("counts" = matDupeRows),
+            assays = list(counts = matDupeRows),
             rowRanges = rr,
             colData = cd
         ),
@@ -104,7 +104,7 @@ test_that("prepareSummarizedExperiment : Duplicate names", {
     )
     expect_error(
         prepareSummarizedExperiment(
-            assays = list("counts" = matDupeCols),
+            assays = list(counts = matDupeCols),
             rowRanges = rr,
             colData = cd
         ),
@@ -119,7 +119,7 @@ test_that("prepareSummarizedExperiment : Column data failure", {
     # Bad pass-in of objects not supporting `dimnames()`
     expect_error(
         prepareSummarizedExperiment(
-            assays = list("counts" = "yyy"),
+            assays = list(counts = "yyy"),
             rowRanges = rr,
             colData = cd
         ),
@@ -127,7 +127,7 @@ test_that("prepareSummarizedExperiment : Column data failure", {
     )
     expect_error(
         prepareSummarizedExperiment(
-            assays = list("counts" = mat),
+            assays = list(counts = mat),
             rowRanges = rr,
             colData = c(xxx = "yyy")
         ),
@@ -135,7 +135,7 @@ test_that("prepareSummarizedExperiment : Column data failure", {
     )
     expect_error(
         prepareSummarizedExperiment(
-            assays = list("counts" = mat),
+            assays = list(counts = mat),
             rowRanges = c(xxx = "yyy"),
             colData = cd
         ),
@@ -146,7 +146,7 @@ test_that("prepareSummarizedExperiment : Column data failure", {
 test_that("prepareSummarizedExperiment : Invalid metadata", {
     expect_error(
         prepareSummarizedExperiment(
-            assays = list("counts" = mat),
+            assays = list(counts = mat),
             rowRanges = rr,
             colData = cd,
             metadata = Sys.Date()

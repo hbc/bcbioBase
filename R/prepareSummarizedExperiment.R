@@ -63,7 +63,7 @@
 #' )
 #'
 #' # Primary assay must be named "counts"
-#' assays = list("counts" = mat)
+#' assays = list(counts = mat)
 #'
 #' # rowRanges won't contain transgenes or spike-ins
 #' rowRanges <- GRanges(
@@ -76,13 +76,13 @@
 #' names(rowRanges) <- c("gene1", "gene2", "gene3")
 #'
 #' colData <- data.frame(
-#'     "genotype" = c(
+#'     genotype = c(
 #'         "wildtype",
 #'         "wildtype",
 #'         "knockout",
 #'         "knockout"
 #'     ),
-#'     "age" = c(3L, 6L, 3L, 6L),
+#'     age = c(3L, 6L, 3L, 6L),
 #'     row.names = samples
 #' )
 #'

@@ -22,12 +22,12 @@ rr <- GRanges(
 names(rr) <- genes
 
 cd <- data.frame(
-    "genotype" = c(
+    genotype = c(
         "wildtype",
         "wildtype",
         "knockout",
         "knockout"
     ),
-    "age" = c(3L, 6L, 3L, 6L),
+    age = c(3L, 6L, 3L, 6L),
     row.names = samples
 )
