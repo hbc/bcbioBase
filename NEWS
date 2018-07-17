@@ -1,4 +1,4 @@
-# bcbioBase 0.3.0 (2018-07-13)
+# bcbioBase 0.3.0 (2018-07-17)
 
 ## Major changes
 
@@ -16,6 +16,8 @@
 
 ## Minor changes
 
+- Now using `transcriptID()` instead of `txID()` in tx2gene and GRanges
+  metadata defined in `rowRanges()` slot of object.
 - Now using `aes()` instead of `aes_string()` for all internal [ggplot2][] code,
   which uses tidyeval (v3.0 update).
 - Moved `rse_bcb` and `rse_bcb` example data to [basejump][], for unit testing.
