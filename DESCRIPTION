@@ -79,7 +79,7 @@ Imports:
 Suggests:
     testthat (>= 2.0)
 Remotes:
-    steinbaugh/basejump@develop
+    steinbaugh/basejump
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
