@@ -1,5 +1,7 @@
 context("Read Functions")
 
+
+
 # readDataVersions =============================================================
 test_that("readDataVersions", {
     versions <- readDataVersions("data_versions.csv")
@@ -194,10 +196,10 @@ test_that("readSampleData : Multiplexed FASTQ", {
 test_that("readSampleData : Multiplexed CellRanger data", {
     x <- readSampleData("cellranger_metadata.csv")
     y <- data.frame(
-        "sampleName" = c("proximal", "distal"),
-        "fileName" = "aggregation.fastq.gz",
-        "description" = c("aggregation-1", "aggregation-2"),
-        "index" = c("1", "2"),
+        sampleName = c("proximal", "distal"),
+        fileName = "aggregation.fastq.gz",
+        description = c("aggregation-1", "aggregation-2"),
+        index = c("1", "2"),
         row.names = c("aggregation_1", "aggregation_2"),
         stringsAsFactors = TRUE
     )
@@ -214,9 +216,9 @@ test_that("readSampleData : Legacy bcbio samplename column", {
     expect_identical(
         suppressWarnings(readSampleData(file)),
         data.frame(
-            "sampleName" = "sample-1",
-            "description" = "sample-1",
-            "fileName" = "sample-1.fastq.gz",
+            sampleName = "sample-1",
+            description = "sample-1",
+            fileName = "sample-1.fastq.gz",
             row.names = "sample_1",
             stringsAsFactors = TRUE
         )
@@ -246,7 +248,7 @@ test_that("readTx2gene", {
     expect_is(x, "data.frame")
     expect_identical(
         colnames(x),
-        c("txID", "geneID")
+        c("transcriptID", "geneID")
     )
 })
 
@@ -259,11 +261,11 @@ test_that("readYAMLSampleData", {
     expect_identical(
         x,
         data.frame(
-            "sampleName" = samples,
-            "description" = samples,
-            "genomeBuild" = "mm10",
-            "group" = c("ctrl", "ctrl", "ko", "ko"),
-            "samRef" = paste(
+            sampleName = samples,
+            description = samples,
+            genomeBuild = "mm10",
+            group = c("ctrl", "ctrl", "ko", "ko"),
+            samRef = paste(
                 "",
                 "groups",
                 "bcbio",
@@ -294,22 +296,22 @@ test_that("readYAMLSampleData : nested metadata", {
 # readYAMLSampleMetrics ========================================================
 test_that("readYAMLSampleMetrics", {
     y <- list(
-        "averageInsertSize" = "numeric",
-        "duplicates" = "numeric",
-        "duplicationRateOfMapped" = "numeric",
-        "exonicRate" = "numeric",
-        "intergenicRate" = "numeric",
-        "intronicRate" = "numeric",
-        "mappedPairedReads" = "numeric",
-        "mappedReads" = "numeric",
-        "qualityFormat" = "factor",
-        "rrna" = "numeric",
-        "rrnaRate" = "numeric",
-        "sequenceLength" = "factor",
-        "sequencesFlaggedAsPoorQuality" = "numeric",
-        "totalReads" = "numeric",
-        "x5x3Bias" = "numeric",
-        "xGC" = "numeric"
+        averageInsertSize = "numeric",
+        duplicates = "numeric",
+        duplicationRateOfMapped = "numeric",
+        exonicRate = "numeric",
+        intergenicRate = "numeric",
+        intronicRate = "numeric",
+        mappedPairedReads = "numeric",
+        mappedReads = "numeric",
+        qualityFormat = "factor",
+        rrna = "numeric",
+        rrnaRate = "numeric",
+        sequenceLength = "factor",
+        sequencesFlaggedAsPoorQuality = "numeric",
+        totalReads = "numeric",
+        x5x3Bias = "numeric",
+        xGC = "numeric"
     )
 
     x <- readYAMLSampleMetrics("project-summary.yaml")
