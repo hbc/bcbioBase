@@ -10,6 +10,7 @@ NULL
 
 
 
+# Deprecate this generic in a future release
 #' @rdname AllGenerics
 #' @export
 setGeneric(
@@ -38,39 +39,6 @@ setGeneric(
     "flatFiles",
     function(object, ...) {
         standardGeneric("flatFiles")
-    }
-)
-
-
-
-#' @rdname gene2symbol
-#' @export
-setGeneric(
-    "gene2symbol",
-    function(object) {
-        standardGeneric("gene2symbol")
-    }
-)
-
-
-
-#' @rdname interestingGroups
-#' @export
-setGeneric(
-    "interestingGroups",
-    function(object, ...) {
-        standardGeneric("interestingGroups")
-    }
-)
-
-
-
-#' @rdname interestingGroups
-#' @export
-setGeneric(
-    "interestingGroups<-",
-    function(object, ..., value) {
-        standardGeneric("interestingGroups<-")
     }
 )
 
@@ -159,49 +127,5 @@ setGeneric(
     "plotViolin",
     function(object, ...) {
         standardGeneric("plotViolin")
-    }
-)
-
-
-
-#' @rdname sampleData
-#' @export
-setGeneric(
-    "sampleData",
-    function(object, ...) {
-        standardGeneric("sampleData")
-    }
-)
-
-
-
-#' @rdname sampleData
-#' @export
-setGeneric(
-    "sampleData<-",
-    function(object, ..., value) {
-        standardGeneric("sampleData<-")
-    }
-)
-
-
-
-#' @rdname selectSamples
-#' @export
-setGeneric(
-    "selectSamples",
-    function(object, ...) {
-        standardGeneric("selectSamples")
-    }
-)
-
-
-
-#' @rdname uniteInterestingGroups
-#' @export
-setGeneric(
-    "uniteInterestingGroups",
-    function(object, ...) {
-        standardGeneric("uniteInterestingGroups")
     }
 )

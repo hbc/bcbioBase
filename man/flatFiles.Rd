@@ -29,12 +29,8 @@ class(x)
 names(x)
 }
 \seealso{
-Other Data Functions: \code{\link{convertGenesToSymbols}},
-  \code{\link{counts}}, \code{\link{gene2symbol}},
-  \code{\link{minimalSampleData}},
-  \code{\link{sampleData}}, \code{\link{sampleDirs}},
-  \code{\link{sampleNames}}, \code{\link{selectSamples}},
-  \code{\link{uniteInterestingGroups}}
+Other Data Functions: \code{\link{minimalSampleData}},
+  \code{\link{sampleDirs}}
 }
 \author{
 Michael Steinbaugh

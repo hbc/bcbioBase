@@ -2,22 +2,12 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
-\alias{checkInterestingGroups}
-\alias{prepareSampleMetadata}
 \alias{readLogFile}
 \alias{readSampleMetadataFile}
 \alias{sampleMetadata}
 \alias{sampleMetadata<-}
-\alias{sampleYAML}
-\alias{sampleYAMLMetadata}
-\alias{sampleYAMLMetrics}
-\alias{prepareSampleData}
-\title{Defunct or Deprecated Functions}
+\title{Deprecated Functions}
 \usage{
-checkInterestingGroups(...)
-
-prepareSampleMetadata(...)
-
 readLogFile(...)
 
 readSampleMetadataFile(...)
@@ -25,19 +15,11 @@ readSampleMetadataFile(...)
 sampleMetadata(object, ...)
 
 sampleMetadata(object) <- value
-
-sampleYAML(...)
-
-sampleYAMLMetadata(...)
-
-sampleYAMLMetrics(...)
-
-prepareSampleData(...)
 }
 \value{
 No value.
 }
 \description{
-Defunct or Deprecated Functions
+Deprecated Functions
 }
 \keyword{internal}

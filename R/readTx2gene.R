@@ -15,10 +15,10 @@
 readTx2gene <- function(file) {
     assert_is_a_string(file)
     file <- localOrRemoteFile(file)
-    data <- read_csv(file, col_names = c("txID", "geneID"))
+    data <- read_csv(file, col_names = c("transcriptID", "geneID"))
     data <- as.data.frame(data)
-    assert_has_no_duplicates(data[["txID"]])
-    rownames(data) <- data[["txID"]]
+    assert_has_no_duplicates(data[["transcriptID"]])
+    rownames(data) <- data[["transcriptID"]]
     assertIsTx2gene(data)
     data
 }

@@ -20,6 +20,7 @@ if (file.exists("token.rds")) {
                 "name" = "character",
                 "path_lower" = "character",
                 "link_permissions" = "list",
+                "preview_type" = "character",
                 "client_modified" = "character",
                 "server_modified" = "character",
                 "rev" = "character",

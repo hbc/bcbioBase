@@ -22,7 +22,11 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' plotCorrelationHeatmap(rse_dds)
+#' plotCorrelationHeatmap(rse_bcb)
+#'
+#' plotCorrelationHeatmap(rse_dds, interestingGroups = "condition")
+#'
+#' # Custom color palettes
 #' plotCorrelationHeatmap(rse_dds, color = magma, legendColor = viridis)
 #' plotCorrelationHeatmap(rse_dds, color = NULL)
 NULL
@@ -34,12 +38,12 @@ NULL
 #' @export
 setMethod(
     "plotCorrelationHeatmap",
-    signature("matrix"),
+    signature("SummarizedExperiment"),
     function(
         object,
+        interestingGroups,
         method = c("pearson", "spearman"),
         clusteringMethod = "ward.D2",
-        annotationCol = NULL,
         showRownames = TRUE,
         showColnames = TRUE,
         treeheightRow = 0L,
@@ -50,10 +54,13 @@ setMethod(
         title = TRUE,
         ...
     ) {
-        assert_has_dims(object)
         assert_all_are_greater_than(nrow(object), 1L)
         assert_all_are_greater_than(ncol(object), 1L)
+        if (missing(interestingGroups)) {
+            interestingGroups <- basejump::interestingGroups(object)
+        }
         method <- match.arg(method)
+        assert_is_a_string(clusteringMethod)
         assert_is_a_bool(showColnames)
         assert_is_a_bool(showRownames)
         assert_is_a_number(treeheightRow)
@@ -72,10 +79,25 @@ setMethod(
         }
 
         # Correlation matrix
-        mat <- cor(object, method = method)
+        mat <- as.matrix(assay(object))
+        mat <- cor(mat, method = method)
+
+        if (length(interestingGroups)) {
+            annotationCol <- colData(object)[, interestingGroups, drop = FALSE]
+        } else {
+            annotationCol <- NULL
+        }
+
+        # Use `sampleName`, if defined
+        sampleName <- colData(object)[["sampleName"]]
+        if (length(sampleName)) {
+            colnames(mat) <- sampleName
+            if (length(annotationCol)) {
+                rownames(annotationCol) <- sampleName
+            }
+        }
 
         annotationCol <- .pheatmapAnnotationCol(annotationCol)
-        assertFormalAnnotationCol(object, annotationCol)
         annotationColors <- .pheatmapAnnotationColors(
             annotationCol = annotationCol,
             legendColor = legendColor
@@ -84,75 +106,22 @@ setMethod(
 
         # Return pretty heatmap with modified defaults
         args <- list(
-            "mat" = mat,
-            "annotationCol" = annotationCol,
-            "annotationColors" = annotationColors,
-            "borderColor" = borderColor,
-            "clusteringMethod" = clusteringMethod,
-            "clusteringDistanceRows" = "correlation",
-            "clusteringDistanceCols" = "correlation",
-            "color" = color,
-            "main" = title,
-            "showColnames" = showColnames,
-            "showRownames" = showRownames,
-            "treeheightCol" = treeheightCol,
-            "treeheightRow" = treeheightRow,
+            mat = mat,
+            annotationCol = annotationCol,
+            annotationColors = annotationColors,
+            borderColor = borderColor,
+            clusteringMethod = clusteringMethod,
+            clusteringDistanceRows = "correlation",
+            clusteringDistanceCols = "correlation",
+            color = color,
+            main = title,
+            showColnames = showColnames,
+            showRownames = showRownames,
+            treeheightCol = treeheightCol,
+            treeheightRow = treeheightRow,
             ...
         )
         args <- .pheatmapArgs(args)
         do.call(pheatmap, args)
-    }
-)
-
-
-
-#' @rdname plotCorrelationHeatmap
-#' @export
-setMethod(
-    "plotCorrelationHeatmap",
-    signature("dgCMatrix"),
-    getMethod("plotCorrelationHeatmap", "matrix")
-)
-
-
-
-#' @rdname plotCorrelationHeatmap
-#' @export
-setMethod(
-    "plotCorrelationHeatmap",
-    signature("dgTMatrix"),
-    getMethod("plotCorrelationHeatmap", "matrix")
-)
-
-
-
-#' @rdname plotCorrelationHeatmap
-#' @export
-setMethod(
-    "plotCorrelationHeatmap",
-    signature("SummarizedExperiment"),
-    function(object, interestingGroups, ...) {
-        counts <- assay(object)
-        if (missing(interestingGroups)) {
-            interestingGroups <- bcbioBase::interestingGroups(object)
-        }
-        if (length(interestingGroups)) {
-            annotationCol <- colData(object)[, interestingGroups, drop = FALSE]
-        } else {
-            annotationCol <- NULL
-        }
-        # Use `sampleName`, if defined
-        sampleName <- colData(object)[["sampleName"]]
-        if (length(sampleName)) {
-            colnames(counts) <- sampleName
-            if (length(annotationCol)) {
-                rownames(annotationCol) <- sampleName
-            }
-        }
-        plotCorrelationHeatmap(
-            object = counts,
-            annotationCol = annotationCol,
-            ...
-        )
     }
 )
