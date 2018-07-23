@@ -65,7 +65,7 @@ automatic handling of FASTA spike-ins." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.2</span>
       </span>
     </div>
 
@@ -122,34 +122,36 @@ automatic handling of FASTA spike-ins.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>assays</th>
-      <td><p><em>Required.</em> List containing RNA-seq count matrices with
-matching dimensions. Counts can be passed in either dense (<code>matrix</code>) or
-sparse (<code>dgCMatrix</code>, <code>dgTMatrix</code>) format.</p></td>
+      <td><p><code>list</code>. RNA-seq count matrices, which must have matching
+dimensions. Counts can be passed in either dense (<code>matrix</code>) or sparse
+(<code>dgCMatrix</code>, <code>dgTMatrix</code>) format.</p></td>
     </tr>
     <tr>
       <th>rowRanges</th>
-      <td><p><em>Optional.</em> <code>GRanges</code> describing assay rows. Must contain
-genomic ranges. Can be left <code>NULL</code> if the genome is poorly annotated and/or
-ranges aren't available from AnnotationHub.</p></td>
+      <td><p><code>GRanges</code> or <code>NULL</code>. Metadata describing the
+assay rows. If defined, must contain genomic ranges. Can be left <code>NULL</code> if
+the genome is poorly annotated and/or ranges aren't available from
+AnnotationHub.</p></td>
     </tr>
     <tr>
       <th>colData</th>
-      <td><p><em>Optional.</em> <code>DataFrame</code> <code>data.frame</code>, or <code>matrix</code> describing
-assay columns.</p></td>
+      <td><p><code>DataFrame</code> <code>data.frame</code>, or <code>matrix</code>. Metadata
+describing the assay columns. For bulk RNA-seq, this data describes the
+samples. For single-cell RNA-seq, this data describes the cells.</p></td>
     </tr>
     <tr>
       <th>metadata</th>
-      <td><p><em>Optional</em>. Metadata <code>list</code>.</p></td>
+      <td><p><code>list</code> or <code>NULL</code>. Metadata.</p></td>
     </tr>
     <tr>
       <th>transgeneNames</th>
-      <td><p><code>character</code> vector indicating which <code>assay()</code> rows
-denote transgenes (e.g. EGFP, TDTOMATO).</p></td>
+      <td><p><code>character</code> or <code>NULL</code>. Vector indicating which
+<code>assay()</code> rows denote transgenes (e.g. EGFP, TDTOMATO).</p></td>
     </tr>
     <tr>
       <th>spikeNames</th>
-      <td><p><code>character</code> vector indicating which <code>assay()</code> rows denote
-spike-in sequences (e.g. ERCCs).</p></td>
+      <td><p><code>character</code> or <code>NULL</code>. Vector indicating which <code>assay()</code>
+rows denote spike-in sequences (e.g. ERCCs).</p></td>
     </tr>
     </table>
     
@@ -202,7 +204,7 @@ environment parameters:</p><ul>
 )
 
 <span class='co'># Primary assay must be named "counts"</span>
-<span class='no'>assays</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='st'>"counts"</span> <span class='kw'>=</span> <span class='no'>mat</span>)
+<span class='no'>assays</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>counts</span> <span class='kw'>=</span> <span class='no'>mat</span>)
 
 <span class='co'># rowRanges won't contain transgenes or spike-ins</span>
 <span class='no'>rowRanges</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/GenomicRanges/topics/GRanges-class'>GRanges</a></span>(
@@ -215,13 +217,13 @@ environment parameters:</p><ul>
 <span class='fu'>names</span>(<span class='no'>rowRanges</span>) <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"gene1"</span>, <span class='st'>"gene2"</span>, <span class='st'>"gene3"</span>)
 
 <span class='no'>colData</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
-    <span class='st'>"genotype"</span> <span class='kw'>=</span> <span class='fu'>c</span>(
+    <span class='kw'>genotype</span> <span class='kw'>=</span> <span class='fu'>c</span>(
         <span class='st'>"wildtype"</span>,
         <span class='st'>"wildtype"</span>,
         <span class='st'>"knockout"</span>,
         <span class='st'>"knockout"</span>
     ),
-    <span class='st'>"age"</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>3L</span>, <span class='fl'>6L</span>, <span class='fl'>3L</span>, <span class='fl'>6L</span>),
+    <span class='kw'>age</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>3L</span>, <span class='fl'>6L</span>, <span class='fl'>3L</span>, <span class='fl'>6L</span>),
     <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='no'>samples</span>
 )
 
