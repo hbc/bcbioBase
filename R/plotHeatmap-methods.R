@@ -8,13 +8,13 @@
 #' @family Plot Functions
 #'
 #' @inheritParams general
-#' @param scale `character` indicating whether the values should be centered and
-#'   scaled in either the row or column direction ("`row`", "`column`"), or
-#'   remain unscaled ("`none`").
+#' @param scale `string`. Whether the values should be centered and scaled in
+#'   either the row or column direction ("`row`", "`column`"), or remain
+#'   unscaled ("`none`").
 #' @param clusterRows,clusterCols `boolean`. Arrange with hierarchical
-#'   clustering. Alternatively, can define an `hclust` object.
+#'   clustering.
 #' @param showRownames,showColnames `boolean`. Show row or column names.
-#' @param treeheightRow,treeheightCol `integer scalar`. Size of the row and
+#' @param treeheightRow,treeheightCol `scalar integer`. Size of the row and
 #'   column dendrograms. Use `0` to disable.
 #' @param color `function`, `character`, or `NULL`. Hexadecimal color function
 #'   or values to use for plot. We generally recommend these hexadecimal

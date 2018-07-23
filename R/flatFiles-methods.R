@@ -8,7 +8,7 @@
 #'
 #' @inheritParams general
 #'
-#' @return `list` containing the slots of an S4 object.
+#' @return `list` containing the S4 object slots.
 #'
 #' @examples
 #' # SummarizedExperiment ====

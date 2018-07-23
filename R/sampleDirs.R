@@ -5,9 +5,9 @@
 #' @family Data Functions
 #' @author Michael Steinbaugh
 #'
-#' @param uploadDir File path to bcbio run upload directory.
+#' @param uploadDir `string`. File path to bcbio run upload directory.
 #'
-#' @return Named `character` vector containing sample directory paths.
+#' @return Named `character` containing sample directory paths.
 #' @export
 #'
 #' @examples

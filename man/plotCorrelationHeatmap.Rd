@@ -24,21 +24,21 @@ arguments should be formatted in camel case, not snake case.}
 
 \item{interestingGroups}{\code{character}. Groups of interest.}
 
-\item{method}{Correlation coefficient (or covariance) method to be computed.
-Defaults to "\code{pearson}" but "\code{spearman}" can also be used. Consult the
-\code{\link[stats:cor]{stats::cor()}} documentation for more information.}
+\item{method}{\code{string}. Correlation coefficient (or covariance) method to be
+computed. Defaults to "\code{pearson}" but "\code{spearman}" can also be used.
+Consult the \code{\link[stats:cor]{stats::cor()}} documentation for more information.}
 
-\item{clusteringMethod}{Clustering method. Accepts the same values as
-\code{\link[stats:hclust]{stats::hclust()}}.}
+\item{clusteringMethod}{\code{string}. Clustering method. Accepts the same values
+as \code{\link[stats:hclust]{stats::hclust()}}.}
 
 \item{showRownames}{\code{boolean}. Show row or column names.}
 
 \item{showColnames}{\code{boolean}. Show row or column names.}
 
-\item{treeheightRow}{\code{integer scalar}. Size of the row and
+\item{treeheightRow}{\code{scalar integer}. Size of the row and
 column dendrograms. Use \code{0} to disable.}
 
-\item{treeheightCol}{\code{integer scalar}. Size of the row and
+\item{treeheightCol}{\code{scalar integer}. Size of the row and
 column dendrograms. Use \code{0} to disable.}
 
 \item{color}{\code{function}, \code{character}, or \code{NULL}. Hexadecimal color function

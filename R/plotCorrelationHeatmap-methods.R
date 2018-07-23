@@ -7,11 +7,11 @@
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams plotHeatmap
-#' @param method Correlation coefficient (or covariance) method to be computed.
-#'   Defaults to "`pearson`" but "`spearman`" can also be used. Consult the
-#'   [stats::cor()] documentation for more information.
-#' @param clusteringMethod Clustering method. Accepts the same values as
-#'   [stats::hclust()].
+#' @param method `string`. Correlation coefficient (or covariance) method to be
+#'   computed. Defaults to "`pearson`" but "`spearman`" can also be used.
+#'   Consult the [stats::cor()] documentation for more information.
+#' @param clusteringMethod `string`. Clustering method. Accepts the same values
+#'   as [stats::hclust()].
 #'
 #' @seealso
 #' - [stats::cor()].

@@ -4,9 +4,9 @@
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
-#' @param file File path. Supports CSV, TSV, and XLSX file formats.
-#' @param lanes Number of lanes used to split the samples into technical
-#'   replicates (`_LXXX`) suffix.
+#' @param file `string`. File path. Supports CSV, TSV, and XLSX file formats.
+#' @param lanes `scalar integer`. Number of lanes used to split the samples into
+#'   technical replicates (`_LXXX`) suffix.
 #'
 #' @return `data.frame`.
 #' @export

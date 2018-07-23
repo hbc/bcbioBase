@@ -5,9 +5,10 @@
 #' @family Write Functions
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
 #'
-#' @param files Local file paths.
-#' @param dir Relative path of remote Dropbox directory.
-#' @param rdsToken RDS file token to use for Dropbox authentication.
+#' @param files `character`. Local file paths.
+#' @param dir `string`. Relative path of remote Dropbox directory.
+#' @param rdsToken `string` or `NULL`. RDS file token to use for Dropbox
+#'   authentication.
 #'
 #' @return Invisible `list` of rdrop2 output.
 #' @export

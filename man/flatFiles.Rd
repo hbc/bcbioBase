@@ -17,7 +17,7 @@ flatFiles(object, ...)
 \item{...}{Additional arguments.}
 }
 \value{
-\code{list} containing the slots of an S4 object.
+\code{list} containing the S4 object slots.
 }
 \description{
 Extract the slots inside an S4 object for archival storage.

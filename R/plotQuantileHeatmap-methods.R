@@ -5,8 +5,8 @@
 #' @author Rory Kirchner, Michael Steinbaugh
 #'
 #' @inherit plotHeatmap
-#' @param n The number of breaks to create.
-#' @param legend Show the color legend.
+#' @param n `scalar integer`. The number of breaks to create.
+#' @param legend `boolean`. Show the color legend.
 #'
 #' @examples
 #' # SummarizedExperiment ====

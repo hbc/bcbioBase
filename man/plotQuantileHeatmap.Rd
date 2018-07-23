@@ -23,25 +23,25 @@ arguments should be formatted in camel case, not snake case.}
 
 \item{interestingGroups}{\code{character}. Groups of interest.}
 
-\item{n}{The number of breaks to create.}
+\item{n}{\code{scalar integer}. The number of breaks to create.}
 
 \item{clusterRows}{\code{boolean}. Arrange with hierarchical
-clustering. Alternatively, can define an \code{hclust} object.}
+clustering.}
 
 \item{clusterCols}{\code{boolean}. Arrange with hierarchical
-clustering. Alternatively, can define an \code{hclust} object.}
+clustering.}
 
 \item{showRownames}{\code{boolean}. Show row or column names.}
 
 \item{showColnames}{\code{boolean}. Show row or column names.}
 
-\item{treeheightRow}{\code{integer scalar}. Size of the row and
+\item{treeheightRow}{\code{scalar integer}. Size of the row and
 column dendrograms. Use \code{0} to disable.}
 
-\item{treeheightCol}{\code{integer scalar}. Size of the row and
+\item{treeheightCol}{\code{scalar integer}. Size of the row and
 column dendrograms. Use \code{0} to disable.}
 
-\item{legend}{Show the color legend.}
+\item{legend}{\code{boolean}. Show the color legend.}
 
 \item{color}{\code{function}, \code{character}, or \code{NULL}. Hexadecimal color function
 or values to use for plot. We generally recommend these hexadecimal

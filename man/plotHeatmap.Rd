@@ -23,16 +23,16 @@ arguments should be formatted in camel case, not snake case.}
 
 \item{interestingGroups}{\code{character}. Groups of interest.}
 
-\item{scale}{\code{character} indicating whether the values should be centered and
-scaled in either the row or column direction ("\code{row}", "\code{column}"), or
-remain unscaled ("\code{none}").}
+\item{scale}{\code{string}. Whether the values should be centered and scaled in
+either the row or column direction ("\code{row}", "\code{column}"), or remain
+unscaled ("\code{none}").}
 
 \item{clusterRows, clusterCols}{\code{boolean}. Arrange with hierarchical
-clustering. Alternatively, can define an \code{hclust} object.}
+clustering.}
 
 \item{showRownames, showColnames}{\code{boolean}. Show row or column names.}
 
-\item{treeheightRow, treeheightCol}{\code{integer scalar}. Size of the row and
+\item{treeheightRow, treeheightCol}{\code{scalar integer}. Size of the row and
 column dendrograms. Use \code{0} to disable.}
 
 \item{color}{\code{function}, \code{character}, or \code{NULL}. Hexadecimal color function

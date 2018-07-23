@@ -19,7 +19,7 @@ bcbio_geom_label_repel(data = NULL, mapping = NULL, color = NULL,
   size = 4L, ...)
 }
 \arguments{
-\item{xintercept, yintercept}{\code{numeric} \code{scalar} denoting x- or y-axis cutoff.
+\item{xintercept, yintercept}{\code{scalar numeric} denoting x- or y-axis cutoff.
 Specify one but not both.}
 
 \item{data}{\code{data.frame}.}
@@ -41,9 +41,9 @@ to the paired geom/stat.}
 
 \item{digits}{Number of significant digits to use. Defaults to rounded.}
 
-\item{color}{Text color.}
+\item{color}{\code{string}. Text color (e.g. \code{"orange"}).}
 
-\item{size}{Font size.}
+\item{size}{\code{scalar integer}. Font size.}
 }
 \value{
 \code{ggproto}.

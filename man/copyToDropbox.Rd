@@ -7,11 +7,12 @@
 copyToDropbox(files, dir, rdsToken = NULL)
 }
 \arguments{
-\item{files}{Local file paths.}
+\item{files}{\code{character}. Local file paths.}
 
-\item{dir}{Relative path of remote Dropbox directory.}
+\item{dir}{\code{string}. Relative path of remote Dropbox directory.}
 
-\item{rdsToken}{RDS file token to use for Dropbox authentication.}
+\item{rdsToken}{\code{string} or \code{NULL}. RDS file token to use for Dropbox
+authentication.}
 }
 \value{
 Invisible \code{list} of rdrop2 output.
