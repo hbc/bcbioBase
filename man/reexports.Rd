@@ -29,6 +29,8 @@
 \alias{reexports}
 \alias{GRanges}
 \alias{reexports}
+\alias{colorRampPalette}
+\alias{reexports}
 \alias{ggplot}
 \alias{reexports}
 \alias{scale_color_gradient}
@@ -67,6 +69,8 @@
 \alias{reexports}
 \alias{\%>\%}
 \alias{reexports}
+\alias{brewer.pal}
+\alias{reexports}
 \alias{DataFrame}
 \alias{reexports}
 \alias{metadata}
@@ -103,9 +107,13 @@ below to see their documentation.
 
   \item{ggplot2}{\code{\link[ggplot2]{ggplot}}, \code{\link[ggplot2]{scale_color_gradient}}, \code{\link[ggplot2]{scale_color_gradientn}}, \code{\link[ggplot2]{scale_color_hue}}, \code{\link[ggplot2]{scale_color_manual}}, \code{\link[ggplot2]{scale_color_viridis_c}}, \code{\link[ggplot2]{scale_color_viridis_d}}, \code{\link[ggplot2]{scale_colour_gradient}}, \code{\link[ggplot2]{scale_colour_gradientn}}, \code{\link[ggplot2]{scale_colour_hue}}, \code{\link[ggplot2]{scale_colour_manual}}, \code{\link[ggplot2]{scale_colour_viridis_c}}, \code{\link[ggplot2]{scale_colour_viridis_d}}, \code{\link[ggplot2]{scale_fill_hue}}, \code{\link[ggplot2]{scale_fill_manual}}, \code{\link[ggplot2]{scale_fill_viridis_c}}, \code{\link[ggplot2]{scale_fill_viridis_d}}}
 
+  \item{grDevices}{\code{\link[grDevices]{colorRampPalette}}}
+
   \item{IRanges}{\code{\link[IRanges]{IRanges}}}
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}}
+
+  \item{RColorBrewer}{\code{\link[RColorBrewer]{brewer.pal}}}
 
   \item{S4Vectors}{\code{\link[S4Vectors]{DataFrame}}, \code{\link[S4Vectors]{metadata}}}
 

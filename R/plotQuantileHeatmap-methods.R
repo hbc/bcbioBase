@@ -10,12 +10,15 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' plotQuantileHeatmap(rse_bcb)
+#' plotQuantileHeatmap(rse_dds)
 #'
-#' plotQuantileHeatmap(rse_dds, interestingGroups = "condition")
-#'
-#' # Disable column clustering
-#' plotQuantileHeatmap(rse_dds, clusterCols = FALSE)
+#' # Set legend using interesting groups, and customize colors
+#' plotQuantileHeatmap(
+#'     object = rse_dds,
+#'     interestingGroups = "condition",
+#'     color = plasma,
+#'     legendColor = viridis
+#' )
 NULL
 
 
@@ -71,9 +74,7 @@ setMethod(
         n <- as.integer(n)
         assert_is_a_bool(clusterCols)
         assert_is_a_bool(clusterRows)
-        assertIsHexColorFunctionOrNULL(color)
         assert_is_a_bool(legend)
-        assertIsHexColorFunctionOrNULL(legendColor)
         assertIsAStringOrNULL(borderColor)
         if (!is_a_string(borderColor)) {
             borderColor <- NA

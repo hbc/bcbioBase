@@ -10,6 +10,12 @@ GenomicRanges::GRanges
 
 
 
+#' @importFrom grDevices colorRampPalette
+#' @export
+grDevices::colorRampPalette
+
+
+
 #' @importFrom ggplot2 ggplot
 #' @export
 ggplot2::ggplot
@@ -89,6 +95,12 @@ IRanges::IRanges
 #' @importFrom magrittr %>%
 #' @export
 magrittr::`%>%`
+
+
+
+#' @importFrom RColorBrewer brewer.pal
+#' @export
+RColorBrewer::brewer.pal
 
 
 

@@ -22,12 +22,21 @@
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' plotCorrelationHeatmap(rse_bcb)
+#' plotCorrelationHeatmap(rse_dds)
 #'
-#' plotCorrelationHeatmap(rse_dds, interestingGroups = "condition")
+#' # Set legend using interesting groups, and customize colors
+#' plotCorrelationHeatmap(
+#'     object = rse_dds,
+#'     interestingGroups = "condition",
+#'     color = plasma,
+#'     legendColor = viridis
+#' )
 #'
-#' # Custom color palettes
-#' plotCorrelationHeatmap(rse_dds, color = magma, legendColor = viridis)
+#' # Hexadecimal color input
+#' purple_orange <- colorRampPalette(brewer.pal(n = 11, name = "PuOr"))(256)
+#' plotCorrelationHeatmap(rse_dds, color = purple_orange)
+#'
+#' # Default pheatmap colors
 #' plotCorrelationHeatmap(rse_dds, color = NULL)
 NULL
 
@@ -66,8 +75,6 @@ setMethod(
         assert_is_a_number(treeheightRow)
         assert_is_a_number(treeheightCol)
         assert_all_are_non_negative(treeheightRow, treeheightCol)
-        assertIsHexColorFunctionOrNULL(color)
-        assertIsHexColorFunctionOrNULL(legendColor)
         assertIsAStringOrNULL(borderColor)
         if (!is_a_string(borderColor)) {
             borderColor <- NA

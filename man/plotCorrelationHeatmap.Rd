@@ -31,31 +31,38 @@ Defaults to "\code{pearson}" but "\code{spearman}" can also be used. Consult the
 \item{clusteringMethod}{Clustering method. Accepts the same values as
 \code{\link[stats:hclust]{stats::hclust()}}.}
 
-\item{showRownames}{Show row or column names.}
+\item{showRownames}{\code{boolean}. Show row or column names.}
 
-\item{showColnames}{Show row or column names.}
+\item{showColnames}{\code{boolean}. Show row or column names.}
 
-\item{treeheightRow}{Size of the row and column dendrograms.
-Use "\code{0}" to disable.}
+\item{treeheightRow}{\code{integer scalar}. Size of the row and
+column dendrograms. Use \code{0} to disable.}
 
-\item{treeheightCol}{Size of the row and column dendrograms.
-Use "\code{0}" to disable.}
+\item{treeheightCol}{\code{integer scalar}. Size of the row and
+column dendrograms. Use \code{0} to disable.}
 
-\item{color}{Hexadecimal color function to use for plot. We recommend any of
-these from the viridis package:
+\item{color}{\code{function}, \code{character}, or \code{NULL}. Hexadecimal color function
+or values to use for plot. We generally recommend these hexadecimal
+functions from the viridis package:
 \itemize{
 \item \code{\link[viridis:viridis]{viridis::viridis()}} (\emph{default}).
 \item \code{\link[viridis:inferno]{viridis::inferno()}}.
 \item \code{\link[viridis:magma]{viridis::magma()}}.
 \item \code{\link[viridis:plasma]{viridis::plasma()}}.
+Alternatively, colors can be defined manually using hexadecimal values
+(e.g. \code{c("#FF0000", "#0000FF")}), but this is not generally recommended.
+Refer to the RColorBrewer package for hexadecimal color palettes that may
+be suitable. If set \code{NULL}, will use the default pheatmap colors.
 }}
 
-\item{legendColor}{Hexadecimal color function to use for legend labels.}
+\item{legendColor}{\code{function} or \code{NULL}. Hexadecimal color function to use
+for legend labels. Note that hexadecimal values are not supported. If set
+\code{NULL}, will use the default pheatmap colors.}
 
-\item{borderColor}{\emph{Optional.} Border color. Disabled by default for
-improved aesthetics.}
+\item{borderColor}{\code{string} or \code{NULL}. \emph{Optional.} Border color. Disabled by
+default for improved aesthetics.}
 
-\item{title}{\emph{Optional.} Plot title.}
+\item{title}{\code{string} or \code{NULL}. \emph{Optional.} Plot title.}
 }
 \value{
 Show heatmap and invisibly return a \code{list} of the components.
@@ -65,12 +72,21 @@ Construct a correlation heatmap comparing the columns of the matrix.
 }
 \examples{
 # SummarizedExperiment ====
-plotCorrelationHeatmap(rse_bcb)
+plotCorrelationHeatmap(rse_dds)
 
-plotCorrelationHeatmap(rse_dds, interestingGroups = "condition")
+# Set legend using interesting groups, and customize colors
+plotCorrelationHeatmap(
+    object = rse_dds,
+    interestingGroups = "condition",
+    color = plasma,
+    legendColor = viridis
+)
 
-# Custom color palettes
-plotCorrelationHeatmap(rse_dds, color = magma, legendColor = viridis)
+# Hexadecimal color input
+purple_orange <- colorRampPalette(brewer.pal(n = 11, name = "PuOr"))(256)
+plotCorrelationHeatmap(rse_dds, color = purple_orange)
+
+# Default pheatmap colors
 plotCorrelationHeatmap(rse_dds, color = NULL)
 }
 \seealso{
