@@ -42,6 +42,7 @@ Depends:
     basejump (>= 0.6)
 Imports:
     assertive.base,
+    assertive.data,
     assertive.files,
     assertive.numbers,
     assertive.properties,
