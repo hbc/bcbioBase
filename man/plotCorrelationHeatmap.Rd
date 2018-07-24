@@ -59,10 +59,10 @@ be suitable. If set \code{NULL}, will use the default pheatmap colors.
 for legend labels. Note that hexadecimal values are not supported. If set
 \code{NULL}, will use the default pheatmap colors.}
 
-\item{borderColor}{\code{string} or \code{NULL}. \emph{Optional.} Border color. Disabled by
-default for improved aesthetics.}
+\item{borderColor}{\code{string} or \code{NULL}. Border color. Disabled by default for
+improved aesthetics.}
 
-\item{title}{\code{string} or \code{NULL}. \emph{Optional.} Plot title.}
+\item{title}{\code{string} or \code{NULL}. Plot title.}
 }
 \value{
 Show heatmap and invisibly return a \code{list} of the components.
