@@ -59,6 +59,7 @@
 
 # Define colors for each annotation column
 .pheatmapAnnotationColors <- function(annotationCol, legendColor) {
+    assertIsHexColorFunctionOrNULL(legendColor)
     if (is.data.frame(annotationCol) && is.function(legendColor)) {
         list <- lapply(
             X = annotationCol,
@@ -80,11 +81,18 @@
 
 # If `color = NULL`, use the pheatmap default palette
 .pheatmapColor <- function(color = NULL, n = 256L) {
-    if (!is.function(color)) {
-        colorRampPalette(rev(
-            brewer.pal(n = 7L, name = "RdYlBu")
-        ))(n)
-    } else {
+    if (is.character(color)) {
+        # Hexadecimal color palette
+        # (e.g. RColorBrewer palettes)
+        assert_all_are_hex_colors(color)
+        color
+    } else if (is.function(color)) {
+        # Hexadecimal color function
+        # (e.g. viridis functions)
+        assertIsHexColorFunctionOrNULL(color)
         color(n)
+    } else {
+        # pheatmap default palette
+        colorRampPalette(rev(brewer.pal(n = 7L, name = "RdYlBu")))(n)
     }
 }

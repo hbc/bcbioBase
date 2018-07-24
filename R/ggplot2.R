@@ -11,9 +11,9 @@
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams ggplot2::geom_label
-#' @param color Text color.
-#' @param size Font size.
-#' @param xintercept,yintercept `numeric` `scalar` denoting x- or y-axis cutoff.
+#' @param color `string`. Text color (e.g. `"orange"`).
+#' @param size `scalar integer`. Font size.
+#' @param xintercept,yintercept `scalar numeric` denoting x- or y-axis cutoff.
 #'   Specify one but not both.
 #'
 #' @seealso

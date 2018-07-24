@@ -1,7 +1,7 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions and generics for bcbio R packages.
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: c(
     person(
         given = "Michael",
@@ -42,6 +42,7 @@ Depends:
     basejump (>= 0.6)
 Imports:
     assertive.base,
+    assertive.data,
     assertive.files,
     assertive.numbers,
     assertive.properties,

@@ -8,37 +8,58 @@
 #' @family Plot Functions
 #'
 #' @inheritParams general
-#' @param scale `character` indicating whether the values should be centered and
-#'   scaled in either the row or column direction ("`row`", "`column`"), or
-#'   remain unscaled ("`none`").
-#' @param clusterRows,clusterCols `logical` determining if rows or columns
-#'   should be arranged with hierarchical clustering. Alternatively, can define
-#'   an `hclust` object.
-#' @param showRownames,showColnames Show row or column names.
-#' @param treeheightRow,treeheightCol Size of the row and column dendrograms.
-#'   Use "`0`" to disable.
-#' @param color Hexadecimal color function to use for plot. We recommend any of
-#'   these from the viridis package:
+#' @param scale `string`. Whether the values should be centered and scaled in
+#'   either the row or column direction ("`row`", "`column`"), or remain
+#'   unscaled ("`none`").
+#' @param clusterRows,clusterCols `boolean`. Arrange with hierarchical
+#'   clustering.
+#' @param showRownames,showColnames `boolean`. Show row or column names.
+#' @param treeheightRow,treeheightCol `scalar integer`. Size of the row and
+#'   column dendrograms. Use `0` to disable.
+#' @param color `function`, `character`, or `NULL`. Hexadecimal color function
+#'   or values to use for plot. We generally recommend these hexadecimal
+#'   functions from the viridis package:
 #'   - [viridis::viridis()] (*default*).
 #'   - [viridis::inferno()].
 #'   - [viridis::magma()].
 #'   - [viridis::plasma()].
-#' @param legendColor Hexadecimal color function to use for legend labels.
-#' @param borderColor *Optional.* Border color. Disabled by default for
-#'   improved aesthetics.
-#' @param title *Optional.* Plot title.
+#'   Alternatively, colors can be defined manually using hexadecimal values
+#'   (e.g. `c("#FF0000", "#0000FF")`), but this is not generally recommended.
+#'   Refer to the RColorBrewer package for hexadecimal color palettes that may
+#'   be suitable. If set `NULL`, will use the default pheatmap colors.
+#' @param legendColor `function` or `NULL`. Hexadecimal color function to use
+#'   for legend labels. Note that hexadecimal values are not supported. If set
+#'   `NULL`, will use the default pheatmap colors.
+#' @param borderColor `string` or `NULL`. *Optional.* Border color. Disabled by
+#'   default for improved aesthetics.
+#' @param title `string` or `NULL`. *Optional.* Plot title.
 #' @param ... Passthrough arguments to [pheatmap::pheatmap()]. The names of the
 #'   arguments should be formatted in camel case, not snake case.
 #'
-#' @seealso [pheatmap::pheatmap()].
+#' @seealso
+#' - [pheatmap::pheatmap()].
+#' -
 #'
 #' @return Show heatmap and invisibly return a `list` of the components.
 #'
 #' @examples
 #' # SummarizedExperiment ====
-#' plotHeatmap(rse_bcb)
+#' plotHeatmap(rse_dds)
 #'
-#' plotHeatmap(rse_dds, interestingGroups = "condition")
+#' # Set legend using interesting groups, and customize colors
+#' plotHeatmap(
+#'     object = rse_dds,
+#'     interestingGroups = "condition",
+#'     color = plasma,
+#'     legendColor = viridis
+#' )
+#'
+#' # Hexadecimal color input
+#' purple_orange <- colorRampPalette(brewer.pal(n = 11, name = "PuOr"))(256)
+#' plotHeatmap(rse_dds, color = purple_orange)
+#'
+#' # Default pheatmap colors
+#' plotHeatmap(rse_dds, color = NULL)
 #'
 #' # Disable column clustering
 #' plotHeatmap(rse_dds, clusterCols = FALSE)
@@ -81,8 +102,6 @@ setMethod(
         assert_is_a_number(treeheightRow)
         assert_is_a_number(treeheightCol)
         assert_all_are_non_negative(treeheightRow, treeheightCol)
-        assertIsHexColorFunctionOrNULL(color)
-        assertIsHexColorFunctionOrNULL(legendColor)
         assertIsAStringOrNULL(borderColor)
         if (!is_a_string(borderColor)) {
             borderColor <- NA

@@ -65,7 +65,7 @@ overrided by setting clusterRows or clusterCols to FALSE." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.1</span>
       </span>
     </div>
 
@@ -141,47 +141,53 @@ arguments should be formatted in camel case, not snake case.</p></td>
     </tr>
     <tr>
       <th>scale</th>
-      <td><p><code>character</code> indicating whether the values should be centered and
-scaled in either the row or column direction ("<code>row</code>", "<code>column</code>"), or
-remain unscaled ("<code>none</code>").</p></td>
+      <td><p><code>string</code>. Whether the values should be centered and scaled in
+either the row or column direction ("<code>row</code>", "<code>column</code>"), or remain
+unscaled ("<code>none</code>").</p></td>
     </tr>
     <tr>
       <th>clusterRows, clusterCols</th>
-      <td><p><code>logical</code> determining if rows or columns
-should be arranged with hierarchical clustering. Alternatively, can define
-an <code>hclust</code> object.</p></td>
+      <td><p><code>boolean</code>. Arrange with hierarchical
+clustering.</p></td>
     </tr>
     <tr>
       <th>showRownames, showColnames</th>
-      <td><p>Show row or column names.</p></td>
+      <td><p><code>boolean</code>. Show row or column names.</p></td>
     </tr>
     <tr>
       <th>treeheightRow, treeheightCol</th>
-      <td><p>Size of the row and column dendrograms.
-Use "<code>0</code>" to disable.</p></td>
+      <td><p><code>scalar integer</code>. Size of the row and
+column dendrograms. Use <code>0</code> to disable.</p></td>
     </tr>
     <tr>
       <th>color</th>
-      <td><p>Hexadecimal color function to use for plot. We recommend any of
-these from the viridis package:</p><ul>
+      <td><p><code>function</code>, <code>character</code>, or <code>NULL</code>. Hexadecimal color function
+or values to use for plot. We generally recommend these hexadecimal
+functions from the viridis package:</p><ul>
 <li><p><code><a href='http://www.rdocumentation.org/packages/viridis/topics/reexports'>viridis::viridis()</a></code> (<em>default</em>).</p></li>
 <li><p><code><a href='http://www.rdocumentation.org/packages/viridis/topics/reexports'>viridis::inferno()</a></code>.</p></li>
 <li><p><code><a href='http://www.rdocumentation.org/packages/viridis/topics/reexports'>viridis::magma()</a></code>.</p></li>
-<li><p><code><a href='http://www.rdocumentation.org/packages/viridis/topics/reexports'>viridis::plasma()</a></code>.</p></li>
+<li><p><code><a href='http://www.rdocumentation.org/packages/viridis/topics/reexports'>viridis::plasma()</a></code>.
+Alternatively, colors can be defined manually using hexadecimal values
+(e.g. <code>c("#FF0000", "#0000FF")</code>), but this is not generally recommended.
+Refer to the RColorBrewer package for hexadecimal color palettes that may
+be suitable. If set <code>NULL</code>, will use the default pheatmap colors.</p></li>
 </ul></td>
     </tr>
     <tr>
       <th>legendColor</th>
-      <td><p>Hexadecimal color function to use for legend labels.</p></td>
+      <td><p><code>function</code> or <code>NULL</code>. Hexadecimal color function to use
+for legend labels. Note that hexadecimal values are not supported. If set
+<code>NULL</code>, will use the default pheatmap colors.</p></td>
     </tr>
     <tr>
       <th>borderColor</th>
-      <td><p><em>Optional.</em> Border color. Disabled by default for
-improved aesthetics.</p></td>
+      <td><p><code>string</code> or <code>NULL</code>. <em>Optional.</em> Border color. Disabled by
+default for improved aesthetics.</p></td>
     </tr>
     <tr>
       <th>title</th>
-      <td><p><em>Optional.</em> Plot title.</p></td>
+      <td><p><code>string</code> or <code>NULL</code>. <em>Optional.</em> Plot title.</p></td>
     </tr>
     </table>
     
@@ -191,17 +197,31 @@ improved aesthetics.</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='http://www.rdocumentation.org/packages/pheatmap/topics/pheatmap'>pheatmap::pheatmap()</a></code>.</p>
-<p>Other Plot Functions: <code>plotCorrelationHeatmap</code>,
+    <div class='dont-index'><ul>
+<li><p><code><a href='http://www.rdocumentation.org/packages/pheatmap/topics/pheatmap'>pheatmap::pheatmap()</a></code>.</p></li>
+<li><p></p></li>
+</ul></div>
+    <div class='dont-index'><p>Other Plot Functions: <code>plotCorrelationHeatmap</code>,
   <code>plotQuantileHeatmap</code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># SummarizedExperiment ====</span>
-<span class='fu'>plotHeatmap</span>(<span class='no'>rse_bcb</span>)</div><div class='img'><img src='plotHeatmap-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>plotHeatmap</span>(<span class='no'>rse_dds</span>, <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='st'>"condition"</span>)</div><div class='img'><img src='plotHeatmap-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>plotHeatmap</span>(<span class='no'>rse_dds</span>)</div><div class='img'><img src='plotHeatmap-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Set legend using interesting groups, and customize colors</span>
+<span class='fu'>plotHeatmap</span>(
+    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>rse_dds</span>,
+    <span class='kw'>interestingGroups</span> <span class='kw'>=</span> <span class='st'>"condition"</span>,
+    <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>plasma</span>,
+    <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='no'>viridis</span>
+)</div><div class='img'><img src='plotHeatmap-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Hexadecimal color input</span>
+<span class='no'>purple_orange</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/grDevices/topics/colorRamp'>colorRampPalette</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/RColorBrewer/topics/ColorBrewer'>brewer.pal</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>11</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"PuOr"</span>))(<span class='fl'>256</span>)
+<span class='fu'>plotHeatmap</span>(<span class='no'>rse_dds</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>purple_orange</span>)</div><div class='img'><img src='plotHeatmap-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Default pheatmap colors</span>
+<span class='fu'>plotHeatmap</span>(<span class='no'>rse_dds</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</div><div class='img'><img src='plotHeatmap-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Disable column clustering</span>
-<span class='fu'>plotHeatmap</span>(<span class='no'>rse_dds</span>, <span class='kw'>clusterCols</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plotHeatmap-3.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>plotHeatmap</span>(<span class='no'>rse_dds</span>, <span class='kw'>clusterCols</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plotHeatmap-5.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

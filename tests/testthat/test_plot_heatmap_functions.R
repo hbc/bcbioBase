@@ -30,6 +30,7 @@ test_that("SummarizedExperiment", {
             ),
             "pheatmap"
         )
+        # Hexadecimal color functions (e.g. viridis)
         expect_is(
             f(
                 object = object,
@@ -38,7 +39,15 @@ test_that("SummarizedExperiment", {
             ),
             "pheatmap"
         )
-
+        # Hexadecimal color palettes (e.g. RColorBrewer)
+        color <- colorRampPalette(brewer.pal(n = 11, name = "PuOr"))(256)
+        expect_is(
+            f(
+                object = object,
+                color = color
+            ),
+            "pheatmap"
+        )
         # Disable interesting groups
         expect_is(
             f(

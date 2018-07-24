@@ -5,6 +5,7 @@
 #' @importClassesFrom SummarizedExperiment SummarizedExperiment
 #'
 #' @importFrom assertive.base assert_are_identical assert_is_identical_to_na
+#' @importFrom assertive.data assert_all_are_hex_colors
 #' @importFrom assertive.files assert_all_are_dirs assert_all_are_existing_files
 #' @importFrom assertive.numbers assert_all_are_greater_than
 #'   assert_all_are_in_range assert_all_are_non_negative assert_all_are_positive

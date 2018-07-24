@@ -7,10 +7,10 @@
 sampleDirs(uploadDir)
 }
 \arguments{
-\item{uploadDir}{File path to bcbio run upload directory.}
+\item{uploadDir}{\code{string}. File path to bcbio run upload directory.}
 }
 \value{
-Named \code{character} vector containing sample directory paths.
+Named \code{character} containing sample directory paths.
 }
 \description{
 Sample Directories

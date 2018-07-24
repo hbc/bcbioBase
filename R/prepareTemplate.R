@@ -26,10 +26,10 @@
 #' @inheritParams general
 #'
 #' @param file `character`. File name(s).
-#' @param overwrite `logical`. Should existing destination files be overwritten?
-#' @param sourceDir `string`. Source directory.
+#' @param overwrite `boolean`. Should existing destination files be overwritten?
+#' @param sourceDir `string`. Source directory path.
 #'
-#' @return Invisible `logical` vector indicating which files were copied.
+#' @return Invisible `logical` indicating which files were copied.
 #' @export
 #'
 #' @examples

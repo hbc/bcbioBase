@@ -16,19 +16,21 @@
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
-#' @param assays *Required.* List containing RNA-seq count matrices with
-#'   matching dimensions. Counts can be passed in either dense (`matrix`) or
-#'   sparse (`dgCMatrix`, `dgTMatrix`) format.
-#' @param rowRanges *Optional.* `GRanges` describing assay rows. Must contain
-#'   genomic ranges. Can be left `NULL` if the genome is poorly annotated and/or
-#'   ranges aren't available from AnnotationHub.
-#' @param colData *Optional.* `DataFrame` `data.frame`, or `matrix` describing
-#'   assay columns.
-#' @param metadata *Optional*. Metadata `list`.
-#' @param transgeneNames `character` vector indicating which [assay()] rows
-#'   denote transgenes (e.g. EGFP, TDTOMATO).
-#' @param spikeNames `character` vector indicating which [assay()] rows denote
-#'   spike-in sequences (e.g. ERCCs).
+#' @param assays `list`. RNA-seq count matrices, which must have matching
+#'   dimensions. Counts can be passed in either dense (`matrix`) or sparse
+#'   (`dgCMatrix`, `dgTMatrix`) format.
+#' @param rowRanges `GRanges` or `NULL`. Metadata describing the
+#'   assay rows. If defined, must contain genomic ranges. Can be left `NULL` if
+#'   the genome is poorly annotated and/or ranges aren't available from
+#'   AnnotationHub.
+#' @param colData `DataFrame` `data.frame`, or `matrix`. Metadata
+#'   describing the assay columns. For bulk RNA-seq, this data describes the
+#'   samples. For single-cell RNA-seq, this data describes the cells.
+#' @param metadata `list` or `NULL`. Metadata.
+#' @param transgeneNames `character` or `NULL`. Vector indicating which
+#'   [assay()] rows denote transgenes (e.g. EGFP, TDTOMATO).
+#' @param spikeNames `character` or `NULL`. Vector indicating which [assay()]
+#'   rows denote spike-in sequences (e.g. ERCCs).
 #'
 #' @return `RangedSummarizedExperiment`.
 #' @export
@@ -63,7 +65,7 @@
 #' )
 #'
 #' # Primary assay must be named "counts"
-#' assays = list("counts" = mat)
+#' assays = list(counts = mat)
 #'
 #' # rowRanges won't contain transgenes or spike-ins
 #' rowRanges <- GRanges(
@@ -76,13 +78,13 @@
 #' names(rowRanges) <- c("gene1", "gene2", "gene3")
 #'
 #' colData <- data.frame(
-#'     "genotype" = c(
+#'     genotype = c(
 #'         "wildtype",
 #'         "wildtype",
 #'         "knockout",
 #'         "knockout"
 #'     ),
-#'     "age" = c(3L, 6L, 3L, 6L),
+#'     age = c(3L, 6L, 3L, 6L),
 #'     row.names = samples
 #' )
 #'

@@ -8,24 +8,26 @@ prepareSummarizedExperiment(assays, rowRanges = NULL, colData = NULL,
   metadata = NULL, transgeneNames = NULL, spikeNames = NULL)
 }
 \arguments{
-\item{assays}{\emph{Required.} List containing RNA-seq count matrices with
-matching dimensions. Counts can be passed in either dense (\code{matrix}) or
-sparse (\code{dgCMatrix}, \code{dgTMatrix}) format.}
+\item{assays}{\code{list}. RNA-seq count matrices, which must have matching
+dimensions. Counts can be passed in either dense (\code{matrix}) or sparse
+(\code{dgCMatrix}, \code{dgTMatrix}) format.}
 
-\item{rowRanges}{\emph{Optional.} \code{GRanges} describing assay rows. Must contain
-genomic ranges. Can be left \code{NULL} if the genome is poorly annotated and/or
-ranges aren't available from AnnotationHub.}
+\item{rowRanges}{\code{GRanges} or \code{NULL}. Metadata describing the
+assay rows. If defined, must contain genomic ranges. Can be left \code{NULL} if
+the genome is poorly annotated and/or ranges aren't available from
+AnnotationHub.}
 
-\item{colData}{\emph{Optional.} \code{DataFrame} \code{data.frame}, or \code{matrix} describing
-assay columns.}
+\item{colData}{\code{DataFrame} \code{data.frame}, or \code{matrix}. Metadata
+describing the assay columns. For bulk RNA-seq, this data describes the
+samples. For single-cell RNA-seq, this data describes the cells.}
 
-\item{metadata}{\emph{Optional}. Metadata \code{list}.}
+\item{metadata}{\code{list} or \code{NULL}. Metadata.}
 
-\item{transgeneNames}{\code{character} vector indicating which \code{\link[=assay]{assay()}} rows
-denote transgenes (e.g. EGFP, TDTOMATO).}
+\item{transgeneNames}{\code{character} or \code{NULL}. Vector indicating which
+\code{\link[=assay]{assay()}} rows denote transgenes (e.g. EGFP, TDTOMATO).}
 
-\item{spikeNames}{\code{character} vector indicating which \code{\link[=assay]{assay()}} rows denote
-spike-in sequences (e.g. ERCCs).}
+\item{spikeNames}{\code{character} or \code{NULL}. Vector indicating which \code{\link[=assay]{assay()}}
+rows denote spike-in sequences (e.g. ERCCs).}
 }
 \value{
 \code{RangedSummarizedExperiment}.
@@ -68,7 +70,7 @@ mat <- matrix(
 )
 
 # Primary assay must be named "counts"
-assays = list("counts" = mat)
+assays = list(counts = mat)
 
 # rowRanges won't contain transgenes or spike-ins
 rowRanges <- GRanges(
@@ -81,13 +83,13 @@ rowRanges <- GRanges(
 names(rowRanges) <- c("gene1", "gene2", "gene3")
 
 colData <- data.frame(
-    "genotype" = c(
+    genotype = c(
         "wildtype",
         "wildtype",
         "knockout",
         "knockout"
     ),
-    "age" = c(3L, 6L, 3L, 6L),
+    age = c(3L, 6L, 3L, 6L),
     row.names = samples
 )
 

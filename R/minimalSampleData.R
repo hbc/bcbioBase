@@ -3,7 +3,7 @@
 #' @family Data Functions
 #' @author Michael Steinbaugh
 #'
-#' @param sample Sample name (e.g. "description" in bcbio YAML).
+#' @param sample `character`. Sample names (e.g. "description" in bcbio YAML).
 #'
 #' @return `data.frame`.
 #' @export

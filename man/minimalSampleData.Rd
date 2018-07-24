@@ -7,7 +7,7 @@
 minimalSampleData(sample)
 }
 \arguments{
-\item{sample}{Sample name (e.g. "description" in bcbio YAML).}
+\item{sample}{\code{character}. Sample names (e.g. "description" in bcbio YAML).}
 }
 \value{
 \code{data.frame}.
