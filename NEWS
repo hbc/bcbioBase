@@ -1,3 +1,13 @@
+# bcbioBase 0.3.1 (2018-07-24)
+
+## Minor changes
+
+- Added hexadecimal color support to heatmap functions.
+- Improved documentation, specifying the supported types for each argument more clearly.
+- Improved messages in `readYAML` family of functions.
+
+
+
 # bcbioBase 0.3.0 (2018-07-17)
 
 ## Major changes
