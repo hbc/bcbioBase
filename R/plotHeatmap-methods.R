@@ -38,7 +38,7 @@
 #'
 #' @seealso
 #' - [pheatmap::pheatmap()].
-#' -
+#' - [RColorBrewer::brewer.pal()].
 #'
 #' @return Show heatmap and invisibly return a `list` of the components.
 #'

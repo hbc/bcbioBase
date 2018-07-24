@@ -91,7 +91,7 @@ plotHeatmap(rse_dds, clusterCols = FALSE)
 \seealso{
 \itemize{
 \item \code{\link[pheatmap:pheatmap]{pheatmap::pheatmap()}}.
-\item 
+\item \code{\link[RColorBrewer:brewer.pal]{RColorBrewer::brewer.pal()}}.
 }
 
 Other Plot Functions: \code{\link{plotCorrelationHeatmap}},
