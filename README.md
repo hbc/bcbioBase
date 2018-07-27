@@ -8,50 +8,15 @@
 
 Base functions and generics for [bcbio][] [R][] packages.
 
+This is an infrastructure package, providing a shared code framework for bulk RNA-seq and single-cell RNA-seq analysis.
 
-## Installation
+Refer to our specialized packages for installation instructions:
 
-This is an [R][] package.
-
-### [Bioconductor][] method
-
-We recommend using [R][] 3.5 / [Bioconductor][] 3.7.
-
-#### R >= 3.5
-
-```r
-install.packages("BiocManager")
-library("BiocManager")
-install("devtools")
-install("remotes")
-install("GenomeInfoDbData")
-install("hbc/bcbioBase")
-```
-
-#### R < 3.5
-
-Legacy support for [R][] 3.4 / [Bioconductor][] 3.6 is provided.
-
-```r
-# try http:// if https:// URLs are not supported
-source("https://bioconductor.org/biocLite.R")
-biocLite("devtools")
-biocLite("remotes")
-biocLite("GenomeInfoDbData")
-biocLite("hbc/bcbioBase")
-```
-
-### [conda][] method
-
-```bash
-conda config --add channels defaults
-conda config --add channels conda-forge
-conda config --add channels bioconda
-conda install -c bioconda r-bcbiobase
-```
-
+- [bcbioRNASeq][]: [R][] package for [bcbio][] RNA-seq analysis.
+- [bcbioSingleCell][]: [R][] package for [bcbio][] single-cell RNA-seq analysis.
 
 [bcbio]: https://bcbio-nextgen.readthedocs.io
+[bcbioRNASeq]: http://bioinformatics.sph.harvard.edu/bcbioRNASeq
+[bcbioSingleCell]: http://bioinformatics.sph.harvard.edu/bcbioSingleCell
 [Bioconductor]: https://bioconductor.org
-[conda]: https://conda.io
 [R]: https://www.r-project.org
