@@ -3,7 +3,6 @@
 \docType{methods}
 \name{plotHeatmap}
 \alias{plotHeatmap}
-\alias{plotHeatmap}
 \alias{plotHeatmap,SummarizedExperiment-method}
 \title{Plot Heatmap}
 \usage{
@@ -79,7 +78,7 @@ plotHeatmap(
 )
 
 # Hexadecimal color input
-purple_orange <- colorRampPalette(brewer.pal(n = 11, name = "PuOr"))(256)
+purple_orange <- colorRampPalette(brewer.pal(n = 11L, name = "PuOr"))(256L)
 plotHeatmap(rse_dds, color = purple_orange)
 
 # Default pheatmap colors
@@ -97,3 +96,4 @@ plotHeatmap(rse_dds, clusterCols = FALSE)
 Other Plot Functions: \code{\link{plotCorrelationHeatmap}},
   \code{\link{plotQuantileHeatmap}}
 }
+\concept{Plot Functions}
