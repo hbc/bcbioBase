@@ -201,8 +201,8 @@ improved aesthetics.</p></td>
 <li><p><code><a href='http://www.rdocumentation.org/packages/pheatmap/topics/pheatmap'>pheatmap::pheatmap()</a></code>.</p></li>
 <li><p><code><a href='http://www.rdocumentation.org/packages/RColorBrewer/topics/ColorBrewer'>RColorBrewer::brewer.pal()</a></code>.</p></li>
 </ul></div>
-    <div class='dont-index'><p>Other Plot Functions: <code>plotCorrelationHeatmap</code>,
-  <code>plotQuantileHeatmap</code></p></div>
+    <div class='dont-index'><p>Other Plot Functions: <code><a href='plotCorrelationHeatmap.html'>plotCorrelationHeatmap</a></code>,
+  <code><a href='plotQuantileHeatmap.html'>plotQuantileHeatmap</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -216,7 +216,7 @@ improved aesthetics.</p></td>
     <span class='kw'>legendColor</span> <span class='kw'>=</span> <span class='no'>viridis</span>
 )</div><div class='img'><img src='plotHeatmap-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Hexadecimal color input</span>
-<span class='no'>purple_orange</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/grDevices/topics/colorRamp'>colorRampPalette</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/RColorBrewer/topics/ColorBrewer'>brewer.pal</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>11</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"PuOr"</span>))(<span class='fl'>256</span>)
+<span class='no'>purple_orange</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/grDevices/topics/colorRamp'>colorRampPalette</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/RColorBrewer/topics/ColorBrewer'>brewer.pal</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>11L</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"PuOr"</span>))(<span class='fl'>256L</span>)
 <span class='fu'>plotHeatmap</span>(<span class='no'>rse_dds</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>purple_orange</span>)</div><div class='img'><img src='plotHeatmap-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Default pheatmap colors</span>
 <span class='fu'>plotHeatmap</span>(<span class='no'>rse_dds</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</div><div class='img'><img src='plotHeatmap-4.png' alt='' width='700' height='433' /></div><div class='input'>
