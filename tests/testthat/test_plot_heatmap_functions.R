@@ -40,7 +40,7 @@ test_that("SummarizedExperiment", {
             "pheatmap"
         )
         # Hexadecimal color palettes (e.g. RColorBrewer)
-        color <- colorRampPalette(brewer.pal(n = 11, name = "PuOr"))(256)
+        color <- colorRampPalette(brewer.pal(n = 11L, name = "PuOr"))(256L)
         expect_is(
             f(
                 object = object,

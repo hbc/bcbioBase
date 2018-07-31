@@ -1,9 +1,22 @@
+# bcbioBase 0.3.2 (2018-07-31)
+
+## Minor changes
+
+- Now using roxygen2 v6.1 for documentation.
+- Miscellaneous documentation improvements.
+- Simplified installation instructions, referring the user to [bcbioRNASeq][]
+  and [bcbioSingleCell][] packages instead.
+- [lintr][] check fixes
+
+
+
 # bcbioBase 0.3.1 (2018-07-24)
 
 ## Minor changes
 
 - Added hexadecimal color support to heatmap functions.
-- Improved documentation, specifying the supported types for each argument more clearly.
+- Improved documentation, specifying the supported types for each argument more
+  clearly.
 - Improved messages in `readYAML` family of functions.
 
 
