@@ -3,17 +3,16 @@
 \docType{methods}
 \name{plotQuantileHeatmap}
 \alias{plotQuantileHeatmap}
-\alias{plotQuantileHeatmap}
 \alias{plotQuantileHeatmap,SummarizedExperiment-method}
 \title{Plot Heatmap with Quantile Breaks}
 \usage{
 plotQuantileHeatmap(object, ...)
 
-\S4method{plotQuantileHeatmap}{SummarizedExperiment}(object, interestingGroups,
-  n = 10L, clusterRows = TRUE, clusterCols = TRUE, showRownames = FALSE,
-  showColnames = TRUE, treeheightRow = 0L, treeheightCol = 50L,
-  legend = FALSE, color = viridis, legendColor = NULL,
-  borderColor = NULL, title = NULL, ...)
+\S4method{plotQuantileHeatmap}{SummarizedExperiment}(object,
+  interestingGroups, n = 10L, clusterRows = TRUE, clusterCols = TRUE,
+  showRownames = FALSE, showColnames = TRUE, treeheightRow = 0L,
+  treeheightCol = 50L, legend = FALSE, color = viridis,
+  legendColor = NULL, borderColor = NULL, title = NULL, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -61,16 +60,18 @@ be suitable. If set \code{NULL}, will use the default pheatmap colors.
 for legend labels. Note that hexadecimal values are not supported. If set
 \code{NULL}, will use the default pheatmap colors.}
 
-\item{borderColor}{\code{string} or \code{NULL}. \emph{Optional.} Border color. Disabled by
-default for improved aesthetics.}
+\item{borderColor}{\code{string} or \code{NULL}. Border color. Disabled by default for
+improved aesthetics.}
 
-\item{title}{\code{string} or \code{NULL}. \emph{Optional.} Plot title.}
+\item{title}{\code{string} or \code{NULL}. Plot title.}
 }
 \value{
 Show heatmap and invisibly return a \code{list} of the components.
 }
 \description{
-Plot Heatmap with Quantile Breaks
+Construct a simple heatmap. By default, row- and column-wise hierarchical
+clustering is performed using the Ward method, but this behavior can be
+overrided by setting \code{clusterRows} or \code{clusterCols} to \code{FALSE}.
 }
 \examples{
 # SummarizedExperiment ====
@@ -91,3 +92,4 @@ Other Plot Functions: \code{\link{plotCorrelationHeatmap}},
 \author{
 Rory Kirchner, Michael Steinbaugh
 }
+\concept{Plot Functions}

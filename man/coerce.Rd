@@ -25,3 +25,4 @@ names(x)
 \author{
 Michael Steinbaugh
 }
+\concept{S4 Class Definition}

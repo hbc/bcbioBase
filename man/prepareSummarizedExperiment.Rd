@@ -114,3 +114,4 @@ Other Prepare Functions: \code{\link{prepareTemplate}}
 \author{
 Michael Steinbaugh
 }
+\concept{Prepare Functions}

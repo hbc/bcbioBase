@@ -51,3 +51,4 @@ Other Prepare Functions: \code{\link{prepareSummarizedExperiment}}
 \author{
 Michael Steinbaugh
 }
+\concept{Prepare Functions}

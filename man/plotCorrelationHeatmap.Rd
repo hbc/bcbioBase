@@ -4,7 +4,6 @@
 \docType{methods}
 \name{plotCorrelationHeatmap}
 \alias{plotCorrelationHeatmap}
-\alias{plotCorrelationHeatmap}
 \alias{plotCorrelationHeatmap,SummarizedExperiment-method}
 \title{Plot Correlation Heatmap}
 \usage{
@@ -12,9 +11,10 @@ plotCorrelationHeatmap(object, ...)
 
 \S4method{plotCorrelationHeatmap}{SummarizedExperiment}(object,
   interestingGroups, method = c("pearson", "spearman"),
-  clusteringMethod = "ward.D2", showRownames = TRUE, showColnames = TRUE,
-  treeheightRow = 0L, treeheightCol = 50L, color = viridis,
-  legendColor = NULL, borderColor = NULL, title = TRUE, ...)
+  clusteringMethod = "ward.D2", showRownames = TRUE,
+  showColnames = TRUE, treeheightRow = 0L, treeheightCol = 50L,
+  color = viridis, legendColor = NULL, borderColor = NULL,
+  title = TRUE, ...)
 }
 \arguments{
 \item{object}{Object.}
@@ -59,10 +59,10 @@ be suitable. If set \code{NULL}, will use the default pheatmap colors.
 for legend labels. Note that hexadecimal values are not supported. If set
 \code{NULL}, will use the default pheatmap colors.}
 
-\item{borderColor}{\code{string} or \code{NULL}. \emph{Optional.} Border color. Disabled by
-default for improved aesthetics.}
+\item{borderColor}{\code{string} or \code{NULL}. Border color. Disabled by default for
+improved aesthetics.}
 
-\item{title}{\code{string} or \code{NULL}. \emph{Optional.} Plot title.}
+\item{title}{\code{string} or \code{NULL}. Plot title.}
 }
 \value{
 Show heatmap and invisibly return a \code{list} of the components.
@@ -83,7 +83,7 @@ plotCorrelationHeatmap(
 )
 
 # Hexadecimal color input
-purple_orange <- colorRampPalette(brewer.pal(n = 11, name = "PuOr"))(256)
+purple_orange <- colorRampPalette(brewer.pal(n = 11L, name = "PuOr"))(256L)
 plotCorrelationHeatmap(rse_dds, color = purple_orange)
 
 # Default pheatmap colors
@@ -102,3 +102,4 @@ Other Plot Functions: \code{\link{plotHeatmap}},
 \author{
 Michael Steinbaugh
 }
+\concept{Plot Functions}

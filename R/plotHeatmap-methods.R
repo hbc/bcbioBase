@@ -30,15 +30,15 @@
 #' @param legendColor `function` or `NULL`. Hexadecimal color function to use
 #'   for legend labels. Note that hexadecimal values are not supported. If set
 #'   `NULL`, will use the default pheatmap colors.
-#' @param borderColor `string` or `NULL`. *Optional.* Border color. Disabled by
-#'   default for improved aesthetics.
-#' @param title `string` or `NULL`. *Optional.* Plot title.
+#' @param borderColor `string` or `NULL`. Border color. Disabled by default for
+#'   improved aesthetics.
+#' @param title `string` or `NULL`. Plot title.
 #' @param ... Passthrough arguments to [pheatmap::pheatmap()]. The names of the
 #'   arguments should be formatted in camel case, not snake case.
 #'
 #' @seealso
 #' - [pheatmap::pheatmap()].
-#' -
+#' - [RColorBrewer::brewer.pal()].
 #'
 #' @return Show heatmap and invisibly return a `list` of the components.
 #'
@@ -55,7 +55,7 @@
 #' )
 #'
 #' # Hexadecimal color input
-#' purple_orange <- colorRampPalette(brewer.pal(n = 11, name = "PuOr"))(256)
+#' purple_orange <- colorRampPalette(brewer.pal(n = 11L, name = "PuOr"))(256L)
 #' plotHeatmap(rse_dds, color = purple_orange)
 #'
 #' # Default pheatmap colors

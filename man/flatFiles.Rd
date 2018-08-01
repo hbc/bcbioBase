@@ -3,7 +3,6 @@
 \docType{methods}
 \name{flatFiles}
 \alias{flatFiles}
-\alias{flatFiles}
 \alias{flatFiles,SummarizedExperiment-method}
 \title{Flat Files from S4 Object}
 \usage{
@@ -35,3 +34,4 @@ Other Data Functions: \code{\link{minimalSampleData}},
 \author{
 Michael Steinbaugh
 }
+\concept{Data Functions}
