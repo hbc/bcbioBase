@@ -1,7 +1,7 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions and generics for bcbio R packages.
-Version: 0.3.2
+Version: 0.4.0
 Authors@R: c(
     person(
         given = "Michael",
@@ -39,7 +39,7 @@ LazyData: TRUE
 Depends:
     R (>= 3.4),
     SummarizedExperiment,
-    basejump (>= 0.6.3)
+    basejump (>= 0.7)
 Imports:
     assertive.base,
     assertive.data,
@@ -80,7 +80,7 @@ Imports:
 Suggests:
     testthat (>= 2.0)
 Remotes:
-    steinbaugh/basejump
+    steinbaugh/basejump@develop
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0
