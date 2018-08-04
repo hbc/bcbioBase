@@ -149,7 +149,7 @@ basejump::uniteInterestingGroups
 
 
 
-# v0.3.1 =======================================================================
+# v0.3.2 =======================================================================
 #' @importFrom basejump separatorBar
 #' @export
 basejump::separatorBar
