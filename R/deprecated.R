@@ -158,6 +158,76 @@ basejump::separatorBar
 #' @export
 basejump::updateMessage
 
+#' @rdname defunct
+#' @export
+bcbio <- function(...) {
+    .Defunct()
+}
+
+#' @rdname defunct
+#' @export
+`bcbio<-` <- function(...) {
+    .Defunct()
+}
+
+
+
+# v0.4.0 =======================================================================
+#' @rdname deprecated
+#' @export
+setGeneric(
+    name = "flatFiles",
+    def = getGeneric("flatFiles", package = "basejump")
+)
+
+#' @rdname deprecated
+#' @export
+setGeneric(
+    name = "metrics",
+    def = getGeneric("metrics", package = "basejump")
+)
+
+#' @rdname deprecated
+#' @export
+setGeneric(
+    name = "plotCorrelationHeatmap",
+    def = getGeneric("plotCorrelationHeatmap", package = "basejump")
+)
+
+#' @rdname deprecated
+#' @export
+setGeneric(
+    name = "plotGene",
+    def = getGeneric("plotGene", package = "basejump")
+)
+
+#' @rdname deprecated
+#' @export
+setGeneric(
+    name = "plotHeatmap",
+    def = getGeneric("plotHeatmap", package = "basejump")
+)
+
+#' @rdname deprecated
+#' @export
+setGeneric(
+    name = "plotQC",
+    def = getGeneric("plotQC", package = "basejump")
+)
+
+#' @rdname deprecated
+#' @export
+setGeneric(
+    name = "plotQuantileHeatmap",
+    def = getGeneric("plotQuantileHeatmap", package = "basejump")
+)
+
+#' @rdname deprecated
+#' @export
+prepareSummarizedExperiment <- function(...) {
+    basejump::makeSummarizedExperiment(...)
+}
+
 
 
 # nocov end
