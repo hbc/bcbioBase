@@ -9,6 +9,8 @@
 \alias{sampleYAMLMetrics}
 \alias{prepareSampleData}
 \alias{assertFormalAnnotationCol}
+\alias{bcbio}
+\alias{bcbio<-}
 \title{Defunct Functions}
 \usage{
 checkInterestingGroups(...)
@@ -24,6 +26,10 @@ sampleYAMLMetrics(...)
 prepareSampleData(...)
 
 assertFormalAnnotationCol(...)
+
+bcbio(...)
+
+bcbio(...) <- value
 }
 \value{
 No value.

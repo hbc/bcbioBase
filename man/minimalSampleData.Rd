@@ -19,8 +19,7 @@ Minimal Sample Data
 minimalSampleData(c("sample 1", "sample 2"))
 }
 \seealso{
-Other Data Functions: \code{\link{flatFiles}},
-  \code{\link{sampleDirs}}
+Other Data Functions: \code{\link{sampleDirs}}
 }
 \author{
 Michael Steinbaugh

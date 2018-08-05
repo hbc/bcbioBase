@@ -6,6 +6,14 @@
 \alias{readSampleMetadataFile}
 \alias{sampleMetadata}
 \alias{sampleMetadata<-}
+\alias{flatFiles}
+\alias{metrics}
+\alias{plotCorrelationHeatmap}
+\alias{plotGene}
+\alias{plotHeatmap}
+\alias{plotQC}
+\alias{plotQuantileHeatmap}
+\alias{prepareSummarizedExperiment}
 \title{Deprecated Functions}
 \usage{
 readLogFile(...)
@@ -15,6 +23,22 @@ readSampleMetadataFile(...)
 sampleMetadata(object, ...)
 
 sampleMetadata(object) <- value
+
+flatFiles(object, ...)
+
+metrics(object, ...)
+
+plotCorrelationHeatmap(object, ...)
+
+plotGene(object, ...)
+
+plotHeatmap(object, ...)
+
+plotQC(object, ...)
+
+plotQuantileHeatmap(object, ...)
+
+prepareSummarizedExperiment(...)
 }
 \value{
 No value.
