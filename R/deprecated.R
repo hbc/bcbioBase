@@ -166,7 +166,7 @@ bcbio <- function(...) {
 
 #' @rdname defunct
 #' @export
-`bcbio<-` <- function(...) {
+`bcbio<-` <- function(..., value) {
     .Defunct()
 }
 
