@@ -27,9 +27,9 @@ prepareSampleData(...)
 
 assertFormalAnnotationCol(...)
 
-bcbio(...)
+bcbio(object, ...)
 
-bcbio(...) <- value
+bcbio(object, ...) <- value
 }
 \value{
 No value.

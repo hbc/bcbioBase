@@ -160,15 +160,21 @@ basejump::updateMessage
 
 #' @rdname defunct
 #' @export
-bcbio <- function(...) {
-    .Defunct()
-}
+setGeneric(
+    "bcbio",
+    function(object, ...) {
+        standardGeneric("bcbio")
+    }
+)
 
 #' @rdname defunct
 #' @export
-`bcbio<-` <- function(..., value) {
-    .Defunct()
-}
+setGeneric(
+    "bcbio<-",
+    function(object, ..., value) {
+        standardGeneric("bcbio<-")
+    }
+)
 
 
 
