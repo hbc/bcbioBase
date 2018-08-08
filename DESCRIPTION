@@ -65,9 +65,10 @@ Imports:
     tidyr (>= 0.8),
     utils
 Suggests:
+    roxygen2,
     testthat (>= 2.0)
 Remotes:
-    steinbaugh/basejump@develop
+    steinbaugh/basejump
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0

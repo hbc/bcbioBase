@@ -1,3 +1,25 @@
+## bcbioBase 0.4.0 (2018-08-08)
+
+This is a maintenance release designed to simplify the package for long-term
+stability. Here we are moving all of the current S4 method support to
+[basejump][] for consistency, since the methods apply to `SummarizedExperiment`
+and are not [bcbio][]-workflow specific. We are keeping the package simple by
+exporting the `read*` family of functions here, which are designed to integrate
+with the [bcbio][] output directories.
+
+### Major changes
+
+- Moved S4 method support to [basejump][]: `flatFiles`, `metrics`,
+  `plotCorrelationHeatmap`, `plotDot`, `plotGene`, `plotHeatmap`,
+  `plotQuantileHeatmap`, `plotViolin`.
+- `prepareSummarizedExperiment` has been moved to [basejump][] and renamed
+  to `makeSummarizedExperiment`, for consistency. The underlying code remains
+  the same.
+- Moved the `SummarizedExperiment` to `list` coercion method to [basejump][].
+- Reduced the number of re-exported [ggplot2][] and [viridis][] functions, for
+  simplicity.
+
+
 ## bcbioBase 0.3.2 (2018-07-31)
 
 ### Minor changes
@@ -38,16 +60,16 @@
 ### Minor changes
 
 - Now using `transcriptID` instead of `txID` in tx2gene and GRanges metadata
-  defined in `rowRanges()` slot of object.
-- Now using `aes()` instead of `aes_string()` for all internal [ggplot2][] code,
+  defined in `rowRanges` slot of object.
+- Now using `aes` instead of `aes_string` for all internal [ggplot2][] code,
   which uses tidyeval (v3.0 update).
 - Moved `rse_bcb` and `rse_bcb` example data to [basejump][], for unit testing.
   These datasets are still available in [bcbioBase][].
-- Made `assertFormalAnnotationCol()` function defunct. No longer using to check
+- Made `assertFormalAnnotationCol` function defunct. No longer using to check
   `annotationCol` argument integration in heatmap functions, since we're now
   providing only `SummarizedExperiment` method support, instead of matrix
   method support (which is too complicated and error prone for users).
-- Moved `assertFormalInterestingGroups()` function to [basejump][], where the
+- Moved `assertFormalInterestingGroups` function to [basejump][], where the
   other assert check functions are defined. This helps improve package
   consistency.
 - Updated unit tests to reflect changes in the number of exported generics.
@@ -57,7 +79,7 @@
 
 ### Minor changes
 
-- Improved aggregate column handling in `bcbio_geom_abline()`.
+- Improved aggregate column handling in `bcbio_geom_abline`.
 - Improved code coverage back to 100%.
 - Reorganized R methods files to use `-methods.R` as a suffix, as recommended
   by [Bioconductor][], in preparation for package submission.
@@ -68,7 +90,7 @@
 
 ### New functions
 
-- `minimalSampleData()` enables easy creation of a sample metadata `data.frame`
+- `minimalSampleData` enables easy creation of a sample metadata `data.frame`
   by simplify specifying the sample names (e.g. "description" in [bcbio][]
   YAML). This function was added for easy metadata handling for 10X Cell Ranger
   in the [bcbioSingleCell][] package, but is generally applicable to other
@@ -77,11 +99,11 @@
 
 ### Minor changes
 
-- Improved internal `interestingGroups` handling inside `plotHeatmap()` family
+- Improved internal `interestingGroups` handling inside `plotHeatmap` family
   of functions.
 - Removed message about transgeneNames and spikeNames in
-  `prepareSummarizedExperiment()` if missing transcripts are present. Now the
-  function simply lists the genes that don't have metadata in `rowRanges()`.
+  `prepareSummarizedExperiment` if missing transcripts are present. Now the
+  function simply lists the genes that don't have metadata in `rowRanges`.
 - Reorganized assert checks imports in `bcbioBase-package.R` file.
 
 
@@ -89,7 +111,7 @@
 
 ### Minor changes
 
-- Improved formatting of package NEWS
+- Improved formatting of package NEWS.
 - Improved code coverage by adding ggplot2 unit testing.
 - Added `sampleData<-` method support for standard `data.frame`.
 
@@ -98,7 +120,7 @@
 
 ### Minor changes
 
-- Added `overwrite` parameter to `prepareTemplate()`, disabled by default.
+- Added `overwrite` parameter to `prepareTemplate`, disabled by default.
 - Removed validity check for `sampleData` accessor.
 - Improved vector return in `sampleNames`.
 
@@ -126,9 +148,8 @@
 ### New functions
 
 - Exporting [ggplot2][] convenience functions for easier plotting in
-  [bcbioRNASeq][] and [bcbioSingleCell][] packages: `bcbio_geom_abline()`,
-  `bcbio_geom_label()`, `bcbio_geom_label_average()`, and
-  `bcbio_geom_label_repel()`.
+  [bcbioRNASeq][] and [bcbioSingleCell][] packages: `bcbio_geom_abline`,
+  `bcbio_geom_label`, `bcbio_geom_label_average`, and `bcbio_geom_label_repel`.
 
 
 ## bcbioBase 0.2.9 (2018-04-30)
@@ -136,10 +157,10 @@
 ### Minor changes
 
 - Improved assert check messages for interesting groups.
-- Switched back to internally using `make.unique()` instead of `make.names()`
+- Switched back to internally using `make.unique` instead of `make.names`
   for `convertGenesToSymbols` coercion on SummarizedExperiment objects. We're
-  using `make.names()` only when coercing seurat objects (see
-  [bcbioSingleCell][] code).
+  using `make.names` only when coercing seurat objects
+  (see [bcbioSingleCell][] code).
 - Updated `RangedSummarizedExperiment` working example, based on `bcbioRNASeq`
   example dataset.
 
@@ -157,7 +178,7 @@
 
 - Updated recommended Bioconductor installation method for 3.7 release.
 - Attempt to add `description` to `metadataBlacklist`.
-- `readSampleData()`: Use `description` metadata column internally instead of
+- `readSampleData`: Use `description` metadata column internally instead of
   `sampleID`.
 
 
@@ -165,8 +186,8 @@
 
 ### Minor changes
 
-- Using `make.names()` instead of `make.unique()` in `convertGenesToSymbols`
-  method for `SummarizedExperiment` class.
+- Using `make.names` instead of `make.unique` in `convertGenesToSymbols` method
+  for `SummarizedExperiment` class.
 
 
 ## bcbioBase 0.2.5 (2018-04-24)
@@ -181,9 +202,9 @@
 - `sampleMetadata` is now deprecated in favor of `sampleData`. This function
   still works but will now warn the user, and should be removed from R Markdown
   template code.
-- Added `SummarizedExperiment` to `list` coercion support, which uses the
-  same code as `flatFiles`.
-- `readSampleData()` no longer requires or recommended `fileName` column. Only
+- Added `SummarizedExperiment` to `list` coercion support, which uses the same
+  code as `flatFiles`.
+- `readSampleData` no longer requires or recommended `fileName` column. Only
   the `description` column is required for demultiplexed data. In the case of
   multiplexed samples (e.g. inDrops single-cell RNA-seq), then `sampleName`,
   `index` and `sequence` names are also required. Multiplexed cell ranger data
@@ -201,12 +222,11 @@
 
 ### Minor changes
 
-- Reworked internal code for `readYAML()` family of functions.
+- Reworked internal code for `readYAML` family of functions.
 - Reorganized and improved default arguments for heatmap functions.
-- `readSampleData()`: switched to using `merge()` instead of `left_join()`
-  internally.
-- Reexporting viridis family of color functions, including `inferno()`, and
-  the British variant `scale_colour_viridis()`.
+- `readSampleData`: switched to using `merge` instead of `left_join` internally.
+- Reexporting viridis family of color functions, including `inferno`, and
+  the British variant `scale_colour_viridis`.
 
 
 ## bcbioBase 0.2.3 (2018-04-19)
@@ -231,7 +251,7 @@
 - `convertGenesToSymbols` now has method support for `SummarizedExperiment`.
 - Updated example datasets to use `rse_bcb` and `rse_dds`.
 - Simplified internal S4 method code for heatmap functions.
-- `prepareSummarizedExperiment()` now supports transgenes with the
+- `prepareSummarizedExperiment` now supports transgenes with the
   `transgeneNames` argument (e.g. "EGFP"), and FASTA spike-ins with the
   `spikeNames` argument (e.g. "ERCCs"). Additionally, `rowRanges` and `colData`
   are no longer required and can be left `NULL`, although this isn't generally
@@ -239,7 +259,7 @@
 
 ### Minor changes
 
-- Consolidated `sampleYAML()` function code.
+- Consolidated `sampleYAML` function code.
 - Consolidated assert check imports into `bcbioBase-package.R` file.
 - Consolidated globals into `globals.R` file.
 - Improved internal [pheatmap][] color support.
@@ -256,17 +276,15 @@
   packages. For [bcbioSingleCell][], `colData` returns information about the
   cells, not the samples. For [bcbioRNASeq][], `colData` and `sampleData`
   provide similar information on the samples.
-- Added `uniteInterestingGroups` as a generic. Provides support for adding
-  an `interestingGroups` column to a data frame.
+- Added `uniteInterestingGroups` as a generic. Provides support for adding an
+  `interestingGroups` column to a data frame.
 - Added `SummarizedExperiment` method support for `gene2symbol`,
   `interestingGroups` generics.
-- Converted `prepareSummarizedExperiment` from a generic to a standard
-  function.
+- Converted `prepareSummarizedExperiment` from a generic to a standard function.
 - `prepareSummarizedExperiment` now requires rowRanges and supports FASTA
   spike-ins with `isSpike` argument. This helps set up a `SingleCellExperiment`
   object in the [bcbioSingleCell][] package.
-- `prepareTemplate` has been converted from a generic to a standard
-  function.
+- `prepareTemplate` has been converted from a generic to a standard function.
 - `readDataVersions` and `readProgramVersions` now return an empty tibble
   if the file is missing. bcbio doesn't always output these files, so we have
   changed the behavior from stopping on a missing file to simply warning and
@@ -278,10 +296,9 @@
 
 - Improved internal factor sanitization of sample metadata for
   `readSampleMetadataFile` and `sampleYAMLMetadata`.
-- Exporting `projectDirPattern` to match bcbio project directories (e.g.
-  `2018-01-01_rnaseq`) across packages.
-- Changed default of `rdsToken` in `copyToDropbox` to be `NULL` instead of
-  `NA`.
+- Exporting `projectDirPattern` to match bcbio project directories
+  (e.g. `2018-01-01_rnaseq`) across packages.
+- Changed default of `rdsToken` in `copyToDropbox` to be `NULL` instead of `NA`.
 - Reduced the number of imports from basejump package.
 - Now using `sessioninfo::session_info` instead of
   `devtools::session_info`.
@@ -292,43 +309,43 @@
 ### Deprecations
 
 - Deprecated `sampleMetadata` in favor of `sampleData`.
-- Deprecated `flatFiles` in favor of using `as(object, "list")` coercion
-  method instead.
+- Deprecated `flatFiles` in favor of using `as(object, "list")` coercion method
+  instead.
 - Deprecated `prepareSampleMetadata` in favor of `prepareSampleData`.
 - Made `annotable` method on `SummarizedExperiment` objects defunct.
 
 
 ## bcbioBase 0.1.4 (2018-02-20)
 
-- Don't include sample metadata in `summaryYAMLMetrics()` return.
+- Don't include sample metadata in `summaryYAMLMetrics` return.
 
 
 ## bcbioBase 0.1.3 (2018-02-19)
 
-- Now exporting `assertFormalInterestingGroups()` in camel case.
+- Now exporting `assertFormalInterestingGroups` in camel case.
 
 
 ## bcbioBase 0.1.2 (2018-02-18)
 
-- Added back `checkInterestingGroups()` since this code is still present on
-  bcbioRNASeq master branch.
+- Added back `checkInterestingGroups` since this code is still present on
+  [bcbioRNASeq][] master branch.
 
 
 ## bcbioBase 0.1.1 (2018-02-17)
 
 - Added internal assert checks.
-- Now exporting `sampleMetadata<-()` assignment generic.
+- Now exporting `sampleMetadata<-` assignment generic.
 - Updated encrypted token for rdrop2 working example.
-- Added `assert_formal_interesting_groups()` assert checks. Deprecated
-  `checkInterestingGroups()`.
+- Added `assert_formal_interesting_groups` assert checks. Deprecated
+  `checkInterestingGroups`.
 
 
 ## bcbioBase 0.1.0 (2018-02-13)
 
-- Preparing version pinning for [bioconda][]. Relaxed [rlang][] dependency
-  from v0.1.6 to v0.1.2 and [tidyr][] dependency from v0.7.2 to v0.7.1.
-- Added `copyToDropbox()` function, which enables input of a list of local
-  files and returns [Dropbox][] paths using [rdrop2][].
+- Preparing version pinning for [bioconda][]. Relaxed [rlang][] dependency from
+  v0.1.6 to v0.1.2 and [tidyr][] dependency from v0.7.2 to v0.7.1.
+- Added `copyToDropbox` function, which enables input of a list of local files
+  and returns [Dropbox][] paths using [rdrop2][].
 - Updated [basejump][] dependency to v0.2.1.
 - Added assertive checks for all functions.
 
@@ -337,19 +354,19 @@
 
 - NAMESPACE export fixes.
 - Minor code cleanup to pass [lintr][] checks.
-- Switched to [rlang][] methods for errors, messages, and warnings:
-  `abort()`, `inform()`, and `warn()`.
-- Messages now consistently use backticks instead of apostrophes, as
-  recommended by the [tidyverse style guide][].
-- Removed [tibble][] rownames support from `prepareSampleMetadata()`.
+- Switched to [rlang][] methods for errors, messages, and warnings: `abort`,
+  `inform`, and `warn`.
+- Messages now consistently use backticks instead of apostrophes, as recommended
+  by the [tidyverse style guide][].
+- Removed [tibble][] rownames support from `prepareSampleMetadata`.
 - Improved code coverage to 100%.
 
 
 ## bcbioBase 0.0.2 (2018-01-19)
 
-- Re-export `assignAndSaveData()`, `loadData()`, `loadRemoteData()`,
-  `saveData()` from [basejump][] package.
-- Update `prepareTemplate()` function to use internally stored data.
+- Re-export `assignAndSaveData`, `loadData`, `loadRemoteData`, `saveData` from
+  [basejump][] package.
+- Update `prepareTemplate` function to use internally stored data.
 
 
 ## bcbioBase 0.0.1 (2018-01-11)
@@ -374,3 +391,4 @@
 [tibble]: http://tibble.tidyverse.org
 [tidyr]: http://tidyr.tidyverse.org
 [tidyverse style guide]: http://style.tidyverse.org
+[viridis]: https://cran.r-project.org/package=viridis
