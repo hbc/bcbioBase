@@ -1,7 +1,7 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions and generics for bcbio R packages.
-Version: 0.3.2
+Version: 0.4.0
 Authors@R: c(
     person(
         given = "Michael",
@@ -38,11 +38,9 @@ Encoding: UTF-8
 LazyData: TRUE
 Depends:
     R (>= 3.4),
-    SummarizedExperiment,
-    basejump (>= 0.6.3)
+    basejump (>= 0.7)
 Imports:
     assertive.base,
-    assertive.data,
     assertive.files,
     assertive.numbers,
     assertive.properties,
@@ -50,34 +48,24 @@ Imports:
     assertive.strings,
     assertive.types,
     Biostrings,
-    dendsort (>= 0.3),
     dplyr (>= 0.7),
-    GenomeInfoDb,
-    GenomicRanges,
     ggplot2 (>= 3.0),
     ggrepel (>= 0.7),
-    grDevices,
     grid,
-    IRanges,
-    knitr (>= 1.20),
     magrittr (>= 1.5),
     methods,
-    pheatmap (>= 1.0.10),
     plyr (>= 1.8),
-    RColorBrewer (>= 1.1),
     rdrop2 (>= 0.8),
     readr (>= 1.1),
     rlang (>= 0.2),
     S4Vectors,
-    scales,
-    sessioninfo (>= 1.0),
     stats,
     stringr (>= 1.3),
     tibble (>= 1.4),
     tidyr (>= 0.8),
-    utils,
-    viridis (>= 0.5)
+    utils
 Suggests:
+    roxygen2,
     testthat (>= 2.0)
 Remotes:
     steinbaugh/basejump

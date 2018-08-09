@@ -17,39 +17,10 @@
 \alias{separatorBar}
 \alias{updateMessage}
 \alias{pull}
-\alias{GRanges}
-\alias{colorRampPalette}
 \alias{ggplot}
-\alias{scale_color_gradient}
-\alias{scale_color_gradientn}
-\alias{scale_color_hue}
-\alias{scale_color_manual}
-\alias{scale_color_viridis_c}
-\alias{scale_color_viridis_d}
-\alias{scale_colour_gradient}
-\alias{scale_colour_gradientn}
-\alias{scale_colour_hue}
-\alias{scale_colour_manual}
-\alias{scale_colour_viridis_c}
-\alias{scale_colour_viridis_d}
-\alias{scale_fill_hue}
-\alias{scale_fill_manual}
-\alias{scale_fill_viridis_c}
-\alias{scale_fill_viridis_d}
-\alias{IRanges}
 \alias{\%>\%}
-\alias{brewer.pal}
-\alias{DataFrame}
-\alias{metadata}
 \alias{glimpse}
 \alias{tibble}
-\alias{inferno}
-\alias{magma}
-\alias{plasma}
-\alias{scale_color_viridis}
-\alias{scale_colour_viridis}
-\alias{scale_fill_viridis}
-\alias{viridis}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -61,22 +32,10 @@ below to see their documentation.
 
   \item{dplyr}{\code{\link[dplyr]{pull}}}
 
-  \item{GenomicRanges}{\code{\link[GenomicRanges]{GRanges}}}
-
-  \item{ggplot2}{\code{\link[ggplot2]{ggplot}}, \code{\link[ggplot2]{scale_color_gradient}}, \code{\link[ggplot2]{scale_color_gradientn}}, \code{\link[ggplot2]{scale_color_hue}}, \code{\link[ggplot2]{scale_color_manual}}, \code{\link[ggplot2]{scale_color_viridis_c}}, \code{\link[ggplot2]{scale_color_viridis_d}}, \code{\link[ggplot2]{scale_colour_gradient}}, \code{\link[ggplot2]{scale_colour_gradientn}}, \code{\link[ggplot2]{scale_colour_hue}}, \code{\link[ggplot2]{scale_colour_manual}}, \code{\link[ggplot2]{scale_colour_viridis_c}}, \code{\link[ggplot2]{scale_colour_viridis_d}}, \code{\link[ggplot2]{scale_fill_hue}}, \code{\link[ggplot2]{scale_fill_manual}}, \code{\link[ggplot2]{scale_fill_viridis_c}}, \code{\link[ggplot2]{scale_fill_viridis_d}}}
-
-  \item{grDevices}{\code{\link[grDevices]{colorRampPalette}}}
-
-  \item{IRanges}{\code{\link[IRanges]{IRanges}}}
+  \item{ggplot2}{\code{\link[ggplot2]{ggplot}}}
 
   \item{magrittr}{\code{\link[magrittr]{\%>\%}}}
 
-  \item{RColorBrewer}{\code{\link[RColorBrewer]{brewer.pal}}}
-
-  \item{S4Vectors}{\code{\link[S4Vectors]{DataFrame}}, \code{\link[S4Vectors]{metadata}}}
-
   \item{tibble}{\code{\link[tibble]{glimpse}}, \code{\link[tibble]{tibble}}}
-
-  \item{viridis}{\code{\link[viridis]{inferno}}, \code{\link[viridis]{magma}}, \code{\link[viridis]{plasma}}, \code{\link[viridis]{scale_color_viridis}}, \code{\link[viridis]{scale_colour_viridis}}, \code{\link[viridis]{scale_fill_viridis}}, \code{\link[viridis]{viridis}}}
 }}
 

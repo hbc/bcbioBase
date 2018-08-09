@@ -2,25 +2,20 @@ globalVariables(".")
 
 
 
-#' Plot Label Separator
-#' @keywords internal
-#' @export
-#' @examples
-#' labelSep
-labelSep <- " : "
-
-
-
 yamlFlatCols <- c(
     "description",
     "genome_build",
     "sam_ref"
 )
 
+
+
 metricsBlacklist <- c(
     camel(yamlFlatCols),
     "name"
 )
+
+
 
 #' Metadata Blacklist
 #' @keywords internal
