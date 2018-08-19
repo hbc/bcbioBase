@@ -236,4 +236,11 @@ prepareSummarizedExperiment <- function(...) {
 
 
 
+# v0.4.1 =======================================================================
+#' @importFrom basejump prepareTemplate
+#' @export
+basejump::prepareTemplate
+
+
+
 # nocov end

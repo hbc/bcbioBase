@@ -1,3 +1,12 @@
+## bcbioBase 0.4.1 (2018-08-19)
+
+### Minor changes
+
+- `prepareTemplate()`: Migrated function to [basejump][] package, and simplifed
+  to copy all files from `rmarkdown/shared` directory inside a package.
+  Currently in use by [bcbioRNASeq][] and [bcbioSingleCell][].
+
+
 ## bcbioBase 0.4.0 (2018-08-08)
 
 This is a maintenance release designed to simplify the package for long-term
