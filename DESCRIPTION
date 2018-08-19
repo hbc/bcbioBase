@@ -38,7 +38,7 @@ Encoding: UTF-8
 LazyData: TRUE
 Depends:
     R (>= 3.4),
-    basejump (>= 0.7)
+    basejump (>= 0.7.1)
 Imports:
     assertive.base,
     assertive.files,
