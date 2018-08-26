@@ -243,4 +243,11 @@ basejump::prepareTemplate
 
 
 
+# v0.4.2 =======================================================================
+#' @importFrom basejump lanePattern
+#' @export
+basejump::lanePattern
+
+
+
 # nocov end
