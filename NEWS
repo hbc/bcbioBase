@@ -1,3 +1,10 @@
+## bcbioBase 0.4.2 (2018-08-26)
+
+### Minor changes
+
+- Moved `lanePattern` to [basejump][] package.
+
+
 ## bcbioBase 0.4.1 (2018-08-19)
 
 ### Minor changes
