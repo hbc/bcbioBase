@@ -94,7 +94,9 @@ NULL
     cbind(flat, nested) %>%
         fixNA() %>%
         removeNA() %>%
-        camel() %>%
+        # Keep the stringency here relaxed for user-defined metadata.
+        # We'll reapply strict filtering specifically for metrics later.
+        camel(strict = FALSE) %>%
         arrange(!!sym("description")) %>%
         set_rownames(makeNames(.[["description"]], unique = TRUE)) %>%
         # Order the columns alphabetically
@@ -133,8 +135,12 @@ readYAMLSampleMetrics <- function(file) {
     # Drop any metadata columns. Note we're also dropping the duplicate `name`
     # column present in the metrics YAML.
     data %>%
+        # Use strict sanitization for metrics column names.
+        camel(strict = TRUE) %>%
+        # Drop blacklisted columns from the return.
         .[, sort(setdiff(colnames(.), metricsBlacklist)), drop = FALSE] %>%
         rownames_to_column() %>%
+        # Ensure numerics from YAML are set correctly and not character.
         mutate_if(numericAsCharacter, as.numeric) %>%
         mutate_if(is.character, as.factor) %>%
         mutate_if(is.factor, droplevels) %>%
