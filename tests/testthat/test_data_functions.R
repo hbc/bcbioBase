@@ -27,6 +27,24 @@ test_that("projectDir", {
     )
 })
 
+test_that("projectDir : Multiple dated directories", {
+    uploadDir <- "XXX"
+    dir.create(uploadDir)
+    uploadDir <- normalizePath(uploadDir, winslash = "/", mustWork = TRUE)
+    dir.create(file.path(uploadDir, "2018-01-01_rnaseq"))
+    dir.create(file.path(uploadDir, "2018-02-01_rnaseq"))
+    expect_warning(
+        projectDir(uploadDir),
+        "Multiple project directories detected"
+    )
+    object <- suppressWarnings(projectDir(uploadDir))
+    expect_identical(
+        object = object,
+        expected = file.path(uploadDir, "2018-02-01_rnaseq")
+    )
+    unlink("XXX", recursive = TRUE)
+})
+
 
 
 # sampleDirs ===================================================================
