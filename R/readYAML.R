@@ -147,8 +147,9 @@ readYAMLSampleMetrics <- function(file) {
     # Drop any metadata columns. Note we're also dropping the duplicate `name`
     # column present in the metrics YAML.
     data %>%
-        # Use strict sanitization for metrics column names.
-        camel(strict = TRUE) %>%
+        camel() %>%
+        # Coerce any remaining periods (e.g. x5.3Bias).
+        set_colnames(gsub("\\.", "x", colnames(.))) %>%
         # Drop blacklisted columns from the return.
         .[, sort(setdiff(colnames(.), metricsBlacklist)), drop = FALSE] %>%
         rownames_to_column() %>%
