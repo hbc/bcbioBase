@@ -36,5 +36,9 @@ projectDir <- function(uploadDir) {
     }
     assert_is_a_string(dir)
     message(paste("Dated project directory:", dir))
-    dir
+    normalizePath(
+        path = file.path(uploadDir, dir),
+        winslash = "/",
+        mustWork = TRUE
+    )
 }
