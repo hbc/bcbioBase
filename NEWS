@@ -1,8 +1,27 @@
 ## bcbioBase 0.4.2 (2018-08-26)
 
+### New functions
+
+- `projectDir()`: Returns the latest dated directory path inside a [bcbio][]
+  run. If [bcbio][] has been run multiple times to the same upload directory,
+  the function will return the latest project directory and warn the user.
+
+### Major changes
+
+- `sampleDirs()` is now stricter about loading sample directories with names
+  that are not valid in [R][]. This now checks for non-alphanumeric characters,
+  including spaces, **dashes**, and samples that begin with a number. The
+  [bcbio][] pipeline will be updated to enforce these rules, to avoid unexpected
+  downstream behavior in [R][] due to invalid names.
+- Improved camel case sanitization of metrics columns in the YAML parser. Now
+  `readYAMLSampleMetrics()` should return `percentGC` instead of `xGC`. 5'->3'
+  bias should return as `x5x3Bias`. The `plyr::ldply()` call used to coerce
+  from a `list` to `data.frame` will sanitize names, so we need to apply our
+  rules before this step.
+
 ### Minor changes
 
-- Moved `lanePattern` to [basejump][] package.
+- Moved global `lanePattern` variable to [basejump][] package.
 
 
 ## bcbioBase 0.4.1 (2018-08-19)
