@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lane Grep Pattern — lanePattern • bcbioBase</title>
+<title>Project Directory — projectDir • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Lane Grep Pattern — lanePattern" />
+<meta property="og:title" content="Project Directory — projectDir" />
 
-<meta property="og:description" content="Lane Grep Pattern" />
+<meta property="og:description" content="Project Directory" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.2</span>
       </span>
     </div>
 
@@ -102,42 +102,71 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Lane Grep Pattern</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/globals.R'><code>R/globals.R</code></a></small>
-    <div class="hidden name"><code>lanePattern.Rd</code></div>
+    <h1>Project Directory</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/projectDir.R'><code>R/projectDir.R</code></a></small>
+    <div class="hidden name"><code>projectDir.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Lane Grep Pattern</p>
+    <p>Project Directory</p>
     
     </div>
 
-    <pre class="usage"><span class='no'>lanePattern</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <pre class="usage"><span class='fu'>projectDir</span>(<span class='no'>uploadDir</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>uploadDir</th>
+      <td><p><code>string</code>. File path to bcbio run upload directory.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>character</code> of length 1.</p>
+    <p><code>string</code>. Dated project directory (e.g. "2018-01-01_rnaseq").</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>This will pick the latest dated directory and warn the user, if bcbio
+has been run multiple times to the same upload directory.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other Data Functions: <code><a href='minimalSampleData.html'>minimalSampleData</a></code>,
+  <code><a href='sampleDirs.html'>sampleDirs</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>lanePattern</span></div><div class='output co'>#&gt; [1] "_L(\\d{3})"</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>uploadDir</span> <span class='kw'>&lt;-</span> <span class='fu'>system.file</span>(<span class='st'>"extdata/bcbio"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"bcbioBase"</span>)
+<span class='fu'>projectDir</span>(<span class='no'>uploadDir</span>)</div><div class='output co'>#&gt; <span class='message'>Dated project directory: 2018-01-01_bcbio</span></div><div class='output co'>#&gt; [1] "/home/bioinfo/git/bcbioBase-develop/inst/extdata/bcbio/2018-01-01_bcbio"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#note">Note</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
+
+    <h2>Author</h2>
+    
+Michael Steinbaugh
 
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://steinbaugh.com'>Michael Steinbaugh</a>, <a href='https://lpantano.github.io'>Lorena Pantano</a>, <a href='https://github.com/roryk'>Rory Kirchner</a>, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com'>Michael Steinbaugh</a>, <a href='https://github.com/roryk'>Rory Kirchner</a>, <a href='https://lpantano.github.io'>Lorena Pantano</a>, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
 </div>
 
 <div class="pkgdown">

@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.2</span>
       </span>
     </div>
 
@@ -103,12 +103,40 @@
       <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="bcbiobase-0-4-1-2018-08-19" class="section level2">
+    <div id="bcbiobase-0-4-2-2018-08-26" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bcbiobase-0-4-1-2018-08-19" class="anchor"></a>bcbioBase 0.4.1 (2018-08-19)</h2>
+<a href="#bcbiobase-0-4-2-2018-08-26" class="anchor"></a>bcbioBase 0.4.2 (2018-08-26)</h2>
+<div id="new-functions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#new-functions" class="anchor"></a>New functions</h3>
+<ul>
+<li>
+<code><a href="../reference/projectDir.html">projectDir()</a></code>: Returns the latest dated directory path inside a <a href="http://bcb.io">bcbio</a> run. If <a href="http://bcb.io">bcbio</a> has been run multiple times to the same upload directory, the function will return the latest project directory and warn the user.</li>
+</ul>
+</div>
+<div id="major-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<ul>
+<li>
+<code><a href="../reference/sampleDirs.html">sampleDirs()</a></code> is now stricter about loading sample directories with names that are not valid in [R][]. This now checks for non-alphanumeric characters, including spaces, <strong>dashes</strong>, and samples that begin with a number. The <a href="http://bcb.io">bcbio</a> pipeline will be updated to enforce these rules, to avoid unexpected downstream behavior in [R][] due to invalid names.</li>
+<li>Improved camel case sanitization of metrics columns in the YAML parser. Now <code><a href="../reference/readYAML.html">readYAMLSampleMetrics()</a></code> should return <code>percentGC</code> instead of <code>xGC</code>. 5’-&gt;3’ bias should return as <code>x5x3Bias</code>. The <code><a href="http://www.rdocumentation.org/packages/plyr/topics/ldply">plyr::ldply()</a></code> call used to coerce from a <code>list</code> to <code>data.frame</code> will sanitize names, so we need to apply our rules before this step.</li>
+</ul>
+</div>
 <div id="minor-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h3>
+<ul>
+<li>Moved global <code>lanePattern</code> variable to <a href="http://steinbaugh.com/basejump">basejump</a> package.</li>
+</ul>
+</div>
+</div>
+    <div id="bcbiobase-0-4-1-2018-08-19" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bcbiobase-0-4-1-2018-08-19" class="anchor"></a>bcbioBase 0.4.1 (2018-08-19)</h2>
+<div id="minor-changes-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code><a href="http://www.rdocumentation.org/packages/basejump/topics/prepareTemplate">prepareTemplate()</a></code>: Migrated function to <a href="http://steinbaugh.com/basejump">basejump</a> package, and simplifed to copy all files from <code>rmarkdown/shared</code> directory inside a package. Currently in use by <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a>.</li>
@@ -119,9 +147,9 @@
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-4-0-2018-08-08" class="anchor"></a>bcbioBase 0.4.0 (2018-08-08)</h2>
 <p>This is a maintenance release designed to simplify the package for long-term stability. Here we are moving all of the current S4 method support to <a href="http://steinbaugh.com/basejump">basejump</a> for consistency, since the methods apply to <code>SummarizedExperiment</code> and are not <a href="http://bcb.io">bcbio</a>-workflow specific. We are keeping the package simple by exporting the <code>read*</code> family of functions here, which are designed to integrate with the <a href="http://bcb.io">bcbio</a> output directories.</p>
-<div id="major-changes" class="section level3">
+<div id="major-changes-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-1" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Moved S4 method support to <a href="http://steinbaugh.com/basejump">basejump</a>: <code>flatFiles</code>, <code>metrics</code>, <code>plotCorrelationHeatmap</code>, <code>plotDot</code>, <code>plotGene</code>, <code>plotHeatmap</code>, <code>plotQuantileHeatmap</code>, <code>plotViolin</code>.</li>
 <li>
@@ -134,9 +162,9 @@
     <div id="bcbiobase-0-3-2-2018-07-31" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-3-2-2018-07-31" class="anchor"></a>bcbioBase 0.3.2 (2018-07-31)</h2>
-<div id="minor-changes-1" class="section level3">
+<div id="minor-changes-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Offloaded <code>separatorBar</code> and <code>updateMsg</code> to <a href="http://steinbaugh.com/basejump">basejump</a>.</li>
 <li>Now using <a href="https://cran.r-project.org/package=roxygen2">roxygen2</a> v6.1 for documentation.</li>
@@ -150,9 +178,9 @@
     <div id="bcbiobase-0-3-1-2018-07-24" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-3-1-2018-07-24" class="anchor"></a>bcbioBase 0.3.1 (2018-07-24)</h2>
-<div id="minor-changes-2" class="section level3">
+<div id="minor-changes-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-3" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Added hexadecimal color support to heatmap functions.</li>
 <li>Improved documentation, specifying the supported types for each argument more clearly.</li>
@@ -163,18 +191,18 @@
     <div id="bcbiobase-0-3-0-2018-07-17" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-3-0-2018-07-17" class="anchor"></a>bcbioBase 0.3.0 (2018-07-17)</h2>
-<div id="major-changes-1" class="section level3">
+<div id="major-changes-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-1" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-2" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Moved some generics that provide <code>SummarizedExperiment</code> method suport to <a href="http://steinbaugh.com/basejump">basejump</a> package: <code>gene2symbol</code>, <code>interestingGroups</code>, <code>sampleData</code>, <code>sampleNames</code>, <code>sanitizeSampleData</code>, <code>selectSamples</code>, <code>uniteInterestingGroups</code>.</li>
 <li>Moved method support for <code>SummarizedExperiment</code> to <a href="http://steinbaugh.com/basejump">basejump</a>: <code>convertGenesToSymbols</code>, <code>counts</code>, <code>gene2symbol</code>, <code>interestingGroups</code>, <code>sampleData</code>, etc.</li>
 <li>Heatmap functions now only provide <code>SummarizedExperiment</code> method support. The documentation for these heatmap functions has been improved (and simplified), showing the supported arguments more clearly.</li>
 </ul>
 </div>
-<div id="minor-changes-3" class="section level3">
+<div id="minor-changes-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-3" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-4" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Now using <code>transcriptID</code> instead of <code>txID</code> in tx2gene and GRanges metadata defined in <code>rowRanges</code> slot of object.</li>
 <li>Now using <code>aes</code> instead of <code>aes_string</code> for all internal <a href="https://ggplot2.tidyverse.org">ggplot2</a> code, which uses tidyeval (v3.0 update).</li>
@@ -188,9 +216,9 @@
     <div id="bcbiobase-0-2-16-2018-06-28" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-16-2018-06-28" class="anchor"></a>bcbioBase 0.2.16 (2018-06-28)</h2>
-<div id="minor-changes-4" class="section level3">
+<div id="minor-changes-5" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-4" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-5" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Improved aggregate column handling in <code>bcbio_geom_abline</code>.</li>
 <li>Improved code coverage back to 100%.</li>
@@ -201,17 +229,17 @@
     <div id="bcbiobase-0-2-15-2018-06-05" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-15-2018-06-05" class="anchor"></a>bcbioBase 0.2.15 (2018-06-05)</h2>
-<div id="new-functions" class="section level3">
+<div id="new-functions-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions" class="anchor"></a>New functions</h3>
+<a href="#new-functions-1" class="anchor"></a>New functions</h3>
 <ul>
 <li>
 <code>minimalSampleData</code> enables easy creation of a sample metadata <code>data.frame</code> by simplify specifying the sample names (e.g. “description” in <a href="http://bcb.io">bcbio</a> YAML). This function was added for easy metadata handling for 10X Cell Ranger in the <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> package, but is generally applicable to other <a href="http://bcb.io">bcbio</a> datasets and may be incorporated into <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> in a future update.</li>
 </ul>
 </div>
-<div id="minor-changes-5" class="section level3">
+<div id="minor-changes-6" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-5" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-6" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Improved internal <code>interestingGroups</code> handling inside <code>plotHeatmap</code> family of functions.</li>
 <li>Removed message about transgeneNames and spikeNames in <code>prepareSummarizedExperiment</code> if missing transcripts are present. Now the function simply lists the genes that don’t have metadata in <code>rowRanges</code>.</li>
@@ -222,9 +250,9 @@
     <div id="bcbiobase-0-2-14-2018-05-18" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-14-2018-05-18" class="anchor"></a>bcbioBase 0.2.14 (2018-05-18)</h2>
-<div id="minor-changes-6" class="section level3">
+<div id="minor-changes-7" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-6" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-7" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Improved formatting of package NEWS.</li>
 <li>Improved code coverage by adding ggplot2 unit testing.</li>
@@ -235,9 +263,9 @@
     <div id="bcbiobase-0-2-13-2018-05-07" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-13-2018-05-07" class="anchor"></a>bcbioBase 0.2.13 (2018-05-07)</h2>
-<div id="minor-changes-7" class="section level3">
+<div id="minor-changes-8" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-7" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-8" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Added <code>overwrite</code> parameter to <code>prepareTemplate</code>, disabled by default.</li>
 <li>Removed validity check for <code>sampleData</code> accessor.</li>
@@ -248,9 +276,9 @@
     <div id="bcbiobase-0-2-12-2018-05-08" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-12-2018-05-08" class="anchor"></a>bcbioBase 0.2.12 (2018-05-08)</h2>
-<div id="minor-changes-8" class="section level3">
+<div id="minor-changes-9" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-8" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-9" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Migrated <code>sanitizeSampleData</code> from basejump to bcbioBase.</li>
 <li>Don’t return <code>interestingGroups</code> column in <code>sampleData</code> return when <code>clean = TRUE</code>.</li>
@@ -272,9 +300,9 @@
     <div id="bcbiobase-0-2-10-2018-05-03" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-10-2018-05-03" class="anchor"></a>bcbioBase 0.2.10 (2018-05-03)</h2>
-<div id="new-functions-1" class="section level3">
+<div id="new-functions-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-1" class="anchor"></a>New functions</h3>
+<a href="#new-functions-2" class="anchor"></a>New functions</h3>
 <ul>
 <li>Exporting <a href="https://ggplot2.tidyverse.org">ggplot2</a> convenience functions for easier plotting in <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> packages: <code>bcbio_geom_abline</code>, <code>bcbio_geom_label</code>, <code>bcbio_geom_label_average</code>, and <code>bcbio_geom_label_repel</code>.</li>
 </ul>
@@ -283,9 +311,9 @@
     <div id="bcbiobase-0-2-9-2018-04-30" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-9-2018-04-30" class="anchor"></a>bcbioBase 0.2.9 (2018-04-30)</h2>
-<div id="minor-changes-9" class="section level3">
+<div id="minor-changes-10" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-9" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-10" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Improved assert check messages for interesting groups.</li>
 <li>Switched back to internally using <code>make.unique</code> instead of <code>make.names</code> for <code>convertGenesToSymbols</code> coercion on SummarizedExperiment objects. We’re using <code>make.names</code> only when coercing seurat objects (see <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> code).</li>
@@ -296,9 +324,9 @@
     <div id="bcbiobase-0-2-8-2018-04-25" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-8-2018-04-25" class="anchor"></a>bcbioBase 0.2.8 (2018-04-25)</h2>
-<div id="minor-changes-10" class="section level3">
+<div id="minor-changes-11" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-10" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-11" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Split out assertive imports so we can pin release to <a href="https://bioconda.github.io">bioconda</a>.</li>
 </ul>
@@ -307,9 +335,9 @@
     <div id="bcbiobase-0-2-7-2018-04-25" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-7-2018-04-25" class="anchor"></a>bcbioBase 0.2.7 (2018-04-25)</h2>
-<div id="minor-changes-11" class="section level3">
+<div id="minor-changes-12" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-11" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-12" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Updated recommended Bioconductor installation method for 3.7 release.</li>
 <li>Attempt to add <code>description</code> to <code>metadataBlacklist</code>.</li>
@@ -321,9 +349,9 @@
     <div id="bcbiobase-0-2-6-2018-04-25" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-6-2018-04-25" class="anchor"></a>bcbioBase 0.2.6 (2018-04-25)</h2>
-<div id="minor-changes-12" class="section level3">
+<div id="minor-changes-13" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-12" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-13" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Using <code>make.names</code> instead of <code>make.unique</code> in <code>convertGenesToSymbols</code> method for <code>SummarizedExperiment</code> class.</li>
 </ul>
@@ -332,9 +360,9 @@
     <div id="bcbiobase-0-2-5-2018-04-24" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-5-2018-04-24" class="anchor"></a>bcbioBase 0.2.5 (2018-04-24)</h2>
-<div id="major-changes-2" class="section level3">
+<div id="major-changes-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-2" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-3" class="anchor"></a>Major changes</h3>
 <ul>
 <li>
 <code>sampleData</code> now supports <code>clean = TRUE</code> argument, which will hide columns that contain metrics or other calculations from the user. This is useful when preparing an R Markdown report, where we only want to show relevant metadata (e.g. factor columns). This is enabled by default.</li>
@@ -346,9 +374,9 @@
 <code>readSampleData</code> no longer requires or recommended <code>fileName</code> column. Only the <code>description</code> column is required for demultiplexed data. In the case of multiplexed samples (e.g. inDrops single-cell RNA-seq), then <code>sampleName</code>, <code>index</code> and <code>sequence</code> names are also required. Multiplexed cell ranger data only requires <code>sampleName</code> and <code>index</code>, since the index barcode isn’t present in the counts matrix.</li>
 </ul>
 </div>
-<div id="minor-changes-13" class="section level3">
+<div id="minor-changes-14" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-13" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-14" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code>sampleID</code> is no longer included in metadata priority columns. This is only to be used internally and should be hidden from the user where possible.</li>
@@ -360,9 +388,9 @@
     <div id="bcbiobase-0-2-4-2018-04-22" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-4-2018-04-22" class="anchor"></a>bcbioBase 0.2.4 (2018-04-22)</h2>
-<div id="minor-changes-14" class="section level3">
+<div id="minor-changes-15" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-14" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-15" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Reworked internal code for <code>readYAML</code> family of functions.</li>
 <li>Reorganized and improved default arguments for heatmap functions.</li>
@@ -383,9 +411,9 @@
     <div id="bcbiobase-0-2-2-2018-04-16" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-2-2018-04-16" class="anchor"></a>bcbioBase 0.2.2 (2018-04-16)</h2>
-<div id="minor-changes-15" class="section level3">
+<div id="minor-changes-16" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-15" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-16" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Improved unit tests for <code>convertGenesToSymbols</code> and <code>gene2symbol</code>.</li>
 <li>Miscellaneous documentation fixes.</li>
@@ -395,9 +423,9 @@
     <div id="bcbiobase-0-2-1-2018-04-13" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-1-2018-04-13" class="anchor"></a>bcbioBase 0.2.1 (2018-04-13)</h2>
-<div id="major-changes-3" class="section level3">
+<div id="major-changes-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-3" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-4" class="anchor"></a>Major changes</h3>
 <ul>
 <li>
 <code>convertGenesToSymbols</code> now has method support for <code>SummarizedExperiment</code>.</li>
@@ -407,9 +435,9 @@
 <code>prepareSummarizedExperiment</code> now supports transgenes with the <code>transgeneNames</code> argument (e.g. “EGFP”), and FASTA spike-ins with the <code>spikeNames</code> argument (e.g. “ERCCs”). Additionally, <code>rowRanges</code> and <code>colData</code> are no longer required and can be left <code>NULL</code>, although this isn’t generally recommended.</li>
 </ul>
 </div>
-<div id="minor-changes-16" class="section level3">
+<div id="minor-changes-17" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-16" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-17" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Consolidated <code>sampleYAML</code> function code.</li>
 <li>Consolidated assert check imports into <code>bcbioBase-package.R</code> file.</li>
@@ -421,9 +449,9 @@
     <div id="bcbiobase-0-2-0-2018-03-22" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-2-0-2018-03-22" class="anchor"></a>bcbioBase 0.2.0 (2018-03-22)</h2>
-<div id="major-changes-4" class="section level3">
+<div id="major-changes-5" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-4" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-5" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Added <code>sampleData</code> generic. Providing method support for <code>SummarizedExperiment</code> class. This generic provides consistent sample metadata support in both the <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> packages. For <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a>, <code>colData</code> returns information about the cells, not the samples. For <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a>, <code>colData</code> and <code>sampleData</code> provide similar information on the samples.</li>
 <li>Added <code>uniteInterestingGroups</code> as a generic. Provides support for adding an <code>interestingGroups</code> column to a data frame.</li>
@@ -438,9 +466,9 @@
 <li>Added <code>sampleDirs</code> function, that informs the user about the names of the sample directories in the bcbio run.</li>
 </ul>
 </div>
-<div id="minor-changes-17" class="section level3">
+<div id="minor-changes-18" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-17" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-18" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Improved internal factor sanitization of sample metadata for <code>readSampleMetadataFile</code> and <code>sampleYAMLMetadata</code>.</li>
 <li>Exporting <code>projectDirPattern</code> to match bcbio project directories (e.g. <code>2018-01-01_rnaseq</code>) across packages.</li>
@@ -537,6 +565,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#bcbiobase-0-4-2-2018-08-26">0.4.2</a></li>
         <li><a href="#bcbiobase-0-4-1-2018-08-19">0.4.1</a></li>
         <li><a href="#bcbiobase-0-4-0-2018-08-08">0.4.0</a></li>
         <li><a href="#bcbiobase-0-3-2-2018-07-31">0.3.2</a></li>
@@ -575,7 +604,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://steinbaugh.com'>Michael Steinbaugh</a>, <a href='https://lpantano.github.io'>Lorena Pantano</a>, <a href='https://github.com/roryk'>Rory Kirchner</a>, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com'>Michael Steinbaugh</a>, <a href='https://github.com/roryk'>Rory Kirchner</a>, <a href='https://lpantano.github.io'>Lorena Pantano</a>, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
 </div>
 
 <div class="pkgdown">

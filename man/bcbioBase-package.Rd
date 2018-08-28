@@ -22,8 +22,8 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Lorena Pantano \email{lorena.pantano@gmail.com} (0000-0002-3859-3249)
   \item Rory Kirchner \email{roryk@alum.mit.edu} (0000-0003-4814-5885)
+  \item Lorena Pantano \email{lorena.pantano@gmail.com} (0000-0002-3859-3249)
 }
 
 Other contributors:
