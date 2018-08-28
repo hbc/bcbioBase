@@ -5,7 +5,7 @@
 #' @family Data Functions
 #' @author Michael Steinbaugh
 #'
-#' @param uploadDir `string`. File path to bcbio run upload directory.
+#' @inheritParams general
 #'
 #' @return Named `character` containing sample directory paths.
 #' @export
@@ -17,27 +17,36 @@ sampleDirs <- function(uploadDir) {
     assert_all_are_dirs(uploadDir)
     uploadDir <- normalizePath(uploadDir, winslash = "/", mustWork = TRUE)
 
-    # Get the subdirectories in the upload directory
-    subdirs <- list.dirs(uploadDir, full.names = TRUE, recursive = FALSE)
+    # Get the subdirectories in the upload directory.
+    dirs <- list.dirs(uploadDir, full.names = TRUE, recursive = FALSE)
+    # Ensure the file paths are normalized (for Windows).
+    dirs <- normalizePath(dirs, winslash = "/", mustWork = TRUE)
 
-    # Require detection and removal of nested `projectDir`
-    projectDir <- grep(
-        pattern = projectDirPattern,
-        x = basename(subdirs)
-    )
-    assert_is_non_empty(projectDir)
+    # Detect and remove nested dated project directory.
+    projectDir <- suppressMessages(projectDir(uploadDir))
+    dirs <- setdiff(dirs, projectDir)
+    assert_is_non_empty(dirs)
 
-    sampleDirs <- subdirs[-projectDir]
-    assert_is_non_empty(sampleDirs)
+    # Require that the sample directories are valid names in R.
+    # They cannot contain non-alphanumeric characters, spaces, dashes, or begin
+    # with a number. Prefix samples that start with a number using "X".
+    basenames <- basename(dirs)
+    # Note that multiplexed single-cell data contains a dash in the name
+    # (e.g. multiplexed-AAAAAAAA).
+    # We're allowing this in our checks here.
+    basenames <- gsub("[-ACGT]+$", "", basenames)
+    assertAllAreValidNames(basenames)
+    # Our `makeNames()` function coerces periods to underscores.
+    basenames <- makeNames(basenames, unique = TRUE)
 
-    # Generate names from file paths and make valid
-    names(sampleDirs) <- makeNames(basename(sampleDirs), unique = TRUE)
+    # Assign our valid names to the absolute file paths.
+    names(dirs) <- basenames
 
     message(paste(
-        paste(length(sampleDirs), "samples detected:"),
-        str_trunc(toString(names(sampleDirs)), width = 80L),
+        paste(length(dirs), "samples detected:"),
+        str_trunc(toString(names(dirs)), width = 80L),
         sep = "\n"
     ))
 
-    sampleDirs
+    dirs
 }
