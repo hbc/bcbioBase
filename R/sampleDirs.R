@@ -25,18 +25,31 @@ sampleDirs <- function(uploadDir) {
     # Detect and remove nested dated project directory.
     projectDir <- suppressMessages(projectDir(uploadDir))
     dirs <- setdiff(dirs, projectDir)
+
+    # Double check that we're nuking any remaining dated directories, in case
+    # bcbio has been run multiple times.
+    isSample <- !grepl(
+        pattern = projectDirPattern,
+        x = basename(dirs)
+    )
+    dirs <- dirs[isSample]
+
+    # Ensure there are sample directories in the upload.
     assert_is_non_empty(dirs)
 
-    # Require that the sample directories are valid names in R.
-    # They cannot contain non-alphanumeric characters, spaces, dashes, or begin
-    # with a number. Prefix samples that start with a number using "X".
+    # Use the directory basenames for vector names.
     basenames <- basename(dirs)
-    # Note that multiplexed single-cell data contains a dash in the name
+
+    # Require that the sample directories are valid names in R. They cannot
+    # contain non-alphanumeric characters, spaces, dashes, or begin with a
+    # number. Prefix samples that start with a number using "X". Note that
+    # multiplexed single-cell samples are expected to contain a dash in the name
     # (e.g. multiplexed-AAAAAAAA).
-    # We're allowing this in our checks here.
-    basenames <- gsub("[-ACGT]+$", "", basenames)
-    assertAllAreValidNames(basenames)
-    # Our `makeNames()` function coerces periods to underscores.
+    x <- basenames
+    x <- gsub("[-ACGT]+$", "", basenames)
+    assertAllAreValidNames(x)
+
+    # Our `makeNames()` function coerces periods and dashes to underscores.
     basenames <- makeNames(basenames, unique = TRUE)
 
     # Assign our valid names to the absolute file paths.
