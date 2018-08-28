@@ -13,6 +13,8 @@
 \item{...}{Additional arguments.}
 
 \item{file}{\code{string}. File path.}
+
+\item{uploadDir}{\code{string}. File path to bcbio run upload directory.}
 }
 \value{
 No value.
