@@ -9,8 +9,8 @@
 #' @export
 #'
 #' @examples
-#' readLog("http://bcbiobase.seq.cloud/bcbio-nextgen.log") %>%
-#'     head()
+#' x <- readLog("http://bcbiobase.seq.cloud/bcbio-nextgen.log")
+#' head(x)
 readLog <- function(file) {
     assert_is_a_string(file)
     file <- localOrRemoteFile(file)

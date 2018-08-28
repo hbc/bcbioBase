@@ -16,8 +16,8 @@ readLog(file)
 Read Log File
 }
 \examples{
-readLog("http://bcbiobase.seq.cloud/bcbio-nextgen.log") \%>\%
-    head()
+x <- readLog("http://bcbiobase.seq.cloud/bcbio-nextgen.log")
+head(x)
 }
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},
