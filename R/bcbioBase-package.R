@@ -21,7 +21,7 @@
 #' @importFrom ggplot2 aes geom_hline geom_label geom_vline
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom grid arrow unit
-#' @importFrom magrittr %>% set_rownames
+#' @importFrom magrittr %>% set_colnames set_rownames
 #' @importFrom methods as is
 #' @importFrom plyr ldply
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
