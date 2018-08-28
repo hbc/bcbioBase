@@ -12,8 +12,9 @@
 #'   assert_all_are_non_missing_nor_empty_character
 #' @importFrom assertive.types assert_is_a_string assert_is_an_integer
 #'   assert_is_any_of assert_is_character assert_is_function assert_is_list
-#' @importFrom basejump assertIsAnImplicitInteger assertIsTx2gene camel fixNA
-#'   localOrRemoteFile makeNames readFileByExtension readYAML removeNA
+#' @importFrom basejump assertAllAreValidNames assertIsAnImplicitInteger
+#'   assertIsTx2gene camel fixNA localOrRemoteFile makeNames readFileByExtension
+#'   readYAML removeNA
 #' @importFrom Biostrings reverseComplement
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select ungroup
