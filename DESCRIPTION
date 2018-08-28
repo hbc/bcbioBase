@@ -2,7 +2,7 @@ Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions and generics for bcbio R packages.
 Version: 0.4.2
-Date: 2018-08-26
+Date: 2018-08-28
 Authors@R: c(
     person(
         given = "Michael",
@@ -69,7 +69,7 @@ Suggests:
     roxygen2,
     testthat (>= 2.0)
 Remotes:
-    steinbaugh/basejump
+    steinbaugh/basejump@develop
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0
