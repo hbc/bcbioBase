@@ -1,5 +1,7 @@
 context("Data Functions")
 
+uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
+
 
 
 # minimalSampleData ============================================================
@@ -17,9 +19,18 @@ test_that("minimalSampleData", {
 
 
 
+# projectDir ===================================================================
+test_that("projectDir", {
+    expect_identical(
+        projectDir(uploadDir),
+        file.path(uploadDir, "2018-01-01_bcbio")
+    )
+})
+
+
+
 # sampleDirs ===================================================================
 test_that("sampleDirs", {
-    uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
     expect_identical(
         sampleDirs(uploadDir),
         c(
