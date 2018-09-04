@@ -10,7 +10,7 @@ minimalSampleData(sample)
 \item{sample}{\code{character}. Sample names (e.g. "description" in bcbio YAML).}
 }
 \value{
-\code{data.frame}.
+\code{DataFrame}.
 }
 \description{
 Minimal Sample Data

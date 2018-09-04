@@ -29,7 +29,7 @@
 #'   drop_get_metadata drop_share drop_upload
 #' @importFrom readr read_csv read_lines
 #' @importFrom rlang !!! !! sym syms
-#' @importFrom S4Vectors aggregate as.data.frame merge tail
+#' @importFrom S4Vectors aggregate as.data.frame DataFrame merge tail
 #' @importFrom stats as.formula
 #' @importFrom stringr str_pad str_trunc
 #' @importFrom tibble column_to_rownames rownames_to_column tibble

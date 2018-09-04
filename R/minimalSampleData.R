@@ -5,7 +5,7 @@
 #'
 #' @param sample `character`. Sample names (e.g. "description" in bcbio YAML).
 #'
-#' @return `data.frame`.
+#' @return `DataFrame`.
 #' @export
 #'
 #' @examples
@@ -13,10 +13,9 @@
 minimalSampleData <- function(sample) {
     assert_is_character(sample)
     assert_has_no_duplicates(sample)
-    data.frame(
+    DataFrame(
         sampleName = sample,
         description = sample,
-        row.names = makeNames(sample),
-        stringsAsFactors = TRUE
+        row.names = makeNames(sample)
     )
 }
