@@ -13,6 +13,7 @@
 minimalSampleData <- function(sample) {
     assert_is_character(sample)
     assert_has_no_duplicates(sample)
+    sample <- as.factor(sample)
     DataFrame(
         sampleName = sample,
         description = sample,
