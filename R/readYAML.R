@@ -81,10 +81,10 @@ NULL
 
     # Top-level sample metadata in the YAML is relatively easy to parse.
     # Just select for atomic values, otherwise return `NA`.
-    top <- sapply(
+    top <- vapply(
         X = yaml,
         FUN = function(item) {
-            sapply(
+            return <- sapply(
                 X = item,
                 FUN = function(item) {
                     if (is.atomic(item)) {
@@ -94,10 +94,13 @@ NULL
                     }
                 },
                 simplify = TRUE,
-                USE.NAMES = TRUE
+                USE.NAMES = FALSE
             )
+            assert_is_character(return)
+            return
         },
-        simplify = TRUE,
+        # Require that there's no dimension mismatch when parsing.
+        FUN.VALUE = character(length(yaml[[1L]])),
         USE.NAMES = TRUE
     )
     assert_is_matrix(top)
@@ -105,12 +108,12 @@ NULL
         t() %>%
         as("tbl_df") %>%
         removeNA()
-    assert_is_non_empty(top)
+    assert_are_identical(nrow(top), length(yaml))
     invisible(lapply(top, assert_is_atomic))
 
     # Handle the nested metadata, defined by the keys.
     # This step is a little tricker but should work consistently.
-    nested <- sapply(
+    nested <- lapply(
         X = yaml,
         FUN = function(item) {
             item <- item[[keys]]
@@ -122,31 +125,28 @@ NULL
             # modified during the `ldply()` call that coerces `list` to
             # `data.frame`.
             item <- camel(item)
-            sapply(
+            lapply(
                 X = item,
                 FUN = function(item) {
                     assert_is_atomic(item)
                     # Detect and coerce nested metadata back to a string, if
                     # necessary. bcbio allows nesting with a semicolon
-                    # delimiter. Warn the user here about discouraging this with
-                    # R data. http://bit.ly/2Je1xgO
+                    # delimiter.
                     if (length(item) > 1L) {
-                        warning("Nested sample metadata detected")
                         item <- paste(item, collapse = "; ")
                     }
                     assert_is_scalar(item)
                     item
-                },
-                simplify = TRUE,
-                USE.NAMES = TRUE
+                }
             )
-        },
-        simplify = TRUE,
-        USE.NAMES = FALSE
+        }
     )
-    assert_is_matrix(nested)
-    nested <- nested %>%
-        t() %>%
+    # Use `ldply()` method to coerce a list with uneven lengths.
+    nested <- ldply(
+        .data = nested,
+        .fun = data.frame,
+        stringsAsFactors = FALSE
+    ) %>%
         as("tbl_df") %>%
         removeNA()
     assert_is_non_empty(nested)
