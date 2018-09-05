@@ -7,7 +7,7 @@
 #'
 #' @inheritParams general
 #'
-#' @return Named `character` containing sample directory paths.
+#' @return Named `character`. Sample directory paths.
 #' @export
 #'
 #' @examples
