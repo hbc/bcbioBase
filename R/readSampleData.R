@@ -177,8 +177,8 @@ readSampleData <- function(file, lanes = 1L) {
 
 
 
+# Consider adding "rowname" here.
 .sampleDataBlacklist <- c(
     "interestingGroups",
-    "rowname",
     "sampleID"
 )
