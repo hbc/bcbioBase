@@ -1,3 +1,7 @@
+# TODO Ensure we're checking for support of items with variable lengths.
+
+
+
 #' Read YAML Sample Data and Metrics
 #'
 #' @note Metrics are only generated for a standard RNA-seq run with aligned
@@ -16,15 +20,29 @@
 #'
 #' @examples
 #' file <- "http://bcbiobase.seq.cloud/project-summary.yaml"
-#' readYAMLSampleData(file) %>% glimpse()
-#' readYAMLSampleMetrics(file) %>% glimpse()
+#'
+#' # Sample metadata
+#' x <- readYAMLSampleData(file)
+#' glimpse(x)
+#'
+#' # Sample metrics
+#' x <- readYAMLSampleMetrics(file)
+#' glimpse(x)
 NULL
 
 
 
+# Fix numerics set as characters.
+.numericAsCharacter <- function(x) {
+    any(grepl(x = x, pattern = "^[0-9\\.]+$"))
+}
+
+
+
+# Currently max 2 keys are supported (e.g. summary, metrics).
 .readYAMLSample <- function(file, keys) {
+    assert_is_a_string(file)
     assert_is_character(keys)
-    # Currently max 2 keys are supported (e.g. summary, metrics).
     assert_all_are_in_range(length(keys), lower = 1L, upper = 2L)
 
     yaml <- readYAML(file)
@@ -83,61 +101,77 @@ NULL
         USE.NAMES = TRUE
     )
     assert_is_matrix(top)
-    top <- as(t(top), "DataFrame")
-    top <- removeNA(top)
+    top <- top %>%
+        t() %>%
+        as("tbl_df") %>%
+        removeNA()
     assert_is_non_empty(top)
-    invisible(lapply(top, assert_is_factor))
+    invisible(lapply(top, assert_is_atomic))
 
     # Handle the nested metadata, defined by the keys.
     # This step is a little tricker but should work consistently.
-    # FIXME Need to tweak this approach.
-    nested <- lapply(yaml, function(item) {
-        item <- item[[keys]]
-        assert_is_non_empty(item)
-        invisible(lapply(item, assert_is_atomic))
-        # Sanitize names into camel case here, otherwise they'll get modified
-        # during the `ldply()` call that coerces `list` to `data.frame`.
-        item <- camel(item)
-        lapply(
-            X = item,
-            FUN = function(item) {
-                assert_all_are_non_missing_nor_empty_character(item)
-                # Detect and coerce nested metadata back to a string, if
-                # necessary. bcbio allows nesting with a semicolon delimiter.
-                # Warn the user here about discouraging this with R data.
-                # http://bit.ly/2Je1xgO
-                if (length(item) > 1L) {
-                    warning("Nested sample metadata detected")
-                    item <- paste(item, collapse = "; ")
-                }
-                item
-            }
-        )
-    })
-    # Coerce to data frame.
-    # Note that we're using `plyr::ldply()` here because it can coerce a list
-    # with uneven lengths. However, it will sanitize column names, so make sure
-    # we convert to camel case before running this step.
-    nested <- ldply(
-        .data = nested,
-        .fun = data.frame,
-        stringsAsFactors = FALSE
+    nested <- sapply(
+        X = yaml,
+        FUN = function(item) {
+            item <- item[[keys]]
+            assert_is_list(item)
+            # Remove any entries that are `NULL` (e.g. "batch" in metadata).
+            item <- Filter(Negate(is.null), item)
+            assert_is_non_empty(item)
+            # Sanitize names into camel case here, otherwise they'll get
+            # modified during the `ldply()` call that coerces `list` to
+            # `data.frame`.
+            item <- camel(item)
+            sapply(
+                X = item,
+                FUN = function(item) {
+                    assert_is_atomic(item)
+                    # Detect and coerce nested metadata back to a string, if
+                    # necessary. bcbio allows nesting with a semicolon
+                    # delimiter. Warn the user here about discouraging this with
+                    # R data. http://bit.ly/2Je1xgO
+                    if (length(item) > 1L) {
+                        warning("Nested sample metadata detected")
+                        item <- paste(item, collapse = "; ")
+                    }
+                    assert_is_scalar(item)
+                    item
+                },
+                simplify = TRUE,
+                USE.NAMES = TRUE
+            )
+        },
+        simplify = TRUE,
+        USE.NAMES = FALSE
     )
-    assert_is_data.frame(nested)
+    assert_is_matrix(nested)
+    nested <- nested %>%
+        t() %>%
+        as("tbl_df") %>%
+        removeNA()
     assert_is_non_empty(nested)
-    nested <- as(nested, "DataFrame")
+    invisible(lapply(nested, assert_is_atomic))
 
     # Bind the top and nested data frames, coerce to tibble, and return.
+    assert_are_identical(
+        x = nrow(top),
+        y = nrow(nested)
+    )
     assert_are_disjoint_sets(
         x = colnames(top),
         y = colnames(nested)
     )
     cbind(top, nested) %>%
         as("tbl_df") %>%
+        camel() %>%
+        # Coerce any periods in colnames to "x"
+        # (e.g. x5.3Bias becomes x5x3Bias).
+        set_colnames(gsub("\\.", "x", colnames(.))) %>%
         sanitizeNA() %>%
         removeNA() %>%
-        camel() %>%
         arrange(!!sym("description")) %>%
+        # Ensure numerics from YAML are set correctly and not character.
+        mutate_if(.numericAsCharacter, as.numeric) %>%
         # Order the columns alphabetically.
         .[, sort(colnames(.)), drop = FALSE] %>%
         # Set the rownames.
@@ -153,7 +187,6 @@ readYAMLSampleData <- function(file) {
     file %>%
         .readYAMLSample(keys = "metadata") %>%
         .returnSampleData()
-
 }
 
 
@@ -163,29 +196,23 @@ readYAMLSampleData <- function(file) {
 readYAMLSampleMetrics <- function(file) {
     message("Reading sample metrics from YAML")
     data <- .readYAMLSample(file, keys = c("summary", "metrics"))
+    assert_is_tbl_df(data)
 
     # Early return on empty metrics (e.g. fast mode).
     if (!length(data)) {
         return(NULL)  # nocov
     }
 
-    # Fix numerics set as characters.
-    numericAsCharacter <- function(x) {
-        any(grepl(x = x, pattern = "^[0-9\\.]+$"))
-    }
-
     # Drop any metadata columns. Note we're also dropping the duplicate `name`
     # column present in the metrics YAML.
-    data %>%
-        camel() %>%
-        # Coerce any remaining periods (e.g. x5.3Bias).
-        set_colnames(gsub("\\.", "x", colnames(.))) %>%
+    data <- data %>%
         # Drop blacklisted columns from the return.
         .[, sort(setdiff(colnames(.), metricsBlacklist)), drop = FALSE] %>%
-        rownames_to_column() %>%
-        # Ensure numerics from YAML are set correctly and not character.
-        mutate_if(numericAsCharacter, as.numeric) %>%
+        # Convert all strings to factors.
         mutate_if(is.character, as.factor) %>%
         mutate_if(is.factor, droplevels) %>%
-        column_to_rownames()
+        as("DataFrame")
+
+    assertHasRownames(data)
+    data
 }

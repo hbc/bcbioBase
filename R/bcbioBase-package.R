@@ -9,13 +9,13 @@
 #' @importFrom assertive.files assert_all_are_dirs assert_all_are_existing_files
 #' @importFrom assertive.numbers assert_all_are_in_range assert_all_are_positive
 #' @importFrom assertive.properties assert_has_dimnames assert_has_no_duplicates
-#'   assert_is_non_empty
+#'   assert_is_atomic assert_is_non_empty assert_is_scalar
 #' @importFrom assertive.sets assert_are_disjoint_sets assert_is_subset
 #' @importFrom assertive.strings assert_all_are_matching_regex
 #'   assert_all_are_non_missing_nor_empty_character
 #' @importFrom assertive.types assert_is_a_string assert_is_an_integer
 #'   assert_is_any_of assert_is_character assert_is_data.frame
-#'   assert_is_function assert_is_list assert_is_tbl_df
+#'   assert_is_function assert_is_list assert_is_matrix assert_is_tbl_df
 #' @importFrom basejump assertAllAreValidNames assertHasRownames
 #'   assertIsAnImplicitInteger assertIsTx2gene camel localOrRemoteFile makeNames
 #'   printString readFileByExtension readYAML removeNA sanitizeNA

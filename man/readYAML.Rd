@@ -26,8 +26,14 @@ output the same metrics into the YAML.
 }
 \examples{
 file <- "http://bcbiobase.seq.cloud/project-summary.yaml"
-readYAMLSampleData(file) \%>\% glimpse()
-readYAMLSampleMetrics(file) \%>\% glimpse()
+
+# Sample metadata
+x <- readYAMLSampleData(file)
+glimpse(x)
+
+# Sample metrics
+x <- readYAMLSampleMetrics(file)
+glimpse(x)
 }
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},
