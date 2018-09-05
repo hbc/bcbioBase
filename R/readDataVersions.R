@@ -12,11 +12,11 @@
 #' @export
 #'
 #' @examples
-#' readDataVersions("http://bcbiobase.seq.cloud/data_versions.csv") %>%
-#'     glimpse()
+#' x <- readDataVersions("http://bcbiobase.seq.cloud/data_versions.csv")
+#' print(x)
 readDataVersions <- function(file) {
     assert_is_a_string(file)
-    # Data versions are optional
+    # Data versions are optional.
     file <- tryCatch(
         localOrRemoteFile(file),
         error = function(e) {
