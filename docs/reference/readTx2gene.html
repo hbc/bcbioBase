@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.99.0</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>data.frame</code>.</p>
+    <p><code>DataFrame</code>.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
@@ -140,11 +140,13 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>readTx2gene</span>(<span class='st'>"http://bcbiobase.seq.cloud/tx2gene.csv"</span>)</div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readTx2gene</span>(<span class='st'>"http://bcbiobase.seq.cloud/tx2gene.csv"</span>)</div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
 #&gt; <span class='message'>cols(</span>
 #&gt; <span class='message'>  transcriptID = col_character(),</span>
 #&gt; <span class='message'>  geneID = col_character()</span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt;                          transcriptID             geneID
+#&gt; <span class='message'>)</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 5 rows and 2 columns
+#&gt;                          transcriptID             geneID
+#&gt;                           &lt;character&gt;        &lt;character&gt;
 #&gt; ENSMUST00000033908 ENSMUST00000033908 ENSMUSG00000031511
 #&gt; ENSMUST00000070080 ENSMUST00000070080 ENSMUSG00000056124
 #&gt; ENSMUST00000119854 ENSMUST00000119854 ENSMUSG00000037736

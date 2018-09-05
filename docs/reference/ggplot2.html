@@ -64,7 +64,7 @@ ggplot2." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.99.0</span>
       </span>
     </div>
 
@@ -130,8 +130,8 @@ ggplot2." />
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>xintercept, yintercept</th>
-      <td><p><code>scalar numeric</code> denoting x- or y-axis cutoff.
-Specify one but not both.</p></td>
+      <td><p><code>scalar numeric</code>. Specify either x- or y-axis
+cutoff, but not both.</p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -153,16 +153,17 @@ to the paired geom/stat.</p></td>
     </tr>
     <tr>
       <th>col</th>
-      <td><p>Column.</p></td>
+      <td><p><code>string</code>. Column.</p></td>
     </tr>
     <tr>
       <th>fun</th>
-      <td><p>Function to use for average calculation. Currently supports
-"<code>mean</code>" or "<code>median</code>".</p></td>
+      <td><p><code>string</code>. Function name to use for average calculation. Currently
+supports "<code>mean</code>" or "<code>median</code>".</p></td>
     </tr>
     <tr>
       <th>digits</th>
-      <td><p>Number of significant digits to use. Defaults to rounded.</p></td>
+      <td><p><code>scalar integer</code>. Number of significant digits to use.
+Defaults to rounded.</p></td>
     </tr>
     <tr>
       <th>color</th>
@@ -191,8 +192,9 @@ to the paired geom/stat.</p></td>
     <h2 class="hasAnchor" id="bcbio-geom-label-average"><a class="anchor" href="#bcbio-geom-label-average"></a>bcbio_geom_label_average</h2>
 
     
-    <p>Add average labels to a plot. For example, <code>col</code> can be <code>nGene</code>. Median or
-mean values are always calculated per sample (<code>sampleName</code>).</p>
+    <p>Add average labels to a plot. For example, <code>col</code> can be <code>nGene</code>. Note that
+this function requires <code>sampleName</code> to be defined as a column. Median or mean
+values are always calculated per sample (<code>sampleName</code>).</p>
     
     <h2 class="hasAnchor" id="bcbio-geom-label-repel"><a class="anchor" href="#bcbio-geom-label-repel"></a>bcbio_geom_label_repel</h2>
 
@@ -224,12 +226,22 @@ is required, simply use the ggrepel version instead.</p>
 #&gt; position_identity </div><div class='input'><span class='no'>geom</span> <span class='kw'>&lt;-</span> <span class='fu'>bcbio_geom_label</span>()
 <span class='no'>geom</span></div><div class='output co'>#&gt; geom_label: parse = FALSE, label.padding = 0.2, label.r = 0.15, label.size = NA, na.rm = FALSE
 #&gt; stat_identity: na.rm = FALSE
-#&gt; position_identity </div><div class='input'><span class='no'>geom</span> <span class='kw'>&lt;-</span> <span class='fu'>bcbio_geom_label_average</span>(
-    <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>colData</span>(<span class='no'>rse_bcb</span>),
-    <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"exonicRate"</span>,
+#&gt; position_identity </div><div class='input'><span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/tibble'>tibble</a></span>(
+    <span class='kw'>sampleName</span> <span class='kw'>=</span> <span class='st'>"indrops"</span>,
+    <span class='kw'>mitoRatio</span> <span class='kw'>=</span> <span class='fu'>seq</span>(<span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>0.025</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>0.025</span>)
+)
+<span class='fu'>print</span>(<span class='no'>data</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 2
+#&gt;   sampleName mitoRatio
+#&gt;   &lt;chr&gt;          &lt;dbl&gt;
+#&gt; 1 indrops        0.025
+#&gt; 2 indrops        0.05 
+#&gt; 3 indrops        0.075
+#&gt; 4 indrops        0.1  </div><div class='input'><span class='no'>geom</span> <span class='kw'>&lt;-</span> <span class='fu'>bcbio_geom_label_average</span>(
+    <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data</span>,
+    <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"mitoRatio"</span>,
     <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"median"</span>
 )
-<span class='no'>geom</span></div><div class='output co'>#&gt; mapping: label = ~roundedAverage 
+<span class='fu'>print</span>(<span class='no'>geom</span>)</div><div class='output co'>#&gt; mapping: label = ~roundedAverage 
 #&gt; geom_label: parse = FALSE, label.padding = 0.2, label.r = 0.15, label.size = NA, na.rm = FALSE
 #&gt; stat_identity: na.rm = FALSE
 #&gt; position_identity </div><div class='input'><span class='no'>geom</span> <span class='kw'>&lt;-</span> <span class='fu'>bcbio_geom_label_repel</span>()

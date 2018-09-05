@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.99.0</span>
       </span>
     </div>
 
@@ -131,7 +131,7 @@ technical replicates (<code>_LXXX</code>) suffix.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>data.frame</code>.</p>
+    <p><code>DataFrame</code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -142,21 +142,33 @@ technical replicates (<code>_LXXX</code>) suffix.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Demultiplexed</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='st'>"http://bcbiobase.seq.cloud/demultiplexed.csv"</span>)</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Demultiplexed samples detected</span></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Observations: 4
-#&gt; Variables: 4
-#&gt; $ sampleName  &lt;fct&gt; sample 1, sample 2, sample 3, sample 4
-#&gt; $ fileName    &lt;fct&gt; sample1_R1.fastq.gz, sample2_R1.fastq.gz, sample3_R1.fa...
-#&gt; $ description &lt;fct&gt; sample 1, sample 2, sample 3, sample 4
-#&gt; $ genotype    &lt;fct&gt; wildtype, wildtype, mutant, mutant</div><div class='input'>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='st'>"http://bcbiobase.seq.cloud/demultiplexed.csv"</span>)</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Demultiplexed samples detected</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 4 rows and 4 columns
+#&gt;         sampleName            fileName description genotype
+#&gt;           &lt;factor&gt;            &lt;factor&gt;    &lt;factor&gt; &lt;factor&gt;
+#&gt; sample1    sample1 sample1_R1.fastq.gz     sample1 wildtype
+#&gt; sample2    sample2 sample2_R1.fastq.gz     sample2 wildtype
+#&gt; sample3    sample3 sample3_R1.fastq.gz     sample3   mutant
+#&gt; sample4    sample4 sample4_R1.fastq.gz     sample4   mutant</div><div class='input'>
 <span class='co'># Multiplexed (e.g. inDrop single-cell RNA-seq)</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='st'>"http://bcbiobase.seq.cloud/multiplexed.csv"</span>)</div><div class='output co'>#&gt; <span class='message'>Reading multiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Multiplexed samples detected</span></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Observations: 7
-#&gt; Variables: 6
-#&gt; $ sampleName  &lt;fct&gt; sample 2, sample 1, sample 5, sample 4, sample 6, sampl...
-#&gt; $ fileName    &lt;fct&gt; run1_R1.fastq.gz, run1_R1.fastq.gz, run2_R1.fastq.gz, r...
-#&gt; $ description &lt;fct&gt; run1-CAGTTATG, run1-TTACCTCC, run2-ATAGCCTT, run2-CTTAA...
-#&gt; $ index       &lt;fct&gt; 18, 17, 14, 13, 15, 16, 12
-#&gt; $ sequence    &lt;fct&gt; CATAACTG, GGAGGTAA, AAGGCTAT, CTATTAAG, GAGCCTTA, TTATG...
-#&gt; $ revcomp     &lt;fct&gt; CAGTTATG, TTACCTCC, ATAGCCTT, CTTAATAG, TAAGGCTC, TCGCA...</div></pre>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='st'>"http://bcbiobase.seq.cloud/multiplexed.csv"</span>)</div><div class='output co'>#&gt; <span class='message'>Reading multiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Multiplexed samples detected</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 7 rows and 6 columns
+#&gt;               sampleName         fileName   description    index sequence
+#&gt;                 &lt;factor&gt;         &lt;factor&gt;      &lt;factor&gt; &lt;factor&gt; &lt;factor&gt;
+#&gt; run1_CAGTTATG    sample2 run1_R1.fastq.gz run1-CAGTTATG       18 CATAACTG
+#&gt; run1_TTACCTCC    sample1 run1_R1.fastq.gz run1-TTACCTCC       17 GGAGGTAA
+#&gt; run2_ATAGCCTT    sample5 run2_R1.fastq.gz run2-ATAGCCTT       14 AAGGCTAT
+#&gt; run2_CTTAATAG    sample4 run2_R1.fastq.gz run2-CTTAATAG       13 CTATTAAG
+#&gt; run2_TAAGGCTC    sample6 run2_R1.fastq.gz run2-TAAGGCTC       15 GAGCCTTA
+#&gt; run2_TCGCATAA    sample7 run2_R1.fastq.gz run2-TCGCATAA       16 TTATGCGA
+#&gt; run2_TCTTACGC    sample3 run2_R1.fastq.gz run2-TCTTACGC       12 GCGTAAGA
+#&gt;                revcomp
+#&gt;               &lt;factor&gt;
+#&gt; run1_CAGTTATG CAGTTATG
+#&gt; run1_TTACCTCC TTACCTCC
+#&gt; run2_ATAGCCTT ATAGCCTT
+#&gt; run2_CTTAATAG CTTAATAG
+#&gt; run2_TAAGGCTC TAAGGCTC
+#&gt; run2_TCGCATAA TCGCATAA
+#&gt; run2_TCTTACGC TCTTACGC</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

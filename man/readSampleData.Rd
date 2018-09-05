@@ -21,11 +21,11 @@ Read Sample Metadata
 \examples{
 # Demultiplexed
 x <- readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv")
-glimpse(x)
+print(x)
 
 # Multiplexed (e.g. inDrop single-cell RNA-seq)
 x <- readSampleData("http://bcbiobase.seq.cloud/multiplexed.csv")
-glimpse(x)
+print(x)
 }
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},
