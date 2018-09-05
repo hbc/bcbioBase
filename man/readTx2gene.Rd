@@ -10,7 +10,7 @@ readTx2gene(file)
 \item{file}{\code{string}. File path.}
 }
 \value{
-\code{data.frame}.
+\code{DataFrame}.
 }
 \description{
 Transcript to Gene Annotations
@@ -19,7 +19,8 @@ Transcript to Gene Annotations
 Doesn't attempt to strip transcript versions.
 }
 \examples{
-readTx2gene("http://bcbiobase.seq.cloud/tx2gene.csv")
+x <- readTx2gene("http://bcbiobase.seq.cloud/tx2gene.csv")
+print(x)
 }
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},

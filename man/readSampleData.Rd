@@ -13,7 +13,7 @@ readSampleData(file, lanes = 1L)
 technical replicates (\code{_LXXX}) suffix.}
 }
 \value{
-\code{data.frame}.
+\code{DataFrame}.
 }
 \description{
 Read Sample Metadata

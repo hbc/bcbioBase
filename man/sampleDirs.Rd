@@ -10,7 +10,7 @@ sampleDirs(uploadDir)
 \item{uploadDir}{\code{string}. File path to bcbio run upload directory.}
 }
 \value{
-Named \code{character} containing sample directory paths.
+Named \code{character}. Sample directory paths.
 }
 \description{
 Sample Directories

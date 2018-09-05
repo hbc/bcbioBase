@@ -14,7 +14,7 @@ readYAMLSampleMetrics(file)
 \item{file}{\code{string}. File path to bcbio \code{project-summary.yaml}.}
 }
 \value{
-\code{data.frame}.
+\code{DataFrame}.
 }
 \description{
 Read YAML Sample Data and Metrics
