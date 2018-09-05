@@ -8,7 +8,7 @@
 #' @param lanes `scalar integer`. Number of lanes used to split the samples into
 #'   technical replicates (`_LXXX`) suffix.
 #'
-#' @return `data.frame`.
+#' @return `DataFrame`.
 #' @export
 #'
 #' @examples
@@ -25,49 +25,51 @@ readSampleData <- function(file, lanes = 1L) {
     assert_all_are_positive(lanes)
 
     # Works with local or remote files.
+    # Ensure coercion to tibble here, for consistent handling.
     data <- readFileByExtension(file) %>%
+        as("tbl_df") %>%
         camel() %>%
         removeNA()
 
-    # Warn on legacy `samplename` column. This is used in some bcbio
-    # documentation examples, and we need to work on improving the consistency.
-    if (any(c("samplename", "sampleID") %in% colnames(data))) {
-        warning(paste(
-            "Invalid metadata columns detected.",
+    # Stop on input of blacklisted columns.
+    intersect <- intersect(.sampleDataBlacklist, colnames(data))
+    if (length(intersect)) {
+        stop(paste(
+            paste("Invalid columns:", toString(intersect)),
             "Recommended values:",
-            "- description: Sample name per file (required)",
-            "- sampleName: Multiplexed sample name (only for single-cell)",
-            "- fileName: FASTQ file name (optional but recommended)",
+            "- description: Sample name per file (required).",
+            "- sampleName: Multiplexed sample name (only for single-cell).",
+            "- fileName: FASTQ file name (optional, but recommended).",
             sep = "\n"
         ))
-        data[["fileName"]] <- data[["samplename"]]
-        data[["samplename"]] <- NULL
-        data[["sampleID"]] <- NULL
     }
 
-    # Check for description column (always required)
-    requiredCols <- "description"
-    assert_is_subset(requiredCols, colnames(data))
+    # Check for required columns.
+    # The `description` column is always required.
+    required <- "description"
+    assert_is_subset(required, colnames(data))
 
-    # Valid rows must non-empty description
+    # Valid rows must contain a non-empty description.
     data <- data[!is.na(data[["description"]]), , drop = FALSE]
-    assert_is_non_empty(data)
+    assertAllAreValidNames(data[["description"]])
 
     # Determine whether the samples are multiplexed, based on the presence
-    # of duplicate values in the `description` column
+    # of duplicate values in the `description` column.
     if (
         any(duplicated(data[["description"]])) ||
         any(c("index", "sequence") %in% colnames(data))
     ) {
         multiplexed <- TRUE
-        message("Multiplexed samples detected")
-        requiredCols <- c(requiredCols, "sampleName", "index")
-        assert_is_subset(requiredCols, colnames(data))
+        message("Multiplexed samples detected (single-cell mode)")
+        required <- c(required, "sampleName", "index")
+        assert_is_subset(required, colnames(data))
         assert_has_no_duplicates(data[["sampleName"]])
     } else {
         multiplexed <- FALSE
         message("Demultiplexed samples detected")
         assert_has_no_duplicates(data[["description"]])
+        # Note that `sampleName` column isn't required for demultiplexed
+        # samples. We can assign from the bcbio `description` automatically.
         if (!"sampleName" %in% colnames(data)) {
             data[["sampleName"]] <- data[["description"]]
         }
@@ -98,15 +100,15 @@ readSampleData <- function(file, lanes = 1L) {
             )
     }
 
-    # This step applies to handling single-cell metadata
+    # This step applies to handling single-cell metadata.
+    # - bcbio subdirs (e.g. inDrops): `description`-`revcomp`.
+    # - Note that forward `sequence` is required in metadata file.
+    # - Index number is also required here for data preservation, but is not
+    #   used in generation of the sample directory names.
+    # - Require at least 6 nucleotides in the index sequence.
+    # - inDrops currently uses 8 but SureCell uses 6.
     if (isTRUE(multiplexed)) {
         if ("sequence" %in% colnames(data)) {
-            # bcbio subdirs (e.g. inDrop): `description`-`revcomp` Note that
-            # forward `sequence` is required in metadata file. Index number is
-            # also required here for data preservation, but is not used in
-            # generation of the sample directory names. Require at least 6
-            # nucleotides in the index sequence. inDrop currently uses 8 but
-            # SureCell uses 6.
             sequence <- data[["sequence"]]
             assert_all_are_matching_regex(sequence, "^[ACGT]{6,}")
             data[["revcomp"]] <- vapply(
@@ -143,26 +145,40 @@ readSampleData <- function(file, lanes = 1L) {
 
 # Consistent sanitization for YAML and external file
 .returnSampleData <- function(data) {
-    assert_has_dimnames(data)
-    assert_is_subset("description", colnames(data))
-    assert_are_disjoint_sets("sampleID", colnames(data))
+    assert_is_tbl_df(data)
+    assert_is_subset(
+        x = "description",
+        y = colnames(data)
+    )
+    assert_are_disjoint_sets(
+        x = .sampleDataBlacklist,
+        y = colnames(data)
+    )
 
     # Set sampleName from description, if necessary
     if (!"sampleName" %in% colnames(data)) {
         data[["sampleName"]] <- data[["description"]]
     }
 
+    # Ensure `sampleID` has valid names here. This allows for input of samples
+    # beginning with numbers or containing hyphens for example, which aren't
+    # valid names in R.
     data <- data %>%
-        # Ensure `sampleID` has valid names. This allows for input of samples
-        # beginning with numbers or containing hyphens for example, which aren't
-        # valid names in R.
-        mutate(rowname = makeNames(!!sym("description"), unique = TRUE)) %>%
         mutate_all(as.factor) %>%
         mutate_all(droplevels) %>%
+        mutate(rowname = makeNames(!!sym("description"), unique = TRUE)) %>%
         arrange(!!sym("rowname")) %>%
         select(!!sym("sampleName"), everything()) %>%
-        as.data.frame() %>%
-        column_to_rownames()
+        as("DataFrame")
 
+    assertHasRownames(data)
     data
 }
+
+
+
+.sampleDataBlacklist <- c(
+    "interestingGroups",
+    "rowname",
+    "sampleID"
+)
