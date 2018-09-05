@@ -91,16 +91,17 @@ geom <- bcbio_geom_abline(yintercept = 1L)
 geom
 geom <- bcbio_geom_label()
 geom
-\dontrun{
-library(bcbioRNASeq)
-data <- metrics(bcbioRNASeq::bcb_small)
+data <- tibble(
+    sampleName = "indrops",
+    mitoRatio = seq(from = 0.025, to = 0.1, by = 0.025)
+)
+print(data)
 geom <- bcbio_geom_label_average(
     data = data,
-    col = "exonicRate",
+    col = "mitoRatio",
     fun = "median"
 )
-geom
-}
+print(geom)
 geom <- bcbio_geom_label_repel()
 geom
 }

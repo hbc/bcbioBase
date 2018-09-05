@@ -133,16 +133,17 @@ bcbio_geom_label <- function(
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' library(bcbioRNASeq)
-#' data <- metrics(bcbioRNASeq::bcb_small)
+#' data <- tibble(
+#'     sampleName = "indrops",
+#'     mitoRatio = seq(from = 0.025, to = 0.1, by = 0.025)
+#' )
+#' print(data)
 #' geom <- bcbio_geom_label_average(
 #'     data = data,
-#'     col = "exonicRate",
+#'     col = "mitoRatio",
 #'     fun = "median"
 #' )
-#' geom
-#' }
+#' print(geom)
 bcbio_geom_label_average <- function(
     data,
     col,
