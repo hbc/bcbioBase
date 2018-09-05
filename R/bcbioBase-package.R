@@ -2,6 +2,9 @@
 #'
 #' Base functions and generics for bcbio R packages.
 #'
+#' @importMethodsFrom basejump coerce
+#' @importMethodsFrom S4Vectors coerce
+#'
 #' @importFrom assertive.base assert_are_identical
 #' @importFrom assertive.files assert_all_are_dirs assert_all_are_existing_files
 #' @importFrom assertive.numbers assert_all_are_in_range assert_all_are_positive
@@ -11,11 +14,11 @@
 #' @importFrom assertive.strings assert_all_are_matching_regex
 #'   assert_all_are_non_missing_nor_empty_character
 #' @importFrom assertive.types assert_is_a_string assert_is_an_integer
-#'   assert_is_any_of assert_is_character assert_is_data.frame
-#'   assert_is_function assert_is_list
-#' @importFrom basejump assertAllAreValidNames assertIsAnImplicitInteger
-#'   assertIsTx2gene camel fixNA localOrRemoteFile makeNames printString
-#'   readFileByExtension readYAML removeNA
+#'   assert_is_any_of assert_is_character assert_is_function assert_is_list
+#'   assert_is_tbl_df
+#' @importFrom basejump assertAllAreValidNames assertHasRownames
+#'   assertIsAnImplicitInteger assertIsTx2gene camel fixNA localOrRemoteFile
+#'   makeNames printString readFileByExtension readYAML removeNA
 #' @importFrom Biostrings reverseComplement
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select ungroup
@@ -29,7 +32,7 @@
 #'   drop_get_metadata drop_share drop_upload
 #' @importFrom readr read_csv read_lines
 #' @importFrom rlang !!! !! sym syms
-#' @importFrom S4Vectors aggregate as.data.frame DataFrame merge tail
+#' @importFrom S4Vectors aggregate DataFrame merge tail
 #' @importFrom stats as.formula
 #' @importFrom stringr str_pad str_trunc
 #' @importFrom tibble column_to_rownames rownames_to_column tibble
