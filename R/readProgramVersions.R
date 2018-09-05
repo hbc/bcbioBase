@@ -11,7 +11,8 @@
 #' @export
 #'
 #' @examples
-#' readProgramVersions("http://bcbiobase.seq.cloud/programs.txt")
+#' x <- readProgramVersions("http://bcbiobase.seq.cloud/programs.txt")
+#' print(x)
 readProgramVersions <- function(file) {
     assert_is_a_string(file)
     # Program versions are optional
@@ -25,11 +26,11 @@ readProgramVersions <- function(file) {
     if (is.null(file)) {
         return(tibble())
     }
-    # bcbio outputs `programs.txt`, but it's comma separated!
+    # bcbio outputs `programs.txt`, but the file is comma separated.
     read_csv(
         file,
         col_names = c("program", "version"),
-        # `c` denotes character here
+        # `c` denotes character here.
         col_types = "cc"
     )
 }
