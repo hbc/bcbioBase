@@ -17,8 +17,11 @@ readTx2gene <- function(file) {
     assert_is_a_string(file)
     file <- localOrRemoteFile(file)
     data <- read_csv(file, col_names = c("transcriptID", "geneID"))
-    data <- as(data, "DataFrame")
+    # Arrange by transcript and check for duplicates.
+    data <- arrange(data, !!sym("transcriptID"))
     assert_has_no_duplicates(data[["transcriptID"]])
+    # Coerce to DataFrame.
+    data <- as(data, "DataFrame")
     rownames(data) <- data[["transcriptID"]]
     assertIsTx2gene(data)
     data
