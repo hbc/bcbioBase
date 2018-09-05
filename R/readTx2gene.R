@@ -20,6 +20,7 @@ readTx2gene <- function(file) {
     # Arrange by transcript and check for duplicates.
     data <- arrange(data, !!sym("transcriptID"))
     assert_has_no_duplicates(data[["transcriptID"]])
+    assertAllAreValidNames(data)
     # Coerce to DataFrame.
     data <- as(data, "DataFrame")
     rownames(data) <- data[["transcriptID"]]
