@@ -90,26 +90,29 @@ NULL
 
     # Handle the nested metadata, defined by the keys.
     # This step is a little tricker but should work consistently.
+    # FIXME Need to tweak this approach.
     nested <- lapply(yaml, function(item) {
         item <- item[[keys]]
         assert_is_non_empty(item)
+        invisible(lapply(item, assert_is_atomic))
         # Sanitize names into camel case here, otherwise they'll get modified
         # during the `ldply()` call that coerces `list` to `data.frame`.
         item <- camel(item)
-        item <- lapply(item, function(item) {
-            if (length(item) > 1L) {
+        lapply(
+            X = item,
+            FUN = function(item) {
+                assert_all_are_non_missing_nor_empty_character(item)
                 # Detect and coerce nested metadata back to a string, if
                 # necessary. bcbio allows nesting with a semicolon delimiter.
                 # Warn the user here about discouraging this with R data.
                 # http://bit.ly/2Je1xgO
-                warning("Nested sample metadata detected")
-                paste(item, collapse = "; ")
-            } else {
+                if (length(item) > 1L) {
+                    warning("Nested sample metadata detected")
+                    item <- paste(item, collapse = "; ")
+                }
                 item
             }
-        })
-        # Remove any `NULL` items.
-        Filter(Negate(is.null), item)
+        )
     })
     # Coerce to data frame.
     # Note that we're using `plyr::ldply()` here because it can coerce a list
