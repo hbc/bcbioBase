@@ -22,7 +22,7 @@ bcbio_geom_label_repel(data = NULL, mapping = NULL, color = NULL,
 \item{xintercept, yintercept}{\code{scalar numeric}. Specify either x- or y-axis
 cutoff, but not both.}
 
-\item{data}{\code{tbl_df}.}
+\item{data}{\code{data.frame}.}
 
 \item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
 \code{\link[=aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
@@ -68,8 +68,9 @@ Modified version of \code{\link[ggplot2:geom_label]{ggplot2::geom_label()}}.
 \section{bcbio_geom_label_average}{
 
 
-Add average labels to a plot. For example, \code{col} can be \code{nGene}. Median or
-mean values are always calculated per sample (\code{sampleName}).
+Add average labels to a plot. For example, \code{col} can be \code{nGene}. Note that
+this function requires \code{sampleName} to be defined as a column. Median or mean
+values are always calculated per sample (\code{sampleName}).
 }
 
 \section{bcbio_geom_label_repel}{
@@ -90,13 +91,16 @@ geom <- bcbio_geom_abline(yintercept = 1L)
 geom
 geom <- bcbio_geom_label()
 geom
-data <- colData(basejump::rse_small)
+\dontrun{
+library(bcbioRNASeq)
+data <- metrics(bcbioRNASeq::bcb_small)
 geom <- bcbio_geom_label_average(
     data = data,
     col = "exonicRate",
     fun = "median"
 )
 geom
+}
 geom <- bcbio_geom_label_repel()
 geom
 }

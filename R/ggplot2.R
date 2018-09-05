@@ -93,7 +93,7 @@ bcbio_geom_label <- function(
 ) {
     assert_is_any_of(
         x = data,
-        classes = c("tbl_df", "NULL")
+        classes = c("data.frame", "NULL")
     )
     assert_is_any_of(
         x = mapping,
@@ -115,13 +115,15 @@ bcbio_geom_label <- function(
 
 
 
+# FIXME Create a minimal working example here.
 #' @rdname ggplot2
 #' @section bcbio_geom_label_average:
 #'
-#' Add average labels to a plot. For example, `col` can be `nGene`. Median or
-#' mean values are always calculated per sample (`sampleName`).
+#' Add average labels to a plot. For example, `col` can be `nGene`. Note that
+#' this function requires `sampleName` to be defined as a column. Median or mean
+#' values are always calculated per sample (`sampleName`).
 #'
-#' @param data `tbl_df`.
+#' @param data `data.frame`.
 #' @param col `string`. Column.
 #' @param fun `string`. Function name to use for average calculation. Currently
 #'   supports "`mean`" or "`median`".
@@ -131,13 +133,16 @@ bcbio_geom_label <- function(
 #' @export
 #'
 #' @examples
-#' data <- colData(basejump::rse_small)
+#' \dontrun{
+#' library(bcbioRNASeq)
+#' data <- metrics(bcbioRNASeq::bcb_small)
 #' geom <- bcbio_geom_label_average(
 #'     data = data,
 #'     col = "exonicRate",
 #'     fun = "median"
 #' )
 #' geom
+#' }
 bcbio_geom_label_average <- function(
     data,
     col,
@@ -145,9 +150,12 @@ bcbio_geom_label_average <- function(
     digits = 0L,
     ...
 ) {
-    assert_is_tbl_df(data)
+    assert_is_data.frame(data)
     assert_is_a_string(col)
-    assert_is_subset(col, colnames(data))
+    # `col` cannot be defined as `sampleName`.
+    assert_are_disjoint_sets(col, "sampleName")
+    # Require that the column of interest and `sampleName` are defined.
+    assert_is_subset(c(col, "sampleName"), colnames(data))
     assert_is_an_integer(digits)
     fun <- match.arg(fun)
     fun <- get(fun)
@@ -205,7 +213,7 @@ bcbio_geom_label_repel <- function(
 ) {
     assert_is_any_of(
         x = data,
-        classes = c("tbl_df", "NULL")
+        classes = c("data.frame", "NULL")
     )
     assert_is_any_of(
         x = mapping,
