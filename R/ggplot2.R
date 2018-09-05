@@ -131,8 +131,9 @@ bcbio_geom_label <- function(
 #' @export
 #'
 #' @examples
+#' data <- colData(basejump::rse_small)
 #' geom <- bcbio_geom_label_average(
-#'     data = colData(rse_bcb),
+#'     data = data,
 #'     col = "exonicRate",
 #'     fun = "median"
 #' )

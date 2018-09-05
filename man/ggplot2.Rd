@@ -90,8 +90,9 @@ geom <- bcbio_geom_abline(yintercept = 1L)
 geom
 geom <- bcbio_geom_label()
 geom
+data <- colData(basejump::rse_small)
 geom <- bcbio_geom_label_average(
-    data = colData(rse_bcb),
+    data = data,
     col = "exonicRate",
     fun = "median"
 )
