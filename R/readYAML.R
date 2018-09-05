@@ -62,41 +62,31 @@ NULL
     }
 
     # Top-level sample metadata in the YAML is relatively easy to parse.
-    # Just select for atomic values.
+    # Just select for atomic values, otherwise return `NA`.
     top <- sapply(
         X = yaml,
         FUN = function(item) {
-            x <- sapply(
+            sapply(
                 X = item,
                 FUN = function(item) {
                     if (is.atomic(item)) {
                         item
                     } else {
-                        NULL
+                        NA
                     }
                 },
                 simplify = TRUE,
                 USE.NAMES = TRUE
             )
-            Filter(Negate(is.null), x)
         },
         simplify = TRUE,
-        USE.NAMES = FALSE
+        USE.NAMES = TRUE
     )
-    top_df <- as.data.frame(top)
-    dim(top_df)
-    top_DF <- as(top, "DataFrame")
-    dim(top_DF)
-    # Coerce to data.frame.
-    # TODO Make this a utility function in basejump.
-    top <- ldply(
-        .data = top,
-        .fun = data.frame,
-        stringsAsFactors = FALSE
-    )
-    assert_is_data.frame(top)
+    assert_is_matrix(top)
+    top <- as(t(top), "DataFrame")
+    top <- removeNA(top)
     assert_is_non_empty(top)
-    top <- as(top, "DataFrame")
+    invisible(lapply(top, assert_is_factor))
 
     # Handle the nested metadata, defined by the keys.
     # This step is a little tricker but should work consistently.
