@@ -34,13 +34,13 @@ readSampleData <- function(file, lanes = 1L) {
     # Stop on input of blacklisted columns.
     intersect <- intersect(.sampleDataBlacklist, colnames(data))
     if (length(intersect)) {
-        stop(paste(
-            paste("Invalid columns:", toString(intersect)),
-            "Recommended values:",
-            "- description: Sample name per file (required).",
-            "- sampleName: Multiplexed sample name (only for single-cell).",
-            "- fileName: FASTQ file name (optional, but recommended).",
-            sep = "\n"
+        stop(paste0(
+            paste("Invalid columns:", toString(intersect)), "\n",
+            "Recommended values:\n",
+            "- description: Sample name per file (required).\n",
+            "- sampleName: Unique sample name",
+            " (required for multiplexed samples).\n",
+            "- fileName: FASTQ file name (optional, but recommended)."
         ))
     }
 
@@ -60,7 +60,7 @@ readSampleData <- function(file, lanes = 1L) {
         any(c("index", "sequence") %in% colnames(data))
     ) {
         multiplexed <- TRUE
-        message("Multiplexed samples detected (single-cell mode)")
+        message("Multiplexed samples detected")
         required <- c(required, "sampleName", "index")
         assert_is_subset(required, colnames(data))
         assert_has_no_duplicates(data[["sampleName"]])
@@ -179,6 +179,8 @@ readSampleData <- function(file, lanes = 1L) {
 
 # Consider adding "rowname" here.
 .sampleDataBlacklist <- c(
+    "filename",  # note case: use "fileName" instead.
     "interestingGroups",
+    "samplename",  # note case: use "description" instead.
     "sampleID"
 )
