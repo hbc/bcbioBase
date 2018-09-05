@@ -13,8 +13,8 @@
 #' @inheritParams ggplot2::geom_label
 #' @param color `string`. Text color (e.g. `"orange"`).
 #' @param size `scalar integer`. Font size.
-#' @param xintercept,yintercept `scalar numeric` denoting x- or y-axis cutoff.
-#'   Specify one but not both.
+#' @param xintercept,yintercept `scalar numeric`. Specify either x- or y-axis
+#'   cutoff, but not both.
 #'
 #' @seealso
 #' - [ggplot2::geom_label()].
@@ -44,6 +44,8 @@ bcbio_geom_abline <- function(
     xintercept = NULL,
     yintercept = NULL
 ) {
+    assertIsANumberOrNULL(xintercept)
+    assertIsANumberOrNULL(yintercept)
     alpha <- 0.75
     color <- "black"
     linetype <- "dashed"
@@ -89,6 +91,14 @@ bcbio_geom_label <- function(
     mapping = NULL,
     ...
 ) {
+    assert_is_any_of(
+        x = data,
+        classes = c("tbl_df", "NULL")
+    )
+    assert_is_any_of(
+        x = mapping,
+        classes = c("uneval", "NULL")
+    )
     geom_label(
         data = data,
         mapping = mapping,
@@ -111,11 +121,12 @@ bcbio_geom_label <- function(
 #' Add average labels to a plot. For example, `col` can be `nGene`. Median or
 #' mean values are always calculated per sample (`sampleName`).
 #'
-#' @param data `data.frame`.
-#' @param col Column.
-#' @param fun Function to use for average calculation. Currently supports
-#'   "`mean`" or "`median`".
-#' @param digits Number of significant digits to use. Defaults to rounded.
+#' @param data `tbl_df`.
+#' @param col `string`. Column.
+#' @param fun `string`. Function name to use for average calculation. Currently
+#'   supports "`mean`" or "`median`".
+#' @param digits `scalar integer`. Number of significant digits to use.
+#'   Defaults to rounded.
 #'
 #' @export
 #'
@@ -133,7 +144,7 @@ bcbio_geom_label_average <- function(
     digits = 0L,
     ...
 ) {
-    data <- as.data.frame(data)
+    assert_is_tbl_df(data)
     assert_is_a_string(col)
     assert_is_subset(col, colnames(data))
     assert_is_an_integer(digits)
@@ -148,7 +159,7 @@ bcbio_geom_label_average <- function(
     )
     aggdata[["roundedAverage"]] <- round(aggdata[[col]], digits = digits)
 
-    # Add `aggregate` column for facet wrapping, if necessary
+    # Add `aggregate` column for facet wrapping, if necessary.
     if ("aggregate" %in% colnames(data)) {
         sampleFacet <- data %>%
             .[, c("sampleName", "aggregate")] %>%
@@ -191,6 +202,16 @@ bcbio_geom_label_repel <- function(
     size = 4L,
     ...
 ) {
+    assert_is_any_of(
+        x = data,
+        classes = c("tbl_df", "NULL")
+    )
+    assert_is_any_of(
+        x = mapping,
+        classes = c("uneval", "NULL")
+    )
+    assertIsAStringOrNULL(color)
+    assert_is_a_number(size)
     geom <- geom_label_repel(
         data = data,
         mapping = mapping,
