@@ -12,7 +12,7 @@
 #'
 #' @param file `string`. File path to bcbio `project-summary.yaml`.
 #'
-#' @return `data.frame`.
+#' @return `DataFrame`.
 #'
 #' @examples
 #' file <- "http://bcbiobase.seq.cloud/project-summary.yaml"
@@ -66,11 +66,14 @@ NULL
             x[yamlFlatCols]
         }
     )
-    # Coerce to data frame.
-    flat <- ldply(flat, data.frame, stringsAsFactors = FALSE)
+    # Coerce to tibble.
+    flat <- ldply(
+        .data = flat,
+        .fun = data.frame,
+        stringsAsFactors = FALSE
+    )
     assert_is_data.frame(flat)
     assert_is_non_empty(flat)
-    flat <- camel(flat)
 
     # Handle the nested metadata, defined by the keys.
     # This step is a little tricker but should work consistently.
@@ -95,24 +98,35 @@ NULL
         # Remove any `NULL` items.
         Filter(Negate(is.null), x)
     })
+
+    # FIXME Improve this step.
+    # There's a nested list that we need to handle better here.
+    stop()
+
     # Coerce to data frame.
     # Note that we're using `plyr::ldply()` here because it can coerce a list
     # with uneven lengths. However, it will sanitize column names, so make sure
     # we convert to camel case before running this step.
-    nested <- ldply(nested, data.frame, stringsAsFactors = FALSE)
+    nested <- ldply(
+        .data = nested,
+        .fun = tibble,
+        stringsAsFactors = FALSE
+    )
     assert_is_data.frame(nested)
     assert_is_non_empty(nested)
 
     # Bind the flat and nested data frames, then return.
     assert_are_disjoint_sets(colnames(flat), colnames(nested))
     cbind(flat, nested) %>%
-        fixNA() %>%
+        as("tbl_df") %>%
+        sanitizeNA() %>%
         removeNA() %>%
         camel() %>%
         arrange(!!sym("description")) %>%
-        set_rownames(makeNames(.[["description"]], unique = TRUE)) %>%
         # Order the columns alphabetically.
-        .[, sort(colnames(.)), drop = FALSE]
+        .[, sort(colnames(.)), drop = FALSE] %>%
+        # Set the rownames.
+        mutate(rowname = makeNames(!!sym("description"), unique = TRUE))
 }
 
 
@@ -121,7 +135,8 @@ NULL
 #' @export
 readYAMLSampleData <- function(file) {
     message("Reading sample metadata from YAML")
-    .readYAMLSample(file, keys = "metadata") %>%
+    file %>%
+        .readYAMLSample(keys = "metadata") %>%
         .returnSampleData()
 
 }
