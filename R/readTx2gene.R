@@ -7,16 +7,17 @@
 #'
 #' @inheritParams general
 #'
-#' @return `data.frame`.
+#' @return `DataFrame`.
 #' @export
 #'
 #' @examples
-#' readTx2gene("http://bcbiobase.seq.cloud/tx2gene.csv")
+#' x <- readTx2gene("http://bcbiobase.seq.cloud/tx2gene.csv")
+#' print(x)
 readTx2gene <- function(file) {
     assert_is_a_string(file)
     file <- localOrRemoteFile(file)
     data <- read_csv(file, col_names = c("transcriptID", "geneID"))
-    data <- as.data.frame(data)
+    data <- as(data, "DataFrame")
     assert_has_no_duplicates(data[["transcriptID"]])
     rownames(data) <- data[["transcriptID"]]
     assertIsTx2gene(data)
