@@ -13,9 +13,10 @@
 #' @importFrom assertive.sets assert_are_disjoint_sets assert_is_subset
 #' @importFrom assertive.strings assert_all_are_matching_regex
 #'   assert_all_are_non_missing_nor_empty_character
-#' @importFrom assertive.types assert_is_a_string assert_is_an_integer
-#'   assert_is_any_of assert_is_character assert_is_data.frame
-#'   assert_is_function assert_is_list assert_is_matrix assert_is_tbl_df
+#' @importFrom assertive.types assert_is_a_number assert_is_a_string
+#'   assert_is_an_integer assert_is_any_of assert_is_character
+#'   assert_is_data.frame assert_is_function assert_is_list assert_is_matrix
+#'   assert_is_tbl_df
 #' @importFrom basejump assertAllAreValidNames assertHasRownames
 #'   assertIsAnImplicitInteger assertIsTx2gene camel localOrRemoteFile makeNames
 #'   printString readFileByExtension readYAML removeNA sanitizeNA
