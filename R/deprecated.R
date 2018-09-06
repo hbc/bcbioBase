@@ -158,76 +158,9 @@ basejump::separatorBar
 #' @export
 basejump::updateMessage
 
-#' @rdname defunct
-#' @export
-setGeneric(
-    "bcbio",
-    function(object, ...) {
-        standardGeneric("bcbio")
-    }
-)
-
-#' @rdname defunct
-#' @export
-setGeneric(
-    "bcbio<-",
-    function(object, ..., value) {
-        standardGeneric("bcbio<-")
-    }
-)
-
 
 
 # v0.4.0 =======================================================================
-#' @rdname deprecated
-#' @export
-setGeneric(
-    name = "flatFiles",
-    def = getGeneric("flatFiles", package = "basejump")
-)
-
-#' @rdname deprecated
-#' @export
-setGeneric(
-    name = "metrics",
-    def = getGeneric("metrics", package = "basejump")
-)
-
-#' @rdname deprecated
-#' @export
-setGeneric(
-    name = "plotCorrelationHeatmap",
-    def = getGeneric("plotCorrelationHeatmap", package = "basejump")
-)
-
-#' @rdname deprecated
-#' @export
-setGeneric(
-    name = "plotGene",
-    def = getGeneric("plotGene", package = "basejump")
-)
-
-#' @rdname deprecated
-#' @export
-setGeneric(
-    name = "plotHeatmap",
-    def = getGeneric("plotHeatmap", package = "basejump")
-)
-
-#' @rdname deprecated
-#' @export
-setGeneric(
-    name = "plotQC",
-    def = getGeneric("plotQC", package = "basejump")
-)
-
-#' @rdname deprecated
-#' @export
-setGeneric(
-    name = "plotQuantileHeatmap",
-    def = getGeneric("plotQuantileHeatmap", package = "basejump")
-)
-
 #' @rdname deprecated
 #' @export
 prepareSummarizedExperiment <- function(...) {
