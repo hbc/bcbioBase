@@ -7,6 +7,10 @@
 \alias{sampleMetadata}
 \alias{sampleMetadata<-}
 \alias{prepareSummarizedExperiment}
+\alias{bcbio_geom_abline}
+\alias{bcbio_geom_label}
+\alias{bcbio_geom_label_average}
+\alias{bcbio_geom_label_repel}
 \title{Deprecated Functions}
 \usage{
 readLogFile(...)
@@ -18,6 +22,14 @@ sampleMetadata(object, ...)
 sampleMetadata(object) <- value
 
 prepareSummarizedExperiment(...)
+
+bcbio_geom_abline(...)
+
+bcbio_geom_label(...)
+
+bcbio_geom_label_average(...)
+
+bcbio_geom_label_repel(...)
 }
 \value{
 No value.

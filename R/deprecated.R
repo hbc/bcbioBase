@@ -183,4 +183,35 @@ basejump::lanePattern
 
 
 
+# v0.99.0 ======================================================================
+#' @rdname deprecated
+#' @export
+bcbio_geom_abline <- function(...) {
+    .Deprecated("basejump_geom_abline")
+    basejump::bcbio_geom_abline(...)
+}
+
+#' @rdname deprecated
+#' @export
+bcbio_geom_label <- function(...) {
+    .Deprecated("basejump_geom_label")
+    basejump::basejump_geom_label(...)
+}
+
+#' @rdname deprecated
+#' @export
+bcbio_geom_label_average <- function(...) {
+    .Deprecated("basejump_geom_label_average")
+    basejump_geom_label_average(...)
+}
+
+#' @rdname deprecated
+#' @export
+bcbio_geom_label_repel <- function(...) {
+    .Deprecated("basejump_geom_label_repel")
+    basejump_geom_label_repel(...)
+}
+
+
+
 # nocov end
