@@ -1,3 +1,7 @@
+# TODO Double check that the imports are as minimal as possible.
+
+
+
 #' bcbioBase
 #'
 #' Base functions and generics for bcbio R packages.
@@ -23,9 +27,6 @@
 #' @importFrom Biostrings reverseComplement
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select ungroup
-#' @importFrom ggplot2 aes geom_hline geom_label geom_vline
-#' @importFrom ggrepel geom_label_repel
-#' @importFrom grid arrow unit
 #' @importFrom magrittr %>% set_colnames set_rownames
 #' @importFrom methods as is
 #' @importFrom plyr ldply

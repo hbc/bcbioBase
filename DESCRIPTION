@@ -2,7 +2,7 @@ Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions and generics for bcbio R packages.
 Version: 0.99.0
-Date: 2018-09-04
+Date: 2018-09-06
 Authors@R: c(
     person(
         given = "Michael",
@@ -50,9 +50,6 @@ Imports:
     assertive.types,
     Biostrings,
     dplyr (>= 0.7),
-    ggplot2 (>= 3.0),
-    ggrepel (>= 0.7),
-    grid,
     magrittr (>= 1.5),
     methods,
     plyr (>= 1.8),
