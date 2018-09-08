@@ -2,11 +2,11 @@
 #'
 #' @family Read Functions
 #' @author Michael Steinbaugh
+#' @export
 #'
 #' @inheritParams general
 #'
 #' @return `character`.
-#' @export
 #'
 #' @examples
 #' x <- readLog("http://bcbiobase.seq.cloud/bcbio_nextgen.log")

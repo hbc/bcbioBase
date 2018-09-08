@@ -1,7 +1,3 @@
-# TODO Ensure we're checking for support of items with variable lengths.
-
-
-
 #' Read YAML Sample Data and Metrics
 #'
 #' @note Metrics are only generated for a standard RNA-seq run with aligned

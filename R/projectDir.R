@@ -5,11 +5,11 @@
 #'
 #' @family Data Functions
 #' @author Michael Steinbaugh
+#' @export
 #'
 #' @inheritParams general
 #'
 #' @return `string`. Dated project directory (e.g. "2018-01-01_rnaseq").
-#' @export
 #'
 #' @examples
 #' uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")

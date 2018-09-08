@@ -7,11 +7,11 @@
 #'
 #' @family Read Functions
 #' @author Michael Steinbaugh
+#' @export
 #'
 #' @inheritParams general
 #'
 #' @return `tx2gene`.
-#' @export
 #'
 #' @examples
 #' x <- readTx2gene("http://bcbiobase.seq.cloud/tx2gene.csv")

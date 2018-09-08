@@ -4,11 +4,11 @@
 #'
 #' @family Data Functions
 #' @author Michael Steinbaugh
+#' @export
 #'
 #' @inheritParams general
 #'
 #' @return Named `character`. Sample directory paths.
-#' @export
 #'
 #' @examples
 #' uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")

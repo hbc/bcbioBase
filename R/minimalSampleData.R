@@ -2,11 +2,11 @@
 #'
 #' @family Data Functions
 #' @author Michael Steinbaugh
+#' @export
 #'
 #' @param sample `character`. Sample names (e.g. "description" in bcbio YAML).
 #'
 #' @return `DataFrame`.
-#' @export
 #'
 #' @examples
 #' x <- minimalSampleData(sample = c("sample 1", "sample 2"))

@@ -4,6 +4,7 @@
 #'
 #' @family Write Functions
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
+#' @export
 #'
 #' @param files `character`. Local file paths.
 #' @param dir `string`. Relative path of remote Dropbox directory.
@@ -11,7 +12,6 @@
 #'   authentication.
 #'
 #' @return Invisible `list` of rdrop2 output.
-#' @export
 #'
 #' @examples
 #' \dontrun{

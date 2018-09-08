@@ -5,11 +5,11 @@
 #'
 #' @family Read Functions
 #' @author Michael Steinbaugh
+#' @export
 #'
 #' @inheritParams general
 #'
 #' @return `tbl_df`.
-#' @export
 #'
 #' @examples
 #' x <- readDataVersions("http://bcbiobase.seq.cloud/data_versions.csv")

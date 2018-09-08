@@ -4,11 +4,11 @@
 #'
 #' @family Read Functions
 #' @author Michael Steinbaugh
+#' @export
 #'
 #' @inheritParams general
 #'
 #' @return `tbl_df`.
-#' @export
 #'
 #' @examples
 #' x <- readProgramVersions("http://bcbiobase.seq.cloud/programs.txt")

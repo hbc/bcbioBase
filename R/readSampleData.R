@@ -49,6 +49,7 @@
 #'
 #' @family Read Functions
 #' @author Michael Steinbaugh
+#' @export
 #'
 #' @inheritParams general
 #' @param file `string`. File path. Supports CSV, TSV, and XLSX file formats.
@@ -56,7 +57,6 @@
 #'   technical replicates (`_LXXX`) suffix.
 #'
 #' @return `DataFrame`.
-#' @export
 #'
 #' @examples
 #' # Demultiplexed
