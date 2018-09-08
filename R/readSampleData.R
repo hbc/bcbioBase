@@ -1,5 +1,68 @@
 #' Read Sample Metadata
 #'
+#' This function reads user-defined sample metadata saved in a spreadsheet.
+#'
+#' @section Demultiplexed samples:
+#'
+#' This applies to bulk RNA-seq samples.
+#'
+#' Normally when loading a bcbio run of demultiplexed samples, the sample
+#' metadata will be imported automatically from the `project-summary.yaml` file
+#' in the final upload directory using the [readYAMLSampleData()] function. If
+#' you notice any typos in your metadata after completing the run, these can be
+#' corrected by editing the YAML file. Alternatively, you can pass in a
+#' spreadsheet with the [readSampleData()] function.
+#'
+#' The samples in the bcbio run must map to the `description` column. The values
+#' provided in `description` for demultiplexed samples must be unique. They must
+#' also be *syntactically valid*, meaning that they cannot contain illegal
+#' characters (e.g. spaces, non-alphanumerics, **dashes**) or **begin with a
+#' number**. Consult the documentation in `help(topic = "make.names")` for more
+#' information on valid names in R.
+#'
+#' Here's an example of valid demultiplexed sample data:
+#'
+#' | description | genotype |
+#' |-------------|----------|
+#' | sample1     | wildtype |
+#' | sample2     | knockout |
+#' | sample3     | wildtype |
+#' | sample4     | knockout |
+#'
+#' \tabular{ll}{
+#'     sample1 \tab wildtype\cr
+#'     sample2 \tab knockout\cr
+#'     sample3 \tab wildtype\cr
+#'     sample4 \tab knockout
+#' }
+#'
+#' @section Multiplexed samples:
+#'
+#' This applies to some single-cell RNA-seq formats, including inDrops. In this
+#' case, bcbio will output per-sample directories with this this structure:
+#' `description`-`revcomp`.
+#'
+#' [readSampleData()] checks to see if the `description` column is unique. If
+#' the values are duplicated, the function assumes that bcbio processed
+#' multiplexed FASTQs, where multiple samples of interest are barcoded inside a
+#' single FASTQ. This this case, you must supply additional "`index`",
+#' "`sequence`", and "`sampleName`" columns.
+#'
+#' Note that bcbio currently outputs the reverse complement index sequence in
+#' the sample directory names (e.g. `sample-ATAGAGAG`). Define the forward index
+#' barcode in the `sequence` column here, not the reverse complement. The
+#' reverse complement will be calculated automatically and added as the
+#' `revcomp` column in the sample metadata.
+#'
+#' Here's an example of valid multiplexed sample data:
+#'
+#' | description | index | sequence | sampleName | genotype |
+#' |-------------|-------|----------|------------|----------|
+#' | indrops     | 1     | CTCTCTAT | sample1    | wildtype |
+#' | indrops     | 2     | TATCCTCT | sample2    | knockout |
+#' | indrops     | 3     | GTAAGGAG | sample3    | wildtype |
+#' | indrops     | 4     | ACTGCATA | sample4    | knockout |
+#'
 #' @family Read Functions
 #' @author Michael Steinbaugh
 #'
