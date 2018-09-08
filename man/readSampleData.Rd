@@ -66,15 +66,6 @@ the sample directory names (e.g. \code{sample-ATAGAGAG}). Define the forward ind
 barcode in the \code{sequence} column here, not the reverse complement. The
 reverse complement will be calculated automatically and added as the
 \code{revcomp} column in the sample metadata.
-
-Here's an example of valid multiplexed sample data:
-
-| description | index | sequence | sampleName | genotype |
-|-------------|-------|----------|------------|----------|
-| indrops     | 1     | CTCTCTAT | sample1    | wildtype |
-| indrops     | 2     | TATCCTCT | sample2    | knockout |
-| indrops     | 3     | GTAAGGAG | sample3    | wildtype |
-| indrops     | 4     | ACTGCATA | sample4    | knockout |
 }
 
 \examples{
