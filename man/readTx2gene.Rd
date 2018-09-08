@@ -10,10 +10,11 @@ readTx2gene(file)
 \item{file}{\code{string}. File path.}
 }
 \value{
-\code{DataFrame}.
+\code{tx2gene}.
 }
 \description{
-Transcript to Gene Annotations
+Generates a \code{tx2gene} object containing \code{transcriptID} and \code{geneID} columns.
+Rownames are set to the transcript IDs.
 }
 \note{
 Doesn't attempt to strip transcript versions.

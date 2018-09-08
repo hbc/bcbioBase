@@ -6,6 +6,8 @@
 #'
 #' Base functions and generics for bcbio R packages.
 #'
+#' @importClassesFrom basejump tx2gene
+#'
 #' @importMethodsFrom basejump coerce
 #' @importMethodsFrom S4Vectors coerce
 #'
