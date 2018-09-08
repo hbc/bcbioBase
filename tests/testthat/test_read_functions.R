@@ -85,7 +85,13 @@ test_that("readSampleData : Demultiplexed FASTQ", {
     object <- readSampleData(file, lanes = 4L)
     expect_identical(
         object = colnames(object),
-        expected = c("sampleName", "description", "lane", "fileName", "genotype")
+        expected = c(
+            "sampleName",
+            "description",
+            "lane",
+            "fileName",
+            "genotype"
+        )
     )
     expect_identical(
         object = rownames(object)[1L:8L],
