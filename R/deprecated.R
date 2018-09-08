@@ -195,7 +195,7 @@ bcbio_geom_abline <- function(...) {
 }
 
 #' @rdname deprecated
-#' @importFrom basejump bcbio_geom_label
+#' @importFrom basejump basejump_geom_label
 #' @export
 bcbio_geom_label <- function(...) {
     .Deprecated("basejump::basejump_geom_label")
