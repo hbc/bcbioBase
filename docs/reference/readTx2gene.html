@@ -142,7 +142,18 @@ Rownames are set to the transcript IDs.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readTx2gene</span>(<span class='st'>"http://bcbiobase.seq.cloud/tx2gene.csv"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: URL 'http://bcbiobase.seq.cloud/tx2gene.csv': status was 'Failure when receiving data from the peer'</span></div><div class='output co'>#&gt; <span class='error'>Error in download.file(url = file, destfile = destfile, mode = mode): cannot open URL 'http://bcbiobase.seq.cloud/tx2gene.csv'</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span class='error'>Error in print(x): object 'x' not found</span></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readTx2gene</span>(<span class='st'>"http://bcbiobase.seq.cloud/tx2gene.csv"</span>)</div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
+#&gt; <span class='message'>cols(</span>
+#&gt; <span class='message'>  transcriptID = col_character(),</span>
+#&gt; <span class='message'>  geneID = col_character()</span>
+#&gt; <span class='message'>)</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; tx2gene with 5 rows and 2 columns
+#&gt;                          transcriptID             geneID
+#&gt;                           &lt;character&gt;        &lt;character&gt;
+#&gt; ENSMUST00000033908 ENSMUST00000033908 ENSMUSG00000031511
+#&gt; ENSMUST00000070080 ENSMUST00000070080 ENSMUSG00000056124
+#&gt; ENSMUST00000119854 ENSMUST00000119854 ENSMUSG00000037736
+#&gt; ENSMUST00000174016 ENSMUST00000174016 ENSMUSG00000036036
+#&gt; ENSMUST00000204196 ENSMUST00000204196 ENSMUSG00000029804</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
