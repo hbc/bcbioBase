@@ -160,8 +160,8 @@ spreadsheet with the <code>readSampleData()</code> function.</p>
 <p>The samples in the bcbio run must map to the <code>description</code> column. The values
 provided in <code>description</code> for demultiplexed samples must be unique. They must
 also be <em>syntactically valid</em>, meaning that they cannot contain illegal
-characters (e.g. spaces, non-alphanumerics, <strong>dashes</strong>) or <strong>begin with a
-number</strong>. Consult the documentation in <code>help(topic = "make.names")</code> for more
+characters (e.g. spaces, non-alphanumerics, <em>dashes</em>) or <em>begin with a
+number</em>. Consult the documentation in <code>help(topic = "make.names")</code> for more
 information on valid names in R.</p>
     
     <h2 class="hasAnchor" id="multiplexed-samples"><a class="anchor" href="#multiplexed-samples"></a>Multiplexed samples</h2>
@@ -169,24 +169,17 @@ information on valid names in R.</p>
     
     <p>This applies to some single-cell RNA-seq formats, including inDrops. In this
 case, bcbio will output per-sample directories with this this structure:
-<code>description</code>-<code>revcomp</code>.</p>
+"<code>description</code>-<code>revcomp</code>".</p>
 <p><code>readSampleData()</code> checks to see if the <code>description</code> column is unique. If
 the values are duplicated, the function assumes that bcbio processed
 multiplexed FASTQs, where multiple samples of interest are barcoded inside a
 single FASTQ. This this case, you must supply additional "<code>index</code>",
 "<code>sequence</code>", and "<code>sampleName</code>" columns.</p>
 <p>Note that bcbio currently outputs the reverse complement index sequence in
-the sample directory names (e.g. <code>sample-ATAGAGAG</code>). Define the forward index
-barcode in the <code>sequence</code> column here, not the reverse complement. The
+the sample directory names (e.g. "<code>sample-ATAGAGAG</code>"). Define the forward
+index barcode in the <code>sequence</code> column here, not the reverse complement. The
 reverse complement will be calculated automatically and added as the
 <code>revcomp</code> column in the sample metadata.</p>
-<p>Here's an example of valid multiplexed sample data:</p>
-<p>| description | index | sequence | sampleName | genotype |
-|-------------|-------|----------|------------|----------|
-| indrops     | 1     | CTCTCTAT | sample1    | wildtype |
-| indrops     | 2     | TATCCTCT | sample2    | knockout |
-| indrops     | 3     | GTAAGGAG | sample3    | wildtype |
-| indrops     | 4     | ACTGCATA | sample4    | knockout |</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

@@ -25,15 +25,15 @@
 #' The samples in the bcbio run must map to the `description` column. The values
 #' provided in `description` for demultiplexed samples must be unique. They must
 #' also be *syntactically valid*, meaning that they cannot contain illegal
-#' characters (e.g. spaces, non-alphanumerics, **dashes**) or **begin with a
-#' number**. Consult the documentation in `help(topic = "make.names")` for more
+#' characters (e.g. spaces, non-alphanumerics, *dashes*) or *begin with a
+#' number*. Consult the documentation in `help(topic = "make.names")` for more
 #' information on valid names in R.
 #'
 #' @section Multiplexed samples:
 #'
 #' This applies to some single-cell RNA-seq formats, including inDrops. In this
 #' case, bcbio will output per-sample directories with this this structure:
-#' `description`-`revcomp`.
+#' "`description`-`revcomp`".
 #'
 #' [readSampleData()] checks to see if the `description` column is unique. If
 #' the values are duplicated, the function assumes that bcbio processed
@@ -42,8 +42,8 @@
 #' "`sequence`", and "`sampleName`" columns.
 #'
 #' Note that bcbio currently outputs the reverse complement index sequence in
-#' the sample directory names (e.g. `sample-ATAGAGAG`). Define the forward index
-#' barcode in the `sequence` column here, not the reverse complement. The
+#' the sample directory names (e.g. "`sample-ATAGAGAG`"). Define the forward
+#' index barcode in the `sequence` column here, not the reverse complement. The
 #' reverse complement will be calculated automatically and added as the
 #' `revcomp` column in the sample metadata.
 #'
