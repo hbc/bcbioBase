@@ -19,7 +19,7 @@
 #' @return `DataFrame`.
 #'
 #' @examples
-#' file <- "http://bcbiobase.seq.cloud/project-summary.yaml"
+#' file <- "http://bcbiobase.seq.cloud/project_summary.yaml"
 #'
 #' # Sample metadata
 #' x <- readYAMLSampleData(file)

@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-#' x <- readLog("http://bcbiobase.seq.cloud/bcbio-nextgen.log")
+#' x <- readLog("http://bcbiobase.seq.cloud/bcbio_nextgen.log")
 #' head(x)
 readLog <- function(file) {
     assert_is_a_string(file)

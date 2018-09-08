@@ -13,7 +13,8 @@
 #'
 #' @examples
 #' uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
-#' projectDir(uploadDir)
+#' x <- projectDir(uploadDir)
+#' basename(x)
 projectDir <- function(uploadDir) {
     dir <- list.files(
         path = uploadDir,

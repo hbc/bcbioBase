@@ -16,7 +16,7 @@ readLog(file)
 Read Log File
 }
 \examples{
-x <- readLog("http://bcbiobase.seq.cloud/bcbio-nextgen.log")
+x <- readLog("http://bcbiobase.seq.cloud/bcbio_nextgen.log")
 head(x)
 }
 \seealso{

@@ -21,7 +21,8 @@ has been run multiple times to the same upload directory.
 }
 \examples{
 uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
-projectDir(uploadDir)
+x <- projectDir(uploadDir)
+basename(x)
 }
 \seealso{
 Other Data Functions: \code{\link{minimalSampleData}},

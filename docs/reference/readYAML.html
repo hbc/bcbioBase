@@ -144,10 +144,10 @@ output the same metrics into the YAML.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='st'>"http://bcbiobase.seq.cloud/project-summary.yaml"</span>
+    <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='st'>"http://bcbiobase.seq.cloud/project_summary.yaml"</span>
 
 <span class='co'># Sample metadata</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readYAMLSampleData</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading sample metadata from YAML</span></div><div class='output co'>#&gt; <span class='message'>Reading project-summary.yaml</span></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readYAMLSampleData</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading sample metadata from YAML</span></div><div class='output co'>#&gt; <span class='message'>Reading project_summary.yaml</span></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
 #&gt;   ..@ rownames       : chr [1:4] "group1_1" "group1_2" "group2_1" "group2_2"
 #&gt;   ..@ nrows          : int 4
 #&gt;   ..@ listData       :List of 5
@@ -160,7 +160,7 @@ output the same metrics into the YAML.</p>
 #&gt;   ..@ elementMetadata: NULL
 #&gt;   ..@ metadata       : list()</div><div class='input'>
 <span class='co'># Sample metrics</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readYAMLSampleMetrics</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading sample metrics from YAML</span></div><div class='output co'>#&gt; <span class='message'>Reading project-summary.yaml</span></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readYAMLSampleMetrics</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading sample metrics from YAML</span></div><div class='output co'>#&gt; <span class='message'>Reading project_summary.yaml</span></div><div class='input'><span class='fu'><a href='http://www.rdocumentation.org/packages/tibble/topics/glimpse'>glimpse</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
 #&gt;   ..@ rownames       : chr [1:4] "group1_1" "group1_2" "group2_1" "group2_2"
 #&gt;   ..@ nrows          : int 4
 #&gt;   ..@ listData       :List of 16

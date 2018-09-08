@@ -12,7 +12,8 @@
 #'
 #' @examples
 #' uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
-#' sampleDirs(uploadDir)
+#' x <- sampleDirs(uploadDir)
+#' basename(x)
 sampleDirs <- function(uploadDir) {
     assert_all_are_dirs(uploadDir)
     uploadDir <- normalizePath(uploadDir, winslash = "/", mustWork = TRUE)

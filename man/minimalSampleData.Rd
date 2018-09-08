@@ -16,7 +16,8 @@ minimalSampleData(sample)
 Minimal Sample Data
 }
 \examples{
-minimalSampleData(c("sample 1", "sample 2"))
+x <- minimalSampleData(sample = c("sample 1", "sample 2"))
+print(x)
 }
 \seealso{
 Other Data Functions: \code{\link{projectDir}},

@@ -20,7 +20,8 @@ Function will stop if no sample directories match.
 }
 \examples{
 uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
-sampleDirs(uploadDir)
+x <- sampleDirs(uploadDir)
+basename(x)
 }
 \seealso{
 Other Data Functions: \code{\link{minimalSampleData}},

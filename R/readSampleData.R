@@ -1,6 +1,15 @@
 #' Read Sample Metadata
 #'
 #' This function reads user-defined sample metadata saved in a spreadsheet.
+#' The "`description`" column is always required, and must match the bcbio
+#' per sample directory names exactly. Inclusion of the "`fileName`" column
+#' isn't required but is recommended for data provenance.
+#'
+#' @note Some bcbio examples on readthedocs use "`samplename`" instead of
+#'   "`fileName`". This function checks for that and will error out
+#'   intentionally, since we're using the `sampleName` column (note case) to
+#'   define unique sample names, in the event that bcbio has processed
+#'   multiplexed samples.
 #'
 #' @section Demultiplexed samples:
 #'
@@ -20,22 +29,6 @@
 #' number**. Consult the documentation in `help(topic = "make.names")` for more
 #' information on valid names in R.
 #'
-#' Here's an example of valid demultiplexed sample data:
-#'
-#' | description | genotype |
-#' |-------------|----------|
-#' | sample1     | wildtype |
-#' | sample2     | knockout |
-#' | sample3     | wildtype |
-#' | sample4     | knockout |
-#'
-#' \tabular{ll}{
-#'     sample1 \tab wildtype\cr
-#'     sample2 \tab knockout\cr
-#'     sample3 \tab wildtype\cr
-#'     sample4 \tab knockout
-#' }
-#'
 #' @section Multiplexed samples:
 #'
 #' This applies to some single-cell RNA-seq formats, including inDrops. In this
@@ -54,15 +47,6 @@
 #' reverse complement will be calculated automatically and added as the
 #' `revcomp` column in the sample metadata.
 #'
-#' Here's an example of valid multiplexed sample data:
-#'
-#' | description | index | sequence | sampleName | genotype |
-#' |-------------|-------|----------|------------|----------|
-#' | indrops     | 1     | CTCTCTAT | sample1    | wildtype |
-#' | indrops     | 2     | TATCCTCT | sample2    | knockout |
-#' | indrops     | 3     | GTAAGGAG | sample3    | wildtype |
-#' | indrops     | 4     | ACTGCATA | sample4    | knockout |
-#'
 #' @family Read Functions
 #' @author Michael Steinbaugh
 #'
@@ -76,11 +60,15 @@
 #'
 #' @examples
 #' # Demultiplexed
-#' x <- readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv")
+#' file <- "http://bcbiobase.seq.cloud/demultiplexed.csv"
+#' readr::read_csv(file)
+#' x <- readSampleData(file)
 #' print(x)
 #'
-#' # Multiplexed (e.g. inDrop single-cell RNA-seq)
-#' x <- readSampleData("http://bcbiobase.seq.cloud/multiplexed.csv")
+#' # Multiplexed
+#' file <- "http://bcbiobase.seq.cloud/multiplexed.csv"
+#' readr::read_csv(file)
+#' x <- readSampleData(file)
 #' print(x)
 readSampleData <- function(file, lanes = 1L) {
     assert_is_a_string(file)
