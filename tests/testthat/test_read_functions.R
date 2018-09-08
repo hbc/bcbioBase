@@ -231,7 +231,7 @@ test_that("readSampleData : Missing file", {
 # readTx2gene ==================================================================
 test_that("readTx2gene", {
     object <- readTx2gene("tx2gene.csv")
-    expect_is(object, "DataFrame")
+    expect_is(object, "tx2gene")
     expect_identical(
         object = colnames(object),
         expected = c("transcriptID", "geneID")
