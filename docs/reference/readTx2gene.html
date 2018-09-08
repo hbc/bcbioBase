@@ -34,7 +34,8 @@
   
 <meta property="og:title" content="Transcript to Gene Annotations — readTx2gene" />
 
-<meta property="og:description" content="Transcript to Gene Annotations" />
+<meta property="og:description" content="Generates a tx2gene object containing transcriptID and geneID columns.
+Rownames are set to the transcript IDs." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,7 +110,8 @@
 
     <div class="ref-description">
     
-    <p>Transcript to Gene Annotations</p>
+    <p>Generates a <code>tx2gene</code> object containing <code>transcriptID</code> and <code>geneID</code> columns.
+Rownames are set to the transcript IDs.</p>
     
     </div>
 
@@ -126,7 +128,7 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>DataFrame</code>.</p>
+    <p><code>tx2gene</code>.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
@@ -144,7 +146,7 @@
 #&gt; <span class='message'>cols(</span>
 #&gt; <span class='message'>  transcriptID = col_character(),</span>
 #&gt; <span class='message'>  geneID = col_character()</span>
-#&gt; <span class='message'>)</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 5 rows and 2 columns
+#&gt; <span class='message'>)</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; tx2gene with 5 rows and 2 columns
 #&gt;                          transcriptID             geneID
 #&gt;                           &lt;character&gt;        &lt;character&gt;
 #&gt; ENSMUST00000033908 ENSMUST00000033908 ENSMUSG00000031511
