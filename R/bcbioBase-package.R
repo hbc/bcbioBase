@@ -18,8 +18,8 @@
 #' @importFrom assertive.types assert_is_a_string assert_is_any_of
 #'   assert_is_character assert_is_list assert_is_matrix assert_is_tbl_df
 #' @importFrom basejump assertAllAreValidNames assertHasRownames
-#'   assertIsAnImplicitInteger camel localOrRemoteFile makeNames
-#'   printString readFileByExtension readYAML removeNA sanitizeNA
+#'   assertIsAnImplicitInteger camel import localOrRemoteFile makeNames
+#'   printString readYAML removeNA sanitizeNA
 #' @importFrom Biostrings reverseComplement
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select ungroup
