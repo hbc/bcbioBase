@@ -65,7 +65,7 @@ Suggests:
     roxygen2,
     testthat (>= 2.0)
 Remotes:
-    steinbaugh/basejump@develop
+    steinbaugh/basejump@bioconductor
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0
