@@ -1,6 +1,24 @@
-## bcbioBase 0.99.0 (2018-09-06)
+## bcbioBase 0.99.0 (2018-09-14)
 
 Release candidate for [Bioconductor][] submission.
+
+## New functions
+
+- `projectDir()`, which returns the dated project directory path. If there are
+  multiple dated directories (not recommended), the most recent one is returned.
+
+## Major changes
+
+- `readTx2gene()` now returns `tx2gene` class object.
+- Pinning to [basejump][] v0.99.0 [Bioconductor][] release candidate.
+- Migrated [ggplot2][] geoms to [basejump][] package.
+- YAML functions now return `DataFrame` instead of `data.frame`.
+
+## Minor changes
+
+- Simplified NAMESPACE imports.
+- Updated deprecations.
+- Linking out to recommended guidelines for development.
 
 
 ## bcbioBase 0.4.2 (2018-08-26)
