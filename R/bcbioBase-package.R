@@ -1,6 +1,6 @@
 #' bcbioBase
 #'
-#' Base functions and generics for bcbio R packages.
+#' Base functions for bcbio R packages.
 #'
 #' @importClassesFrom basejump tx2gene
 #'

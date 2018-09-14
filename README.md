@@ -6,7 +6,7 @@
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/r-bcbiobase/badges/version.svg)](https://anaconda.org/bioconda/r-bcbiobase)
 
-Base functions and generics for [bcbio][] [R][] packages.
+Base functions for [bcbio][] [R][] packages.
 
 This is an infrastructure package, providing a shared code framework for bulk RNA-seq and single-cell RNA-seq analysis.
 

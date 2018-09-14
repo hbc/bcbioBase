@@ -6,7 +6,7 @@
 \alias{bcbioBase-package}
 \title{bcbioBase}
 \description{
-Base functions and generics for bcbio R packages.
+Base functions for bcbio R packages.
 }
 \seealso{
 Useful links:
