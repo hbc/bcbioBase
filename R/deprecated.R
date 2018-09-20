@@ -1,4 +1,5 @@
 # nocov start
+# nolint start
 
 
 
@@ -220,4 +221,5 @@ bcbio_geom_label_repel <- function(...) {
 
 
 
+# nolint end
 # nocov end
