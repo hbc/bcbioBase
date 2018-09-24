@@ -29,11 +29,11 @@ file <- "http://bcbiobase.seq.cloud/project_summary.yaml"
 
 # Sample metadata
 x <- readYAMLSampleData(file)
-glimpse(x)
+print(x)
 
 # Sample metrics
 x <- readYAMLSampleMetrics(file)
-glimpse(x)
+print(x)
 }
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},

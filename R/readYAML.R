@@ -19,11 +19,11 @@
 #'
 #' # Sample metadata
 #' x <- readYAMLSampleData(file)
-#' glimpse(x)
+#' print(x)
 #'
 #' # Sample metrics
 #' x <- readYAMLSampleMetrics(file)
-#' glimpse(x)
+#' print(x)
 NULL
 
 
