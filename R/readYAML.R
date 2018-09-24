@@ -1,3 +1,7 @@
+# FIXME Use `as_tibble()` here instead.
+
+
+
 #' Read YAML Sample Data and Metrics
 #'
 #' @note Metrics are only generated for a standard RNA-seq run with aligned
