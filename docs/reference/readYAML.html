@@ -147,42 +147,45 @@ output the same metrics into the YAML.</p>
     <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='st'>"http://bcbiobase.seq.cloud/project_summary.yaml"</span>
 
 <span class='co'># Sample metadata</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readYAMLSampleData</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading sample metadata from YAML</span></div><div class='output co'>#&gt; <span class='message'>Reading project_summary.yaml</span></div><div class='input'><span class='fu'>glimpse</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
-#&gt;   ..@ rownames       : chr [1:4] "group1_1" "group1_2" "group2_1" "group2_2"
-#&gt;   ..@ nrows          : int 4
-#&gt;   ..@ listData       :List of 5
-#&gt;   .. ..$ sampleName : Factor w/ 4 levels "group1_1","group1_2",..: 1 2 3 4
-#&gt;   .. ..$ description: Factor w/ 4 levels "group1_1","group1_2",..: 1 2 3 4
-#&gt;   .. ..$ genomeBuild: Factor w/ 1 level "mm10": 1 1 1 1
-#&gt;   .. ..$ group      : Factor w/ 2 levels "ctrl","ko": 1 1 2 2
-#&gt;   .. ..$ samRef     : Factor w/ 1 level "/groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/seq/mm10.fa": 1 1 1 1
-#&gt;   ..@ elementType    : chr "ANY"
-#&gt;   ..@ elementMetadata: NULL
-#&gt;   ..@ metadata       : list()</div><div class='input'>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readYAMLSampleData</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading sample metadata from YAML</span></div><div class='output co'>#&gt; <span class='message'>Reading project_summary.yaml</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 4 rows and 5 columns
+#&gt;          sampleName description genomeBuild    group
+#&gt;            &lt;factor&gt;    &lt;factor&gt;    &lt;factor&gt; &lt;factor&gt;
+#&gt; group1_1   group1_1    group1_1        mm10     ctrl
+#&gt; group1_2   group1_2    group1_2        mm10     ctrl
+#&gt; group2_1   group2_1    group2_1        mm10       ko
+#&gt; group2_2   group2_2    group2_2        mm10       ko
+#&gt;                                                              samRef
+#&gt;                                                            &lt;factor&gt;
+#&gt; group1_1 /groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/seq/mm10.fa
+#&gt; group1_2 /groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/seq/mm10.fa
+#&gt; group2_1 /groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/seq/mm10.fa
+#&gt; group2_2 /groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/seq/mm10.fa</div><div class='input'>
 <span class='co'># Sample metrics</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readYAMLSampleMetrics</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading sample metrics from YAML</span></div><div class='output co'>#&gt; <span class='message'>Reading project_summary.yaml</span></div><div class='input'><span class='fu'>glimpse</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
-#&gt;   ..@ rownames       : chr [1:4] "group1_1" "group1_2" "group2_1" "group2_2"
-#&gt;   ..@ nrows          : int 4
-#&gt;   ..@ listData       :List of 16
-#&gt;   .. ..$ averageInsertSize            : num [1:4] 0 0 0 0
-#&gt;   .. ..$ duplicates                   : num [1:4] 0 0 0 0
-#&gt;   .. ..$ duplicationRateOfMapped      : num [1:4] 0.557 0.589 0.577 0.583
-#&gt;   .. ..$ exonicRate                   : num [1:4] 0.859 0.882 0.863 0.871
-#&gt;   .. ..$ intergenicRate               : num [1:4] 0.0663 0.0599 0.0661 0.0635
-#&gt;   .. ..$ intronicRate                 : num [1:4] 0.0747 0.0581 0.0707 0.0652
-#&gt;   .. ..$ mappedPairedReads            : num [1:4] 0 0 0 0
-#&gt;   .. ..$ mappedReads                  : num [1:4] 22062337 25852621 25172084 25100941
-#&gt;   .. ..$ percentGC                    : num [1:4] 48 48 47 48
-#&gt;   .. ..$ qualityFormat                : Factor w/ 1 level "standard": 1 1 1 1
-#&gt;   .. ..$ rrna                         : num [1:4] 42219 48275 38894 40832
-#&gt;   .. ..$ rrnaRate                     : num [1:4] 0.00207 0.00197 0.00167 0.00174
-#&gt;   .. ..$ sequenceLength               : Factor w/ 1 level "25-75": 1 1 1 1
-#&gt;   .. ..$ sequencesFlaggedAsPoorQuality: num [1:4] 0 0 0 0
-#&gt;   .. ..$ totalReads                   : num [1:4] 22339941 26168288 25490090 25399483
-#&gt;   .. ..$ x5x3Bias                     : num [1:4] 1.01 1.04 1 0.98
-#&gt;   ..@ elementType    : chr "ANY"
-#&gt;   ..@ elementMetadata: NULL
-#&gt;   ..@ metadata       : list()</div></pre>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readYAMLSampleMetrics</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading sample metrics from YAML</span></div><div class='output co'>#&gt; <span class='message'>Reading project_summary.yaml</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 4 rows and 16 columns
+#&gt;          averageInsertSize duplicates duplicationRateOfMapped exonicRate
+#&gt;                  &lt;numeric&gt;  &lt;numeric&gt;               &lt;numeric&gt;  &lt;numeric&gt;
+#&gt; group1_1                 0          0       0.557467500859631      0.859
+#&gt; group1_2                 0          0       0.589046470275948      0.882
+#&gt; group2_1                 0          0       0.577239972583871     0.8632
+#&gt; group2_2                 0          0       0.582829896318991     0.8713
+#&gt;          intergenicRate intronicRate mappedPairedReads mappedReads percentGC
+#&gt;               &lt;numeric&gt;    &lt;numeric&gt;         &lt;numeric&gt;   &lt;numeric&gt; &lt;numeric&gt;
+#&gt; group1_1         0.0663       0.0747                 0    22062337        48
+#&gt; group1_2         0.0599       0.0581                 0    25852621        48
+#&gt; group2_1         0.0661       0.0707                 0    25172084        47
+#&gt; group2_2         0.0635       0.0652                 0    25100941        48
+#&gt;          qualityFormat         rrna         rrnaRate sequenceLength
+#&gt;               &lt;factor&gt;    &lt;numeric&gt;        &lt;numeric&gt;       &lt;factor&gt;
+#&gt; group1_1      standard  42218.63884 0.00206940785504          25-75
+#&gt; group1_2      standard 48275.488632 0.00197008767899          25-75
+#&gt; group2_1      standard 38893.777113 0.00166562268984          25-75
+#&gt; group2_2      standard  40831.69201   0.001737245817          25-75
+#&gt;          sequencesFlaggedAsPoorQuality totalReads  x5x3Bias
+#&gt;                              &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt;
+#&gt; group1_1                             0   22339941      1.01
+#&gt; group1_2                             0   26168288      1.04
+#&gt; group2_1                             0   25490090         1
+#&gt; group2_2                             0   25399483      0.98</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
