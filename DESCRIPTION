@@ -38,8 +38,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: TRUE
 Depends:
-    R (>= 3.4),
-    basejump (>= 0.99.0)
+    R (>= 3.4)
 Imports:
     assertive.base,
     assertive.files,
@@ -48,6 +47,7 @@ Imports:
     assertive.sets,
     assertive.strings,
     assertive.types,
+    basejump (>= 0.99.0),
     Biostrings,
     dplyr (>= 0.7),
     magrittr (>= 1.5),
