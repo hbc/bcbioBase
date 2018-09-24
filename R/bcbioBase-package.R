@@ -13,8 +13,9 @@
 #' @importFrom assertive.sets assert_are_disjoint_sets assert_is_subset
 #' @importFrom assertive.strings assert_all_are_matching_regex
 #'   assert_all_are_non_missing_nor_empty_character
-#' @importFrom assertive.types assert_is_a_string assert_is_any_of
-#'   assert_is_character assert_is_list assert_is_matrix assert_is_tbl_df
+#' @importFrom assertive.types assert_is_a_string assert_is_all_of
+#'   assert_is_any_of assert_is_character assert_is_list assert_is_matrix
+#'   assert_is_tbl_df
 #' @importFrom basejump assertAllAreValidNames assertHasRownames
 #'   assertIsAnImplicitInteger camel import localOrRemoteFile makeNames
 #'   printString readYAML removeNA sanitizeNA
@@ -30,7 +31,7 @@
 #' @importFrom rlang !!! !! sym syms
 #' @importFrom S4Vectors DataFrame tail
 #' @importFrom stringr str_pad str_trunc
-#' @importFrom tibble tibble
+#' @importFrom tibble as_tibble tibble
 #' @importFrom tidyr expand
 #' @importFrom utils globalVariables
 "_PACKAGE"

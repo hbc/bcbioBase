@@ -77,11 +77,8 @@ readSampleData <- function(file, lanes = 1L) {
 
     # Works with local or remote files.
     # Ensure coercion to tibble here, for consistent handling.
-    data <- import(file)
-    assert_is_all_of(data, "DataFrame")
-    assertHasRownames(data)
-    data <- data %>%
-        as("tbl_df") %>%
+    data <- import(file) %>%
+        as_tibble() %>%
         camel() %>%
         removeNA()
 

@@ -102,7 +102,7 @@ NULL
     assert_is_matrix(top)
     top <- top %>%
         t() %>%
-        as("tbl_df") %>%
+        as_tibble() %>%
         removeNA()
     assert_are_identical(nrow(top), length(yaml))
     invisible(lapply(top, assert_is_atomic))
@@ -143,7 +143,7 @@ NULL
         .fun = data.frame,
         stringsAsFactors = FALSE
     ) %>%
-        as("tbl_df") %>%
+        as_tibble() %>%
         removeNA()
     assert_is_non_empty(nested)
     invisible(lapply(nested, assert_is_atomic))
@@ -158,7 +158,7 @@ NULL
         y = colnames(nested)
     )
     cbind(top, nested) %>%
-        as("tbl_df") %>%
+        as_tibble() %>%
         camel() %>%
         # Coerce any periods in colnames to "x"
         # (e.g. x5.3Bias becomes x5x3Bias).
