@@ -57,7 +57,7 @@ sampleDirs <- function(uploadDir) {
     names(dirs) <- basenames
 
     message(paste(
-        paste(length(dirs), "samples detected:"),
+        paste(length(dirs), "sample(s) detected:"),
         str_trunc(toString(names(dirs)), width = 80L),
         sep = "\n"
     ))

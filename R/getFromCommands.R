@@ -38,6 +38,8 @@ getLevelFromCommands <- function(log) {
     } else {
         level <- "transcripts"
     }
+    message(paste("Reading counts as", level))
+    level
 }
 
 
