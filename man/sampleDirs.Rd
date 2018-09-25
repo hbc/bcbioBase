@@ -24,8 +24,7 @@ x <- sampleDirs(uploadDir)
 basename(x)
 }
 \seealso{
-Other Data Functions: \code{\link{minimalSampleData}},
-  \code{\link{projectDir}}
+Other Data Functions: \code{\link{projectDir}}
 }
 \author{
 Michael Steinbaugh

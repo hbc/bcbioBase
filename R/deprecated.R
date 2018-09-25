@@ -187,6 +187,10 @@ basejump::lanePattern
 
 
 # v0.99.0 ======================================================================
+#' @importFrom basejump minimalSampleData
+#' @export
+basejump::minimalSampleData
+
 #' @rdname deprecated
 #' @importFrom basejump basejump_geom_abline
 #' @export
