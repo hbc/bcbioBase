@@ -1,3 +1,7 @@
+# FIXME Add working examples and code coverage.
+
+
+
 #' Get Cellular Barcode Cutoff from Commands Log
 #'
 #' @param log `character`. Commands log.

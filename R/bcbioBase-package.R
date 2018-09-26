@@ -31,7 +31,7 @@
 #' @importFrom readr read_csv read_lines
 #' @importFrom rlang !!! !! sym syms
 #' @importFrom S4Vectors DataFrame tail
-#' @importFrom stringr str_pad str_trunc
+#' @importFrom stringr str_match str_pad str_replace str_trunc
 #' @importFrom tibble as_tibble tibble
 #' @importFrom tidyr expand
 #' @importFrom utils globalVariables
