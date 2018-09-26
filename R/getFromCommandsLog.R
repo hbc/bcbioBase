@@ -8,7 +8,7 @@
 #'
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @export
-getBarcodeCutoffFromCommands <- function(log) {
+getBarcodeCutoffFromCommandsLog <- function(log) {
     assert_is_character(log)
     pattern <- "--cb_cutoff (\\d+)"
     assert_any_are_matching_regex(x = log, pattern = pattern)
@@ -34,7 +34,7 @@ getBarcodeCutoffFromCommands <- function(log) {
 #'
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @export
-getLevelFromCommands <- function(log) {
+getLevelFromCommandsLog <- function(log) {
     assert_is_character(log)
     pattern <- "--genemap (.+)-tx2gene.tsv"
     if (any(grepl(pattern, log))) {
@@ -54,7 +54,7 @@ getLevelFromCommands <- function(log) {
 #'
 #' @author Rory Kirchner, Michael Steinbaugh
 #' @export
-getUMITypeFromCommands <- function(log) {
+getUMITypeFromCommandsLog <- function(log) {
     assert_is_character(log)
     pattern <- "fastqtransform.*/(.*)\\.json"
     assert_any_are_matching_regex(x = log, pattern = pattern)
