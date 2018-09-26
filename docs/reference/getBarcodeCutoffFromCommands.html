@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • bcbioBase</title>
+<title>Get Cellular Barcode Cutoff from Commands Log — getBarcodeCutoffFromCommands • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,7 +32,10 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Get Cellular Barcode Cutoff from Commands Log — getBarcodeCutoffFromCommands" />
+
+<meta property="og:description" content="Get Cellular Barcode Cutoff from Commands Log" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -48,7 +51,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -97,114 +100,42 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Get Cellular Barcode Cutoff from Commands Log</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/getFromCommands.R'><code>R/getFromCommands.R</code></a></small>
+    <div class="hidden name"><code>getBarcodeCutoffFromCommands.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Get Cellular Barcode Cutoff from Commands Log</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="bcbioBase-package.html">bcbioBase-package</a></code> </p>
-        </td>
-        <td><p>bcbioBase</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="copyToDropbox.html">copyToDropbox()</a></code> </p>
-        </td>
-        <td><p>Copy Files to Dropbox</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getBarcodeCutoffFromCommands.html">getBarcodeCutoffFromCommands()</a></code> </p>
-        </td>
-        <td><p>Get Cellular Barcode Cutoff from Commands Log</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getLevelFromCommands.html">getLevelFromCommands()</a></code> </p>
-        </td>
-        <td><p>Get Gene or Transcript Level from Commands Log</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getUMITypeFromCommands.html">getUMITypeFromCommands()</a></code> </p>
-        </td>
-        <td><p>Get UMI Type from Commands Log</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="projectDir.html">projectDir()</a></code> </p>
-        </td>
-        <td><p>Project Directory</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="readDataVersions.html">readDataVersions()</a></code> </p>
-        </td>
-        <td><p>Read Data Versions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="readLog.html">readLog()</a></code> </p>
-        </td>
-        <td><p>Read Log File</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="readProgramVersions.html">readProgramVersions()</a></code> </p>
-        </td>
-        <td><p>Read Program Versions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="readSampleData.html">readSampleData()</a></code> </p>
-        </td>
-        <td><p>Read Sample Metadata</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="readTx2gene.html">readTx2gene()</a></code> </p>
-        </td>
-        <td><p>Transcript to Gene Annotations</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="readYAML.html">readYAMLSampleData()</a></code> <code><a href="readYAML.html">readYAMLSampleMetrics()</a></code> </p>
-        </td>
-        <td><p>Read YAML Sample Data and Metrics</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sampleDirs.html">sampleDirs()</a></code> </p>
-        </td>
-        <td><p>Sample Directories</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>getBarcodeCutoffFromCommands</span>(<span class='no'>log</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>log</th>
+      <td><p><code>character</code>. Commands log.</p></td>
+    </tr>
     </table>
-  </div>
+    
 
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+                </ul>
+
+    <h2>Author</h2>
+    
+Michael Steinbaugh, Rory Kirchner
+
   </div>
 </div>
 
