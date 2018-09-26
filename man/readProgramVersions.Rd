@@ -19,7 +19,8 @@ Read Program Versions
 bcbio doesn't save program versions when run in fast mode.
 }
 \examples{
-x <- readProgramVersions("http://bcbiobase.seq.cloud/programs.txt")
+file <- file.path(bcbioBaseCacheURL, "programs.txt")
+x <- readProgramVersions(file)
 print(x)
 }
 \seealso{

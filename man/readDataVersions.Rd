@@ -20,7 +20,8 @@ The \code{data_versions.csv} file is only generated for special genomes
 containing additional information (e.g. the built-in "hg38" build).
 }
 \examples{
-x <- readDataVersions("http://bcbiobase.seq.cloud/data_versions.csv")
+file <- file.path(bcbioBaseCacheURL, "data_versions.csv")
+x <- readDataVersions(file)
 print(x)
 }
 \seealso{

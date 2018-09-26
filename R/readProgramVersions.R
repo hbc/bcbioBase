@@ -11,7 +11,8 @@
 #' @return `tbl_df`.
 #'
 #' @examples
-#' x <- readProgramVersions("http://bcbiobase.seq.cloud/programs.txt")
+#' file <- file.path(bcbioBaseCacheURL, "programs.txt")
+#' x <- readProgramVersions(file)
 #' print(x)
 readProgramVersions <- function(file) {
     assert_is_a_string(file)

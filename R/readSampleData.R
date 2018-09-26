@@ -60,14 +60,14 @@
 #'
 #' @examples
 #' # Demultiplexed
-#' file <- "http://bcbiobase.seq.cloud/demultiplexed.csv"
-#' readr::read_csv(file)
+#' file <- file.path(bcbioBaseCacheURL, "demultiplexed.csv")
+#' basejump::import(file)
 #' x <- readSampleData(file)
 #' print(x)
 #'
 #' # Multiplexed
-#' file <- "http://bcbiobase.seq.cloud/multiplexed.csv"
-#' readr::read_csv(file)
+#' file <- file.path(bcbioBaseCacheURL, "multiplexed.csv")
+#' basejump::import(file)
 #' x <- readSampleData(file)
 #' print(x)
 readSampleData <- function(file, lanes = 1L) {

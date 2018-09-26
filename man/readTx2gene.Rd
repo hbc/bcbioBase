@@ -20,7 +20,8 @@ Rownames are set to the transcript IDs.
 Doesn't attempt to strip transcript versions.
 }
 \examples{
-x <- readTx2gene("http://bcbiobase.seq.cloud/tx2gene.csv")
+file <- file.path(bcbioBaseCacheURL, "tx2gene.csv")
+x <- readTx2gene(file)
 print(x)
 }
 \seealso{

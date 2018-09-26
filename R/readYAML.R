@@ -15,7 +15,7 @@
 #' @return `DataFrame`.
 #'
 #' @examples
-#' file <- "http://bcbiobase.seq.cloud/project_summary.yaml"
+#' file <- file.path(bcbioBaseCacheURL, "project_summary.yaml")
 #'
 #' # Sample metadata
 #' x <- readYAMLSampleData(file)

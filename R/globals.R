@@ -1,6 +1,16 @@
 globalVariables(".")
 
+version <- packageVersion("bcbioBase")
+versionDir <- paste0("v", version$major, ".", version$minor)
 
+# TODO Migrate S3 to a bucket that supports https.
+
+#' Cache URL
+#' @keywords internal
+#' @export
+#' @examples
+#' basejumpCacheURL
+bcbioBaseCacheURL <- paste0("http://bcbiobase.seq.cloud/", versionDir)
 
 yamlFlatCols <- c(
     "description",
@@ -8,14 +18,10 @@ yamlFlatCols <- c(
     "sam_ref"
 )
 
-
-
 metricsBlacklist <- c(
     camel(yamlFlatCols),
     "name"
 )
-
-
 
 #' Metadata Blacklist
 #' @keywords internal
@@ -33,8 +39,6 @@ metadataBlacklist <- sort(c(
     "sequence",
     "sequenceLength"
 ))
-
-
 
 #' Project Directory Grep Pattern
 #' @keywords internal

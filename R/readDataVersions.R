@@ -12,7 +12,8 @@
 #' @return `tbl_df`.
 #'
 #' @examples
-#' x <- readDataVersions("http://bcbiobase.seq.cloud/data_versions.csv")
+#' file <- file.path(bcbioBaseCacheURL, "data_versions.csv")
+#' x <- readDataVersions(file)
 #' print(x)
 readDataVersions <- function(file) {
     assert_is_a_string(file)

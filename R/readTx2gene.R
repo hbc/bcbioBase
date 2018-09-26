@@ -14,7 +14,8 @@
 #' @return `tx2gene`.
 #'
 #' @examples
-#' x <- readTx2gene("http://bcbiobase.seq.cloud/tx2gene.csv")
+#' file <- file.path(bcbioBaseCacheURL, "tx2gene.csv")
+#' x <- readTx2gene(file)
 #' print(x)
 readTx2gene <- function(file) {
     assert_is_a_string(file)

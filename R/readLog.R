@@ -9,7 +9,8 @@
 #' @return `character`.
 #'
 #' @examples
-#' x <- readLog("http://bcbiobase.seq.cloud/bcbio_nextgen.log")
+#' file <- file.path(bcbioBaseCacheURL, "bcbio_nextgen.log")
+#' x <- readLog(file)
 #' head(x)
 readLog <- function(file) {
     assert_is_a_string(file)
