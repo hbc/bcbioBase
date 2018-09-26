@@ -28,8 +28,7 @@ NULL
 
 
 
-# Fix numerics set as characters.
-.numericAsCharacter <- function(x) {
+.sanitizeNumericAsCharacter <- function(x) {
     any(grepl(x = x, pattern = "^[0-9\\.]+$"))
 }
 
@@ -41,27 +40,19 @@ NULL
     assert_is_character(keys)
     assert_all_are_in_range(length(keys), lower = 1L, upper = 2L)
 
-    yaml <- readYAML(file)
-    assert_are_identical(
-        x = names(yaml),
-        y = c("date", "upload", "bcbio_system", "samples")
-    )
+    yaml <- import(file)
+    assert_is_list(yaml)
+    assert_is_non_empty(yaml)
 
     # Focus on the sample YAML data.
+    assert_is_subset("samples", names(yaml))
     yaml <- yaml[["samples"]]
     assert_is_list(yaml)
     assert_is_non_empty(yaml)
 
-    # `summary` is only returned for RNA-seq pipeline, not single cell.
+    # Note that `summary` is only returned for RNA-seq pipeline.
     assert_is_subset(
-        x = c(
-            "description",
-            "dirs",
-            "genome_build",
-            "genome_resources",
-            "metadata",
-            "sam_ref"
-        ),
+        x = c("description", "dirs", "metadata"),
         y = names(yaml[[1L]])
     )
 
@@ -69,7 +60,7 @@ NULL
     # Return `NULL` here instead of stopping, so we can handle bcbio RNA-seq
     # fast mode runs.
     if (
-        length(keys) == 2L &&
+        has_length(keys, n = 2L) &&
         !keys[[2L]] %in% names(yaml[[1L]][[keys[[1L]]]])
     ) {
         return(NULL)
@@ -167,7 +158,7 @@ NULL
         removeNA() %>%
         arrange(!!sym("description")) %>%
         # Ensure numerics from YAML are set correctly and not character.
-        mutate_if(.numericAsCharacter, as.numeric) %>%
+        mutate_if(.sanitizeNumericAsCharacter, as.numeric) %>%
         # Order the columns alphabetically.
         .[, sort(colnames(.)), drop = FALSE] %>%
         # Set the rownames.
@@ -192,11 +183,11 @@ readYAMLSampleData <- function(file) {
 readYAMLSampleMetrics <- function(file) {
     message("Reading sample metrics from YAML")
     data <- .readYAMLSample(file, keys = c("summary", "metrics"))
-    assert_is_tbl_df(data)
 
     # Early return on empty metrics (e.g. fast mode).
-    if (!length(data)) {
-        return(NULL)  # nocov
+    if (!has_length(data)) {
+        message("No metrics were calculated.")
+        return()
     }
 
     # Drop any metadata columns. Note we're also dropping the duplicate `name`
