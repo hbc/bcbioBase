@@ -84,7 +84,7 @@ readSampleData <- function(file, lanes = 1L) {
 
     # Stop on input of blacklisted columns.
     intersect <- intersect(.sampleDataBlacklist, colnames(data))
-    if (length(intersect)) {
+    if (has_length(intersect)) {
         stop(paste0(
             paste("Invalid columns:", toString(intersect)), "\n",
             "Recommended values:\n",

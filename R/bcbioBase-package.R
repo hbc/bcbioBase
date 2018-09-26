@@ -19,7 +19,7 @@
 #'   assert_is_matrix assert_is_tbl_df
 #' @importFrom basejump assertAllAreValidNames assertHasRownames
 #'   assertIsAnImplicitInteger camel import localOrRemoteFile makeNames
-#'   printString readYAML removeNA sanitizeNA
+#'   printString removeNA sanitizeNA
 #' @importFrom Biostrings reverseComplement
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select ungroup
@@ -29,7 +29,7 @@
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
 #'   drop_get_metadata drop_share drop_upload
 #' @importFrom readr read_csv read_lines
-#' @importFrom rlang !!! !! sym syms
+#' @importFrom rlang !!! !! has_length sym syms
 #' @importFrom S4Vectors DataFrame tail
 #' @importFrom stringr str_match str_pad str_replace str_trunc
 #' @importFrom tibble as_tibble tibble
