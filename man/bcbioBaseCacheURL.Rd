@@ -12,6 +12,6 @@ bcbioBaseCacheURL
 Cache URL
 }
 \examples{
-basejumpCacheURL
+bcbioBaseCacheURL
 }
 \keyword{internal}

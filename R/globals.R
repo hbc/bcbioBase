@@ -9,7 +9,7 @@ versionDir <- paste0("v", version$major, ".", version$minor)
 #' @keywords internal
 #' @export
 #' @examples
-#' basejumpCacheURL
+#' bcbioBaseCacheURL
 bcbioBaseCacheURL <- paste0("http://bcbiobase.seq.cloud/", versionDir)
 
 yamlFlatCols <- c(
