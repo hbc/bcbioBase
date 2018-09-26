@@ -15,8 +15,8 @@
 #'   assert_all_are_non_missing_nor_empty_character
 #'   assert_any_are_matching_regex
 #' @importFrom assertive.types assert_is_a_string assert_is_all_of
-#'   assert_is_any_of assert_is_character assert_is_list assert_is_matrix
-#'   assert_is_tbl_df
+#'   assert_is_an_integer assert_is_any_of assert_is_character assert_is_list
+#'   assert_is_matrix assert_is_tbl_df
 #' @importFrom basejump assertAllAreValidNames assertHasRownames
 #'   assertIsAnImplicitInteger camel import localOrRemoteFile makeNames
 #'   printString readYAML removeNA sanitizeNA
