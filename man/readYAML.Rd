@@ -25,7 +25,7 @@ counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
 output the same metrics into the YAML.
 }
 \examples{
-file <- file.path(bcbioBaseCacheURL, "project_summary.yaml")
+file <- file.path(bcbioBaseCacheURL, "summary.yaml")
 
 # Sample metadata
 x <- readYAMLSampleData(file)

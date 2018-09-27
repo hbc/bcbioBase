@@ -66,7 +66,7 @@
 #' print(x)
 #'
 #' # Multiplexed
-#' file <- file.path(bcbioBaseCacheURL, "multiplexed.csv")
+#' file <- file.path(bcbioBaseCacheURL, "multiplexed_indrops.csv")
 #' basejump::import(file)
 #' x <- readSampleData(file)
 #' print(x)

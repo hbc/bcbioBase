@@ -119,7 +119,7 @@ isn't required but is recommended for data provenance.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>readSampleData</span>(<span class='no'>file</span>, <span class='kw'>lanes</span> <span class='kw'>=</span> <span class='fl'>1L</span>)</pre>
+    <pre class="usage"><span class='fu'>readSampleData</span>(<span class='no'>file</span>, <span class='kw'>lanes</span> <span class='kw'>=</span> <span class='fl'>0L</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,13 +191,13 @@ reverse complement will be calculated automatically and added as the
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Demultiplexed</span>
 <span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'>file.path</span>(<span class='no'>bcbioBaseCacheURL</span>, <span class='st'>"demultiplexed.csv"</span>)
-<span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/basejump/topics/import'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.csv</span></div><div class='output co'>#&gt; DataFrame with 4 rows and 3 columns
+<span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/basejump/topics/import'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.csv...</span></div><div class='output co'>#&gt; DataFrame with 4 rows and 3 columns
 #&gt;              fileName description    genotype
 #&gt;           &lt;character&gt; &lt;character&gt; &lt;character&gt;
 #&gt; 1 sample1_R1.fastq.gz     sample1    wildtype
 #&gt; 2 sample2_R1.fastq.gz     sample2    knockout
 #&gt; 3 sample3_R1.fastq.gz     sample3    wildtype
-#&gt; 4 sample4_R1.fastq.gz     sample4    knockout</div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Demultiplexed samples detected</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 4 rows and 4 columns
+#&gt; 4 sample4_R1.fastq.gz     sample4    knockout</div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading demultiplexed.csv...</span></div><div class='output co'>#&gt; <span class='message'>Demultiplexed samples detected.</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 4 rows and 4 columns
 #&gt;         sampleName            fileName description genotype
 #&gt;           &lt;factor&gt;            &lt;factor&gt;    &lt;factor&gt; &lt;factor&gt;
 #&gt; sample1    sample1 sample1_R1.fastq.gz     sample1 wildtype
@@ -205,8 +205,8 @@ reverse complement will be calculated automatically and added as the
 #&gt; sample3    sample3 sample3_R1.fastq.gz     sample3 wildtype
 #&gt; sample4    sample4 sample4_R1.fastq.gz     sample4 knockout</div><div class='input'>
 <span class='co'># Multiplexed</span>
-<span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'>file.path</span>(<span class='no'>bcbioBaseCacheURL</span>, <span class='st'>"multiplexed.csv"</span>)
-<span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/basejump/topics/import'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading multiplexed.csv</span></div><div class='output co'>#&gt; DataFrame with 8 rows and 6 columns
+<span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'>file.path</span>(<span class='no'>bcbioBaseCacheURL</span>, <span class='st'>"multiplexed_indrops.csv"</span>)
+<span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/basejump/topics/import'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading multiplexed_indrops.csv...</span></div><div class='output co'>#&gt; DataFrame with 8 rows and 7 columns
 #&gt;               fileName description     index    sequence  sampleName
 #&gt;            &lt;character&gt; &lt;character&gt; &lt;integer&gt; &lt;character&gt; &lt;character&gt;
 #&gt; 1 indrops1_R1.fastq.gz    indrops1         1    CTCTCTAT   sample1_1
@@ -217,16 +217,16 @@ reverse complement will be calculated automatically and added as the
 #&gt; 6 indrops2_R1.fastq.gz    indrops2         2    TATCCTCT   sample2_2
 #&gt; 7 indrops2_R1.fastq.gz    indrops2         3    GTAAGGAG   sample3_2
 #&gt; 8 indrops2_R1.fastq.gz    indrops2         4    ACTGCATA   sample4_2
-#&gt;     aggregate
-#&gt;   &lt;character&gt;
-#&gt; 1     sample1
-#&gt; 2     sample2
-#&gt; 3     sample3
-#&gt; 4     sample4
-#&gt; 5     sample1
-#&gt; 6     sample2
-#&gt; 7     sample3
-#&gt; 8     sample4</div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading multiplexed.csv</span></div><div class='output co'>#&gt; <span class='message'>Multiplexed samples detected</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 8 rows and 7 columns
+#&gt;     aggregate    genotype
+#&gt;   &lt;character&gt; &lt;character&gt;
+#&gt; 1     sample1    wildtype
+#&gt; 2     sample2    knockout
+#&gt; 3     sample3    wildtype
+#&gt; 4     sample4    knockout
+#&gt; 5     sample1    wildtype
+#&gt; 6     sample2    knockout
+#&gt; 7     sample3    wildtype
+#&gt; 8     sample4    knockout</div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading multiplexed_indrops.csv...</span></div><div class='output co'>#&gt; <span class='message'>Multiplexed samples detected.</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 8 rows and 8 columns
 #&gt;                   sampleName             fileName       description    index
 #&gt;                     &lt;factor&gt;             &lt;factor&gt;          &lt;factor&gt; &lt;factor&gt;
 #&gt; indrops1_AGAGGATA  sample2_1 indrops1_R1.fastq.gz indrops1-AGAGGATA        2
@@ -237,16 +237,16 @@ reverse complement will be calculated automatically and added as the
 #&gt; indrops2_ATAGAGAG  sample1_2 indrops2_R1.fastq.gz indrops2-ATAGAGAG        1
 #&gt; indrops2_CTCCTTAC  sample3_2 indrops2_R1.fastq.gz indrops2-CTCCTTAC        3
 #&gt; indrops2_TATGCAGT  sample4_2 indrops2_R1.fastq.gz indrops2-TATGCAGT        4
-#&gt;                   sequence aggregate  revcomp
-#&gt;                   &lt;factor&gt;  &lt;factor&gt; &lt;factor&gt;
-#&gt; indrops1_AGAGGATA TATCCTCT   sample2 AGAGGATA
-#&gt; indrops1_ATAGAGAG CTCTCTAT   sample1 ATAGAGAG
-#&gt; indrops1_CTCCTTAC GTAAGGAG   sample3 CTCCTTAC
-#&gt; indrops1_TATGCAGT ACTGCATA   sample4 TATGCAGT
-#&gt; indrops2_AGAGGATA TATCCTCT   sample2 AGAGGATA
-#&gt; indrops2_ATAGAGAG CTCTCTAT   sample1 ATAGAGAG
-#&gt; indrops2_CTCCTTAC GTAAGGAG   sample3 CTCCTTAC
-#&gt; indrops2_TATGCAGT ACTGCATA   sample4 TATGCAGT</div></pre>
+#&gt;                   sequence aggregate genotype  revcomp
+#&gt;                   &lt;factor&gt;  &lt;factor&gt; &lt;factor&gt; &lt;factor&gt;
+#&gt; indrops1_AGAGGATA TATCCTCT   sample2 knockout AGAGGATA
+#&gt; indrops1_ATAGAGAG CTCTCTAT   sample1 wildtype ATAGAGAG
+#&gt; indrops1_CTCCTTAC GTAAGGAG   sample3 wildtype CTCCTTAC
+#&gt; indrops1_TATGCAGT ACTGCATA   sample4 knockout TATGCAGT
+#&gt; indrops2_AGAGGATA TATCCTCT   sample2 knockout AGAGGATA
+#&gt; indrops2_ATAGAGAG CTCTCTAT   sample1 wildtype ATAGAGAG
+#&gt; indrops2_CTCCTTAC GTAAGGAG   sample3 wildtype CTCCTTAC
+#&gt; indrops2_TATGCAGT ACTGCATA   sample4 knockout TATGCAGT</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
