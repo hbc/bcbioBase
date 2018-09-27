@@ -1,8 +1,3 @@
-# FIXME Improve lane handling (e.g. 1, 3 instead of 1-4)
-# FIXME Set lanes = 0 by default.
-
-
-
 #' Read Sample Metadata
 #'
 #' This function reads user-defined sample metadata saved in a spreadsheet.
