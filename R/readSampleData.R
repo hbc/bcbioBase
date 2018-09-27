@@ -1,3 +1,8 @@
+# FIXME Improve lane handling (e.g. 1, 3 instead of 1-4)
+# FIXME Set lanes = 0 by default.
+
+
+
 #' Read Sample Metadata
 #'
 #' This function reads user-defined sample metadata saved in a spreadsheet.
@@ -70,15 +75,15 @@
 #' basejump::import(file)
 #' x <- readSampleData(file)
 #' print(x)
-readSampleData <- function(file, lanes = 1L) {
+readSampleData <- function(file, lanes = 0L) {
     assert_is_a_string(file)
-    assertIsAnImplicitInteger(lanes)
-    assert_all_are_positive(lanes)
+    assertIsImplicitInteger(lanes)
+    assert_all_are_non_negative(lanes)
 
     # Works with local or remote files.
     # Ensure coercion to tibble here, for consistent handling.
     data <- import(file) %>%
-        as_tibble() %>%
+        as_tibble(rownames = NULL) %>%
         camel() %>%
         removeNA()
 
@@ -87,11 +92,13 @@ readSampleData <- function(file, lanes = 1L) {
     if (has_length(intersect)) {
         stop(paste0(
             paste("Invalid columns:", toString(intersect)), "\n",
-            "Recommended values:\n",
-            "- description: Sample name per file (required).\n",
-            "- sampleName: Unique sample name",
-            " (required for multiplexed samples).\n",
-            "- fileName: FASTQ file name (optional, but recommended)."
+            "Recommended columns:\n",
+            "  - fileName: FASTQ file name (optional, but recommended).\n",
+            "  - description: Sample description per file (required).\n",
+            "  - sampleName: Unique sample name",
+            " (multiplexed samples only).\n",
+            "The `description` column is sanitized into the sample ID ",
+            "for demultiplexed samples."
         ))
     }
 
