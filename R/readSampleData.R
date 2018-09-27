@@ -79,6 +79,12 @@ readSampleData <- function(file, lanes = 0L) {
     assert_is_a_string(file)
     assertIsImplicitInteger(lanes)
     assert_all_are_non_negative(lanes)
+    lanes <- as.integer(lanes)
+
+    # Convert to a sequence, if necessary.
+    if (has_length(lanes, n = 1L) && lanes > 1L) {
+        lanes <- seq_len(lanes)
+    }
 
     # Works with local or remote files.
     # Ensure coercion to tibble here, for consistent handling.
@@ -117,7 +123,7 @@ readSampleData <- function(file, lanes = 0L) {
         any(c("index", "sequence") %in% colnames(data))
     ) {
         multiplexed <- TRUE
-        message("Multiplexed samples detected")
+        message("Multiplexed samples detected.")
         required <- c(required, "sampleName", "index")
         assert_is_subset(required, colnames(data))
         # Note that `description` column is expected to have duplicates.
@@ -125,7 +131,7 @@ readSampleData <- function(file, lanes = 0L) {
         assert_has_no_duplicates(data[["sampleName"]])
     } else {
         multiplexed <- FALSE
-        message("Demultiplexed samples detected")
+        message("Demultiplexed samples detected.")
         assert_has_no_duplicates(data[["description"]])
         assertAllAreValidNames(data[["description"]])
         # Note that `sampleName` column isn't required for demultiplexed
@@ -138,16 +144,18 @@ readSampleData <- function(file, lanes = 0L) {
 
     # Prepare metadata for lane split replicates. This step will expand rows
     # into the number of desired replicates.
-    if (lanes > 1L) {
+    if (length(lanes) > 1L) {
         data <- data %>%
             group_by(!!!syms(nameCols)) %>%
-            # Expand by lane (e.g. "L001")
+            # Expand by lane (e.g. "L001").
             expand(
-                lane = paste0("L", str_pad(1L:lanes, 3L, pad = "0"))
+                lane = paste0(
+                    "L", str_pad(string = lanes, width = 3L, pad = "0")
+                )
             ) %>%
             left_join(data, by = nameCols) %>%
             ungroup() %>%
-            # Ensure lane-split metadata doesn't contain spaces
+            # Ensure lane-split metadata doesn't contain spaces.
             mutate_at(
                 nameCols,
                 funs(

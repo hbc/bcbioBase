@@ -4,7 +4,7 @@
 \alias{readSampleData}
 \title{Read Sample Metadata}
 \usage{
-readSampleData(file, lanes = 1L)
+readSampleData(file, lanes = 0L)
 }
 \arguments{
 \item{file}{\code{string}. File path. Supports CSV, TSV, and XLSX file formats.}
