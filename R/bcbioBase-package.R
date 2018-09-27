@@ -7,7 +7,8 @@
 #' @importMethodsFrom S4Vectors coerce
 #' @importFrom assertive.base assert_are_identical
 #' @importFrom assertive.files assert_all_are_dirs assert_all_are_existing_files
-#' @importFrom assertive.numbers assert_all_are_in_range assert_all_are_positive
+#' @importFrom assertive.numbers assert_all_are_in_range
+#'   assert_all_are_non_negative
 #' @importFrom assertive.properties assert_has_no_duplicates assert_is_atomic
 #'   assert_is_non_empty assert_is_scalar
 #' @importFrom assertive.sets assert_are_disjoint_sets assert_is_subset
@@ -18,7 +19,7 @@
 #'   assert_is_an_integer assert_is_any_of assert_is_character assert_is_list
 #'   assert_is_matrix assert_is_tbl_df
 #' @importFrom basejump assertAllAreValidNames assertHasRownames
-#'   assertIsAnImplicitInteger camel import localOrRemoteFile makeNames
+#'   assertIsImplicitInteger camel import localOrRemoteFile makeNames
 #'   printString removeNA sanitizeNA
 #' @importFrom Biostrings reverseComplement
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
