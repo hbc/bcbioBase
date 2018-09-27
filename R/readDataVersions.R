@@ -21,7 +21,7 @@ readDataVersions <- function(file) {
     file <- tryCatch(
         localOrRemoteFile(file),
         error = function(e) {
-            message("Data versions are missing")
+            message("Data versions are missing.")
             NULL
         }
     )

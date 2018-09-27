@@ -22,7 +22,7 @@ getBarcodeCutoffFromCommandsLog <- function(log) {
         unique() %>%
         as.integer()
     assert_is_an_integer(cutoff)
-    message(paste(cutoff, "reads per cellular barcode cutoff detected"))
+    message(paste(cutoff, "reads per cellular barcode cutoff detected."))
     cutoff
 }
 
@@ -42,7 +42,7 @@ getLevelFromCommandsLog <- function(log) {
     } else {
         level <- "transcripts"
     }
-    message(paste("Reading counts as", level))
+    message(paste0("Counts will imported as ", level, "."))
     level
 }
 
