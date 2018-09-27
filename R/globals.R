@@ -45,4 +45,4 @@ metadataBlacklist <- sort(c(
 #' @export
 #' @examples
 #' projectDirPattern
-projectDirPattern <- "^(\\d{4}-\\d{2}-\\d{2})_([^/]+)$"
+projectDirPattern <- "^([[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2})_([^/]+)$"
