@@ -24,7 +24,8 @@ x <- sampleDirs(uploadDir)
 basename(x)
 }
 \seealso{
-Other Data Functions: \code{\link{projectDir}}
+Other Data Functions: \code{\link{projectDir}},
+  \code{\link{runDate}}
 }
 \author{
 Michael Steinbaugh
