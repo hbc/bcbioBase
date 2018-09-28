@@ -116,7 +116,7 @@
 <a href="#new-functions-1" class="anchor"></a>New functions</h3>
 <ul>
 <li>
-<code><a href="../reference/projectDir.html">projectDir()</a></code>: Returns the latest dated directory path inside a <a href="http://bcb.io">bcbio</a> run. If <a href="http://bcb.io">bcbio</a> has been run multiple times to the same upload directory, the function will return the latest project directory and warn the user.</li>
+<code>projectDir</code>: Returns the latest dated directory path inside a <a href="http://bcb.io">bcbio</a> run. If <a href="http://bcb.io">bcbio</a> has been run multiple times to the same upload directory, the function will return the latest project directory and warn the user.</li>
 </ul>
 </div>
 <div id="major-changes-1" class="section level3">
@@ -124,8 +124,8 @@
 <a href="#major-changes-1" class="anchor"></a>Major changes</h3>
 <ul>
 <li>
-<code><a href="../reference/sampleDirs.html">sampleDirs()</a></code> is now stricter about loading sample directories with names that are not valid in [R][]. This now checks for non-alphanumeric characters, including spaces, <strong>dashes</strong>, and samples that begin with a number. The <a href="http://bcb.io">bcbio</a> pipeline will be updated to enforce these rules, to avoid unexpected downstream behavior in [R][] due to invalid names.</li>
-<li>Improved camel case sanitization of metrics columns in the YAML parser. Now <code><a href="../reference/readYAML.html">readYAMLSampleMetrics()</a></code> should return <code>percentGC</code> instead of <code>xGC</code>. 5’-&gt;3’ bias should return as <code>x5x3Bias</code>. The <code><a href="http://www.rdocumentation.org/packages/plyr/topics/ldply">plyr::ldply()</a></code> call used to coerce from a <code>list</code> to <code>data.frame</code> will sanitize names, so we need to apply our rules before this step.</li>
+<code>sampleDirs</code> is now stricter about loading sample directories with names that are not valid in [R][]. This now checks for non-alphanumeric characters, including spaces, <strong>dashes</strong>, and samples that begin with a number. The <a href="http://bcb.io">bcbio</a> pipeline will be updated to enforce these rules, to avoid unexpected downstream behavior in [R][] due to invalid names.</li>
+<li>Improved camel case sanitization of metrics columns in the YAML parser. Now <code>readYAMLSampleMetrics</code> should return <code>percentGC</code> instead of <code>xGC</code>. 5’-&gt;3’ bias should return as <code>x5x3Bias</code>. The <code><a href="http://www.rdocumentation.org/packages/plyr/topics/ldply">plyr::ldply</a></code> call used to coerce from a <code>list</code> to <code>data.frame</code> will sanitize names, so we need to apply our rules before this step.</li>
 </ul>
 </div>
 <div id="minor-changes-1" class="section level3">
@@ -144,7 +144,7 @@
 <a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
-<code><a href="http://www.rdocumentation.org/packages/basejump/topics/prepareTemplate">prepareTemplate()</a></code>: Migrated function to <a href="http://steinbaugh.com/basejump">basejump</a> package, and simplifed to copy all files from <code>rmarkdown/shared</code> directory inside a package. Currently in use by <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a>.</li>
+<code>prepareTemplate</code>: Migrated function to <a href="http://steinbaugh.com/basejump">basejump</a> package, and simplifed to copy all files from <code>rmarkdown/shared</code> directory inside a package. Currently in use by <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a>.</li>
 </ul>
 </div>
 </div>
