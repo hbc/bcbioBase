@@ -1,16 +1,16 @@
 globalVariables(".")
 
-version <- packageVersion("bcbioBase")
-versionDir <- paste0("v", version$major, ".", version$minor)
-
-# TODO Migrate S3 to a bucket that supports https.
+packageVersion <- packageVersion("bcbioBase")
 
 #' Cache URL
 #' @keywords internal
 #' @export
 #' @examples
 #' bcbioBaseCacheURL
-bcbioBaseCacheURL <- paste0("http://bcbiobase.seq.cloud/", versionDir)
+bcbioBaseCacheURL <- paste0(
+    "http://bcbiobase.seq.cloud/",
+    "v", packageVersion$major, ".", packageVersion$minor  # nolint
+)
 
 yamlFlatCols <- c(
     "description",
