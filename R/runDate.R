@@ -15,7 +15,7 @@ runDate <- function(projectDir) {
     projectDir <- basename(projectDir)
     stopifnot(grepl(projectDirPattern, projectDir))
     match <- str_match(
-        string = basename(projectDir),
+        string = projectDir,
         pattern = projectDirPattern
     )
     as.Date(match[[2L]])
