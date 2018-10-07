@@ -1,3 +1,7 @@
+# FIXME Add code coverage
+
+
+
 #' Run Date
 #'
 #' Get the run date from the project directory.
