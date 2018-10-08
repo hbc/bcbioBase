@@ -28,4 +28,4 @@ copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
 \author{
 Michael Steinbaugh, Victor Barerra, John Hutchinson
 }
-\concept{Write Functions}
+\concept{Import/Export Functions}

@@ -47,7 +47,7 @@
 #' reverse complement will be calculated automatically and added as the
 #' `revcomp` column in the sample metadata.
 #'
-#' @family Read Functions
+#' @family Import/Export
 #' @author Michael Steinbaugh
 #' @export
 #'

@@ -25,7 +25,7 @@ x <- readDataVersions(file)
 print(x)
 }
 \seealso{
-Other Read Functions: \code{\link{readLog}},
+Other Import/Export: \code{\link{readLog}},
   \code{\link{readProgramVersions}},
   \code{\link{readSampleData}}, \code{\link{readTx2Gene}},
   \code{\link{readYAML}}
@@ -33,4 +33,4 @@ Other Read Functions: \code{\link{readLog}},
 \author{
 Michael Steinbaugh
 }
-\concept{Read Functions}
+\concept{Import/Export}

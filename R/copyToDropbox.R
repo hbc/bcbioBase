@@ -2,7 +2,7 @@
 
 #' Copy Files to Dropbox
 #'
-#' @family Write Functions
+#' @family Import/Export Functions
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
 #' @export
 #'

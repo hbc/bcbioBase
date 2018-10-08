@@ -36,11 +36,11 @@ x <- readYAMLSampleMetrics(file)
 print(x)
 }
 \seealso{
-Other Read Functions: \code{\link{readDataVersions}},
+Other Import/Export: \code{\link{readDataVersions}},
   \code{\link{readLog}}, \code{\link{readProgramVersions}},
   \code{\link{readSampleData}}, \code{\link{readTx2Gene}}
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Read Functions}
+\concept{Import/Export}

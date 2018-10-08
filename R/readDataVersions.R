@@ -3,7 +3,7 @@
 #' @note The `data_versions.csv` file is only generated for special genomes
 #' containing additional information (e.g. the built-in "hg38" build).
 #'
-#' @family Read Functions
+#' @family Import/Export
 #' @author Michael Steinbaugh
 #' @export
 #'

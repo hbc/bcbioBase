@@ -5,7 +5,7 @@
 #'   output the same metrics into the YAML.
 #'
 #' @name readYAML
-#' @family Read Functions
+#' @family Import/Export
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
