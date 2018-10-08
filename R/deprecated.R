@@ -56,15 +56,15 @@ readSampleMetadataFile <- function(...) {
 #' @rdname deprecated
 #' @export
 sampleMetadata <- function(object, ...) {
-    .Deprecated("sampleData")
-    sampleData(object, ...)
+    .Deprecated("basejump::sampleData")
+    basejump::sampleData(object, ...)
 }
 
 #' @rdname deprecated
 #' @export
 `sampleMetadata<-` <- function(object, value) {
-    .Deprecated("sampleData<-")
-    sampleData(object) <- value
+    .Deprecated("basejump::sampleData<-")
+    basejump::sampleData(object) <- value
     object
 }
 
@@ -221,6 +221,13 @@ bcbio_geom_label_average <- function(...) {
 bcbio_geom_label_repel <- function(...) {
     .Deprecated("basejump::basejump_geom_label_repel")
     basejump::basejump_geom_label_repel(...)
+}
+
+#' @rdname deprecated
+#' @export
+readTx2gene <- function(...) {
+    .Deprecated("readTx2Gene")
+    readTx2Gene(...)
 }
 
 
