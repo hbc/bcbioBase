@@ -395,7 +395,7 @@ test_that("readSampleData : Multiplexed : Invalid", {
 
 # readTx2Gene ==================================================================
 test_that("readTx2Gene", {
-    object <- readTx2gene("tx2gene.csv")
+    object <- readTx2Gene("tx2gene.csv")
     expect_is(object, "Tx2Gene")
     expect_identical(
         object = colnames(object),
