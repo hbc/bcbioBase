@@ -1,4 +1,4 @@
-context("Data Functions")
+context("Data")
 
 uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
 
