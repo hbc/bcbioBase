@@ -27,7 +27,7 @@ print(x)
 \seealso{
 Other Read Functions: \code{\link{readLog}},
   \code{\link{readProgramVersions}},
-  \code{\link{readSampleData}}, \code{\link{readTx2gene}},
+  \code{\link{readSampleData}}, \code{\link{readTx2Gene}},
   \code{\link{readYAML}}
 }
 \author{

@@ -38,7 +38,7 @@ print(x)
 \seealso{
 Other Read Functions: \code{\link{readDataVersions}},
   \code{\link{readLog}}, \code{\link{readProgramVersions}},
-  \code{\link{readSampleData}}, \code{\link{readTx2gene}}
+  \code{\link{readSampleData}}, \code{\link{readTx2Gene}}
 }
 \author{
 Michael Steinbaugh

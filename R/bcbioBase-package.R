@@ -2,7 +2,7 @@
 #'
 #' Base functions for bcbio R packages.
 #'
-#' @importClassesFrom basejump tx2gene
+#' @importClassesFrom basejump Tx2Gene
 #' @importMethodsFrom basejump coerce
 #' @importMethodsFrom S4Vectors coerce
 #' @importFrom assertive.base assert_are_identical
