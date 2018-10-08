@@ -25,8 +25,10 @@ x <- projectDir(uploadDir)
 basename(x)
 }
 \seealso{
-Other Data Functions: \code{\link{runDate}},
-  \code{\link{sampleDirs}}
+Other Data Functions: \code{\link{getBarcodeCutoffFromCommandsLog}},
+  \code{\link{getLevelFromCommandsLog}},
+  \code{\link{getUMITypeFromCommandsLog}},
+  \code{\link{runDate}}, \code{\link{sampleDirs}}
 }
 \author{
 Michael Steinbaugh

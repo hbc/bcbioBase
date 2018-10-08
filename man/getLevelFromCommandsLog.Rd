@@ -9,9 +9,19 @@ getLevelFromCommandsLog(log)
 \arguments{
 \item{log}{\code{character}. Commands log.}
 }
+\value{
+\code{string}.
+}
 \description{
 Get Gene or Transcript Level from Commands Log
+}
+\seealso{
+Other Data Functions: \code{\link{getBarcodeCutoffFromCommandsLog}},
+  \code{\link{getUMITypeFromCommandsLog}},
+  \code{\link{projectDir}}, \code{\link{runDate}},
+  \code{\link{sampleDirs}}
 }
 \author{
 Michael Steinbaugh, Rory Kirchner
 }
+\concept{Data Functions}

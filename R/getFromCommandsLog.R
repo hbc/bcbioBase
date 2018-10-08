@@ -4,10 +4,13 @@
 
 #' Get Cellular Barcode Cutoff from Commands Log
 #'
-#' @param log `character`. Commands log.
-#'
+#' @family Data Functions
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @export
+#'
+#' @param log `character`. Commands log.
+#'
+#' @return `integer`.
 getBarcodeCutoffFromCommandsLog <- function(log) {
     assert_is_character(log)
     pattern <- "--cb_cutoff (\\d+)"
@@ -30,10 +33,13 @@ getBarcodeCutoffFromCommandsLog <- function(log) {
 
 #' Get Gene or Transcript Level from Commands Log
 #'
-#' @param log `character`. Commands log.
-#'
+#' @family Data Functions
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @export
+#'
+#' @param log `character`. Commands log.
+#'
+#' @return `string`.
 getLevelFromCommandsLog <- function(log) {
     assert_is_character(log)
     pattern <- "--genemap (.+)-tx2gene.tsv"
@@ -50,10 +56,13 @@ getLevelFromCommandsLog <- function(log) {
 
 #' Get UMI Type from Commands Log
 #'
-#' @param log `character`. Commands log.
-#'
+#' @family Data Functions
 #' @author Rory Kirchner, Michael Steinbaugh
 #' @export
+#'
+#' @param log `character`. Commands log.
+#'
+#' @return `string`.
 getUMITypeFromCommandsLog <- function(log) {
     assert_is_character(log)
     pattern <- "fastqtransform.*/(.*)\\.json"

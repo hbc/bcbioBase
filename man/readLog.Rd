@@ -21,7 +21,8 @@ x <- readLog(file)
 head(x)
 }
 \seealso{
-Other Import/Export: \code{\link{readDataVersions}},
+Other Import/Export Functions: \code{\link{copyToDropbox}},
+  \code{\link{readDataVersions}},
   \code{\link{readProgramVersions}},
   \code{\link{readSampleData}}, \code{\link{readTx2Gene}},
   \code{\link{readYAML}}
@@ -29,4 +30,4 @@ Other Import/Export: \code{\link{readDataVersions}},
 \author{
 Michael Steinbaugh
 }
-\concept{Import/Export}
+\concept{Import/Export Functions}

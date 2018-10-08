@@ -25,11 +25,12 @@ x <- readTx2Gene(file)
 print(x)
 }
 \seealso{
-Other Import/Export: \code{\link{readDataVersions}},
-  \code{\link{readLog}}, \code{\link{readProgramVersions}},
+Other Import/Export Functions: \code{\link{copyToDropbox}},
+  \code{\link{readDataVersions}}, \code{\link{readLog}},
+  \code{\link{readProgramVersions}},
   \code{\link{readSampleData}}, \code{\link{readYAML}}
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Import/Export}
+\concept{Import/Export Functions}
