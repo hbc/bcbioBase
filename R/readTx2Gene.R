@@ -1,6 +1,6 @@
-#' Transcript to Gene Annotations
+#' Transcript-to-Gene Annotations
 #'
-#' Generates a `tx2gene` object containing `transcriptID` and `geneID` columns.
+#' Generates a `Tx2Gene` object containing `transcriptID` and `geneID` columns.
 #' Rownames are set to the transcript IDs.
 #'
 #' @note Doesn't attempt to strip transcript versions.
@@ -11,13 +11,13 @@
 #'
 #' @inheritParams general
 #'
-#' @return `tx2gene`.
+#' @return `Tx2Gene`.
 #'
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "tx2gene.csv")
-#' x <- readTx2gene(file)
+#' x <- readTx2Gene(file)
 #' print(x)
-readTx2gene <- function(file) {
+readTx2Gene <- function(file) {
     assert_is_a_string(file)
     file <- localOrRemoteFile(file)
     data <- read_csv(file, col_names = c("transcriptID", "geneID"))
@@ -26,5 +26,5 @@ readTx2gene <- function(file) {
     # Coerce to DataFrame.
     data <- as(data, "DataFrame")
     rownames(data) <- data[["transcriptID"]]
-    new("tx2gene", data)
+    new(Class = "Tx2Gene", data)
 }
