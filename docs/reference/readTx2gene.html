@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Transcript to Gene Annotations — readTx2gene • bcbioBase</title>
+<title>Transcript-to-Gene Annotations — readTx2Gene • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Transcript to Gene Annotations — readTx2gene" />
+<meta property="og:title" content="Transcript-to-Gene Annotations — readTx2Gene" />
 
-<meta property="og:description" content="Generates a tx2gene object containing transcriptID and geneID columns.
+<meta property="og:description" content="Generates a Tx2Gene object containing transcriptID and geneID columns.
 Rownames are set to the transcript IDs." />
 <meta name="twitter:card" content="summary" />
 
@@ -103,19 +103,19 @@ Rownames are set to the transcript IDs." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Transcript to Gene Annotations</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/readTx2gene.R'><code>R/readTx2gene.R</code></a></small>
-    <div class="hidden name"><code>readTx2gene.Rd</code></div>
+    <h1>Transcript-to-Gene Annotations</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/readTx2Gene.R'><code>R/readTx2Gene.R</code></a></small>
+    <div class="hidden name"><code>readTx2Gene.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Generates a <code>tx2gene</code> object containing <code>transcriptID</code> and <code>geneID</code> columns.
+    <p>Generates a <code>Tx2Gene</code> object containing <code>transcriptID</code> and <code>geneID</code> columns.
 Rownames are set to the transcript IDs.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>readTx2gene</span>(<span class='no'>file</span>)</pre>
+    <pre class="usage"><span class='fu'>readTx2Gene</span>(<span class='no'>file</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -128,7 +128,7 @@ Rownames are set to the transcript IDs.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>tx2gene</code>.</p>
+    <p><code>Tx2Gene</code>.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
@@ -136,18 +136,18 @@ Rownames are set to the transcript IDs.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other Read Functions: <code><a href='readDataVersions.html'>readDataVersions</a></code>,
-  <code><a href='readLog.html'>readLog</a></code>, <code><a href='readProgramVersions.html'>readProgramVersions</a></code>,
-  <code><a href='readSampleData.html'>readSampleData</a></code>, <code><a href='readYAML.html'>readYAML</a></code></p></div>
+    <div class='dont-index'><p>Other Read Functions: <code>readDataVersions</code>,
+  <code>readLog</code>, <code>readProgramVersions</code>,
+  <code>readSampleData</code>, <code>readYAML</code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'>file.path</span>(<span class='no'>bcbioBaseCacheURL</span>, <span class='st'>"tx2gene.csv"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readTx2gene</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readTx2Gene</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Parsed with column specification:</span>
 #&gt; <span class='message'>cols(</span>
 #&gt; <span class='message'>  transcriptID = col_character(),</span>
 #&gt; <span class='message'>  geneID = col_character()</span>
-#&gt; <span class='message'>)</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; tx2gene with 5 rows and 2 columns
+#&gt; <span class='message'>)</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Tx2Gene with 5 rows and 2 columns
 #&gt;                          transcriptID             geneID
 #&gt;                           &lt;character&gt;        &lt;character&gt;
 #&gt; ENSMUST00000033908 ENSMUST00000033908 ENSMUSG00000031511
