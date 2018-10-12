@@ -16,6 +16,10 @@ getBarcodeCutoffFromCommands(log)
 \description{
 Get from Commands Log
 }
+\examples{
+file <- file.path(bcbioBaseCacheURL, "bcbio_nextgen_commands.log")
+log <- basejump::import(file)
+}
 \author{
 Michael Steinbaugh, Rory Kirchner
 }

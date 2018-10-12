@@ -10,6 +10,10 @@
 #' @param log `character`. Commands log.
 #'
 #' @return `integer`.
+#'
+#' @examples
+#' file <- file.path(bcbioBaseCacheURL, "bcbio_nextgen_commands.log")
+#' log <- basejump::import(file)
 NULL
 
 

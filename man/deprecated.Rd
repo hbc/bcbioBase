@@ -11,6 +11,7 @@
 \alias{bcbio_geom_label}
 \alias{bcbio_geom_label_average}
 \alias{bcbio_geom_label_repel}
+\alias{readLog}
 \alias{readTx2gene}
 \title{Deprecated Functions}
 \usage{
@@ -31,6 +32,8 @@ bcbio_geom_label(...)
 bcbio_geom_label_average(...)
 
 bcbio_geom_label_repel(...)
+
+readLog(file)
 
 readTx2gene(...)
 }
