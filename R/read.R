@@ -341,6 +341,10 @@ readSampleData <- function(file, lanes = 0L) {
 #' x <- readTx2Gene(file)
 #' print(x)
 readTx2Gene <- function(file) {
-    data <- import(file, col.names = c("transcriptID", "geneID"))
+    data <- import(
+        file,
+        header = FALSE,
+        col.names = c("transcriptID", "geneID")
+    )
     tx2gene(data)
 }
