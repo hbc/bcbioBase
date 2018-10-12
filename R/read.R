@@ -8,7 +8,7 @@
 #'
 #' @inheritParams general
 #'
-#' @return `tbl_df`.
+#' @return `DataFrame`.
 #'
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "data_versions.csv")
@@ -41,7 +41,7 @@ readDataVersions <- function(file) {
 #'
 #' @inheritParams general
 #'
-#' @return `tbl_df`.
+#' @return `DataFrame`.
 #'
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "programs.txt")
@@ -61,12 +61,13 @@ readProgramVersions <- function(file) {
         return(tibble())
     }
     # bcbio outputs `programs.txt`, but the file is comma separated.
-    read_csv(
+    data <- read_csv(
         file,
         col_names = c("program", "version"),
         # `c` denotes character here.
         col_types = "cc"
     )
+    as(data, "DataFrame")
 }
 
 

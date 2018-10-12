@@ -10,7 +10,7 @@ readProgramVersions(file)
 \item{file}{\code{string}. File path.}
 }
 \value{
-\code{tbl_df}.
+\code{DataFrame}.
 }
 \description{
 Read Program Versions
