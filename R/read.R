@@ -27,28 +27,7 @@ readDataVersions <- function(file) {
     if (is.null(file)) {
         return(tibble())
     }
-    read_csv(file)
-}
-
-
-
-#' Read Log File
-#'
-#' @author Michael Steinbaugh
-#' @export
-#'
-#' @inheritParams general
-#'
-#' @return `character`.
-#'
-#' @examples
-#' file <- file.path(bcbioBaseCacheURL, "bcbio_nextgen.log")
-#' x <- readLog(file)
-#' head(x)
-readLog <- function(file) {
-    assert_is_a_string(file)
-    file <- localOrRemoteFile(file)
-    read_lines(file)
+    import(file)
 }
 
 
@@ -362,13 +341,6 @@ readSampleData <- function(file, lanes = 0L) {
 #' x <- readTx2Gene(file)
 #' print(x)
 readTx2Gene <- function(file) {
-    assert_is_a_string(file)
-    file <- localOrRemoteFile(file)
-    data <- read_csv(file, col_names = c("transcriptID", "geneID"))
-    # Arrange by transcript.
-    data <- arrange(data, !!sym("transcriptID"))
-    # Coerce to DataFrame.
-    data <- as(data, "DataFrame")
-    rownames(data) <- data[["transcriptID"]]
-    new(Class = "Tx2Gene", data)
+    data <- import(file, col.names = c("transcriptID", "geneID"))
+    tx2gene(data)
 }
