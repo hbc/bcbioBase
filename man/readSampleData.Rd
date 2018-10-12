@@ -69,13 +69,13 @@ reverse complement will be calculated automatically and added as the
 }
 
 \examples{
-# Demultiplexed
+## Demultiplexed
 file <- file.path(bcbioBaseCacheURL, "demultiplexed.csv")
 basejump::import(file)
 x <- readSampleData(file)
 print(x)
 
-# Multiplexed
+## Multiplexed
 file <- file.path(bcbioBaseCacheURL, "multiplexed_indrops.csv")
 basejump::import(file)
 x <- readSampleData(file)

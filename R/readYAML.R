@@ -17,11 +17,11 @@
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "summary.yaml")
 #'
-#' # Sample metadata
+#' ## Sample metadata
 #' x <- readYAMLSampleData(file)
 #' print(x)
 #'
-#' # Sample metrics
+#' ## Sample metrics
 #' x <- readYAMLSampleMetrics(file)
 #' print(x)
 NULL
@@ -170,7 +170,7 @@ NULL
 #' @rdname readYAML
 #' @export
 readYAMLSampleData <- function(file) {
-    message("Reading sample metadata from YAML...")
+    message("Reading sample metadata from YAML.")
     file %>%
         .readYAMLSample(keys = "metadata") %>%
         .returnSampleData()
@@ -181,7 +181,7 @@ readYAMLSampleData <- function(file) {
 #' @rdname readYAML
 #' @export
 readYAMLSampleMetrics <- function(file) {
-    message("Reading sample metrics from YAML...")
+    message("Reading sample metrics from YAML.")
     data <- .readYAMLSample(file, keys = c("summary", "metrics"))
 
     # Early return on empty metrics (e.g. fast mode).

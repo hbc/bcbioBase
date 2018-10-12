@@ -27,11 +27,11 @@ output the same metrics into the YAML.
 \examples{
 file <- file.path(bcbioBaseCacheURL, "summary.yaml")
 
-# Sample metadata
+## Sample metadata
 x <- readYAMLSampleData(file)
 print(x)
 
-# Sample metrics
+## Sample metrics
 x <- readYAMLSampleMetrics(file)
 print(x)
 }
