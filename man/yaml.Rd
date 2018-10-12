@@ -29,17 +29,22 @@ output the same metrics into the YAML.
 }
 \examples{
 file <- file.path(bcbioBaseCacheURL, "summary.yaml")
+yaml <- basejump::import(file)
+summary(yaml)
 
 ## GTF file path.
 x <- getGTFFileFromYAML(yaml)
+print(x)
 
 ## Sample metrics.
 x <- getMetricsFromYAML(yaml)
-print(x)
+summary(x)
+colnames(x)
 
 ## Sample metadata.
 x <- getSampleDataFromYAML(yaml)
-print(x)
+summary(x)
+colnames(x)
 }
 \author{
 Michael Steinbaugh

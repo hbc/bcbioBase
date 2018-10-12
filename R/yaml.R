@@ -20,17 +20,22 @@
 #'
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "summary.yaml")
+#' yaml <- basejump::import(file)
+#' summary(yaml)
 #'
 #' ## GTF file path.
 #' x <- getGTFFileFromYAML(yaml)
+#' print(x)
 #'
 #' ## Sample metrics.
 #' x <- getMetricsFromYAML(yaml)
-#' print(x)
+#' summary(x)
+#' colnames(x)
 #'
 #' ## Sample metadata.
 #' x <- getSampleDataFromYAML(yaml)
-#' print(x)
+#' summary(x)
+#' colnames(x)
 NULL
 
 
@@ -55,7 +60,6 @@ getGTFFileFromYAML <- function(yaml) {
         .[["rnaseq"]] %>%
         .[["transcripts"]]
     assert_is_a_string(file)
-    assert_all_are_existing_files(file)
     assert_are_identical(basename(file), "ref-transcripts.gtf")
     file
 }
