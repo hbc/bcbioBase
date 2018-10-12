@@ -14,7 +14,6 @@ readTx2Gene(file)
 }
 \description{
 Generates a \code{Tx2Gene} object containing \code{transcriptID} and \code{geneID} columns.
-Rownames are set to the transcript IDs.
 }
 \note{
 Doesn't attempt to strip transcript versions.

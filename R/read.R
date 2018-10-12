@@ -325,7 +325,6 @@ readSampleData <- function(file, lanes = 0L) {
 #' Read Transcript-to-Gene Annotations
 #'
 #' Generates a `Tx2Gene` object containing `transcriptID` and `geneID` columns.
-#' Rownames are set to the transcript IDs.
 #'
 #' @note Doesn't attempt to strip transcript versions.
 #'
