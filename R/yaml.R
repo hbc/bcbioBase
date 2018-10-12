@@ -1,10 +1,15 @@
-#' Read YAML Sample Data and Metrics
+# FIXME Need to add working example.
+# FIXME Add a bcbio YAML structure assert check.
+
+
+
+#' Get from YAML
 #'
 #' @note Metrics are only generated for a standard RNA-seq run with aligned
 #'   counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
 #'   output the same metrics into the YAML.
 #'
-#' @name readYAML
+#' @name yaml
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general
@@ -16,32 +21,56 @@
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "summary.yaml")
 #'
-#' ## Sample metadata
-#' x <- readYAMLSampleData(file)
+#' ## GTF file path.
+#' x <- getGTFFileFromYAML(yaml)
+#'
+#' ## Sample metrics.
+#' x <- getMetricsFromYAML(yaml)
 #' print(x)
 #'
-#' ## Sample metrics
-#' x <- readYAMLSampleMetrics(file)
+#' ## Sample metadata.
+#' x <- getSampleDataFromYAML(yaml)
 #' print(x)
 NULL
 
 
 
+# Sanitization =================================================================
 .sanitizeNumericAsCharacter <- function(x) {
     any(grepl(x = x, pattern = "^[0-9\\.]+$"))
 }
 
 
 
-# Currently max 2 keys are supported (e.g. summary, metrics).
-.readYAMLSample <- function(file, keys) {
+# GTF file =====================================================================
+#' @rdname yaml
+#' @export
+getGTFFileFromYAML <- function(yaml) {
+    assert_is_list(yaml)
+    # Assume all samples are using the same GTF file.
+    file <- yaml %>%
+        .[["samples"]] %>%
+        .[[1L]] %>%
+        .[["genome_resources"]] %>%
+        .[["rnaseq"]] %>%
+        .[["transcripts"]]
     assert_is_a_string(file)
-    assert_is_character(keys)
-    assert_all_are_in_range(length(keys), lower = 1L, upper = 2L)
+    assert_all_are_existing_files(file)
+    assert_are_identical(basename(file), "ref-transcripts.gtf")
+    file
+}
 
-    yaml <- import(file)
+
+
+# Sample-level YAML information ================================================
+# FIXME yaml <- import(file)
+# Currently max 2 keys are supported (e.g. summary, metrics).
+.sampleYAML <- function(yaml, keys) {
+    # FIXME Convert this into a general bcbio YAML assert check.
     assert_is_list(yaml)
     assert_is_non_empty(yaml)
+    assert_is_character(keys)
+    assert_all_are_in_range(length(keys), lower = 1L, upper = 2L)
 
     # Focus on the sample YAML data.
     assert_is_subset("samples", names(yaml))
@@ -166,22 +195,11 @@ NULL
 
 
 
-#' @rdname readYAML
+#' @rdname yaml
 #' @export
-readYAMLSampleData <- function(file) {
-    message("Reading sample metadata from YAML.")
-    file %>%
-        .readYAMLSample(keys = "metadata") %>%
-        .returnSampleData()
-}
-
-
-
-#' @rdname readYAML
-#' @export
-readYAMLSampleMetrics <- function(file) {
-    message("Reading sample metrics from YAML.")
-    data <- .readYAMLSample(file, keys = c("summary", "metrics"))
+getMetricsFromYAML <- function(yaml) {
+    message("Getting sample metrics from YAML.")
+    data <- .sampleYAML(yaml, keys = c("summary", "metrics"))
 
     # Early return on empty metrics (e.g. fast mode).
     if (!has_length(data)) {
@@ -201,4 +219,15 @@ readYAMLSampleMetrics <- function(file) {
 
     assertHasRownames(data)
     data
+}
+
+
+
+#' @rdname yaml
+#' @export
+getSampleDataFromYAML <- function(yaml) {
+    message("Getting sample metadata from YAML.")
+    yaml %>%
+        .sampleYAML(keys = "metadata") %>%
+        .returnSampleData()
 }

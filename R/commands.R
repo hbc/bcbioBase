@@ -2,15 +2,21 @@
 
 
 
-#' Get Cellular Barcode Cutoff from Commands Log
+#' Get from Commands Log
 #'
+#' @name commands
 #' @author Michael Steinbaugh, Rory Kirchner
-#' @export
 #'
 #' @param log `character`. Commands log.
 #'
 #' @return `integer`.
-getBarcodeCutoffFromCommandsLog <- function(log) {
+NULL
+
+
+
+#' @rdname commands
+#' @export
+getBarcodeCutoffFromCommands <- function(log) {
     assert_is_character(log)
     pattern <- "--cb_cutoff (\\d+)"
     assert_any_are_matching_regex(x = log, pattern = pattern)
@@ -38,7 +44,7 @@ getBarcodeCutoffFromCommandsLog <- function(log) {
 #' @param log `character`. Commands log.
 #'
 #' @return `string`.
-getLevelFromCommandsLog <- function(log) {
+getLevelFromCommands <- function(log) {
     assert_is_character(log)
     pattern <- "--genemap (.+)-tx2gene.tsv"
     if (any(grepl(pattern, log))) {
@@ -60,7 +66,7 @@ getLevelFromCommandsLog <- function(log) {
 #' @param log `character`. Commands log.
 #'
 #' @return `string`.
-getUMITypeFromCommandsLog <- function(log) {
+getUMITypeFromCommands <- function(log) {
     assert_is_character(log)
     pattern <- "fastqtransform.*/(.*)\\.json"
     assert_any_are_matching_regex(x = log, pattern = pattern)

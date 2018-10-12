@@ -1,3 +1,97 @@
+#' Read Data Versions
+#'
+#' @note The `data_versions.csv` file is only generated for special genomes
+#' containing additional information (e.g. the built-in "hg38" build).
+#'
+#' @author Michael Steinbaugh
+#' @export
+#'
+#' @inheritParams general
+#'
+#' @return `tbl_df`.
+#'
+#' @examples
+#' file <- file.path(bcbioBaseCacheURL, "data_versions.csv")
+#' x <- readDataVersions(file)
+#' print(x)
+readDataVersions <- function(file) {
+    assert_is_a_string(file)
+    # Data versions are optional.
+    file <- tryCatch(
+        localOrRemoteFile(file),
+        error = function(e) {
+            message("Data versions are missing.")
+            NULL
+        }
+    )
+    if (is.null(file)) {
+        return(tibble())
+    }
+    read_csv(file)
+}
+
+
+
+#' Read Log File
+#'
+#' @author Michael Steinbaugh
+#' @export
+#'
+#' @inheritParams general
+#'
+#' @return `character`.
+#'
+#' @examples
+#' file <- file.path(bcbioBaseCacheURL, "bcbio_nextgen.log")
+#' x <- readLog(file)
+#' head(x)
+readLog <- function(file) {
+    assert_is_a_string(file)
+    file <- localOrRemoteFile(file)
+    read_lines(file)
+}
+
+
+
+#' Read Program Versions
+#'
+#' @note bcbio doesn't save program versions when run in fast mode.
+#'
+#' @author Michael Steinbaugh
+#' @export
+#'
+#' @inheritParams general
+#'
+#' @return `tbl_df`.
+#'
+#' @examples
+#' file <- file.path(bcbioBaseCacheURL, "programs.txt")
+#' x <- readProgramVersions(file)
+#' print(x)
+readProgramVersions <- function(file) {
+    assert_is_a_string(file)
+    # Program versions are optional
+    file <- tryCatch(
+        localOrRemoteFile(file),
+        error = function(e) {
+            message("Program versions are missing.")
+            NULL
+        }
+    )
+    if (is.null(file)) {
+        return(tibble())
+    }
+    # bcbio outputs `programs.txt`, but the file is comma separated.
+    read_csv(
+        file,
+        col_names = c("program", "version"),
+        # `c` denotes character here.
+        col_types = "cc"
+    )
+}
+
+
+
 #' Read Sample Metadata
 #'
 #' This function reads user-defined sample metadata saved in a spreadsheet.
@@ -246,3 +340,35 @@ readSampleData <- function(file, lanes = 0L) {
     "samplename",  # note case: use "description" instead.
     "sampleID"
 )
+
+
+
+#' Read Transcript-to-Gene Annotations
+#'
+#' Generates a `Tx2Gene` object containing `transcriptID` and `geneID` columns.
+#' Rownames are set to the transcript IDs.
+#'
+#' @note Doesn't attempt to strip transcript versions.
+#'
+#' @author Michael Steinbaugh
+#' @export
+#'
+#' @inheritParams general
+#'
+#' @return `Tx2Gene`.
+#'
+#' @examples
+#' file <- file.path(bcbioBaseCacheURL, "tx2gene.csv")
+#' x <- readTx2Gene(file)
+#' print(x)
+readTx2Gene <- function(file) {
+    assert_is_a_string(file)
+    file <- localOrRemoteFile(file)
+    data <- read_csv(file, col_names = c("transcriptID", "geneID"))
+    # Arrange by transcript.
+    data <- arrange(data, !!sym("transcriptID"))
+    # Coerce to DataFrame.
+    data <- as(data, "DataFrame")
+    rownames(data) <- data[["transcriptID"]]
+    new(Class = "Tx2Gene", data)
+}

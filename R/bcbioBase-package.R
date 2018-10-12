@@ -2,6 +2,8 @@
 #'
 #' Base functions for bcbio R packages.
 #'
+#' @keywords internal
+#'
 #' @importClassesFrom basejump Tx2Gene
 #' @importMethodsFrom basejump coerce
 #' @importMethodsFrom S4Vectors coerce

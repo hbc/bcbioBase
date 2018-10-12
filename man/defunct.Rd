@@ -9,6 +9,8 @@
 \alias{sampleYAMLMetrics}
 \alias{prepareSampleData}
 \alias{assertFormalAnnotationCol}
+\alias{readYAMLSampleData}
+\alias{readYAMLSampleMetrics}
 \title{Defunct Functions}
 \usage{
 checkInterestingGroups(...)
@@ -24,6 +26,10 @@ sampleYAMLMetrics(...)
 prepareSampleData(...)
 
 assertFormalAnnotationCol(...)
+
+readYAMLSampleData(...)
+
+readYAMLSampleMetrics(...)
 }
 \value{
 No value.
