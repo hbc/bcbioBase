@@ -15,13 +15,6 @@ Get the run date from the project directory.
 \examples{
 runDate("2018-01-01_illumina_rnaseq")
 }
-\seealso{
-Other Data Functions: \code{\link{getBarcodeCutoffFromCommandsLog}},
-  \code{\link{getLevelFromCommandsLog}},
-  \code{\link{getUMITypeFromCommandsLog}},
-  \code{\link{projectDir}}, \code{\link{sampleDirs}}
-}
 \author{
 Michael Steinbaugh
 }
-\concept{Data Functions}

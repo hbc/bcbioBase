@@ -15,13 +15,6 @@ getUMITypeFromCommandsLog(log)
 \description{
 Get UMI Type from Commands Log
 }
-\seealso{
-Other Data Functions: \code{\link{getBarcodeCutoffFromCommandsLog}},
-  \code{\link{getLevelFromCommandsLog}},
-  \code{\link{projectDir}}, \code{\link{runDate}},
-  \code{\link{sampleDirs}}
-}
 \author{
 Rory Kirchner, Michael Steinbaugh
 }
-\concept{Data Functions}

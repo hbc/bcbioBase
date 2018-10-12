@@ -23,13 +23,6 @@ uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
 x <- sampleDirs(uploadDir)
 basename(x)
 }
-\seealso{
-Other Data Functions: \code{\link{getBarcodeCutoffFromCommandsLog}},
-  \code{\link{getLevelFromCommandsLog}},
-  \code{\link{getUMITypeFromCommandsLog}},
-  \code{\link{projectDir}}, \code{\link{runDate}}
-}
 \author{
 Michael Steinbaugh
 }
-\concept{Data Functions}

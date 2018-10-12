@@ -1,4 +1,4 @@
-# FIXME Add code coverage
+# FIXME Add code coverage.
 
 
 
@@ -6,7 +6,6 @@
 #'
 #' Get the run date from the project directory.
 #'
-#' @family Data Functions
 #' @author Michael Steinbaugh
 #' @export
 #'

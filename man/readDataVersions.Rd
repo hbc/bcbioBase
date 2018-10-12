@@ -24,13 +24,6 @@ file <- file.path(bcbioBaseCacheURL, "data_versions.csv")
 x <- readDataVersions(file)
 print(x)
 }
-\seealso{
-Other Import/Export Functions: \code{\link{copyToDropbox}},
-  \code{\link{readLog}}, \code{\link{readProgramVersions}},
-  \code{\link{readSampleData}}, \code{\link{readTx2Gene}},
-  \code{\link{readYAML}}
-}
 \author{
 Michael Steinbaugh
 }
-\concept{Import/Export Functions}

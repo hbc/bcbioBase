@@ -2,7 +2,6 @@
 #'
 #' @note bcbio doesn't save program versions when run in fast mode.
 #'
-#' @family Import/Export Functions
 #' @author Michael Steinbaugh
 #' @export
 #'

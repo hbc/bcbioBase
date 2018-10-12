@@ -5,7 +5,6 @@
 #'
 #' @note Doesn't attempt to strip transcript versions.
 #'
-#' @family Import/Export Functions
 #' @author Michael Steinbaugh
 #' @export
 #'

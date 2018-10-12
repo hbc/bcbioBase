@@ -4,7 +4,6 @@
 
 #' Get Cellular Barcode Cutoff from Commands Log
 #'
-#' @family Data Functions
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @export
 #'
@@ -33,7 +32,6 @@ getBarcodeCutoffFromCommandsLog <- function(log) {
 
 #' Get Gene or Transcript Level from Commands Log
 #'
-#' @family Data Functions
 #' @author Michael Steinbaugh, Rory Kirchner
 #' @export
 #'
@@ -56,7 +54,6 @@ getLevelFromCommandsLog <- function(log) {
 
 #' Get UMI Type from Commands Log
 #'
-#' @family Data Functions
 #' @author Rory Kirchner, Michael Steinbaugh
 #' @export
 #'

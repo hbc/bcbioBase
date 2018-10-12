@@ -1,6 +1,5 @@
 #' Read Log File
 #'
-#' @family Import/Export Functions
 #' @author Michael Steinbaugh
 #' @export
 #'

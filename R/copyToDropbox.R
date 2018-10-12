@@ -1,8 +1,10 @@
 # nocov start
+# Covering this code locally, since dealing with RDS token is buggy.
+
+
 
 #' Copy Files to Dropbox
 #'
-#' @family Import/Export Functions
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
 #' @export
 #'
@@ -76,5 +78,7 @@ copyToDropbox <- function(
 
     invisible(rdrop)
 }
+
+
 
 # nocov end

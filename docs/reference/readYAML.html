@@ -136,19 +136,12 @@
 counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
 output the same metrics into the YAML.</p>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>Other Import/Export Functions: <code>copyToDropbox</code>,
-  <code>readDataVersions</code>, <code>readLog</code>,
-  <code>readProgramVersions</code>,
-  <code>readSampleData</code>, <code>readTx2Gene</code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'>file.path</span>(<span class='no'>bcbioBaseCacheURL</span>, <span class='st'>"summary.yaml"</span>)
 
-<span class='co'># Sample metadata</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readYAMLSampleData</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading sample metadata from YAML...</span></div><div class='output co'>#&gt; <span class='message'>Reading summary.yaml...</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 4 rows and 5 columns
+<span class='co'>## Sample metadata</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readYAMLSampleData</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading sample metadata from YAML.</span></div><div class='output co'>#&gt; <span class='message'>Reading summary.yaml.</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 4 rows and 5 columns
 #&gt;          sampleName description genomeBuild    group
 #&gt;            &lt;factor&gt;    &lt;factor&gt;    &lt;factor&gt; &lt;factor&gt;
 #&gt; group1_1   group1_1    group1_1        mm10     ctrl
@@ -161,8 +154,8 @@ output the same metrics into the YAML.</p>
 #&gt; group1_2 /groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/seq/mm10.fa
 #&gt; group2_1 /groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/seq/mm10.fa
 #&gt; group2_2 /groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/seq/mm10.fa</div><div class='input'>
-<span class='co'># Sample metrics</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readYAMLSampleMetrics</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading sample metrics from YAML...</span></div><div class='output co'>#&gt; <span class='message'>Reading summary.yaml...</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 4 rows and 16 columns
+<span class='co'>## Sample metrics</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readYAMLSampleMetrics</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading sample metrics from YAML.</span></div><div class='output co'>#&gt; <span class='message'>Reading summary.yaml.</span></div><div class='input'><span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 4 rows and 16 columns
 #&gt;          averageInsertSize duplicates duplicationRateOfMapped exonicRate
 #&gt;                  &lt;numeric&gt;  &lt;numeric&gt;               &lt;numeric&gt;  &lt;numeric&gt;
 #&gt; group1_1                 0          0       0.557467500859631      0.859
@@ -196,8 +189,6 @@ output the same metrics into the YAML.</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#note">Note</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

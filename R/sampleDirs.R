@@ -2,7 +2,6 @@
 #'
 #' @note Function will stop if no sample directories match.
 #'
-#' @family Data Functions
 #' @author Michael Steinbaugh
 #' @export
 #'

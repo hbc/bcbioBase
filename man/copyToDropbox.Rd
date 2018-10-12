@@ -25,13 +25,6 @@ Copy Files to Dropbox
 copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
 }
 }
-\seealso{
-Other Import/Export Functions: \code{\link{readDataVersions}},
-  \code{\link{readLog}}, \code{\link{readProgramVersions}},
-  \code{\link{readSampleData}}, \code{\link{readTx2Gene}},
-  \code{\link{readYAML}}
-}
 \author{
 Michael Steinbaugh, Victor Barerra, John Hutchinson
 }
-\concept{Import/Export Functions}
