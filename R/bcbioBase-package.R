@@ -4,7 +4,6 @@
 #'
 #' @keywords internal
 #'
-#' @importClassesFrom basejump Tx2Gene
 #' @importMethodsFrom basejump coerce
 #' @importMethodsFrom S4Vectors coerce
 #' @importFrom assertive.base assert_are_identical
@@ -22,7 +21,7 @@
 #'   assert_is_matrix assert_is_tbl_df
 #' @importFrom basejump assertAllAreValidNames assertHasRownames
 #'   assertIsImplicitInteger camel import localOrRemoteFile makeNames
-#'   printString removeNA sanitizeNA
+#'   printString removeNA sanitizeNA tx2gene
 #' @importFrom Biostrings reverseComplement
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select ungroup
