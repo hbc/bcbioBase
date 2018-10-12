@@ -230,6 +230,18 @@ readTx2gene <- function(...) {
     readTx2Gene(...)
 }
 
+#' @rdname defunct
+#' @export
+readYAMLSampleData <- function(...) {
+    .Defunct("getSampleDataFromYAML")
+}
+
+#' @rdname defunct
+#' @export
+readYAMLSampleMetrics <- function(...) {
+    .Defunct("getMetricsFromYAML")
+}
+
 
 
 # nolint end
