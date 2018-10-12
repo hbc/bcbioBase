@@ -25,7 +25,7 @@ readDataVersions <- function(file) {
         }
     )
     if (is.null(file)) {
-        return(tibble())
+        return(DataFrame())
     }
     import(file)
 }
@@ -58,7 +58,7 @@ readProgramVersions <- function(file) {
         }
     )
     if (is.null(file)) {
-        return(tibble())
+        return(DataFrame())
     }
     # bcbio outputs `programs.txt`, but the file is comma separated.
     data <- read_csv(
