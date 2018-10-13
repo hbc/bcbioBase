@@ -64,8 +64,7 @@ readProgramVersions <- function(file) {
     data <- read_csv(
         file,
         col_names = c("program", "version"),
-        # `c` denotes character here.
-        col_types = "cc"
+        col_types = "cc"  # character
     )
     as(data, "DataFrame")
 }
@@ -341,10 +340,10 @@ readSampleData <- function(file, lanes = 0L) {
 #' x <- readTx2Gene(file)
 #' print(x)
 readTx2Gene <- function(file) {
-    data <- import(
-        file,
-        header = FALSE,
-        col.names = c("transcriptID", "geneID")
+    data <- read_csv(
+        file = file,
+        col_names = c("transcriptID", "geneID"),
+        col_types = "cc"  # character
     )
     tx2gene(data)
 }
