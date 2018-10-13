@@ -17,11 +17,20 @@ getSampleDataFromYAML(yaml)
 \item{file}{\code{string}. File path to bcbio \code{project-summary.yaml}.}
 }
 \value{
-\code{DataFrame}.
+\code{string} or \code{DataFrame}.
 }
 \description{
 YAML Parsing Functions
 }
+\section{Functions}{
+\itemize{
+\item \code{getGTFFileFromYAML}: \code{string}. GTF file path.
+
+\item \code{getMetricsFromYAML}: \code{DataFrame}. Quality control summary metrics.
+
+\item \code{getSampleDataFromYAML}: \code{DataFrame}. Sample metadata.
+}}
+
 \note{
 Metrics are only generated for a standard RNA-seq run with aligned
 counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't

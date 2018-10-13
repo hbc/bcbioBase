@@ -1,5 +1,4 @@
-# FIXME Need to add working example.
-# FIXME Add a bcbio YAML structure assert check.
+# TODO Add a bcbio YAML structure assert check.
 
 
 
@@ -16,7 +15,7 @@
 #'
 #' @param file `string`. File path to bcbio `project-summary.yaml`.
 #'
-#' @return `DataFrame`.
+#' @return `string` or `DataFrame`.
 #'
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "summary.yaml")
@@ -48,7 +47,7 @@ NULL
 
 
 # GTF file =====================================================================
-#' @rdname yaml
+#' @describeIn yaml `string`. GTF file path.
 #' @export
 getGTFFileFromYAML <- function(yaml) {
     assert_is_list(yaml)
@@ -67,7 +66,6 @@ getGTFFileFromYAML <- function(yaml) {
 
 
 # Sample-level YAML information ================================================
-# FIXME yaml <- import(file)
 # Currently max 2 keys are supported (e.g. summary, metrics).
 .sampleYAML <- function(yaml, keys) {
     # FIXME Convert this into a general bcbio YAML assert check.
@@ -199,7 +197,7 @@ getGTFFileFromYAML <- function(yaml) {
 
 
 
-#' @rdname yaml
+#' @describeIn yaml `DataFrame`. Quality control summary metrics.
 #' @export
 getMetricsFromYAML <- function(yaml) {
     message("Getting sample metrics from YAML.")
@@ -227,7 +225,7 @@ getMetricsFromYAML <- function(yaml) {
 
 
 
-#' @rdname yaml
+#' @describeIn yaml `DataFrame`. Sample metadata.
 #' @export
 getSampleDataFromYAML <- function(yaml) {
     message("Getting sample metadata from YAML.")
