@@ -36,11 +36,7 @@ projectDir <- function(uploadDir) {
     }
     assert_is_a_string(dir)
     message(paste("Dated project directory:", dir))
-    normalizePath(
-        path = file.path(uploadDir, dir),
-        winslash = "/",
-        mustWork = TRUE
-    )
+    realpath(file.path(uploadDir, dir))
 }
 
 
@@ -86,12 +82,10 @@ runDate <- function(projectDir) {
 #' basename(x)
 sampleDirs <- function(uploadDir) {
     assert_all_are_dirs(uploadDir)
-    uploadDir <- normalizePath(uploadDir, winslash = "/", mustWork = TRUE)
+    uploadDir <- realpath(uploadDir)
 
     # Get the subdirectories in the upload directory.
     dirs <- list.dirs(uploadDir, full.names = TRUE, recursive = FALSE)
-    # Ensure the file paths are normalized (for Windows).
-    dirs <- normalizePath(dirs, winslash = "/", mustWork = TRUE)
 
     # Detect and remove nested dated project directory.
     projectDir <- suppressMessages(projectDir(uploadDir))
@@ -128,7 +122,7 @@ sampleDirs <- function(uploadDir) {
 
     message(paste(
         paste(length(dirs), "sample(s) detected:"),
-        str_trunc(toString(names(dirs)), width = 80L),
+        str_trunc(toString(names(dirs)), width = getOption("width")),
         sep = "\n"
     ))
 

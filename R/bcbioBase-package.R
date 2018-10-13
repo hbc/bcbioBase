@@ -21,7 +21,7 @@
 #'   assert_is_matrix assert_is_tbl_df
 #' @importFrom basejump assertAllAreValidNames assertHasRownames
 #'   assertIsImplicitInteger camel import localOrRemoteFile makeNames
-#'   printString removeNA sanitizeNA tx2gene
+#'   printString realpath removeNA sanitizeNA tx2gene
 #' @importFrom Biostrings reverseComplement
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select ungroup

@@ -15,7 +15,7 @@ test_that("projectDir", {
 test_that("projectDir : Multiple dated directories", {
     uploadDir <- "XXX"
     dir.create(uploadDir)
-    uploadDir <- normalizePath(uploadDir, winslash = "/", mustWork = TRUE)
+    uploadDir <- realpath(uploadDir)
     dir.create(file.path(uploadDir, "2018-01-01_rnaseq"))
     dir.create(file.path(uploadDir, "2018-02-01_rnaseq"))
     expect_warning(
