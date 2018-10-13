@@ -3,7 +3,7 @@
 
 
 
-#' Get from YAML
+#' YAML Parsing Functions
 #'
 #' @note Metrics are only generated for a standard RNA-seq run with aligned
 #'   counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
