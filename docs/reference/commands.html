@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get Cellular Barcode Cutoff from Commands Log — getBarcodeCutoffFromCommandsLog • bcbioBase</title>
+<title>Commands Log Parsing Functions — commands • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Get Cellular Barcode Cutoff from Commands Log — getBarcodeCutoffFromCommandsLog" />
+<meta property="og:title" content="Commands Log Parsing Functions — commands" />
 
-<meta property="og:description" content="Get Cellular Barcode Cutoff from Commands Log" />
+<meta property="og:description" content="Commands Log Parsing Functions" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,18 +102,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get Cellular Barcode Cutoff from Commands Log</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/getFromCommandsLog.R'><code>R/getFromCommandsLog.R</code></a></small>
-    <div class="hidden name"><code>getBarcodeCutoffFromCommandsLog.Rd</code></div>
+    <h1>Commands Log Parsing Functions</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/commands.R'><code>R/commands.R</code></a></small>
+    <div class="hidden name"><code>commands.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get Cellular Barcode Cutoff from Commands Log</p>
+    <p>Commands Log Parsing Functions</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>getBarcodeCutoffFromCommandsLog</span>(<span class='no'>log</span>)</pre>
+    <pre class="usage"><span class='fu'>getBarcodeCutoffFromCommands</span>(<span class='no'>log</span>)
+
+<span class='fu'>getLevelFromCommands</span>(<span class='no'>log</span>)
+
+<span class='fu'>getUMITypeFromCommands</span>(<span class='no'>log</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -126,9 +130,21 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>integer</code>.</p>
+    <p><code>atomic</code>.</p>
+    
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    <ul>
+<li><p><code>getBarcodeCutoffFromCommands</code>: <code>scalar integer</code>.</p></li>
+<li><p><code>getLevelFromCommands</code>: <code>string</code>. Return <code>"genes"</code> or <code>"transcripts"</code>.</p></li>
+<li><p><code>getUMITypeFromCommands</code>: <code>string</code>.</p></li>
+</ul>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'>file.path</span>(<span class='no'>bcbioBaseCacheURL</span>, <span class='st'>"surecell_commands.log"</span>)
+<span class='no'>log</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/basejump/topics/import'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading surecell_commands.log.</span></div><div class='output co'>#&gt; <span class='message'>Importing using `read_lines()`.</span></div><div class='input'>
+<span class='fu'>getBarcodeCutoffFromCommands</span>(<span class='no'>log</span>)</div><div class='output co'>#&gt; <span class='message'>1000 reads per cellular barcode cutoff detected.</span></div><div class='output co'>#&gt; [1] 1000</div><div class='input'><span class='fu'>getLevelFromCommands</span>(<span class='no'>log</span>)</div><div class='output co'>#&gt; <span class='message'>Counts will imported as genes.</span></div><div class='output co'>#&gt; [1] "genes"</div><div class='input'><span class='fu'>getUMITypeFromCommands</span>(<span class='no'>log</span>)</div><div class='output co'>#&gt; <span class='message'>UMI type: surecell</span></div><div class='output co'>#&gt; [1] "surecell"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -136,7 +152,11 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+
+      <li><a href="#functions">Functions</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     

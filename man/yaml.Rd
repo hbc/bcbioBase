@@ -5,7 +5,7 @@
 \alias{getGTFFileFromYAML}
 \alias{getMetricsFromYAML}
 \alias{getSampleDataFromYAML}
-\title{Get from YAML}
+\title{YAML Parsing Functions}
 \usage{
 getGTFFileFromYAML(yaml)
 
@@ -20,7 +20,7 @@ getSampleDataFromYAML(yaml)
 \code{DataFrame}.
 }
 \description{
-Get from YAML
+YAML Parsing Functions
 }
 \note{
 Metrics are only generated for a standard RNA-seq run with aligned

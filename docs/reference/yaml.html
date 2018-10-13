@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get Gene or Transcript Level from Commands Log — getLevelFromCommandsLog • bcbioBase</title>
+<title>YAML Parsing Functions — yaml • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Get Gene or Transcript Level from Commands Log — getLevelFromCommandsLog" />
+<meta property="og:title" content="YAML Parsing Functions — yaml" />
 
-<meta property="og:description" content="Get Gene or Transcript Level from Commands Log" />
+<meta property="og:description" content="YAML Parsing Functions" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,33 +102,66 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get Gene or Transcript Level from Commands Log</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/getFromCommandsLog.R'><code>R/getFromCommandsLog.R</code></a></small>
-    <div class="hidden name"><code>getLevelFromCommandsLog.Rd</code></div>
+    <h1>YAML Parsing Functions</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/yaml.R'><code>R/yaml.R</code></a></small>
+    <div class="hidden name"><code>yaml.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get Gene or Transcript Level from Commands Log</p>
+    <p>YAML Parsing Functions</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>getLevelFromCommandsLog</span>(<span class='no'>log</span>)</pre>
+    <pre class="usage"><span class='fu'>getGTFFileFromYAML</span>(<span class='no'>yaml</span>)
+
+<span class='fu'>getMetricsFromYAML</span>(<span class='no'>yaml</span>)
+
+<span class='fu'>getSampleDataFromYAML</span>(<span class='no'>yaml</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>log</th>
-      <td><p><code>character</code>. Commands log.</p></td>
+      <th>file</th>
+      <td><p><code>string</code>. File path to bcbio <code>project-summary.yaml</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>string</code>.</p>
+    <p><code>DataFrame</code>.</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Metrics are only generated for a standard RNA-seq run with aligned
+counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
+output the same metrics into the YAML.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'>file.path</span>(<span class='no'>bcbioBaseCacheURL</span>, <span class='st'>"summary.yaml"</span>)
+<span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/basejump/topics/import'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Reading summary.yaml.</span></div><div class='input'><span class='fu'>summary</span>(<span class='no'>yaml</span>)</div><div class='output co'>#&gt;              Length Class  Mode     
+#&gt; date         1      -none- character
+#&gt; upload       1      -none- character
+#&gt; bcbio_system 1      -none- character
+#&gt; samples      4      -none- list     </div><div class='input'>
+<span class='co'>## GTF file path.</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>getGTFFileFromYAML</span>(<span class='no'>yaml</span>)
+<span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "/groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/rnaseq/ref-transcripts.gtf"</div><div class='input'>
+<span class='co'>## Sample metrics.</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>getMetricsFromYAML</span>(<span class='no'>yaml</span>)</div><div class='output co'>#&gt; <span class='message'>Getting sample metrics from YAML.</span></div><div class='input'><span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
+#&gt;        16 DataFrame        S4 </div><div class='input'><span class='fu'>colnames</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;  [1] "averageInsertSize"             "duplicates"                   
+#&gt;  [3] "duplicationRateOfMapped"       "exonicRate"                   
+#&gt;  [5] "intergenicRate"                "intronicRate"                 
+#&gt;  [7] "mappedPairedReads"             "mappedReads"                  
+#&gt;  [9] "percentGC"                     "qualityFormat"                
+#&gt; [11] "rrna"                          "rrnaRate"                     
+#&gt; [13] "sequenceLength"                "sequencesFlaggedAsPoorQuality"
+#&gt; [15] "totalReads"                    "x5x3Bias"                     </div><div class='input'>
+<span class='co'>## Sample metadata.</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>getSampleDataFromYAML</span>(<span class='no'>yaml</span>)</div><div class='output co'>#&gt; <span class='message'>Getting sample metadata from YAML.</span></div><div class='input'><span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
+#&gt;         5 DataFrame        S4 </div><div class='input'><span class='fu'>colnames</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "sampleName"  "description" "genomeBuild" "group"       "samRef"     </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -136,11 +169,15 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+
+      <li><a href="#note">Note</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     
-Michael Steinbaugh, Rory Kirchner
+Michael Steinbaugh
 
   </div>
 </div>

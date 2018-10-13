@@ -3,22 +3,41 @@
 \name{commands}
 \alias{commands}
 \alias{getBarcodeCutoffFromCommands}
-\title{Get from Commands Log}
+\alias{getLevelFromCommands}
+\alias{getUMITypeFromCommands}
+\title{Commands Log Parsing Functions}
 \usage{
 getBarcodeCutoffFromCommands(log)
+
+getLevelFromCommands(log)
+
+getUMITypeFromCommands(log)
 }
 \arguments{
 \item{log}{\code{character}. Commands log.}
 }
 \value{
-\code{integer}.
+\code{atomic}.
 }
 \description{
-Get from Commands Log
+Commands Log Parsing Functions
 }
+\section{Functions}{
+\itemize{
+\item \code{getBarcodeCutoffFromCommands}: \code{scalar integer}.
+
+\item \code{getLevelFromCommands}: \code{string}. Return \code{"genes"} or \code{"transcripts"}.
+
+\item \code{getUMITypeFromCommands}: \code{string}.
+}}
+
 \examples{
-file <- file.path(bcbioBaseCacheURL, "bcbio_nextgen_commands.log")
+file <- file.path(bcbioBaseCacheURL, "surecell_commands.log")
 log <- basejump::import(file)
+
+getBarcodeCutoffFromCommands(log)
+getLevelFromCommands(log)
+getUMITypeFromCommands(log)
 }
 \author{
 Michael Steinbaugh, Rory Kirchner
