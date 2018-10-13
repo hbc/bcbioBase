@@ -1,29 +1,31 @@
-# FIXME Add working examples and code coverage.
-
-
-
-#' Get from Commands Log
+#' Commands Log Parsing Functions
 #'
 #' @name commands
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
 #' @param log `character`. Commands log.
 #'
-#' @return `integer`.
+#' @return `atomic`.
 #'
 #' @examples
-#' file <- file.path(bcbioBaseCacheURL, "bcbio_nextgen_commands.log")
+#' file <- file.path(bcbioBaseCacheURL, "surecell_commands.log")
 #' log <- basejump::import(file)
+#'
+#' getBarcodeCutoffFromCommands(log)
+#' getLevelFromCommands(log)
+#' getUMITypeFromCommands(log)
 NULL
 
 
 
-#' @rdname commands
+#' @describeIn commands `scalar integer`.
 #' @export
 getBarcodeCutoffFromCommands <- function(log) {
     assert_is_character(log)
     pattern <- "--cb_cutoff (\\d+)"
-    assert_any_are_matching_regex(x = log, pattern = pattern)
+    if (!any(grepl(pattern, log))) {
+        stop("Failed to detect cellular barcode cutoff.")
+    }
     match <- str_match(
         string = log,
         pattern = pattern
@@ -40,14 +42,8 @@ getBarcodeCutoffFromCommands <- function(log) {
 
 
 
-#' Get Gene or Transcript Level from Commands Log
-#'
-#' @author Michael Steinbaugh, Rory Kirchner
+#' @describeIn commands `string`. Return `"genes"` or `"transcripts"`.
 #' @export
-#'
-#' @param log `character`. Commands log.
-#'
-#' @return `string`.
 getLevelFromCommands <- function(log) {
     assert_is_character(log)
     pattern <- "--genemap (.+)-tx2gene.tsv"
@@ -62,18 +58,14 @@ getLevelFromCommands <- function(log) {
 
 
 
-#' Get UMI Type from Commands Log
-#'
-#' @author Rory Kirchner, Michael Steinbaugh
+#' @describeIn commands `string`.
 #' @export
-#'
-#' @param log `character`. Commands log.
-#'
-#' @return `string`.
 getUMITypeFromCommands <- function(log) {
     assert_is_character(log)
     pattern <- "fastqtransform.*/(.*)\\.json"
-    assert_any_are_matching_regex(x = log, pattern = pattern)
+    if (!any(grepl(pattern, log))) {
+        stop("Failed to detect UMI type.")
+    }
     type <- log %>%
         str_match(pattern = pattern) %>%
         .[, 2L] %>%
