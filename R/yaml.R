@@ -1,7 +1,3 @@
-# TODO Add a bcbio YAML structure assert check.
-
-
-
 #' YAML Parsing Functions
 #'
 #' @note Metrics are only generated for a standard RNA-seq run with aligned
@@ -13,7 +9,7 @@
 #'
 #' @inheritParams general
 #'
-#' @param file `string`. File path to bcbio `project-summary.yaml`.
+#' @param yaml `list`. Project summary YAML.
 #'
 #' @return `string` or `DataFrame`.
 #'

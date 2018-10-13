@@ -14,7 +14,7 @@ getMetricsFromYAML(yaml)
 getSampleDataFromYAML(yaml)
 }
 \arguments{
-\item{file}{\code{string}. File path to bcbio \code{project-summary.yaml}.}
+\item{yaml}{\code{list}. Project summary YAML.}
 }
 \value{
 \code{string} or \code{DataFrame}.
