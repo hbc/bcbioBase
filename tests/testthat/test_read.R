@@ -82,46 +82,23 @@ if (file.exists("token.rds")) {
 
 # readDataVersions =============================================================
 test_that("readDataVersions", {
-    versions <- readDataVersions("data_versions.csv")
-    expect_is(versions, "tbl_df")
+    x <- readDataVersions("data_versions.csv")
+    expect_is(x, "DataFrame")
     expect_identical(
-        object = colnames(versions),
+        object = colnames(x),
         expected = c("genome", "resource", "version")
     )
 })
 
+# Allow missing file, since bcbio doesn't always generate this.
 test_that("readDataVersions : Missing file", {
     expect_message(
         object = readDataVersions("XXX.csv"),
-        regexp = "Data versions are missing"
+        regexp = "Data versions are missing."
     )
     expect_identical(
         object = readDataVersions("XXX.csv"),
-        expected = tibble::tibble()
-    )
-})
-
-
-
-# readLog ==================================================================
-test_that("readLog", {
-    log <- readLog("bcbio_nextgen.log")
-    expect_true(is.character(log))
-    expect_identical(
-        object = log[[1L]],
-        expected = paste(
-            "[2017-08-15T14:53Z]",
-            "compute-a-16-44.o2.rc.hms.harvard.edu:",
-            "System YAML configuration:",
-            "/n/app/bcbio/dev/galaxy/bcbio_system.yaml"
-        )
-    )
-})
-
-test_that("readLog : Missing file", {
-    expect_error(
-        object = readLog("XXX.log"),
-        regexp = "is_existing_file :"
+        expected = DataFrame()
     )
 })
 
@@ -130,13 +107,14 @@ test_that("readLog : Missing file", {
 # readProgramVersions ==========================================================
 test_that("readProgramVersions", {
     versions <- readProgramVersions("programs.txt")
-    expect_is(versions, "tbl_df")
+    expect_is(versions, "DataFrame")
     expect_identical(
         object = colnames(versions),
         expected = c("program", "version")
     )
 })
 
+# Allow missing file, since bcbio doesn't always generate this.
 test_that("readProgramVersions : Missing file", {
     expect_message(
         object = readProgramVersions("XXX.csv"),
@@ -144,7 +122,7 @@ test_that("readProgramVersions : Missing file", {
     )
     expect_identical(
         object = readProgramVersions("XXX.txt"),
-        expected = tibble::tibble()
+        expected = DataFrame()
     )
 })
 
@@ -400,81 +378,5 @@ test_that("readTx2Gene", {
     expect_identical(
         object = colnames(object),
         expected = c("transcriptID", "geneID")
-    )
-})
-
-
-
-# readYAMLSampleData ===========================================================
-test_that("readYAMLSampleData", {
-    object <- readYAMLSampleData("summary.yaml")
-    samples <- c("group1_1", "group1_2", "group2_1", "group2_2")
-    expect_identical(
-        object = object,
-        DataFrame(
-            sampleName = factor(samples),
-            description = factor(samples),
-            genomeBuild = factor("mm10"),
-            group = factor(c("ctrl", "ctrl", "ko", "ko")),
-            samRef = factor(paste(
-                "",
-                "groups",
-                "bcbio",
-                "bcbio_dev",
-                "genomes",
-                "Mmusculus",
-                "mm10",
-                "seq",
-                "mm10.fa",
-                sep = "/"
-            )),
-            row.names = samples
-        )
-    )
-})
-
-# Testing against Kayleigh's example here.
-test_that("readYAMLSampleData : Nested metadata", {
-    object <- suppressWarnings(
-        readYAMLSampleData("summary_nested_metadata.yaml")
-    )
-    expect_is(object, "DataFrame")
-})
-
-
-
-# readYAMLSampleMetrics ========================================================
-test_that("readYAMLSampleMetrics", {
-    expected <- list(
-        averageInsertSize = "numeric",
-        duplicates = "numeric",
-        duplicationRateOfMapped = "numeric",
-        exonicRate = "numeric",
-        intergenicRate = "numeric",
-        intronicRate = "numeric",
-        mappedPairedReads = "numeric",
-        mappedReads = "numeric",
-        percentGC = "numeric",
-        qualityFormat = "factor",
-        rrna = "numeric",
-        rrnaRate = "numeric",
-        sequenceLength = "factor",
-        sequencesFlaggedAsPoorQuality = "numeric",
-        totalReads = "numeric",
-        x5x3Bias = "numeric"
-    )
-
-    object <- readYAMLSampleMetrics("summary.yaml")
-    expect_identical(
-        object = lapply(object, class),
-        expected = expected
-    )
-
-    # Check for proper handling of metrics with mismatched number of values
-    object <- readYAMLSampleMetrics("summary_invalid_metrics_mismatch.yaml")
-    expected[["sequenceLength"]] <- "numeric"
-    expect_identical(
-        object = lapply(object, class),
-        expected = expected
     )
 })

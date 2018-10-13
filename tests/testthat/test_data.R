@@ -14,8 +14,9 @@ test_that("projectDir", {
 
 test_that("projectDir : Multiple dated directories", {
     uploadDir <- "XXX"
+    unlink(uploadDir, recursive = TRUE)
     dir.create(uploadDir)
-    uploadDir <- realpath(uploadDir)
+    uploadDir <- basejump::realpath(uploadDir)
     dir.create(file.path(uploadDir, "2018-01-01_rnaseq"))
     dir.create(file.path(uploadDir, "2018-02-01_rnaseq"))
     expect_warning(
@@ -27,7 +28,7 @@ test_that("projectDir : Multiple dated directories", {
         object = object,
         expected = file.path(uploadDir, "2018-02-01_rnaseq")
     )
-    unlink("XXX", recursive = TRUE)
+    unlink(uploadDir, recursive = TRUE)
 })
 
 
