@@ -41,6 +41,7 @@ projectDir <- function(uploadDir) {
 
 
 
+# Alternatively, can parse YAML data, but this is faster and simpler.
 #' Run Date
 #'
 #' Get the run date from the project directory.
