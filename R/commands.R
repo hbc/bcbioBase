@@ -24,7 +24,7 @@ getBarcodeCutoffFromCommands <- function(log) {
     assert_is_character(log)
     pattern <- "--cb_cutoff (\\d+)"
     if (!any(grepl(pattern, log))) {
-        stop("Failed to detect cellular barcode cutoff.")
+        stop("Failed to detect cellular barcode cutoff.")  # nocov
     }
     match <- str_match(
         string = log,
