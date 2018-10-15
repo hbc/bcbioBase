@@ -1,4 +1,4 @@
-context("Data")
+context("Detect")
 
 uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
 
@@ -29,6 +29,16 @@ test_that("projectDir : Multiple dated directories", {
         expected = file.path(uploadDir, "2018-02-01_rnaseq")
     )
     unlink(uploadDir, recursive = TRUE)
+})
+
+
+
+# runDate ======================================================================
+test_that("runDate", {
+    expect_identical(
+        object = runDate(projectDir(uploadDir)),
+        expected = as.Date("2018-01-01")
+    )
 })
 
 

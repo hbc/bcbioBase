@@ -15,6 +15,7 @@ invisible(lapply(
         "summary_invalid_metrics_mismatch.yaml",
         "summary_nested_metadata.yaml",
         "summary.yaml",
+        "surecell_commands.log",
         "tx2gene.csv"
     ),
     FUN = function(file, url) {
