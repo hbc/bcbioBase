@@ -37,7 +37,7 @@ env:
 # Set true before submission to Bioconductor.
 # Ignoring built with R 3.5.1 warnings.
 # Ignoring BiocInstaller deprecation warning.
-warnings_are_errors: true
+warnings_are_errors: false
 
 # Temporarily enable when caching Bioconductor packages.
 # script: true
