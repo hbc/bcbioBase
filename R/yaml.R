@@ -35,7 +35,18 @@ NULL
 
 
 
-# Sanitization =================================================================
+# Internal =====================================================================
+.assertIsSummaryYAML <- function(yaml) {
+    assert_is_list(yaml)
+    assert_is_non_empty(yaml)
+    assert_are_identical(
+        x = names(yaml),
+        y = c("date", "upload", "bcbio_system", "samples")
+    )
+}
+
+
+
 .sanitizeNumericAsCharacter <- function(x) {
     any(grepl(x = x, pattern = "^[0-9\\.]+$"))
 }
@@ -46,7 +57,7 @@ NULL
 #' @describeIn yaml `string`. GTF file path.
 #' @export
 getGTFFileFromYAML <- function(yaml) {
-    assert_is_list(yaml)
+    .assertIsSummaryYAML(yaml)
     # Assume all samples are using the same GTF file.
     file <- yaml %>%
         .[["samples"]] %>%
@@ -64,9 +75,7 @@ getGTFFileFromYAML <- function(yaml) {
 # Sample-level YAML information ================================================
 # Currently max 2 keys are supported (e.g. summary, metrics).
 .sampleYAML <- function(yaml, keys) {
-    # FIXME Convert this into a general bcbio YAML assert check.
-    assert_is_list(yaml)
-    assert_is_non_empty(yaml)
+    .assertIsSummaryYAML(yaml)
     assert_is_character(keys)
     assert_all_are_in_range(length(keys), lower = 1L, upper = 2L)
 
@@ -89,7 +98,7 @@ getGTFFileFromYAML <- function(yaml) {
         has_length(keys, n = 2L) &&
         !keys[[2L]] %in% names(yaml[[1L]][[keys[[1L]]]])
     ) {
-        return(NULL)
+        return(NULL)  # nocov
     }
 
     # Top-level sample metadata in the YAML is relatively easy to parse.
@@ -201,8 +210,10 @@ getMetricsFromYAML <- function(yaml) {
 
     # Early return on empty metrics (e.g. fast mode).
     if (!has_length(data)) {
+        # nocov start
         message("No metrics were calculated.")
-        return()
+        return(NULL)
+        # nocov end
     }
 
     # Drop any metadata columns. Note we're also dropping the duplicate `name`

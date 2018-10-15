@@ -4,6 +4,27 @@ yaml <- basejump::import("summary.yaml")
 
 
 
+# getGTFFileFromYAML ===========================================================
+test_that("getGTFFileFromYAML", {
+    expect_identical(
+        object = getGTFFileFromYAML(yaml),
+        expected = paste(
+            "",
+            "groups",
+            "bcbio",
+            "bcbio_dev",
+            "genomes",
+            "Mmusculus",
+            "mm10",
+            "rnaseq",
+            "ref-transcripts.gtf",
+            sep = "/"
+        )
+    )
+})
+
+
+
 # getSampleDataFromYAML ========================================================
 test_that("getSampleDataFromYAML", {
     object <- getSampleDataFromYAML(yaml)
