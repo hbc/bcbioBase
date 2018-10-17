@@ -345,5 +345,5 @@ readTx2Gene <- function(file) {
         col_names = c("transcriptID", "geneID"),
         col_types = "cc"  # character
     )
-    tx2gene(data)
+    Tx2Gene(data)
 }
