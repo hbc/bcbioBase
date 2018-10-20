@@ -4,16 +4,20 @@
 \alias{readTx2Gene}
 \title{Read Transcript-to-Gene Annotations}
 \usage{
-readTx2Gene(file, organism, genomeBuild, ensemblRelease)
+readTx2Gene(file, organism = NULL, genomeBuild = NULL,
+  ensemblRelease = NULL)
 }
 \arguments{
 \item{file}{\code{string}. File path.}
 
-\item{organism}{\code{string}. Full Latin organism name (e.g. \code{"Homo sapiens"}).}
+\item{organism}{\code{string} or \code{NULL}. Full Latin organism name
+(e.g. \code{"Homo sapiens"}).}
 
-\item{genomeBuild}{\code{string}. Genome build assembly name (e.g. \code{"GRCh38"}).}
+\item{genomeBuild}{\code{string} or \code{NULL}. Genome build assembly name
+(e.g. \code{"GRCh38"}).}
 
-\item{ensemblRelease}{\code{scalar integer}. Ensembl release version (e.g. \code{90}).}
+\item{ensemblRelease}{\code{scalar integer} or \code{NULL}. Ensembl release version
+(e.g. \code{90}).}
 }
 \value{
 \code{Tx2Gene}.

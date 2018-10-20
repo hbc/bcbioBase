@@ -332,9 +332,12 @@ readSampleData <- function(file, lanes = 0L) {
 #' @export
 #'
 #' @inheritParams general
-#' @param organism `string`. Full Latin organism name (e.g. `"Homo sapiens"`).
-#' @param genomeBuild `string`. Genome build assembly name (e.g. `"GRCh38"`).
-#' @param ensemblRelease `scalar integer`. Ensembl release version (e.g. `90`).
+#' @param organism `string` or `NULL`. Full Latin organism name
+#'   (e.g. `"Homo sapiens"`).
+#' @param genomeBuild `string` or `NULL`. Genome build assembly name
+#'   (e.g. `"GRCh38"`).
+#' @param ensemblRelease `scalar integer` or `NULL`. Ensembl release version
+#'   (e.g. `90`).
 #'
 #' @return `Tx2Gene`.
 #'
@@ -349,9 +352,9 @@ readSampleData <- function(file, lanes = 0L) {
 #' print(x)
 readTx2Gene <- function(
     file,
-    organism,
-    genomeBuild,
-    ensemblRelease
+    organism = NULL,
+    genomeBuild = NULL,
+    ensemblRelease = NULL
 ) {
     data <- read_csv(
         file = file,
@@ -360,9 +363,9 @@ readTx2Gene <- function(
     )
     data <- as(data, "DataFrame")
     metadata(data) <- list(
-        organism = organism,
-        genomeBuild = genomeBuild,
-        ensemblRelease = ensemblRelease
+        organism = as.character(organism),
+        genomeBuild = as.character(genomeBuild),
+        ensemblRelease = as.integer(ensemblRelease)
     )
     Tx2Gene(data)
 }
