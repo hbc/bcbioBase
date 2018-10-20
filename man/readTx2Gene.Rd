@@ -4,10 +4,16 @@
 \alias{readTx2Gene}
 \title{Read Transcript-to-Gene Annotations}
 \usage{
-readTx2Gene(file)
+readTx2Gene(file, organism, genomeBuild, ensemblRelease)
 }
 \arguments{
 \item{file}{\code{string}. File path.}
+
+\item{organism}{\code{string}. Full Latin organism name (e.g. \code{"Homo sapiens"}).}
+
+\item{genomeBuild}{\code{string}. Genome build assembly name (e.g. \code{"GRCh38"}).}
+
+\item{ensemblRelease}{\code{scalar integer}. Ensembl release version (e.g. \code{90}).}
 }
 \value{
 \code{Tx2Gene}.
@@ -20,7 +26,12 @@ Doesn't attempt to strip transcript versions.
 }
 \examples{
 file <- file.path(bcbioBaseCacheURL, "tx2gene.csv")
-x <- readTx2Gene(file)
+x <- readTx2Gene(
+    file = file,
+    organism = "Mus musculus",
+    genomeBuild = "GRCm38",
+    ensemblRelease = 90L
+)
 print(x)
 }
 \author{

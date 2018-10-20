@@ -332,18 +332,37 @@ readSampleData <- function(file, lanes = 0L) {
 #' @export
 #'
 #' @inheritParams general
+#' @param organism `string`. Full Latin organism name (e.g. `"Homo sapiens"`).
+#' @param genomeBuild `string`. Genome build assembly name (e.g. `"GRCh38"`).
+#' @param ensemblRelease `scalar integer`. Ensembl release version (e.g. `90`).
 #'
 #' @return `Tx2Gene`.
 #'
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "tx2gene.csv")
-#' x <- readTx2Gene(file)
+#' x <- readTx2Gene(
+#'     file = file,
+#'     organism = "Mus musculus",
+#'     genomeBuild = "GRCm38",
+#'     ensemblRelease = 90L
+#' )
 #' print(x)
-readTx2Gene <- function(file) {
+readTx2Gene <- function(
+    file,
+    organism,
+    genomeBuild,
+    ensemblRelease
+) {
     data <- read_csv(
         file = file,
         col_names = c("transcriptID", "geneID"),
         col_types = "cc"  # character
+    )
+    data <- as(data, "DataFrame")
+    metadata(data) <- list(
+        organism = organism,
+        genomeBuild = genomeBuild,
+        ensemblRelease = ensemblRelease
     )
     Tx2Gene(data)
 }
