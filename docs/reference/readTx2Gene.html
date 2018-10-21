@@ -113,7 +113,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>readTx2Gene</span>(<span class='no'>file</span>, <span class='no'>organism</span>, <span class='no'>genomeBuild</span>, <span class='no'>ensemblRelease</span>)</pre>
+    <pre class="usage"><span class='fu'>readTx2Gene</span>(<span class='no'>file</span>, <span class='kw'>organism</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>genomeBuild</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ensemblRelease</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -124,15 +125,18 @@
     </tr>
     <tr>
       <th>organism</th>
-      <td><p><code>string</code>. Full Latin organism name (e.g. <code>"Homo sapiens"</code>).</p></td>
+      <td><p><code>string</code> or <code>NULL</code>. Full Latin organism name
+(e.g. <code>"Homo sapiens"</code>).</p></td>
     </tr>
     <tr>
       <th>genomeBuild</th>
-      <td><p><code>string</code>. Genome build assembly name (e.g. <code>"GRCh38"</code>).</p></td>
+      <td><p><code>string</code> or <code>NULL</code>. Genome build assembly name
+(e.g. <code>"GRCh38"</code>).</p></td>
     </tr>
     <tr>
       <th>ensemblRelease</th>
-      <td><p><code>scalar integer</code>. Ensembl release version (e.g. <code>90</code>).</p></td>
+      <td><p><code>scalar integer</code> or <code>NULL</code>. Ensembl release version
+(e.g. <code>90</code>).</p></td>
     </tr>
     </table>
     
@@ -155,7 +159,6 @@
 )
 <span class='fu'>print</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Tx2Gene 0.99.0
 #&gt; https://steinbaugh.com/basejump
-#&gt; citation("basejump")
 #&gt; DataFrame with 5 rows and 2 columns
 #&gt;         transcriptID             geneID
 #&gt;          &lt;character&gt;        &lt;character&gt;
