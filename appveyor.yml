@@ -17,13 +17,13 @@ cache:
 
 environment:
   global:
-    BIOC_USE_DEVEL: TRUE
+    BIOC_USE_DEVEL: true
     R_ARCH: x64
-    USE_RTOOLS: TRUE
+    USE_RTOOLS: true
     # WARNINGS_ARE_ERRORS: 1
 
 build_script:
-  - Rscript -e "source('http://bioconductor.org/biocLite.R')"
+  - travis-tool.sh install_github Bioconductor/GenomicRanges
   - travis-tool.sh install_bioc GenomeInfoDbData
   - travis-tool.sh install_bioc DelayedArray
   - travis-tool.sh install_github jotsetung/ensembldb
