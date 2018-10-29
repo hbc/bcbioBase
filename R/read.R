@@ -6,7 +6,7 @@
 #' @author Michael Steinbaugh
 #' @export
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #'
 #' @return `DataFrame`.
 #'
@@ -39,7 +39,7 @@ readDataVersions <- function(file) {
 #' @author Michael Steinbaugh
 #' @export
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #'
 #' @return `DataFrame`.
 #'
@@ -123,7 +123,7 @@ readProgramVersions <- function(file) {
 #' @author Michael Steinbaugh
 #' @export
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #' @param file `string`. File path. Supports CSV, TSV, and XLSX file formats.
 #' @param lanes `scalar integer`. Number of lanes used to split the samples into
 #'   technical replicates (`_LXXX`) suffix.
@@ -331,7 +331,7 @@ readSampleData <- function(file, lanes = 0L) {
 #' @author Michael Steinbaugh
 #' @export
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #' @param organism `string` or `NULL`. Full Latin organism name
 #'   (e.g. `"Homo sapiens"`).
 #' @param genomeBuild `string` or `NULL`. Genome build assembly name

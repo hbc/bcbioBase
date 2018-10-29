@@ -6,7 +6,7 @@
 #' @author Michael Steinbaugh
 #' @export
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #'
 #' @return `string`. Dated project directory (e.g. "2018-01-01_rnaseq").
 #'
@@ -56,7 +56,7 @@ projectDir <- function(uploadDir) {
 runDate <- function(projectDir) {
     assert_is_a_string(projectDir)
     projectDir <- basename(projectDir)
-    stopifnot(grepl(projectDirPattern, projectDir))
+    assert_that(grepl(projectDirPattern, projectDir))
     match <- str_match(
         string = projectDir,
         pattern = projectDirPattern
@@ -73,7 +73,7 @@ runDate <- function(projectDir) {
 #' @author Michael Steinbaugh
 #' @export
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #'
 #' @return Named `character`. Sample directory paths.
 #'

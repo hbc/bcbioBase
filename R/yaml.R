@@ -7,7 +7,7 @@
 #' @name yaml
 #' @author Michael Steinbaugh
 #'
-#' @inheritParams general
+#' @inheritParams basejump.globals::params
 #'
 #' @param yaml `list`. Project summary YAML.
 #'

@@ -19,6 +19,7 @@
 #' @importFrom assertive.types assert_is_a_string assert_is_all_of
 #'   assert_is_an_integer assert_is_any_of assert_is_character assert_is_list
 #'   assert_is_matrix assert_is_tbl_df
+#' @importFrom assertthat assert_that
 #' @importFrom basejump assertAllAreValidNames assertHasRownames
 #'   assertIsImplicitInteger camel import localOrRemoteFile makeNames
 #'   printString realpath removeNA sanitizeNA Tx2Gene
