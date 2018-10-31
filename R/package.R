@@ -4,7 +4,7 @@
 #'
 #' @keywords internal
 #'
-#' @importMethodsFrom basejump coerce
+#' @importMethodsFrom basejump.coercion coerce
 #' @importMethodsFrom S4Vectors coerce
 #' @importFrom assertive.base assert_are_identical
 #' @importFrom assertive.files assert_all_are_dirs assert_all_are_existing_files
@@ -20,9 +20,12 @@
 #'   assert_is_an_integer assert_is_any_of assert_is_character assert_is_list
 #'   assert_is_matrix assert_is_tbl_df
 #' @importFrom assertthat assert_that
-#' @importFrom basejump assertAllAreValidNames assertHasRownames
-#'   assertIsImplicitInteger camel import localOrRemoteFile makeNames
-#'   printString realpath removeNA sanitizeNA Tx2Gene
+#' @importFrom basejump.assertions assertAllAreValidNames assertHasRownames
+#'   assertIsImplicitInteger
+#' @importFrom basejump.classes Tx2Gene
+#' @importFrom basejump.developer printString
+#' @importFrom basejump.io import localOrRemoteFile realpath
+#' @importFrom basejump.sanitization camel makeNames removeNA sanitizeNA
 #' @importFrom Biostrings reverseComplement
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select ungroup

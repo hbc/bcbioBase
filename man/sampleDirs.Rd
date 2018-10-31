@@ -6,9 +6,6 @@
 \usage{
 sampleDirs(uploadDir)
 }
-\arguments{
-\item{uploadDir}{\code{string}. File path to bcbio run upload directory.}
-}
 \value{
 Named \code{character}. Sample directory paths.
 }

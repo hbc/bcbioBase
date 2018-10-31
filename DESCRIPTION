@@ -2,7 +2,7 @@ Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions for bcbio R packages.
 Version: 0.99.1
-Date: 2018-10-30
+Date: 2018-10-31
 Authors@R: c(
     person(
         given = "Michael",
@@ -50,7 +50,14 @@ Imports:
     assertive.strings,
     assertive.types,
     assertthat,
-    basejump (>= 0.99),
+    basejump.assertions (>= 0.99.1),
+    basejump.classes (>= 0.99.1),
+    basejump.coercion (>= 0.99.1),
+    basejump.developer (>= 0.99.1),
+    basejump.experiment (>= 0.99.1),
+    basejump.io (>= 0.99.1),
+    basejump.plots (>= 0.99.1),
+    basejump.sanitization (>= 0.99.1),
     dplyr (>= 0.7),
     magrittr (>= 1.5),
     methods,
@@ -63,10 +70,19 @@ Imports:
     tidyr (>= 0.8),
     utils
 Suggests:
+    basejump.globals,
     roxygen2,
     testthat (>= 2.0)
 Remotes:
-    steinbaugh/basejump@bioconductor
+    steinbaugh/basejump.assertions,
+    steinbaugh/basejump.classes,
+    steinbaugh/basejump.coercion,
+    steinbaugh/basejump.developer,
+    steinbaugh/basejump.experiment,
+    steinbaugh/basejump.globals,
+    steinbaugh/basejump.io,
+    steinbaugh/basejump.plots,
+    steinbaugh/basejump.sanitization
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0

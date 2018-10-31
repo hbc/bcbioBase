@@ -2,11 +2,6 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
-\alias{readLogFile}
-\alias{readSampleMetadataFile}
-\alias{sampleMetadata}
-\alias{sampleMetadata<-}
-\alias{prepareSummarizedExperiment}
 \alias{bcbio_geom_abline}
 \alias{bcbio_geom_label}
 \alias{bcbio_geom_label_average}
@@ -15,16 +10,6 @@
 \alias{readTx2gene}
 \title{Deprecated Functions}
 \usage{
-readLogFile(...)
-
-readSampleMetadataFile(...)
-
-sampleMetadata(object, ...)
-
-sampleMetadata(object) <- value
-
-prepareSummarizedExperiment(...)
-
 bcbio_geom_abline(...)
 
 bcbio_geom_label(...)
