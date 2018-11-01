@@ -22,7 +22,7 @@ Copy Files to Dropbox
 }
 \examples{
 \dontrun{
-copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
+# copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
 }
 }
 \author{

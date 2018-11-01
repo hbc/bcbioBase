@@ -9,7 +9,7 @@
 #'
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "surecell_commands.log")
-#' log <- basejump::import(file)
+#' log <- basejump.io::import(file)
 #'
 #' getBarcodeCutoffFromCommands(log)
 #' getLevelFromCommands(log)
