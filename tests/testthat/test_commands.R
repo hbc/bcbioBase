@@ -1,6 +1,6 @@
 context("Commands Log Parsing")
 
-log <- basejump::import("surecell_commands.log")
+log <- import("surecell_commands.log")
 
 
 
