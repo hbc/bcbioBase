@@ -6,7 +6,7 @@
 #' @author Michael Steinbaugh
 #' @export
 #'
-#' @inheritParams basejump.globals::params
+#' @inheritParams params
 #'
 #' @return `string`. Dated project directory (e.g. "2018-01-01_rnaseq").
 #'
@@ -49,7 +49,7 @@ projectDir <- function(uploadDir) {
 #' @author Michael Steinbaugh
 #' @export
 #'
-#' @param projectDir `string`. Project directory path.
+#' @inheritParams params
 #'
 #' @examples
 #' runDate("2018-01-01_illumina_rnaseq")
@@ -73,7 +73,7 @@ runDate <- function(projectDir) {
 #' @author Michael Steinbaugh
 #' @export
 #'
-#' @inheritParams basejump.globals::params
+#' @inheritParams params
 #'
 #' @return Named `character`. Sample directory paths.
 #'

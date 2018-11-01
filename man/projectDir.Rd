@@ -6,6 +6,9 @@
 \usage{
 projectDir(uploadDir)
 }
+\arguments{
+\item{uploadDir}{\code{string}. File path to bcbio run upload directory.}
+}
 \value{
 \code{string}. Dated project directory (e.g. "2018-01-01_rnaseq").
 }
