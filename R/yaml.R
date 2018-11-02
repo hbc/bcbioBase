@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "summary.yaml")
-#' yaml <- basejump::import(file)
+#' yaml <- basejump.io::import(file)
 #' summary(yaml)
 #'
 #' ## GTF file path.

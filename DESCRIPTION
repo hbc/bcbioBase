@@ -71,6 +71,7 @@ Imports:
     utils
 Suggests:
     basejump.globals,
+    rio,
     roxygen2,
     testthat (>= 2.0)
 Remotes:
