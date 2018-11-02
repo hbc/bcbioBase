@@ -2,7 +2,7 @@ Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions for bcbio R packages.
 Version: 0.99.1
-Date: 2018-11-01
+Date: 2018-11-02
 Authors@R: c(
     person(
         given = "Michael",
