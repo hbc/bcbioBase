@@ -33,7 +33,7 @@ Commands Log Parsing Functions
 
 \examples{
 file <- file.path(bcbioBaseCacheURL, "surecell_commands.log")
-log <- basejump.io::import(file)
+log <- basejump::import(file)
 
 getBarcodeCutoffFromCommands(log)
 getLevelFromCommands(log)

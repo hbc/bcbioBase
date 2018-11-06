@@ -24,48 +24,48 @@ NULL
 
 
 # v0.99.0 ======================================================================
-#' @importFrom basejump.experiment minimalSampleData
+#' @importFrom basejump minimalSampleData
 #' @export
-basejump.experiment::minimalSampleData
+basejump::minimalSampleData
 
 #' @rdname deprecated
-#' @importFrom basejump.plots basejump_geom_abline
+#' @importFrom basejump basejump_geom_abline
 #' @export
 bcbio_geom_abline <- function(...) {
-    .Deprecated("basejump.plots::basejump_geom_abline")
-    basejump.plots::basejump_geom_abline(...)
+    .Deprecated("basejump::basejump_geom_abline")
+    basejump::basejump_geom_abline(...)
 }
 
 #' @rdname deprecated
-#' @importFrom basejump.plots basejump_geom_label
+#' @importFrom basejump basejump_geom_label
 #' @export
 bcbio_geom_label <- function(...) {
-    .Deprecated("basejump.plots::basejump_geom_label")
-    basejump.plots::basejump_geom_label(...)
+    .Deprecated("basejump::basejump_geom_label")
+    basejump::basejump_geom_label(...)
 }
 
 #' @rdname deprecated
-#' @importFrom basejump.plots basejump_geom_label_average
+#' @importFrom basejump basejump_geom_label_average
 #' @export
 bcbio_geom_label_average <- function(...) {
-    .Deprecated("basejump.plots::basejump_geom_label_average")
-    basejump.plots::basejump_geom_label_average(...)
+    .Deprecated("basejump::basejump_geom_label_average")
+    basejump::basejump_geom_label_average(...)
 }
 
 #' @rdname deprecated
-#' @importFrom basejump.plots basejump_geom_label_repel
+#' @importFrom basejump basejump_geom_label_repel
 #' @export
 bcbio_geom_label_repel <- function(...) {
-    .Deprecated("basejump.plots::basejump_geom_label_repel")
-    basejump.plots::basejump_geom_label_repel(...)
+    .Deprecated("basejump::basejump_geom_label_repel")
+    basejump::basejump_geom_label_repel(...)
 }
 
 #' @rdname deprecated
-#' @importFrom basejump.io import
+#' @importFrom basejump import
 #' @export
 readLog <- function(file) {
-    .Deprecated("basejump.io::import")
-    basejump.io::import(file)
+    .Deprecated("basejump::import")
+    basejump::import(file)
 }
 
 #' @rdname deprecated

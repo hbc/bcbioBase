@@ -11,6 +11,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{basejump.experiment}{\code{\link[basejump.experiment]{minimalSampleData}}}
+  \item{basejump}{\code{\link[basejump]{minimalSampleData}}}
 }}
 
