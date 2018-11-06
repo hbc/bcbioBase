@@ -131,7 +131,7 @@ readProgramVersions <- function(file) {
 #' @return `DataFrame`.
 #'
 #' @examples
-#' import <- basejump.io::import
+#' import <- basejump::import
 #'
 #' ## Demultiplexed
 #' file <- file.path(bcbioBaseCacheURL, "demultiplexed.csv")

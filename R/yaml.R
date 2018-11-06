@@ -7,7 +7,7 @@
 #' @name yaml
 #' @author Michael Steinbaugh
 #'
-#' @inheritParams basejump.globals::params
+#' @inheritParams basejump::params
 #'
 #' @param yaml `list`. Project summary YAML.
 #'
@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "summary.yaml")
-#' yaml <- basejump.io::import(file)
+#' yaml <- basejump::import(file)
 #' summary(yaml)
 #'
 #' ## GTF file path.

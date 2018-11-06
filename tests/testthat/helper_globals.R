@@ -1,2 +1,2 @@
-import <- basejump.io::import
-realpath <- basejump.io::realpath
+import <- basejump::import
+realpath <- basejump::realpath
