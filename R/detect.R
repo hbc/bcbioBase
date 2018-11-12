@@ -113,7 +113,7 @@ sampleDirs <- function(uploadDir) {
     # (e.g. multiplexed-AAAAAAAA).
     x <- basenames
     x <- gsub("[-ACGT]+$", "", basenames)
-    assertAllAreValidNames(x)
+    assertAreValidNames(x)
 
     # Our `makeNames()` function coerces periods and dashes to underscores.
     basenames <- makeNames(basenames, unique = TRUE)

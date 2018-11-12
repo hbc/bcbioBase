@@ -196,13 +196,13 @@ readSampleData <- function(file, lanes = 0L) {
         required <- c(required, "sampleName", "index")
         assert_is_subset(required, colnames(data))
         # Note that `description` column is expected to have duplicates.
-        assertAllAreValidNames(unique(data[["description"]]))
+        assertAreValidNames(unique(data[["description"]]))
         assert_has_no_duplicates(data[["sampleName"]])
     } else {
         multiplexed <- FALSE
         message("Demultiplexed samples detected.")
         assert_has_no_duplicates(data[["description"]])
-        assertAllAreValidNames(data[["description"]])
+        assertAreValidNames(data[["description"]])
         # Note that `sampleName` column isn't required for demultiplexed
         # samples. We can assign from the bcbio `description` automatically.
         if (!"sampleName" %in% colnames(data)) {

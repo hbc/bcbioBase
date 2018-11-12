@@ -21,7 +21,7 @@
 #'   assert_is_an_integer assert_is_any_of assert_is_character assert_is_list
 #'   assert_is_matrix assert_is_tbl_df
 #' @importFrom assertthat assert_that
-#' @importFrom basejump Tx2Gene assertAllAreValidNames assertHasRownames
+#' @importFrom basejump Tx2Gene assertAreValidNames assertHasRownames
 #'   assertIsImplicitInteger camel localOrRemoteFile makeNames printString
 #'   realpath removeNA sanitizeNA
 #' @importFrom Biostrings reverseComplement
