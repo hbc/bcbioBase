@@ -280,17 +280,12 @@ readSampleData <- function(file, lanes = 0L) {
 
 
 
-# Consistent sanitization for YAML and external file
+# Consistent sanitization for YAML and external file.
+# FIXME Consolidate this code with `basejump::makeSampleData()`.
 .returnSampleData <- function(data) {
     assert_is_tbl_df(data)
-    assert_is_subset(
-        x = "description",
-        y = colnames(data)
-    )
-    assert_are_disjoint_sets(
-        x = .sampleDataBlacklist,
-        y = colnames(data)
-    )
+    assert_is_subset("description", colnames(data))
+    assert_are_disjoint_sets(.sampleDataBlacklist, colnames(data))
 
     # Set sampleName from description, if necessary
     if (!"sampleName" %in% colnames(data)) {
@@ -314,11 +309,11 @@ readSampleData <- function(file, lanes = 0L) {
 
 
 
-# Consider adding "rowname" here.
 .sampleDataBlacklist <- c(
-    "filename",  # note case: use "fileName" instead.
+    "filename",  # Note case. Use "fileName" instead.
     "interestingGroups",
-    "samplename",  # note case: use "description" instead.
+    "rowname",
+    "samplename",  # Note case. Use "description" instead.
     "sampleID"
 )
 
