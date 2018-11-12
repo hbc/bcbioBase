@@ -7,6 +7,8 @@
 #' @importMethodsFrom S4Vectors coerce
 #' @importMethodsFrom basejump coerce
 #'
+#' @importFrom Biostrings reverseComplement
+#' @importFrom S4Vectors DataFrame metadata<- na.omit tail
 #' @importFrom assertive.base assert_are_identical
 #' @importFrom assertive.files assert_all_are_dirs assert_all_are_existing_files
 #' @importFrom assertive.numbers assert_all_are_in_range
@@ -21,12 +23,12 @@
 #'   assert_is_an_integer assert_is_any_of assert_is_character assert_is_list
 #'   assert_is_matrix assert_is_tbl_df
 #' @importFrom assertthat assert_that
-#' @importFrom basejump Tx2Gene assertAreValidNames assertHasRownames
-#'   assertIsImplicitInteger camel localOrRemoteFile makeNames printString
+#' @importFrom basejump Tx2Gene camel localOrRemoteFile makeNames printString
 #'   realpath removeNA sanitizeNA
-#' @importFrom Biostrings reverseComplement
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select ungroup
+#' @importFrom goalie assertAreValidNames assertHasRownames
+#'   assertIsImplicitInteger
 #' @importFrom magrittr %>% set_colnames
 #' @importFrom methods as is new
 #' @importFrom plyr ldply
@@ -34,7 +36,6 @@
 #'   drop_get_metadata drop_share drop_upload
 #' @importFrom readr read_csv read_lines
 #' @importFrom rlang !!! !! has_length sym syms
-#' @importFrom S4Vectors DataFrame metadata<- na.omit tail
 #' @importFrom stringr str_match str_pad str_replace str_trunc
 #' @importFrom tibble as_tibble tibble
 #' @importFrom tidyr expand

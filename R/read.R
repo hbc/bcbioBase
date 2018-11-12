@@ -309,10 +309,10 @@ readSampleData <- function(file, lanes = 0L) {
 
 
 
+# Consider reworking to add "rowname" here.
 .sampleDataBlacklist <- c(
     "filename",  # Note case. Use "fileName" instead.
     "interestingGroups",
-    "rowname",
     "samplename",  # Note case. Use "description" instead.
     "sampleID"
 )

@@ -83,7 +83,7 @@ if (file.exists("token.rds")) {
 # readDataVersions =============================================================
 test_that("readDataVersions", {
     x <- readDataVersions("data_versions.csv")
-    expect_is(x, "DataFrame")
+    expect_is(x, "data.frame")
     expect_identical(
         object = colnames(x),
         expected = c("genome", "resource", "version")
