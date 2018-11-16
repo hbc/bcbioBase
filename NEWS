@@ -432,21 +432,21 @@ with the [bcbio][] output directories.
 - Initial release.
 
 
-[basejump]: http://steinbaugh.com/basejump
-[bcbio]: http://bcb.io
-[bcbioBase]: http://bioinformatics.sph.harvard.edu/bcbioBase
-[bcbioRNASeq]: http://bioinformatics.sph.harvard.edu/bcbioRNASeq
-[bcbioSingleCell]: http://bioinformatics.sph.harvard.edu/bcbioSingleCell
-[bioconda]: https://bioconda.github.io
-[Bioconductor]: http://bioconductor.org
-[Dropbox]: https://www.dropbox.com
-[ggplot2]: https://ggplot2.tidyverse.org
-[lintr]: https://github.com/jimhester/lintr
-[pheatmap]: https://github.com/raivokolde/pheatmap
-[rdrop2]: https://github.com/karthik/rdrop2
-[rlang]: http://rlang.tidyverse.org
+[basejump]: http://steinbaugh.com/basejump/
+[bcbio]: http://bcb.io/
+[bcbioBase]: https://bioinformatics.sph.harvard.edu/bcbioBase/
+[bcbioRNASeq]: https://bioinformatics.sph.harvard.edu/bcbioRNASeq/
+[bcbioSingleCell]: http://bioinformatics.sph.harvard.edu/bcbioSingleCell/
+[bioconda]: https://bioconda.github.io/
+[Bioconductor]: http://bioconductor.org/
+[Dropbox]: https://www.dropbox.com/
+[ggplot2]: https://ggplot2.tidyverse.org/
+[lintr]: https://github.com/jimhester/lintr/
+[pheatmap]: https://github.com/raivokolde/pheatmap/
+[rdrop2]: https://github.com/karthik/rdrop2/
+[rlang]: http://rlang.tidyverse.org/
 [roxygen2]: https://cran.r-project.org/package=roxygen2
-[tibble]: http://tibble.tidyverse.org
-[tidyr]: http://tidyr.tidyverse.org
-[tidyverse style guide]: http://style.tidyverse.org
+[tibble]: http://tibble.tidyverse.org/
+[tidyr]: http://tidyr.tidyverse.org/
+[tidyverse style guide]: http://style.tidyverse.org/
 [viridis]: https://cran.r-project.org/package=viridis

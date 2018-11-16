@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.99.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.5.2</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/hbc/bcbioBase">
+  <a href="https://github.com/hbc/bcbioBase/">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -100,13 +100,13 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+      <small>Source: <a href='https://github.com/hbc/bcbioBase//blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
     <div id="bcbiobase-0-99-0-2018-09-14" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-99-0-2018-09-14" class="anchor"></a>bcbioBase 0.99.0 (2018-09-14)</h2>
-<p>Release candidate for <a href="http://bioconductor.org">Bioconductor</a> submission.</p>
+<p>Release candidate for <a href="http://bioconductor.org/">Bioconductor</a> submission.</p>
 </div>
     <div id="bcbiobase-0-4-2-2018-08-26" class="section level2">
 <h2 class="hasAnchor">
@@ -116,7 +116,7 @@
 <a href="#new-functions-1" class="anchor"></a>New functions</h3>
 <ul>
 <li>
-<code>projectDir</code>: Returns the latest dated directory path inside a <a href="http://bcb.io">bcbio</a> run. If <a href="http://bcb.io">bcbio</a> has been run multiple times to the same upload directory, the function will return the latest project directory and warn the user.</li>
+<code>projectDir</code>: Returns the latest dated directory path inside a <a href="http://bcb.io/">bcbio</a> run. If <a href="http://bcb.io/">bcbio</a> has been run multiple times to the same upload directory, the function will return the latest project directory and warn the user.</li>
 </ul>
 </div>
 <div id="major-changes-1" class="section level3">
@@ -124,7 +124,7 @@
 <a href="#major-changes-1" class="anchor"></a>Major changes</h3>
 <ul>
 <li>
-<code>sampleDirs</code> is now stricter about loading sample directories with names that are not valid in [R][]. This now checks for non-alphanumeric characters, including spaces, <strong>dashes</strong>, and samples that begin with a number. The <a href="http://bcb.io">bcbio</a> pipeline will be updated to enforce these rules, to avoid unexpected downstream behavior in [R][] due to invalid names.</li>
+<code>sampleDirs</code> is now stricter about loading sample directories with names that are not valid in [R][]. This now checks for non-alphanumeric characters, including spaces, <strong>dashes</strong>, and samples that begin with a number. The <a href="http://bcb.io/">bcbio</a> pipeline will be updated to enforce these rules, to avoid unexpected downstream behavior in [R][] due to invalid names.</li>
 <li>Improved camel case sanitization of metrics columns in the YAML parser. Now <code>readYAMLSampleMetrics</code> should return <code>percentGC</code> instead of <code>xGC</code>. 5’-&gt;3’ bias should return as <code>x5x3Bias</code>. The <code><a href="http://www.rdocumentation.org/packages/plyr/topics/ldply">plyr::ldply</a></code> call used to coerce from a <code>list</code> to <code>data.frame</code> will sanitize names, so we need to apply our rules before this step.</li>
 </ul>
 </div>
@@ -132,7 +132,7 @@
 <h3 class="hasAnchor">
 <a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
 <ul>
-<li>Moved global <code>lanePattern</code> variable to <a href="http://steinbaugh.com/basejump">basejump</a> package.</li>
+<li>Moved global <code>lanePattern</code> variable to <a href="http://steinbaugh.com/basejump/">basejump</a> package.</li>
 </ul>
 </div>
 </div>
@@ -144,23 +144,23 @@
 <a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
-<code>prepareTemplate</code>: Migrated function to <a href="http://steinbaugh.com/basejump">basejump</a> package, and simplifed to copy all files from <code>rmarkdown/shared</code> directory inside a package. Currently in use by <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a>.</li>
+<code>prepareTemplate</code>: Migrated function to <a href="http://steinbaugh.com/basejump/">basejump</a> package, and simplifed to copy all files from <code>rmarkdown/shared</code> directory inside a package. Currently in use by <a href="https://bioinformatics.sph.harvard.edu/bcbioRNASeq/">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell/">bcbioSingleCell</a>.</li>
 </ul>
 </div>
 </div>
     <div id="bcbiobase-0-4-0-2018-08-08" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-4-0-2018-08-08" class="anchor"></a>bcbioBase 0.4.0 (2018-08-08)</h2>
-<p>This is a maintenance release designed to simplify the package for long-term stability. Here we are moving all of the current S4 method support to <a href="http://steinbaugh.com/basejump">basejump</a> for consistency, since the methods apply to <code>SummarizedExperiment</code> and are not <a href="http://bcb.io">bcbio</a>-workflow specific. We are keeping the package simple by exporting the <code>read*</code> family of functions here, which are designed to integrate with the <a href="http://bcb.io">bcbio</a> output directories.</p>
+<p>This is a maintenance release designed to simplify the package for long-term stability. Here we are moving all of the current S4 method support to <a href="http://steinbaugh.com/basejump/">basejump</a> for consistency, since the methods apply to <code>SummarizedExperiment</code> and are not <a href="http://bcb.io/">bcbio</a>-workflow specific. We are keeping the package simple by exporting the <code>read*</code> family of functions here, which are designed to integrate with the <a href="http://bcb.io/">bcbio</a> output directories.</p>
 <div id="major-changes-2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#major-changes-2" class="anchor"></a>Major changes</h3>
 <ul>
-<li>Moved S4 method support to <a href="http://steinbaugh.com/basejump">basejump</a>: <code>flatFiles</code>, <code>metrics</code>, <code>plotCorrelationHeatmap</code>, <code>plotDot</code>, <code>plotGene</code>, <code>plotHeatmap</code>, <code>plotQuantileHeatmap</code>, <code>plotViolin</code>.</li>
+<li>Moved S4 method support to <a href="http://steinbaugh.com/basejump/">basejump</a>: <code>flatFiles</code>, <code>metrics</code>, <code>plotCorrelationHeatmap</code>, <code>plotDot</code>, <code>plotGene</code>, <code>plotHeatmap</code>, <code>plotQuantileHeatmap</code>, <code>plotViolin</code>.</li>
 <li>
-<code>prepareSummarizedExperiment</code> has been moved to <a href="http://steinbaugh.com/basejump">basejump</a> and renamed to <code>makeSummarizedExperiment</code>, for consistency. The underlying code remains the same.</li>
-<li>Moved the <code>SummarizedExperiment</code> to <code>list</code> coercion method to <a href="http://steinbaugh.com/basejump">basejump</a>.</li>
-<li>Reduced the number of re-exported <a href="https://ggplot2.tidyverse.org">ggplot2</a> and <a href="https://cran.r-project.org/package=viridis">viridis</a> functions, for simplicity.</li>
+<code>prepareSummarizedExperiment</code> has been moved to <a href="http://steinbaugh.com/basejump/">basejump</a> and renamed to <code>makeSummarizedExperiment</code>, for consistency. The underlying code remains the same.</li>
+<li>Moved the <code>SummarizedExperiment</code> to <code>list</code> coercion method to <a href="http://steinbaugh.com/basejump/">basejump</a>.</li>
+<li>Reduced the number of re-exported <a href="https://ggplot2.tidyverse.org/">ggplot2</a> and <a href="https://cran.r-project.org/package=viridis">viridis</a> functions, for simplicity.</li>
 </ul>
 </div>
 </div>
@@ -171,12 +171,12 @@
 <h3 class="hasAnchor">
 <a href="#minor-changes-3" class="anchor"></a>Minor changes</h3>
 <ul>
-<li>Offloaded <code>separatorBar</code> and <code>updateMsg</code> to <a href="http://steinbaugh.com/basejump">basejump</a>.</li>
+<li>Offloaded <code>separatorBar</code> and <code>updateMsg</code> to <a href="http://steinbaugh.com/basejump/">basejump</a>.</li>
 <li>Now using <a href="https://cran.r-project.org/package=roxygen2">roxygen2</a> v6.1 for documentation.</li>
 <li>Miscellaneous documentation improvements.</li>
-<li>Simplified installation instructions, referring the user to <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> packages instead.</li>
+<li>Simplified installation instructions, referring the user to <a href="https://bioinformatics.sph.harvard.edu/bcbioRNASeq/">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell/">bcbioSingleCell</a> packages instead.</li>
 <li>
-<a href="https://github.com/jimhester/lintr">lintr</a> check fixes.</li>
+<a href="https://github.com/jimhester/lintr/">lintr</a> check fixes.</li>
 </ul>
 </div>
 </div>
@@ -200,8 +200,8 @@
 <h3 class="hasAnchor">
 <a href="#major-changes-3" class="anchor"></a>Major changes</h3>
 <ul>
-<li>Moved some generics that provide <code>SummarizedExperiment</code> method suport to <a href="http://steinbaugh.com/basejump">basejump</a> package: <code>gene2symbol</code>, <code>interestingGroups</code>, <code>sampleData</code>, <code>sampleNames</code>, <code>sanitizeSampleData</code>, <code>selectSamples</code>, <code>uniteInterestingGroups</code>.</li>
-<li>Moved method support for <code>SummarizedExperiment</code> to <a href="http://steinbaugh.com/basejump">basejump</a>: <code>convertGenesToSymbols</code>, <code>counts</code>, <code>gene2symbol</code>, <code>interestingGroups</code>, <code>sampleData</code>, etc.</li>
+<li>Moved some generics that provide <code>SummarizedExperiment</code> method suport to <a href="http://steinbaugh.com/basejump/">basejump</a> package: <code>gene2symbol</code>, <code>interestingGroups</code>, <code>sampleData</code>, <code>sampleNames</code>, <code>sanitizeSampleData</code>, <code>selectSamples</code>, <code>uniteInterestingGroups</code>.</li>
+<li>Moved method support for <code>SummarizedExperiment</code> to <a href="http://steinbaugh.com/basejump/">basejump</a>: <code>convertGenesToSymbols</code>, <code>counts</code>, <code>gene2symbol</code>, <code>interestingGroups</code>, <code>sampleData</code>, etc.</li>
 <li>Heatmap functions now only provide <code>SummarizedExperiment</code> method support. The documentation for these heatmap functions has been improved (and simplified), showing the supported arguments more clearly.</li>
 </ul>
 </div>
@@ -210,10 +210,10 @@
 <a href="#minor-changes-5" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Now using <code>transcriptID</code> instead of <code>txID</code> in tx2gene and GRanges metadata defined in <code>rowRanges</code> slot of object.</li>
-<li>Now using <code>aes</code> instead of <code>aes_string</code> for all internal <a href="https://ggplot2.tidyverse.org">ggplot2</a> code, which uses tidyeval (v3.0 update).</li>
-<li>Moved <code>rse_bcb</code> and <code>rse_bcb</code> example data to <a href="http://steinbaugh.com/basejump">basejump</a>, for unit testing. These datasets are still available in <a href="http://bioinformatics.sph.harvard.edu/bcbioBase">bcbioBase</a>.</li>
+<li>Now using <code>aes</code> instead of <code>aes_string</code> for all internal <a href="https://ggplot2.tidyverse.org/">ggplot2</a> code, which uses tidyeval (v3.0 update).</li>
+<li>Moved <code>rse_bcb</code> and <code>rse_bcb</code> example data to <a href="http://steinbaugh.com/basejump/">basejump</a>, for unit testing. These datasets are still available in <a href="https://bioinformatics.sph.harvard.edu/bcbioBase/">bcbioBase</a>.</li>
 <li>Made <code>assertFormalAnnotationCol</code> function defunct. No longer using to check <code>annotationCol</code> argument integration in heatmap functions, since we’re now providing only <code>SummarizedExperiment</code> method support, instead of matrix method support (which is too complicated and error prone for users).</li>
-<li>Moved <code>assertFormalInterestingGroups</code> function to <a href="http://steinbaugh.com/basejump">basejump</a>, where the other assert check functions are defined. This helps improve package consistency.</li>
+<li>Moved <code>assertFormalInterestingGroups</code> function to <a href="http://steinbaugh.com/basejump/">basejump</a>, where the other assert check functions are defined. This helps improve package consistency.</li>
 <li>Updated unit tests to reflect changes in the number of exported generics.</li>
 </ul>
 </div>
@@ -227,7 +227,7 @@
 <ul>
 <li>Improved aggregate column handling in <code>bcbio_geom_abline</code>.</li>
 <li>Improved code coverage back to 100%.</li>
-<li>Reorganized R methods files to use <code>-methods.R</code> as a suffix, as recommended by <a href="http://bioconductor.org">Bioconductor</a>, in preparation for package submission.</li>
+<li>Reorganized R methods files to use <code>-methods.R</code> as a suffix, as recommended by <a href="http://bioconductor.org/">Bioconductor</a>, in preparation for package submission.</li>
 </ul>
 </div>
 </div>
@@ -239,7 +239,7 @@
 <a href="#new-functions-2" class="anchor"></a>New functions</h3>
 <ul>
 <li>
-<code>minimalSampleData</code> enables easy creation of a sample metadata <code>data.frame</code> by simplify specifying the sample names (e.g. “description” in <a href="http://bcb.io">bcbio</a> YAML). This function was added for easy metadata handling for 10X Cell Ranger in the <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> package, but is generally applicable to other <a href="http://bcb.io">bcbio</a> datasets and may be incorporated into <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> in a future update.</li>
+<code>minimalSampleData</code> enables easy creation of a sample metadata <code>data.frame</code> by simplify specifying the sample names (e.g. “description” in <a href="http://bcb.io/">bcbio</a> YAML). This function was added for easy metadata handling for 10X Cell Ranger in the <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell/">bcbioSingleCell</a> package, but is generally applicable to other <a href="http://bcb.io/">bcbio</a> datasets and may be incorporated into <a href="https://bioinformatics.sph.harvard.edu/bcbioRNASeq/">bcbioRNASeq</a> in a future update.</li>
 </ul>
 </div>
 <div id="minor-changes-7" class="section level3">
@@ -309,7 +309,7 @@
 <h3 class="hasAnchor">
 <a href="#new-functions-3" class="anchor"></a>New functions</h3>
 <ul>
-<li>Exporting <a href="https://ggplot2.tidyverse.org">ggplot2</a> convenience functions for easier plotting in <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> packages: <code>bcbio_geom_abline</code>, <code>bcbio_geom_label</code>, <code>bcbio_geom_label_average</code>, and <code>bcbio_geom_label_repel</code>.</li>
+<li>Exporting <a href="https://ggplot2.tidyverse.org/">ggplot2</a> convenience functions for easier plotting in <a href="https://bioinformatics.sph.harvard.edu/bcbioRNASeq/">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell/">bcbioSingleCell</a> packages: <code>bcbio_geom_abline</code>, <code>bcbio_geom_label</code>, <code>bcbio_geom_label_average</code>, and <code>bcbio_geom_label_repel</code>.</li>
 </ul>
 </div>
 </div>
@@ -321,7 +321,7 @@
 <a href="#minor-changes-11" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Improved assert check messages for interesting groups.</li>
-<li>Switched back to internally using <code>make.unique</code> instead of <code>make.names</code> for <code>convertGenesToSymbols</code> coercion on SummarizedExperiment objects. We’re using <code>make.names</code> only when coercing seurat objects (see <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> code).</li>
+<li>Switched back to internally using <code>make.unique</code> instead of <code>make.names</code> for <code>convertGenesToSymbols</code> coercion on SummarizedExperiment objects. We’re using <code>make.names</code> only when coercing seurat objects (see <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell/">bcbioSingleCell</a> code).</li>
 <li>Updated <code>RangedSummarizedExperiment</code> working example, based on <code>bcbioRNASeq</code> example dataset.</li>
 </ul>
 </div>
@@ -333,7 +333,7 @@
 <h3 class="hasAnchor">
 <a href="#minor-changes-12" class="anchor"></a>Minor changes</h3>
 <ul>
-<li>Split out assertive imports so we can pin release to <a href="https://bioconda.github.io">bioconda</a>.</li>
+<li>Split out assertive imports so we can pin release to <a href="https://bioconda.github.io/">bioconda</a>.</li>
 </ul>
 </div>
 </div>
@@ -447,7 +447,7 @@
 <li>Consolidated <code>sampleYAML</code> function code.</li>
 <li>Consolidated assert check imports into <code>bcbioBase-package.R</code> file.</li>
 <li>Consolidated globals into <code>globals.R</code> file.</li>
-<li>Improved internal <a href="https://github.com/raivokolde/pheatmap">pheatmap</a> color support.</li>
+<li>Improved internal <a href="https://github.com/raivokolde/pheatmap/">pheatmap</a> color support.</li>
 </ul>
 </div>
 </div>
@@ -458,12 +458,12 @@
 <h3 class="hasAnchor">
 <a href="#major-changes-6" class="anchor"></a>Major changes</h3>
 <ul>
-<li>Added <code>sampleData</code> generic. Providing method support for <code>SummarizedExperiment</code> class. This generic provides consistent sample metadata support in both the <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> packages. For <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a>, <code>colData</code> returns information about the cells, not the samples. For <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a>, <code>colData</code> and <code>sampleData</code> provide similar information on the samples.</li>
+<li>Added <code>sampleData</code> generic. Providing method support for <code>SummarizedExperiment</code> class. This generic provides consistent sample metadata support in both the <a href="https://bioinformatics.sph.harvard.edu/bcbioRNASeq/">bcbioRNASeq</a> and <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell/">bcbioSingleCell</a> packages. For <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell/">bcbioSingleCell</a>, <code>colData</code> returns information about the cells, not the samples. For <a href="https://bioinformatics.sph.harvard.edu/bcbioRNASeq/">bcbioRNASeq</a>, <code>colData</code> and <code>sampleData</code> provide similar information on the samples.</li>
 <li>Added <code>uniteInterestingGroups</code> as a generic. Provides support for adding an <code>interestingGroups</code> column to a data frame.</li>
 <li>Added <code>SummarizedExperiment</code> method support for <code>gene2symbol</code>, <code>interestingGroups</code> generics.</li>
 <li>Converted <code>prepareSummarizedExperiment</code> from a generic to a standard function.</li>
 <li>
-<code>prepareSummarizedExperiment</code> now requires rowRanges and supports FASTA spike-ins with <code>isSpike</code> argument. This helps set up a <code>SingleCellExperiment</code> object in the <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell">bcbioSingleCell</a> package.</li>
+<code>prepareSummarizedExperiment</code> now requires rowRanges and supports FASTA spike-ins with <code>isSpike</code> argument. This helps set up a <code>SingleCellExperiment</code> object in the <a href="http://bioinformatics.sph.harvard.edu/bcbioSingleCell/">bcbioSingleCell</a> package.</li>
 <li>
 <code>prepareTemplate</code> has been converted from a generic to a standard function.</li>
 <li>
@@ -479,7 +479,7 @@
 <li>Exporting <code>projectDirPattern</code> to match bcbio project directories (e.g. <code>2018-01-01_rnaseq</code>) across packages.</li>
 <li>Changed default of <code>rdsToken</code> in <code>copyToDropbox</code> to be <code>NULL</code> instead of <code>NA</code>.</li>
 <li>Reduced the number of imports from basejump package.</li>
-<li>Now using <code><a href="http://www.rdocumentation.org/packages/sessioninfo/topics/session_info">sessioninfo::session_info</a></code> instead of <code><a href="http://www.rdocumentation.org/packages/devtools/topics/session_info">devtools::session_info</a></code>.</li>
+<li>Now using <code><a href="http://www.rdocumentation.org/packages/sessioninfo/topics/session_info">sessioninfo::session_info</a></code> instead of <code><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">devtools::session_info</a></code>.</li>
 <li>Added AppVeyor CI support for code testing on Windows.</li>
 <li>Made Travis CI checking stricter and added <code>BiocCheck</code>.</li>
 <li>Simplified package dependencies in DESCRIPTION.</li>
@@ -514,7 +514,7 @@
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-1-2-2018-02-18" class="anchor"></a>bcbioBase 0.1.2 (2018-02-18)</h2>
 <ul>
-<li>Added back <code>checkInterestingGroups</code> since this code is still present on <a href="http://bioinformatics.sph.harvard.edu/bcbioRNASeq">bcbioRNASeq</a> master branch.</li>
+<li>Added back <code>checkInterestingGroups</code> since this code is still present on <a href="https://bioinformatics.sph.harvard.edu/bcbioRNASeq/">bcbioRNASeq</a> master branch.</li>
 </ul>
 </div>
     <div id="bcbiobase-0-1-1-2018-02-17" class="section level2">
@@ -531,9 +531,9 @@
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-1-0-2018-02-13" class="anchor"></a>bcbioBase 0.1.0 (2018-02-13)</h2>
 <ul>
-<li>Preparing version pinning for <a href="https://bioconda.github.io">bioconda</a>. Relaxed <a href="http://rlang.tidyverse.org">rlang</a> dependency from v0.1.6 to v0.1.2 and <a href="http://tidyr.tidyverse.org">tidyr</a> dependency from v0.7.2 to v0.7.1.</li>
-<li>Added <code>copyToDropbox</code> function, which enables input of a list of local files and returns <a href="https://www.dropbox.com">Dropbox</a> paths using <a href="https://github.com/karthik/rdrop2">rdrop2</a>.</li>
-<li>Updated <a href="http://steinbaugh.com/basejump">basejump</a> dependency to v0.2.1.</li>
+<li>Preparing version pinning for <a href="https://bioconda.github.io/">bioconda</a>. Relaxed <a href="http://rlang.tidyverse.org/">rlang</a> dependency from v0.1.6 to v0.1.2 and <a href="http://tidyr.tidyverse.org/">tidyr</a> dependency from v0.7.2 to v0.7.1.</li>
+<li>Added <code>copyToDropbox</code> function, which enables input of a list of local files and returns <a href="https://www.dropbox.com/">Dropbox</a> paths using <a href="https://github.com/karthik/rdrop2/">rdrop2</a>.</li>
+<li>Updated <a href="http://steinbaugh.com/basejump/">basejump</a> dependency to v0.2.1.</li>
 <li>Added assertive checks for all functions.</li>
 </ul>
 </div>
@@ -542,10 +542,10 @@
 <a href="#bcbiobase-0-0-3-2018-01-27" class="anchor"></a>bcbioBase 0.0.3 (2018-01-27)</h2>
 <ul>
 <li>NAMESPACE export fixes.</li>
-<li>Minor code cleanup to pass <a href="https://github.com/jimhester/lintr">lintr</a> checks.</li>
-<li>Switched to <a href="http://rlang.tidyverse.org">rlang</a> methods for errors, messages, and warnings: <code>abort</code>, <code>inform</code>, and <code>warn</code>.</li>
-<li>Messages now consistently use backticks instead of apostrophes, as recommended by the <a href="http://style.tidyverse.org">tidyverse style guide</a>.</li>
-<li>Removed <a href="http://tibble.tidyverse.org">tibble</a> rownames support from <code>prepareSampleMetadata</code>.</li>
+<li>Minor code cleanup to pass <a href="https://github.com/jimhester/lintr/">lintr</a> checks.</li>
+<li>Switched to <a href="http://rlang.tidyverse.org/">rlang</a> methods for errors, messages, and warnings: <code>abort</code>, <code>inform</code>, and <code>warn</code>.</li>
+<li>Messages now consistently use backticks instead of apostrophes, as recommended by the <a href="http://style.tidyverse.org/">tidyverse style guide</a>.</li>
+<li>Removed <a href="http://tibble.tidyverse.org/">tibble</a> rownames support from <code>prepareSampleMetadata</code>.</li>
 <li>Improved code coverage to 100%.</li>
 </ul>
 </div>
@@ -553,7 +553,7 @@
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-0-2-2018-01-19" class="anchor"></a>bcbioBase 0.0.2 (2018-01-19)</h2>
 <ul>
-<li>Re-export <code>assignAndSaveData</code>, <code>loadData</code>, <code>loadRemoteData</code>, <code>saveData</code> from <a href="http://steinbaugh.com/basejump">basejump</a> package.</li>
+<li>Re-export <code>assignAndSaveData</code>, <code>loadData</code>, <code>loadRemoteData</code>, <code>saveData</code> from <a href="http://steinbaugh.com/basejump/">basejump</a> package.</li>
 <li>Update <code>prepareTemplate</code> function to use internally stored data.</li>
 </ul>
 </div>
@@ -610,7 +610,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://steinbaugh.com'>Michael Steinbaugh</a>, <a href='https://github.com/roryk'>Rory Kirchner</a>, <a href='https://lpantano.github.io'>Lorena Pantano</a>, <a href='http://bioinformatics.sph.harvard.edu'>Harvard Chan Bioinformatics Core</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>, <a href='https://github.com/roryk/'>Rory Kirchner</a>, <a href='https://lpantano.github.io/'>Lorena Pantano</a>, <a href='http://bioinformatics.sph.harvard.edu/'>Harvard Chan Bioinformatics Core</a>.</p>
 </div>
 
 <div class="pkgdown">
