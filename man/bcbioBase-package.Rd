@@ -11,9 +11,9 @@ Base functions for bcbio R packages.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://bioinformatics.sph.harvard.edu/bcbioBase}
-  \item \url{https://github.com/hbc/bcbioBase}
-  \item Report bugs at \url{https://github.com/hbc/bcbioBase/issues}
+  \item \url{https://bioinformatics.sph.harvard.edu/bcbioBase/}
+  \item \url{https://github.com/hbc/bcbioBase/}
+  \item Report bugs at \url{https://github.com/hbc/bcbioBase/issues/}
 }
 
 }
