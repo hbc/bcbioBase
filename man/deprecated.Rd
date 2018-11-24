@@ -2,6 +2,18 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
+\alias{readLogFile}
+\alias{readSampleMetadataFile}
+\alias{sampleMetadata}
+\alias{sampleMetadata<-}
+\alias{flatFiles}
+\alias{metrics}
+\alias{plotCorrelationHeatmap}
+\alias{plotGene}
+\alias{plotHeatmap}
+\alias{plotQC}
+\alias{plotQuantileHeatmap}
+\alias{prepareSummarizedExperiment}
 \alias{bcbio_geom_abline}
 \alias{bcbio_geom_label}
 \alias{bcbio_geom_label_average}
@@ -10,6 +22,30 @@
 \alias{readTx2gene}
 \title{Deprecated Functions}
 \usage{
+readLogFile(...)
+
+readSampleMetadataFile(...)
+
+sampleMetadata(object, ...)
+
+sampleMetadata(object) <- value
+
+flatFiles(object, ...)
+
+metrics(object, ...)
+
+plotCorrelationHeatmap(object, ...)
+
+plotGene(object, ...)
+
+plotHeatmap(object, ...)
+
+plotQC(object, ...)
+
+plotQuantileHeatmap(object, ...)
+
+prepareSummarizedExperiment(...)
+
 bcbio_geom_abline(...)
 
 bcbio_geom_label(...)
