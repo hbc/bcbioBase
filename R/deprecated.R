@@ -23,7 +23,15 @@ NULL
 
 
 
-# v0.99.0 ======================================================================
+# v0.5.0 =======================================================================
+#' @importFrom basejump interestingGroups
+#' @export
+basejump::interestingGroups
+
+#' @importFrom basejump interestingGroups<-
+#' @export
+basejump::`interestingGroups<-`
+
 #' @importFrom basejump minimalSampleData
 #' @export
 basejump::minimalSampleData

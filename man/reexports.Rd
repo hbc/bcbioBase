@@ -3,6 +3,8 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
+\alias{interestingGroups}
+\alias{interestingGroups<-}
 \alias{minimalSampleData}
 \title{Objects exported from other packages}
 \keyword{internal}
@@ -11,6 +13,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{basejump}{\code{\link[basejump]{minimalSampleData}}}
+  \item{basejump}{\code{\link[basejump]{interestingGroups}}, \code{\link[basejump]{interestingGroups<-}}, \code{\link[basejump]{minimalSampleData}}}
 }}
 
