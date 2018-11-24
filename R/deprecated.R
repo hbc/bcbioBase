@@ -247,6 +247,14 @@ basejump::prepareTemplate
 
 
 # v0.5.0 =======================================================================
+#' @importFrom basejump lanePattern
+#' @export
+basejump::lanePattern
+
+#' @importFrom basejump minimalSampleData
+#' @export
+basejump::minimalSampleData
+
 #' @rdname deprecated
 #' @importFrom basejump basejump_geom_abline
 #' @export
@@ -278,14 +286,6 @@ bcbio_geom_label_repel <- function(...) {
     .Deprecated("basejump::basejump_geom_label_repel")
     basejump::basejump_geom_label_repel(...)
 }
-
-#' @importFrom basejump lanePattern
-#' @export
-basejump::lanePattern
-
-#' @importFrom basejump minimalSampleData
-#' @export
-basejump::minimalSampleData
 
 #' @rdname deprecated
 #' @importFrom basejump import
