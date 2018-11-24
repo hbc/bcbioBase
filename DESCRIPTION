@@ -37,8 +37,7 @@ BugReports: https://github.com/hbc/bcbioBase/issues/
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: TRUE
-Depends:
-    R (>= 3.5)
+Depends: R (>= 3.5)
 Imports:
     Biostrings,
     S4Vectors,
