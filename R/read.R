@@ -27,7 +27,8 @@ readDataVersions <- function(file) {
     if (is.null(file)) {
         return(DataFrame())
     }
-    import(file)
+    data <- import(file)
+    as(data, "DataFrame")
 }
 
 
@@ -281,7 +282,7 @@ readSampleData <- function(file, lanes = 0L) {
 
 
 # Consistent sanitization for YAML and external file.
-# FIXME Consolidate this code with `basejump::makeSampleData()`.
+# TODO Consolidate this code with `basejump::makeSampleData()`.
 .returnSampleData <- function(data) {
     assert_is_tbl_df(data)
     assert_is_subset("description", colnames(data))
