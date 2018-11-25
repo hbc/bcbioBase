@@ -23,8 +23,8 @@
 #'   assert_is_an_integer assert_is_any_of assert_is_character assert_is_list
 #'   assert_is_matrix assert_is_tbl_df
 #' @importFrom assertthat assert_that
-#' @importFrom basejump Tx2Gene camel localOrRemoteFile makeNames printString
-#'   realpath removeNA sanitizeNA
+#' @importFrom basejump Tx2Gene camel localOrRemoteFile makeNames makeSampleData
+#'   printString realpath removeNA sanitizeNA
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select ungroup
 #' @importFrom goalie assertAreValidNames assertHasRownames
