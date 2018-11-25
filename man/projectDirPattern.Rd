@@ -14,4 +14,4 @@ Project Directory Grep Pattern
 \examples{
 projectDirPattern
 }
-\keyword{internal}
+\keyword{datasets}

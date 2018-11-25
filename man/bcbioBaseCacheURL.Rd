@@ -14,4 +14,4 @@ Cache URL
 \examples{
 bcbioBaseCacheURL
 }
-\keyword{internal}
+\keyword{datasets}
