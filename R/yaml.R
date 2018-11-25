@@ -6,7 +6,6 @@
 #'
 #' @name yaml
 #' @author Michael Steinbaugh
-#'
 #' @inheritParams basejump::params
 #'
 #' @param yaml `list`. Project summary YAML.
@@ -35,7 +34,6 @@ NULL
 
 
 
-# Internal =====================================================================
 .assertIsSummaryYAML <- function(yaml) {
     assert_is_list(yaml)
     assert_is_non_empty(yaml)
@@ -164,25 +162,15 @@ getGTFFileFromYAML <- function(yaml) {
         }
     )
     # Use `ldply()` method to coerce a list with uneven lengths.
-    nested <- ldply(
-        .data = nested,
-        .fun = data.frame,
-        stringsAsFactors = FALSE
-    ) %>%
+    nested <- ldply(nested, data.frame, stringsAsFactors = FALSE) %>%
         as_tibble() %>%
         removeNA()
     assert_is_non_empty(nested)
     invisible(lapply(nested, assert_is_atomic))
 
     # Bind the top and nested data frames, coerce to tibble, and return.
-    assert_are_identical(
-        x = nrow(top),
-        y = nrow(nested)
-    )
-    assert_are_disjoint_sets(
-        x = colnames(top),
-        y = colnames(nested)
-    )
+    assert_are_identical(x = nrow(top), y = nrow(nested))
+    assert_are_disjoint_sets(x = colnames(top), y = colnames(nested))
     cbind(top, nested) %>%
         as_tibble() %>%
         camel() %>%
@@ -197,7 +185,8 @@ getGTFFileFromYAML <- function(yaml) {
         # Order the columns alphabetically.
         .[, sort(colnames(.)), drop = FALSE] %>%
         # Set the rownames.
-        mutate(rowname = makeNames(!!sym("description"), unique = TRUE))
+        mutate(rowname = makeNames(!!sym("description"), unique = TRUE)) %>%
+        as("DataFrame")
 }
 
 
@@ -218,14 +207,16 @@ getMetricsFromYAML <- function(yaml) {
 
     # Drop any metadata columns. Note we're also dropping the duplicate `name`
     # column present in the metrics YAML.
+    yamlFlatCols <- c("description", "genome_build", "sam_ref")
+    blacklist <- c(camel(yamlFlatCols), "name")
     data <- data %>%
+        as_tibble(rownames = "rowname") %>%
         # Drop blacklisted columns from the return.
-        .[, sort(setdiff(colnames(.), metricsBlacklist)), drop = FALSE] %>%
+        .[, sort(setdiff(colnames(.), blacklist)), drop = FALSE] %>%
         # Convert all strings to factors.
         mutate_if(is.character, as.factor) %>%
         mutate_if(is.factor, droplevels) %>%
         as("DataFrame")
-
     assertHasRownames(data)
     data
 }
@@ -235,8 +226,8 @@ getMetricsFromYAML <- function(yaml) {
 #' @describeIn yaml `DataFrame`. Sample metadata.
 #' @export
 getSampleDataFromYAML <- function(yaml) {
-    message("Getting sample metadata from YAML.")
+    message("Making sample metadata from YAML.")
     yaml %>%
         .sampleYAML(keys = "metadata") %>%
-        .returnSampleData()
+        .makeSampleData()
 }
