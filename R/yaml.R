@@ -226,7 +226,7 @@ getMetricsFromYAML <- function(yaml) {
 #' @describeIn yaml `DataFrame`. Sample metadata.
 #' @export
 getSampleDataFromYAML <- function(yaml) {
-    message("Making sample metadata from YAML.")
+    message("Getting sample metadata from YAML.")
     yaml %>%
         .sampleYAML(keys = "metadata") %>%
         .makeSampleData()
