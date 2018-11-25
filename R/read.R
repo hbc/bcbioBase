@@ -279,15 +279,6 @@ readSampleData <- function(file, lanes = 0L) {
 
 
 
-# Note that this code is shared with `getSampleDataFromYAML()`.
-.makeSampleData <- function(object) {
-    assert_is_subset("description", colnames(object))
-    assert_are_disjoint_sets(colnames(object), metadataBlacklist)
-    makeSampleData(object)
-}
-
-
-
 #' Read Transcript-to-Gene Annotations
 #'
 #' Generates a `Tx2Gene` object containing `transcriptID` and `geneID` columns.

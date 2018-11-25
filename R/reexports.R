@@ -1,3 +1,7 @@
+#' @importFrom basejump import
+#' @export
+basejump::import
+
 #' @importFrom dplyr pull
 #' @export
 dplyr::pull

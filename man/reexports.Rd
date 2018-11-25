@@ -19,6 +19,7 @@
 \alias{prepareTemplate}
 \alias{lanePattern}
 \alias{minimalSampleData}
+\alias{import}
 \alias{pull}
 \alias{\%>\%}
 \alias{glimpse}
@@ -29,7 +30,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{basejump}{\code{\link[basejump]{assertFormalInterestingGroups}}, \code{\link[basejump]{convertGenesToSymbols}}, \code{\link[basejump]{gene2symbol}}, \code{\link[basejump]{interestingGroups}}, \code{\link[basejump]{interestingGroups<-}}, \code{\link[basejump]{sampleData}}, \code{\link[basejump]{sampleData<-}}, \code{\link[basejump]{sampleNames}}, \code{\link[basejump]{sanitizeSampleData}}, \code{\link[basejump]{selectSamples}}, \code{\link[basejump]{uniteInterestingGroups}}, \code{\link[basejump]{separatorBar}}, \code{\link[basejump]{updateMessage}}, \code{\link[basejump]{prepareTemplate}}, \code{\link[basejump]{lanePattern}}, \code{\link[basejump]{minimalSampleData}}}
+  \item{basejump}{\code{\link[basejump]{assertFormalInterestingGroups}}, \code{\link[basejump]{convertGenesToSymbols}}, \code{\link[basejump]{gene2symbol}}, \code{\link[basejump]{interestingGroups}}, \code{\link[basejump]{interestingGroups<-}}, \code{\link[basejump]{sampleData}}, \code{\link[basejump]{sampleData<-}}, \code{\link[basejump]{sampleNames}}, \code{\link[basejump]{sanitizeSampleData}}, \code{\link[basejump]{selectSamples}}, \code{\link[basejump]{uniteInterestingGroups}}, \code{\link[basejump]{separatorBar}}, \code{\link[basejump]{updateMessage}}, \code{\link[basejump]{prepareTemplate}}, \code{\link[basejump]{lanePattern}}, \code{\link[basejump]{minimalSampleData}}, \code{\link[basejump]{import}}}
 
   \item{dplyr}{\code{\link[dplyr]{pull}}}
 
