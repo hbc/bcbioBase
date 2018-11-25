@@ -20,7 +20,7 @@ bcbioBaseCacheURL <- paste0(
 #' metadataBlacklist
 metadataBlacklist <- c(
     # Too vague.
-    "id",
+    "ID", "Id", "id",
     # Generated automatically.
     "interestingGroups",
     # Use "sampleName" instead.
