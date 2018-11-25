@@ -3,7 +3,6 @@ globalVariables(".")
 packageVersion <- packageVersion("bcbioBase")
 
 #' Cache URL
-#' @keywords internal
 #' @export
 #' @examples
 #' bcbioBaseCacheURL
@@ -12,36 +11,33 @@ bcbioBaseCacheURL <- paste0(
     "v", packageVersion$major, ".", packageVersion$minor  # nolint
 )
 
-yamlFlatCols <- c(
-    "description",
-    "genome_build",
-    "sam_ref"
-)
 
-metricsBlacklist <- c(
-    camel(yamlFlatCols),
-    "name"
-)
 
-#' Metadata Blacklist
+#' Sample Metadata Blacklist
 #' @keywords internal
 #' @export
 #' @examples
 #' metadataBlacklist
-metadataBlacklist <- sort(c(
-    metricsBlacklist,
-    "aggregate",
-    "fileName",
-    "index",
-    "qualityFormat",
+metadataBlacklist <- c(
+    # Too vague.
+    "id",
+    # Generated automatically.
+    "interestingGroups",
+    # Use "sampleName" instead.
+    "name",
+    # Generated automatically from "sequence" column.
     "revcomp",
-    "sampleID",
-    "sequence",
-    "sequenceLength"
-))
+    # Used internally by dplyr.
+    "rowname",
+    # Use "sampleName" instead.
+    "sample",
+    # "sampleID" is set automatically, for multiplexed/cell-level data.
+    "sampleID", "sampleId", "sampleid",
+    # Use "sampleName" instead.
+    "samplename"
+)
 
 #' Project Directory Grep Pattern
-#' @keywords internal
 #' @export
 #' @examples
 #' projectDirPattern
