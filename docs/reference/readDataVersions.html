@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.4</span>
       </span>
     </div>
 
@@ -105,7 +105,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Read Data Versions</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/read.R'><code>R/read.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/readDataVersions.R'><code>R/readDataVersions.R</code></a></small>
     <div class="hidden name"><code>readDataVersions.Rd</code></div>
     </div>
 
@@ -138,12 +138,14 @@ containing additional information (e.g. the built-in "hg38" build).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='no'>bcbioBaseCacheURL</span>, <span class='st'>"data_versions.csv"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readDataVersions</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing data_versions.csv using data.table::fread().</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;   genome        resource    version
-#&gt; 1   mm10         sranseq   20151014
-#&gt; 2   mm10         srnaseq   20161121
-#&gt; 3   mm10 problem_regions   20151028
-#&gt; 4   mm10           dbsnp   20130912
-#&gt; 5   mm10     transcripts 2014-07-14</div></pre>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readDataVersions</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing data_versions.csv using data.table::fread().</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 5 rows and 3 columns
+#&gt;        genome        resource     version
+#&gt;   &lt;character&gt;     &lt;character&gt; &lt;character&gt;
+#&gt; 1        mm10         sranseq    20151014
+#&gt; 2        mm10         srnaseq    20161121
+#&gt; 3        mm10 problem_regions    20151028
+#&gt; 4        mm10           dbsnp    20130912
+#&gt; 5        mm10     transcripts  2014-07-14</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
