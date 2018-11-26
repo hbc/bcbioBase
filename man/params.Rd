@@ -6,7 +6,8 @@
 \arguments{
 \item{projectDir}{\code{string}. Project directory path.}
 
-\item{uploadDir}{\code{string}. File path to bcbio run upload directory.}
+\item{uploadDir}{\code{string}. Path to final upload directory. This path is set
+when running "\code{bcbio_nextgen -w template}".}
 
 \item{yaml}{\code{list}. Project summary YAML.}
 }
