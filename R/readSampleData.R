@@ -1,3 +1,7 @@
+# FIXME Can simplify some of the code here, now that we've split out CellRanger.
+
+
+
 #' Read Sample Metadata
 #'
 #' This function reads user-defined sample metadata saved in a spreadsheet.
@@ -176,6 +180,8 @@ readSampleData <- function(file, lanes = 0L) {
                 sep = "-"
             )
         } else if ("index" %in% colnames(data)) {
+            # FIXME Rethink this approach...use internally in CellRanger
+            # package instead of attempting to support here.
             # CellRanger: `description`-`index`.
             data[["description"]] <- paste(
                 data[["description"]],
