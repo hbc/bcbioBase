@@ -7,6 +7,8 @@
 \item{projectDir}{\code{string}. Project directory path.}
 
 \item{uploadDir}{\code{string}. File path to bcbio run upload directory.}
+
+\item{yaml}{\code{list}. Project summary YAML.}
 }
 \value{
 No value.
