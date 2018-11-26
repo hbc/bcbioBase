@@ -14,4 +14,4 @@ Sample Metadata Blacklist
 \examples{
 metadataBlacklist
 }
-\keyword{internal}
+\keyword{datasets}

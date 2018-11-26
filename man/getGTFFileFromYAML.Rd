@@ -6,6 +6,9 @@
 \usage{
 getGTFFileFromYAML(yaml)
 }
+\arguments{
+\item{yaml}{\code{list}. Project summary YAML.}
+}
 \value{
 \code{string}.
 }

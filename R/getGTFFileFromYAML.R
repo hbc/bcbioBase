@@ -2,6 +2,7 @@
 #'
 #' @author Michael Steinbaugh
 #' @inheritParams basejump::params
+#' @inheritParams params
 #' @export
 #'
 #' @return `string`.
