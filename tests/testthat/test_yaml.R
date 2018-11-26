@@ -6,21 +6,11 @@ yaml <- import("summary.yaml")
 
 # getGTFFileFromYAML ===========================================================
 test_that("getGTFFileFromYAML", {
-    expect_identical(
+    expect_message(
         object = getGTFFileFromYAML(yaml),
-        expected = paste(
-            "",
-            "groups",
-            "bcbio",
-            "bcbio_dev",
-            "genomes",
-            "Mmusculus",
-            "mm10",
-            "rnaseq",
-            "ref-transcripts.gtf",
-            sep = "/"
-        )
+        regexp = "ref-transcripts.gtf"
     )
+    expect_null(getGTFFileFromYAML(yaml))
 })
 
 
