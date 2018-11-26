@@ -1,39 +1,3 @@
-#' YAML Parsing Functions
-#'
-#' @note Metrics are only generated for a standard RNA-seq run with aligned
-#'   counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
-#'   output the same metrics into the YAML.
-#'
-#' @name yaml
-#' @author Michael Steinbaugh
-#' @inheritParams basejump::params
-#'
-#' @param yaml `list`. Project summary YAML.
-#'
-#' @return `string` or `DataFrame`.
-#'
-#' @examples
-#' file <- file.path(bcbioBaseCacheURL, "summary.yaml")
-#' yaml <- basejump::import(file)
-#' summary(yaml)
-#'
-#' ## GTF file path.
-#' x <- getGTFFileFromYAML(yaml)
-#' print(x)
-#'
-#' ## Sample metrics.
-#' x <- getMetricsFromYAML(yaml)
-#' summary(x)
-#' colnames(x)
-#'
-#' ## Sample metadata.
-#' x <- getSampleDataFromYAML(yaml)
-#' summary(x)
-#' colnames(x)
-NULL
-
-
-
 .assertIsSummaryYAML <- function(yaml) {
     assert_is_list(yaml)
     assert_is_non_empty(yaml)
@@ -51,27 +15,8 @@ NULL
 
 
 
-# GTF file =====================================================================
-#' @describeIn yaml `string`. GTF file path.
-#' @export
-getGTFFileFromYAML <- function(yaml) {
-    .assertIsSummaryYAML(yaml)
-    # Assume all samples are using the same GTF file.
-    file <- yaml %>%
-        .[["samples"]] %>%
-        .[[1L]] %>%
-        .[["genome_resources"]] %>%
-        .[["rnaseq"]] %>%
-        .[["transcripts"]]
-    assert_is_a_string(file)
-    assert_are_identical(basename(file), "ref-transcripts.gtf")
-    file
-}
-
-
-
-# Sample-level YAML information ================================================
-# Currently max 2 keys are supported (e.g. summary, metrics).
+# Currently parsing of a maximum of 2 key levels is supported
+# (e.g. summary>metrics).
 .sampleYAML <- function(yaml, keys) {
     .assertIsSummaryYAML(yaml)
     assert_is_character(keys)
@@ -187,47 +132,4 @@ getGTFFileFromYAML <- function(yaml) {
         # Set the rownames.
         mutate(rowname = makeNames(!!sym("description"), unique = TRUE)) %>%
         as("DataFrame")
-}
-
-
-
-#' @describeIn yaml `DataFrame`. Quality control summary metrics.
-#' @export
-getMetricsFromYAML <- function(yaml) {
-    message("Getting sample metrics from YAML.")
-    data <- .sampleYAML(yaml, keys = c("summary", "metrics"))
-
-    # Early return on empty metrics (e.g. fast mode).
-    if (!has_length(data)) {
-        # nocov start
-        message("No metrics were calculated.")
-        return(NULL)
-        # nocov end
-    }
-
-    # Drop any metadata columns. Note we're also dropping the duplicate `name`
-    # column present in the metrics YAML.
-    yamlFlatCols <- c("description", "genome_build", "sam_ref")
-    blacklist <- c(camel(yamlFlatCols), "name")
-    data <- data %>%
-        as_tibble(rownames = "rowname") %>%
-        # Drop blacklisted columns from the return.
-        .[, sort(setdiff(colnames(.), blacklist)), drop = FALSE] %>%
-        # Convert all strings to factors.
-        mutate_if(is.character, as.factor) %>%
-        mutate_if(is.factor, droplevels) %>%
-        as("DataFrame")
-    assertHasRownames(data)
-    data
-}
-
-
-
-#' @describeIn yaml `DataFrame`. Sample metadata.
-#' @export
-getSampleDataFromYAML <- function(yaml) {
-    message("Getting sample metadata from YAML.")
-    yaml %>%
-        .sampleYAML(keys = "metadata") %>%
-        .makeSampleData()
 }

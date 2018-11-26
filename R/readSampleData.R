@@ -1,77 +1,3 @@
-#' Read Data Versions
-#'
-#' @note The `data_versions.csv` file is only generated for special genomes
-#' containing additional information (e.g. the built-in "hg38" build).
-#'
-#' @author Michael Steinbaugh
-#' @export
-#'
-#' @inheritParams basejump::params
-#'
-#' @return `DataFrame`.
-#'
-#' @examples
-#' file <- file.path(bcbioBaseCacheURL, "data_versions.csv")
-#' x <- readDataVersions(file)
-#' print(x)
-readDataVersions <- function(file) {
-    assert_is_a_string(file)
-    # Data versions are optional.
-    file <- tryCatch(
-        localOrRemoteFile(file),
-        error = function(e) {
-            message("Data versions are missing.")
-            NULL
-        }
-    )
-    if (is.null(file)) {
-        return(DataFrame())
-    }
-    data <- import(file)
-    as(data, "DataFrame")
-}
-
-
-
-#' Read Program Versions
-#'
-#' @note bcbio doesn't save program versions when run in fast mode.
-#'
-#' @author Michael Steinbaugh
-#' @export
-#'
-#' @inheritParams basejump::params
-#'
-#' @return `DataFrame`.
-#'
-#' @examples
-#' file <- file.path(bcbioBaseCacheURL, "programs.txt")
-#' x <- readProgramVersions(file)
-#' print(x)
-readProgramVersions <- function(file) {
-    assert_is_a_string(file)
-    # Program versions are optional
-    file <- tryCatch(
-        localOrRemoteFile(file),
-        error = function(e) {
-            message("Program versions are missing.")
-            NULL
-        }
-    )
-    if (is.null(file)) {
-        return(DataFrame())
-    }
-    # bcbio outputs `programs.txt`, but the file is comma separated.
-    data <- read_csv(
-        file,
-        col_names = c("program", "version"),
-        col_types = "cc"  # character
-    )
-    as(data, "DataFrame")
-}
-
-
-
 #' Read Sample Metadata
 #'
 #' This function reads user-defined sample metadata saved in a spreadsheet.
@@ -122,9 +48,9 @@ readProgramVersions <- function(file) {
 #' `revcomp` column in the sample metadata.
 #'
 #' @author Michael Steinbaugh
+#' @inheritParams basejump::params
 #' @export
 #'
-#' @inheritParams basejump::params
 #' @param file `string`. File path. Supports CSV, TSV, and XLSX file formats.
 #' @param lanes `scalar integer`. Number of lanes used to split the samples into
 #'   technical replicates (`_LXXX`) suffix.
@@ -134,13 +60,11 @@ readProgramVersions <- function(file) {
 #' @examples
 #' ## Demultiplexed
 #' file <- file.path(bcbioBaseCacheURL, "demultiplexed.csv")
-#' import(file)
 #' x <- readSampleData(file)
 #' print(x)
 #'
 #' ## Multiplexed
 #' file <- file.path(bcbioBaseCacheURL, "multiplexed_indrops.csv")
-#' import(file)
 #' x <- readSampleData(file)
 #' print(x)
 readSampleData <- function(file, lanes = 0L) {
@@ -161,23 +85,10 @@ readSampleData <- function(file, lanes = 0L) {
         camel() %>%
         removeNA()
 
-    # Stop on input of blacklisted columns.
-    intersect <- intersect(colnames(data), metadataBlacklist)
-    if (has_length(intersect)) {
-        stop(paste0(
-            paste("Invalid columns:", toString(intersect)), "\n",
-            "Recommended columns:\n",
-            "  - fileName: FASTQ file name (optional, but recommended).\n",
-            "  - description: Sample description per file (required).\n",
-            "  - sampleName: Unique sample name",
-            " (multiplexed samples only).\n",
-            "The `description` column is sanitized into the sample ID ",
-            "for demultiplexed samples."
-        ))
-    }
+    # Check to ensure that columns are valid, before proceeding.
+    .assertIsSampleData(data)
 
-    # Check for required columns.
-    # The `description` column is always required.
+    # Check for required columns. The `description` column is always required.
     required <- "description"
     assert_is_subset(required, colnames(data))
 
@@ -258,14 +169,14 @@ readSampleData <- function(file, lanes = 0L) {
                 },
                 FUN.VALUE = character(1L)
             )
-            # Match the sample directories exactly here, using the hyphen
+            # Match the sample directories exactly here, using the hyphen.
             data[["description"]] <- paste(
                 data[["description"]],
                 data[["revcomp"]],
                 sep = "-"
             )
         } else if ("index" %in% colnames(data)) {
-            # CellRanger: `description`-`index`
+            # CellRanger: `description`-`index`.
             data[["description"]] <- paste(
                 data[["description"]],
                 data[["index"]],
@@ -275,54 +186,4 @@ readSampleData <- function(file, lanes = 0L) {
     }
 
     .makeSampleData(data)
-}
-
-
-
-#' Read Transcript-to-Gene Annotations
-#'
-#' Generates a `Tx2Gene` object containing `transcriptID` and `geneID` columns.
-#'
-#' @note Doesn't attempt to strip transcript versions.
-#'
-#' @author Michael Steinbaugh
-#' @export
-#'
-#' @inheritParams basejump::params
-#' @param organism `string` or `NULL`. Full Latin organism name
-#'   (e.g. `"Homo sapiens"`).
-#' @param genomeBuild `string` or `NULL`. Genome build assembly name
-#'   (e.g. `"GRCh38"`).
-#' @param ensemblRelease `scalar integer` or `NULL`. Ensembl release version
-#'   (e.g. `90`).
-#'
-#' @return `Tx2Gene`.
-#'
-#' @examples
-#' file <- file.path(bcbioBaseCacheURL, "tx2gene.csv")
-#' x <- readTx2Gene(
-#'     file = file,
-#'     organism = "Mus musculus",
-#'     genomeBuild = "GRCm38",
-#'     ensemblRelease = 90L
-#' )
-#' print(x)
-readTx2Gene <- function(
-    file,
-    organism = NULL,
-    genomeBuild = NULL,
-    ensemblRelease = NULL
-) {
-    data <- read_csv(
-        file = file,
-        col_names = c("transcriptID", "geneID"),
-        col_types = "cc"  # character
-    )
-    data <- as(data, "DataFrame")
-    metadata(data) <- list(
-        organism = as.character(organism),
-        genomeBuild = as.character(genomeBuild),
-        ensemblRelease = as.integer(ensemblRelease)
-    )
-    Tx2Gene(data)
 }

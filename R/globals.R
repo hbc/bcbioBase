@@ -11,10 +11,7 @@ bcbioBaseCacheURL <- paste0(
     "v", packageVersion$major, ".", packageVersion$minor  # nolint
 )
 
-
-
 #' Sample Metadata Blacklist
-#' @keywords internal
 #' @export
 #' @examples
 #' metadataBlacklist
