@@ -5,7 +5,8 @@
 #' @inheritParams params
 #' @export
 #'
-#' @return `string`.
+#' @return `string` or `NULL`. File path if the file exists. `NULL` if the file
+#'   does not exist.
 #'
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "summary.yaml")
@@ -22,6 +23,11 @@ getGTFFileFromYAML <- function(yaml) {
         .[["rnaseq"]] %>%
         .[["transcripts"]]
     assert_is_a_string(file)
-    assert_are_identical(basename(file), "ref-transcripts.gtf")
-    file
+    message(paste("bcbio GTF file:", file))
+    if (!file.exists(file)) {
+        message("GTF file does not exist. Skipping.")
+        NULL
+    } else {
+        file
+    }
 }

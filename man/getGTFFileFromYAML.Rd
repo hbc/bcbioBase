@@ -10,7 +10,8 @@ getGTFFileFromYAML(yaml)
 \item{yaml}{\code{list}. Project summary YAML.}
 }
 \value{
-\code{string}.
+\code{string} or \code{NULL}. File path if the file exists. \code{NULL} if the file
+does not exist.
 }
 \description{
 Get GTF File from YAML
