@@ -1,7 +1,3 @@
-# FIXME Can simplify some of the code here, now that we've split out CellRanger.
-
-
-
 #' Read Sample Metadata
 #'
 #' This function reads user-defined sample metadata saved in a spreadsheet.
@@ -21,10 +17,10 @@
 #'
 #' Normally when loading a bcbio run of demultiplexed samples, the sample
 #' metadata will be imported automatically from the `project-summary.yaml` file
-#' in the final upload directory using the [readYAMLSampleData()] function. If
+#' in the final upload directory using the `readYAMLSampleData()` function. If
 #' you notice any typos in your metadata after completing the run, these can be
 #' corrected by editing the YAML file. Alternatively, you can pass in a
-#' spreadsheet with the [readSampleData()] function.
+#' spreadsheet with the `readSampleData()` function.
 #'
 #' The samples in the bcbio run must map to the `description` column. The values
 #' provided in `description` for demultiplexed samples must be unique. They must
@@ -39,7 +35,7 @@
 #' case, bcbio will output per-sample directories with this this structure:
 #' "`description`-`revcomp`".
 #'
-#' [readSampleData()] checks to see if the `description` column is unique. If
+#' `readSampleData()` checks to see if the `description` column is unique. If
 #' the values are duplicated, the function assumes that bcbio processed
 #' multiplexed FASTQs, where multiple samples of interest are barcoded inside a
 #' single FASTQ. This this case, you must supply additional "`index`",
@@ -159,36 +155,29 @@ readSampleData <- function(file, lanes = 0L) {
     # - Require at least 6 nucleotides in the index sequence.
     # - inDrops currently uses 8 but SureCell uses 6.
     if (isTRUE(multiplexed)) {
-        if ("sequence" %in% colnames(data)) {
-            sequence <- data[["sequence"]]
-            assert_all_are_matching_regex(sequence, "^[ACGT]{6,}")
-            data[["revcomp"]] <- vapply(
-                X = sequence,
-                FUN = function(x) {
-                    x %>%
-                        as("character") %>%
-                        as("DNAStringSet") %>%
-                        reverseComplement() %>%
-                        as("character")
-                },
-                FUN.VALUE = character(1L)
-            )
-            # Match the sample directories exactly here, using the hyphen.
-            data[["description"]] <- paste(
-                data[["description"]],
-                data[["revcomp"]],
-                sep = "-"
-            )
-        } else if ("index" %in% colnames(data)) {
-            # FIXME Rethink this approach...use internally in CellRanger
-            # package instead of attempting to support here.
-            # CellRanger: `description`-`index`.
-            data[["description"]] <- paste(
-                data[["description"]],
-                data[["index"]],
-                sep = "-"
-            )
-        }
+        assert_is_subset(
+            x = c("index", "sequence"),
+            y = colnames(data)
+        )
+        sequence <- data[["sequence"]]
+        assert_all_are_matching_regex(sequence, "^[ACGT]{6,}")
+        data[["revcomp"]] <- vapply(
+            X = sequence,
+            FUN = function(x) {
+                x %>%
+                    as("character") %>%
+                    as("DNAStringSet") %>%
+                    reverseComplement() %>%
+                    as("character")
+            },
+            FUN.VALUE = character(1L)
+        )
+        # Match the sample directories exactly here, using the hyphen.
+        data[["description"]] <- paste(
+            data[["description"]],
+            data[["revcomp"]],
+            sep = "-"
+        )
     }
 
     .makeSampleData(data)

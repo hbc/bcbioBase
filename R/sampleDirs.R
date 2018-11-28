@@ -1,7 +1,3 @@
-
-
-
-
 #' Sample Directories
 #'
 #' @note Function will stop if no sample directories match.
