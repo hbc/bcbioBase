@@ -58,8 +58,13 @@ readLog(file)
 
 readTx2gene(...)
 }
+\arguments{
+\item{...}{Additional arguments.}
+
+\item{object}{Object.}
+}
 \value{
-No value.
+\code{.Deprecated()}.
 }
 \description{
 Deprecated Functions

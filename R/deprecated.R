@@ -3,22 +3,14 @@
 
 
 
-#' Defunct Functions
-#'
 #' @name defunct
+#' @inherit basejump::defunct
 #' @keywords internal
-#'
-#' @return No value.
 NULL
 
-
-
-#' Deprecated Functions
-#'
 #' @name deprecated
+#' @inherit basejump::deprecated
 #' @keywords internal
-#'
-#' @return No value.
 NULL
 
 

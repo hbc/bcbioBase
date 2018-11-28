@@ -37,8 +37,13 @@ readYAMLSampleData(...)
 
 readYAMLSampleMetrics(...)
 }
+\arguments{
+\item{...}{Additional arguments.}
+
+\item{object}{Object.}
+}
 \value{
-No value.
+\code{.Defunct()}.
 }
 \description{
 Defunct Functions

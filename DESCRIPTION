@@ -1,8 +1,8 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions for bcbio R packages.
-Version: 0.5.4
-Date: 2018-11-26
+Version: 0.5.5
+Date: 2018-11-28
 Authors@R: c(
     person(
         given = "Michael",
@@ -49,7 +49,7 @@ Imports:
     assertive.strings,
     assertive.types,
     assertthat,
-    basejump (>= 0.8.3),
+    basejump (>= 0.8.4),
     dplyr (>= 0.7),
     goalie (>= 0.1.1),
     magrittr (>= 1.5),
