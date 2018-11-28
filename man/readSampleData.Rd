@@ -35,10 +35,10 @@ This applies to bulk RNA-seq samples.
 
 Normally when loading a bcbio run of demultiplexed samples, the sample
 metadata will be imported automatically from the \code{project-summary.yaml} file
-in the final upload directory using the \code{\link[=readYAMLSampleData]{readYAMLSampleData()}} function. If
+in the final upload directory using the \code{readYAMLSampleData()} function. If
 you notice any typos in your metadata after completing the run, these can be
 corrected by editing the YAML file. Alternatively, you can pass in a
-spreadsheet with the \code{\link[=readSampleData]{readSampleData()}} function.
+spreadsheet with the \code{readSampleData()} function.
 
 The samples in the bcbio run must map to the \code{description} column. The values
 provided in \code{description} for demultiplexed samples must be unique. They must
@@ -55,7 +55,7 @@ This applies to some single-cell RNA-seq formats, including inDrops. In this
 case, bcbio will output per-sample directories with this this structure:
 "\code{description}-\code{revcomp}".
 
-\code{\link[=readSampleData]{readSampleData()}} checks to see if the \code{description} column is unique. If
+\code{readSampleData()} checks to see if the \code{description} column is unique. If
 the values are duplicated, the function assumes that bcbio processed
 multiplexed FASTQs, where multiple samples of interest are barcoded inside a
 single FASTQ. This this case, you must supply additional "\code{index}",
