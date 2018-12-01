@@ -204,19 +204,6 @@ test_that("readSampleData : Multiplexed", {
     )
 })
 
-test_that("readSampleData : Multiplexed : Cell Ranger", {
-    expect_identical(
-        object = readSampleData("multiplexed_cellranger.csv"),
-        expected = DataFrame(
-            sampleName = factor(c("proximal", "distal")),
-            fileName = factor("aggr_R1.fastq.gz"),
-            description = factor(c("aggr-1", "aggr-2")),
-            index = factor(c("1", "2")),
-            row.names = factor(c("aggr_1", "aggr_2"))
-        )
-    )
-})
-
 test_that("readSampleData : Multiplexed : Invalid", {
     # Required column check failure.
     expect_error(
