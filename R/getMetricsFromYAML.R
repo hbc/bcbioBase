@@ -24,7 +24,7 @@ getMetricsFromYAML <- function(yaml) {
     data <- .sampleYAML(yaml, keys = c("summary", "metrics"))
 
     # Early return on empty metrics (e.g. fast mode).
-    if (!has_length(data)) {
+    if (length(data) == 0L) {
         # nocov start
         message("No metrics were calculated.")
         return(NULL)

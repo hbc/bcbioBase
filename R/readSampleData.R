@@ -74,7 +74,10 @@ readSampleData <- function(file, lanes = 0L) {
     lanes <- as.integer(lanes)
 
     # Convert to a sequence, if necessary.
-    if (has_length(lanes, n = 1L) && lanes > 1L) {
+    if (
+        length(lanes) == 1L &&
+        lanes > 1L
+    ) {
         lanes <- seq_len(lanes)
     }
 

@@ -38,7 +38,7 @@
     # Return `NULL` here instead of stopping, so we can handle bcbio RNA-seq
     # fast mode runs.
     if (
-        has_length(keys, n = 2L) &&
+        length(keys) == 2L &&
         !keys[[2L]] %in% names(yaml[[1L]][[keys[[1L]]]])
     ) {
         return(NULL)  # nocov
