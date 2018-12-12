@@ -24,14 +24,12 @@ copyToDropbox <- function(
     dir,
     rdsToken = NULL
 ) {
-    assert_is_any_of(files, c("character", "list"))
-    assert_all_are_existing_files(files)
-    assert_is_a_string(dir)
+    assert(all(isFile(files)))
+    assert(isADirectory(dir))
+    # rdrop2 has issues with trailing slash, so sanitize.
     dir <- gsub("/$", "", dir)
-    assert_all_are_non_missing_nor_empty_character(dir)
     if (is.character(rdsToken)) {
-        assert_is_a_string(rdsToken)
-        assert_all_are_existing_files(rdsToken)
+        assert(isAFile(rdsToken))
     } else {
         rdsToken <- NA  # nocov
     }
