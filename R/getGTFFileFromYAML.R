@@ -14,7 +14,7 @@
 #' x <- getGTFFileFromYAML(yaml)
 #' print(x)
 getGTFFileFromYAML <- function(yaml) {
-    .assertIsSummaryYAML(yaml)
+    assert(.isSummaryYAML(yaml))
     # Assume all samples are using the same GTF file.
     file <- yaml %>%
         .[["samples"]] %>%
@@ -22,7 +22,7 @@ getGTFFileFromYAML <- function(yaml) {
         .[["genome_resources"]] %>%
         .[["rnaseq"]] %>%
         .[["transcripts"]]
-    assert_is_a_string(file)
+    assert(isString(file))
     message(paste("bcbio GTF file:", file))
     if (!file.exists(file)) {
         message("GTF file does not exist. Skipping.")

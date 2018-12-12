@@ -15,7 +15,7 @@
 #' x <- readDataVersions(file)
 #' print(x)
 readDataVersions <- function(file) {
-    assert_is_a_string(file)
+    assert(isString(file))
     # Data versions are optional.
     file <- tryCatch(
         localOrRemoteFile(file),

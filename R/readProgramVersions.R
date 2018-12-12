@@ -14,7 +14,7 @@
 #' x <- readProgramVersions(file)
 #' print(x)
 readProgramVersions <- function(file) {
-    assert_is_a_string(file)
+    assert(isString(file))
     # Program versions are optional
     file <- tryCatch(
         localOrRemoteFile(file),

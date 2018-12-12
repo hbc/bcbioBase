@@ -43,6 +43,6 @@ getMetricsFromYAML <- function(yaml) {
         mutate_if(is.character, as.factor) %>%
         mutate_if(is.factor, droplevels) %>%
         as("DataFrame")
-    assertHasRownames(data)
+    assert(hasRownames(data))
     data
 }

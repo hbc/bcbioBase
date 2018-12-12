@@ -1,4 +1,4 @@
-.assertIsSampleData <- function(object) {
+.isSampleData <- function(object) {
     # Stop on detection of blacklisted columns.
     intersect <- intersect(colnames(object), metadataBlacklist)
     if (length(intersect) > 0L) {
@@ -13,8 +13,13 @@
             "for demultiplexed samples."
         ))
     }
+
     # Check for required columns.
-    assert_is_subset(x = "description", y = colnames(object))
+    ok <- isSubset("description", colnames(object))
+    if (!isTRUE(ok)) {
+        return(FALSE)
+    }
+
     TRUE
 }
 
@@ -26,7 +31,7 @@
     # detect if the user is attempting to input automatic columns, such as
     # "revcomp". At this point, automatic columsns are allowed, so we don't want
     # to check for them again here.
-    assert_is_subset("description", colnames(object))
+    assert(isSubset("description", colnames(object)))
     # Set sampleName from description, if necessary.
     if (!"sampleName" %in% colnames(object)) {
         object[["sampleName"]] <- object[["description"]]

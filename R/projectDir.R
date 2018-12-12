@@ -15,13 +15,14 @@
 #' x <- projectDir(uploadDir)
 #' basename(x)
 projectDir <- function(uploadDir) {
+    assert(isADirectory(uploadDir))
     dir <- list.files(
         path = uploadDir,
         pattern = projectDirPattern,
         full.names = FALSE,
         recursive = FALSE
     )
-    assert_is_non_empty(dir)
+    assert(isNonEmpty(dir))
     # Check to see if user has run bcbio multiple times to the same upload
     # directory, and warn when this is detected.
     if (length(dir) > 1L) {
@@ -34,7 +35,7 @@ projectDir <- function(uploadDir) {
         ), call. = FALSE)
         dir <- newest
     }
-    assert_is_a_string(dir)
+    assert(isString(dir))
     message(paste("Dated project directory:", dir))
     realpath(file.path(uploadDir, dir))
 }

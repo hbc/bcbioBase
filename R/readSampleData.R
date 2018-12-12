@@ -68,9 +68,11 @@
 #' x <- readSampleData(file)
 #' print(x)
 readSampleData <- function(file, lanes = 0L) {
-    assert_is_a_string(file)
-    assertIsImplicitInteger(lanes)
-    assert_all_are_non_negative(lanes)
+    assert(
+        isAFile(file),
+        isInt(lanes),
+        lanes >= 0L  # TODO Switch to isNonNegative.
+    )
     lanes <- as.integer(lanes)
 
     # Convert to a sequence, if necessary.
@@ -89,11 +91,11 @@ readSampleData <- function(file, lanes = 0L) {
         removeNA()
 
     # Check to ensure that columns are valid, before proceeding.
-    .assertIsSampleData(data)
+    assert(.isSampleData(data))
 
     # Check for required columns. The `description` column is always required.
     required <- "description"
-    assert_is_subset(required, colnames(data))
+    assert(isSubset(required, colnames(data)))
 
     # Valid rows must contain a non-empty description.
     data <- data[!is.na(data[["description"]]), , drop = FALSE]
@@ -107,15 +109,20 @@ readSampleData <- function(file, lanes = 0L) {
         multiplexed <- TRUE
         message("Multiplexed samples detected.")
         required <- c(required, "sampleName", "index")
-        assert_is_subset(required, colnames(data))
+        assert(isSubset(required, colnames(data)))
         # Note that `description` column is expected to have duplicates.
-        assertAreValidNames(unique(data[["description"]]))
-        assert_has_no_duplicates(data[["sampleName"]])
+        assert(
+            validNames(unique(data[["description"]])),
+            hasNoDuplicates(data[["sampleName"]])
+        )
     } else {
         multiplexed <- FALSE
         message("Demultiplexed samples detected.")
-        assert_has_no_duplicates(data[["description"]])
-        assertAreValidNames(data[["description"]])
+        assert(
+            hasNoDuplicates(data[["description"]]),
+            validNames(data[["description"]])
+        )
+
         # Note that `sampleName` column isn't required for demultiplexed
         # samples. We can assign from the bcbio `description` automatically.
         if (!"sampleName" %in% colnames(data)) {
@@ -158,12 +165,9 @@ readSampleData <- function(file, lanes = 0L) {
     # - Require at least 6 nucleotides in the index sequence.
     # - inDrops currently uses 8 but SureCell uses 6.
     if (isTRUE(multiplexed)) {
-        assert_is_subset(
-            x = c("index", "sequence"),
-            y = colnames(data)
-        )
+        assert(isSubset(c("index", "sequence"), colnames(data)))
         sequence <- data[["sequence"]]
-        assert_all_are_matching_regex(sequence, "^[ACGT]{6,}")
+        assert(isMatchingRegex(sequence, pattern = "^[ACGT]{6,}"))
         data[["revcomp"]] <- vapply(
             X = sequence,
             FUN = function(x) {

@@ -16,6 +16,6 @@
 getSampleDataFromYAML <- function(yaml) {
     message("Getting sample metadata from YAML.")
     data <- .sampleYAML(yaml, keys = "metadata")
-    .assertIsSampleData(data)
+    assert(.isSampleData(data))
     .makeSampleData(data)
 }

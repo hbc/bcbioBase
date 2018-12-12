@@ -14,7 +14,7 @@
 #' x <- sampleDirs(uploadDir)
 #' basename(x)
 sampleDirs <- function(uploadDir) {
-    assert_all_are_dirs(uploadDir)
+    assert(isADirectory(uploadDir))
     uploadDir <- realpath(uploadDir)
 
     # Get the subdirectories in the upload directory.
@@ -33,7 +33,7 @@ sampleDirs <- function(uploadDir) {
     dirs <- dirs[isSample]
 
     # Ensure there are sample directories in the upload.
-    assert_is_non_empty(dirs)
+    assert(isNonEmpty(dirs))
 
     # Use the directory basenames for vector names.
     basenames <- basename(dirs)
@@ -45,7 +45,7 @@ sampleDirs <- function(uploadDir) {
     # (e.g. multiplexed-AAAAAAAA).
     x <- basenames
     x <- gsub("[-ACGT]+$", "", basenames)
-    assertAreValidNames(x)
+    assert(validNames(x))
 
     # Our `makeNames()` function coerces periods and dashes to underscores.
     basenames <- makeNames(basenames, unique = TRUE)
