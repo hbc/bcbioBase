@@ -4,10 +4,10 @@
 \alias{params}
 \title{Parameters}
 \arguments{
-\item{projectDir}{\code{string}. Project directory path.}
+\item{projectDir}{\code{character(1)}. Project directory path.}
 
-\item{uploadDir}{\code{string}. Path to final upload directory. This path is set
-when running "\code{bcbio_nextgen -w template}".}
+\item{uploadDir}{\code{character(1)}. Path to final upload directory. This path is
+set when running "\code{bcbio_nextgen -w template}".}
 
 \item{yaml}{\code{list}. Project summary YAML.}
 }

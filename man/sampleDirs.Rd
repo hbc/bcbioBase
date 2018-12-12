@@ -7,8 +7,8 @@
 sampleDirs(uploadDir)
 }
 \arguments{
-\item{uploadDir}{\code{string}. Path to final upload directory. This path is set
-when running "\code{bcbio_nextgen -w template}".}
+\item{uploadDir}{\code{character(1)}. Path to final upload directory. This path is
+set when running "\code{bcbio_nextgen -w template}".}
 }
 \value{
 Named \code{character}. Sample directory paths.
