@@ -80,13 +80,13 @@ test_that("readSampleData : Demultiplexed", {
     # Required column check failure.
     expect_error(
         object = readSampleData("demultiplexed_invalid_missing.csv"),
-        regexp = "is_subset : The element 'description'"
+        regexp = "isSampleData"
     )
 
     # Duplicated description.
     expect_error(
         object = readSampleData("demultiplexed_invalid_duplicated.csv"),
-        regexp = "is_subset : The elements 'sampleName', 'index'"
+        regexp = "isSubset"
     )
 })
 
@@ -218,10 +218,7 @@ test_that("readSampleData : Multiplexed : Invalid", {
     # Duplicate rows in `sampleName` column.
     expect_error(
         object = readSampleData("multiplexed_invalid_duplicated.csv"),
-        regexp = paste(
-            "has_no_duplicates :",
-            "data\\[\\[\"sampleName\"\\]\\] has duplicates at positions 2, 4."
-        )
+        regexp = "hasNoDuplicates"
     )
 
     # Legacy bcbio `samplename` column.
@@ -239,7 +236,7 @@ test_that("readSampleData : Multiplexed : Invalid", {
     # Missing file.
     expect_error(
         object = readSampleData("XXX.csv"),
-        regexp = "is_existing_file :"
+        regexp = "isAFile"
     )
 })
 
