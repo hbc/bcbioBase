@@ -34,7 +34,7 @@
 #' @importFrom rdrop2 drop_acc drop_auth drop_create drop_delete drop_exists
 #'   drop_get_metadata drop_share drop_upload
 #' @importFrom readr read_csv read_lines
-#' @importFrom rlang !!! !! has_length sym syms
+#' @importFrom rlang !!! !! sym syms
 #' @importFrom stringr str_match str_pad str_replace str_trunc
 #' @importFrom tibble as_tibble tibble
 #' @importFrom tidyr expand

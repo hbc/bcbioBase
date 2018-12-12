@@ -1,7 +1,7 @@
 .assertIsSampleData <- function(object) {
     # Stop on detection of blacklisted columns.
     intersect <- intersect(colnames(object), metadataBlacklist)
-    if (has_length(intersect)) {
+    if (length(intersect) > 0L) {
         stop(paste0(
             paste("Invalid columns:", toString(intersect)), "\n",
             "Recommended columns:\n",
