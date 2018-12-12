@@ -15,8 +15,8 @@
 #'   mutate_all mutate_at mutate_if select ungroup
 #' @importFrom goalie allAreAtomic areDisjointSets assert containsAURL
 #'   hasNoDuplicates hasRownames isADirectory isAFile isCharacter isFile
-#'   isMatchingRegex isInRange isInt isNonEmpty isScalar isString isSubset
-#'   validNames
+#'   isMatchingRegex isInRange isInt isNonEmpty isNonNegative isScalar isString
+#'   isSubset validNames
 #' @importFrom magrittr %>% set_colnames
 #' @importFrom methods as is new
 #' @importFrom plyr ldply

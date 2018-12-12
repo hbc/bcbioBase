@@ -68,11 +68,15 @@
 #' x <- readSampleData(file)
 #' print(x)
 readSampleData <- function(file, lanes = 0L) {
+    # Coerce detectLanes empty integer return to 0.
+    if (length(lanes) == 0L) {
+        lanes <- 0L
+    }
     # Note that we're allowing import from URL here (primarily for unit tests).
     assert(
         isAFile(file) || containsAURL(file),
         isInt(lanes),
-        lanes >= 0L  # TODO Switch to isNonNegative.
+        isNonNegative(lanes)
     )
     lanes <- as.integer(lanes)
 
