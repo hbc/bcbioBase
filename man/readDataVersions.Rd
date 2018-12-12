@@ -7,7 +7,7 @@
 readDataVersions(file)
 }
 \arguments{
-\item{file}{\code{string}. File path.}
+\item{file}{\code{character(1)}. File path.}
 }
 \value{
 \code{DataFrame}.

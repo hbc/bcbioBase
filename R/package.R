@@ -27,8 +27,7 @@
 #'   printString realpath removeNA sanitizeNA
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select ungroup
-#' @importFrom goalie assertAreValidNames assertHasRownames
-#'   assertIsImplicitInteger
+#' @importFrom goalie assert isInt hasRownames validNames
 #' @importFrom magrittr %>% set_colnames
 #' @importFrom methods as is new
 #' @importFrom plyr ldply

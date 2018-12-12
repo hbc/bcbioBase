@@ -8,7 +8,7 @@ readTx2Gene(file, organism = NULL, genomeBuild = NULL,
   ensemblRelease = NULL)
 }
 \arguments{
-\item{file}{\code{string}. File path.}
+\item{file}{\code{character(1)}. File path.}
 
 \item{organism}{\code{string} or \code{NULL}. Full Latin organism name
 (e.g. \code{"Homo sapiens"}).}

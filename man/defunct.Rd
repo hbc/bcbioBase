@@ -2,48 +2,19 @@
 % Please edit documentation in R/deprecated.R
 \name{defunct}
 \alias{defunct}
-\alias{checkInterestingGroups}
-\alias{prepareSampleMetadata}
-\alias{sampleYAML}
-\alias{sampleYAMLMetadata}
-\alias{sampleYAMLMetrics}
-\alias{prepareSampleData}
-\alias{assertFormalAnnotationCol}
-\alias{bcbio}
-\alias{bcbio<-}
 \alias{readYAMLSampleData}
 \alias{readYAMLSampleMetrics}
 \title{Defunct Functions}
 \usage{
-checkInterestingGroups(...)
-
-prepareSampleMetadata(...)
-
-sampleYAML(...)
-
-sampleYAMLMetadata(...)
-
-sampleYAMLMetrics(...)
-
-prepareSampleData(...)
-
-assertFormalAnnotationCol(...)
-
-bcbio(object, ...)
-
-bcbio(object, ...) <- value
-
 readYAMLSampleData(...)
 
 readYAMLSampleMetrics(...)
 }
 \arguments{
 \item{...}{Additional arguments.}
-
-\item{object}{Object.}
 }
 \value{
-\code{.Defunct()}.
+\code{.Defunct}.
 }
 \description{
 Defunct Functions
