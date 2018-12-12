@@ -1,10 +1,18 @@
-.assertIsSummaryYAML <- function(yaml) {
-    assert_is_list(yaml)
-    assert_is_non_empty(yaml)
-    assert_are_identical(
+.isSummaryYAML <- function(yaml) {
+    ok <- is.list(yaml)
+    if (!isTRUE(ok)) {
+        return(FALSE)
+    }
+
+    ok <- identical(
         x = names(yaml),
         y = c("date", "upload", "bcbio_system", "samples")
     )
+    if (!isTRUE(ok)) {
+        return(FALSE)
+    }
+
+    TRUE
 }
 
 
@@ -18,20 +26,23 @@
 # Currently parsing of a maximum of 2 key levels is supported
 # (e.g. summary>metrics).
 .sampleYAML <- function(yaml, keys) {
-    .assertIsSummaryYAML(yaml)
-    assert_is_character(keys)
-    assert_all_are_in_range(length(keys), lower = 1L, upper = 2L)
+    assert(
+        .isSummaryYAML(yaml),
+        isCharacter(keys),
+        isInRange(length(keys), lower = 1L, upper = 2L),
+        isSubset("samples", names(yaml))
+    )
 
     # Focus on the sample YAML data.
-    assert_is_subset("samples", names(yaml))
     yaml <- yaml[["samples"]]
-    assert_is_list(yaml)
-    assert_is_non_empty(yaml)
-
-    # Note that `summary` is only returned for RNA-seq pipeline.
-    assert_is_subset(
-        x = c("description", "dirs", "metadata"),
-        y = names(yaml[[1L]])
+    assert(
+        is.list(yaml),
+        # Note that `summary` is only returned for RNA-seq pipeline, so we're
+        # not requiring it in the assertion here.
+        isSubset(
+            x = c("description", "dirs", "metadata"),
+            y = names(yaml[[1L]])
+        )
     )
 
     # Check that nested keys are present and early return on failure.
@@ -61,20 +72,22 @@
                 simplify = TRUE,
                 USE.NAMES = FALSE
             )
-            assert_is_character(return)
+            assert(isCharacter(return))
             return
         },
         # Require that there's no dimension mismatch when parsing.
         FUN.VALUE = character(length(yaml[[1L]])),
         USE.NAMES = TRUE
     )
-    assert_is_matrix(top)
+    assert(is.matrix(top))
     top <- top %>%
         t() %>%
         as_tibble() %>%
         removeNA()
-    assert_are_identical(nrow(top), length(yaml))
-    invisible(lapply(top, assert_is_atomic))
+    assert(
+        identical(nrow(top), length(yaml)),
+        allAreAtomic(ntop)
+    )
 
     # Handle the nested metadata, defined by the keys.
     # This step is a little tricker but should work consistently.
@@ -82,10 +95,10 @@
         X = yaml,
         FUN = function(item) {
             item <- item[[keys]]
-            assert_is_list(item)
+            assert(is.list(item))
             # Remove any entries that are `NULL` (e.g. "batch" in metadata).
             item <- Filter(Negate(is.null), item)
-            assert_is_non_empty(item)
+            assert(isNonEmpty(item))
             # Sanitize names into camel case here, otherwise they'll get
             # modified during the `ldply()` call that coerces `list` to
             # `data.frame`.
@@ -93,14 +106,14 @@
             lapply(
                 X = item,
                 FUN = function(item) {
-                    assert_is_atomic(item)
+                    assert(is.atomic(item))
                     # Detect and coerce nested metadata back to a string, if
                     # necessary. bcbio allows nesting with a semicolon
                     # delimiter.
                     if (length(item) > 1L) {
                         item <- paste(item, collapse = "; ")
                     }
-                    assert_is_scalar(item)
+                    assert(isScalar(item))
                     item
                 }
             )
@@ -110,12 +123,15 @@
     nested <- ldply(nested, data.frame, stringsAsFactors = FALSE) %>%
         as_tibble() %>%
         removeNA()
-    assert_is_non_empty(nested)
-    invisible(lapply(nested, assert_is_atomic))
+
+    assert(
+        isNonEmpty(nested),
+        allAreAtomic(nested),
+        identical(nrow(top), nrow(nested)),
+        areDisjointSets(colnames(top), colnames(nested))
+    )
 
     # Bind the top and nested data frames, coerce to tibble, and return.
-    assert_are_identical(x = nrow(top), y = nrow(nested))
-    assert_are_disjoint_sets(x = colnames(top), y = colnames(nested))
     cbind(top, nested) %>%
         as_tibble() %>%
         camel() %>%
