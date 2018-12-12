@@ -66,13 +66,14 @@
                     if (is.atomic(item)) {
                         item
                     } else {
-                        NA
+                        NA_character_
                     }
                 },
                 simplify = TRUE,
                 USE.NAMES = FALSE
             )
-            assert(isCharacter(return))
+            # Don't use isCharacter assert here because we're allowing NA.
+            assert(is.character(return))
             return
         },
         # Require that there's no dimension mismatch when parsing.
@@ -86,7 +87,7 @@
         removeNA()
     assert(
         identical(nrow(top), length(yaml)),
-        allAreAtomic(ntop)
+        allAreAtomic(top)
     )
 
     # Handle the nested metadata, defined by the keys.

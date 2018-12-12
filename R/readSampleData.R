@@ -68,8 +68,9 @@
 #' x <- readSampleData(file)
 #' print(x)
 readSampleData <- function(file, lanes = 0L) {
+    # Note that we're allowing import from URL here (primarily for unit tests).
     assert(
-        isAFile(file),
+        isAFile(file) || containsAURL(file),
         isInt(lanes),
         lanes >= 0L  # TODO Switch to isNonNegative.
     )

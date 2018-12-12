@@ -13,9 +13,10 @@
 #'   printString realpath removeNA sanitizeNA
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select ungroup
-#' @importFrom goalie allAreAtomic areDisjointSets assert hasNoDuplicates
-#'   hasRownames isADirectory isAFile isCharacter isFile isMatchingRegex isInt
-#'   isNonEmpty isScalar isString isSubset validNames
+#' @importFrom goalie allAreAtomic areDisjointSets assert containsAURL
+#'   hasNoDuplicates hasRownames isADirectory isAFile isCharacter isFile
+#'   isMatchingRegex isInRange isInt isNonEmpty isScalar isString isSubset
+#'   validNames
 #' @importFrom magrittr %>% set_colnames
 #' @importFrom methods as is new
 #' @importFrom plyr ldply
