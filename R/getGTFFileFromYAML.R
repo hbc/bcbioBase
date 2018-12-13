@@ -22,10 +22,15 @@ getGTFFileFromYAML <- function(yaml) {
         .[["genome_resources"]] %>%
         .[["rnaseq"]] %>%
         .[["transcripts"]]
-    assert(isString(file))
+    if (!isString(file)) {
+        warning(paste(
+            "bcbio GTF file is not defined in YAML."
+        ))
+        return(NULL)
+    }
     message(paste("bcbio GTF file:", file))
     if (!file.exists(file)) {
-        message("GTF file does not exist. Skipping.")
+        message("bcbio GTF file is not accessible.")
         NULL
     } else {
         file
