@@ -128,11 +128,11 @@ isn't required but is recommended for data provenance.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>file</th>
-      <td><p><code>string</code>. File path. Supports CSV, TSV, and XLSX file formats.</p></td>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>. File path. Supports CSV, TSV, and XLSX file formats.</p></td>
     </tr>
     <tr>
       <th>lanes</th>
-      <td><p><code>scalar integer</code>. Number of lanes used to split the samples into
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>. Number of lanes used to split the samples into
 technical replicates (<code>_LXXX</code>) suffix.</p></td>
     </tr>
     </table>
@@ -155,10 +155,10 @@ multiplexed samples.</p>
     <p>This applies to bulk RNA-seq samples.</p>
 <p>Normally when loading a bcbio run of demultiplexed samples, the sample
 metadata will be imported automatically from the <code>project-summary.yaml</code> file
-in the final upload directory using the <code>readYAMLSampleData()</code> function. If
+in the final upload directory using the <code>readYAMLSampleData</code> function. If
 you notice any typos in your metadata after completing the run, these can be
 corrected by editing the YAML file. Alternatively, you can pass in a
-spreadsheet with the <code>readSampleData()</code> function.</p>
+spreadsheet with the <code>readSampleData</code> function.</p>
 <p>The samples in the bcbio run must map to the <code>description</code> column. The values
 provided in <code>description</code> for demultiplexed samples must be unique. They must
 also be <em>syntactically valid</em>, meaning that they cannot contain illegal
@@ -172,7 +172,7 @@ information on valid names in R.</p>
     <p>This applies to some single-cell RNA-seq formats, including inDrops. In this
 case, bcbio will output per-sample directories with this this structure:
 "<code>description</code>-<code>revcomp</code>".</p>
-<p><code>readSampleData()</code> checks to see if the <code>description</code> column is unique. If
+<p><code>readSampleData</code> checks to see if the <code>description</code> column is unique. If
 the values are duplicated, the function assumes that bcbio processed
 multiplexed FASTQs, where multiple samples of interest are barcoded inside a
 single FASTQ. This this case, you must supply additional "<code>index</code>",

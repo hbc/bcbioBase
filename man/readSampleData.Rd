@@ -9,7 +9,7 @@ readSampleData(file, lanes = 0L)
 \arguments{
 \item{file}{\code{character(1)}. File path. Supports CSV, TSV, and XLSX file formats.}
 
-\item{lanes}{\code{scalar integer}. Number of lanes used to split the samples into
+\item{lanes}{\code{integer(1)}. Number of lanes used to split the samples into
 technical replicates (\code{_LXXX}) suffix.}
 }
 \value{

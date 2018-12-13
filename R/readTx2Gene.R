@@ -12,7 +12,7 @@
 #'   (e.g. `"Homo sapiens"`).
 #' @param genomeBuild `character(1)` or `NULL`. Genome build assembly name
 #'   (e.g. `"GRCh38"`).
-#' @param ensemblRelease `scalar integer` or `NULL`. Ensembl release version
+#' @param ensemblRelease `integer(1)` or `NULL`. Ensembl release version
 #'   (e.g. `90`).
 #'
 #' @return `Tx2Gene`.

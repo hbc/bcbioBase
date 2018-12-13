@@ -52,7 +52,7 @@
 #' @export
 #'
 #' @param file `character(1)`. File path. Supports CSV, TSV, and XLSX file formats.
-#' @param lanes `scalar integer`. Number of lanes used to split the samples into
+#' @param lanes `integer(1)`. Number of lanes used to split the samples into
 #'   technical replicates (`_LXXX`) suffix.
 #'
 #' @return `DataFrame`.

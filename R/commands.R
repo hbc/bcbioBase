@@ -18,7 +18,7 @@ NULL
 
 
 
-#' @describeIn commands `scalar integer`.
+#' @describeIn commands `integer(1)`.
 #' @export
 getBarcodeCutoffFromCommands <- function(log) {
     assert(isCharacter(log))

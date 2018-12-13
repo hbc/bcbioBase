@@ -16,7 +16,7 @@ readTx2Gene(file, organism = NULL, genomeBuild = NULL,
 \item{genomeBuild}{\code{character(1)} or \code{NULL}. Genome build assembly name
 (e.g. \code{"GRCh38"}).}
 
-\item{ensemblRelease}{\code{scalar integer} or \code{NULL}. Ensembl release version
+\item{ensemblRelease}{\code{integer(1)} or \code{NULL}. Ensembl release version
 (e.g. \code{90}).}
 }
 \value{

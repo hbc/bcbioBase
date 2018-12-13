@@ -24,7 +24,7 @@ Commands Log Parsing Functions
 }
 \section{Functions}{
 \itemize{
-\item \code{getBarcodeCutoffFromCommands}: \code{scalar integer}.
+\item \code{getBarcodeCutoffFromCommands}: \code{integer(1)}.
 
 \item \code{getLevelFromCommands}: \code{character(1)}. Return \code{"genes"} or \code{"transcripts"}.
 
