@@ -3,7 +3,8 @@
 #' @name commands
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
-#' @param log `character`. Commands log.
+#' @param log `character`.
+#'   Commands log.
 #'
 #' @return `atomic`.
 #'

@@ -51,9 +51,11 @@
 #' @inheritParams basejump::params
 #' @export
 #'
-#' @param file `character(1)`. File path. Supports CSV, TSV, and XLSX file formats.
-#' @param lanes `integer(1)`. Number of lanes used to split the samples into
-#'   technical replicates (`_LXXX`) suffix.
+#' @param file `character(1)`.
+#'   File path. Supports CSV, TSV, and XLSX file formats.
+#' @param lanes `integer(1)`.
+#'   Number of lanes used to split the samples into technical replicates
+#'   suffix (i.e. `_LXXX`).
 #'
 #' @return `DataFrame`.
 #'

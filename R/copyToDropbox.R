@@ -8,12 +8,15 @@
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
 #' @export
 #'
-#' @param files `character`. Local file paths.
-#' @param dir `character(1)`. Relative path of remote Dropbox directory.
-#' @param rdsToken `character(1)` or `NULL`. RDS file token to use for Dropbox
-#'   authentication.
+#' @param files `character`.
+#'   Local file paths.
+#' @param dir `character(1)`.
+#'   Relative path of remote Dropbox directory.
+#' @param rdsToken `character(1)` or `NULL`.
+#'   RDS file token to use for Dropbox authentication.
 #'
-#' @return Invisible `list` of rdrop2 output.
+#' @return Invisible `list`.
+#' rdrop2 output, including file paths.
 #'
 #' @examples
 #' \dontrun{

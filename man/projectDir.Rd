@@ -7,8 +7,9 @@
 projectDir(uploadDir)
 }
 \arguments{
-\item{uploadDir}{\code{character(1)}. Path to final upload directory. This path is
-set when running "\code{bcbio_nextgen -w template}".}
+\item{uploadDir}{\code{character(1)}.
+Path to final upload directory.
+This path is set when running "\code{bcbio_nextgen -w template}".}
 }
 \value{
 \code{character(1)}. Dated project directory (e.g. "2018-01-01_rnaseq").

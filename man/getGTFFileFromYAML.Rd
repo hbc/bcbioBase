@@ -7,7 +7,8 @@
 getGTFFileFromYAML(yaml)
 }
 \arguments{
-\item{yaml}{\code{list}. Project summary YAML.}
+\item{yaml}{\code{list}.
+Project summary YAML.}
 }
 \value{
 \code{character(1)} or \code{NULL}. File path if the file exists. \code{NULL} if the

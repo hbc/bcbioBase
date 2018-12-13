@@ -7,7 +7,8 @@
 runDate(projectDir)
 }
 \arguments{
-\item{projectDir}{\code{character(1)}. Project directory path.}
+\item{projectDir}{\code{character(1)}.
+Project directory path.}
 }
 \description{
 Get the run date from the project directory.

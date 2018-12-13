@@ -14,7 +14,8 @@ getLevelFromCommands(log)
 getUMITypeFromCommands(log)
 }
 \arguments{
-\item{log}{\code{character}. Commands log.}
+\item{log}{\code{character}.
+Commands log.}
 }
 \value{
 \code{atomic}.
