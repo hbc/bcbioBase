@@ -5,8 +5,8 @@
 #' @inheritParams params
 #' @export
 #'
-#' @return `string` or `NULL`. File path if the file exists. `NULL` if the file
-#'   does not exist.
+#' @return `character(1)` or `NULL`. File path if the file exists. `NULL` if the
+#'   file does not exist.
 #'
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "summary.yaml")

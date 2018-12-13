@@ -47,7 +47,7 @@ sampleDirs <- function(uploadDir) {
     x <- gsub("[-ACGT]+$", "", basenames)
     assert(validNames(x))
 
-    # Our `makeNames()` function coerces periods and dashes to underscores.
+    # Our `makeNames` function coerces periods and dashes to underscores.
     basenames <- makeNames(basenames, unique = TRUE)
 
     # Assign our valid names to the absolute file paths.

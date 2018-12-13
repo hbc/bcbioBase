@@ -8,7 +8,7 @@
 #'
 #' @inheritParams params
 #'
-#' @return `string`. Dated project directory (e.g. "2018-01-01_rnaseq").
+#' @return `character(1)`. Dated project directory (e.g. "2018-01-01_rnaseq").
 #'
 #' @examples
 #' uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")

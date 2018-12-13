@@ -7,10 +7,12 @@
 readSampleData(file, lanes = 0L)
 }
 \arguments{
-\item{file}{\code{string}. File path. Supports CSV, TSV, and XLSX file formats.}
+\item{file}{\code{character(1)}.
+File path. Supports CSV, TSV, and XLSX file formats.}
 
-\item{lanes}{\code{scalar integer}. Number of lanes used to split the samples into
-technical replicates (\code{_LXXX}) suffix.}
+\item{lanes}{\code{integer(1)}.
+Number of lanes used to split the samples into technical replicates
+suffix (i.e. \code{_LXXX}).}
 }
 \value{
 \code{DataFrame}.
@@ -35,10 +37,10 @@ This applies to bulk RNA-seq samples.
 
 Normally when loading a bcbio run of demultiplexed samples, the sample
 metadata will be imported automatically from the \code{project-summary.yaml} file
-in the final upload directory using the \code{readYAMLSampleData()} function. If
+in the final upload directory using the \code{readYAMLSampleData} function. If
 you notice any typos in your metadata after completing the run, these can be
 corrected by editing the YAML file. Alternatively, you can pass in a
-spreadsheet with the \code{readSampleData()} function.
+spreadsheet with the \code{readSampleData} function.
 
 The samples in the bcbio run must map to the \code{description} column. The values
 provided in \code{description} for demultiplexed samples must be unique. They must
@@ -55,7 +57,7 @@ This applies to some single-cell RNA-seq formats, including inDrops. In this
 case, bcbio will output per-sample directories with this this structure:
 "\code{description}-\code{revcomp}".
 
-\code{readSampleData()} checks to see if the \code{description} column is unique. If
+\code{readSampleData} checks to see if the \code{description} column is unique. If
 the values are duplicated, the function assumes that bcbio processed
 multiplexed FASTQs, where multiple samples of interest are barcoded inside a
 single FASTQ. This this case, you must supply additional "\code{index}",

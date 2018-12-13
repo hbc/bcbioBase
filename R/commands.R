@@ -3,7 +3,8 @@
 #' @name commands
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
-#' @param log `character`. Commands log.
+#' @param log `character`.
+#'   Commands log.
 #'
 #' @return `atomic`.
 #'
@@ -18,7 +19,7 @@ NULL
 
 
 
-#' @describeIn commands `scalar integer`.
+#' @describeIn commands `integer(1)`.
 #' @export
 getBarcodeCutoffFromCommands <- function(log) {
     assert(isCharacter(log))
@@ -39,7 +40,7 @@ getBarcodeCutoffFromCommands <- function(log) {
 
 
 
-#' @describeIn commands `string`. Return `"genes"` or `"transcripts"`.
+#' @describeIn commands `character(1)`. Return `"genes"` or `"transcripts"`.
 #' @export
 getLevelFromCommands <- function(log) {
     assert(isCharacter(log))
@@ -55,7 +56,7 @@ getLevelFromCommands <- function(log) {
 
 
 
-#' @describeIn commands `string`.
+#' @describeIn commands `character(1)`.
 #' @export
 getUMITypeFromCommands <- function(log) {
     assert(isCharacter(log))

@@ -7,7 +7,8 @@
 getMetricsFromYAML(yaml)
 }
 \arguments{
-\item{yaml}{\code{list}. Project summary YAML.}
+\item{yaml}{\code{list}.
+Project summary YAML.}
 }
 \value{
 \code{DataFrame}.

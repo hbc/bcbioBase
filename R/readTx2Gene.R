@@ -8,12 +8,12 @@
 #' @inheritParams basejump::params
 #' @export
 #'
-#' @param organism `string` or `NULL`. Full Latin organism name
-#'   (e.g. `"Homo sapiens"`).
-#' @param genomeBuild `string` or `NULL`. Genome build assembly name
-#'   (e.g. `"GRCh38"`).
-#' @param ensemblRelease `scalar integer` or `NULL`. Ensembl release version
-#'   (e.g. `90`).
+#' @param organism `character(1)` or `NULL`.
+#'   Full Latin organism name (e.g. `"Homo sapiens"`).
+#' @param genomeBuild `character(1)` or `NULL`.
+#'   Genome build assembly name (e.g. `"GRCh38"`).
+#' @param ensemblRelease `integer(1)` or `NULL`.
+#'   Ensembl release version (e.g. `90`).
 #'
 #' @return `Tx2Gene`.
 #'

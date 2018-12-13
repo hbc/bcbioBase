@@ -14,7 +14,8 @@ getLevelFromCommands(log)
 getUMITypeFromCommands(log)
 }
 \arguments{
-\item{log}{\code{character}. Commands log.}
+\item{log}{\code{character}.
+Commands log.}
 }
 \value{
 \code{atomic}.
@@ -24,11 +25,11 @@ Commands Log Parsing Functions
 }
 \section{Functions}{
 \itemize{
-\item \code{getBarcodeCutoffFromCommands}: \code{scalar integer}.
+\item \code{getBarcodeCutoffFromCommands}: \code{integer(1)}.
 
-\item \code{getLevelFromCommands}: \code{string}. Return \code{"genes"} or \code{"transcripts"}.
+\item \code{getLevelFromCommands}: \code{character(1)}. Return \code{"genes"} or \code{"transcripts"}.
 
-\item \code{getUMITypeFromCommands}: \code{string}.
+\item \code{getUMITypeFromCommands}: \code{character(1)}.
 }}
 
 \examples{
