@@ -10,10 +10,10 @@ readTx2Gene(file, organism = NULL, genomeBuild = NULL,
 \arguments{
 \item{file}{\code{character(1)}. File path.}
 
-\item{organism}{\code{string} or \code{NULL}. Full Latin organism name
+\item{organism}{\code{character(1)} or \code{NULL}. Full Latin organism name
 (e.g. \code{"Homo sapiens"}).}
 
-\item{genomeBuild}{\code{string} or \code{NULL}. Genome build assembly name
+\item{genomeBuild}{\code{character(1)} or \code{NULL}. Genome build assembly name
 (e.g. \code{"GRCh38"}).}
 
 \item{ensemblRelease}{\code{scalar integer} or \code{NULL}. Ensembl release version

@@ -9,8 +9,8 @@
 #' @export
 #'
 #' @param files `character`. Local file paths.
-#' @param dir `string`. Relative path of remote Dropbox directory.
-#' @param rdsToken `string` or `NULL`. RDS file token to use for Dropbox
+#' @param dir `character(1)`. Relative path of remote Dropbox directory.
+#' @param rdsToken `character(1)` or `NULL`. RDS file token to use for Dropbox
 #'   authentication.
 #'
 #' @return Invisible `list` of rdrop2 output.

@@ -45,9 +45,9 @@
         )
     )
 
-    # Check that nested keys are present and early return on failure.
-    # Return `NULL` here instead of stopping, so we can handle bcbio RNA-seq
-    # fast mode runs.
+    # Check that nested keys are present and early return on failure. Return
+    # `NULL` here instead of stopping, so we can handle bcbio RNA-seq fast mode
+    # runs.
     if (
         length(keys) == 2L &&
         !keys[[2L]] %in% names(yaml[[1L]][[keys[[1L]]]])
@@ -55,8 +55,8 @@
         return(NULL)  # nocov
     }
 
-    # Top-level sample metadata in the YAML is relatively easy to parse.
-    # Just select for atomic values, otherwise return `NA`.
+    # Top-level sample metadata in the YAML is relatively easy to parse. Just
+    # select for atomic values, otherwise return `NA`.
     top <- vapply(
         X = yaml,
         FUN = function(item) {
@@ -90,8 +90,8 @@
         allAreAtomic(top)
     )
 
-    # Handle the nested metadata, defined by the keys.
-    # This step is a little tricker but should work consistently.
+    # Handle the nested metadata, defined by the keys. This step is a little
+    # tricker but should work consistently.
     nested <- lapply(
         X = yaml,
         FUN = function(item) {
@@ -101,7 +101,7 @@
             item <- Filter(Negate(is.null), item)
             assert(isNonEmpty(item))
             # Sanitize names into camel case here, otherwise they'll get
-            # modified during the `ldply()` call that coerces `list` to
+            # modified during the `ldply` call that coerces `list` to
             # `data.frame`.
             item <- camel(item)
             lapply(
@@ -120,7 +120,7 @@
             )
         }
     )
-    # Use `ldply()` method to coerce a list with uneven lengths.
+    # Use `ldply` method to coerce a list with uneven lengths.
     nested <- ldply(nested, data.frame, stringsAsFactors = FALSE) %>%
         as_tibble() %>%
         removeNA()
@@ -136,8 +136,8 @@
     cbind(top, nested) %>%
         as_tibble() %>%
         camel() %>%
-        # Coerce any periods in colnames to "x"
-        # (e.g. x5.3Bias becomes x5x3Bias).
+        # Coerce any periods in colnames to "x" (e.g. x5.3Bias becomes
+        # x5x3Bias).
         set_colnames(gsub("\\.", "x", colnames(.))) %>%
         sanitizeNA() %>%
         removeNA() %>%

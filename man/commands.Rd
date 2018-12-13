@@ -26,9 +26,9 @@ Commands Log Parsing Functions
 \itemize{
 \item \code{getBarcodeCutoffFromCommands}: \code{scalar integer}.
 
-\item \code{getLevelFromCommands}: \code{string}. Return \code{"genes"} or \code{"transcripts"}.
+\item \code{getLevelFromCommands}: \code{character(1)}. Return \code{"genes"} or \code{"transcripts"}.
 
-\item \code{getUMITypeFromCommands}: \code{string}.
+\item \code{getUMITypeFromCommands}: \code{character(1)}.
 }}
 
 \examples{

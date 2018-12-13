@@ -39,7 +39,7 @@ getBarcodeCutoffFromCommands <- function(log) {
 
 
 
-#' @describeIn commands `string`. Return `"genes"` or `"transcripts"`.
+#' @describeIn commands `character(1)`. Return `"genes"` or `"transcripts"`.
 #' @export
 getLevelFromCommands <- function(log) {
     assert(isCharacter(log))
@@ -55,7 +55,7 @@ getLevelFromCommands <- function(log) {
 
 
 
-#' @describeIn commands `string`.
+#' @describeIn commands `character(1)`.
 #' @export
 getUMITypeFromCommands <- function(log) {
     assert(isCharacter(log))

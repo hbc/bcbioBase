@@ -11,7 +11,7 @@ projectDir(uploadDir)
 set when running "\code{bcbio_nextgen -w template}".}
 }
 \value{
-\code{string}. Dated project directory (e.g. "2018-01-01_rnaseq").
+\code{character(1)}. Dated project directory (e.g. "2018-01-01_rnaseq").
 }
 \description{
 Project Directory
