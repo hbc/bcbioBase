@@ -1,8 +1,8 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions for bcbio R packages.
-Version: 0.5.6
-Date: 2018-12-13
+Version: 0.5.7
+Date: 2018-12-21
 Authors@R: c(
     person(
         given = "Michael",
@@ -41,9 +41,9 @@ Depends: R (>= 3.5)
 Imports:
     Biostrings,
     S4Vectors,
-    basejump (>= 0.9),
+    basejump (>= 0.9.1),
     dplyr (>= 0.7),
-    goalie (>= 0.2),
+    goalie (>= 0.2.1),
     magrittr (>= 1.5),
     methods,
     plyr (>= 1.8),
