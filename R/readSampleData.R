@@ -174,7 +174,7 @@ readSampleData <- function(file, lanes = 0L) {
     if (isTRUE(multiplexed)) {
         assert(isSubset(c("index", "sequence"), colnames(data)))
         sequence <- data[["sequence"]]
-        assert(isMatchingRegex(sequence, pattern = "^[ACGT]{6,}"))
+        assert(allAreMatchingRegex(sequence, pattern = "^[ACGT]{6,}"))
         data[["revcomp"]] <- vapply(
             X = sequence,
             FUN = function(x) {

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get GTF File from YAML — getGTFFileFromYAML • bcbioBase</title>
+<title>Get GTF file path from YAML — getGTFFileFromYAML • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Get GTF File from YAML — getGTFFileFromYAML" />
+<meta property="og:title" content="Get GTF file path from YAML — getGTFFileFromYAML" />
 
-<meta property="og:description" content="Get GTF File from YAML" />
+<meta property="og:description" content="Get GTF file path from YAML" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.7</span>
       </span>
     </div>
 
@@ -104,14 +104,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get GTF File from YAML</h1>
+    <h1>Get GTF file path from YAML</h1>
     <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/getGTFFileFromYAML.R'><code>R/getGTFFileFromYAML.R</code></a></small>
     <div class="hidden name"><code>getGTFFileFromYAML.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get GTF File from YAML</p>
+    <p>Get GTF file path from YAML</p>
     
     </div>
 
@@ -135,7 +135,7 @@ file does not exist.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='no'>bcbioBaseCacheURL</span>, <span class='st'>"summary.yaml"</span>)
-<span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/basejump/topics/import'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing summary.yaml using yaml::yaml.load_file().</span></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>getGTFFileFromYAML</span>(<span class='no'>yaml</span>)</div><div class='output co'>#&gt; <span class='message'>bcbio GTF file: /groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/rnaseq/ref-transcripts.gtf</span></div><div class='output co'>#&gt; <span class='message'>GTF file does not exist. Skipping.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; NULL</div></pre>
+<span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/basejump/topics/import'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing summary.yaml using yaml::yaml.load_file().</span></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>getGTFFileFromYAML</span>(<span class='no'>yaml</span>)</div><div class='output co'>#&gt; <span class='message'>bcbio GTF file: /groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/rnaseq/ref-transcripts.gtf</span></div><div class='output co'>#&gt; <span class='message'>bcbio GTF file is not accessible.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; NULL</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
