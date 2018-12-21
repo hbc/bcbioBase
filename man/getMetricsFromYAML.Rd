@@ -2,7 +2,7 @@
 % Please edit documentation in R/getMetricsFromYAML.R
 \name{getMetricsFromYAML}
 \alias{getMetricsFromYAML}
-\title{Get Metrics from YAML}
+\title{Get quality control metrics from YAML}
 \usage{
 getMetricsFromYAML(yaml)
 }

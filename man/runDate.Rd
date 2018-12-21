@@ -2,7 +2,7 @@
 % Please edit documentation in R/runDate.R
 \name{runDate}
 \alias{runDate}
-\title{Run Date}
+\title{Run date}
 \usage{
 runDate(projectDir)
 }

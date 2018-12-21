@@ -2,13 +2,14 @@
 % Please edit documentation in R/readTx2Gene.R
 \name{readTx2Gene}
 \alias{readTx2Gene}
-\title{Read Transcript-to-Gene Annotations}
+\title{Read transcript-to-gene annotations}
 \usage{
 readTx2Gene(file, organism = NULL, genomeBuild = NULL,
   ensemblRelease = NULL)
 }
 \arguments{
-\item{file}{\code{character(1)}. File path.}
+\item{file}{\code{character(1)}.
+File path.}
 
 \item{organism}{\code{character(1)} or \code{NULL}.
 Full Latin organism name (e.g. \code{"Homo sapiens"}).}

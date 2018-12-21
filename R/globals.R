@@ -11,7 +11,7 @@ bcbioBaseCacheURL <- paste0(
     "v", packageVersion$major, ".", packageVersion$minor  # nolint
 )
 
-#' Sample Metadata Blacklist
+#' Sample metadata blacklist
 #' @export
 #' @examples
 #' metadataBlacklist
@@ -34,7 +34,7 @@ metadataBlacklist <- c(
     "samplename"
 )
 
-#' Project Directory Grep Pattern
+#' Project directory grep pattern
 #' @export
 #' @examples
 #' projectDirPattern

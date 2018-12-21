@@ -2,7 +2,7 @@
 % Please edit documentation in R/sampleDirs.R
 \name{sampleDirs}
 \alias{sampleDirs}
-\title{Sample Directories}
+\title{Sample directories}
 \usage{
 sampleDirs(uploadDir)
 }
@@ -15,10 +15,10 @@ This path is set when running "\code{bcbio_nextgen -w template}".}
 Named \code{character}. Sample directory paths.
 }
 \description{
-Sample Directories
+Sample directories
 }
 \note{
-Function will stop if no sample directories match.
+Function will \code{\link[base:stop]{stop()}} if no sample directories match.
 }
 \examples{
 uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")

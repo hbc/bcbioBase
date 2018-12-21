@@ -3,13 +3,13 @@
 \docType{data}
 \name{projectDirPattern}
 \alias{projectDirPattern}
-\title{Project Directory Grep Pattern}
+\title{Project directory grep pattern}
 \format{An object of class \code{character} of length 1.}
 \usage{
 projectDirPattern
 }
 \description{
-Project Directory Grep Pattern
+Project directory grep pattern
 }
 \examples{
 projectDirPattern

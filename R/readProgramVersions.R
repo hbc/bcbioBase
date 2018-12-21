@@ -1,4 +1,4 @@
-#' Read Program Versions
+#' Read program versions
 #'
 #' @note bcbio doesn't save program versions when run in fast mode.
 #'

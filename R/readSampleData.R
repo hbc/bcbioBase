@@ -1,4 +1,4 @@
-#' Read Sample Metadata
+#' Read sample metadata
 #'
 #' This function reads user-defined sample metadata saved in a spreadsheet.
 #' The "`description`" column is always required, and must match the bcbio

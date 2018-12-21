@@ -2,7 +2,7 @@
 % Please edit documentation in R/readSampleData.R
 \name{readSampleData}
 \alias{readSampleData}
-\title{Read Sample Metadata}
+\title{Read sample metadata}
 \usage{
 readSampleData(file, lanes = 0L)
 }

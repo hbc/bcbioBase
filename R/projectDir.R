@@ -1,4 +1,4 @@
-#' Project Directory
+#' Project directory
 #'
 #' @note This will pick the latest dated directory and warn the user, if bcbio
 #' has been run multiple times to the same upload directory.

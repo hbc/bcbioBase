@@ -1,11 +1,11 @@
-#' Sample Directories
-#'
-#' @note Function will stop if no sample directories match.
+#' Sample directories
 #'
 #' @author Michael Steinbaugh
 #' @export
 #'
 #' @inheritParams params
+#'
+#' @note Function will [`stop()`][base::stop] if no sample directories match.
 #'
 #' @return Named `character`. Sample directory paths.
 #'

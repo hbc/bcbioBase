@@ -1,4 +1,4 @@
-#' Read Data Versions
+#' Read data versions
 #'
 #' @note The `data_versions.csv` file is only generated for special genomes
 #' containing additional information (e.g. the built-in "hg38" build).

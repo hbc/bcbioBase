@@ -2,7 +2,7 @@
 % Please edit documentation in R/projectDir.R
 \name{projectDir}
 \alias{projectDir}
-\title{Project Directory}
+\title{Project directory}
 \usage{
 projectDir(uploadDir)
 }
@@ -15,7 +15,7 @@ This path is set when running "\code{bcbio_nextgen -w template}".}
 \code{character(1)}. Dated project directory (e.g. "2018-01-01_rnaseq").
 }
 \description{
-Project Directory
+Project directory
 }
 \note{
 This will pick the latest dated directory and warn the user, if bcbio

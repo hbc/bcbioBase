@@ -2,18 +2,19 @@
 % Please edit documentation in R/readDataVersions.R
 \name{readDataVersions}
 \alias{readDataVersions}
-\title{Read Data Versions}
+\title{Read data versions}
 \usage{
 readDataVersions(file)
 }
 \arguments{
-\item{file}{\code{character(1)}. File path.}
+\item{file}{\code{character(1)}.
+File path.}
 }
 \value{
 \code{DataFrame}.
 }
 \description{
-Read Data Versions
+Read data versions
 }
 \note{
 The \code{data_versions.csv} file is only generated for special genomes

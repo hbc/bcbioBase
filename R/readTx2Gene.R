@@ -1,4 +1,4 @@
-#' Read Transcript-to-Gene Annotations
+#' Read transcript-to-gene annotations
 #'
 #' Generates a `Tx2Gene` object containing `transcriptID` and `geneID` columns.
 #'

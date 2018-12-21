@@ -1,4 +1,4 @@
-#' Get GTF File from YAML
+#' Get GTF file path from YAML
 #'
 #' @author Michael Steinbaugh
 #' @inheritParams basejump::params

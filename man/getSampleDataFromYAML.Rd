@@ -2,7 +2,7 @@
 % Please edit documentation in R/getSampleDataFromYAML.R
 \name{getSampleDataFromYAML}
 \alias{getSampleDataFromYAML}
-\title{Get Sample Data from YAML}
+\title{Get sample data from YAML}
 \usage{
 getSampleDataFromYAML(yaml)
 }
@@ -14,7 +14,7 @@ Project summary YAML.}
 \code{DataFrame}.
 }
 \description{
-Get Sample Data from YAML
+Get sample data from YAML
 }
 \examples{
 file <- file.path(bcbioBaseCacheURL, "summary.yaml")

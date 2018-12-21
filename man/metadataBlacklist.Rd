@@ -3,13 +3,13 @@
 \docType{data}
 \name{metadataBlacklist}
 \alias{metadataBlacklist}
-\title{Sample Metadata Blacklist}
+\title{Sample metadata blacklist}
 \format{An object of class \code{character} of length 12.}
 \usage{
 metadataBlacklist
 }
 \description{
-Sample Metadata Blacklist
+Sample metadata blacklist
 }
 \examples{
 metadataBlacklist

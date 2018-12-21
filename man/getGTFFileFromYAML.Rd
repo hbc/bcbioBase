@@ -2,7 +2,7 @@
 % Please edit documentation in R/getGTFFileFromYAML.R
 \name{getGTFFileFromYAML}
 \alias{getGTFFileFromYAML}
-\title{Get GTF File from YAML}
+\title{Get GTF file path from YAML}
 \usage{
 getGTFFileFromYAML(yaml)
 }
@@ -15,7 +15,7 @@ Project summary YAML.}
 file does not exist.
 }
 \description{
-Get GTF File from YAML
+Get GTF file path from YAML
 }
 \examples{
 file <- file.path(bcbioBaseCacheURL, "summary.yaml")

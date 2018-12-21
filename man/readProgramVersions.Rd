@@ -2,18 +2,19 @@
 % Please edit documentation in R/readProgramVersions.R
 \name{readProgramVersions}
 \alias{readProgramVersions}
-\title{Read Program Versions}
+\title{Read program versions}
 \usage{
 readProgramVersions(file)
 }
 \arguments{
-\item{file}{\code{character(1)}. File path.}
+\item{file}{\code{character(1)}.
+File path.}
 }
 \value{
 \code{DataFrame}.
 }
 \description{
-Read Program Versions
+Read program versions
 }
 \note{
 bcbio doesn't save program versions when run in fast mode.

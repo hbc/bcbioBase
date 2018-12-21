@@ -1,4 +1,4 @@
-#' Get Sample Data from YAML
+#' Get sample data from YAML
 #'
 #' @author Michael Steinbaugh
 #' @inheritParams basejump::params

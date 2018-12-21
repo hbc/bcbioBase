@@ -1,4 +1,4 @@
-#' Commands Log Parsing Functions
+#' Commands log parsing functions
 #'
 #' @name commands
 #' @author Michael Steinbaugh, Rory Kirchner

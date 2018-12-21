@@ -2,7 +2,7 @@
 % Please edit documentation in R/copyToDropbox.R
 \name{copyToDropbox}
 \alias{copyToDropbox}
-\title{Copy Files to Dropbox}
+\title{Copy files to Dropbox}
 \usage{
 copyToDropbox(files, dir, rdsToken = NULL)
 }
@@ -21,7 +21,7 @@ Invisible \code{list}.
 rdrop2 output, including file paths.
 }
 \description{
-Copy Files to Dropbox
+Copy files to Dropbox
 }
 \examples{
 \dontrun{

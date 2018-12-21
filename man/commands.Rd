@@ -5,7 +5,7 @@
 \alias{getBarcodeCutoffFromCommands}
 \alias{getLevelFromCommands}
 \alias{getUMITypeFromCommands}
-\title{Commands Log Parsing Functions}
+\title{Commands log parsing functions}
 \usage{
 getBarcodeCutoffFromCommands(log)
 
@@ -21,7 +21,7 @@ Commands log.}
 \code{atomic}.
 }
 \description{
-Commands Log Parsing Functions
+Commands log parsing functions
 }
 \section{Functions}{
 \itemize{

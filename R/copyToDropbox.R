@@ -3,7 +3,7 @@
 
 
 
-#' Copy Files to Dropbox
+#' Copy files to Dropbox
 #'
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
 #' @export

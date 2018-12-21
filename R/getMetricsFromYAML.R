@@ -1,4 +1,4 @@
-#' Get Metrics from YAML
+#' Get quality control metrics from YAML
 #'
 #' Parse the summary YAML and return quality control metrics.
 #'
