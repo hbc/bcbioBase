@@ -38,7 +38,7 @@ Encoding: UTF-8
 LazyData: TRUE
 Depends:
     R (>= 3.4),
-    basejump (>= 0.7.1)
+    basejump (== 0.7.2)
 Imports:
     assertive.base,
     assertive.files,
@@ -68,7 +68,7 @@ Suggests:
     roxygen2,
     testthat (>= 2.0)
 Remotes:
-    steinbaugh/basejump
+    steinbaugh/basejump@v0.7.2
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0
