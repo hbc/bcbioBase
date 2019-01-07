@@ -27,8 +27,10 @@ copyToDropbox <- function(
     dir,
     rdsToken = NULL
 ) {
-    assert(all(isFile(files)))
-    assert(isADirectory(dir))
+    assert(
+        allAreFiles(files),
+        isADirectory(dir)
+    )
     # rdrop2 has issues with trailing slash, so sanitize.
     dir <- gsub("/$", "", dir)
     if (is.character(rdsToken)) {
