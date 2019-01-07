@@ -59,9 +59,9 @@ Suggests:
     roxygen2,
     testthat (>= 2.0)
 Remotes:
-    steinbaugh/S4Transformer@develop,
+    steinbaugh/S4Transformer,
     steinbaugh/basejump@develop,
-    steinbaugh/goalie@develop
+    steinbaugh/goalie
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
