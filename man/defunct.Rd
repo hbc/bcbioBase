@@ -4,7 +4,7 @@
 \alias{defunct}
 \alias{readYAMLSampleData}
 \alias{readYAMLSampleMetrics}
-\title{Defunct Functions}
+\title{Defunct functions}
 \usage{
 readYAMLSampleData(...)
 
@@ -17,6 +17,6 @@ readYAMLSampleMetrics(...)
 \code{.Defunct}.
 }
 \description{
-Defunct Functions
+Defunct functions
 }
 \keyword{internal}

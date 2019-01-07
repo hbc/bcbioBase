@@ -4,7 +4,6 @@
 #'
 #' @author Michael Steinbaugh
 #' @export
-#'
 #' @inheritParams basejump::params
 #'
 #' @return `DataFrame`.

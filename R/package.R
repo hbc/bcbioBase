@@ -4,8 +4,8 @@
 #'
 #' @keywords internal
 #'
+#' @importMethodsFrom S4Transformer coerce
 #' @importMethodsFrom S4Vectors coerce
-#' @importMethodsFrom basejump coerce
 #'
 #' @importFrom Biostrings reverseComplement
 #' @importFrom S4Vectors DataFrame metadata<- na.omit tail
@@ -13,10 +13,10 @@
 #'   printString realpath removeNA sanitizeNA
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select ungroup
-#' @importFrom goalie allAreAtomic allAreMatchingRegex areDisjointSets assert
-#'   containsAURL hasNoDuplicates hasRownames isADirectory isAFile isCharacter
-#'   isFile isMatchingRegex isInRange isInt isNonEmpty isNonNegative isScalar
-#'   isString isSubset validNames
+#' @importFrom goalie allAreAtomic allAreFiles allAreMatchingRegex
+#'   areDisjointSets assert containsAURL hasNoDuplicates hasRownames
+#'   isADirectory isAFile isCharacter isFile isMatchingRegex isInRange isInt
+#'   isNonEmpty isNonNegative isScalar isString isSubset validNames
 #' @importFrom magrittr %>% set_colnames
 #' @importFrom methods as is new
 #' @importFrom plyr ldply
@@ -30,4 +30,18 @@
 #' @importFrom utils globalVariables
 "_PACKAGE"
 
-# Use `areFiles` with next goalie update.
+#' @importFrom basejump import
+#' @export
+basejump::import
+
+#' @importFrom dplyr pull
+#' @export
+dplyr::pull
+
+#' @importFrom magrittr %>%
+#' @export
+magrittr::`%>%`
+
+#' @importFrom tibble glimpse
+#' @export
+tibble::glimpse

@@ -48,8 +48,8 @@
 #' `revcomp` column in the sample metadata.
 #'
 #' @author Michael Steinbaugh
-#' @inheritParams basejump::params
 #' @export
+#' @inheritParams basejump::params
 #'
 #' @param file `character(1)`.
 #'   File path. Supports CSV, TSV, and XLSX file formats.

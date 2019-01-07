@@ -1,9 +1,9 @@
 #' Get sample data from YAML
 #'
 #' @author Michael Steinbaugh
+#' @export
 #' @inheritParams basejump::params
 #' @inheritParams params
-#' @export
 #'
 #' @return `DataFrame`.
 #'

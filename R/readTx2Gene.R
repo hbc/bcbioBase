@@ -5,8 +5,8 @@
 #' @note Doesn't attempt to strip transcript versions.
 #'
 #' @author Michael Steinbaugh
-#' @inheritParams basejump::params
 #' @export
+#' @inheritParams basejump::params
 #'
 #' @param organism `character(1)` or `NULL`.
 #'   Full Latin organism name (e.g. `"Homo sapiens"`).

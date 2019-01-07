@@ -8,7 +8,7 @@
 \alias{bcbio_geom_label_repel}
 \alias{readLog}
 \alias{readTx2gene}
-\title{Deprecated Functions}
+\title{Deprecated functions}
 \usage{
 bcbio_geom_abline(...)
 
@@ -29,6 +29,6 @@ readTx2gene(...)
 \code{.Deprecated}.
 }
 \description{
-Deprecated Functions
+Deprecated functions
 }
 \keyword{internal}
