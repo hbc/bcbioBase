@@ -1,8 +1,8 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions for bcbio R packages.
-Version: 0.5.7
-Date: 2019-01-06
+Version: 0.5.8
+Date: 2019-01-07
 Authors@R: c(
     person(
         given = "Michael",
