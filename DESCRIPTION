@@ -44,7 +44,7 @@ Imports:
     S4Vectors (>= 0.18),
     basejump (>= 0.9.2),
     dplyr (>= 0.7),
-    goalie (>= 0.2.3),
+    goalie (>= 0.2.4),
     magrittr (>= 1.5),
     plyr (>= 1.8),
     rdrop2 (>= 0.8),
@@ -59,9 +59,9 @@ Suggests:
     roxygen2,
     testthat (>= 2.0)
 Remotes:
-    steinbaugh/S4Transformer
+    steinbaugh/S4Transformer@develop,
     steinbaugh/basejump@develop,
-    steinbaugh/goalie
+    steinbaugh/goalie@develop
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
