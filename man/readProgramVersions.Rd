@@ -2,31 +2,28 @@
 % Please edit documentation in R/readProgramVersions.R
 \name{readProgramVersions}
 \alias{readProgramVersions}
-\title{Read Program Versions}
+\title{Read program versions}
 \usage{
 readProgramVersions(file)
 }
 \arguments{
-\item{file}{\code{string}. File path.}
+\item{file}{\code{character(1)}.
+File path.}
 }
 \value{
-\code{tbl_df}.
+\code{DataFrame}.
 }
 \description{
-Read Program Versions
+Read program versions
 }
 \note{
 bcbio doesn't save program versions when run in fast mode.
 }
 \examples{
-readProgramVersions("http://bcbiobase.seq.cloud/programs.txt")
-}
-\seealso{
-Other Read Functions: \code{\link{readDataVersions}},
-  \code{\link{readLog}}, \code{\link{readSampleData}},
-  \code{\link{readTx2gene}}, \code{\link{readYAML}}
+file <- file.path(bcbioBaseCacheURL, "programs.txt")
+x <- readProgramVersions(file)
+print(x)
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Read Functions}

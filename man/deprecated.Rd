@@ -2,48 +2,33 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
-\alias{readLogFile}
-\alias{readSampleMetadataFile}
-\alias{sampleMetadata}
-\alias{sampleMetadata<-}
-\alias{flatFiles}
-\alias{metrics}
-\alias{plotCorrelationHeatmap}
-\alias{plotGene}
-\alias{plotHeatmap}
-\alias{plotQC}
-\alias{plotQuantileHeatmap}
-\alias{prepareSummarizedExperiment}
-\title{Deprecated Functions}
+\alias{bcbio_geom_abline}
+\alias{bcbio_geom_label}
+\alias{bcbio_geom_label_average}
+\alias{bcbio_geom_label_repel}
+\alias{readLog}
+\alias{readTx2gene}
+\title{Deprecated functions}
 \usage{
-readLogFile(...)
+bcbio_geom_abline(...)
 
-readSampleMetadataFile(...)
+bcbio_geom_label(...)
 
-sampleMetadata(object, ...)
+bcbio_geom_label_average(...)
 
-sampleMetadata(object) <- value
+bcbio_geom_label_repel(...)
 
-flatFiles(object, ...)
+readLog(file)
 
-metrics(object, ...)
-
-plotCorrelationHeatmap(object, ...)
-
-plotGene(object, ...)
-
-plotHeatmap(object, ...)
-
-plotQC(object, ...)
-
-plotQuantileHeatmap(object, ...)
-
-prepareSummarizedExperiment(...)
+readTx2gene(...)
+}
+\arguments{
+\item{...}{Additional arguments.}
 }
 \value{
-No value.
+\code{.Deprecated}.
 }
 \description{
-Deprecated Functions
+Deprecated functions
 }
 \keyword{internal}

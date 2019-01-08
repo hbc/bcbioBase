@@ -2,30 +2,29 @@
 % Please edit documentation in R/sampleDirs.R
 \name{sampleDirs}
 \alias{sampleDirs}
-\title{Sample Directories}
+\title{Sample directories}
 \usage{
 sampleDirs(uploadDir)
 }
 \arguments{
-\item{uploadDir}{\code{string}. File path to bcbio run upload directory.}
+\item{uploadDir}{\code{character(1)}.
+Path to final upload directory.
+This path is set when running "\code{bcbio_nextgen -w template}".}
 }
 \value{
-Named \code{character} containing sample directory paths.
+Named \code{character}. Sample directory paths.
 }
 \description{
-Sample Directories
+Sample directories
 }
 \note{
-Function will stop if no sample directories match.
+Function will \code{\link[base:stop]{stop()}} if no sample directories match.
 }
 \examples{
 uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
-sampleDirs(uploadDir)
-}
-\seealso{
-Other Data Functions: \code{\link{minimalSampleData}}
+x <- sampleDirs(uploadDir)
+basename(x)
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Data Functions}

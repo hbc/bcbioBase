@@ -1,8 +1,57 @@
+## bcbioBase 0.99.0 (2018-09-14)
+
+Release candidate for [Bioconductor][] submission.
+
+## New functions
+
+- `projectDir`, which returns the dated project directory path. If there are
+  multiple dated directories (not recommended), the most recent one is returned.
+
+## Major changes
+
+- `readTx2gene` now returns `tx2gene` class object.
+- Pinning to [basejump][] v0.99.0 [Bioconductor][] release candidate.
+- Migrated [ggplot2][] geoms to [basejump][] package.
+- YAML functions now return `DataFrame` instead of `data.frame`.
+
+## Minor changes
+
+- Simplified NAMESPACE imports.
+- Updated deprecations.
+- Linking out to recommended guidelines for development.
+
+
+## bcbioBase 0.4.2 (2018-08-26)
+
+### New functions
+
+- `projectDir`: Returns the latest dated directory path inside a [bcbio][]
+  run. If [bcbio][] has been run multiple times to the same upload directory,
+  the function will return the latest project directory and warn the user.
+
+### Major changes
+
+- `sampleDirs` is now stricter about loading sample directories with names
+  that are not valid in [R][]. This now checks for non-alphanumeric characters,
+  including spaces, **dashes**, and samples that begin with a number. The
+  [bcbio][] pipeline will be updated to enforce these rules, to avoid unexpected
+  downstream behavior in [R][] due to invalid names.
+- Improved camel case sanitization of metrics columns in the YAML parser. Now
+  `readYAMLSampleMetrics` should return `percentGC` instead of `xGC`. 5'->3'
+  bias should return as `x5x3Bias`. The `plyr::ldply` call used to coerce
+  from a `list` to `data.frame` will sanitize names, so we need to apply our
+  rules before this step.
+
+### Minor changes
+
+- Moved global `lanePattern` variable to [basejump][] package.
+
+
 ## bcbioBase 0.4.1 (2018-08-19)
 
 ### Minor changes
 
-- `prepareTemplate()`: Migrated function to [basejump][] package, and simplifed
+- `prepareTemplate`: Migrated function to [basejump][] package, and simplifed
   to copy all files from `rmarkdown/shared` directory inside a package.
   Currently in use by [bcbioRNASeq][] and [bcbioSingleCell][].
 
@@ -383,21 +432,21 @@ with the [bcbio][] output directories.
 - Initial release.
 
 
-[basejump]: http://steinbaugh.com/basejump
-[bcbio]: http://bcb.io
-[bcbioBase]: http://bioinformatics.sph.harvard.edu/bcbioBase
-[bcbioRNASeq]: http://bioinformatics.sph.harvard.edu/bcbioRNASeq
-[bcbioSingleCell]: http://bioinformatics.sph.harvard.edu/bcbioSingleCell
-[bioconda]: https://bioconda.github.io
-[Bioconductor]: http://bioconductor.org
-[Dropbox]: https://www.dropbox.com
-[ggplot2]: https://ggplot2.tidyverse.org
-[lintr]: https://github.com/jimhester/lintr
-[pheatmap]: https://github.com/raivokolde/pheatmap
-[rdrop2]: https://github.com/karthik/rdrop2
-[rlang]: http://rlang.tidyverse.org
+[basejump]: http://steinbaugh.com/basejump/
+[bcbio]: http://bcb.io/
+[bcbioBase]: https://bioinformatics.sph.harvard.edu/bcbioBase/
+[bcbioRNASeq]: https://bioinformatics.sph.harvard.edu/bcbioRNASeq/
+[bcbioSingleCell]: http://bioinformatics.sph.harvard.edu/bcbioSingleCell/
+[bioconda]: https://bioconda.github.io/
+[Bioconductor]: http://bioconductor.org/
+[Dropbox]: https://www.dropbox.com/
+[ggplot2]: https://ggplot2.tidyverse.org/
+[lintr]: https://github.com/jimhester/lintr/
+[pheatmap]: https://github.com/raivokolde/pheatmap/
+[rdrop2]: https://github.com/karthik/rdrop2/
+[rlang]: http://rlang.tidyverse.org/
 [roxygen2]: https://cran.r-project.org/package=roxygen2
-[tibble]: http://tibble.tidyverse.org
-[tidyr]: http://tidyr.tidyverse.org
-[tidyverse style guide]: http://style.tidyverse.org
+[tibble]: http://tibble.tidyverse.org/
+[tidyr]: http://tidyr.tidyverse.org/
+[tidyverse style guide]: http://style.tidyverse.org/
 [viridis]: https://cran.r-project.org/package=viridis

@@ -1,53 +1,41 @@
 globalVariables(".")
 
+packageVersion <- packageVersion("bcbioBase")
 
-
-yamlFlatCols <- c(
-    "description",
-    "genome_build",
-    "sam_ref"
+#' Cache URL
+#' @export
+#' @examples
+#' bcbioBaseCacheURL
+bcbioBaseCacheURL <- paste0(
+    "http://bcbiobase.seq.cloud/",
+    "v", packageVersion$major, ".", packageVersion$minor  # nolint
 )
 
-
-
-metricsBlacklist <- c(
-    camel(yamlFlatCols),
-    "name"
-)
-
-
-
-#' Metadata Blacklist
-#' @keywords internal
+#' Sample metadata blacklist
 #' @export
 #' @examples
 #' metadataBlacklist
-metadataBlacklist <- sort(c(
-    metricsBlacklist,
-    "aggregate",
-    "fileName",
-    "index",
-    "qualityFormat",
+metadataBlacklist <- c(
+    # Too vague.
+    "ID", "Id", "id",
+    # Generated automatically.
+    "interestingGroups",
+    # Use "sampleName" instead.
+    "name",
+    # Generated automatically from "sequence" column.
     "revcomp",
-    "sampleID",
-    "sequence",
-    "sequenceLength"
-))
+    # Used internally by dplyr.
+    "rowname",
+    # Use "sampleName" instead.
+    "sample",
+    # "sampleID" is set automatically, for multiplexed/cell-level data.
+    "sampleID", "sampleId", "sampleid",
+    # Use "sampleName" instead.
+    "samplename"
+)
 
-
-
-#' Lane Grep Pattern
-#' @keywords internal
-#' @export
-#' @examples
-#' lanePattern
-lanePattern <- "_L(\\d{3})"
-
-
-
-#' Project Directory Grep Pattern
-#' @keywords internal
+#' Project directory grep pattern
 #' @export
 #' @examples
 #' projectDirPattern
-projectDirPattern <- "^(\\d{4}-\\d{2}-\\d{2})_([^/]+)$"
+projectDirPattern <- "^([[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2})_([^/]+)$"
