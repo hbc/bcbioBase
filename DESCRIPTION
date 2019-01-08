@@ -60,7 +60,7 @@ Suggests:
     testthat (>= 2.0)
 Remotes:
     steinbaugh/S4Transformer,
-    steinbaugh/basejump@develop,
+    steinbaugh/basejump,
     steinbaugh/goalie
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
