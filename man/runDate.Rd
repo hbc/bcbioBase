@@ -10,6 +10,9 @@ runDate(projectDir)
 \item{projectDir}{\code{character(1)}.
 Project directory path.}
 }
+\value{
+\code{Date}.
+}
 \description{
 Get the run date from the project directory.
 }
