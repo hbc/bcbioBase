@@ -50,6 +50,6 @@ Suggests:
 Remotes:
     steinbaugh/basejump,
     steinbaugh/goalie
-biocViews: Infrastructure
+biocViews: DataImport, Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
