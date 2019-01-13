@@ -60,6 +60,8 @@
     top <- vapply(
         X = yaml,
         FUN = function(item) {
+            # Note that this will return variable length, so `vapply()` approach
+            # doesn't work here. Better method to use instead?
             return <- sapply(
                 X = item,
                 FUN = function(item) {
