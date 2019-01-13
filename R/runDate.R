@@ -9,6 +9,8 @@
 #'
 #' @inheritParams params
 #'
+#' @return `Date`.
+#'
 #' @examples
 #' runDate("2018-01-01_illumina_rnaseq")
 runDate <- function(projectDir) {
