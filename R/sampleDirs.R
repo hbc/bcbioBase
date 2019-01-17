@@ -38,25 +38,44 @@ sampleDirs <- function(uploadDir) {
     # Use the directory basenames for vector names.
     basenames <- basename(dirs)
 
-    # Require that the sample directories are valid names in R. They cannot
-    # contain non-alphanumeric characters, spaces, dashes, or begin with a
-    # number. Prefix samples that start with a number using "X". Note that
-    # multiplexed single-cell samples are expected to contain a dash in the name
-    # (e.g. multiplexed-AAAAAAAA).
-    x <- basenames
-    x <- gsub("[-ACGT]+$", "", basenames)
-    assert(validNames(x))
+    # Return sample directory basenames that are valid names in R.
+    # We're using these to define the `sampleID` column in our object metadata.
+    # Refer to `make.names()` for the valid name conventions in R.
+    # We're using the `makeNames()` variant here instead, which sanitizes using
+    # an underscore instead of a period.
+    #
+    # In particular, these are potentially problematic:
+    # - Contains dashes/hyphens (very common).
+    # - Begins with a number (very common).
+    # - Contains non-alphanumerics.
+    #
+    # Here we are informing the user when bcbio samples need to get sanitized
+    # to be valid in R.
+    check <- basenames
+    # Note that multiplexed single-cell samples are expected to contain a dash
+    # in the name (e.g. multiplexed-AAAAAAAA), so we're removing this from the
+    # validity check.
+    check <- gsub("[-ACGT]+$", "", basenames)
+    if (!isTRUE(validNames(check))) {
+        invalid <- setdiff(check, makeNames(check))
+        message(paste(
+            "Sanitizing sample names:",
+            printString(invalid),
+            sep = "\n"
+        ))
+    }
 
     # Our `makeNames` function coerces periods and dashes to underscores.
-    basenames <- makeNames(basenames, unique = TRUE)
+    basenames <- makeNames(basenames)
 
     # Assign our valid names to the absolute file paths.
     names(dirs) <- basenames
 
-    message(paste(
-        paste(length(dirs), "sample(s) detected:"),
-        str_trunc(toString(names(dirs)), width = getOption("width")),
-        sep = "\n"
+    message(paste0(
+        length(dirs), " ",
+        ngettext(n = length(dirs), msg1 = "sample", msg2 = "samples"),
+        " detected:\n",
+        printString(sort(names(dirs)))
     ))
 
     dirs
