@@ -24,7 +24,7 @@
 
 
 # Currently parsing of a maximum of 2 key levels is supported
-# (e.g. summary>metrics).
+# (e.g. summary > metrics).
 .sampleYAML <- function(yaml, keys) {
     assert(
         .isSummaryYAML(yaml),
@@ -46,8 +46,7 @@
     )
 
     # Check that nested keys are present and early return on failure. Return
-    # `NULL` here instead of stopping, so we can handle bcbio RNA-seq fast mode
-    # runs.
+    # `NULL` here instead of stopping, so we can handle bcbio RNA-seq fast mode.
     if (
         length(keys) == 2L &&
         !keys[[2L]] %in% names(yaml[[1L]][[keys[[1L]]]])
@@ -74,7 +73,7 @@
                 simplify = TRUE,
                 USE.NAMES = FALSE
             )
-            # Don't use isCharacter assert here because we're allowing NA.
+            # Don't use `isCharacter()` assert here because we're allowing NA.
             assert(is.character(return))
             return
         },
@@ -103,7 +102,7 @@
             item <- Filter(Negate(is.null), item)
             assert(isNonEmpty(item))
             # Sanitize names into camel case here, otherwise they'll get
-            # modified during the `ldply` call that coerces `list` to
+            # modified during the `ldply()` call that coerces `list` to
             # `data.frame`.
             item <- camel(item)
             lapply(
@@ -122,7 +121,7 @@
             )
         }
     )
-    # Use `ldply` method to coerce a list with uneven lengths.
+    # Use `ldply()` method to coerce a list with uneven lengths.
     nested <- ldply(nested, data.frame, stringsAsFactors = FALSE) %>%
         as_tibble() %>%
         removeNA()
@@ -138,8 +137,8 @@
     cbind(top, nested) %>%
         as_tibble() %>%
         camel() %>%
-        # Coerce any periods in colnames to "x" (e.g. x5.3Bias becomes
-        # x5x3Bias).
+        # Coerce any periods in colnames to "x"
+        # (e.g. x5.3Bias becomes x5x3Bias).
         set_colnames(gsub("\\.", "x", colnames(.))) %>%
         sanitizeNA() %>%
         removeNA() %>%

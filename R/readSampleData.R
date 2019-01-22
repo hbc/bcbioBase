@@ -17,14 +17,14 @@
 #'
 #' Normally when loading a bcbio run of demultiplexed samples, the sample
 #' metadata will be imported automatically from the `project-summary.yaml` file
-#' in the final upload directory using the `readYAMLSampleData` function. If
+#' in the final upload directory using the [readYAMLSampleData()] function. If
 #' you notice any typos in your metadata after completing the run, these can be
 #' corrected by editing the YAML file. Alternatively, you can pass in a
-#' spreadsheet with the `readSampleData` function.
+#' spreadsheet with the [readSampleData()] function.
 #'
-#' The samples in the bcbio run must map to the `description` column. The values
-#' provided in `description` for demultiplexed samples must be unique. They must
-#' also be *syntactically valid*, meaning that they cannot contain illegal
+#' The samples in the bcbio run must map to the "`description`" column. The
+#' values provided in description for demultiplexed samples must be unique. They
+#' must also be *syntactically valid*, meaning that they cannot contain illegal
 #' characters (e.g. spaces, non-alphanumerics, *dashes*) or *begin with a
 #' number*. Consult the documentation in `help(topic = "make.names")` for more
 #' information on valid names in R.
@@ -35,7 +35,7 @@
 #' case, bcbio will output per-sample directories with this this structure:
 #' "`description`-`revcomp`".
 #'
-#' `readSampleData` checks to see if the `description` column is unique. If
+#' [readSampleData()] checks to see if the "`description`" column is unique. If
 #' the values are duplicated, the function assumes that bcbio processed
 #' multiplexed FASTQs, where multiple samples of interest are barcoded inside a
 #' single FASTQ. This this case, you must supply additional "`index`",
