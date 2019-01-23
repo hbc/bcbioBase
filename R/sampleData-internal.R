@@ -27,10 +27,10 @@
 
 .makeSampleData <- function(object) {
     object <- as(object, "DataFrame")
-    # Note that we want to call `.assertIsSampleData` earlier, so we can detect
-    # if the user is attempting to input automatic columns, such as "revcomp".
-    # At this point, automatic columsns are allowed, so we don't want to check
-    # for them again here.
+    # Note that we want to call `.assertIsSampleData()` earlier, so we can
+    # detect if the user is attempting to input automatic columns, such as
+    # "revcomp". At this point, automatic columsns are allowed, so we don't want
+    # to check for them again here.
     assert(isSubset("description", colnames(object)))
     # Set sampleName from description, if necessary.
     if (!"sampleName" %in% colnames(object)) {

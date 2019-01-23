@@ -18,7 +18,7 @@ Read data versions
 }
 \note{
 The \code{data_versions.csv} file is only generated for special genomes
-containing additional information (e.g. the built-in "hg38" build).
+containing additional information (e.g. the built-in "\code{hg38}" build).
 }
 \examples{
 file <- file.path(bcbioBaseCacheURL, "data_versions.csv")

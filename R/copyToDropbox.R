@@ -39,10 +39,10 @@ copyToDropbox <- function(
         rdsToken <- NA  # nocov
     }
 
-    # Ensure user is authenticated with Dropbox
+    # Ensure user is authenticated with Dropbox.
     drop_auth(rdstoken = rdsToken)
 
-    # Display account information
+    # Display account information.
     acc <- drop_acc()
 
     message(paste(
@@ -51,12 +51,12 @@ copyToDropbox <- function(
         paste0("<", acc[["email"]], ">")
     ))
 
-    # Dropbox output directory
+    # Dropbox output directory.
     if (!suppressWarnings(drop_exists(dir))) {
         drop_create(dir)  # nocov
     }
 
-    # Warn about writes into shared directories
+    # Warn about writes into shared directories.
     metadata <- drop_get_metadata(dir)
     if (any(
         c("parent_shared_folder_id", "sharing_info") %in% names(metadata)
@@ -69,7 +69,7 @@ copyToDropbox <- function(
         ))
     }
 
-    # Loop across the files in list
+    # Loop across the files in list.
     rdrop <- lapply(files, function(file) {
         dropboxFile <- file.path(dir, basename(file))
         if (suppressWarnings(drop_exists(dropboxFile))) {

@@ -68,7 +68,7 @@ isn't required but is recommended for data provenance." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.11</span>
       </span>
     </div>
 
@@ -157,13 +157,13 @@ multiplexed samples.</p>
     <p>This applies to bulk RNA-seq samples.</p>
 <p>Normally when loading a bcbio run of demultiplexed samples, the sample
 metadata will be imported automatically from the <code>project-summary.yaml</code> file
-in the final upload directory using the <code>readYAMLSampleData</code> function. If
+in the final upload directory using the <code><a href='defunct.html'>readYAMLSampleData()</a></code> function. If
 you notice any typos in your metadata after completing the run, these can be
 corrected by editing the YAML file. Alternatively, you can pass in a
-spreadsheet with the <code>readSampleData</code> function.</p>
-<p>The samples in the bcbio run must map to the <code>description</code> column. The values
-provided in <code>description</code> for demultiplexed samples must be unique. They must
-also be <em>syntactically valid</em>, meaning that they cannot contain illegal
+spreadsheet with the <code>readSampleData()</code> function.</p>
+<p>The samples in the bcbio run must map to the "<code>description</code>" column. The
+values provided in description for demultiplexed samples must be unique. They
+must also be <em>syntactically valid</em>, meaning that they cannot contain illegal
 characters (e.g. spaces, non-alphanumerics, <em>dashes</em>) or <em>begin with a
 number</em>. Consult the documentation in <code><a href='https://www.rdocumentation.org/packages/utils/topics/help'>help(topic = "make.names")</a></code> for more
 information on valid names in R.</p>
@@ -174,7 +174,7 @@ information on valid names in R.</p>
     <p>This applies to some single-cell RNA-seq formats, including inDrops. In this
 case, bcbio will output per-sample directories with this this structure:
 "<code>description</code>-<code>revcomp</code>".</p>
-<p><code>readSampleData</code> checks to see if the <code>description</code> column is unique. If
+<p><code>readSampleData()</code> checks to see if the "<code>description</code>" column is unique. If
 the values are duplicated, the function assumes that bcbio processed
 multiplexed FASTQs, where multiple samples of interest are barcoded inside a
 single FASTQ. This this case, you must supply additional "<code>index</code>",
