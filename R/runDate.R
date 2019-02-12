@@ -16,9 +16,12 @@
 #' @examples
 #' runDate("2018-01-01_illumina_rnaseq")
 runDate <- function(projectDir) {
-    assert(isString(projectDir))
     projectDir <- basename(projectDir)
-    assert(isMatchingRegex(projectDir, pattern = projectDirPattern))
+    assert(
+        isString(projectDir),
+        # Using `uname()` here for R 3.4 compatibility.
+        unname(isMatchingRegex(projectDir, pattern = projectDirPattern))
+    )
     match <- str_match(string = projectDir, pattern = projectDirPattern)
     as.Date(match[[2L]])
 }
