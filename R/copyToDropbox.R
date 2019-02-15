@@ -14,9 +14,9 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
-#' }
+#' ## \dontrun{
+#' ## copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
+#' ## }
 copyToDropbox <- function(
     files,
     dir,

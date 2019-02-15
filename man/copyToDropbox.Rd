@@ -21,9 +21,9 @@ Invisible \code{list} of rdrop2 output.
 Copy Files to Dropbox
 }
 \examples{
-\dontrun{
-copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
-}
+## \dontrun{
+## copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
+## }
 }
 \author{
 Michael Steinbaugh, Victor Barerra, John Hutchinson
