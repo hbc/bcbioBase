@@ -24,6 +24,10 @@
 \alias{plotQuantileHeatmap}
 \alias{prepareSummarizedExperiment}
 \alias{prepareTemplate}
+\alias{bcbio_geom_abline}
+\alias{bcbio_geom_label}
+\alias{bcbio_geom_label_average}
+\alias{bcbio_geom_label_repel}
 \title{Deprecated Functions}
 \usage{
 flatFiles(object, ...)
@@ -41,6 +45,14 @@ plotQC(object, ...)
 plotQuantileHeatmap(object, ...)
 
 prepareSummarizedExperiment(...)
+
+bcbio_geom_abline(...)
+
+bcbio_geom_label(...)
+
+bcbio_geom_label_average(...)
+
+bcbio_geom_label_repel(...)
 }
 \value{
 No value.
