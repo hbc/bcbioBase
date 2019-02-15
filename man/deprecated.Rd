@@ -2,10 +2,19 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
-\alias{readLogFile}
-\alias{readSampleMetadataFile}
-\alias{sampleMetadata}
-\alias{sampleMetadata<-}
+\alias{assertFormalInterestingGroups}
+\alias{convertGenesToSymbols}
+\alias{gene2symbol}
+\alias{interestingGroups}
+\alias{interestingGroups<-}
+\alias{sampleData}
+\alias{sampleData<-}
+\alias{sampleNames}
+\alias{sanitizeSampleData}
+\alias{selectSamples}
+\alias{uniteInterestingGroups}
+\alias{separatorBar}
+\alias{updateMessage}
 \alias{flatFiles}
 \alias{metrics}
 \alias{plotCorrelationHeatmap}
@@ -14,16 +23,9 @@
 \alias{plotQC}
 \alias{plotQuantileHeatmap}
 \alias{prepareSummarizedExperiment}
+\alias{prepareTemplate}
 \title{Deprecated Functions}
 \usage{
-readLogFile(...)
-
-readSampleMetadataFile(...)
-
-sampleMetadata(object, ...)
-
-sampleMetadata(object) <- value
-
 flatFiles(object, ...)
 
 metrics(object, ...)
