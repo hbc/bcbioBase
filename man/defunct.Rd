@@ -4,6 +4,10 @@
 \alias{defunct}
 \alias{checkInterestingGroups}
 \alias{prepareSampleMetadata}
+\alias{readLogFile}
+\alias{readSampleMetadataFile}
+\alias{sampleMetadata}
+\alias{sampleMetadata<-}
 \alias{sampleYAML}
 \alias{sampleYAMLMetadata}
 \alias{sampleYAMLMetrics}
@@ -16,6 +20,14 @@
 checkInterestingGroups(...)
 
 prepareSampleMetadata(...)
+
+readLogFile(...)
+
+readSampleMetadataFile(...)
+
+sampleMetadata(object, ...)
+
+sampleMetadata(object) <- value
 
 sampleYAML(...)
 

@@ -35,36 +35,31 @@ prepareSampleMetadata <- function(...) {
     .Defunct()
 }
 
-#' @rdname deprecated
+#' @rdname defunct
 #' @export
 readLogFile <- function(...) {
-    .Deprecated("readLog")
-    readLog(...)
+    .Defunct("readLog")
 }
 
-#' @rdname deprecated
+#' @rdname defunct
 #' @export
 readSampleMetadataFile <- function(...) {
-    .Deprecated("readSampleData")
-    readSampleData(...)
+    .Defunct("readSampleData")
 }
 
 
 
 # v0.2.4 =======================================================================
-#' @rdname deprecated
+#' @rdname defunct
 #' @export
 sampleMetadata <- function(object, ...) {
-    .Deprecated("sampleData")
-    sampleData(object, ...)
+    .Defunct("sampleData")
 }
 
-#' @rdname deprecated
+#' @rdname defunct
 #' @export
 `sampleMetadata<-` <- function(object, value) {
-    .Deprecated("sampleData<-")
-    sampleData(object) <- value
-    object
+    .Defunct("sampleData<-")
 }
 
 #' @rdname defunct
@@ -103,67 +98,106 @@ assertFormalAnnotationCol <- function(...) {
     .Defunct()
 }
 
+#' @rdname deprecated
+#' @name assertFormalInterestingGroups
 #' @importFrom basejump assertFormalInterestingGroups
+#' @usage NULL
 #' @export
-basejump::assertFormalInterestingGroups
+NULL
 
+#' @rdname deprecated
+#' @name convertGenesToSymbols
 #' @importFrom basejump convertGenesToSymbols
 #' @export
-basejump::convertGenesToSymbols
+#' @usage NULL
+NULL
 
+#' @rdname deprecated
+#' @name gene2symbol
 #' @importFrom basejump gene2symbol
 #' @export
-basejump::gene2symbol
+#' @usage NULL
+NULL
 
+#' @rdname deprecated
+#' @name interestingGroups
 #' @importFrom basejump interestingGroups
 #' @export
-basejump::interestingGroups
+#' @usage NULL
+NULL
 
+#' @rdname deprecated
+#' @name interestingGroups<-
 #' @importFrom basejump interestingGroups<-
 #' @export
-basejump::`interestingGroups<-`
+#' @usage NULL
+NULL
 
+#' @rdname deprecated
+#' @name sampleData
 #' @importFrom basejump sampleData
 #' @export
-basejump::sampleData
+#' @usage NULL
+NULL
 
+#' @rdname deprecated
+#' @name sampleData<-
 #' @importFrom basejump sampleData<-
 #' @export
-basejump::`sampleData<-`
+#' @usage NULL
+NULL
 
+#' @rdname deprecated
+#' @name sampleNames
 #' @importFrom basejump sampleNames
 #' @export
-basejump::sampleNames
+#' @usage NULL
+NULL
 
+#' @rdname deprecated
+#' @name sanitizeSampleData
 #' @importFrom basejump sanitizeSampleData
 #' @export
-basejump::sanitizeSampleData
+#' @usage NULL
+NULL
 
+#' @rdname deprecated
+#' @name selectSamples
 #' @importFrom basejump selectSamples
 #' @export
-basejump::selectSamples
+#' @usage NULL
+NULL
 
+#' @rdname deprecated
+#' @name uniteInterestingGroups
 #' @importFrom basejump uniteInterestingGroups
 #' @export
-basejump::uniteInterestingGroups
+#' @usage NULL
+NULL
 
 
 
 # v0.3.2 =======================================================================
+#' @rdname deprecated
+#' @name separatorBar
 #' @importFrom basejump separatorBar
 #' @export
-basejump::separatorBar
+#' @usage NULL
+NULL
 
+#' @rdname deprecated
+#' @name updateMessage
 #' @importFrom basejump updateMessage
 #' @export
-basejump::updateMessage
+#' @usage NULL
+NULL
 
 #' @rdname defunct
 #' @export
 setGeneric(
     "bcbio",
     function(object, ...) {
-        standardGeneric("bcbio")
+        .Defunct()
     }
 )
 
@@ -172,7 +206,7 @@ setGeneric(
 setGeneric(
     "bcbio<-",
     function(object, ..., value) {
-        standardGeneric("bcbio<-")
+        .Defunct()
     }
 )
 
@@ -237,9 +271,12 @@ prepareSummarizedExperiment <- function(...) {
 
 
 # v0.4.1 =======================================================================
+#' @rdname deprecated
+#' @name prepareTemplate
 #' @importFrom basejump prepareTemplate
 #' @export
-basejump::prepareTemplate
+#' @usage NULL
+NULL
 
 
 
