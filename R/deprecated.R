@@ -183,49 +183,49 @@ setGeneric(
 #' @export
 setGeneric(
     name = "flatFiles",
-    def = getGeneric("flatFiles", package = "basejump")
+    def = getGeneric("flatFiles")
 )
 
 #' @rdname deprecated
 #' @export
 setGeneric(
     name = "metrics",
-    def = getGeneric("metrics", package = "basejump")
+    def = getGeneric("metrics")
 )
 
 #' @rdname deprecated
 #' @export
 setGeneric(
     name = "plotCorrelationHeatmap",
-    def = getGeneric("plotCorrelationHeatmap", package = "basejump")
+    def = getGeneric("plotCorrelationHeatmap")
 )
 
 #' @rdname deprecated
 #' @export
 setGeneric(
     name = "plotGene",
-    def = getGeneric("plotGene", package = "basejump")
+    def = getGeneric("plotGene")
 )
 
 #' @rdname deprecated
 #' @export
 setGeneric(
     name = "plotHeatmap",
-    def = getGeneric("plotHeatmap", package = "basejump")
+    def = getGeneric("plotHeatmap")
 )
 
 #' @rdname deprecated
 #' @export
 setGeneric(
     name = "plotQC",
-    def = getGeneric("plotQC", package = "basejump")
+    def = getGeneric("plotQC")
 )
 
 #' @rdname deprecated
 #' @export
 setGeneric(
     name = "plotQuantileHeatmap",
-    def = getGeneric("plotQuantileHeatmap", package = "basejump")
+    def = getGeneric("plotQuantileHeatmap")
 )
 
 #' @rdname deprecated
