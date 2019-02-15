@@ -1,4 +1,5 @@
 # nocov start
+# nolint start
 
 
 
@@ -280,4 +281,39 @@ NULL
 
 
 
+# v0.4.2 =======================================================================
+# Currently soft deprecating here. These will be formally deprecated in the
+# v0.5 release series.
+
+#' @rdname deprecated
+#' @importFrom basejump basejump_geom_abline
+#' @export
+bcbio_geom_abline <- function(...) {
+    basejump::basejump_geom_abline(...)
+}
+
+#' @rdname deprecated
+#' @importFrom basejump basejump_geom_label
+#' @export
+bcbio_geom_label <- function(...) {
+    basejump::basejump_geom_label(...)
+}
+
+#' @rdname deprecated
+#' @importFrom basejump basejump_geom_label_average
+#' @export
+bcbio_geom_label_average <- function(...) {
+    basejump::basejump_geom_label_average(...)
+}
+
+#' @rdname deprecated
+#' @importFrom basejump basejump_geom_label_repel
+#' @export
+bcbio_geom_label_repel <- function(...) {
+    basejump::basejump_geom_label_repel(...)
+}
+
+
+
+# nolint end
 # nocov end
