@@ -38,8 +38,8 @@ test_that("readLog", {
 
 test_that("readLog : Missing file", {
     expect_error(
-        readLog("XXX.log"),
-        "is_existing_file :"
+        object = readLog("XXX.log"),
+        regexp = "file"
     )
 })
 
@@ -69,19 +69,19 @@ test_that("readSampleData : Demultiplexed FASTQ", {
     file <- "demultiplexed.csv"
     x <- readSampleData(file)
 
-    # Check that names are sanitized correctly
+    # Check that names are sanitized correctly.
     expect_identical(
         rownames(x),
-        c("sample_1", "sample_2", "sample_3", "sample_4")
+        c("sample1", "sample2", "sample3", "sample4")
     )
 
-    # Check that column names get set correctly
+    # Check that column names get set correctly.
     expect_identical(
         colnames(x),
         c("sampleName", "fileName", "description", "genotype")
     )
 
-    # Lane-split technical replicate support
+    # Lane-split technical replicate support.
     x <- readSampleData(file, lanes = 4L)
     expect_identical(
         colnames(x),
@@ -90,18 +90,18 @@ test_that("readSampleData : Demultiplexed FASTQ", {
     expect_identical(
         rownames(x)[1L:8L],
         c(
-            "sample_1_L001",
-            "sample_1_L002",
-            "sample_1_L003",
-            "sample_1_L004",
-            "sample_2_L001",
-            "sample_2_L002",
-            "sample_2_L003",
-            "sample_2_L004"
+            "sample1_L001",
+            "sample1_L002",
+            "sample1_L003",
+            "sample1_L004",
+            "sample2_L001",
+            "sample2_L002",
+            "sample2_L003",
+            "sample2_L004"
         )
     )
 
-    # Required column check failure
+    # Required column check failure.
     expect_error(
         readSampleData("demultiplexed_missing_cols.csv"),
         paste(
@@ -110,7 +110,7 @@ test_that("readSampleData : Demultiplexed FASTQ", {
         )
     )
 
-    # Duplicated description
+    # Duplicated description.
     expect_error(
         readSampleData("demultiplexed_duplicated_description.csv"),
         paste(
@@ -127,13 +127,14 @@ test_that("readSampleData : Multiplexed FASTQ", {
     expect_identical(
         rownames(x),
         c(
-            "run1_CAGTTATG",
-            "run1_TTACCTCC",
-            "run2_ATAGCCTT",
-            "run2_CTTAATAG",
-            "run2_TAAGGCTC",
-            "run2_TCGCATAA",
-            "run2_TCTTACGC"
+            "indrops1_AGAGGATA",
+            "indrops1_ATAGAGAG",
+            "indrops1_CTCCTTAC",
+            "indrops1_TATGCAGT",
+            "indrops2_AGAGGATA",
+            "indrops2_ATAGAGAG",
+            "indrops2_CTCCTTAC",
+            "indrops2_TATGCAGT"
         )
     )
 
@@ -142,34 +143,38 @@ test_that("readSampleData : Multiplexed FASTQ", {
     expect_identical(
         rownames(x),
         c(
-            "run1_L001_CAGTTATG",
-            "run1_L001_TTACCTCC",
-            "run1_L002_CAGTTATG",
-            "run1_L002_TTACCTCC",
-            "run1_L003_CAGTTATG",
-            "run1_L003_TTACCTCC",
-            "run1_L004_CAGTTATG",
-            "run1_L004_TTACCTCC",
-            "run2_L001_ATAGCCTT",
-            "run2_L001_CTTAATAG",
-            "run2_L001_TAAGGCTC",
-            "run2_L001_TCGCATAA",
-            "run2_L001_TCTTACGC",
-            "run2_L002_ATAGCCTT",
-            "run2_L002_CTTAATAG",
-            "run2_L002_TAAGGCTC",
-            "run2_L002_TCGCATAA",
-            "run2_L002_TCTTACGC",
-            "run2_L003_ATAGCCTT",
-            "run2_L003_CTTAATAG",
-            "run2_L003_TAAGGCTC",
-            "run2_L003_TCGCATAA",
-            "run2_L003_TCTTACGC",
-            "run2_L004_ATAGCCTT",
-            "run2_L004_CTTAATAG",
-            "run2_L004_TAAGGCTC",
-            "run2_L004_TCGCATAA",
-            "run2_L004_TCTTACGC"
+            "indrops1_L001_AGAGGATA",
+            "indrops1_L001_ATAGAGAG",
+            "indrops1_L001_CTCCTTAC",
+            "indrops1_L001_TATGCAGT",
+            "indrops1_L002_AGAGGATA",
+            "indrops1_L002_ATAGAGAG",
+            "indrops1_L002_CTCCTTAC",
+            "indrops1_L002_TATGCAGT",
+            "indrops1_L003_AGAGGATA",
+            "indrops1_L003_ATAGAGAG",
+            "indrops1_L003_CTCCTTAC",
+            "indrops1_L003_TATGCAGT",
+            "indrops1_L004_AGAGGATA",
+            "indrops1_L004_ATAGAGAG",
+            "indrops1_L004_CTCCTTAC",
+            "indrops1_L004_TATGCAGT",
+            "indrops2_L001_AGAGGATA",
+            "indrops2_L001_ATAGAGAG",
+            "indrops2_L001_CTCCTTAC",
+            "indrops2_L001_TATGCAGT",
+            "indrops2_L002_AGAGGATA",
+            "indrops2_L002_ATAGAGAG",
+            "indrops2_L002_CTCCTTAC",
+            "indrops2_L002_TATGCAGT",
+            "indrops2_L003_AGAGGATA",
+            "indrops2_L003_ATAGAGAG",
+            "indrops2_L003_CTCCTTAC",
+            "indrops2_L003_TATGCAGT",
+            "indrops2_L004_AGAGGATA",
+            "indrops2_L004_ATAGAGAG",
+            "indrops2_L004_CTCCTTAC",
+            "indrops2_L004_TATGCAGT"
         )
     )
 
@@ -233,10 +238,9 @@ test_that("readSampleData : sampleID defined by user", {
 })
 
 test_that("readSampleData : Missing file", {
-    # Always stop on missing
     expect_error(
-        readSampleData("XXX.csv"),
-        "is_existing_file :"
+        object = readSampleData("XXX.csv"),
+        regexp = "file"
     )
 })
 
