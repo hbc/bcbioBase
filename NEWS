@@ -1,3 +1,11 @@
+## bcbioBase 0.4.2 (2019-02-15)
+
+### Minor changes
+
+- Unit test and deprecated function updates to maintain compatibility with new
+  [basejump][] v0.9 release series.
+
+
 ## bcbioBase 0.4.1 (2018-08-19)
 
 ### Minor changes
