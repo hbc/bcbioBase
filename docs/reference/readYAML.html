@@ -149,28 +149,28 @@ output the same metrics into the YAML.</p>
     <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='st'>"http://bcbiobase.seq.cloud/project-summary.yaml"</span>
 <span class='fu'>readYAMLSampleData</span>(<span class='no'>file</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span>()</div><div class='output co'>#&gt; <span class='message'>Reading sample metadata from YAML</span></div><div class='output co'>#&gt; Observations: 4
 #&gt; Variables: 5
-#&gt; $ sampleName  <span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> group1_1, group1_2, group2_1, group2_2
-#&gt; $ description </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> group1_1, group1_2, group2_1, group2_2
-#&gt; $ genomeBuild </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> mm10, mm10, mm10, mm10
-#&gt; $ group       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> ctrl, ctrl, ko, ko
-#&gt; $ samRef      </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> /groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/seq/mm10.f…</div><div class='input'><span class='fu'>readYAMLSampleMetrics</span>(<span class='no'>file</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span>()</div><div class='output co'>#&gt; <span class='message'>Reading sample metrics from YAML</span></div><div class='output co'>#&gt; Observations: 4
+#&gt; $ sampleName  <span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> group1_1, group1_2, group2_1, group2_2
+#&gt; $ description </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> group1_1, group1_2, group2_1, group2_2
+#&gt; $ genomeBuild </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> mm10, mm10, mm10, mm10
+#&gt; $ group       </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> ctrl, ctrl, ko, ko
+#&gt; $ samRef      </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> /groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/seq/mm10.f…</div><div class='input'><span class='fu'>readYAMLSampleMetrics</span>(<span class='no'>file</span>) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span>()</div><div class='output co'>#&gt; <span class='message'>Reading sample metrics from YAML</span></div><div class='output co'>#&gt; Observations: 4
 #&gt; Variables: 16
-#&gt; $ averageInsertSize             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 0, 0, 0, 0
-#&gt; $ duplicates                    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 0, 0, 0, 0
-#&gt; $ duplicationRateOfMapped       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 0.5574675, 0.5890465, 0.5772400, 0.5828…
-#&gt; $ exonicRate                    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 0.8590, 0.8820, 0.8632, 0.8713
-#&gt; $ intergenicRate                </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 0.0663, 0.0599, 0.0661, 0.0635
-#&gt; $ intronicRate                  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 0.0747, 0.0581, 0.0707, 0.0652
-#&gt; $ mappedPairedReads             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 0, 0, 0, 0
-#&gt; $ mappedReads                   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 22062337, 25852621, 25172084, 25100941
-#&gt; $ qualityFormat                 </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> standard, standard, standard, standard
-#&gt; $ rrna                          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 42218.64, 48275.49, 38893.78, 40831.69
-#&gt; $ rrnaRate                      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 0.002069408, 0.001970088, 0.001665623, …
-#&gt; $ sequenceLength                </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> 25-75, 25-75, 25-75, 25-75
-#&gt; $ sequencesFlaggedAsPoorQuality </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 0, 0, 0, 0
-#&gt; $ totalReads                    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 22339941, 26168288, 25490090, 25399483
-#&gt; $ x5x3Bias                      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1.01, 1.04, 1.00, 0.98
-#&gt; $ xGC                           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 48, 48, 47, 48</div></span></pre>
+#&gt; $ averageInsertSize             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 0, 0, 0, 0
+#&gt; $ duplicates                    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 0, 0, 0, 0
+#&gt; $ duplicationRateOfMapped       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 0.5574675, 0.5890465, 0.5772400, 0.5828…
+#&gt; $ exonicRate                    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 0.8590, 0.8820, 0.8632, 0.8713
+#&gt; $ intergenicRate                </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 0.0663, 0.0599, 0.0661, 0.0635
+#&gt; $ intronicRate                  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 0.0747, 0.0581, 0.0707, 0.0652
+#&gt; $ mappedPairedReads             </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 0, 0, 0, 0
+#&gt; $ mappedReads                   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 22062337, 25852621, 25172084, 25100941
+#&gt; $ qualityFormat                 </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> standard, standard, standard, standard
+#&gt; $ rrna                          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 42218.64, 48275.49, 38893.78, 40831.69
+#&gt; $ rrnaRate                      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 0.002069408, 0.001970088, 0.001665623, …
+#&gt; $ sequenceLength                </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> 25-75, 25-75, 25-75, 25-75
+#&gt; $ sequencesFlaggedAsPoorQuality </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 0, 0, 0, 0
+#&gt; $ totalReads                    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 22339941, 26168288, 25490090, 25399483
+#&gt; $ x5x3Bias                      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 1.01, 1.04, 1.00, 0.98
+#&gt; $ xGC                           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 48, 48, 47, 48</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
