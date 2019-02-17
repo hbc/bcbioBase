@@ -25,7 +25,7 @@ bioc_packages:
   - BiocCheck
   - GenomeInfoDbData
 r_github_packages:
-  - mjsteinbaugh/lintr
+  - steinbaugh/lintr
 
 after_success:
   - Rscript -e 'lintr::lint_package()'
