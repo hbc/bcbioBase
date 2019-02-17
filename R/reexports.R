@@ -1,3 +1,13 @@
+#' @importFrom basejump lanePattern
+#' @export
+basejump::lanePattern
+
+#' @importFrom basejump minimalSampleData
+#' @export
+basejump::minimalSampleData
+
+
+
 #' @importFrom dplyr pull
 #' @export
 dplyr::pull

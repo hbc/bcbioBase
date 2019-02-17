@@ -36,15 +36,6 @@ metadataBlacklist <- sort(c(
 
 
 
-#' Lane Grep Pattern
-#' @keywords internal
-#' @export
-#' @examples
-#' lanePattern
-lanePattern <- "_L(\\d{3})"
-
-
-
 #' Project Directory Grep Pattern
 #' @keywords internal
 #' @export

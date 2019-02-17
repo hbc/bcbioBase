@@ -3,6 +3,8 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
+\alias{lanePattern}
+\alias{minimalSampleData}
 \alias{pull}
 \alias{ggplot}
 \alias{\%>\%}
@@ -15,6 +17,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{basejump}{\code{\link[basejump]{lanePattern}}, \code{\link[basejump]{minimalSampleData}}}
+
   \item{dplyr}{\code{\link[dplyr]{pull}}}
 
   \item{ggplot2}{\code{\link[ggplot2]{ggplot}}}

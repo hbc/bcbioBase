@@ -22,9 +22,6 @@ Function will stop if no sample directories match.
 uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
 sampleDirs(uploadDir)
 }
-\seealso{
-Other Data Functions: \code{\link{minimalSampleData}}
-}
 \author{
 Michael Steinbaugh
 }
