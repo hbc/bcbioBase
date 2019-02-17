@@ -25,4 +25,3 @@ sampleDirs(uploadDir)
 \author{
 Michael Steinbaugh
 }
-\concept{Data Functions}

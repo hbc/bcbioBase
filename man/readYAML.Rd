@@ -29,12 +29,6 @@ file <- "http://bcbiobase.seq.cloud/project-summary.yaml"
 readYAMLSampleData(file) \%>\% glimpse()
 readYAMLSampleMetrics(file) \%>\% glimpse()
 }
-\seealso{
-Other Read Functions: \code{\link{readDataVersions}},
-  \code{\link{readLog}}, \code{\link{readProgramVersions}},
-  \code{\link{readSampleData}}, \code{\link{readTx2gene}}
-}
 \author{
 Michael Steinbaugh
 }
-\concept{Read Functions}

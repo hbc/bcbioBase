@@ -21,12 +21,6 @@ bcbio doesn't save program versions when run in fast mode.
 \examples{
 readProgramVersions("http://bcbiobase.seq.cloud/programs.txt")
 }
-\seealso{
-Other Read Functions: \code{\link{readDataVersions}},
-  \code{\link{readLog}}, \code{\link{readSampleData}},
-  \code{\link{readTx2gene}}, \code{\link{readYAML}}
-}
 \author{
 Michael Steinbaugh
 }
-\concept{Read Functions}

@@ -1,8 +1,9 @@
 # nocov start
 
+
+
 #' Copy Files to Dropbox
 #'
-#' @family Write Functions
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
 #'
 #' @param files `character`. Local file paths.
@@ -76,5 +77,7 @@ copyToDropbox <- function(
 
     invisible(rdrop)
 }
+
+
 
 # nocov end

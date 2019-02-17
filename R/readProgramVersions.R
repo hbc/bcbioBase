@@ -2,7 +2,6 @@
 #'
 #' @note bcbio doesn't save program versions when run in fast mode.
 #'
-#' @family Read Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

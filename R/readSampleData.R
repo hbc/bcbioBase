@@ -1,6 +1,5 @@
 #' Read Sample Metadata
 #'
-#' @family Read Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

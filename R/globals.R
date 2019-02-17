@@ -8,14 +8,10 @@ yamlFlatCols <- c(
     "sam_ref"
 )
 
-
-
 metricsBlacklist <- c(
     camel(yamlFlatCols),
     "name"
 )
-
-
 
 #' Metadata Blacklist
 #' @keywords internal

@@ -28,4 +28,3 @@ Copy Files to Dropbox
 \author{
 Michael Steinbaugh, Victor Barerra, John Hutchinson
 }
-\concept{Write Functions}

@@ -2,7 +2,6 @@
 #'
 #' @note Doesn't attempt to strip transcript versions.
 #'
-#' @family Read Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

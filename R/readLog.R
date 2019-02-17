@@ -1,6 +1,5 @@
 #' Read Log File
 #'
-#' @family Read Functions
 #' @author Michael Steinbaugh
 #'
 #' @inheritParams general

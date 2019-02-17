@@ -27,12 +27,6 @@ glimpse(x)
 x <- readSampleData("http://bcbiobase.seq.cloud/multiplexed.csv")
 glimpse(x)
 }
-\seealso{
-Other Read Functions: \code{\link{readDataVersions}},
-  \code{\link{readLog}}, \code{\link{readProgramVersions}},
-  \code{\link{readTx2gene}}, \code{\link{readYAML}}
-}
 \author{
 Michael Steinbaugh
 }
-\concept{Read Functions}

@@ -21,12 +21,6 @@ Doesn't attempt to strip transcript versions.
 \examples{
 readTx2gene("http://bcbiobase.seq.cloud/tx2gene.csv")
 }
-\seealso{
-Other Read Functions: \code{\link{readDataVersions}},
-  \code{\link{readLog}}, \code{\link{readProgramVersions}},
-  \code{\link{readSampleData}}, \code{\link{readYAML}}
-}
 \author{
 Michael Steinbaugh
 }
-\concept{Read Functions}
