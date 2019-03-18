@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "summary.yaml")
-#' yaml <- import(file)
+#' yaml <- basejump::import(file)
 #' x <- getMetricsFromYAML(yaml)
 #' summary(x)
 #' colnames(x)

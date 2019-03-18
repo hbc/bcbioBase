@@ -23,7 +23,7 @@ output the same metrics into the YAML.
 }
 \examples{
 file <- file.path(bcbioBaseCacheURL, "summary.yaml")
-yaml <- import(file)
+yaml <- basejump::import(file)
 x <- getMetricsFromYAML(yaml)
 summary(x)
 colnames(x)

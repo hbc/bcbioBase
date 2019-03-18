@@ -19,7 +19,7 @@ Get GTF file path from YAML
 }
 \examples{
 file <- file.path(bcbioBaseCacheURL, "summary.yaml")
-yaml <- import(file)
+yaml <- basejump::import(file)
 x <- getGTFFileFromYAML(yaml)
 print(x)
 }
