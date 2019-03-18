@@ -21,6 +21,7 @@ branches:
 
 environment:
   global:
+    PKGTYPE: win.binary
     R_ARCH: x64
     USE_RTOOLS: true
 

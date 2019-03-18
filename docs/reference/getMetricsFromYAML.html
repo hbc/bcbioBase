@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.13</span>
       </span>
     </div>
 
@@ -140,7 +140,7 @@ output the same metrics into the YAML.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='no'>bcbioBaseCacheURL</span>, <span class='st'>"summary.yaml"</span>)
-<span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/brio/topics/import'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing summary.yaml using yaml::yaml.load_file().</span></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>getMetricsFromYAML</span>(<span class='no'>yaml</span>)</div><div class='output co'>#&gt; <span class='message'>Getting sample metrics from YAML.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
+<span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/basejump/topics/reexports'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing summary.yaml using yaml::yaml.load_file().</span></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>getMetricsFromYAML</span>(<span class='no'>yaml</span>)</div><div class='output co'>#&gt; <span class='message'>Getting sample metrics from YAML.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
 #&gt;        16 DataFrame        S4 </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;  [1] "averageInsertSize"             "duplicates"                   
 #&gt;  [3] "duplicationRateOfMapped"       "exonicRate"                   
 #&gt;  [5] "intergenicRate"                "intronicRate"                 

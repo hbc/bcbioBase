@@ -9,7 +9,7 @@
 #'
 #' @examples
 #' file <- file.path(bcbioBaseCacheURL, "summary.yaml")
-#' yaml <- import(file)
+#' yaml <- basejump::import(file)
 #' x <- getSampleDataFromYAML(yaml)
 #' summary(x)
 #' colnames(x)

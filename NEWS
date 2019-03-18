@@ -1,3 +1,15 @@
+## bcbioBase 0.5.13 (2019-03-18)
+
+### Minor changes
+
+- Migrated `metadataBlacklist` to basejump package, for use in
+  `makeSummarizedExperiment` and `makeSingleCellExperiment` functions. Global
+  variable is still reexported here.
+- Reduced the number of reexported functions, including pipe (`%>%`) and
+  `import`.
+
+
+
 ## bcbioBase 0.5.12 (2019-02-11)
 
 ### Minor changes
@@ -7,35 +19,113 @@
 
 ## bcbioBase 0.5.11 (2019-01-22)
 
+### Minor changes
+
+- Documentation improvements.
+
+
 
 ## bcbioBase 0.5.10 (2019-01-17)
+
+### Minor changes
+
+- `sampleDirs`: Added an informative message for user regarding sample name
+  sanitization of cellular barcodes.
+
 
 
 ## bcbioBase 0.5.9 (2019-01-13)
 
+### Minor changes
+
+- Added return value for `runDate` to documentation.
+- Updated Travis CI and AppVeyor CI configuration.
+- Added comment regarding top-level sample metadata parsing in internal YAML
+  code.
+
+
 
 ## bcbioBase 0.5.8 (2019-01-07)
+
+### Minor changes
+
+- Miscellaneous improvements to documentation and goalie assert checks.
+
 
 
 ## bcbioBase 0.5.7 (2018-12-21)
 
+### Minor changes
+
+- Updated documentation to reflect new conventions used in [basejump][]. Switch
+  to using `logical(1)` instead of `string`, for example. This approach was
+  inspired by the conventions used in the checkmate package.
+- Switched documentation titles to use sentence case instead of title case.
+
+
 
 ## bcbioBase 0.5.6 (2018-12-12)
+
+### Major changes
+
+- First release that has switched to using [goalie][] internally for assert
+  checks, in place of assertive package.
+- Reworked internal YAML parsing functions and improved the assert checks.
+
+### Minor changes
+
+- Reorganized and removed some deprecated functions.
+- Updated unit tests to reflect switch to goalie.
+
 
 
 ## bcbioBase 0.5.5 (2018-11-29)
 
+### Minor changes
+
+- Miscellaneous documentation improvements.
+
+
 
 ## bcbioBase 0.5.4 (2018-11-26)
+
+### Minor changes
+
+- Improve GTF file assert checks and unit testing.
+
 
 
 ## bcbioBase 0.5.3 (2018-11-25)
 
+### Minor changes
+
+- `getBarcodeCutoffFromCommands`: Simplified flow in `cutoff` internal variable
+  assignment.
+- Reorganized deprecated functions. See `deprecated.R` file.
+- Split out `projectDir` and `runDate` functions into separate R files, from
+  `detect.R`.
+- Split out YAML parsing functions into separate files from `yaml.R`.
+- Tweaked `metadataBlacklist` global and added improved comments.
+- Reworked `.assertIsSampleData` and `.makeSampleData` internal code.
+
+
 
 ## bcbioBase 0.5.2 (2018-11-19)
 
+### Minor changes
+
+- Updated [basejump][] and [goalie][] dependencies.
+- Miscellaneous documentation improvements.
+
+
 
 ## bcbioBase 0.5.1 (2018-11-15)
+
+### Minor changes
+
+- Switched imports to simply [basejump][], instead of attempting to reference
+  any basejump subpackages.
+- Migrating to [goalie][] package for internal assert checks.
 
 
 ## bcbioBase 0.5.0 (2018-09-14)
@@ -467,6 +557,7 @@ with the [bcbio][] output directories.
 [Bioconductor]: http://bioconductor.org/
 [Dropbox]: https://www.dropbox.com/
 [ggplot2]: https://ggplot2.tidyverse.org/
+[goalie]: https://steinbaugh.com/goalie/
 [lintr]: https://github.com/jimhester/lintr/
 [pheatmap]: https://github.com/raivokolde/pheatmap/
 [rdrop2]: https://github.com/karthik/rdrop2/

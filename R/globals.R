@@ -11,29 +11,6 @@ bcbioBaseCacheURL <- paste0(
     "v", packageVersion$major, ".", packageVersion$minor  # nolint
 )
 
-#' Sample metadata blacklist
-#' @export
-#' @examples
-#' metadataBlacklist
-metadataBlacklist <- c(
-    # Too vague.
-    "ID", "Id", "id",
-    # Generated automatically.
-    "interestingGroups",
-    # Use "sampleName" instead.
-    "name",
-    # Generated automatically from "sequence" column.
-    "revcomp",
-    # Used internally by dplyr.
-    "rowname",
-    # Use "sampleName" instead.
-    "sample",
-    # "sampleID" is set automatically, for multiplexed/cell-level data.
-    "sampleID", "sampleId", "sampleid",
-    # Use "sampleName" instead.
-    "samplename"
-)
-
 #' Project directory grep pattern
 #' @export
 #' @examples
