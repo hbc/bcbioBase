@@ -92,5 +92,12 @@ readYAMLSampleMetrics <- function(...) {
 
 
 
+# 0.5.14 =======================================================================
+#' @importFrom basejump metadataBlacklist
+#' @export
+basejump::metadataBlacklist
+
+
+
 # nolint end
 # nocov end
