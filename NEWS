@@ -19,17 +19,37 @@
 
 ## bcbioBase 0.5.11 (2019-01-22)
 
+### Minor changes
+
+- Documentation improvements.
+
 
 
 ## bcbioBase 0.5.10 (2019-01-17)
+
+### Minor changes
+
+- `sampleDirs`: Added an informative message for user regarding sample name
+  sanitization of cellular barcodes.
 
 
 
 ## bcbioBase 0.5.9 (2019-01-13)
 
+### Minor changes
+
+- Added return value for `runDate` to documentation.
+- Updated Travis CI and AppVeyor CI configuration.
+- Added comment regarding top-level sample metadata parsing in internal YAML
+  code.
+
 
 
 ## bcbioBase 0.5.8 (2019-01-07)
+
+### Minor changes
+
+- Miscellaneous improvements to documentation and goalie assert checks.
 
 
 
