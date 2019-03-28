@@ -68,7 +68,7 @@ isn't required but is recommended for data provenance." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.14</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -157,7 +157,7 @@ multiplexed samples.</p>
     <p>This applies to bulk RNA-seq samples.</p>
 <p>Normally when loading a bcbio run of demultiplexed samples, the sample
 metadata will be imported automatically from the <code>project-summary.yaml</code> file
-in the final upload directory using the <code><a href='defunct.html'>readYAMLSampleData()</a></code> function. If
+in the final upload directory using the <code>readYAMLSampleData()</code> function. If
 you notice any typos in your metadata after completing the run, these can be
 corrected by editing the YAML file. Alternatively, you can pass in a
 spreadsheet with the <code>readSampleData()</code> function.</p>
@@ -188,7 +188,7 @@ reverse complement will be calculated automatically and added as the
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Demultiplexed</span>
-<span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='no'>bcbioBaseCacheURL</span>, <span class='st'>"demultiplexed.csv"</span>)
+<span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='no'>bcbioBaseTestsURL</span>, <span class='st'>"demultiplexed.csv"</span>)
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing demultiplexed.csv using data.table::fread().</span></div><div class='output co'>#&gt; <span class='message'>Demultiplexed samples detected.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 4 rows and 4 columns
 #&gt;         sampleName            fileName description genotype
 #&gt;           &lt;factor&gt;            &lt;factor&gt;    &lt;factor&gt; &lt;factor&gt;
@@ -197,8 +197,8 @@ reverse complement will be calculated automatically and added as the
 #&gt; sample3    sample3 sample3_R1.fastq.gz     sample3 wildtype
 #&gt; sample4    sample4 sample4_R1.fastq.gz     sample4 knockout</div><div class='input'>
 <span class='co'>## Multiplexed</span>
-<span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='no'>bcbioBaseCacheURL</span>, <span class='st'>"multiplexed_indrops.csv"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing multiplexed_indrops.csv using data.table::fread().</span></div><div class='output co'>#&gt; <span class='message'>Multiplexed samples detected.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 8 rows and 8 columns
+<span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='no'>bcbioBaseTestsURL</span>, <span class='st'>"multiplexed-indrops.csv"</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readSampleData</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing multiplexed-indrops.csv using data.table::fread().</span></div><div class='output co'>#&gt; <span class='message'>Multiplexed samples detected.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 8 rows and 8 columns
 #&gt;                   sampleName             fileName       description    index
 #&gt;                     &lt;factor&gt;             &lt;factor&gt;          &lt;factor&gt; &lt;factor&gt;
 #&gt; indrops1_ATAGAGAG  sample1_1 indrops1_R1.fastq.gz indrops1-ATAGAGAG        1

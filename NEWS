@@ -1,3 +1,17 @@
+## bcbioBase 0.6.0 (2019-03-28)
+
+- Made the bcbio ggplot2 geom functions defunct. Applies to:
+  `bcbio_geom_abline`, `bcbio_geom_label`, `bcbio_geom_label_average`,
+  `bcbio_geom_label_repel`.
+- Additional deprecations made defunct: `readLog`, `readTx2gene`,
+  `readYAMLSampleData`, `readYAMLSampleMetrics`.
+- Consolidated unit test data into Acid Genomics S3 bucket
+  (tests.acidgenomics.com).
+- Example data used for unit testing, which gets cached into `tests/testthat/`
+  are now consistently formatted using kebab case instead of snake case.
+
+
+
 ## bcbioBase 0.5.14 (2019-03-22)
 
 ### Minor changes

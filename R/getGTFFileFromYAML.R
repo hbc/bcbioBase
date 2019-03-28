@@ -9,7 +9,7 @@
 #' File path if the file exists. `NULL` if the file does not exist.
 #'
 #' @examples
-#' file <- file.path(bcbioBaseCacheURL, "summary.yaml")
+#' file <- file.path(bcbioBaseTestsURL, "summary.yaml")
 #' yaml <- basejump::import(file)
 #' x <- getGTFFileFromYAML(yaml)
 #' print(x)

@@ -31,51 +31,40 @@ basejump::lanePattern
 #' @export
 basejump::minimalSampleData
 
-#' @rdname deprecated
-#' @importFrom basejump basejump_geom_abline
+#' @rdname defunct
 #' @export
 bcbio_geom_abline <- function(...) {
-    .Deprecated("basejump::basejump_geom_abline")
-    basejump::basejump_geom_abline(...)
+    .Defunct("minimalism::acid_geom_abline")
 }
 
-#' @rdname deprecated
-#' @importFrom basejump basejump_geom_label
+#' @rdname defunct
 #' @export
 bcbio_geom_label <- function(...) {
-    .Deprecated("basejump::basejump_geom_label")
-    basejump::basejump_geom_label(...)
+    .Defunct("minimalism::acid_geom_label")
 }
 
-#' @rdname deprecated
-#' @importFrom basejump basejump_geom_label_average
+#' @rdname defunct
 #' @export
 bcbio_geom_label_average <- function(...) {
-    .Deprecated("basejump::basejump_geom_label_average")
-    basejump::basejump_geom_label_average(...)
+    .Defunct("minimalism::acid_geom_label_average")
 }
 
-#' @rdname deprecated
-#' @importFrom basejump basejump_geom_label_repel
+#' @rdname defunct
 #' @export
 bcbio_geom_label_repel <- function(...) {
-    .Deprecated("basejump::basejump_geom_label_repel")
-    basejump::basejump_geom_label_repel(...)
+    .Defunct("minimalism::acid_geom_label_repel")
 }
 
-#' @rdname deprecated
-#' @importFrom basejump import
+#' @rdname defunct
 #' @export
 readLog <- function(file) {
-    .Deprecated("basejump::import")
-    basejump::import(file)
+    .Defunct("basejump::import")
 }
 
-#' @rdname deprecated
+#' @rdname defunct
 #' @export
 readTx2gene <- function(...) {
-    .Deprecated("readTx2Gene")
-    readTx2Gene(...)
+    .Defunct("readTx2Gene")
 }
 
 #' @rdname defunct

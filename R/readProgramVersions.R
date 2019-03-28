@@ -9,7 +9,7 @@
 #' @return `DataFrame`.
 #'
 #' @examples
-#' file <- file.path(bcbioBaseCacheURL, "programs.txt")
+#' file <- file.path(bcbioBaseTestsURL, "programs.txt")
 #' x <- readProgramVersions(file)
 #' print(x)
 readProgramVersions <- function(file) {

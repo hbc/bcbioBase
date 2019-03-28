@@ -1,30 +1,30 @@
 invisible(lapply(
     X = c(
-        "bcbio_nextgen.log",
-        "data_versions.csv",
-        "demultiplexed_invalid_duplicated.csv",
-        "demultiplexed_invalid_legacy_samplename.csv",
-        "demultiplexed_invalid_missing.csv",
-        "demultiplexed_invalid_sample_id.csv",
+        "bcbio-nextgen.log",
+        "data-versions.csv",
+        "demultiplexed-invalid-duplicated.csv",
+        "demultiplexed-invalid-legacy-samplename.csv",
+        "demultiplexed-invalid-missing.csv",
+        "demultiplexed-invalid-sample-id.csv",
         "demultiplexed.csv",
-        "multiplexed_cellranger.csv",
-        "multiplexed_indrops.csv",
-        "multiplexed_invalid_duplicated.csv",
-        "multiplexed_invalid_missing.csv",
+        "multiplexed-cellranger.csv",
+        "multiplexed-indrops.csv",
+        "multiplexed-invalid-duplicated.csv",
+        "multiplexed-invalid-missing.csv",
         "programs.txt",
-        "summary_invalid_metrics_mismatch.yaml",
-        "summary_nested_metadata.yaml",
+        "summary-invalid-metrics-mismatch.yaml",
+        "summary-nested-metadata.yaml",
         "summary.yaml",
-        "surecell_commands.log",
+        "surecell-commands.log",
         "tx2gene.csv"
     ),
-    FUN = function(file, url) {
+    FUN = function(file, remoteDir) {
         if (!file.exists(file)) {
             utils::download.file(
-                url = paste(url, file, sep = "/"),
+                url = paste(remoteDir, file, sep = "/"),
                 destfile = file
             )
         }
     },
-    url = bcbioBaseCacheURL
+    remoteDir = bcbioBaseTestsURL
 ))

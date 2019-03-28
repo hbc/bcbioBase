@@ -9,9 +9,8 @@
 #' @return `atomic`.
 #'
 #' @examples
-#' file <- file.path(bcbioBaseCacheURL, "surecell_commands.log")
+#' file <- file.path(bcbioBaseTestsURL, "surecell-commands.log")
 #' log <- basejump::import(file)
-#'
 #' getBarcodeCutoffFromCommands(log)
 #' getLevelFromCommands(log)
 #' getUMITypeFromCommands(log)

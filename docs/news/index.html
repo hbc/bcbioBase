@@ -62,7 +62,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.14</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -105,6 +105,16 @@
       <small>Source: <a href='https://github.com/hbc/bcbioBase/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="bcbiobase-0-6-0-2019-03-28" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bcbiobase-0-6-0-2019-03-28" class="anchor"></a>bcbioBase 0.6.0 (2019-03-28)</h2>
+<ul>
+<li>Made the bcbio ggplot2 geom functions defunct. Applies to: <code>bcbio_geom_abline</code>, <code>bcbio_geom_label</code>, <code>bcbio_geom_label_average</code>, <code>bcbio_geom_label_repel</code>.</li>
+<li>Additional deprecations made defunct: <code>readLog</code>, <code>readTx2gene</code>, <code>readYAMLSampleData</code>, <code>readYAMLSampleMetrics</code>.</li>
+<li>Consolidated unit test data into Acid Genomics S3 bucket (tests.acidgenomics.com).</li>
+<li>Example data used for unit testing, which gets cached into <code>tests/testthat/</code> are now consistently formatted using kebab case instead of snake case.</li>
+</ul>
+</div>
     <div id="bcbiobase-0-5-14-2019-03-22" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-5-14-2019-03-22" class="anchor"></a>bcbioBase 0.5.14 (2019-03-22)</h2>
@@ -136,7 +146,7 @@
 <a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
-<code><a href="../reference/runDate.html">runDate()</a></code>: Updated assert check to be compatible with R 3.4 / BioC 3.6.</li>
+<code>runDate()</code>: Updated assert check to be compatible with R 3.4 / BioC 3.6.</li>
 </ul>
 </div>
 </div>
@@ -729,6 +739,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#bcbiobase-0-6-0-2019-03-28">0.6.0</a></li>
         <li><a href="#bcbiobase-0-5-14-2019-03-22">0.5.14</a></li>
         <li><a href="#bcbiobase-0-5-13-2019-03-18">0.5.13</a></li>
         <li><a href="#bcbiobase-0-5-12-2019-02-11">0.5.12</a></li>
