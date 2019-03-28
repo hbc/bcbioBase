@@ -18,7 +18,7 @@
 #' @return `Tx2Gene`.
 #'
 #' @examples
-#' file <- file.path(bcbioBaseCacheURL, "tx2gene.csv")
+#' file <- file.path(bcbioBaseTestsURL, "tx2gene.csv")
 #' x <- readTx2Gene(
 #'     file = file,
 #'     organism = "Mus musculus",

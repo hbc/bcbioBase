@@ -61,12 +61,12 @@
 #'
 #' @examples
 #' ## Demultiplexed
-#' file <- file.path(bcbioBaseCacheURL, "demultiplexed.csv")
+#' file <- file.path(bcbioBaseTestsURL, "demultiplexed.csv")
 #' x <- readSampleData(file)
 #' print(x)
 #'
 #' ## Multiplexed
-#' file <- file.path(bcbioBaseCacheURL, "multiplexed_indrops.csv")
+#' file <- file.path(bcbioBaseTestsURL, "multiplexed_indrops.csv")
 #' x <- readSampleData(file)
 #' print(x)
 readSampleData <- function(file, lanes = 0L) {
