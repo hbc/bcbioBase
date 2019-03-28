@@ -66,7 +66,7 @@
 #' print(x)
 #'
 #' ## Multiplexed
-#' file <- file.path(bcbioBaseTestsURL, "multiplexed_indrops.csv")
+#' file <- file.path(bcbioBaseTestsURL, "multiplexed-indrops.csv")
 #' x <- readSampleData(file)
 #' print(x)
 readSampleData <- function(file, lanes = 0L) {

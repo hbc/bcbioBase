@@ -3,8 +3,8 @@
 #'
 #' @importFrom Biostrings reverseComplement
 #' @importFrom S4Vectors DataFrame metadata<- na.omit tail
-#' @importFrom basejump Tx2Gene camel localOrRemoteFile makeNames makeSampleData
-#'   printString realpath removeNA sanitizeNA
+#' @importFrom basejump Tx2Gene camel import localOrRemoteFile makeNames
+#'   makeSampleData printString realpath removeNA sanitizeNA
 #' @importFrom dplyr arrange everything funs group_by left_join mutate
 #'   mutate_all mutate_at mutate_if select ungroup
 #' @importFrom goalie allAreAtomic allAreFiles allAreMatchingRegex

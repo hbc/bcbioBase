@@ -33,9 +33,8 @@ Commands log parsing functions
 }}
 
 \examples{
-file <- file.path(bcbioBaseTestsURL, "surecell_commands.log")
+file <- file.path(bcbioBaseTestsURL, "surecell-commands.log")
 log <- basejump::import(file)
-
 getBarcodeCutoffFromCommands(log)
 getLevelFromCommands(log)
 getUMITypeFromCommands(log)

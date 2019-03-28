@@ -21,7 +21,7 @@ The \code{data_versions.csv} file is only generated for special genomes
 containing additional information (e.g. the built-in "\code{hg38}" build).
 }
 \examples{
-file <- file.path(bcbioBaseTestsURL, "data_versions.csv")
+file <- file.path(bcbioBaseTestsURL, "data-versions.csv")
 x <- readDataVersions(file)
 print(x)
 }
