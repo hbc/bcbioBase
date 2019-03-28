@@ -1,6 +1,6 @@
-context("Commands Log Parsing")
+context("Commands log parsing")
 
-log <- import("surecell_commands.log")
+log <- import("surecell-commands.log")
 
 
 

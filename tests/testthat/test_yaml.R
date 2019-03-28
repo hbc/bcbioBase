@@ -1,4 +1,4 @@
-context("YAML Parsing")
+context("YAML parsing")
 
 yaml <- import("summary.yaml")
 
@@ -48,7 +48,7 @@ test_that("getSampleDataFromYAML : Nested metadata", {
     # Expecting warnings about integer range here.
     object <- suppressWarnings(
         getSampleDataFromYAML(
-            yaml = import("summary_nested_metadata.yaml")
+            yaml = import("summary-nested-metadata.yaml")
         )
     )
     expect_is(object, "DataFrame")
@@ -84,7 +84,7 @@ test_that("getMetricsFromYAML", {
     )
 
     # Check for proper handling of metrics with mismatched number of values
-    yaml <- import("summary_invalid_metrics_mismatch.yaml")
+    yaml <- import("summary-invalid-metrics-mismatch.yaml")
     object <- getMetricsFromYAML(yaml)
     expected[["sequenceLength"]] <- "numeric"
     expect_identical(

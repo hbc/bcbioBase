@@ -4,7 +4,7 @@ context("Import")
 
 # readDataVersions =============================================================
 test_that("readDataVersions", {
-    x <- readDataVersions("data_versions.csv")
+    x <- readDataVersions("data-versions.csv")
     expect_is(x, "DataFrame")
     expect_identical(
         object = colnames(x),
@@ -79,19 +79,19 @@ test_that("readSampleData : Demultiplexed", {
 
     # Required column check failure.
     expect_error(
-        object = readSampleData("demultiplexed_invalid_missing.csv"),
+        object = readSampleData("demultiplexed-invalid-missing.csv"),
         regexp = "isSampleData"
     )
 
     # Duplicated description.
     expect_error(
-        object = readSampleData("demultiplexed_invalid_duplicated.csv"),
+        object = readSampleData("demultiplexed-invalid-duplicated.csv"),
         regexp = "isSubset"
     )
 })
 
 test_that("readSampleData : Multiplexed", {
-    file <- "multiplexed_indrops.csv"
+    file <- "multiplexed-indrops.csv"
 
     # Note that we're expecting this to sort by the rownames (`description`),
     # and not by the `sampleName` column.
@@ -207,7 +207,7 @@ test_that("readSampleData : Multiplexed", {
 test_that("readSampleData : Multiplexed : Invalid", {
     # Required column check failure.
     expect_error(
-        object = readSampleData("multiplexed_invalid_missing.csv"),
+        object = readSampleData("multiplexed-invalid-missing.csv"),
         expected = paste(
             "is_subset :",
             "The element 'index' in required is not in",
@@ -217,19 +217,19 @@ test_that("readSampleData : Multiplexed : Invalid", {
 
     # Duplicate rows in `sampleName` column.
     expect_error(
-        object = readSampleData("multiplexed_invalid_duplicated.csv"),
+        object = readSampleData("multiplexed-invalid-duplicated.csv"),
         regexp = "hasNoDuplicates"
     )
 
     # Legacy bcbio `samplename` column.
     expect_error(
-        object = readSampleData("demultiplexed_invalid_legacy_samplename.csv"),
+        object = readSampleData("demultiplexed-invalid-legacy-samplename.csv"),
         regexp = "Invalid columns: samplename"
     )
 
     # sampleID defined by user.
     expect_error(
-        object = readSampleData("demultiplexed_invalid_sample_id.csv"),
+        object = readSampleData("demultiplexed-invalid-sample-id.csv"),
         regexp = "Invalid columns: sampleID"
     )
 
