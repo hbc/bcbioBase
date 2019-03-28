@@ -7,6 +7,7 @@
 \alias{bcbio_geom_label_average}
 \alias{bcbio_geom_label_repel}
 \alias{readLog}
+\alias{readTx2gene}
 \alias{readYAMLSampleData}
 \alias{readYAMLSampleMetrics}
 \title{Defunct functions}
@@ -20,6 +21,8 @@ bcbio_geom_label_average(...)
 bcbio_geom_label_repel(...)
 
 readLog(file)
+
+readTx2gene(...)
 
 readYAMLSampleData(...)
 

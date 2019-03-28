@@ -1,3 +1,13 @@
+## bcbioBase 0.5.15 (2019-03-28)
+
+- Made the bcbio ggplot2 geom functions defunct. Applies to:
+  `bcbio_geom_abline`, `bcbio_geom_label`, `bcbio_geom_label_average`,
+  `bcbio_geom_label_repel`.
+- Additional deprecations made defunct: `readLog`, `readTx2gene`,
+  `readYAMLSampleData`, `readYAMLSampleMetrics`.
+
+
+
 ## bcbioBase 0.5.14 (2019-03-22)
 
 ### Minor changes
