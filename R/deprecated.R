@@ -56,18 +56,15 @@ bcbio_geom_label_repel <- function(...) {
 }
 
 #' @rdname defunct
-#' @importFrom basejump import
 #' @export
 readLog <- function(file) {
-    .Deprecated("basejump::import")
-    basejump::import(file)
+    .Defunct("basejump::import")
 }
 
-#' @rdname deprecated
+#' @rdname defunct
 #' @export
 readTx2gene <- function(...) {
-    .Deprecated("readTx2Gene")
-    readTx2Gene(...)
+    .Defunct("readTx2Gene")
 }
 
 #' @rdname defunct
