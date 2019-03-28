@@ -2,10 +2,25 @@
 % Please edit documentation in R/deprecated.R
 \name{defunct}
 \alias{defunct}
+\alias{bcbio_geom_abline}
+\alias{bcbio_geom_label}
+\alias{bcbio_geom_label_average}
+\alias{bcbio_geom_label_repel}
+\alias{readLog}
 \alias{readYAMLSampleData}
 \alias{readYAMLSampleMetrics}
 \title{Defunct functions}
 \usage{
+bcbio_geom_abline(...)
+
+bcbio_geom_label(...)
+
+bcbio_geom_label_average(...)
+
+bcbio_geom_label_repel(...)
+
+readLog(file)
+
 readYAMLSampleData(...)
 
 readYAMLSampleMetrics(...)
