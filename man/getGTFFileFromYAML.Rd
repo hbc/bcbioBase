@@ -18,7 +18,7 @@ File path if the file exists. \code{NULL} if the file does not exist.
 Get GTF file path from YAML
 }
 \examples{
-file <- file.path(bcbioBaseCacheURL, "summary.yaml")
+file <- file.path(bcbioBaseTestsURL, "summary.yaml")
 yaml <- basejump::import(file)
 x <- getGTFFileFromYAML(yaml)
 print(x)

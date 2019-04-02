@@ -8,7 +8,7 @@
 #' @return `DataFrame`.
 #'
 #' @examples
-#' file <- file.path(bcbioBaseCacheURL, "summary.yaml")
+#' file <- file.path(bcbioBaseTestsURL, "summary.yaml")
 #' yaml <- basejump::import(file)
 #' x <- getSampleDataFromYAML(yaml)
 #' summary(x)

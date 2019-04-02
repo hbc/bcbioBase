@@ -20,7 +20,7 @@ Read program versions
 bcbio doesn't save program versions when run in fast mode.
 }
 \examples{
-file <- file.path(bcbioBaseCacheURL, "programs.txt")
+file <- file.path(bcbioBaseTestsURL, "programs.txt")
 x <- readProgramVersions(file)
 print(x)
 }
