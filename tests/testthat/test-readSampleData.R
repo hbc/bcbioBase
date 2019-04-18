@@ -192,7 +192,7 @@ test_that("bcbio `samplename` column", {
 })
 
 test_that("`sampleID` column defined by user", {
-    file <- file.path("cache", "demultiplexed_invalid_sample_id.csv")
+    file <- file.path("cache", "demultiplexed-invalid-sample-id.csv")
     expect_error(
         object = readSampleData(file),
         regexp = "Invalid columns: sampleID"

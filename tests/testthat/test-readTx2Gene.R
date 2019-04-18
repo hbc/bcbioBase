@@ -2,7 +2,7 @@ context("readTx2Gene")
 
 test_that("readTx2Gene", {
     object <- readTx2Gene(
-        file = "tx2gene.csv",
+        file = file.path("cache", "tx2gene.csv"),
         organism = "Mus musculus",
         genomeBuild = "GRCm38",
         ensemblRelease = 90L
