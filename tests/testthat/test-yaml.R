@@ -87,7 +87,8 @@ test_that("getMetricsFromYAML", {
 
 # Check for proper handling of metrics with mismatched number of values.
 test_that("Mismatched values", {
-    yaml <- import(file.path("summary-invalid-metrics-mismatch.yaml"))
+    file <- file.path("cache", "summary-invalid-metrics-mismatch.yaml")
+    yaml <- import(file)
     object <- getMetricsFromYAML(yaml)
     expected[["sequenceLength"]] <- "numeric"
     expect_identical(
