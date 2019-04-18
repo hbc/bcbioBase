@@ -140,6 +140,26 @@ readSampleData <- function(file, lanes = 0L) {
 
     # Prepare metadata for lane split replicates. This step will expand rows
     # into the number of desired replicates.
+
+    # FIXME dplyr 0.8 has deprecated `funs()`.
+    # Argh, there's very documentation on this...
+    #
+    # funs() is soft deprecated as of dplyr 0.8.0
+    # please use list() instead
+    #
+    # # Before:
+    # funs(name = f(.)
+    #
+    # # After:
+    # list(name = ~f(.))
+    #
+    # https://github.com/tidyverse/dplyr/issues/3433
+    # https://github.com/tidyverse/dplyr/issues/4150
+    # https://github.com/ropensci/skimr/pull/391/files
+
+    # .funs: A function `fun`, a quosure style lambda `~ fun(.)` or a list of
+    # either form.
+
     if (length(lanes) > 1L) {
         data <- data %>%
             group_by(!!!syms(nameCols)) %>%
@@ -150,18 +170,22 @@ readSampleData <- function(file, lanes = 0L) {
                 )
             ) %>%
             left_join(data, by = nameCols) %>%
-            ungroup() %>%
-            # Ensure lane-split metadata doesn't contain spaces.
-            mutate_at(
-                nameCols,
-                funs(
-                    paste(
-                        makeNames(., unique = FALSE),
-                        !!sym("lane"),
-                        sep = "_"
-                    )
-                )
-            )
+            ungroup()
+
+        # Ensure lane-split metadata doesn't contain spaces. This will
+        # sanitize invalid characters to underscores.
+        # FIXME NEED TO DEAL WITH `funs()` deprecation.
+        syntacticLanes <- function(x, lane) {
+            print(x)
+            print(lane)
+            paste(makeNames(x, unique = FALSE), lane, sep = "_")
+        }
+        xxx <- mutate_at(
+            .tbl = data,
+            .vars = nameCols,
+            # FIXME ARRRRRRRGH-lang
+            .funs = ~ syntacticLanes(., lane = data[["lane"]])
+        )
     }
 
     # This step applies to handling single-cell metadata.
