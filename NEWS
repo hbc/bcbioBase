@@ -4,6 +4,7 @@
 
 - Switched Travis CI configuration to use `rnaseq` Docker image.
 - Updated basejump [dependencies][].
+- Updated testthat cache to use `tests.acidgenomics.com` URL.
 
 
 
