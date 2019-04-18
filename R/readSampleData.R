@@ -153,10 +153,25 @@ readSampleData <- function(file, lanes = 0L) {
     # # After:
     # list(name = ~f(.))
     #
+    # https://dplyr.tidyverse.org/reference/scoped.html
+    #
     # https://github.com/tidyverse/dplyr/issues/3433
     # https://github.com/tidyverse/dplyr/issues/4150
     # https://github.com/ropensci/skimr/pull/391/files
-
+    #
+    # You can also pass formulas to create functions on the spot, purrr-style:
+    # starwars %>% mutate_at(c("height", "mass"), ~scale2(., na.rm = TRUE))
+    #
+    # The list can contain purrr-style formulas:
+    # iris %>% mutate_if(is.numeric, list(~scale2(.), ~log(.)))
+    #
+    # Note how the new variables include the function name, in order to
+    # keep things distinct. The default names are not always helpful
+    # but you can also supply explicit names:
+    # iris %>% mutate_if(is.numeric, list(scale = scale2, log = log))
+    #
+    # iris %>% mutate_if(is.numeric, list(scale = scale2))
+    #
     # .funs: A function `fun`, a quosure style lambda `~ fun(.)` or a list of
     # either form.
 
@@ -171,20 +186,19 @@ readSampleData <- function(file, lanes = 0L) {
             ) %>%
             left_join(data, by = nameCols) %>%
             ungroup()
-
-        # Ensure lane-split metadata doesn't contain spaces. This will
-        # sanitize invalid characters to underscores.
-        # FIXME NEED TO DEAL WITH `funs()` deprecation.
-        syntacticLanes <- function(x, lane) {
-            print(x)
-            print(lane)
-            paste(makeNames(x, unique = FALSE), lane, sep = "_")
+        pasteLanes <- function(nameCol, laneCol) {
+            makeNames(paste(nameCol, laneCol, sep = "_"), unique = FALSE)
         }
-        xxx <- mutate_at(
+        # How to pass through lane column in `mutate_at()` call to
+        # `pasteLanes()`, now that `funs()` is deprecated? There's very little
+        # documentation about this online.
+        data <- mutate_at(
             .tbl = data,
             .vars = nameCols,
-            # FIXME ARRRRRRRGH-lang
-            .funs = ~ syntacticLanes(., lane = data[["lane"]])
+            .funs = ~ pasteLanes(
+                nameCol = .,
+                laneCol = data[["lane"]]
+            )
         )
     }
 
