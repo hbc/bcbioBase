@@ -2,7 +2,7 @@ context("copyToDropbox")
 
 # Testing locally with Dropbox authentication token.
 # This is a pain to set up on Travis CI and AppVeyor.
-skipifnot(file.exists("token.rds"))
+skip_if_not(file.exists("token.rds"))
 
 files <- c("demultiplexed.csv", "multiplexed.csv")
 dropboxDir <- file.path("bcbioBase_examples", "copyToDropbox")
