@@ -1,3 +1,4 @@
+dir.create("cache", showWarnings = FALSE)
 invisible(lapply(
     X = c(
         "bcbio-nextgen.log",
@@ -18,13 +19,14 @@ invisible(lapply(
         "surecell-commands.log",
         "tx2gene.csv"
     ),
-    FUN = function(file, remoteDir) {
-        if (!file.exists(file)) {
+    FUN = function(file, url) {
+        destfile <- file.path("cache", file)
+        if (!file.exists(destfile)) {
             utils::download.file(
-                url = paste(remoteDir, file, sep = "/"),
-                destfile = file
+                url = paste(url, file, sep = "/"),
+                destfile = destfile
             )
         }
     },
-    remoteDir = bcbioBaseTestsURL
+    url = bcbioBaseTestsURL
 ))

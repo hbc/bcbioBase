@@ -1,60 +1,8 @@
-context("Import")
+context("readSampleData : Demultiplexed samples")
 
+file <- file.path("cache", "demultiplexed.csv")
 
-
-# readDataVersions =============================================================
-test_that("readDataVersions", {
-    x <- readDataVersions("data-versions.csv")
-    expect_is(x, "DataFrame")
-    expect_identical(
-        object = colnames(x),
-        expected = c("genome", "resource", "version")
-    )
-})
-
-# Allow missing file, since bcbio doesn't always generate this.
-test_that("readDataVersions : Missing file", {
-    expect_message(
-        object = readDataVersions("XXX.csv"),
-        regexp = "Data versions are missing."
-    )
-    expect_identical(
-        object = readDataVersions("XXX.csv"),
-        expected = DataFrame()
-    )
-})
-
-
-
-# readProgramVersions ==========================================================
-test_that("readProgramVersions", {
-    versions <- readProgramVersions("programs.txt")
-    expect_is(versions, "DataFrame")
-    expect_identical(
-        object = colnames(versions),
-        expected = c("program", "version")
-    )
-})
-
-# Allow missing file, since bcbio doesn't always generate this.
-test_that("readProgramVersions : Missing file", {
-    expect_message(
-        object = readProgramVersions("XXX.csv"),
-        regexp = "Program versions are missing"
-    )
-    expect_identical(
-        object = readProgramVersions("XXX.txt"),
-        expected = DataFrame()
-    )
-})
-
-
-
-# readSampleData =======================================================
-test_that("readSampleData : Demultiplexed", {
-    file <- "demultiplexed.csv"
-
-    # Check DataFrame return.
+test_that("DataFrame return", {
     expect_identical(
         object = readSampleData(file),
         expected = DataFrame(
@@ -65,8 +13,9 @@ test_that("readSampleData : Demultiplexed", {
             row.names = paste0("sample", seq_len(4L))
         )
     )
+})
 
-    # Lane-split technical replicate support.
+test_that("Lane-split technical replicate support", {
     object <- readSampleData(file, lanes = 4L)
     expect_true("lane" %in% colnames(object))
     expect_identical(
@@ -76,23 +25,31 @@ test_that("readSampleData : Demultiplexed", {
             paste0("sample2_L00", seq_len(4L))
         )
     )
+})
 
-    # Required column check failure.
+test_that("Required column check failure", {
+    file <- file.path("cache", "demultiplexed-invalid-missing.csv")
     expect_error(
-        object = readSampleData("demultiplexed-invalid-missing.csv"),
+        object = readSampleData(file),
         regexp = "isSampleData"
     )
+})
 
-    # Duplicated description.
+test_that("Duplicated description", {
+    file <- file.path("cache", "demultiplexed-invalid-duplicated.csv")
     expect_error(
-        object = readSampleData("demultiplexed-invalid-duplicated.csv"),
+        object = readSampleData(file),
         regexp = "isSubset"
     )
 })
 
-test_that("readSampleData : Multiplexed", {
-    file <- "multiplexed-indrops.csv"
 
+
+context("readSampleData : Multiplexed samples")
+
+file <- file.path("cache", "multiplexed-indrops.csv")
+
+test_that("DataFrame return", {
     # Note that we're expecting this to sort by the rownames (`description`),
     # and not by the `sampleName` column.
     expect_identical(
@@ -162,8 +119,9 @@ test_that("readSampleData : Multiplexed", {
             )
         )
     )
+})
 
-    # Lane-split technical replicate support.
+test_that("Lane-split technical replicate support", {
     object <- readSampleData(file, lanes = 4L)
     expect_identical(
         object = rownames(object),
@@ -204,55 +162,46 @@ test_that("readSampleData : Multiplexed", {
     )
 })
 
-test_that("readSampleData : Multiplexed : Invalid", {
-    # Required column check failure.
+test_that("Required column check failure.", {
+    file <- file.path("cache", "multiplexed_invalid_missing.csv")
     expect_error(
-        object = readSampleData("multiplexed-invalid-missing.csv"),
+        object = readSampleData(file),
         expected = paste(
             "is_subset :",
             "The element 'index' in required is not in",
             "colnames\\(data\\)."
         )
     )
+})
 
-    # Duplicate rows in `sampleName` column.
+test_that("Duplicate rows in `sampleName` column", {
+    file <- file.path("cache", "multiplexed-invalid-duplicated.csv")
     expect_error(
-        object = readSampleData("multiplexed-invalid-duplicated.csv"),
+        object = readSampleData(file),
         regexp = "hasNoDuplicates"
-    )
-
-    # Legacy bcbio `samplename` column.
-    expect_error(
-        object = readSampleData("demultiplexed-invalid-legacy-samplename.csv"),
-        regexp = "Invalid columns: samplename"
-    )
-
-    # sampleID defined by user.
-    expect_error(
-        object = readSampleData("demultiplexed-invalid-sample-id.csv"),
-        regexp = "Invalid columns: sampleID"
-    )
-
-    # Missing file.
-    expect_error(
-        object = readSampleData("XXX.csv"),
-        regexp = "isAFile"
     )
 })
 
-
-
-# readTx2Gene ==================================================================
-test_that("readTx2Gene", {
-    object <- readTx2Gene(
-        file = "tx2gene.csv",
-        organism = "Mus musculus",
-        genomeBuild = "GRCm38",
-        ensemblRelease = 90L
+# Recommend using `fileName` instead.
+test_that("bcbio `samplename` column", {
+    file <- file.path("cache", "demultiplexed-invalid-legacy-samplename.csv")
+    expect_error(
+        object = readSampleData(file),
+        regexp = "Invalid columns: samplename"
     )
-    expect_is(object, "Tx2Gene")
-    expect_identical(
-        object = colnames(object),
-        expected = c("transcriptID", "geneID")
+})
+
+test_that("`sampleID` column defined by user", {
+    file <- file.path("cache", "demultiplexed-invalid-sample-id.csv")
+    expect_error(
+        object = readSampleData(file),
+        regexp = "Invalid columns: sampleID"
+    )
+})
+
+test_that("Missing file", {
+    expect_error(
+        object = readSampleData("XXX.csv"),
+        regexp = "isAFile"
     )
 })

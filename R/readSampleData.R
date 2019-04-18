@@ -150,18 +150,18 @@ readSampleData <- function(file, lanes = 0L) {
                 )
             ) %>%
             left_join(data, by = nameCols) %>%
-            ungroup() %>%
-            # Ensure lane-split metadata doesn't contain spaces.
-            mutate_at(
-                nameCols,
-                funs(
-                    paste(
-                        makeNames(., unique = FALSE),
-                        !!sym("lane"),
-                        sep = "_"
-                    )
-                )
+            ungroup()
+        pasteLanes <- function(nameCol, laneCol) {
+            makeNames(paste(nameCol, laneCol, sep = "_"), unique = FALSE)
+        }
+        data <- mutate_at(
+            .tbl = data,
+            .vars = nameCols,
+            .funs = ~ pasteLanes(
+                nameCol = .,
+                laneCol = data[["lane"]]
             )
+        )
     }
 
     # This step applies to handling single-cell metadata.

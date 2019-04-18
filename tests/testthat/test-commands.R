@@ -1,10 +1,7 @@
-context("Commands log parsing")
+context("Commands Log Parsers")
 
-log <- import("surecell-commands.log")
+log <- import(file.path("cache", "surecell-commands.log"))
 
-
-
-# getBarcodeCutoffFromCommands =================================================
 test_that("getBarcodeCutoffFromCommands", {
     expect_identical(
         object = getBarcodeCutoffFromCommands(log),
@@ -12,9 +9,6 @@ test_that("getBarcodeCutoffFromCommands", {
     )
 })
 
-
-
-# getLevelFromCommands =========================================================
 test_that("getLevelFromCommands", {
     expect_identical(
         object = getLevelFromCommands(log),
@@ -22,9 +16,6 @@ test_that("getLevelFromCommands", {
     )
 })
 
-
-
-# getUMITypeFromCommands =======================================================
 test_that("getUMITypeFromCommands", {
     expect_identical(
         object = getUMITypeFromCommands(log),
