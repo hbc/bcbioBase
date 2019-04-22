@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>News • bcbioBase</title>
+<title>Version 0.0 • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="News" />
+<meta property="og:title" content="Version 0.0" />
 
 
 
@@ -49,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-news-index">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -99,22 +99,53 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Release notes</h1>
+      <h1>Changelog <small>0.0</small></h1>
+      
     </div>
-    <ul>
-    <li><a href="news-0.6.html">Version 0.6</a></li>
-    <li><a href="news-0.5.html">Version 0.5</a></li>
-    <li><a href="news-0.4.html">Version 0.4</a></li>
-    <li><a href="news-0.3.html">Version 0.3</a></li>
-    <li><a href="news-0.2.html">Version 0.2</a></li>
-    <li><a href="news-0.1.html">Version 0.1</a></li>
-    <li><a href="news-0.0.html">Version 0.0</a></li>
-    </ul>
-  </div>
-</div>
 
+    <div id="bcbiobase-0-0-1-2018-01-11" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bcbiobase-0-0-1-2018-01-11" class="anchor"></a>bcbioBase 0.0.1 (2018-01-11)</h2>
+<ul>
+<li>Initial release.</li>
+</ul>
+</div>
+    <div id="bcbiobase-0-0-2-2018-01-19" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bcbiobase-0-0-2-2018-01-19" class="anchor"></a>bcbioBase 0.0.2 (2018-01-19)</h2>
+<ul>
+<li>Re-export <code>assignAndSaveData</code>, <code>loadData</code>, <code>loadRemoteData</code>, <code>saveData</code> from <a href="http://basejump.acidgenomics.com/">basejump</a> package.</li>
+<li>Update <code>prepareTemplate</code> function to use internally stored data.</li>
+</ul>
+</div>
+    <div id="bcbiobase-0-0-3-2018-01-27" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bcbiobase-0-0-3-2018-01-27" class="anchor"></a>bcbioBase 0.0.3 (2018-01-27)</h2>
+<ul>
+<li>NAMESPACE export fixes.</li>
+<li>Minor code cleanup to pass <a href="https://github.com/jimhester/lintr/">lintr</a> checks.</li>
+<li>Switched to <a href="http://rlang.tidyverse.org/">rlang</a> methods for errors, messages, and warnings: <code>abort</code>, <code>inform</code>, and <code>warn</code>.</li>
+<li>Messages now consistently use backticks instead of apostrophes, as recommended by the <a href="http://style.tidyverse.org/">tidyverse style guide</a>.</li>
+<li>Removed <a href="http://tibble.tidyverse.org/">tibble</a> rownames support from <code>prepareSampleMetadata</code>.</li>
+<li>Improved code coverage to 100%.</li>
+</ul>
+</div>
+  </div>
+
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#bcbiobase-0-0-1-2018-01-11">0.0.1</a></li>
+        <li><a href="#bcbiobase-0-0-2-2018-01-19">0.0.2</a></li>
+        <li><a href="#bcbiobase-0-0-3-2018-01-27">0.0.3</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
 
       <footer>
       <div class="copyright">

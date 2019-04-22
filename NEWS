@@ -1,9 +1,17 @@
+## bcbioBase 0.6.2 (2019-04-22)
+
+### Minor changes
+
+- Improved testing to ensure compatibility with R 3.4.
+
+
+
 ## bcbioBase 0.6.1 (2019-04-18)
 
 ### Minor changes
 
 - Switched Travis CI configuration to use `rnaseq` Docker image.
-- Updated basejump [dependencies][].
+- Updated [basejump][] dependencies.
 - Updated testthat cache to use `tests.acidgenomics.com` URL.
 
 

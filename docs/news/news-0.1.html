@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>News • bcbioBase</title>
+<title>Version 0.1 • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="News" />
+<meta property="og:title" content="Version 0.1" />
 
 
 
@@ -49,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-news-index">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -99,22 +99,69 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Release notes</h1>
+      <h1>Changelog <small>0.1</small></h1>
+      
     </div>
-    <ul>
-    <li><a href="news-0.6.html">Version 0.6</a></li>
-    <li><a href="news-0.5.html">Version 0.5</a></li>
-    <li><a href="news-0.4.html">Version 0.4</a></li>
-    <li><a href="news-0.3.html">Version 0.3</a></li>
-    <li><a href="news-0.2.html">Version 0.2</a></li>
-    <li><a href="news-0.1.html">Version 0.1</a></li>
-    <li><a href="news-0.0.html">Version 0.0</a></li>
-    </ul>
-  </div>
-</div>
 
+    <div id="bcbiobase-0-1-0-2018-02-13" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bcbiobase-0-1-0-2018-02-13" class="anchor"></a>bcbioBase 0.1.0 (2018-02-13)</h2>
+<ul>
+<li>Preparing version pinning for <a href="https://bioconda.github.io/">bioconda</a>. Relaxed <a href="http://rlang.tidyverse.org/">rlang</a> dependency from v0.1.6 to v0.1.2 and <a href="http://tidyr.tidyverse.org/">tidyr</a> dependency from v0.7.2 to v0.7.1.</li>
+<li>Added <code>copyToDropbox</code> function, which enables input of a list of local files and returns <a href="https://www.dropbox.com/">Dropbox</a> paths using <a href="https://github.com/karthik/rdrop2/">rdrop2</a>.</li>
+<li>Updated <a href="http://basejump.acidgenomics.com/">basejump</a> dependency to v0.2.1.</li>
+<li>Added assertive checks for all functions.</li>
+</ul>
+</div>
+    <div id="bcbiobase-0-1-1-2018-02-17" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bcbiobase-0-1-1-2018-02-17" class="anchor"></a>bcbioBase 0.1.1 (2018-02-17)</h2>
+<ul>
+<li>Added internal assert checks.</li>
+<li>Now exporting <code>sampleMetadata&lt;-</code> assignment generic.</li>
+<li>Updated encrypted token for rdrop2 working example.</li>
+<li>Added <code>assert_formal_interesting_groups</code> assert checks. Deprecated <code>checkInterestingGroups</code>.</li>
+</ul>
+</div>
+    <div id="bcbiobase-0-1-2-2018-02-18" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bcbiobase-0-1-2-2018-02-18" class="anchor"></a>bcbioBase 0.1.2 (2018-02-18)</h2>
+<ul>
+<li>Added back <code>checkInterestingGroups</code> since this code is still present on <a href="https://bioinformatics.sph.harvard.edu/bcbioRNASeq/">bcbioRNASeq</a> master branch.</li>
+</ul>
+</div>
+    <div id="bcbiobase-0-1-3-2018-02-19" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bcbiobase-0-1-3-2018-02-19" class="anchor"></a>bcbioBase 0.1.3 (2018-02-19)</h2>
+<ul>
+<li>Now exporting <code>assertFormalInterestingGroups</code> in camel case.</li>
+</ul>
+</div>
+    <div id="bcbiobase-0-1-4-2018-02-20" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bcbiobase-0-1-4-2018-02-20" class="anchor"></a>bcbioBase 0.1.4 (2018-02-20)</h2>
+<ul>
+<li>Don’t include sample metadata in <code>summaryYAMLMetrics</code> return.</li>
+</ul>
+</div>
+  </div>
+
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#bcbiobase-0-1-0-2018-02-13">0.1.0</a></li>
+        <li><a href="#bcbiobase-0-1-1-2018-02-17">0.1.1</a></li>
+        <li><a href="#bcbiobase-0-1-2-2018-02-18">0.1.2</a></li>
+        <li><a href="#bcbiobase-0-1-3-2018-02-19">0.1.3</a></li>
+        <li><a href="#bcbiobase-0-1-4-2018-02-20">0.1.4</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
 
       <footer>
       <div class="copyright">
