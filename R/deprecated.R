@@ -34,25 +34,25 @@ basejump::minimalSampleData
 #' @rdname defunct
 #' @export
 bcbio_geom_abline <- function(...) {
-    .Defunct("minimalism::acid_geom_abline")
+    .Defunct("acidplots::acid_geom_abline")
 }
 
 #' @rdname defunct
 #' @export
 bcbio_geom_label <- function(...) {
-    .Defunct("minimalism::acid_geom_label")
+    .Defunct("acidplots::acid_geom_label")
 }
 
 #' @rdname defunct
 #' @export
 bcbio_geom_label_average <- function(...) {
-    .Defunct("minimalism::acid_geom_label_average")
+    .Defunct("acidplots::acid_geom_label_average")
 }
 
 #' @rdname defunct
 #' @export
 bcbio_geom_label_repel <- function(...) {
-    .Defunct("minimalism::acid_geom_label_repel")
+    .Defunct("acidplots::acid_geom_label_repel")
 }
 
 #' @rdname defunct

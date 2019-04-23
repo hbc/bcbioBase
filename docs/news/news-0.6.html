@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get sample data from YAML — getSampleDataFromYAML • bcbioBase</title>
+<title>Version 0.6 • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,10 +32,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Get sample data from YAML — getSampleDataFromYAML" />
-
-<meta property="og:description" content="Get sample data from YAML" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Version 0.6" />
 
 
 
@@ -52,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -104,52 +101,68 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get sample data from YAML</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/getSampleDataFromYAML.R'><code>R/getSampleDataFromYAML.R</code></a></small>
-    <div class="hidden name"><code>getSampleDataFromYAML.Rd</code></div>
+      <h1>Changelog <small>0.6</small></h1>
+      
     </div>
 
-    <div class="ref-description">
-    
-    <p>Get sample data from YAML</p>
-    
-    </div>
-
-    <pre class="usage"><span class='fu'>getSampleDataFromYAML</span>(<span class='no'>yaml</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>yaml</th>
-      <td><p><code>list</code>.
-Project summary YAML.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>DataFrame</code>.</p>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='no'>bcbioBaseTestsURL</span>, <span class='st'>"summary.yaml"</span>)
-<span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/basejump/topics/reexports'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing summary.yaml using yaml::yaml.load_file().</span></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>getSampleDataFromYAML</span>(<span class='no'>yaml</span>)</div><div class='output co'>#&gt; <span class='message'>Getting sample metadata from YAML.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;    Length     Class      Mode 
-#&gt;         5 DataFrame        S4 </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>colnames</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "sampleName"  "description" "genomeBuild" "group"       "samRef"     </div></pre>
+    <div id="bcbiobase-0-6-0-2019-03-28" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bcbiobase-0-6-0-2019-03-28" class="anchor"></a>bcbioBase 0.6.0 (2019-03-28)</h2>
+<p>Updated to work with basejump v0.10 release series.</p>
+<div id="deprecations" class="section level3">
+<h3 class="hasAnchor">
+<a href="#deprecations" class="anchor"></a>Deprecations</h3>
+<ul>
+<li>Made the deprecated bcbio ggplot2 geom functions defunct. Applies to: <code>bcbio_geom_abline</code>, <code>bcbio_geom_label</code>, <code>bcbio_geom_label_average</code>, <code>bcbio_geom_label_repel</code>.</li>
+<li>Additional deprecations made defunct: <code>readLog</code>, <code>readTx2gene</code>, <code>readYAMLSampleData</code>, <code>readYAMLSampleMetrics</code>.</li>
+</ul>
+</div>
+<div id="minor-changes-2" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-changes-2" class="anchor"></a>Minor changes</h3>
+<ul>
+<li>Consolidated unit test data into Acid Genomics S3 bucket (tests.acidgenomics.com).</li>
+<li>Example data used for unit testing, which gets cached into <code>tests/testthat/</code> are now consistently formatted using kebab case instead of snake case.</li>
+</ul>
+</div>
+</div>
+    <div id="bcbiobase-0-6-1-2019-04-18" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bcbiobase-0-6-1-2019-04-18" class="anchor"></a>bcbioBase 0.6.1 (2019-04-18)</h2>
+<div id="minor-changes-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
+<ul>
+<li>Switched Travis CI configuration to use <code>rnaseq</code> Docker image.</li>
+<li>Updated <a href="http://basejump.acidgenomics.com/">basejump</a> dependencies.</li>
+<li>Updated testthat cache to use <code>tests.acidgenomics.com</code> URL.</li>
+</ul>
+</div>
+</div>
+    <div id="bcbiobase-0-6-2-2019-04-22" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bcbiobase-0-6-2-2019-04-22" class="anchor"></a>bcbioBase 0.6.2 (2019-04-22)</h2>
+<div id="minor-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-changes" class="anchor"></a>Minor changes</h3>
+<ul>
+<li>Improved testing to ensure compatibility with R 3.4.</li>
+</ul>
+</div>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Michael Steinbaugh</p>
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#bcbiobase-0-6-0-2019-03-28">0.6.0</a></li>
+        <li><a href="#bcbiobase-0-6-1-2019-04-18">0.6.1</a></li>
+        <li><a href="#bcbiobase-0-6-2-2019-04-22">0.6.2</a></li>
+      </ul>
+    </div>
   </div>
+
 </div>
 
       <footer>
