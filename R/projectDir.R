@@ -16,12 +16,12 @@
 #' basename(x)
 projectDir <- function(uploadDir) {
     assert(isADirectory(uploadDir))
-    dir <- list.files(
+    dir <- sort(list.files(
         path = uploadDir,
         pattern = projectDirPattern,
         full.names = FALSE,
         recursive = FALSE
-    )
+    ))
     assert(isNonEmpty(dir))
     # Check to see if user has run bcbio multiple times to the same upload
     # directory, and warn when this is detected.
