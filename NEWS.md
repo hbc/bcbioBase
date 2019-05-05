@@ -1,3 +1,15 @@
+## bcbioBase 0.6.3 (2019-05-05)
+
+### Major changes
+
+- Now pinned to R >= 3.5.
+
+### Minor changes
+
+- Improved Travis and AppVeyor CI configuration.
+
+
+
 ## bcbioBase 0.6.2 (2019-04-22)
 
 ### Minor changes

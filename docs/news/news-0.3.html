@@ -62,7 +62,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
       </span>
     </div>
 
@@ -108,18 +108,18 @@
     <div id="bcbiobase-0-3-0-2018-07-17" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-3-0-2018-07-17" class="anchor"></a>bcbioBase 0.3.0 (2018-07-17)</h2>
-<div id="major-changes-3" class="section level3">
+<div id="major-changes-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-3" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-4" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Moved some generics that provide <code>SummarizedExperiment</code> method suport to <a href="http://basejump.acidgenomics.com/">basejump</a> package: <code>gene2symbol</code>, <code>interestingGroups</code>, <code>sampleData</code>, <code>sampleNames</code>, <code>sanitizeSampleData</code>, <code>selectSamples</code>, <code>uniteInterestingGroups</code>.</li>
 <li>Moved method support for <code>SummarizedExperiment</code> to <a href="http://basejump.acidgenomics.com/">basejump</a>: <code>convertGenesToSymbols</code>, <code>counts</code>, <code>gene2symbol</code>, <code>interestingGroups</code>, <code>sampleData</code>, etc.</li>
 <li>Heatmap functions now only provide <code>SummarizedExperiment</code> method support. The documentation for these heatmap functions has been improved (and simplified), showing the supported arguments more clearly.</li>
 </ul>
 </div>
-<div id="minor-changes-21" class="section level3">
+<div id="minor-changes-22" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-21" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-22" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Now using <code>transcriptID</code> instead of <code>txID</code> in tx2gene and GRanges metadata defined in <code>rowRanges</code> slot of object.</li>
 <li>Now using <code>aes</code> instead of <code>aes_string</code> for all internal <a href="https://ggplot2.tidyverse.org/">ggplot2</a> code, which uses tidyeval (v3.0 update).</li>
@@ -133,9 +133,9 @@
     <div id="bcbiobase-0-3-1-2018-07-24" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-3-1-2018-07-24" class="anchor"></a>bcbioBase 0.3.1 (2018-07-24)</h2>
-<div id="minor-changes-20" class="section level3">
+<div id="minor-changes-21" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-20" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-21" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Added hexadecimal color support to heatmap functions.</li>
 <li>Improved documentation, specifying the supported types for each argument more clearly.</li>
@@ -146,9 +146,9 @@
     <div id="bcbiobase-0-3-2-2018-07-31" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bcbiobase-0-3-2-2018-07-31" class="anchor"></a>bcbioBase 0.3.2 (2018-07-31)</h2>
-<div id="minor-changes-19" class="section level3">
+<div id="minor-changes-20" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-19" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-20" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Offloaded <code>separatorBar</code> and <code>updateMsg</code> to <a href="http://basejump.acidgenomics.com/">basejump</a>.</li>
 <li>Now using <a href="https://cran.r-project.org/package=roxygen2">roxygen2</a> v6.1 for documentation.</li>
