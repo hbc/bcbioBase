@@ -4,7 +4,7 @@ context("Read Functions")
 
 # readDataVersions =============================================================
 test_that("readDataVersions", {
-    versions <- readDataVersions("data_versions.csv")
+    versions <- readDataVersions(file.path("cache", "data-versions.csv"))
     expect_is(versions, "tbl_df")
     expect_identical(
         colnames(versions),
@@ -23,7 +23,7 @@ test_that("readDataVersions : Silent on missing file", {
 
 # readLog ==================================================================
 test_that("readLog", {
-    log <- readLog("bcbio-nextgen.log")
+    log <- readLog(file.path("cache", "bcbio-nextgen.log"))
     expect_true(is.character(log))
     expect_identical(
         log[[1L]],
@@ -39,7 +39,7 @@ test_that("readLog", {
 test_that("readLog : Missing file", {
     expect_error(
         readLog("XXX.log"),
-        "is_existing_file :"
+        "XXX.log"
     )
 })
 
@@ -47,7 +47,7 @@ test_that("readLog : Missing file", {
 
 # readProgramVersions ==========================================================
 test_that("readProgramVersions", {
-    versions <- readProgramVersions("programs.txt")
+    versions <- readProgramVersions(file.path("cache", "programs.txt"))
     expect_is(versions, "tbl_df")
     expect_identical(
         colnames(versions),
@@ -66,13 +66,13 @@ test_that("readProgramVersions : Silent on missing file", {
 
 # readSampleData =======================================================
 test_that("readSampleData : Demultiplexed FASTQ", {
-    file <- "demultiplexed.csv"
+    file <- file.path("cache", "demultiplexed.csv")
     x <- readSampleData(file)
 
     # Check that names are sanitized correctly
     expect_identical(
         rownames(x),
-        c("sample_1", "sample_2", "sample_3", "sample_4")
+        c("sample1", "sample2", "sample3", "sample4")
     )
 
     # Check that column names get set correctly
@@ -90,111 +90,79 @@ test_that("readSampleData : Demultiplexed FASTQ", {
     expect_identical(
         rownames(x)[1L:8L],
         c(
-            "sample_1_L001",
-            "sample_1_L002",
-            "sample_1_L003",
-            "sample_1_L004",
-            "sample_2_L001",
-            "sample_2_L002",
-            "sample_2_L003",
-            "sample_2_L004"
+            "sample1_L001",
+            "sample1_L002",
+            "sample1_L003",
+            "sample1_L004",
+            "sample2_L001",
+            "sample2_L002",
+            "sample2_L003",
+            "sample2_L004"
         )
     )
 
     # Required column check failure
     expect_error(
-        readSampleData("demultiplexed_missing_cols.csv"),
-        paste(
-            "is_subset :",
-            "The element 'description' in requiredCols"
-        )
+        readSampleData(file.path("cache", "demultiplexed-missing-cols.csv")),
+        "description"
     )
 
     # Duplicated description
     expect_error(
-        readSampleData("demultiplexed_duplicated_description.csv"),
-        paste(
-            "is_subset :",
-            "The elements 'sampleName', 'index' in requiredCols"
-        )
+        readSampleData(
+            file.path("cache", "demultiplexed-duplicated-description.csv")
+        ),
+        "'sampleName', 'index'"
     )
 })
 
 test_that("readSampleData : Multiplexed FASTQ", {
-    file <- "multiplexed.csv"
+    file <- file.path("cache", "multiplexed.csv")
 
     x <- readSampleData(file)
     expect_identical(
         rownames(x),
         c(
-            "run1_CAGTTATG",
-            "run1_TTACCTCC",
-            "run2_ATAGCCTT",
-            "run2_CTTAATAG",
-            "run2_TAAGGCTC",
-            "run2_TCGCATAA",
-            "run2_TCTTACGC"
+            "indrops1_AGAGGATA",
+            "indrops1_ATAGAGAG",
+            "indrops1_CTCCTTAC",
+            "indrops1_TATGCAGT",
+            "indrops2_AGAGGATA",
+            "indrops2_ATAGAGAG",
+            "indrops2_CTCCTTAC",
+            "indrops2_TATGCAGT"
         )
     )
 
     # Lane-split technical replicate support
     x <- readSampleData(file, lanes = 4L)
     expect_identical(
-        rownames(x),
+        head(rownames(x), n = 4L),
         c(
-            "run1_L001_CAGTTATG",
-            "run1_L001_TTACCTCC",
-            "run1_L002_CAGTTATG",
-            "run1_L002_TTACCTCC",
-            "run1_L003_CAGTTATG",
-            "run1_L003_TTACCTCC",
-            "run1_L004_CAGTTATG",
-            "run1_L004_TTACCTCC",
-            "run2_L001_ATAGCCTT",
-            "run2_L001_CTTAATAG",
-            "run2_L001_TAAGGCTC",
-            "run2_L001_TCGCATAA",
-            "run2_L001_TCTTACGC",
-            "run2_L002_ATAGCCTT",
-            "run2_L002_CTTAATAG",
-            "run2_L002_TAAGGCTC",
-            "run2_L002_TCGCATAA",
-            "run2_L002_TCTTACGC",
-            "run2_L003_ATAGCCTT",
-            "run2_L003_CTTAATAG",
-            "run2_L003_TAAGGCTC",
-            "run2_L003_TCGCATAA",
-            "run2_L003_TCTTACGC",
-            "run2_L004_ATAGCCTT",
-            "run2_L004_CTTAATAG",
-            "run2_L004_TAAGGCTC",
-            "run2_L004_TCGCATAA",
-            "run2_L004_TCTTACGC"
+            "indrops1_L001_AGAGGATA",
+            "indrops1_L001_ATAGAGAG",
+            "indrops1_L001_CTCCTTAC",
+            "indrops1_L001_TATGCAGT"
         )
     )
 
     # Required column check failure
     expect_error(
-        readSampleData("multiplexed_missing_cols.csv"),
-        paste(
-            "is_subset :",
-            "The element 'index' in requiredCols is not in",
-            "colnames\\(data\\)."
-        )
+        readSampleData(file.path("cache", "multiplexed-missing-cols.csv")),
+        "index"
     )
 
     # Duplicate rows in `sampleName` column
     expect_error(
-        readSampleData("multiplexed_duplicated_sampleName.csv"),
-        paste(
-            "has_no_duplicates :",
-            "data\\[\\[\"sampleName\"\\]\\] has duplicates at positions 2, 4."
-        )
+        readSampleData(
+            file.path("cache", "multiplexed-duplicated-sampleName.csv")
+        ),
+        "sampleName"
     )
 })
 
 test_that("readSampleData : Multiplexed CellRanger data", {
-    x <- readSampleData("cellranger_metadata.csv")
+    x <- readSampleData(file.path("cache", "cellranger-metadata.csv"))
     y <- data.frame(
         sampleName = c("proximal", "distal"),
         fileName = "aggregation.fastq.gz",
@@ -207,7 +175,7 @@ test_that("readSampleData : Multiplexed CellRanger data", {
 })
 
 test_that("readSampleData : Legacy bcbio samplename column", {
-    file <- "bcbio_legacy_samplename.csv"
+    file <- file.path("cache", "bcbio-legacy-samplename.csv")
     # Warn on `samplename`
     expect_warning(
         readSampleData(file),
@@ -216,10 +184,10 @@ test_that("readSampleData : Legacy bcbio samplename column", {
     expect_identical(
         suppressWarnings(readSampleData(file)),
         data.frame(
-            sampleName = "sample-1",
-            description = "sample-1",
-            fileName = "sample-1.fastq.gz",
-            row.names = "sample_1",
+            sampleName = "sample1",
+            description = "sample1",
+            fileName = "sample1.fastq.gz",
+            row.names = "sample1",
             stringsAsFactors = TRUE
         )
     )
@@ -227,7 +195,7 @@ test_that("readSampleData : Legacy bcbio samplename column", {
 
 test_that("readSampleData : sampleID defined by user", {
     expect_warning(
-        readSampleData("sampleID_column_defined.csv"),
+        readSampleData(file.path("cache", "sampleID-column-defined.csv")),
         "Invalid metadata columns detected."
     )
 })
@@ -236,7 +204,7 @@ test_that("readSampleData : Missing file", {
     # Always stop on missing
     expect_error(
         readSampleData("XXX.csv"),
-        "is_existing_file :"
+        "XXX.csv"
     )
 })
 
@@ -244,7 +212,7 @@ test_that("readSampleData : Missing file", {
 
 # readTx2gene ==================================================================
 test_that("readTx2gene", {
-    x <- readTx2gene("tx2gene.csv")
+    x <- readTx2gene(file.path("cache", "tx2gene.csv"))
     expect_is(x, "data.frame")
     expect_identical(
         colnames(x),
@@ -256,7 +224,7 @@ test_that("readTx2gene", {
 
 # readYAMLSampleData ===========================================================
 test_that("readYAMLSampleData", {
-    x <- readYAMLSampleData("project-summary.yaml")
+    x <- readYAMLSampleData(file.path("cache", "project-summary.yaml"))
     samples <- c("group1_1", "group1_2", "group2_1", "group2_2")
     expect_identical(
         x,
@@ -286,7 +254,9 @@ test_that("readYAMLSampleData", {
 test_that("readYAMLSampleData : nested metadata", {
     # Testing against Kayleigh's example
     x <- suppressWarnings(
-        readYAMLSampleData("project-summary-nested-metadata.yaml")
+        readYAMLSampleData(
+            file.path("cache", "project-summary-nested-metadata.yaml")
+        )
     )
     expect_is(x, "data.frame")
 })
@@ -314,11 +284,13 @@ test_that("readYAMLSampleMetrics", {
         xGC = "numeric"
     )
 
-    x <- readYAMLSampleMetrics("project-summary.yaml")
+    x <- readYAMLSampleMetrics(file.path("cache", "project-summary.yaml"))
     expect_identical(lapply(x, class), y)
 
     # Check for proper handling of metrics with mismatched number of values
-    x <- readYAMLSampleMetrics("project-summary-metrics-mismatch.yaml")
+    x <- readYAMLSampleMetrics(
+        file.path("cache", "project-summary-metrics-mismatch.yaml")
+    )
     y[["sequenceLength"]] <- "numeric"
     expect_identical(lapply(x, class), y)
 })
