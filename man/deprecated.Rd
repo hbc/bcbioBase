@@ -2,7 +2,11 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
+\alias{readLog}
 \title{Deprecated functions}
+\usage{
+readLog(file)
+}
 \value{
 \code{.Deprecated}.
 }
