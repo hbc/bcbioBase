@@ -58,7 +58,9 @@ bcbio_geom_label_repel <- function(...) {
 #' @rdname defunct
 #' @export
 readLog <- function(file) {
-    .Defunct("basejump::import")
+    # .Defunct("basejump::import")  # nolint
+    requireNamespace("basejump", quietly = TRUE)
+    basejump::import(file)
 }
 
 #' @rdname defunct
