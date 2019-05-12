@@ -3,19 +3,6 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
-\alias{assertFormalInterestingGroups}
-\alias{convertGenesToSymbols}
-\alias{gene2symbol}
-\alias{interestingGroups}
-\alias{interestingGroups<-}
-\alias{sampleData}
-\alias{sampleData<-}
-\alias{sampleNames}
-\alias{sanitizeSampleData}
-\alias{selectSamples}
-\alias{uniteInterestingGroups}
-\alias{separatorBar}
-\alias{updateMessage}
 \alias{prepareTemplate}
 \alias{pull}
 \alias{ggplot}
@@ -29,7 +16,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{basejump}{\code{\link[basejump]{assertFormalInterestingGroups}}, \code{\link[basejump]{convertGenesToSymbols}}, \code{\link[basejump]{gene2symbol}}, \code{\link[basejump]{interestingGroups}}, \code{\link[basejump]{interestingGroups<-}}, \code{\link[basejump]{sampleData}}, \code{\link[basejump]{sampleData<-}}, \code{\link[basejump]{sampleNames}}, \code{\link[basejump]{sanitizeSampleData}}, \code{\link[basejump]{selectSamples}}, \code{\link[basejump]{uniteInterestingGroups}}, \code{\link[basejump]{separatorBar}}, \code{\link[basejump]{updateMessage}}, \code{\link[basejump]{prepareTemplate}}}
+  \item{basejump}{\code{\link[basejump]{prepareTemplate}}}
 
   \item{dplyr}{\code{\link[dplyr]{pull}}}
 
