@@ -120,16 +120,20 @@ bcbio_geom_label <- function(
 #' @export
 #'
 #' @examples
+#' data <- tibble::tibble(
+#'     sampleName = rep(c("sample1", "sample2"), times = 4L),
+#'     counts = seq_len(8L)
+#' )
 #' geom <- bcbio_geom_label_average(
-#'     data = colData(rse_bcb),
-#'     col = "exonicRate",
-#'     fun = "median"
+#'     data = data,
+#'     col = "counts",
+#'     fun = "mean"
 #' )
 #' geom
 bcbio_geom_label_average <- function(
     data,
     col,
-    fun = c("median", "median"),
+    fun = c("median", "mean"),
     digits = 0L,
     ...
 ) {

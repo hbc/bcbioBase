@@ -12,7 +12,7 @@ bcbio_geom_abline(xintercept = NULL, yintercept = NULL)
 
 bcbio_geom_label(data = NULL, mapping = NULL, ...)
 
-bcbio_geom_label_average(data, col, fun = c("median", "median"),
+bcbio_geom_label_average(data, col, fun = c("median", "mean"),
   digits = 0L, ...)
 
 bcbio_geom_label_repel(data = NULL, mapping = NULL, color = NULL,
@@ -89,10 +89,14 @@ geom <- bcbio_geom_abline(yintercept = 1L)
 geom
 geom <- bcbio_geom_label()
 geom
+data <- tibble::tibble(
+    sampleName = rep(c("sample1", "sample2"), times = 4L),
+    counts = seq_len(8L)
+)
 geom <- bcbio_geom_label_average(
-    data = colData(rse_bcb),
-    col = "exonicRate",
-    fun = "median"
+    data = data,
+    col = "counts",
+    fun = "mean"
 )
 geom
 geom <- bcbio_geom_label_repel()
