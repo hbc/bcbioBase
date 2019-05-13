@@ -3,14 +3,14 @@
     intersect <- intersect(colnames(object), metadataBlacklist)
     if (length(intersect) > 0L) {
         stop(paste0(
-            paste("Invalid columns:", toString(intersect)), "\n",
+            "Invalid columns: ", toString(intersect), "\n",
             "Recommended columns:\n",
             "  - fileName: FASTQ file name (optional, but recommended).\n",
             "  - description: Sample description per file (required).\n",
             "  - sampleName: Unique sample name",
             " (multiplexed samples only).\n",
-            "The `description` column is sanitized into the sample ID ",
-            "for demultiplexed samples."
+            "Refer to bcbioBase::readSampleData() documentation for ",
+            "formatting requirements and additional details."
         ))
     }
 
