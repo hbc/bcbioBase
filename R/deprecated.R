@@ -17,6 +17,17 @@ NULL
 
 
 
+# v0.3.2 =======================================================================
+#' @importFrom basejump separatorBar
+#' @export
+basejump::separatorBar
+
+#' @importFrom basejump updateMessage
+#' @export
+basejump::updateMessage
+
+
+
 # v0.4.1 =======================================================================
 #' @importFrom basejump prepareTemplate
 #' @export
