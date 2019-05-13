@@ -55,10 +55,12 @@ bcbio_geom_label_repel <- function(...) {
     .Defunct("acidplots::acid_geom_label_repel")
 }
 
-#' @rdname defunct
+#' @rdname deprecated
 #' @export
 readLog <- function(file) {
-    .Defunct("basejump::import")
+    # .Defunct("basejump::import")  # nolint
+    requireNamespace("basejump", quietly = TRUE)
+    basejump::import(file)
 }
 
 #' @rdname defunct
