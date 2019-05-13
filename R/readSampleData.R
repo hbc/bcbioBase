@@ -111,7 +111,6 @@ readSampleData <- function(file, lanes = 0L) {
     # of duplicate values in the `description` column.
     if (hasNoDuplicates(data[["description"]])) {
         multiplexed <- FALSE
-        message("Demultiplexed samples detected.")
         # Note that `sampleName` column isn't required for demultiplexed
         # samples. We can assign from the bcbio `description` automatically.
         if (!"sampleName" %in% colnames(data)) {
@@ -130,8 +129,7 @@ readSampleData <- function(file, lanes = 0L) {
     } else {
         stop(paste0(
             "Sample data input file is malformed.\n",
-            "Refer to bcbioBase::readSampleData() documentation for ",
-            "formatting requirements and additional details."
+            "Refer to bcbioBase::readSampleData() for formatting requirements."
         ))
     }
     nameCols <- c("sampleName", "description")
