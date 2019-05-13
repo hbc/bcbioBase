@@ -14,6 +14,7 @@
 #' summary(x)
 #' colnames(x)
 getSampleDataFromYAML <- function(yaml) {
+    assert(is.list(yaml))
     message("Getting sample metadata from YAML.")
     data <- .sampleYAML(yaml, keys = "metadata")
     assert(.isSampleData(data))

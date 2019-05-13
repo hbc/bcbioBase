@@ -20,6 +20,7 @@
 #' summary(x)
 #' colnames(x)
 getMetricsFromYAML <- function(yaml) {
+    assert(is.list(yaml))
     message("Getting sample metrics from YAML.")
     data <- .sampleYAML(yaml, keys = c("summary", "metrics"))
 

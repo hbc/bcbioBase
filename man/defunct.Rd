@@ -21,9 +21,9 @@ bcbio_geom_label_repel(...)
 
 readTx2gene(...)
 
-readYAMLSampleData(...)
+readYAMLSampleData(file)
 
-readYAMLSampleMetrics(...)
+readYAMLSampleMetrics(file)
 }
 \arguments{
 \item{...}{Additional arguments.}
