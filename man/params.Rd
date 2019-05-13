@@ -4,6 +4,9 @@
 \alias{params}
 \title{Parameters}
 \arguments{
+\item{file}{\code{character(1)}.
+File path.}
+
 \item{projectDir}{\code{character(1)}.
 Project directory path.}
 

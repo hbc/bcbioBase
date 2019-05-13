@@ -5,11 +5,13 @@
 
 #' @name defunct
 #' @inherit basejump::defunct
+#' @inheritParams params
 #' @keywords internal
 NULL
 
 #' @name deprecated
 #' @inherit basejump::deprecated
+#' @inheritParams params
 #' @keywords internal
 NULL
 

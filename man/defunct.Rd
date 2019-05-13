@@ -27,6 +27,9 @@ readYAMLSampleMetrics(file)
 }
 \arguments{
 \item{...}{Additional arguments.}
+
+\item{file}{\code{character(1)}.
+File path.}
 }
 \value{
 \code{.Defunct}.
