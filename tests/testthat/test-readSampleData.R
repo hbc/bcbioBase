@@ -219,3 +219,29 @@ test_that("Missing file", {
         regexp = "isAFile"
     )
 })
+
+
+
+context("readSampleData : Malformed input")
+
+test_that("Metadata blacklist", {
+    file <- file.path(
+        "cache",
+        "metadata-invalid-column-name.csv"
+    )
+    expect_error(
+        object = readSampleData(file),
+        regexp = "sampleNames"
+    )
+})
+
+test_that("Invalid description", {
+    file <- file.path(
+        "cache",
+        "metadata-invalid-description.csv"
+    )
+    expect_error(
+        object = readSampleData(file),
+        regexp = "Sample data input file is malformed."
+    )
+})
