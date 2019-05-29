@@ -49,8 +49,8 @@
 #'
 #' @author Michael Steinbaugh
 #' @export
-#' @inheritParams basejump::params
 #'
+#' @inheritParams basejump::params
 #' @param file `character(1)`.
 #'   File path. Supports CSV, TSV, and XLSX file formats.
 #' @param lanes `integer(1)`.
@@ -60,13 +60,13 @@
 #' @return `DataFrame`.
 #'
 #' @examples
-#' ## Demultiplexed
-#' file <- file.path(bcbioBaseTestsURL, "demultiplexed.csv")
+#' ## Demultiplexed ====
+#' file <- file.path(bcbioBaseTestsURL, "metadata-demultiplexed.csv")
 #' x <- readSampleData(file)
 #' print(x)
 #'
-#' ## Multiplexed
-#' file <- file.path(bcbioBaseTestsURL, "multiplexed-indrops.csv")
+#' ## Multiplexed ====
+#' file <- file.path(bcbioBaseTestsURL, "metadata-multiplexed-indrops.csv")
 #' x <- readSampleData(file)
 #' print(x)
 readSampleData <- function(file, lanes = 0L) {
@@ -109,9 +109,16 @@ readSampleData <- function(file, lanes = 0L) {
 
     # Determine whether the samples are multiplexed, based on the presence
     # of duplicate values in the `description` column.
-    if (
-        any(duplicated(data[["description"]])) ||
-        any(c("index", "sequence") %in% colnames(data))
+    if (hasNoDuplicates(data[["description"]])) {
+        multiplexed <- FALSE
+        # Note that `sampleName` column isn't required for demultiplexed
+        # samples. We can assign from the bcbio `description` automatically.
+        if (!"sampleName" %in% colnames(data)) {
+            data[["sampleName"]] <- data[["description"]]
+        }
+    } else if (
+        any(duplicated(data[["description"]])) &&
+        "index" %in% colnames(data)
     ) {
         multiplexed <- TRUE
         message("Multiplexed samples detected.")
@@ -120,15 +127,10 @@ readSampleData <- function(file, lanes = 0L) {
         # Note that `description` column is expected to have duplicates.
         assert(hasNoDuplicates(data[["sampleName"]]))
     } else {
-        multiplexed <- FALSE
-        message("Demultiplexed samples detected.")
-        assert(hasNoDuplicates(data[["description"]]))
-
-        # Note that `sampleName` column isn't required for demultiplexed
-        # samples. We can assign from the bcbio `description` automatically.
-        if (!"sampleName" %in% colnames(data)) {
-            data[["sampleName"]] <- data[["description"]]
-        }
+        stop(paste0(
+            "Sample data input file is malformed.\n",
+            "Refer to bcbioBase::readSampleData() for formatting requirements."
+        ))
     }
     nameCols <- c("sampleName", "description")
 

@@ -1,6 +1,6 @@
 context("readSampleData : Demultiplexed samples")
 
-file <- file.path("cache", "demultiplexed.csv")
+file <- file.path("cache", "metadata-demultiplexed.csv")
 
 test_that("DataFrame return", {
     expect_identical(
@@ -28,18 +28,24 @@ test_that("Lane-split technical replicate support", {
 })
 
 test_that("Required column check failure", {
-    file <- file.path("cache", "demultiplexed-invalid-missing.csv")
+    file <- file.path(
+        "cache",
+        "metadata-demultiplexed-invalid-missing-columns.csv"
+    )
     expect_error(
         object = readSampleData(file),
-        regexp = "isSampleData"
+        regexp = "description"
     )
 })
 
 test_that("Duplicated description", {
-    file <- file.path("cache", "demultiplexed-invalid-duplicated.csv")
+    file <- file.path(
+        "cache",
+        "metadata-demultiplexed-invalid-duplicated.csv"
+    )
     expect_error(
         object = readSampleData(file),
-        regexp = "isSubset"
+        regexp = "Sample data input file is malformed."
     )
 })
 
@@ -47,7 +53,7 @@ test_that("Duplicated description", {
 
 context("readSampleData : Multiplexed samples")
 
-file <- file.path("cache", "multiplexed-indrops.csv")
+file <- file.path("cache", "metadata-multiplexed-indrops.csv")
 
 test_that("DataFrame return", {
     # Note that we're expecting this to sort by the rownames (`description`),
@@ -163,39 +169,47 @@ test_that("Lane-split technical replicate support", {
 })
 
 test_that("Required column check failure.", {
-    file <- file.path("cache", "multiplexed_invalid_missing.csv")
+    file <- file.path(
+        "cache",
+        "metadata-multiplexed-invalid-missing-columns.csv"
+    )
     expect_error(
         object = readSampleData(file),
-        expected = paste(
-            "is_subset :",
-            "The element 'index' in required is not in",
-            "colnames\\(data\\)."
-        )
+        regexp = "Sample data input file is malformed."
     )
 })
 
 test_that("Duplicate rows in `sampleName` column", {
-    file <- file.path("cache", "multiplexed-invalid-duplicated.csv")
+    file <- file.path(
+        "cache",
+        "metadata-multiplexed-invalid-duplicated.csv"
+    )
     expect_error(
         object = readSampleData(file),
-        regexp = "hasNoDuplicates"
+        regexp = "sampleName"
     )
 })
 
 # Recommend using `fileName` instead.
 test_that("bcbio `samplename` column", {
-    file <- file.path("cache", "demultiplexed-invalid-legacy-samplename.csv")
+    file <- file.path(
+        "cache",
+        "metadata-demultiplexed-invalid-legacy-samplename.csv"
+    )
     expect_error(
         object = readSampleData(file),
-        regexp = "Invalid columns: samplename"
+        regexp = "samplename"
     )
 })
 
 test_that("`sampleID` column defined by user", {
-    file <- file.path("cache", "demultiplexed-invalid-sample-id.csv")
+    file <- file.path(
+        "cache",
+        "metadata-demultiplexed-invalid-sample-id.csv"
+    )
     expect_error(
         object = readSampleData(file),
-        regexp = "Invalid columns: sampleID"
+        regexp = "sampleID"
     )
 })
 
@@ -203,5 +217,31 @@ test_that("Missing file", {
     expect_error(
         object = readSampleData("XXX.csv"),
         regexp = "isAFile"
+    )
+})
+
+
+
+context("readSampleData : Malformed input")
+
+test_that("Metadata blacklist", {
+    file <- file.path(
+        "cache",
+        "metadata-invalid-column-name.csv"
+    )
+    expect_error(
+        object = readSampleData(file),
+        regexp = "sampleNames"
+    )
+})
+
+test_that("Invalid description", {
+    file <- file.path(
+        "cache",
+        "metadata-invalid-description.csv"
+    )
+    expect_error(
+        object = readSampleData(file),
+        regexp = "Sample data input file is malformed."
     )
 })

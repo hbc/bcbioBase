@@ -1,23 +1,32 @@
+# Sample metadata assert check for goalie engine.
 .isSampleData <- function(object) {
-    # Stop on detection of blacklisted columns.
+    ok <- isAny(object, c("data.frame", "DataFrame"))
+    if (!isTRUE(ok)) return(ok)
+
+    # Check for blacklisted columns.
     intersect <- intersect(colnames(object), metadataBlacklist)
-    if (length(intersect) > 0L) {
-        stop(paste0(
-            paste("Invalid columns:", toString(intersect)), "\n",
+    ok <- !hasLength(intersect)
+    if (!isTRUE(ok)) {
+        return(false(paste0(
+            "Blacklist detection: ", toString(intersect), "\n\n",
             "Recommended columns:\n",
             "  - fileName: FASTQ file name (optional, but recommended).\n",
             "  - description: Sample description per file (required).\n",
             "  - sampleName: Unique sample name",
-            " (multiplexed samples only).\n",
-            "The `description` column is sanitized into the sample ID ",
-            "for demultiplexed samples."
-        ))
+            " (multiplexed samples only).\n\n",
+            "Refer to bcbioBase::readSampleData() for formatting requirements."
+        )))
     }
 
-    # Check for required columns.
-    ok <- isSubset("description", colnames(object))
+    # Check for required columns (e.g. description).
+    required <- "description"
+    ok <- isSubset(required, colnames(object))
     if (!isTRUE(ok)) {
-        return(FALSE)
+        setdiff <- setdiff(required, colnames(object))
+        return(false(paste0(
+            "Required columns missing: ", setdiff, "\n\n",
+            "Refer to bcbioBase::readSampleData() for formatting requirements."
+        )))
     }
 
     TRUE
@@ -25,6 +34,7 @@
 
 
 
+# Wrap `makeSampleData()` call with bcbio-specific additions.
 .makeSampleData <- function(object) {
     object <- as(object, "DataFrame")
 

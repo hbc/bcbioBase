@@ -21,12 +21,15 @@ bcbio_geom_label_repel(...)
 
 readTx2gene(...)
 
-readYAMLSampleData(...)
+readYAMLSampleData(file)
 
-readYAMLSampleMetrics(...)
+readYAMLSampleMetrics(file)
 }
 \arguments{
 \item{...}{Additional arguments.}
+
+\item{file}{\code{character(1)}.
+File path.}
 }
 \value{
 \code{.Defunct}.

@@ -7,6 +7,10 @@
 \usage{
 readLog(file)
 }
+\arguments{
+\item{file}{\code{character(1)}.
+File path.}
+}
 \value{
 \code{.Deprecated}.
 }

@@ -71,13 +71,13 @@ reverse complement will be calculated automatically and added as the
 }
 
 \examples{
-## Demultiplexed
-file <- file.path(bcbioBaseTestsURL, "demultiplexed.csv")
+## Demultiplexed ====
+file <- file.path(bcbioBaseTestsURL, "metadata-demultiplexed.csv")
 x <- readSampleData(file)
 print(x)
 
-## Multiplexed
-file <- file.path(bcbioBaseTestsURL, "multiplexed-indrops.csv")
+## Multiplexed ====
+file <- file.path(bcbioBaseTestsURL, "metadata-multiplexed-indrops.csv")
 x <- readSampleData(file)
 print(x)
 }

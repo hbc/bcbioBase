@@ -3,6 +3,8 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
+\alias{separatorBar}
+\alias{updateMessage}
 \alias{prepareTemplate}
 \alias{lanePattern}
 \alias{minimalSampleData}
@@ -14,6 +16,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{basejump}{\code{\link[basejump]{prepareTemplate}}, \code{\link[basejump]{lanePattern}}, \code{\link[basejump]{minimalSampleData}}, \code{\link[basejump]{metadataBlacklist}}}
+  \item{basejump}{\code{\link[basejump]{separatorBar}}, \code{\link[basejump]{updateMessage}}, \code{\link[basejump]{prepareTemplate}}, \code{\link[basejump]{lanePattern}}, \code{\link[basejump]{minimalSampleData}}, \code{\link[basejump]{metadataBlacklist}}}
 }}
 

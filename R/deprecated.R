@@ -5,13 +5,26 @@
 
 #' @name defunct
 #' @inherit basejump::defunct
+#' @inheritParams params
 #' @keywords internal
 NULL
 
 #' @name deprecated
 #' @inherit basejump::deprecated
+#' @inheritParams params
 #' @keywords internal
 NULL
+
+
+
+# v0.3.2 =======================================================================
+#' @importFrom basejump separatorBar
+#' @export
+basejump::separatorBar
+
+#' @importFrom basejump updateMessage
+#' @export
+basejump::updateMessage
 
 
 
@@ -34,25 +47,33 @@ basejump::minimalSampleData
 #' @rdname defunct
 #' @export
 bcbio_geom_abline <- function(...) {
-    .Defunct("acidplots::acid_geom_abline")
+    # .Defunct("acidplots::acid_geom_abline")  # nolint
+    requireNamespace("acidplots", quietly = TRUE)
+    acidplots::acid_geom_abline(...)
 }
 
 #' @rdname defunct
 #' @export
 bcbio_geom_label <- function(...) {
-    .Defunct("acidplots::acid_geom_label")
+    # .Defunct("acidplots::acid_geom_label")  # nolint
+    requireNamespace("acidplots", quietly = TRUE)
+    acidplots::acid_geom_label(...)
 }
 
 #' @rdname defunct
 #' @export
 bcbio_geom_label_average <- function(...) {
-    .Defunct("acidplots::acid_geom_label_average")
+    # .Defunct("acidplots::acid_geom_label_average")  # nolint
+    requireNamespace("acidplots", quietly = TRUE)
+    acidplots::acid_geom_label_average(...)
 }
 
 #' @rdname defunct
 #' @export
 bcbio_geom_label_repel <- function(...) {
-    .Defunct("acidplots::acid_geom_label_repel")
+    # .Defunct("acidplots::acid_geom_label_repel")  # nolint
+    requireNamespace("acidplots", quietly = TRUE)
+    acidplots::acid_geom_label_repel(...)
 }
 
 #' @rdname deprecated
@@ -71,14 +92,20 @@ readTx2gene <- function(...) {
 
 #' @rdname defunct
 #' @export
-readYAMLSampleData <- function(...) {
-    .Defunct("getSampleDataFromYAML")
+readYAMLSampleData <- function(file) {
+    # .Defunct("getSampleDataFromYAML")  # nolint
+    requireNamespace("basejump", quietly = TRUE)
+    yaml <- basejump::import(file)
+    getSampleDataFromYAML(yaml)
 }
 
 #' @rdname defunct
 #' @export
-readYAMLSampleMetrics <- function(...) {
-    .Defunct("getMetricsFromYAML")
+readYAMLSampleMetrics <- function(file) {
+    # .Defunct("getMetricsFromYAML")  # nolint
+    requireNamespace("basejump", quietly = TRUE)
+    yaml <- basejump::import(file)
+    getMetricsFromYAML(yaml)
 }
 
 

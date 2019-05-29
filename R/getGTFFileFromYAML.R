@@ -14,7 +14,10 @@
 #' x <- getGTFFileFromYAML(yaml)
 #' print(x)
 getGTFFileFromYAML <- function(yaml) {
-    assert(.isSummaryYAML(yaml))
+    assert(
+        is.list(yaml),
+        .isSummaryYAML(yaml)
+    )
     # Assume all samples are using the same GTF file.
     file <- yaml %>%
         .[["samples"]] %>%
