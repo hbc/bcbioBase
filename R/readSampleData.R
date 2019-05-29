@@ -109,16 +109,13 @@ readSampleData <- function(file, lanes = 0L) {
 
     # Determine whether the samples are multiplexed, based on the presence
     # of duplicate values in the `description` column.
-    if (hasNoDuplicates(data[["description"]])) {
-        multiplexed <- FALSE
-        # Note that `sampleName` column isn't required for demultiplexed
-        # samples. We can assign from the bcbio `description` automatically.
-        if (!"sampleName" %in% colnames(data)) {
-            data[["sampleName"]] <- data[["description"]]
-        }
-    } else if (
-        any(duplicated(data[["description"]])) &&
-        "index" %in% colnames(data)
+    if (
+        isSubset(c("index", "sequence"), colnames(data)) &&
+        (
+            any(duplicated(data[["description"]])) ||
+            # Keep this line for bcbioSingleCell multiplexed minimal example.
+            nrow(data) == 1L
+        )
     ) {
         multiplexed <- TRUE
         message("Multiplexed samples detected.")
@@ -126,6 +123,13 @@ readSampleData <- function(file, lanes = 0L) {
         assert(isSubset(required, colnames(data)))
         # Note that `description` column is expected to have duplicates.
         assert(hasNoDuplicates(data[["sampleName"]]))
+    } else if (hasNoDuplicates(data[["description"]])) {
+        multiplexed <- FALSE
+        # Note that `sampleName` column isn't required for demultiplexed
+        # samples. We can assign from the bcbio `description` automatically.
+        if (!"sampleName" %in% colnames(data)) {
+            data[["sampleName"]] <- data[["description"]]
+        }
     } else {
         stop(paste0(
             "Sample data input file is malformed.\n",
