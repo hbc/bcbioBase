@@ -1,31 +1,31 @@
-#' Read Data Versions
+#' Read data versions
 #'
 #' @note The `data_versions.csv` file is only generated for special genomes
-#' containing additional information (e.g. the built-in "hg38" build).
+#' containing additional information (e.g. the built-in "`hg38`" build).
 #'
-#' @family Read Functions
 #' @author Michael Steinbaugh
-#'
-#' @inheritParams general
-#'
-#' @return `tbl_df`.
 #' @export
+#' @inheritParams basejump::params
+#'
+#' @return `DataFrame`.
 #'
 #' @examples
-#' readDataVersions("http://bcbiobase.seq.cloud/data_versions.csv") %>%
-#'     glimpse()
+#' file <- file.path(bcbioBaseTestsURL, "data-versions.csv")
+#' x <- readDataVersions(file)
+#' print(x)
 readDataVersions <- function(file) {
-    assert_is_a_string(file)
-    # Data versions are optional
+    assert(isString(file))
+    # Data versions are optional.
     file <- tryCatch(
         localOrRemoteFile(file),
         error = function(e) {
-            message("Data versions are missing")
+            message("Data versions are missing.")
             NULL
         }
     )
     if (is.null(file)) {
-        return(tibble())
+        return(DataFrame())
     }
-    read_csv(file)
+    data <- import(file)
+    as(data, "DataFrame")
 }

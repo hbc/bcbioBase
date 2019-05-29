@@ -1,7 +1,8 @@
 Package: bcbioBase
 Title: bcbio Base Functions
-Description: Base functions and generics for bcbio R packages.
-Version: 0.4.1
+Description: Base functions for bcbio R packages.
+Version: 0.6.4
+Date: 2019-05-29
 Authors@R: c(
     person(
         given = "Michael",
@@ -11,13 +12,6 @@ Authors@R: c(
         comment = c(ORCID = "0000-0002-2403-2221")
     ),
     person(
-        given = "Lorena",
-        family = "Pantano",
-        email = "lorena.pantano@gmail.com",
-        role = "aut",
-        comment = c(ORCID = "0000-0002-3859-3249")
-    ),
-    person(
         given = "Rory",
         family = "Kirchner",
         email = "roryk@alum.mit.edu",
@@ -25,50 +19,51 @@ Authors@R: c(
         comment = c(ORCID = "0000-0003-4814-5885")
     ),
     person(
+        given = "Lorena",
+        family = "Pantano",
+        email = "lorena.pantano@gmail.com",
+        role = "aut",
+        comment = c(ORCID = "0000-0002-3859-3249")
+    ),
+    person(
         given = "Harvard Chan Bioinformatics Core",
         email = "bioinformatics@hsph.harvard.edu",
         role = c("cph", "fnd")
     ))
 URL:
-    http://bioinformatics.sph.harvard.edu/bcbioBase,
-    https://github.com/hbc/bcbioBase
-BugReports: https://github.com/hbc/bcbioBase/issues
+    https://bioinformatics.sph.harvard.edu/bcbioBase/,
+    https://github.com/hbc/bcbioBase/
+BugReports: https://github.com/hbc/bcbioBase/issues/
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: TRUE
-Depends:
-    R (>= 3.5),
-    basejump (== 0.7.2)
+Depends: R (>= 3.5)
 Imports:
-    assertive.base,
-    assertive.files,
-    assertive.numbers,
-    assertive.properties,
-    assertive.sets,
-    assertive.strings,
-    assertive.types,
+    basejump (>= 0.10.9),
+    goalie (>= 0.2.16),
     Biostrings,
-    dplyr (>= 0.7),
-    ggplot2 (>= 3.0),
-    ggrepel (>= 0.7),
-    grid,
+    S4Vectors,
+    dplyr (>= 0.8),
     magrittr (>= 1.5),
-    methods,
     plyr (>= 1.8),
     rdrop2 (>= 0.8),
-    readr (>= 1.1),
-    rlang (>= 0.2),
-    S4Vectors,
-    stats,
-    stringr (>= 1.3),
-    tibble (>= 1.4),
+    readr (>= 1.3),
+    rlang (>= 0.3),
+    stringr (>= 1.4),
+    tibble (>= 2.1),
     tidyr (>= 0.8),
+    methods,
     utils
 Suggests:
+    acidplots,
     roxygen2,
-    testthat (>= 2.0)
+    testthat
 Remotes:
-    acidgenomics/basejump@v0.7.2
-biocViews: Infrastructure
+    acidgenomics/acidplots,
+    acidgenomics/basejump,
+    acidgenomics/goalie
+biocViews:
+    DataImport,
+    Infrastructure
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1

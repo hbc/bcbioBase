@@ -2,34 +2,29 @@
 % Please edit documentation in R/readDataVersions.R
 \name{readDataVersions}
 \alias{readDataVersions}
-\title{Read Data Versions}
+\title{Read data versions}
 \usage{
 readDataVersions(file)
 }
 \arguments{
-\item{file}{\code{string}. File path.}
+\item{file}{\code{character(1)}.
+File path.}
 }
 \value{
-\code{tbl_df}.
+\code{DataFrame}.
 }
 \description{
-Read Data Versions
+Read data versions
 }
 \note{
 The \code{data_versions.csv} file is only generated for special genomes
-containing additional information (e.g. the built-in "hg38" build).
+containing additional information (e.g. the built-in "\code{hg38}" build).
 }
 \examples{
-readDataVersions("http://bcbiobase.seq.cloud/data_versions.csv") \%>\%
-    glimpse()
-}
-\seealso{
-Other Read Functions: \code{\link{readLog}},
-  \code{\link{readProgramVersions}},
-  \code{\link{readSampleData}}, \code{\link{readTx2gene}},
-  \code{\link{readYAML}}
+file <- file.path(bcbioBaseTestsURL, "data-versions.csv")
+x <- readDataVersions(file)
+print(x)
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Read Functions}

@@ -2,48 +2,19 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
-\alias{readLogFile}
-\alias{readSampleMetadataFile}
-\alias{sampleMetadata}
-\alias{sampleMetadata<-}
-\alias{flatFiles}
-\alias{metrics}
-\alias{plotCorrelationHeatmap}
-\alias{plotGene}
-\alias{plotHeatmap}
-\alias{plotQC}
-\alias{plotQuantileHeatmap}
-\alias{prepareSummarizedExperiment}
-\title{Deprecated Functions}
+\alias{readLog}
+\title{Deprecated functions}
 \usage{
-readLogFile(...)
-
-readSampleMetadataFile(...)
-
-sampleMetadata(object, ...)
-
-sampleMetadata(object) <- value
-
-flatFiles(object, ...)
-
-metrics(object, ...)
-
-plotCorrelationHeatmap(object, ...)
-
-plotGene(object, ...)
-
-plotHeatmap(object, ...)
-
-plotQC(object, ...)
-
-plotQuantileHeatmap(object, ...)
-
-prepareSummarizedExperiment(...)
+readLog(file)
+}
+\arguments{
+\item{file}{\code{character(1)}.
+File path.}
 }
 \value{
-No value.
+\code{.Deprecated}.
 }
 \description{
-Deprecated Functions
+Deprecated functions
 }
 \keyword{internal}

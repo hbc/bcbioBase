@@ -1,53 +1,18 @@
 globalVariables(".")
 
+packageVersion <- packageVersion("bcbioBase")
 
-
-yamlFlatCols <- c(
-    "description",
-    "genome_build",
-    "sam_ref"
-)
-
-
-
-metricsBlacklist <- c(
-    camel(yamlFlatCols),
-    "name"
-)
-
-
-
-#' Metadata Blacklist
-#' @keywords internal
+#' bcbioBase test data URL
 #' @export
 #' @examples
-#' metadataBlacklist
-metadataBlacklist <- sort(c(
-    metricsBlacklist,
-    "aggregate",
-    "fileName",
-    "index",
-    "qualityFormat",
-    "revcomp",
-    "sampleID",
-    "sequence",
-    "sequenceLength"
-))
+#' bcbioBaseTestsURL
+bcbioBaseTestsURL <- paste0(
+    "http://tests.acidgenomics.com/bcbioBase/",
+    "v", packageVersion$major, ".", packageVersion$minor  # nolint
+)
 
-
-
-#' Lane Grep Pattern
-#' @keywords internal
-#' @export
-#' @examples
-#' lanePattern
-lanePattern <- "_L(\\d{3})"
-
-
-
-#' Project Directory Grep Pattern
-#' @keywords internal
+#' Project directory grep pattern
 #' @export
 #' @examples
 #' projectDirPattern
-projectDirPattern <- "^(\\d{4}-\\d{2}-\\d{2})_([^/]+)$"
+projectDirPattern <- "^([[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2})_([^/]+)$"

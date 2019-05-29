@@ -2,37 +2,85 @@
 % Please edit documentation in R/readSampleData.R
 \name{readSampleData}
 \alias{readSampleData}
-\title{Read Sample Metadata}
+\title{Read sample metadata}
 \usage{
-readSampleData(file, lanes = 1L)
+readSampleData(file, lanes = 0L)
 }
 \arguments{
-\item{file}{\code{string}. File path. Supports CSV, TSV, and XLSX file formats.}
+\item{file}{\code{character(1)}.
+File path. Supports CSV, TSV, and XLSX file formats.}
 
-\item{lanes}{\code{scalar integer}. Number of lanes used to split the samples into
-technical replicates (\code{_LXXX}) suffix.}
+\item{lanes}{\code{integer(1)}.
+Number of lanes used to split the samples into technical replicates
+suffix (i.e. \code{_LXXX}).}
 }
 \value{
-\code{data.frame}.
+\code{DataFrame}.
 }
 \description{
-Read Sample Metadata
+This function reads user-defined sample metadata saved in a spreadsheet.
+The "\code{description}" column is always required, and must match the bcbio
+per sample directory names exactly. Inclusion of the "\code{fileName}" column
+isn't required but is recommended for data provenance.
 }
-\examples{
-# Demultiplexed
-x <- readSampleData("http://bcbiobase.seq.cloud/demultiplexed.csv")
-glimpse(x)
+\note{
+Some bcbio examples on readthedocs use "\code{samplename}" instead of
+"\code{fileName}". This function checks for that and will error out
+intentionally, since we're using the \code{sampleName} column (note case) to
+define unique sample names, in the event that bcbio has processed
+multiplexed samples.
+}
+\section{Demultiplexed samples}{
 
-# Multiplexed (e.g. inDrop single-cell RNA-seq)
-x <- readSampleData("http://bcbiobase.seq.cloud/multiplexed.csv")
-glimpse(x)
+
+This applies to bulk RNA-seq samples.
+
+Normally when loading a bcbio run of demultiplexed samples, the sample
+metadata will be imported automatically from the \code{project-summary.yaml} file
+in the final upload directory using the \code{\link[=readYAMLSampleData]{readYAMLSampleData()}} function. If
+you notice any typos in your metadata after completing the run, these can be
+corrected by editing the YAML file. Alternatively, you can pass in a
+spreadsheet with the \code{\link[=readSampleData]{readSampleData()}} function.
+
+The samples in the bcbio run must map to the "\code{description}" column. The
+values provided in description for demultiplexed samples must be unique. They
+must also be \emph{syntactically valid}, meaning that they cannot contain illegal
+characters (e.g. spaces, non-alphanumerics, \emph{dashes}) or \emph{begin with a
+number}. Consult the documentation in \code{help(topic = "make.names")} for more
+information on valid names in R.
 }
-\seealso{
-Other Read Functions: \code{\link{readDataVersions}},
-  \code{\link{readLog}}, \code{\link{readProgramVersions}},
-  \code{\link{readTx2gene}}, \code{\link{readYAML}}
+
+\section{Multiplexed samples}{
+
+
+This applies to some single-cell RNA-seq formats, including inDrops. In this
+case, bcbio will output per-sample directories with this this structure:
+"\code{description}-\code{revcomp}".
+
+\code{\link[=readSampleData]{readSampleData()}} checks to see if the "\code{description}" column is unique. If
+the values are duplicated, the function assumes that bcbio processed
+multiplexed FASTQs, where multiple samples of interest are barcoded inside a
+single FASTQ. This this case, you must supply additional "\code{index}",
+"\code{sequence}", and "\code{sampleName}" columns.
+
+Note that bcbio currently outputs the reverse complement index sequence in
+the sample directory names (e.g. "\code{sample-ATAGAGAG}"). Define the forward
+index barcode in the \code{sequence} column here, not the reverse complement. The
+reverse complement will be calculated automatically and added as the
+\code{revcomp} column in the sample metadata.
+}
+
+\examples{
+## Demultiplexed ====
+file <- file.path(bcbioBaseTestsURL, "metadata-demultiplexed.csv")
+x <- readSampleData(file)
+print(x)
+
+## Multiplexed ====
+file <- file.path(bcbioBaseTestsURL, "metadata-multiplexed-indrops.csv")
+x <- readSampleData(file)
+print(x)
 }
 \author{
 Michael Steinbaugh
 }
-\concept{Read Functions}

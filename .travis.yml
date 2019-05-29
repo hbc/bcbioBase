@@ -1,57 +1,32 @@
-# Travis-CI configuration for Bioconductor packages
-# https://docs.travis-ci.com/user/languages/r
+language: general
 
-language: r
-cache: packages
+services:
+  - docker
 
-r:
-  - bioc-release
-  # - bioc-devel
+branches:
+  only:
+    - master
 
-os:
-  - linux
-  # - osx
+before_script:
+  - chmod +x *.sh
+
+jobs:
+  include:
+    - stage: test
+      name: "Docker: Bioconductor 3.9"
+      script: image="rnaseq" tag="bioc-3.9" ./docker.sh
+    - stage: test
+      name: "Docker: Bioconductor 3.8"
+      script: image="rnaseq" tag="bioc-3.8" ./docker.sh
+    - stage: test
+      name: "Docker: Bioconductor 3.7"
+      script: image="rnaseq" tag="bioc-3.7" ./docker.sh
 
 matrix:
-  exclude:
-  - os: osx
-    r: bioc-devel
+  fast_finish: true
 
-# blocklist
-# branches:
-#   except:
-#   - develop
-
-# safelist
-# branches:
-#   only:
-#   - master
-
-env:
-  global:
-    - LINTR_COMMENT_BOT=true
-
-# r_build_args: "--no-build-vignettes"
-# r_check_args: "--no-vignettes"
-
-# Set true before submission to Bioconductor
-warnings_are_errors: true
-
-# Temporarily enable when caching Bioconductor packages
-# script: true
-
-r_packages:
-  - covr
-bioc_packages:
-  - BiocCheck
-  - GenomeInfoDbData
-r_github_packages:
-  - jimhester/lintr
-
-after_success:
-  - Rscript -e 'lintr::lint_package()'
-  - Rscript -e 'covr::codecov()'
-  - R CMD BiocCheck .
+after_failure:
+  - ./docker-failure.sh
 
 notifications:
   email:

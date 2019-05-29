@@ -2,39 +2,39 @@
 % Please edit documentation in R/deprecated.R
 \name{defunct}
 \alias{defunct}
-\alias{checkInterestingGroups}
-\alias{prepareSampleMetadata}
-\alias{sampleYAML}
-\alias{sampleYAMLMetadata}
-\alias{sampleYAMLMetrics}
-\alias{prepareSampleData}
-\alias{assertFormalAnnotationCol}
-\alias{bcbio}
-\alias{bcbio<-}
-\title{Defunct Functions}
+\alias{bcbio_geom_abline}
+\alias{bcbio_geom_label}
+\alias{bcbio_geom_label_average}
+\alias{bcbio_geom_label_repel}
+\alias{readTx2gene}
+\alias{readYAMLSampleData}
+\alias{readYAMLSampleMetrics}
+\title{Defunct functions}
 \usage{
-checkInterestingGroups(...)
+bcbio_geom_abline(...)
 
-prepareSampleMetadata(...)
+bcbio_geom_label(...)
 
-sampleYAML(...)
+bcbio_geom_label_average(...)
 
-sampleYAMLMetadata(...)
+bcbio_geom_label_repel(...)
 
-sampleYAMLMetrics(...)
+readTx2gene(...)
 
-prepareSampleData(...)
+readYAMLSampleData(file)
 
-assertFormalAnnotationCol(...)
+readYAMLSampleMetrics(file)
+}
+\arguments{
+\item{...}{Additional arguments.}
 
-bcbio(object, ...)
-
-bcbio(object, ...) <- value
+\item{file}{\code{character(1)}.
+File path.}
 }
 \value{
-No value.
+\code{.Defunct}.
 }
 \description{
-Defunct Functions
+Defunct functions
 }
 \keyword{internal}
