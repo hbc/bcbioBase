@@ -55,6 +55,7 @@ Imports:
     methods,
     utils
 Suggests:
+    acidplots,
     roxygen2,
     testthat
 Remotes:
