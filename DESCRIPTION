@@ -2,7 +2,7 @@ Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions for bcbio R packages.
 Version: 0.6.4
-Date: 2019-05-13
+Date: 2019-05-29
 Authors@R: c(
     person(
         given = "Michael",
@@ -39,8 +39,8 @@ Encoding: UTF-8
 LazyData: TRUE
 Depends: R (>= 3.5)
 Imports:
-    basejump (>= 0.10.7),
-    goalie (>= 0.2.15),
+    basejump (>= 0.10.9),
+    goalie (>= 0.2.16),
     Biostrings,
     S4Vectors,
     dplyr (>= 0.8),

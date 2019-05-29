@@ -1,4 +1,10 @@
-## bcbioBase 0.6.4 (2019-05-13)
+## bcbioBase 0.6.4 (2019-05-29)
+
+### Major changes
+
+- Merging this release from Acid Genomics fork back to canonical HBC repo. The
+  v0.6 release series will be used as the base for new updates to bcbioRNASeq
+  and bcbioSingleCell packages.
 
 ### Minor changes
 
