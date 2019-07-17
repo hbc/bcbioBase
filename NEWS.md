@@ -1,3 +1,10 @@
+## bcbioBase 0.6.5 (2019-07-17)
+
+### Minor changes
+
+- Updated basejump dependency.
+- Improved Travis CI configuration.
+
 ## bcbioBase 0.6.4 (2019-05-29)
 
 ### Major changes
@@ -12,8 +19,6 @@
   internal `.isSampleData` assert check function to return more informative
   error messages to the user on failure.
 
-
-
 ## bcbioBase 0.6.3 (2019-05-05)
 
 ### Major changes
@@ -24,15 +29,11 @@
 
 - Improved Travis and AppVeyor CI configuration.
 
-
-
 ## bcbioBase 0.6.2 (2019-04-22)
 
 ### Minor changes
 
 - Improved testing to ensure compatibility with R 3.4.
-
-
 
 ## bcbioBase 0.6.1 (2019-04-18)
 
@@ -41,8 +42,6 @@
 - Switched Travis CI configuration to use `rnaseq` Docker image.
 - Updated [basejump][] dependencies.
 - Updated testthat cache to use `tests.acidgenomics.com` URL.
-
-
 
 ## bcbioBase 0.6.0 (2019-03-28)
 
@@ -63,15 +62,11 @@ Updated to work with basejump v0.10 release series.
 - Example data used for unit testing, which gets cached into `tests/testthat/`
   are now consistently formatted using kebab case instead of snake case.
 
-
-
 ## bcbioBase 0.5.14 (2019-03-22)
 
 ### Minor changes
 
 - Updated GitHub remotes to use acidgenomics instead of steinbaugh.
-
-
 
 ## bcbioBase 0.5.13 (2019-03-18)
 
@@ -83,15 +78,11 @@ Updated to work with basejump v0.10 release series.
 - Reduced the number of reexported functions, including pipe (`%>%`) and
   `import`.
 
-
-
 ## bcbioBase 0.5.12 (2019-02-11)
 
 ### Minor changes
 
 - `runDate()`: Updated assert check to be compatible with R 3.4 / BioC 3.6.
-
-
 
 ## bcbioBase 0.5.11 (2019-01-22)
 
@@ -99,16 +90,12 @@ Updated to work with basejump v0.10 release series.
 
 - Documentation improvements.
 
-
-
 ## bcbioBase 0.5.10 (2019-01-17)
 
 ### Minor changes
 
 - `sampleDirs`: Added an informative message for user regarding sample name
   sanitization of cellular barcodes.
-
-
 
 ## bcbioBase 0.5.9 (2019-01-13)
 
@@ -119,15 +106,11 @@ Updated to work with basejump v0.10 release series.
 - Added comment regarding top-level sample metadata parsing in internal YAML
   code.
 
-
-
 ## bcbioBase 0.5.8 (2019-01-07)
 
 ### Minor changes
 
 - Miscellaneous improvements to documentation and goalie assert checks.
-
-
 
 ## bcbioBase 0.5.7 (2018-12-21)
 
@@ -137,8 +120,6 @@ Updated to work with basejump v0.10 release series.
   to using `logical(1)` instead of `string`, for example. This approach was
   inspired by the conventions used in the checkmate package.
 - Switched documentation titles to use sentence case instead of title case.
-
-
 
 ## bcbioBase 0.5.6 (2018-12-12)
 
@@ -153,23 +134,17 @@ Updated to work with basejump v0.10 release series.
 - Reorganized and removed some deprecated functions.
 - Updated unit tests to reflect switch to goalie.
 
-
-
 ## bcbioBase 0.5.5 (2018-11-29)
 
 ### Minor changes
 
 - Miscellaneous documentation improvements.
 
-
-
 ## bcbioBase 0.5.4 (2018-11-26)
 
 ### Minor changes
 
 - Improve GTF file assert checks and unit testing.
-
-
 
 ## bcbioBase 0.5.3 (2018-11-25)
 
@@ -184,16 +159,12 @@ Updated to work with basejump v0.10 release series.
 - Tweaked `metadataBlacklist` global and added improved comments.
 - Reworked `.assertIsSampleData` and `.makeSampleData` internal code.
 
-
-
 ## bcbioBase 0.5.2 (2018-11-19)
 
 ### Minor changes
 
 - Updated [basejump][] and [goalie][] dependencies.
 - Miscellaneous documentation improvements.
-
-
 
 ## bcbioBase 0.5.1 (2018-11-15)
 
@@ -202,8 +173,6 @@ Updated to work with basejump v0.10 release series.
 - Switched imports to simply [basejump][], instead of attempting to reference
   any basejump subpackages.
 - Migrating to [goalie][] package for internal assert checks.
-
-
 
 ## bcbioBase 0.5.0 (2018-09-14)
 
@@ -239,8 +208,6 @@ Working towards a release candidate for [Bioconductor][] submission.
 - Linking out to recommended guidelines for development.
 - Moved global `lanePattern` variable to [basejump][] package.
 
-
-
 ## bcbioBase 0.4.1 (2018-08-19)
 
 ### Minor changes
@@ -248,8 +215,6 @@ Working towards a release candidate for [Bioconductor][] submission.
 - `prepareTemplate`: Migrated function to [basejump][] package, and simplifed
   to copy all files from `rmarkdown/shared` directory inside a package.
   Currently in use by [bcbioRNASeq][] and [bcbioSingleCell][].
-
-
 
 ## bcbioBase 0.4.0 (2018-08-08)
 
@@ -272,8 +237,6 @@ with the [bcbio][] output directories.
 - Reduced the number of re-exported [ggplot2][] and [viridis][] functions, for
   simplicity.
 
-
-
 ## bcbioBase 0.3.2 (2018-07-31)
 
 ### Minor changes
@@ -285,8 +248,6 @@ with the [bcbio][] output directories.
   and [bcbioSingleCell][] packages instead.
 - [lintr][] check fixes.
 
-
-
 ## bcbioBase 0.3.1 (2018-07-24)
 
 ### Minor changes
@@ -295,8 +256,6 @@ with the [bcbio][] output directories.
 - Improved documentation, specifying the supported types for each argument more
   clearly.
 - Improved messages in `readYAML` family of functions.
-
-
 
 ## bcbioBase 0.3.0 (2018-07-17)
 
@@ -330,8 +289,6 @@ with the [bcbio][] output directories.
   consistency.
 - Updated unit tests to reflect changes in the number of exported generics.
 
-
-
 ## bcbioBase 0.2.16 (2018-06-28)
 
 ### Minor changes
@@ -340,8 +297,6 @@ with the [bcbio][] output directories.
 - Improved code coverage back to 100%.
 - Reorganized R methods files to use `-methods.R` as a suffix, as recommended
   by [Bioconductor][], in preparation for package submission.
-
-
 
 ## bcbioBase 0.2.15 (2018-06-05)
 
@@ -363,8 +318,6 @@ with the [bcbio][] output directories.
   function simply lists the genes that don't have metadata in `rowRanges`.
 - Reorganized assert checks imports in `bcbioBase-package.R` file.
 
-
-
 ## bcbioBase 0.2.14 (2018-05-18)
 
 ### Minor changes
@@ -373,8 +326,6 @@ with the [bcbio][] output directories.
 - Improved code coverage by adding ggplot2 unit testing.
 - Added `sampleData<-` method support for standard `data.frame`.
 
-
-
 ## bcbioBase 0.2.13 (2018-05-07)
 
 ### Minor changes
@@ -382,8 +333,6 @@ with the [bcbio][] output directories.
 - Added `overwrite` parameter to `prepareTemplate`, disabled by default.
 - Removed validity check for `sampleData` accessor.
 - Improved vector return in `sampleNames`.
-
-
 
 ## bcbioBase 0.2.12 (2018-05-08)
 
@@ -395,15 +344,11 @@ with the [bcbio][] output directories.
 - Removed internal R Markdown shared files. These are already saved per bcbio R
   package.
 
-
-
 ## bcbioBase 0.2.11 (2018-05-07)
 
 ### New methods
 
 - Added `SummarizedExperiment` method support for `sampleNames` generic.
-
-
 
 ## bcbioBase 0.2.10 (2018-05-03)
 
@@ -412,8 +357,6 @@ with the [bcbio][] output directories.
 - Exporting [ggplot2][] convenience functions for easier plotting in
   [bcbioRNASeq][] and [bcbioSingleCell][] packages: `bcbio_geom_abline`,
   `bcbio_geom_label`, `bcbio_geom_label_average`, and `bcbio_geom_label_repel`.
-
-
 
 ## bcbioBase 0.2.9 (2018-04-30)
 
@@ -427,15 +370,11 @@ with the [bcbio][] output directories.
 - Updated `RangedSummarizedExperiment` working example, based on `bcbioRNASeq`
   example dataset.
 
-
-
 ## bcbioBase 0.2.8 (2018-04-25)
 
 ### Minor changes
 
 - Split out assertive imports so we can pin release to [bioconda][].
-
-
 
 ## bcbioBase 0.2.7 (2018-04-25)
 
@@ -446,16 +385,12 @@ with the [bcbio][] output directories.
 - `readSampleData`: Use `description` metadata column internally instead of
   `sampleID`.
 
-
-
 ## bcbioBase 0.2.6 (2018-04-25)
 
 ### Minor changes
 
 - Using `make.names` instead of `make.unique` in `convertGenesToSymbols` method
   for `SummarizedExperiment` class.
-
-
 
 ## bcbioBase 0.2.5 (2018-04-24)
 
@@ -484,8 +419,6 @@ with the [bcbio][] output directories.
   to be used internally and should be hidden from the user where possible.
 - `prepareSampleData` is no longer needed and is now defunct.
 
-
-
 ## bcbioBase 0.2.4 (2018-04-22)
 
 ### Minor changes
@@ -496,14 +429,10 @@ with the [bcbio][] output directories.
 - Reexporting viridis family of color functions, including `inferno`, and
   the British variant `scale_colour_viridis`.
 
-
-
 ## bcbioBase 0.2.3 (2018-04-19)
 
 - `plotHeatmap`, `plotQuantileHeatmap`: Always attempt to convert genes to
   symbols for heatmaps.
-
-
 
 ## bcbioBase 0.2.2 (2018-04-16)
 
@@ -511,8 +440,6 @@ with the [bcbio][] output directories.
 
 - Improved unit tests for `convertGenesToSymbols` and `gene2symbol`.
 - Miscellaneous documentation fixes.
-
-
 
 ## bcbioBase 0.2.1 (2018-04-13)
 
@@ -533,8 +460,6 @@ with the [bcbio][] output directories.
 - Consolidated assert check imports into `bcbioBase-package.R` file.
 - Consolidated globals into `globals.R` file.
 - Improved internal [pheatmap][] color support.
-
-
 
 ## bcbioBase 0.2.0 (2018-03-22)
 
@@ -584,26 +509,18 @@ with the [bcbio][] output directories.
 - Deprecated `prepareSampleMetadata` in favor of `prepareSampleData`.
 - Made `annotable` method on `SummarizedExperiment` objects defunct.
 
-
-
 ## bcbioBase 0.1.4 (2018-02-20)
 
 - Don't include sample metadata in `summaryYAMLMetrics` return.
-
-
 
 ## bcbioBase 0.1.3 (2018-02-19)
 
 - Now exporting `assertFormalInterestingGroups` in camel case.
 
-
-
 ## bcbioBase 0.1.2 (2018-02-18)
 
 - Added back `checkInterestingGroups` since this code is still present on
   [bcbioRNASeq][] master branch.
-
-
 
 ## bcbioBase 0.1.1 (2018-02-17)
 
@@ -613,8 +530,6 @@ with the [bcbio][] output directories.
 - Added `assert_formal_interesting_groups` assert checks. Deprecated
   `checkInterestingGroups`.
 
-
-
 ## bcbioBase 0.1.0 (2018-02-13)
 
 - Preparing version pinning for [bioconda][]. Relaxed [rlang][] dependency from
@@ -623,8 +538,6 @@ with the [bcbio][] output directories.
   and returns [Dropbox][] paths using [rdrop2][].
 - Updated [basejump][] dependency to v0.2.1.
 - Added assertive checks for all functions.
-
-
 
 ## bcbioBase 0.0.3 (2018-01-27)
 
@@ -637,21 +550,15 @@ with the [bcbio][] output directories.
 - Removed [tibble][] rownames support from `prepareSampleMetadata`.
 - Improved code coverage to 100%.
 
-
-
 ## bcbioBase 0.0.2 (2018-01-19)
 
 - Re-export `assignAndSaveData`, `loadData`, `loadRemoteData`, `saveData` from
   [basejump][] package.
 - Update `prepareTemplate` function to use internally stored data.
 
-
-
 ## bcbioBase 0.0.1 (2018-01-11)
 
 - Initial release.
-
-
 
 [basejump]: http://basejump.acidgenomics.com/
 [bcbio]: https://bcbio-nextgen.readthedocs.io/
