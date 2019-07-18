@@ -24,9 +24,7 @@ rdrop2 output, including file paths.
 Copy files to Dropbox
 }
 \examples{
-\dontrun{
-# copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
-}
+# > copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
 }
 \author{
 Michael Steinbaugh, Victor Barerra, John Hutchinson
