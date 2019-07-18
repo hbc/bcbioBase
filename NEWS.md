@@ -1,3 +1,10 @@
+## bcbioBase 0.6.6 (2019-07-17)
+
+### Minor changes
+
+- Documentation improvements to pass BiocCheck. Need to have working examples in
+  80% of documentation files.
+
 ## bcbioBase 0.6.5 (2019-07-17)
 
 ### Minor changes
