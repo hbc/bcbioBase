@@ -15,7 +15,7 @@
 #' print(x)
 readDataVersions <- function(file) {
     assert(isString(file))
-    # Data versions are optional.
+    ## Data versions are optional.
     file <- tryCatch(
         localOrRemoteFile(file),
         error = function(e) {

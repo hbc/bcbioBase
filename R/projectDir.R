@@ -23,8 +23,8 @@ projectDir <- function(uploadDir) {
         recursive = FALSE
     ))
     assert(isNonEmpty(dir))
-    # Check to see if user has run bcbio multiple times to the same upload
-    # directory, and warn when this is detected.
+    ## Check to see if user has run bcbio multiple times to the same upload
+    ## directory, and warn when this is detected.
     if (length(dir) > 1L) {
         newest <- tail(dir, n = 1L)
         warning(paste(

@@ -43,9 +43,9 @@ test_that("getSampleDataFromYAML", {
     )
 })
 
-# Testing against Kayleigh's nested example here.
+## Testing against Kayleigh's nested example here.
 test_that("Nested metadata", {
-    # Expecting warnings about integer range here.
+    ## Expecting warnings about integer range here.
     object <- suppressWarnings(
         getSampleDataFromYAML(
             yaml = import(file.path("cache", "summary-nested-metadata.yaml"))
@@ -85,7 +85,7 @@ test_that("getMetricsFromYAML", {
     )
 })
 
-# Check for proper handling of metrics with mismatched number of values.
+## Check for proper handling of metrics with mismatched number of values.
 test_that("Mismatched values", {
     file <- file.path("cache", "summary-invalid-metrics-mismatch.yaml")
     yaml <- import(file)

@@ -10,7 +10,7 @@ test_that("programs.txt", {
     )
 })
 
-# Allow missing file, since bcbio doesn't always generate this.
+## Allow missing file, since bcbio doesn't always generate this.
 test_that("Missing file", {
     expect_message(
         object = readProgramVersions("XXX.csv"),

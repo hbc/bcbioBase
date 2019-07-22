@@ -70,11 +70,11 @@
 #' x <- readSampleData(file)
 #' print(x)
 readSampleData <- function(file, lanes = 0L) {
-    # Coerce detectLanes empty integer return to 0.
+    ## Coerce detectLanes empty integer return to 0.
     if (length(lanes) == 0L) {
         lanes <- 0L
     }
-    # Note that we're allowing import from URL here (primarily for unit tests).
+    ## Note that we're allowing import from URL here (primarily for unit tests).
     assert(
         isAFile(file) || containsAURL(file),
         isInt(lanes),
@@ -82,7 +82,7 @@ readSampleData <- function(file, lanes = 0L) {
     )
     lanes <- as.integer(lanes)
 
-    # Convert to a sequence, if necessary.
+    ## Convert to a sequence, if necessary.
     if (
         length(lanes) == 1L &&
         lanes > 1L
@@ -90,30 +90,30 @@ readSampleData <- function(file, lanes = 0L) {
         lanes <- seq_len(lanes)
     }
 
-    # Works with local or remote files.
-    # Ensure coercion to tibble here, for consistent handling.
+    ## Works with local or remote files.
+    ## Ensure coercion to tibble here, for consistent handling.
     data <- import(file) %>%
         as_tibble(rownames = NULL) %>%
         camel() %>%
         removeNA()
 
-    # Check to ensure that columns are valid, before proceeding.
+    ## Check to ensure that columns are valid, before proceeding.
     assert(.isSampleData(data))
 
-    # Check for required columns. The `description` column is always required.
+    ## Check for required columns. The `description` column is always required.
     required <- "description"
     assert(isSubset(required, colnames(data)))
 
-    # Valid rows must contain a non-empty description.
+    ## Valid rows must contain a non-empty description.
     data <- data[!is.na(data[["description"]]), , drop = FALSE]
 
-    # Determine whether the samples are multiplexed, based on the presence
-    # of duplicate values in the `description` column.
+    ## Determine whether the samples are multiplexed, based on the presence
+    ## of duplicate values in the `description` column.
     if (
         isSubset(c("index", "sequence"), colnames(data)) &&
         (
             any(duplicated(data[["description"]])) ||
-            # Keep this line for bcbioSingleCell multiplexed minimal example.
+            ## Keep this line for bcbioSingleCell multiplexed minimal example.
             nrow(data) == 1L
         )
     ) {
@@ -121,12 +121,12 @@ readSampleData <- function(file, lanes = 0L) {
         message("Multiplexed samples detected.")
         required <- c(required, "sampleName", "index")
         assert(isSubset(required, colnames(data)))
-        # Note that `description` column is expected to have duplicates.
+        ## Note that `description` column is expected to have duplicates.
         assert(hasNoDuplicates(data[["sampleName"]]))
     } else if (hasNoDuplicates(data[["description"]])) {
         multiplexed <- FALSE
-        # Note that `sampleName` column isn't required for demultiplexed
-        # samples. We can assign from the bcbio `description` automatically.
+        ## Note that `sampleName` column isn't required for demultiplexed
+        ## samples. We can assign from the bcbio `description` automatically.
         if (!"sampleName" %in% colnames(data)) {
             data[["sampleName"]] <- data[["description"]]
         }
@@ -138,12 +138,12 @@ readSampleData <- function(file, lanes = 0L) {
     }
     nameCols <- c("sampleName", "description")
 
-    # Prepare metadata for lane split replicates. This step will expand rows
-    # into the number of desired replicates.
+    ## Prepare metadata for lane split replicates. This step will expand rows
+    ## into the number of desired replicates.
     if (length(lanes) > 1L) {
         data <- data %>%
             group_by(!!!syms(nameCols)) %>%
-            # Expand by lane (e.g. "L001").
+            ## Expand by lane (e.g. "L001").
             expand(
                 lane = paste0(
                     "L", str_pad(string = lanes, width = 3L, pad = "0")
@@ -164,13 +164,13 @@ readSampleData <- function(file, lanes = 0L) {
         )
     }
 
-    # This step applies to handling single-cell metadata.
-    # - bcbio subdirs (e.g. inDrops): `description`-`revcomp`.
-    # - Note that forward `sequence` is required in metadata file.
-    # - Index number is also required here for data preservation, but is not
-    #   used in generation of the sample directory names.
-    # - Require at least 6 nucleotides in the index sequence.
-    # - inDrops currently uses 8 but SureCell uses 6.
+    ## This step applies to handling single-cell metadata.
+    ## - bcbio subdirs (e.g. inDrops): `description`-`revcomp`.
+    ## - Note that forward `sequence` is required in metadata file.
+    ## - Index number is also required here for data preservation, but is not
+    ##   used in generation of the sample directory names.
+    ## - Require at least 6 nucleotides in the index sequence.
+    ## - inDrops currently uses 8 but SureCell uses 6.
     if (isTRUE(multiplexed)) {
         assert(isSubset(c("index", "sequence"), colnames(data)))
         sequence <- data[["sequence"]]
@@ -186,7 +186,7 @@ readSampleData <- function(file, lanes = 0L) {
             },
             FUN.VALUE = character(1L)
         )
-        # Match the sample directories exactly here, using the hyphen.
+        ## Match the sample directories exactly here, using the hyphen.
         data[["description"]] <- paste(
             data[["description"]],
             data[["revcomp"]],

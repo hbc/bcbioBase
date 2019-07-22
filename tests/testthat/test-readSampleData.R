@@ -56,8 +56,8 @@ context("readSampleData : Multiplexed samples")
 file <- file.path("cache", "metadata-multiplexed-indrops.csv")
 
 test_that("DataFrame return", {
-    # Note that we're expecting this to sort by the rownames (`description`),
-    # and not by the `sampleName` column.
+    ## Note that we're expecting this to sort by the rownames (`description`),
+    ## and not by the `sampleName` column.
     expect_identical(
         object = readSampleData(file),
         expected = DataFrame(
@@ -75,8 +75,8 @@ test_that("DataFrame return", {
                 rep("indrops1_R1.fastq.gz", times = 4L),
                 rep("indrops2_R1.fastq.gz", times = 4L)
             )),
-            # Valid rownames (sampleIDs) are generated from this column.
-            # Note that we're sorting the sample metadata by this column.
+            ## Valid rownames (sampleIDs) are generated from this column.
+            ## Note that we're sorting the sample metadata by this column.
             description = factor(c(
                 "indrops1-ATAGAGAG",
                 "indrops1-AGAGGATA",
@@ -102,7 +102,7 @@ test_that("DataFrame return", {
             ),
             genotype = factor(
                 rep(c("wildtype", "knockout"), times = 4L),
-                # Note that the order should be alphabetical here.
+                ## Note that the order should be alphabetical here.
                 levels = c("knockout", "wildtype")
             ),
             revcomp = factor(
@@ -190,7 +190,7 @@ test_that("Duplicate rows in `sampleName` column", {
     )
 })
 
-# Recommend using `fileName` instead.
+## Recommend using `fileName` instead.
 test_that("bcbio `samplename` column", {
     file <- file.path(
         "cache",

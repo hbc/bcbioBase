@@ -1,5 +1,5 @@
-# nocov start
-# nolint start
+## nocov start
+## nolint start
 
 
 
@@ -17,7 +17,7 @@ NULL
 
 
 
-# v0.3.2 =======================================================================
+## v0.3.2 =======================================================================
 #' @importFrom basejump separatorBar
 #' @export
 basejump::separatorBar
@@ -28,14 +28,14 @@ basejump::updateMessage
 
 
 
-# v0.4.1 =======================================================================
+## v0.4.1 =======================================================================
 #' @importFrom basejump prepareTemplate
 #' @export
 basejump::prepareTemplate
 
 
 
-# v0.5.0 =======================================================================
+## v0.5.0 =======================================================================
 #' @importFrom basejump lanePattern
 #' @export
 basejump::lanePattern
@@ -47,7 +47,7 @@ basejump::minimalSampleData
 #' @rdname defunct
 #' @export
 bcbio_geom_abline <- function(...) {
-    # .Defunct("acidplots::acid_geom_abline")  # nolint
+    ## .Defunct("acidplots::acid_geom_abline")  # nolint
     requireNamespace("acidplots", quietly = TRUE)
     acidplots::acid_geom_abline(...)
 }
@@ -55,7 +55,7 @@ bcbio_geom_abline <- function(...) {
 #' @rdname defunct
 #' @export
 bcbio_geom_label <- function(...) {
-    # .Defunct("acidplots::acid_geom_label")  # nolint
+    ## .Defunct("acidplots::acid_geom_label")  # nolint
     requireNamespace("acidplots", quietly = TRUE)
     acidplots::acid_geom_label(...)
 }
@@ -63,7 +63,7 @@ bcbio_geom_label <- function(...) {
 #' @rdname defunct
 #' @export
 bcbio_geom_label_average <- function(...) {
-    # .Defunct("acidplots::acid_geom_label_average")  # nolint
+    ## .Defunct("acidplots::acid_geom_label_average")  # nolint
     requireNamespace("acidplots", quietly = TRUE)
     acidplots::acid_geom_label_average(...)
 }
@@ -71,7 +71,7 @@ bcbio_geom_label_average <- function(...) {
 #' @rdname defunct
 #' @export
 bcbio_geom_label_repel <- function(...) {
-    # .Defunct("acidplots::acid_geom_label_repel")  # nolint
+    ## .Defunct("acidplots::acid_geom_label_repel")  # nolint
     requireNamespace("acidplots", quietly = TRUE)
     acidplots::acid_geom_label_repel(...)
 }
@@ -79,7 +79,7 @@ bcbio_geom_label_repel <- function(...) {
 #' @rdname deprecated
 #' @export
 readLog <- function(file) {
-    # .Defunct("basejump::import")  # nolint
+    ## .Defunct("basejump::import")  # nolint
     requireNamespace("basejump", quietly = TRUE)
     basejump::import(file)
 }
@@ -93,7 +93,7 @@ readTx2gene <- function(...) {
 #' @rdname defunct
 #' @export
 readYAMLSampleData <- function(file) {
-    # .Defunct("getSampleDataFromYAML")  # nolint
+    ## .Defunct("getSampleDataFromYAML")  # nolint
     requireNamespace("basejump", quietly = TRUE)
     yaml <- basejump::import(file)
     getSampleDataFromYAML(yaml)
@@ -102,7 +102,7 @@ readYAMLSampleData <- function(file) {
 #' @rdname defunct
 #' @export
 readYAMLSampleMetrics <- function(file) {
-    # .Defunct("getMetricsFromYAML")  # nolint
+    ## .Defunct("getMetricsFromYAML")  # nolint
     requireNamespace("basejump", quietly = TRUE)
     yaml <- basejump::import(file)
     getMetricsFromYAML(yaml)
@@ -110,12 +110,12 @@ readYAMLSampleMetrics <- function(file) {
 
 
 
-# 0.5.14 =======================================================================
+## 0.5.14 =======================================================================
 #' @importFrom basejump metadataBlacklist
 #' @export
 basejump::metadataBlacklist
 
 
 
-# nolint end
-# nocov end
+## nolint end
+## nocov end
