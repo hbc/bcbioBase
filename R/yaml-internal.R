@@ -46,7 +46,8 @@
     )
 
     ## Check that nested keys are present and early return on failure. Return
-    ## `NULL` here instead of stopping, so we can handle bcbio RNA-seq fast mode.
+    ## `NULL` here instead of stopping, so we can handle bcbio RNA-seq fast
+    ## mode.
     if (
         length(keys) == 2L &&
         !keys[[2L]] %in% names(yaml[[1L]][[keys[[1L]]]])
@@ -59,8 +60,8 @@
     top <- vapply(
         X = yaml,
         FUN = function(item) {
-            ## Note that this will return variable length, so `vapply()` approach
-            ## doesn't work here. Better method to use instead?
+            ## Note that this will return variable length, so `vapply()`
+            ## approach doesn't work here. Better method to use instead?
             return <- sapply(
                 X = item,
                 FUN = function(item) {

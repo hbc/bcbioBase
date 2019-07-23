@@ -43,11 +43,13 @@ sampleDirs <- function(uploadDir) {
     ## Refer to `make.names()` for the valid name conventions in R.
     ## We're using the `makeNames()` variant here instead, which sanitizes using
     ## an underscore instead of a period.
-    ##     ## In particular, these are potentially problematic:
+    ##
+    ## In particular, these are potentially problematic:
     ## - Contains dashes/hyphens (very common).
     ## - Begins with a number (very common).
     ## - Contains non-alphanumerics.
-    ##     ## Here we are informing the user when bcbio samples need to get sanitized
+    ##
+    ## Here we are informing the user when bcbio samples need to get sanitized
     ## to be valid in R.
     check <- basenames
     ## Note that multiplexed single-cell samples are expected to contain a dash

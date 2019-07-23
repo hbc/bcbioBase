@@ -1,3 +1,9 @@
+## bcbioBase 0.6.7 (2019-07-23)
+
+### Minor changes
+
+- Updated basejump dependency versions.
+
 ## bcbioBase 0.6.6 (2019-07-17)
 
 ### Minor changes
