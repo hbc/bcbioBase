@@ -1,4 +1,5 @@
 ## Sample metadata assert check for goalie engine.
+## Updated 2019-07-23.
 .isSampleData <- function(object) {
     ok <- isAny(object, c("data.frame", "DataFrame"))
     if (!isTRUE(ok)) return(ok)
@@ -35,6 +36,7 @@
 
 
 ## Wrap `makeSampleData()` call with bcbio-specific additions.
+## Updated 2019-07-23.
 .makeSampleData <- function(object) {
     object <- as(object, "DataFrame")
 

@@ -12,6 +12,8 @@
 #' file <- file.path(bcbioBaseTestsURL, "programs.txt")
 #' x <- readProgramVersions(file)
 #' print(x)
+
+## Updated 2019-07-23.
 readProgramVersions <- function(file) {
     assert(isString(file))
     ## Program versions are optional

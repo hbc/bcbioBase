@@ -14,6 +14,8 @@
 #' uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
 #' x <- projectDir(uploadDir)
 #' basename(x)
+
+## Updated 2019-07-23.
 projectDir <- function(uploadDir) {
     assert(isADirectory(uploadDir))
     dir <- sort(list.files(

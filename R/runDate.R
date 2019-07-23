@@ -1,10 +1,8 @@
-## Alternatively, can parse YAML data, but this is faster and simpler.
-
-
-
 #' Run date
 #'
 #' Get the run date from the project directory.
+#'
+#' Alternatively, can parse YAML data, but this approach is faster and simpler.
 #'
 #' @author Michael Steinbaugh
 #' @export
@@ -15,6 +13,8 @@
 #'
 #' @examples
 #' runDate("2018-01-01_illumina_rnaseq")
+
+## Updated 2019-07-23.
 runDate <- function(projectDir) {
     projectDir <- basename(projectDir)
     assert(

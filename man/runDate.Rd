@@ -16,6 +16,9 @@ Project directory path.}
 \description{
 Get the run date from the project directory.
 }
+\details{
+Alternatively, can parse YAML data, but this approach is faster and simpler.
+}
 \examples{
 runDate("2018-01-01_illumina_rnaseq")
 }

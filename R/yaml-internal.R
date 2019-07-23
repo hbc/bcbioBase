@@ -1,3 +1,4 @@
+## Updated 2019-07-23.
 .isSummaryYAML <- function(yaml) {
     ok <- is.list(yaml)
     if (!isTRUE(ok)) {
@@ -17,6 +18,7 @@
 
 
 
+## Updated 2019-07-23.
 .sanitizeNumericAsCharacter <- function(x) {
     any(grepl(x = x, pattern = "^[0-9\\.]+$"))
 }
@@ -25,6 +27,7 @@
 
 ## Currently parsing of a maximum of 2 key levels is supported
 ## (e.g. summary > metrics).
+## Updated 2019-07-23.
 .sampleYAML <- function(yaml, keys) {
     assert(
         .isSummaryYAML(yaml),

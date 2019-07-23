@@ -1,6 +1,6 @@
 globalVariables(".")
 
-packageVersion <- packageVersion("bcbioBase")
+.version <- packageVersion("bcbioBase")
 
 #' bcbioBase test data URL
 #' @export
@@ -8,7 +8,7 @@ packageVersion <- packageVersion("bcbioBase")
 #' bcbioBaseTestsURL
 bcbioBaseTestsURL <- paste0(
     "http://tests.acidgenomics.com/bcbioBase/",
-    "v", packageVersion$major, ".", packageVersion$minor  # nolint
+    "v", .version$major, ".", .version$minor  # nolint
 )
 
 #' Project directory grep pattern

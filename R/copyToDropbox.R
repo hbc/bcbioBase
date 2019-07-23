@@ -20,6 +20,8 @@
 #'
 #' @examples
 #' # > copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
+
+## Updated 2019-07-23.
 copyToDropbox <- function(
     files,
     dir,

@@ -19,6 +19,8 @@
 #' x <- getMetricsFromYAML(yaml)
 #' summary(x)
 #' colnames(x)
+
+## Updated 2019-07-23.
 getMetricsFromYAML <- function(yaml) {
     assert(is.list(yaml))
     message("Getting sample metrics from YAML.")

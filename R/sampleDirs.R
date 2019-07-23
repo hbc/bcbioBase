@@ -13,6 +13,8 @@
 #' uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
 #' x <- sampleDirs(uploadDir)
 #' basename(x)
+
+## Updated 2019-07-23.
 sampleDirs <- function(uploadDir) {
     assert(isADirectory(uploadDir))
     uploadDir <- realpath(uploadDir)
