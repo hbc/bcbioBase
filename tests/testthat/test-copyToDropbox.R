@@ -1,7 +1,7 @@
 context("copyToDropbox")
 
-# Testing locally with Dropbox authentication token.
-# This is a pain to set up on Travis CI and AppVeyor.
+## Testing locally with Dropbox authentication token.
+## This is a pain to set up on Travis CI and AppVeyor.
 skip_if_not(file.exists("token.rds"))
 
 files <- c("demultiplexed.csv", "multiplexed.csv")
@@ -41,7 +41,7 @@ test_that("Shared Dropbox directory", {
         ),
         regexp = "rdrop2 currently isn't working well with shared"
     )
-    # Don't clean up directory, because we won't be able to check if shared.
+    ## Don't clean up directory, because we won't be able to check if shared.
 })
 
 test_that("Invalid parameters", {

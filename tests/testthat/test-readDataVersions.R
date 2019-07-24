@@ -9,8 +9,8 @@ test_that("readDataVersions", {
     )
 })
 
-# Allow missing file, since bcbio doesn't always generate this.
-# Consider rethinking this approach, and making bcbio stricter?
+## Allow missing file, since bcbio doesn't always generate this.
+## Consider rethinking this approach, and making bcbio stricter?
 test_that("Missing file", {
     expect_message(
         object = readDataVersions("XXX.csv"),

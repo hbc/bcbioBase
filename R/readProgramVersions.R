@@ -12,9 +12,11 @@
 #' file <- file.path(bcbioBaseTestsURL, "programs.txt")
 #' x <- readProgramVersions(file)
 #' print(x)
+
+## Updated 2019-07-23.
 readProgramVersions <- function(file) {
     assert(isString(file))
-    # Program versions are optional
+    ## Program versions are optional
     file <- tryCatch(
         localOrRemoteFile(file),
         error = function(e) {
@@ -25,7 +27,7 @@ readProgramVersions <- function(file) {
     if (is.null(file)) {
         return(DataFrame())
     }
-    # bcbio outputs `programs.txt`, but the file is comma separated.
+    ## bcbio outputs `programs.txt`, but the file is comma separated.
     data <- read_csv(
         file,
         col_names = c("program", "version"),

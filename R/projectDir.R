@@ -14,6 +14,8 @@
 #' uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
 #' x <- projectDir(uploadDir)
 #' basename(x)
+
+## Updated 2019-07-23.
 projectDir <- function(uploadDir) {
     assert(isADirectory(uploadDir))
     dir <- sort(list.files(
@@ -23,8 +25,8 @@ projectDir <- function(uploadDir) {
         recursive = FALSE
     ))
     assert(isNonEmpty(dir))
-    # Check to see if user has run bcbio multiple times to the same upload
-    # directory, and warn when this is detected.
+    ## Check to see if user has run bcbio multiple times to the same upload
+    ## directory, and warn when this is detected.
     if (length(dir) > 1L) {
         newest <- tail(dir, n = 1L)
         warning(paste(

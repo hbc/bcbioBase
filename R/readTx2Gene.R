@@ -26,6 +26,8 @@
 #'     ensemblRelease = 90L
 #' )
 #' print(x)
+
+## Updated 2019-07-23.
 readTx2Gene <- function(
     file,
     organism = NULL,

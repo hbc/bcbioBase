@@ -19,28 +19,30 @@
 #' x <- getMetricsFromYAML(yaml)
 #' summary(x)
 #' colnames(x)
+
+## Updated 2019-07-23.
 getMetricsFromYAML <- function(yaml) {
     assert(is.list(yaml))
     message("Getting sample metrics from YAML.")
     data <- .sampleYAML(yaml, keys = c("summary", "metrics"))
 
-    # Early return on empty metrics (e.g. fast mode).
+    ## Early return on empty metrics (e.g. fast mode).
     if (length(data) == 0L) {
-        # nocov start
+        ## nocov start
         message("No metrics were calculated.")
         return(NULL)
-        # nocov end
+        ## nocov end
     }
 
-    # Drop any metadata columns. Note we're also dropping the duplicate `name`
-    # column present in the metrics YAML.
+    ## Drop any metadata columns. Note we're also dropping the duplicate `name`
+    ## column present in the metrics YAML.
     yamlFlatCols <- c("description", "genome_build", "sam_ref")
     blacklist <- c(camel(yamlFlatCols), "name")
     data <- data %>%
         as_tibble(rownames = "rowname") %>%
-        # Drop blacklisted columns from the return.
+        ## Drop blacklisted columns from the return.
         .[, sort(setdiff(colnames(.), blacklist)), drop = FALSE] %>%
-        # Convert all strings to factors.
+        ## Convert all strings to factors.
         mutate_if(is.character, as.factor) %>%
         mutate_if(is.factor, droplevels) %>%
         as("DataFrame")

@@ -13,12 +13,14 @@
 #' yaml <- basejump::import(file)
 #' x <- getGTFFileFromYAML(yaml)
 #' print(x)
+
+## Updated 2019-07-23.
 getGTFFileFromYAML <- function(yaml) {
     assert(
         is.list(yaml),
         .isSummaryYAML(yaml)
     )
-    # Assume all samples are using the same GTF file.
+    ## Assume all samples are using the same GTF file.
     file <- yaml %>%
         .[["samples"]] %>%
         .[[1L]] %>%

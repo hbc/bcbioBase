@@ -13,9 +13,11 @@
 #' file <- file.path(bcbioBaseTestsURL, "data-versions.csv")
 #' x <- readDataVersions(file)
 #' print(x)
+
+## Updated 2019-07-23.
 readDataVersions <- function(file) {
     assert(isString(file))
-    # Data versions are optional.
+    ## Data versions are optional.
     file <- tryCatch(
         localOrRemoteFile(file),
         error = function(e) {
