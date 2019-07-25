@@ -34,7 +34,7 @@ projectDir <- function(uploadDir) {
             printString(dir),
             paste("Using most recent:", newest),
             sep = "\n"
-        ), call. = FALSE)
+        ))
         dir <- newest
     }
     assert(isString(dir))
