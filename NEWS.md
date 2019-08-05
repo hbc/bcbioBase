@@ -1,3 +1,11 @@
+## bcbioBase 0.6.8 (2019-08-05)
+
+### Minor changes
+
+- Miscellaneous documentation improvements. Now using acidroxygen as the shared
+  parameter source, following the new conventions used in basejump.
+- Updated dependency versions.
+
 ## bcbioBase 0.6.7 (2019-07-23)
 
 ### Minor changes
