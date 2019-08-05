@@ -1,6 +1,7 @@
 #' Commands log parsing functions
 #'
 #' @name commands
+#' @note Updated 2019-08-05.
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
 #' @param log `character`.
@@ -20,7 +21,6 @@ NULL
 
 #' @describeIn commands `integer(1)`.
 #' @export
-## Updated 2019-07-23.
 getBarcodeCutoffFromCommands <- function(log) {
     assert(isCharacter(log))
     pattern <- "--cb_cutoff (\\d+)"
@@ -42,7 +42,6 @@ getBarcodeCutoffFromCommands <- function(log) {
 
 #' @describeIn commands `character(1)`. Return `"genes"` or `"transcripts"`.
 #' @export
-## Updated 2019-07-23.
 getLevelFromCommands <- function(log) {
     assert(isCharacter(log))
     pattern <- "--genemap (.+)-tx2gene.tsv"
@@ -59,7 +58,6 @@ getLevelFromCommands <- function(log) {
 
 #' @describeIn commands `character(1)`.
 #' @export
-## Updated 2019-07-23.
 getUMITypeFromCommands <- function(log) {
     assert(isCharacter(log))
     pattern <- "fastqtransform.*/(.*)\\.json"

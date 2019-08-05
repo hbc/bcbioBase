@@ -6,6 +6,7 @@
 #' Copy files to Dropbox
 #'
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
+#' @note Updated 2019-08-05.
 #' @export
 #'
 #' @param files `character`.
@@ -20,8 +21,6 @@
 #'
 #' @examples
 #' # > copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
-
-## Updated 2019-07-23.
 copyToDropbox <- function(
     files,
     dir,

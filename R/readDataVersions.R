@@ -4,8 +4,10 @@
 #' containing additional information (e.g. the built-in "`hg38`" build).
 #'
 #' @author Michael Steinbaugh
+#' @note Updated 2019-08-05.
 #' @export
-#' @inheritParams basejump::params
+#'
+#' @inheritParams acidroxygen::params
 #'
 #' @return `DataFrame`.
 #'
@@ -13,8 +15,6 @@
 #' file <- file.path(bcbioBaseTestsURL, "data-versions.csv")
 #' x <- readDataVersions(file)
 #' print(x)
-
-## Updated 2019-07-23.
 readDataVersions <- function(file) {
     assert(isString(file))
     ## Data versions are optional.

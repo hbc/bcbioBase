@@ -48,9 +48,10 @@
 #' `revcomp` column in the sample metadata.
 #'
 #' @author Michael Steinbaugh
+#' @note Updated 2019-08-05.
 #' @export
 #'
-#' @inheritParams basejump::params
+#' @inheritParams acidroxygen::params
 #' @param file `character(1)`.
 #'   File path. Supports CSV, TSV, and XLSX file formats.
 #' @param lanes `integer(1)`.
@@ -69,8 +70,6 @@
 #' file <- file.path(bcbioBaseTestsURL, "metadata-multiplexed-indrops.csv")
 #' x <- readSampleData(file)
 #' print(x)
-
-## Updated 2019-07-23.
 readSampleData <- function(file, lanes = 0L) {
     ## Coerce detectLanes empty integer return to 0.
     if (length(lanes) == 0L) {

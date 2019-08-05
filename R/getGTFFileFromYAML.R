@@ -1,9 +1,10 @@
 #' Get GTF file path from YAML
 #'
 #' @author Michael Steinbaugh
+#' @note Updated 2019-08-05.
 #' @export
-#' @inheritParams basejump::params
-#' @inheritParams params
+#'
+#' @inheritParams acidroxygen::params
 #'
 #' @return `character(1)` or `NULL`.
 #' File path if the file exists. `NULL` if the file does not exist.
@@ -13,8 +14,6 @@
 #' yaml <- basejump::import(file)
 #' x <- getGTFFileFromYAML(yaml)
 #' print(x)
-
-## Updated 2019-07-23.
 getGTFFileFromYAML <- function(yaml) {
     assert(
         is.list(yaml),

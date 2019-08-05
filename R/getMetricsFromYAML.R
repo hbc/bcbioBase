@@ -7,9 +7,10 @@
 #'   output the same metrics into the YAML.
 #'
 #' @author Michael Steinbaugh
+#' @note Updated 2019-08-05.
 #' @export
-#' @inheritParams basejump::params
-#' @inheritParams params
+#'
+#' @inheritParams acidroxygen::params
 #'
 #' @return `DataFrame`.
 #'
@@ -19,8 +20,6 @@
 #' x <- getMetricsFromYAML(yaml)
 #' summary(x)
 #' colnames(x)
-
-## Updated 2019-07-23.
 getMetricsFromYAML <- function(yaml) {
     assert(is.list(yaml))
     message("Getting sample metrics from YAML.")

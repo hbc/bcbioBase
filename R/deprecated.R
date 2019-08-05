@@ -4,14 +4,16 @@
 
 
 #' @name defunct
-#' @inherit basejump::defunct
-#' @inheritParams params
+#' @inherit acidroxygen::defunct description examples return seealso title
+#' @inheritParams acidroxygen::params
 #' @keywords internal
 NULL
 
+
+
 #' @name deprecated
-#' @inherit basejump::deprecated
-#' @inheritParams params
+#' @inherit acidroxygen::deprecated description examples return seealso title
+#' @inheritParams acidroxygen::params
 #' @keywords internal
 NULL
 

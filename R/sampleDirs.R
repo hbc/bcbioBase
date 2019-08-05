@@ -1,9 +1,10 @@
 #' Sample directories
 #'
 #' @author Michael Steinbaugh
+#' @note Updated 2019-08-05.
 #' @export
 #'
-#' @inheritParams params
+#' @inheritParams acidroxygen::params
 #'
 #' @note Function will [`stop()`][base::stop] if no sample directories match.
 #'
@@ -13,8 +14,6 @@
 #' uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
 #' x <- sampleDirs(uploadDir)
 #' basename(x)
-
-## Updated 2019-07-23.
 sampleDirs <- function(uploadDir) {
     assert(isADirectory(uploadDir))
     uploadDir <- realpath(uploadDir)

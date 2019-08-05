@@ -4,8 +4,10 @@
 #' has been run multiple times to the same upload directory.
 #'
 #' @author Michael Steinbaugh
+#' @note Updated 2019-08-05.
 #' @export
-#' @inheritParams params
+#'
+#' @inheritParams acidroxygen::params
 #'
 #' @return `character(1)`.
 #' Dated project directory (e.g. "2018-01-01_rnaseq").
@@ -14,8 +16,6 @@
 #' uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
 #' x <- projectDir(uploadDir)
 #' basename(x)
-
-## Updated 2019-07-23.
 projectDir <- function(uploadDir) {
     assert(isADirectory(uploadDir))
     dir <- sort(list.files(

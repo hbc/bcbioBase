@@ -2,18 +2,12 @@
 #'
 #' Generates a `Tx2Gene` object containing `transcriptID` and `geneID` columns.
 #'
-#' @note Doesn't attempt to strip transcript versions.
-#'
 #' @author Michael Steinbaugh
+#' @note Doesn't attempt to strip transcript versions.
+#' @note Updated 2019-08-05.
 #' @export
-#' @inheritParams basejump::params
 #'
-#' @param organism `character(1)` or `NULL`.
-#'   Full Latin organism name (e.g. `"Homo sapiens"`).
-#' @param genomeBuild `character(1)` or `NULL`.
-#'   Genome build assembly name (e.g. `"GRCh38"`).
-#' @param ensemblRelease `integer(1)` or `NULL`.
-#'   Ensembl release version (e.g. `90`).
+#' @inheritParams acidroxygen::params
 #'
 #' @return `Tx2Gene`.
 #'
@@ -26,8 +20,6 @@
 #'     ensemblRelease = 90L
 #' )
 #' print(x)
-
-## Updated 2019-07-23.
 readTx2Gene <- function(
     file,
     organism = NULL,

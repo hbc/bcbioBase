@@ -1,8 +1,8 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions for bcbio R packages.
-Version: 0.6.7
-Date: 2019-07-23
+Version: 0.6.8
+Date: 2019-08-05
 Authors@R: c(
     person(
         given = "Michael",
@@ -39,8 +39,8 @@ Encoding: UTF-8
 LazyData: TRUE
 Depends: R (>= 3.5)
 Imports:
-    basejump (>= 0.11.1),
-    goalie (>= 0.2.19),
+    basejump (>= 0.11.4),
+    goalie (>= 0.3.1),
     Biostrings,
     S4Vectors,
     dplyr (>= 0.8),
@@ -55,11 +55,13 @@ Imports:
     methods,
     utils
 Suggests:
-    acidplots (>= 0.2.7),
+    acidplots (>= 0.2.9),
+    acidroxygen (>= 0.0.1),
     roxygen2 (>= 6.1),
     testthat (>= 2.1)
 Remotes:
     acidgenomics/acidplots,
+    acidgenomics/acidroxygen,
     acidgenomics/basejump,
     acidgenomics/goalie
 biocViews:
