@@ -8,8 +8,7 @@ sampleDirs(uploadDir)
 }
 \arguments{
 \item{uploadDir}{\code{character(1)}.
-Path to final upload directory.
-This path is set when running "\code{bcbio_nextgen -w template}".}
+Final upload directory path.}
 }
 \value{
 Named \code{character}. Sample directory paths.
@@ -18,6 +17,8 @@ Named \code{character}. Sample directory paths.
 Sample directories
 }
 \note{
+Updated 2019-08-05.
+
 Function will \code{\link[base:stop]{stop()}} if no sample directories match.
 }
 \examples{

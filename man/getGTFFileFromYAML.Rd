@@ -8,7 +8,7 @@ getGTFFileFromYAML(yaml)
 }
 \arguments{
 \item{yaml}{\code{list}.
-Project summary YAML.}
+YAML metadata.}
 }
 \value{
 \code{character(1)} or \code{NULL}.
@@ -16,6 +16,9 @@ File path if the file exists. \code{NULL} if the file does not exist.
 }
 \description{
 Get GTF file path from YAML
+}
+\note{
+Updated 2019-08-05.
 }
 \examples{
 file <- file.path(bcbioBaseTestsURL, "summary.yaml")

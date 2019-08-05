@@ -18,6 +18,8 @@ Read program versions
 }
 \note{
 bcbio doesn't save program versions when run in fast mode.
+
+Updated 2019-08-05.
 }
 \examples{
 file <- file.path(bcbioBaseTestsURL, "programs.txt")

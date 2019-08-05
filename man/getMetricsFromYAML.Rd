@@ -8,7 +8,7 @@ getMetricsFromYAML(yaml)
 }
 \arguments{
 \item{yaml}{\code{list}.
-Project summary YAML.}
+YAML metadata.}
 }
 \value{
 \code{DataFrame}.
@@ -20,6 +20,8 @@ Parse the summary YAML and return quality control metrics.
 Metrics are only generated for a standard RNA-seq run with aligned
 counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
 output the same metrics into the YAML.
+
+Updated 2019-08-05.
 }
 \examples{
 file <- file.path(bcbioBaseTestsURL, "summary.yaml")

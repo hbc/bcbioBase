@@ -23,6 +23,9 @@ rdrop2 output, including file paths.
 \description{
 Copy files to Dropbox
 }
+\note{
+Updated 2019-08-05.
+}
 \examples{
 # > copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")
 }

@@ -29,6 +29,8 @@ Some bcbio examples on readthedocs use "\code{samplename}" instead of
 intentionally, since we're using the \code{sampleName} column (note case) to
 define unique sample names, in the event that bcbio has processed
 multiplexed samples.
+
+Updated 2019-08-05.
 }
 \section{Demultiplexed samples}{
 

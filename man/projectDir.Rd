@@ -8,8 +8,7 @@ projectDir(uploadDir)
 }
 \arguments{
 \item{uploadDir}{\code{character(1)}.
-Path to final upload directory.
-This path is set when running "\code{bcbio_nextgen -w template}".}
+Final upload directory path.}
 }
 \value{
 \code{character(1)}.
@@ -21,6 +20,8 @@ Project directory
 \note{
 This will pick the latest dated directory and warn the user, if bcbio
 has been run multiple times to the same upload directory.
+
+Updated 2019-08-05.
 }
 \examples{
 uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")

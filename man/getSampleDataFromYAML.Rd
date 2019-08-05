@@ -8,13 +8,16 @@ getSampleDataFromYAML(yaml)
 }
 \arguments{
 \item{yaml}{\code{list}.
-Project summary YAML.}
+YAML metadata.}
 }
 \value{
 \code{DataFrame}.
 }
 \description{
 Get sample data from YAML
+}
+\note{
+Updated 2019-08-05.
 }
 \examples{
 file <- file.path(bcbioBaseTestsURL, "summary.yaml")

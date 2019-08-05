@@ -32,6 +32,9 @@ Commands log parsing functions
 \item \code{getUMITypeFromCommands}: \code{character(1)}.
 }}
 
+\note{
+Updated 2019-08-05.
+}
 \examples{
 file <- file.path(bcbioBaseTestsURL, "surecell-commands.log")
 log <- basejump::import(file)
