@@ -50,7 +50,7 @@ getLevelFromCommands <- function(log) {
     } else {
         level <- "transcripts"
     }
-    message(paste0("Counts will imported as ", level, "."))
+    message(sprintf("Counts will imported as %s.", level))
     level
 }
 
