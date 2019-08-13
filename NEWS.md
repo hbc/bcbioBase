@@ -1,3 +1,15 @@
+## bcbioBase 0.6.9 (2019-08-13)
+
+### Major changes
+
+- Moved `readSampleData` and `readTxGene` functions to basejump. These are
+  shared methods applicable outside of bcbio. They are still reexported here
+  inside the package, maintaining full backward compatibility.
+
+### Minor changes
+
+- Reduced the number of imports and dependencies required.
+
 ## bcbioBase 0.6.8 (2019-08-05)
 
 ### Minor changes
