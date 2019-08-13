@@ -1,12 +1,12 @@
 #' Read sample metadata
 #'
 #' This function reads user-defined sample metadata saved in a spreadsheet.
-#' The "`description`" column is always required, and must match the bcbio
-#' per sample directory names exactly. Inclusion of the "`fileName`" column
+#' The `"description"` column is always required, and must match the bcbio
+#' per sample directory names exactly. Inclusion of the `"fileName"` column
 #' isn't required but is recommended for data provenance.
 #'
-#' @note Some bcbio examples on readthedocs use "`samplename`" instead of
-#'   "`fileName`". This function checks for that and will error out
+#' @note Some bcbio examples on readthedocs use `"samplename"` instead of
+#'   `"fileName"`. This function checks for that and will error out
 #'   intentionally, since we're using the `sampleName` column (note case) to
 #'   define unique sample names, in the event that bcbio has processed
 #'   multiplexed samples.
@@ -22,7 +22,7 @@
 #' corrected by editing the YAML file. Alternatively, you can pass in a
 #' spreadsheet with the [readSampleData()] function.
 #'
-#' The samples in the bcbio run must map to the "`description`" column. The
+#' The samples in the bcbio run must map to the `"description"` column. The
 #' values provided in description for demultiplexed samples must be unique. They
 #' must also be *syntactically valid*, meaning that they cannot contain illegal
 #' characters (e.g. spaces, non-alphanumerics, *dashes*) or *begin with a
@@ -33,16 +33,16 @@
 #'
 #' This applies to some single-cell RNA-seq formats, including inDrops. In this
 #' case, bcbio will output per-sample directories with this this structure:
-#' "`description`-`revcomp`".
+#' `description-revcomp`.
 #'
-#' [readSampleData()] checks to see if the "`description`" column is unique. If
+#' [readSampleData()] checks to see if the `"description"` column is unique. If
 #' the values are duplicated, the function assumes that bcbio processed
 #' multiplexed FASTQs, where multiple samples of interest are barcoded inside a
-#' single FASTQ. This this case, you must supply additional "`index`",
-#' "`sequence`", and "`sampleName`" columns.
+#' single FASTQ. This this case, you must supply additional `"index"`,
+#' `"sequence"`, and `"sampleName"` columns.
 #'
 #' Note that bcbio currently outputs the reverse complement index sequence in
-#' the sample directory names (e.g. "`sample-ATAGAGAG`"). Define the forward
+#' the sample directory names (e.g. `"sample-ATAGAGAG"`). Define the forward
 #' index barcode in the `sequence` column here, not the reverse complement. The
 #' reverse complement will be calculated automatically and added as the
 #' `revcomp` column in the sample metadata.
