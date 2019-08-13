@@ -191,14 +191,14 @@ test_that("Duplicate rows in `sampleName` column", {
 })
 
 ## Recommend using `fileName` instead.
-test_that("bcbio `samplename` column", {
+test_that("bcbio 'samplename' column", {
     file <- file.path(
         "cache",
         "metadata-demultiplexed-invalid-legacy-samplename.csv"
     )
-    expect_error(
-        object = readSampleData(file),
-        regexp = "samplename"
+    expect_identical(
+        colnames(readSampleData(file)),
+        c("sampleName", "fileName", "description")
     )
 })
 
