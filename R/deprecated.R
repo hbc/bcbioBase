@@ -112,10 +112,21 @@ readYAMLSampleMetrics <- function(file) {
 
 
 
-## 0.5.14 =======================================================================
+## v0.5.14 =======================================================================
 #' @importFrom basejump metadataBlacklist
 #' @export
 basejump::metadataBlacklist
+
+
+
+# v0.6.9 =======================================================================
+#' @importFrom basejump readSampleData
+#' @export
+basejump::readSampleData
+
+#' @importFrom basejump readTx2Gene
+#' @export
+basejump::readTx2Gene
 
 
 
