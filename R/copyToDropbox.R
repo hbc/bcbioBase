@@ -44,10 +44,10 @@ copyToDropbox <- function(
     ## Display account information.
     acc <- drop_acc()
 
-    message(paste(
-        "Dropbox:",
+    message(sprintf(
+        "Dropbox: %s <%s>",
         acc[["name"]][["display_name"]],
-        paste0("<", acc[["email"]], ">")
+        acc[["email"]]
     ))
 
     ## Dropbox output directory.
@@ -60,12 +60,12 @@ copyToDropbox <- function(
     if (any(
         c("parent_shared_folder_id", "sharing_info") %in% names(metadata)
     )) {
-        warning(paste(
-            "rdrop2 currently isn't working well with shared directories.",
-            "For the time being, please write to an unshared directory.",
-            "The files can be then moved manually on your Dropbox account",
+        warning(
+            "rdrop2 doesn't work well with shared directories.\n",
+            "For the time being, please write to an unshared directory.\n",
+            "The files can be then moved manually on your Dropbox account ",
             "and the link URLs will be preserved."
-        ))
+        )
     }
 
     ## Loop across the files in list.

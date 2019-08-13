@@ -34,7 +34,7 @@ getBarcodeCutoffFromCommands <- function(log) {
         unique() %>%
         as.integer()
     assert(isInt(cutoff))
-    message(paste(cutoff, "reads per cellular barcode cutoff detected."))
+    message(sprintf("%d reads per cellular barcode cutoff detected.", cutoff))
     cutoff
 }
 
@@ -71,6 +71,6 @@ getUMITypeFromCommands <- function(log) {
         unique() %>%
         str_replace(pattern = "-transform", replacement = "")
     assert(isString(type))
-    message(paste("UMI type:", type))
+    message(sprintf("UMI type: %s.", type))
     type
 }

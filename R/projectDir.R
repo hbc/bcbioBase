@@ -29,15 +29,19 @@ projectDir <- function(uploadDir) {
     ## directory, and warn when this is detected.
     if (length(dir) > 1L) {
         newest <- tail(dir, n = 1L)
-        warning(paste(
-            "Multiple project directories detected:",
+        warning(sprintf(
+            fmt = paste(
+                "Multiple project directories detected:",
+                "%s",
+                "Using most recent: %s",
+                sep = "\n"
+            ),
             printString(dir),
-            paste("Using most recent:", newest),
-            sep = "\n"
+            newest
         ))
         dir <- newest
     }
     assert(isString(dir))
-    message(paste("Dated project directory:", dir))
+    message(sprintf("Dated project directory: %s.", dir))
     realpath(file.path(uploadDir, dir))
 }

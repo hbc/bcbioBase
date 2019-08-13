@@ -59,10 +59,9 @@ sampleDirs <- function(uploadDir) {
     check <- gsub("[-ACGT]+$", "", basenames)
     if (!isTRUE(validNames(check))) {
         invalid <- setdiff(check, makeNames(check))
-        message(paste(
-            "Sanitizing sample names:",
-            printString(invalid),
-            sep = "\n"
+        message(sprintf(
+            "Sanitizing sample names: %s.",
+            toString(invalid, width = 100L)
         ))
     }
 
