@@ -50,7 +50,6 @@ Imports:
     rlang (>= 0.4),
     stringr (>= 1.4),
     tibble (>= 2.1),
-    tidyr (>= 0.8),
     methods,
     utils
 Suggests:
