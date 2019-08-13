@@ -36,7 +36,7 @@ getMetricsFromYAML <- function(yaml) {
     ## Drop any metadata columns. Note we're also dropping the duplicate `name`
     ## column present in the metrics YAML.
     yamlFlatCols <- c("description", "genome_build", "sam_ref")
-    blacklist <- c(camel(yamlFlatCols), "name")
+    blacklist <- c(camelCase(yamlFlatCols), "name")
     data <- data %>%
         as_tibble(rownames = "rowname") %>%
         ## Drop blacklisted columns from the return.

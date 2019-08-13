@@ -108,7 +108,7 @@
             ## Sanitize names into camel case here, otherwise they'll get
             ## modified during the `ldply()` call that coerces `list` to
             ## `data.frame`.
-            item <- camel(item)
+            item <- camelCase(item)
             lapply(
                 X = item,
                 FUN = function(item) {
@@ -140,7 +140,7 @@
     ## Bind the top and nested data frames, coerce to tibble, and return.
     cbind(top, nested) %>%
         as_tibble() %>%
-        camel() %>%
+        camelCase() %>%
         ## Coerce any periods in colnames to "x"
         ## (e.g. x5.3Bias becomes x5x3Bias).
         set_colnames(gsub("\\.", "x", colnames(.))) %>%
