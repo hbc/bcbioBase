@@ -41,7 +41,6 @@ Depends: R (>= 3.5)
 Imports:
     basejump (>= 0.11.8),
     goalie (>= 0.3.4),
-    Biostrings,
     S4Vectors,
     dplyr (>= 0.8),
     magrittr (>= 1.5),
