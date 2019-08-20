@@ -1,7 +1,7 @@
 #' Commands log parsing functions
 #'
 #' @name commands
-#' @note Updated 2019-08-05.
+#' @note Updated 2019-08-20.
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
 #' @param log `character`.

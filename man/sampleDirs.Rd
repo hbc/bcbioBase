@@ -17,7 +17,7 @@ Named \code{character}. Sample directory paths.
 Sample directories
 }
 \note{
-Updated 2019-08-05.
+Updated 2019-08-20.
 
 Function will \code{\link[base:stop]{stop()}} if no sample directories match.
 }
