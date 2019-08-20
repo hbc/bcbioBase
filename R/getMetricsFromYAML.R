@@ -7,7 +7,7 @@
 #'   output the same metrics into the YAML.
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2019-08-05.
+#' @note Updated 2019-08-20.
 #' @export
 #'
 #' @inheritParams acidroxygen::params
@@ -24,27 +24,18 @@ getMetricsFromYAML <- function(yaml) {
     assert(is.list(yaml))
     message("Getting sample metrics from YAML.")
     data <- .sampleYAML(yaml, keys = c("summary", "metrics"))
-
     ## Early return on empty metrics (e.g. fast mode).
-    if (length(data) == 0L) {
+    if (!hasLength(data)) {
         ## nocov start
         message("No metrics were calculated.")
         return(NULL)
         ## nocov end
     }
-
     ## Drop any metadata columns. Note we're also dropping the duplicate `name`
     ## column present in the metrics YAML.
     yamlFlatCols <- c("description", "genome_build", "sam_ref")
     blacklist <- c(camelCase(yamlFlatCols), "name")
-    data <- data %>%
-        as_tibble(rownames = "rowname") %>%
-        ## Drop blacklisted columns from the return.
-        .[, sort(setdiff(colnames(.), blacklist)), drop = FALSE] %>%
-        ## Convert all strings to factors.
-        mutate_if(is.character, as.factor) %>%
-        mutate_if(is.factor, droplevels) %>%
-        as("DataFrame")
-    assert(hasRownames(data))
+    ## Drop blacklisted columns from the return.
+    data <- data[, sort(setdiff(colnames(data), blacklist)), drop = FALSE]
     data
 }

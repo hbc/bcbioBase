@@ -20,10 +20,10 @@ Get the run date from the project directory.
 Alternatively, can parse YAML data, but this approach is faster and simpler.
 }
 \note{
-Updated 2019-08-05.
+Updated 2019-08-20.
 }
 \examples{
-runDate("2018-01-01_illumina_rnaseq")
+runDate(projectDir = "2018-01-01_illumina_rnaseq")
 }
 \author{
 Michael Steinbaugh

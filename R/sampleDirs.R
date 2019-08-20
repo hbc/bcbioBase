@@ -18,16 +18,13 @@ sampleDirs <- function(uploadDir) {
     assert(isADirectory(uploadDir))
     uploadDir <- realpath(uploadDir)
     ## Get the subdirectories in the upload directory.
-    dirs <- list.dirs(uploadDir, full.names = TRUE, recursive = FALSE)
+    dirs <- sort(list.dirs(uploadDir, full.names = TRUE, recursive = FALSE))
     ## Detect and remove nested dated project directory.
     projectDir <- suppressMessages(projectDir(uploadDir))
     dirs <- setdiff(dirs, projectDir)
     ## Double check that we're nuking any remaining dated directories, in case
     ## bcbio has been run multiple times.
-    isSample <- !grepl(
-        pattern = projectDirPattern,
-        x = basename(dirs)
-    )
+    isSample <- !grepl(pattern = projectDirPattern, x = basename(dirs))
     dirs <- dirs[isSample]
     ## Ensure there are sample directories in the upload.
     assert(isNonEmpty(dirs))
