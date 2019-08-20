@@ -1,7 +1,3 @@
-## FIXME Remove tidyverse deps here.
-
-
-
 ## Updated 2019-07-23.
 .isSummaryYAML <- function(yaml) {
     ok <- is.list(yaml)
