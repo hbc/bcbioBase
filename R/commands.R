@@ -1,7 +1,7 @@
 #' Commands log parsing functions
 #'
 #' @name commands
-#' @note Updated 2019-08-05.
+#' @note Updated 2019-08-20.
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
 #' @param log `character`.
@@ -27,15 +27,15 @@ getBarcodeCutoffFromCommands <- function(log) {
     if (!any(grepl(pattern, log))) {
         stop("Failed to detect cellular barcode cutoff.")  # nocov
     }
-    cutoff <- log %>%
-        str_match(pattern) %>%
-        .[, 2L] %>%
-        na.omit() %>%
-        unique() %>%
-        as.integer()
-    assert(isInt(cutoff))
-    message(paste(cutoff, "reads per cellular barcode cutoff detected."))
-    cutoff
+    x <- str_match(string = log, pattern = pattern)
+    x <- x[, 2L]
+    x <- as.integer(unique(na.omit(x)))
+    assert(isInt(x))
+    message(sprintf(
+        "%d %s per cellular barcode cutoff detected.",
+        x, ngettext(n = x, msg1 = "read", msg2 = "reads")
+    ))
+    x
 }
 
 
@@ -50,7 +50,7 @@ getLevelFromCommands <- function(log) {
     } else {
         level <- "transcripts"
     }
-    message(paste0("Counts will imported as ", level, "."))
+    message(sprintf("Counts will imported as %s.", level))
     level
 }
 
@@ -64,13 +64,11 @@ getUMITypeFromCommands <- function(log) {
     if (!any(grepl(pattern, log))) {
         stop("Failed to detect UMI type.")
     }
-    type <- log %>%
-        str_match(pattern = pattern) %>%
-        .[, 2L] %>%
-        na.omit() %>%
-        unique() %>%
-        str_replace(pattern = "-transform", replacement = "")
-    assert(isString(type))
-    message(paste("UMI type:", type))
-    type
+    x <- str_match(string = log, pattern = pattern)
+    x <- x[, 2L]
+    x <- unique(na.omit(x))
+    x <- sub(pattern = "-transform", replacement = "", x = x)
+    assert(isString(x))
+    message(sprintf("UMI type: %s.", x))
+    x
 }

@@ -18,7 +18,7 @@ File path if the file exists. \code{NULL} if the file does not exist.
 Get GTF file path from YAML
 }
 \note{
-Updated 2019-08-05.
+Updated 2019-08-20.
 }
 \examples{
 file <- file.path(bcbioBaseTestsURL, "summary.yaml")

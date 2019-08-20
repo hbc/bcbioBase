@@ -59,21 +59,21 @@ test_that("Nested metadata", {
 context("getMetricsFromYAML")
 
 expected <- list(
-    averageInsertSize = "numeric",
-    duplicates = "numeric",
+    averageInsertSize = "integer",
+    duplicates = "integer",
     duplicationRateOfMapped = "numeric",
     exonicRate = "numeric",
     intergenicRate = "numeric",
     intronicRate = "numeric",
-    mappedPairedReads = "numeric",
-    mappedReads = "numeric",
-    percentGC = "numeric",
+    mappedPairedReads = "integer",
+    mappedReads = "integer",
+    percentGC = "integer",
     qualityFormat = "factor",
     rrna = "numeric",
     rrnaRate = "numeric",
     sequenceLength = "factor",
-    sequencesFlaggedAsPoorQuality = "numeric",
-    totalReads = "numeric",
+    sequencesFlaggedAsPoorQuality = "integer",
+    totalReads = "integer",
     x5x3Bias = "numeric"
 )
 
@@ -90,7 +90,7 @@ test_that("Mismatched values", {
     file <- file.path("cache", "summary-invalid-metrics-mismatch.yaml")
     yaml <- import(file)
     object <- getMetricsFromYAML(yaml)
-    expected[["sequenceLength"]] <- "numeric"
+    expected[["sequenceLength"]] <- "integer"
     expect_identical(
         object = lapply(object, class),
         expected = expected

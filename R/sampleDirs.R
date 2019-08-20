@@ -1,7 +1,7 @@
 #' Sample directories
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2019-08-05.
+#' @note Updated 2019-08-20.
 #' @export
 #'
 #' @inheritParams acidroxygen::params
@@ -17,28 +17,19 @@
 sampleDirs <- function(uploadDir) {
     assert(isADirectory(uploadDir))
     uploadDir <- realpath(uploadDir)
-
     ## Get the subdirectories in the upload directory.
-    dirs <- list.dirs(uploadDir, full.names = TRUE, recursive = FALSE)
-
+    dirs <- sort(list.dirs(uploadDir, full.names = TRUE, recursive = FALSE))
     ## Detect and remove nested dated project directory.
     projectDir <- suppressMessages(projectDir(uploadDir))
     dirs <- setdiff(dirs, projectDir)
-
     ## Double check that we're nuking any remaining dated directories, in case
     ## bcbio has been run multiple times.
-    isSample <- !grepl(
-        pattern = projectDirPattern,
-        x = basename(dirs)
-    )
+    isSample <- !grepl(pattern = projectDirPattern, x = basename(dirs))
     dirs <- dirs[isSample]
-
     ## Ensure there are sample directories in the upload.
     assert(isNonEmpty(dirs))
-
     ## Use the directory basenames for vector names.
     basenames <- basename(dirs)
-
     ## Return sample directory basenames that are valid names in R.
     ## We're using these to define the `sampleID` column in our object metadata.
     ## Refer to `make.names()` for the valid name conventions in R.
@@ -59,25 +50,20 @@ sampleDirs <- function(uploadDir) {
     check <- gsub("[-ACGT]+$", "", basenames)
     if (!isTRUE(validNames(check))) {
         invalid <- setdiff(check, makeNames(check))
-        message(paste(
-            "Sanitizing sample names:",
-            printString(invalid),
-            sep = "\n"
+        message(sprintf(
+            "Sanitizing sample names: %s.",
+            toString(invalid, width = 100L)
         ))
     }
-
     ## Our `makeNames` function coerces periods and dashes to underscores.
     basenames <- makeNames(basenames)
-
     ## Assign our valid names to the absolute file paths.
     names(dirs) <- basenames
-
-    message(paste0(
-        length(dirs), " ",
+    message(sprintf(
+        fmt = "%d %s detected:\n%s",
+        length(dirs),
         ngettext(n = length(dirs), msg1 = "sample", msg2 = "samples"),
-        " detected:\n",
         printString(sort(names(dirs)))
     ))
-
     dirs
 }

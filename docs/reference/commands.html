@@ -68,7 +68,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.9</span>
       </span>
     </div>
 
@@ -150,12 +150,12 @@ Commands log.</p></td>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-08-05.</p>
+    <p>Updated 2019-08-20.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>bcbioBaseTestsURL</span>, <span class='st'>"surecell-commands.log"</span>)
-<span class='no'>log</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/basejump/man/reexports.html'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing surecell-commands.log using readr::read_lines().</span></div><div class='input'><span class='fu'>getBarcodeCutoffFromCommands</span>(<span class='no'>log</span>)</div><div class='output co'>#&gt; <span class='message'>1000 reads per cellular barcode cutoff detected.</span></div><div class='output co'>#&gt; [1] 1000</div><div class='input'><span class='fu'>getLevelFromCommands</span>(<span class='no'>log</span>)</div><div class='output co'>#&gt; <span class='message'>Counts will imported as genes.</span></div><div class='output co'>#&gt; [1] "genes"</div><div class='input'><span class='fu'>getUMITypeFromCommands</span>(<span class='no'>log</span>)</div><div class='output co'>#&gt; <span class='message'>UMI type: surecell</span></div><div class='output co'>#&gt; [1] "surecell"</div></pre>
+<span class='no'>log</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/basejump/man/reexports.html'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing 'surecell-commands.log' using 'base::readLines()'.</span></div><div class='input'><span class='fu'>getBarcodeCutoffFromCommands</span>(<span class='no'>log</span>)</div><div class='output co'>#&gt; <span class='message'>1000 reads per cellular barcode cutoff detected.</span></div><div class='output co'>#&gt; [1] 1000</div><div class='input'><span class='fu'>getLevelFromCommands</span>(<span class='no'>log</span>)</div><div class='output co'>#&gt; <span class='message'>Counts will imported as genes.</span></div><div class='output co'>#&gt; [1] "genes"</div><div class='input'><span class='fu'>getUMITypeFromCommands</span>(<span class='no'>log</span>)</div><div class='output co'>#&gt; <span class='message'>UMI type: surecell.</span></div><div class='output co'>#&gt; [1] "surecell"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
