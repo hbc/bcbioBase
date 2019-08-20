@@ -43,12 +43,12 @@ Imports:
     goalie (>= 0.3.5),
     S4Vectors,
     plyr (>= 1.8),
-    rdrop2 (>= 0.8),
     stringr (>= 1.4),
     methods,
     utils
 Suggests:
     acidroxygen (>= 0.1),
+    rdrop2 (>= 0.8),
     roxygen2 (>= 6.1),
     testthat (>= 2.1)
 Remotes:

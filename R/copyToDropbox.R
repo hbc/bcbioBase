@@ -6,7 +6,8 @@
 #' Copy files to Dropbox
 #'
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
-#' @note Updated 2019-08-05.
+#' @note Requires the rdrop2 package to be installed.
+#' @note Updated 2019-08-20.
 #' @export
 #'
 #' @param files `character`.
@@ -27,39 +28,35 @@ copyToDropbox <- function(
     rdsToken = NULL
 ) {
     assert(
+        requireNamespace("rdrop2", quietly = TRUE),
         allAreFiles(files),
         isADirectory(dir)
     )
     ## rdrop2 has issues with trailing slash, so sanitize.
-    dir <- gsub("/$", "", dir)
+    dir <- sub(pattern = "/$", replacement = "", x = dir)
     if (is.character(rdsToken)) {
         assert(isAFile(rdsToken))
     } else {
         rdsToken <- NA  # nocov
     }
-
     ## Ensure user is authenticated with Dropbox.
-    drop_auth(rdstoken = rdsToken)
-
+    rdrop2::drop_auth(rdstoken = rdsToken)
     ## Display account information.
-    acc <- drop_acc()
-
+    acc <- rdrop2::drop_acc()
     message(sprintf(
         "Dropbox: %s <%s>",
         acc[["name"]][["display_name"]],
         acc[["email"]]
     ))
-
-    ## Dropbox output directory.
-    if (!suppressWarnings(drop_exists(dir))) {
-        drop_create(dir)  # nocov
+    ## Create Dropbox output directory.
+    if (!suppressWarnings(rdrop2::drop_exists(dir))) {
+        rdrop2::drop_create(dir)  # nocov
     }
-
     ## Warn about writes into shared directories.
-    metadata <- drop_get_metadata(dir)
-    if (any(
-        c("parent_shared_folder_id", "sharing_info") %in% names(metadata)
-    )) {
+    metadata <- rdrop2::drop_get_metadata(dir)
+    if (
+        any(c("parent_shared_folder_id", "sharing_info") %in% names(metadata))
+    ) {
         warning(
             "rdrop2 doesn't work well with shared directories.\n",
             "For the time being, please write to an unshared directory.\n",
@@ -67,17 +64,18 @@ copyToDropbox <- function(
             "and the link URLs will be preserved."
         )
     }
-
     ## Loop across the files in list.
-    rdrop <- lapply(files, function(file) {
-        dropboxFile <- file.path(dir, basename(file))
-        if (suppressWarnings(drop_exists(dropboxFile))) {
-            drop_delete(dropboxFile)
+    rdrop <- lapply(
+        X = files,
+        FUN = function(file) {
+            dropboxFile <- file.path(dir, basename(file))
+            if (suppressWarnings(rdrop2::drop_exists(dropboxFile))) {
+                rdrop2::drop_delete(dropboxFile)
+            }
+            rdrop2::drop_upload(file = file, path = dir)
+            rdrop2::drop_share(dropboxFile, requested_visibility = "public")
         }
-        drop_upload(file = file, path = dir)
-        drop_share(dropboxFile, requested_visibility = "public")
-    })
-
+    )
     invisible(rdrop)
 }
 
