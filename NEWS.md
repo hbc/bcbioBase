@@ -1,4 +1,4 @@
-## bcbioBase 0.6.9 (2019-08-13)
+## bcbioBase 0.6.9 (2019-08-20)
 
 ### Major changes
 
@@ -9,6 +9,10 @@
 ### Minor changes
 
 - Reduced the number of imports and dependencies required.
+- Improved handling of characters and numerics in YAML parsing.
+- Lightened the package by removing dplyr and magrittr dependencies.
+- `copyToDropbox` now looks for the optional rdrop2 package, rather than
+  importing as a dependency. This keeps the package lighter.
 
 ## bcbioBase 0.6.8 (2019-08-05)
 
