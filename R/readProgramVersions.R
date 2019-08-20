@@ -3,7 +3,7 @@
 #' @note bcbio doesn't save program versions when run in fast mode.
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2019-08-05.
+#' @note Updated 2019-08-20.
 #' @export
 #'
 #' @inheritParams acidroxygen::params
@@ -28,10 +28,10 @@ readProgramVersions <- function(file) {
         return(DataFrame())
     }
     ## bcbio outputs `programs.txt`, but the file is comma separated.
-    data <- read_csv(
-        file,
-        col_names = c("program", "version"),
-        col_types = "cc"  # character
+    data <- import(
+        file = file,
+        format = "csv",
+        colnames = c("program", "version")
     )
     as(data, "DataFrame")
 }
