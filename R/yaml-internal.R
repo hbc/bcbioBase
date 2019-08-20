@@ -136,9 +136,18 @@
         FUN = function(x) {
             if (
                 is.character(x) &&
-                any(grepl(x = x, pattern = "^[0-9\\.]+$"))
+                any(grepl(pattern = "^[0-9\\.]+$", x = x))
             ) {
                 x <- as.numeric(x)
+            } else if (is.character(x)) {
+                x <- as.factor(x)
+            }
+            ## Coerce double to integer, if appropriate.
+            if (
+                is.numeric(x) &&
+                !any(grepl(pattern = "\\.", x = x))
+            ) {
+                x <- as.integer(x)
             }
             x
         }
