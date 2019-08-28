@@ -3,11 +3,6 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
-\alias{separatorBar}
-\alias{updateMessage}
-\alias{prepareTemplate}
-\alias{lanePattern}
-\alias{minimalSampleData}
 \alias{metadataBlacklist}
 \alias{readSampleData}
 \alias{readTx2Gene}
@@ -18,6 +13,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{basejump}{\code{\link[basejump]{separatorBar}}, \code{\link[basejump]{updateMessage}}, \code{\link[basejump]{prepareTemplate}}, \code{\link[basejump]{lanePattern}}, \code{\link[basejump]{minimalSampleData}}, \code{\link[basejump]{metadataBlacklist}}, \code{\link[basejump]{readSampleData}}, \code{\link[basejump]{readTx2Gene}}}
+  \item{basejump}{\code{\link[basejump]{metadataBlacklist}}, \code{\link[basejump]{readSampleData}}, \code{\link[basejump]{readTx2Gene}}}
 }}
 

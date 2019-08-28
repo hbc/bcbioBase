@@ -2,14 +2,16 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
-\alias{readLog}
+\alias{readDataVersions}
+\alias{readProgramVersions}
 \title{Deprecated functions}
 \usage{
-readLog(file)
+readDataVersions(...)
+
+readProgramVersions(...)
 }
 \arguments{
-\item{file}{\code{character(1)}.
-File path.}
+\item{...}{Additional arguments.}
 }
 \value{
 \code{.Deprecated}.
