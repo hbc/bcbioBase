@@ -1,3 +1,11 @@
+## bcbioBase 0.6.10 (2019-08-27)
+
+### Minor changes
+
+- Removed deprecated and defunct functions declared prior to v0.6.
+- Deprecated `read*` functions in favor of `import*`. This naming format is
+  more consistent with other functions used in basejump.
+
 ## bcbioBase 0.6.9 (2019-08-20)
 
 ### Major changes

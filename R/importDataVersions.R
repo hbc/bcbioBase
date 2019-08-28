@@ -1,10 +1,10 @@
-#' Read data versions
+#' Import data versions
 #'
 #' @note The `data_versions.csv` file is only generated for special genomes
 #' containing additional information (e.g. the built-in `"hg38"` build).
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2019-08-05.
+#' @note Updated 2019-08-27.
 #' @export
 #'
 #' @inheritParams acidroxygen::params
@@ -13,9 +13,9 @@
 #'
 #' @examples
 #' file <- file.path(bcbioBaseTestsURL, "data-versions.csv")
-#' x <- readDataVersions(file)
+#' x <- importDataVersions(file)
 #' print(x)
-readDataVersions <- function(file) {
+importDataVersions <- function(file) {
     assert(isString(file))
     ## Data versions are optional.
     file <- tryCatch(

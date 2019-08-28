@@ -1,7 +1,7 @@
-context("readDataVersions")
+context("importDataVersions")
 
-test_that("readDataVersions", {
-    x <- readDataVersions(file.path("cache", "data-versions.csv"))
+test_that("importDataVersions", {
+    x <- importDataVersions(file.path("cache", "data-versions.csv"))
     expect_is(x, "DataFrame")
     expect_identical(
         object = colnames(x),
@@ -13,11 +13,11 @@ test_that("readDataVersions", {
 ## Consider rethinking this approach, and making bcbio stricter?
 test_that("Missing file", {
     expect_message(
-        object = readDataVersions("XXX.csv"),
+        object = importDataVersions("XXX.csv"),
         regexp = "Data versions are missing."
     )
     expect_identical(
-        object = readDataVersions("XXX.csv"),
+        object = importDataVersions("XXX.csv"),
         expected = DataFrame()
     )
 })

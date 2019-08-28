@@ -1,9 +1,9 @@
-#' Read program versions
+#' Import program versions
 #'
 #' @note bcbio doesn't save program versions when run in fast mode.
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2019-08-20.
+#' @note Updated 2019-08-27.
 #' @export
 #'
 #' @inheritParams acidroxygen::params
@@ -12,9 +12,9 @@
 #'
 #' @examples
 #' file <- file.path(bcbioBaseTestsURL, "programs.txt")
-#' x <- readProgramVersions(file)
+#' x <- importProgramVersions(file)
 #' print(x)
-readProgramVersions <- function(file) {
+importProgramVersions <- function(file) {
     assert(isString(file))
     ## Program versions are optional.
     file <- tryCatch(

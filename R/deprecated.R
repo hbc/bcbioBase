@@ -19,84 +19,7 @@ NULL
 
 
 
-## v0.3.2 =======================================================================
-#' @importFrom basejump separatorBar
-#' @export
-basejump::separatorBar
-
-#' @importFrom basejump updateMessage
-#' @export
-basejump::updateMessage
-
-
-
-## v0.4.1 =======================================================================
-#' @importFrom basejump prepareTemplate
-#' @export
-basejump::prepareTemplate
-
-
-
-## v0.5.0 =======================================================================
-#' @importFrom basejump lanePattern
-#' @export
-basejump::lanePattern
-
-#' @importFrom basejump minimalSampleData
-#' @export
-basejump::minimalSampleData
-
-#' @rdname defunct
-#' @export
-bcbio_geom_abline <- function(...) {
-    .Defunct("acidplots::acid_geom_abline")
-}
-
-#' @rdname defunct
-#' @export
-bcbio_geom_label <- function(...) {
-    .Defunct("acidplots::acid_geom_label")
-}
-
-#' @rdname defunct
-#' @export
-bcbio_geom_label_average <- function(...) {
-    .Defunct("acidplots::acid_geom_label_average")
-}
-
-#' @rdname defunct
-#' @export
-bcbio_geom_label_repel <- function(...) {
-    .Defunct("acidplots::acid_geom_label_repel")
-}
-
-#' @rdname deprecated
-#' @export
-readLog <- function(file) {
-    .Defunct("basejump::import")
-}
-
-#' @rdname defunct
-#' @export
-readTx2gene <- function(...) {
-    .Defunct("readTx2Gene")
-}
-
-#' @rdname defunct
-#' @export
-readYAMLSampleData <- function(file) {
-    .Defunct("getSampleDataFromYAML")
-}
-
-#' @rdname defunct
-#' @export
-readYAMLSampleMetrics <- function(file) {
-    .Defunct("getMetricsFromYAML")  # nolint
-}
-
-
-
-## v0.5.14 =======================================================================
+## v0.5.14 =====================================================================
 #' @importFrom basejump metadataBlacklist
 #' @export
 basejump::metadataBlacklist
@@ -111,6 +34,31 @@ basejump::readSampleData
 #' @importFrom basejump readTx2Gene
 #' @export
 basejump::readTx2Gene
+
+
+
+# v0.6.10 ======================================================================
+#' @importFrom basejump importSampleData
+#' @export
+basejump::importSampleData
+
+#' @importFrom basejump importTx2Gene
+#' @export
+basejump::importTx2Gene
+
+#' @rdname deprecated
+#' @export
+readDataVersions <- function(...) {
+    .Deprecated("importDataVersions")
+    importDataVersions(...)
+}
+
+#' @rdname deprecated
+#' @export
+readProgramVersions <- function(...) {
+    .Deprecated("importProgramVersions")
+    importProgramVersions(...)
+}
 
 
 

@@ -2,35 +2,7 @@
 % Please edit documentation in R/deprecated.R
 \name{defunct}
 \alias{defunct}
-\alias{bcbio_geom_abline}
-\alias{bcbio_geom_label}
-\alias{bcbio_geom_label_average}
-\alias{bcbio_geom_label_repel}
-\alias{readTx2gene}
-\alias{readYAMLSampleData}
-\alias{readYAMLSampleMetrics}
 \title{Defunct functions}
-\usage{
-bcbio_geom_abline(...)
-
-bcbio_geom_label(...)
-
-bcbio_geom_label_average(...)
-
-bcbio_geom_label_repel(...)
-
-readTx2gene(...)
-
-readYAMLSampleData(file)
-
-readYAMLSampleMetrics(file)
-}
-\arguments{
-\item{...}{Additional arguments.}
-
-\item{file}{\code{character(1)}.
-File path.}
-}
 \value{
 \code{.Defunct}.
 }
