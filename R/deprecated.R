@@ -38,6 +38,14 @@ basejump::readTx2Gene
 
 
 # v0.6.10 ======================================================================
+#' @importFrom basejump importSampleData
+#' @export
+basejump::importSampleData
+
+#' @importFrom basejump importTx2Gene
+#' @export
+basejump::importTx2Gene
+
 #' @rdname deprecated
 #' @export
 readDataVersions <- function(...) {

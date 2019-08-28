@@ -6,6 +6,8 @@
 \alias{metadataBlacklist}
 \alias{readSampleData}
 \alias{readTx2Gene}
+\alias{importSampleData}
+\alias{importTx2Gene}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -13,6 +15,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{basejump}{\code{\link[basejump]{metadataBlacklist}}, \code{\link[basejump]{readSampleData}}, \code{\link[basejump]{readTx2Gene}}}
+  \item{basejump}{\code{\link[basejump]{metadataBlacklist}}, \code{\link[basejump]{readSampleData}}, \code{\link[basejump]{readTx2Gene}}, \code{\link[basejump]{importSampleData}}, \code{\link[basejump]{importTx2Gene}}}
 }}
 
