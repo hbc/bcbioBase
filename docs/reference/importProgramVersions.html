@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read data versions — readDataVersions • bcbioBase</title>
+<title>Import program versions — importProgramVersions • bcbioBase</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -34,9 +34,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Read data versions — readDataVersions" />
+<meta property="og:title" content="Import program versions — importProgramVersions" />
 
-<meta property="og:description" content="Read data versions" />
+<meta property="og:description" content="Import program versions" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -68,7 +68,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.10</span>
       </span>
     </div>
 
@@ -108,18 +108,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read data versions</h1>
-    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/readDataVersions.R'><code>R/readDataVersions.R</code></a></small>
-    <div class="hidden name"><code>readDataVersions.Rd</code></div>
+    <h1>Import program versions</h1>
+    <small class="dont-index">Source: <a href='https://github.com/hbc/bcbioBase/blob/master/R/importProgramVersions.R'><code>R/importProgramVersions.R</code></a></small>
+    <div class="hidden name"><code>importProgramVersions.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Read data versions</p>
+    <p>Import program versions</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>readDataVersions</span>(<span class='no'>file</span>)</pre>
+    <pre class="usage"><span class='fu'>importProgramVersions</span>(<span class='no'>file</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,21 +137,26 @@ File path.</p></td>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>The <code>data_versions.csv</code> file is only generated for special genomes
-containing additional information (e.g. the built-in <code>"hg38"</code> build).</p>
-<p>Updated 2019-08-05.</p>
+    <p>bcbio doesn't save program versions when run in fast mode.</p>
+<p>Updated 2019-08-27.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>bcbioBaseTestsURL</span>, <span class='st'>"data-versions.csv"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>readDataVersions</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing 'data-versions.csv' using 'data.table::fread()'.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 5 rows and 3 columns
-#&gt;        genome        resource     version
-#&gt;   &lt;character&gt;     &lt;character&gt; &lt;character&gt;
-#&gt; 1        mm10         sranseq    20151014
-#&gt; 2        mm10         srnaseq    20161121
-#&gt; 3        mm10 problem_regions    20151028
-#&gt; 4        mm10           dbsnp    20130912
-#&gt; 5        mm10     transcripts  2014-07-14</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>bcbioBaseTestsURL</span>, <span class='st'>"programs.txt"</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>importProgramVersions</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing 'programs.txt' using 'data.table::fread()'.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 51 rows and 2 columns
+#&gt;                      program         version
+#&gt;                  &lt;character&gt;     &lt;character&gt;
+#&gt; 1                   bamtools           2.4.0
+#&gt; 2              bcbio-nextgen 1.0.4a0-06d3bb4
+#&gt; 3            bcbio-variation           0.2.6
+#&gt; 4                   bcftools           1.4.1
+#&gt; 5                   bedtools          2.26.0
+#&gt; ...                      ...             ...
+#&gt; 47  variant-effect-predictor              87
+#&gt; 48                   varscan           2.4.2
+#&gt; 49                    vcflib       1.0.0_rc1
+#&gt; 50                        vt      2015.11.10
+#&gt; 51                      wham       1.7.0.307</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
