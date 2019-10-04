@@ -46,34 +46,15 @@ test_that("Shared Dropbox directory", {
 
 test_that("Invalid parameters", {
     expect_error(
-        object = copyToDropbox(files = NULL, dir = "."),
-        regexp = paste(
-            "is2 :",
-            "files is not in any of the classes 'character', 'list'."
-        )
+        copyToDropbox(files = NULL, dir = ".")
     )
     expect_error(
-        object = copyToDropbox(files = "XXX.csv.gz", dir = "."),
-        regexp = paste(
-            "is_existing_file :",
-            "Some or all of the files specified by files do not exist."
-        )
+        copyToDropbox(files = "XXX.csv.gz", dir = ".")
     )
     expect_error(
-        object = copyToDropbox(files = files, dir = NULL),
-        regexp = paste(
-            "is_a_string :",
-            "dir is not of class 'character'; it has class 'NULL'"
-        )
+        object = copyToDropbox(files = files, dir = NULL)
     )
     expect_error(
-        object = copyToDropbox(
-            files = files,
-            dir = dropboxDir, rdsToken = "XXX.rds"
-        ),
-        regexp = paste(
-            "is_existing_file :",
-            "Some or all of the files specified by rdsToken do not exist."
-        )
+        copyToDropbox(files = files, dir = dropboxDir, rdsToken = "XXX.rds")
     )
 })

@@ -6,8 +6,8 @@
 #'   makeSampleData printString realpath removeNA sanitizeNA
 #' @importFrom goalie allAreAtomic allAreFiles areDisjointSets
 #'   allAreMatchingRegex assert hasLength hasRownames isADirectory isAFile
-#'   isCharacter isMatchingRegex isInRange isInt isNonEmpty isScalar isString
-#'   isSubset validNames
+#'   isCharacter isMatchingRegex isInRange isInt isScalar isString isSubset
+#'   validNames
 #' @importFrom methods as is new
 #' @importFrom plyr ldply
 #' @importFrom stringr str_match
