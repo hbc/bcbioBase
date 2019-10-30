@@ -27,7 +27,7 @@ sampleDirs <- function(uploadDir) {
     isSample <- !grepl(pattern = projectDirPattern, x = basename(dirs))
     dirs <- dirs[isSample]
     ## Ensure there are sample directories in the upload.
-    assert(isNonEmpty(dirs))
+    assert(hasLength(dirs))
     ## Use the directory basenames for vector names.
     basenames <- basename(dirs)
     ## Return sample directory basenames that are valid names in R.

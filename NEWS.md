@@ -1,3 +1,10 @@
+## bcbioBase 0.6.11 (2019-10-30)
+
+### Minor changes
+
+- Updated basejump dependencies.
+- Rebuilt documentation and checked for Bioconductor 3.10 support.
+
 ## bcbioBase 0.6.10 (2019-08-27)
 
 ### Minor changes
