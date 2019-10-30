@@ -89,7 +89,7 @@
             assert(is.list(item))
             ## Remove any entries that are `NULL` (e.g. "batch" in metadata).
             item <- Filter(Negate(is.null), item)
-            assert(isNonEmpty(item))
+            assert(hasLength(item))
             ## Sanitize names into camel case here, otherwise they'll get
             ## modified during the `ldply()` call that coerces `list` to
             ## `data.frame`.
@@ -118,7 +118,7 @@
     )
     nested <- as(nested, "DataFrame")
     assert(
-        isNonEmpty(nested),
+        hasLength(nested),
         allAreAtomic(nested),
         identical(nrow(top), nrow(nested)),
         areDisjointSets(colnames(top), colnames(nested))

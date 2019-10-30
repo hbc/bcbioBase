@@ -24,7 +24,7 @@ projectDir <- function(uploadDir) {
         full.names = FALSE,
         recursive = FALSE
     ))
-    assert(isNonEmpty(dir))
+    assert(hasLength(dir))
     ## Check to see if user has run bcbio multiple times to the same upload
     ## directory, and warn when this is detected.
     if (length(dir) > 1L) {
