@@ -4,7 +4,7 @@
 #' has been run multiple times to the same upload directory.
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2019-08-05.
+#' @note Updated 2020-01-17.
 #' @export
 #'
 #' @inheritParams acidroxygen::params
@@ -29,7 +29,7 @@ projectDir <- function(uploadDir) {
     ## directory, and warn when this is detected.
     if (length(dir) > 1L) {
         newest <- tail(dir, n = 1L)
-        warning(sprintf(
+        cli_alert_warning(sprintf(
             fmt = paste(
                 "Multiple project directories detected:",
                 "%s",
@@ -42,6 +42,6 @@ projectDir <- function(uploadDir) {
         dir <- newest
     }
     assert(isString(dir))
-    message(sprintf("Dated project directory: %s.", dir))
+    cli_dl(c(projectDir = dir))
     realpath(file.path(uploadDir, dir))
 }
