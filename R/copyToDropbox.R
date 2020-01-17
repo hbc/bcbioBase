@@ -60,13 +60,12 @@ copyToDropbox <- function(
         cli_alert_warning(
             "rdrop2 doesn't work well with shared directories."
         )
-        p <- cli_par()
+        cli_div(theme = list(body = list("margin-left" = 4L)))
         cli_text(paste0(
             "For the time being, please write to an unshared directory.\n",
             "The files can be then moved manually on your Dropbox account ",
             "and the link URLs will be preserved."
         ))
-        cli_end(p)
     }
     ## Loop across the files in list.
     rdrop <- lapply(

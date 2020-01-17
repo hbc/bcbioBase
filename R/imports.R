@@ -4,7 +4,7 @@
 #' @importFrom S4Vectors DataFrame metadata<- na.omit tail
 #' @importFrom basejump camelCase import localOrRemoteFile makeNames
 #'   makeSampleData printString realpath removeNA sanitizeNA
-#' @importFrom cli cli_alert cli_alert_warning cli_dl cli_end cli_par cli_text
+#' @importFrom cli cli_alert cli_alert_warning cli_div cli_dl cli_end cli_text
 #'   cli_ul
 #' @importFrom goalie allAreAtomic allAreFiles areDisjointSets
 #'   allAreMatchingRegex assert hasLength hasRownames isADirectory isAFile
