@@ -29,16 +29,9 @@ projectDir <- function(uploadDir) {
     ## directory, and warn when this is detected.
     if (length(dir) > 1L) {
         newest <- tail(dir, n = 1L)
-        cli_alert_warning(sprintf(
-            fmt = paste(
-                "Multiple project directories detected:",
-                "%s",
-                "Using most recent: %s",
-                sep = "\n"
-            ),
-            printString(dir),
-            newest
-        ))
+        cli_alert_warning("Multiple project directories detected:")
+        cli_ul(dir)
+        cli_alert(sprintf("Using most recent: %s", newest))
         dir <- newest
     }
     assert(isString(dir))
