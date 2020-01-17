@@ -1,7 +1,7 @@
 #' Sample directories
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2019-08-20.
+#' @note Updated 2020-01-17.
 #' @export
 #'
 #' @inheritParams acidroxygen::params
@@ -59,11 +59,11 @@ sampleDirs <- function(uploadDir) {
     basenames <- makeNames(basenames)
     ## Assign our valid names to the absolute file paths.
     names(dirs) <- basenames
-    message(sprintf(
-        fmt = "%d %s detected:\n%s",
+    cli_text(sprintf(
+        fmt = "%d %s detected:",
         length(dirs),
-        ngettext(n = length(dirs), msg1 = "sample", msg2 = "samples"),
-        printString(sort(names(dirs)))
+        ngettext(n = length(dirs), msg1 = "sample", msg2 = "samples")
     ))
+    cli_ul(sort(names(dirs)))
     dirs
 }
