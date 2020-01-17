@@ -69,6 +69,6 @@ getUMITypeFromCommands <- function(log) {
     x <- unique(na.omit(x))
     x <- sub(pattern = "-transform", replacement = "", x = x)
     assert(isString(x))
-    cli_dl(c(`UMI type`, x))
+    cli_dl(c(`UMI type` = x))
     x
 }
