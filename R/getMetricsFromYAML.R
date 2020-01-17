@@ -22,7 +22,7 @@
 #' colnames(x)
 getMetricsFromYAML <- function(yaml) {
     assert(is.list(yaml))
-    message("Getting sample quality control metrics from YAML.")
+    cli_alert("Getting sample quality control metrics from YAML.")
     data <- .sampleYAML(yaml, keys = c("summary", "metrics"))
     ## Early return on empty metrics (e.g. fast mode).
     if (!hasLength(data)) {
