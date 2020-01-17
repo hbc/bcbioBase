@@ -59,7 +59,7 @@ sampleDirs <- function(uploadDir) {
     basenames <- makeNames(basenames)
     ## Assign our valid names to the absolute file paths.
     names(dirs) <- basenames
-    cli_alert(sprintf(
+    cli_text(sprintf(
         fmt = "%d %s detected:",
         length(dirs),
         ngettext(n = length(dirs), msg1 = "sample", msg2 = "samples")
