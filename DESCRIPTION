@@ -1,8 +1,8 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions for bcbio R packages.
-Version: 0.6.11
-Date: 2019-10-30
+Version: 0.6.12
+Date: 2020-01-17
 Authors@R: c(
     person(
         given = "Michael",
@@ -41,6 +41,7 @@ Depends: R (>= 3.6)
 Imports:
     S4Vectors (>= 0.22),
     basejump (>= 0.11.20),
+    cli (>= 2.0.1),
     goalie (>= 0.4.0),
     plyr (>= 1.8),
     stringr (>= 1.4),
@@ -59,4 +60,4 @@ biocViews:
     DataImport,
     Infrastructure
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.2

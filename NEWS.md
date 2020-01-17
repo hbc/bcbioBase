@@ -1,3 +1,9 @@
+## bcbioBase 0.6.12 (2020-01-17)
+
+### Minor changes
+
+- Now using cli package to improve console messages.
+
 ## bcbioBase 0.6.11 (2019-10-30)
 
 ### Minor changes
