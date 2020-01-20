@@ -26,7 +26,7 @@ Copy files to Dropbox
 \note{
 Requires the rdrop2 package to be installed.
 
-Updated 2019-08-20.
+Updated 2020-01-17.
 }
 \examples{
 # > copyToDropbox(files = c("raw_counts.csv", "tpm.csv"), dir = "counts")

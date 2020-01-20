@@ -7,7 +7,7 @@
 #'   output the same metrics into the YAML.
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2019-08-20.
+#' @note Updated 2020-01-17.
 #' @export
 #'
 #' @inheritParams acidroxygen::params
@@ -22,12 +22,12 @@
 #' colnames(x)
 getMetricsFromYAML <- function(yaml) {
     assert(is.list(yaml))
-    message("Getting sample metrics from YAML.")
+    cli_alert("Getting sample quality control metrics from YAML.")
     data <- .sampleYAML(yaml, keys = c("summary", "metrics"))
     ## Early return on empty metrics (e.g. fast mode).
     if (!hasLength(data)) {
         ## nocov start
-        message("No metrics were calculated.")
+        cli_alert_warning("No quality control metrics were calculated.")
         return(NULL)
         ## nocov end
     }

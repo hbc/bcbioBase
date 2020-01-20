@@ -1,7 +1,7 @@
 #' Get sample data from YAML
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2019-08-05.
+#' @note Updated 2020-01-17.
 #' @export
 #'
 #' @inheritParams acidroxygen::params
@@ -16,7 +16,7 @@
 #' colnames(x)
 getSampleDataFromYAML <- function(yaml) {
     assert(is.list(yaml))
-    message("Getting sample metadata from YAML.")
+    cli_alert("Getting sample metadata from YAML.")
     data <- .sampleYAML(yaml, keys = "metadata")
     makeSampleData(data)
 }

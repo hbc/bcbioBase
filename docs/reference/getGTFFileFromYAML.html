@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.12</span>
       </span>
     </div>
 
@@ -137,11 +137,12 @@ YAML metadata.</p></td>
 File path if the file exists. <code>NULL</code> if the file does not exist.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-08-20.</p>
+    <p>Updated 2020-01-17.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>bcbioBaseTestsURL</span>, <span class='st'>"summary.yaml"</span>)
-<span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/basejump/man/reexports.html'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Importing 'summary.yaml' using 'yaml::yaml.load_file()'.</span></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>getGTFFileFromYAML</span>(<span class='no'>yaml</span>)</div><div class='output co'>#&gt; <span class='message'>bcbio GTF file: /groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/rnaseq/ref-transcripts.gtf.</span></div><div class='output co'>#&gt; <span class='message'>bcbio GTF file is not accessible.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; NULL</div></pre>
+<span class='no'>yaml</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/basejump/man/reexports.html'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>→ Importing <span style='color: #0000BB;'>summary.yaml</span><span> using </span><span style='color: #0000BB;'>yaml</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`yaml.load_file()`</span><span>.</span></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>getGTFFileFromYAML</span>(<span class='no'>yaml</span>)</div><div class='output co'>#&gt; <span class='message'>bcbio GTF file:</span>
+#&gt; <span class='message'>  /groups/bcbio/bcbio_dev/genomes/Mmusculus/mm10/rnaseq/ref-transcripts.gtf</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #BBBB00;'>!</span><span> bcbio GTF file is not accessible.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; NULL</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

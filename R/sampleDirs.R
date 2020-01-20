@@ -1,7 +1,7 @@
 #' Sample directories
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2019-08-20.
+#' @note Updated 2020-01-17.
 #' @export
 #'
 #' @inheritParams acidroxygen::params
@@ -50,8 +50,8 @@ sampleDirs <- function(uploadDir) {
     check <- gsub("[-ACGT]+$", "", basenames)
     if (!isTRUE(validNames(check))) {
         invalid <- setdiff(check, makeNames(check))
-        message(sprintf(
-            "Sanitizing sample names: %s.",
+        cli_alert(sprintf(
+            "Sanitizing sample names: {.var %s}.",
             toString(invalid, width = 100L)
         ))
     }
@@ -59,11 +59,12 @@ sampleDirs <- function(uploadDir) {
     basenames <- makeNames(basenames)
     ## Assign our valid names to the absolute file paths.
     names(dirs) <- basenames
-    message(sprintf(
-        fmt = "%d %s detected:\n%s",
+    cli_text(sprintf(
+        fmt = "%d %s detected:",
         length(dirs),
-        ngettext(n = length(dirs), msg1 = "sample", msg2 = "samples"),
-        printString(sort(names(dirs)))
+        ngettext(n = length(dirs), msg1 = "sample", msg2 = "samples")
     ))
+    cli_div(theme = list(body = list("margin-left" = 4L)))
+    cli_ul(sort(names(dirs)))
     dirs
 }
