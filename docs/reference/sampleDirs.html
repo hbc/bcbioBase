@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.12</span>
       </span>
     </div>
 
@@ -136,13 +136,12 @@ Final upload directory path.</p></td>
     <p>Named <code>character</code>. Sample directory paths.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-08-20.</p>
+    <p>Updated 2020-01-17.</p>
 <p>Function will <code><a href='https://rdrr.io/r/base/stop.html'>stop()</a></code> if no sample directories match.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>uploadDir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/bcbio"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"bcbioBase"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>sampleDirs</span>(<span class='no'>uploadDir</span>)</div><div class='output co'>#&gt; <span class='message'>2 samples detected:</span>
-#&gt; <span class='message'>[1] "sample_1" "sample_2"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "sample_1" "sample_2"</div></pre>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>sampleDirs</span>(<span class='no'>uploadDir</span>)</div><div class='output co'>#&gt; <span class='message'>2 samples detected:</span></div><div class='output co'>#&gt; <span class='message'>    ● sample_1</span></div><div class='output co'>#&gt; <span class='message'>    ● sample_2</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] "sample_1" "sample_2"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

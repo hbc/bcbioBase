@@ -1,4 +1,4 @@
-## bcbioBase 0.6.12 (2020-01-17)
+## bcbioBase 0.6.12 (2020-01-20)
 
 ### Minor changes
 

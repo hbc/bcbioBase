@@ -1,7 +1,7 @@
 #' Get sample data from YAML
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2030-01-17.
+#' @note Updated 2020-01-17.
 #' @export
 #'
 #' @inheritParams acidroxygen::params

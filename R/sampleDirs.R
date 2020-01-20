@@ -50,8 +50,8 @@ sampleDirs <- function(uploadDir) {
     check <- gsub("[-ACGT]+$", "", basenames)
     if (!isTRUE(validNames(check))) {
         invalid <- setdiff(check, makeNames(check))
-        message(sprintf(
-            "Sanitizing sample names: %s.",
+        cli_alert(sprintf(
+            "Sanitizing sample names: {.var %s}.",
             toString(invalid, width = 100L)
         ))
     }

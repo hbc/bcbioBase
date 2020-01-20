@@ -31,7 +31,7 @@ getBarcodeCutoffFromCommands <- function(log) {
     x <- x[, 2L]
     x <- as.integer(unique(na.omit(x)))
     assert(isInt(x))
-    message(sprintf(
+    cli_alert_info(sprintf(
         "%d %s per cellular barcode cutoff detected.",
         x, ngettext(n = x, msg1 = "read", msg2 = "reads")
     ))
