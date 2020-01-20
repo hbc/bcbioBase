@@ -4,7 +4,7 @@
 #' containing additional information (e.g. the built-in `"hg38"` build).
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2019-08-27.
+#' @note Updated 2020-01-17.
 #' @export
 #'
 #' @inheritParams acidroxygen::params
@@ -21,7 +21,7 @@ importDataVersions <- function(file) {
     file <- tryCatch(
         localOrRemoteFile(file),
         error = function(e) {
-            message("Data versions are missing.")
+            cli_alert_warning("Data versions are missing.")
             NULL
         }
     )

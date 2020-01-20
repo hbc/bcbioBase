@@ -1,7 +1,7 @@
 #' Get GTF file path from YAML
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2019-08-20.
+#' @note Updated 2020-01-17.
 #' @export
 #'
 #' @inheritParams acidroxygen::params
@@ -27,12 +27,12 @@ getGTFFileFromYAML <- function(yaml) {
     x <- x[["rnaseq"]]
     x <- x[["transcripts"]]
     if (!isString(x)) {
-        warning("bcbio GTF file is not defined in YAML.")
+        cli_alert_warning("bcbio GTF file is not defined in YAML.")
         return(NULL)
     }
-    message(sprintf("bcbio GTF file: %s.", x))
+    cli_dl(c(`bcbio GTF file` = x))
     if (!file.exists(x)) {
-        message("bcbio GTF file is not accessible.")
+        cli_alert_warning("bcbio GTF file is not accessible.")
         return(NULL)
     }
     x

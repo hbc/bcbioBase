@@ -21,7 +21,7 @@ Metrics are only generated for a standard RNA-seq run with aligned
 counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
 output the same metrics into the YAML.
 
-Updated 2019-08-20.
+Updated 2020-01-17.
 }
 \examples{
 file <- file.path(bcbioBaseTestsURL, "summary.yaml")

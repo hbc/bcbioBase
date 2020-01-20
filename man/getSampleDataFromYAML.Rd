@@ -17,7 +17,7 @@ YAML metadata.}
 Get sample data from YAML
 }
 \note{
-Updated 2019-08-05.
+Updated 2020-01-17.
 }
 \examples{
 file <- file.path(bcbioBaseTestsURL, "summary.yaml")

@@ -7,7 +7,7 @@
 #'
 #' @author Michael Steinbaugh, Victor Barerra, John Hutchinson
 #' @note Requires the rdrop2 package to be installed.
-#' @note Updated 2019-08-20.
+#' @note Updated 2020-01-17.
 #' @export
 #'
 #' @param files `character`.
@@ -43,7 +43,7 @@ copyToDropbox <- function(
     rdrop2::drop_auth(rdstoken = rdsToken)
     ## Display account information.
     acc <- rdrop2::drop_acc()
-    message(sprintf(
+    cli_dl(sprintf(
         "Dropbox: %s <%s>",
         acc[["name"]][["display_name"]],
         acc[["email"]]
@@ -57,12 +57,15 @@ copyToDropbox <- function(
     if (
         any(c("parent_shared_folder_id", "sharing_info") %in% names(metadata))
     ) {
-        warning(
-            "rdrop2 doesn't work well with shared directories.\n",
+        cli_alert_warning(
+            "rdrop2 doesn't work well with shared directories."
+        )
+        cli_div(theme = list(body = list("margin-left" = 4L)))
+        cli_text(paste0(
             "For the time being, please write to an unshared directory.\n",
             "The files can be then moved manually on your Dropbox account ",
             "and the link URLs will be preserved."
-        )
+        ))
     }
     ## Loop across the files in list.
     rdrop <- lapply(

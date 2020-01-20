@@ -3,7 +3,7 @@
 #' @note bcbio doesn't save program versions when run in fast mode.
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2019-08-27.
+#' @note Updated 2020-01-17.
 #' @export
 #'
 #' @inheritParams acidroxygen::params
@@ -20,7 +20,7 @@ importProgramVersions <- function(file) {
     file <- tryCatch(
         localOrRemoteFile(file),
         error = function(e) {
-            message("Program versions are missing.")
+            cli_alert_warning("Program versions are missing.")
             NULL
         }
     )

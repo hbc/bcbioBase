@@ -14,7 +14,7 @@ test_that("Multiple dated directories", {
     uploadDir <- realpath(uploadDir)
     dir.create(file.path(uploadDir, "2018-01-01_rnaseq"))
     dir.create(file.path(uploadDir, "2018-02-01_rnaseq"))
-    expect_warning(
+    expect_message(
         object = projectDir(uploadDir),
         regexp = "Multiple project directories detected"
     )
