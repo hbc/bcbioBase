@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.13</span>
       </span>
     </div>
 
@@ -142,7 +142,7 @@ containing additional information (e.g. the built-in <code>"hg38"</code> build).
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>bcbioBaseTestsURL</span>, <span class='st'>"data-versions.csv"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>importDataVersions</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>→ Importing <span style='color: #0000BB;'>pipette-6c464441904b.csv</span><span> using </span><span style='color: #0000BB;'>data.table</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`fread()`</span><span>.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 5 rows and 3 columns
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>importDataVersions</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>→ Importing <span style='color: #0000BB;'>pipette-12bde7b57ce82.csv</span><span> using </span><span style='color: #0000BB;'>data.table</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`fread()`</span><span>.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 5 rows and 3 columns
 #&gt;        genome        resource     version
 #&gt;   &lt;character&gt;     &lt;character&gt; &lt;character&gt;
 #&gt; 1        mm10         sranseq    20151014
