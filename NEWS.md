@@ -1,3 +1,9 @@
+## bcbioBase 0.6.13 (2020-02-19)
+
+### Minor changes
+
+- Changed license from MIT to GPL-3.
+
 ## bcbioBase 0.6.12 (2020-01-20)
 
 ### Minor changes

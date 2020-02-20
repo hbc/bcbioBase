@@ -1,8 +1,8 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions for bcbio R packages.
-Version: 0.6.12
-Date: 2020-01-20
+Version: 0.6.13
+Date: 2020-02-19
 Authors@R: c(
     person(
         given = "Michael",
@@ -34,7 +34,7 @@ URL:
     https://bioinformatics.sph.harvard.edu/bcbioBase/,
     https://github.com/hbc/bcbioBase/
 BugReports: https://github.com/hbc/bcbioBase/issues/
-License: MIT + file LICENSE
+License: GPL-3
 Encoding: UTF-8
 LazyData: TRUE
 Depends: R (>= 3.6)
