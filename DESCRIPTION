@@ -48,16 +48,14 @@ Imports:
     methods,
     utils
 Suggests:
-    acidroxygen (>= 0.1.6),
     rdrop2 (>= 0.8),
     roxygen2 (>= 7.0),
     testthat (>= 2.3)
 Remotes:
-    acidgenomics/acidroxygen,
     acidgenomics/basejump,
     acidgenomics/goalie
 biocViews:
     DataImport,
     Infrastructure
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
