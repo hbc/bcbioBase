@@ -1,3 +1,9 @@
+## bcbioBase 0.6.14 (2020-07-24)
+
+### Minor changes
+
+- Maintenance release, increasing minimum R dependency to 4.0.
+
 ## bcbioBase 0.6.13 (2020-02-19)
 
 ### Minor changes
