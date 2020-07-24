@@ -15,6 +15,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{basejump}{\code{\link[basejump]{importSampleData}}, \code{\link[basejump]{importTx2Gene}}, \code{\link[basejump]{metadataBlacklist}}, \code{\link[basejump]{readSampleData}}, \code{\link[basejump]{readTx2Gene}}}
+  \item{basejump}{\code{\link[basejump]{importSampleData}}, \code{\link[basejump]{importTx2Gene}}, \code{\link[basejump]{metadataBlacklist}}, \code{\link[basejump:deprecated]{readSampleData}}, \code{\link[basejump:deprecated]{readTx2Gene}}}
 }}
 
