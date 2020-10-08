@@ -7,7 +7,7 @@
 #' @note Updated 2020-01-17.
 #' @export
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #'
 #' @return `character(1)`.
 #' Dated project directory (e.g. "2018-01-01_rnaseq").

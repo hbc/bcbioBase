@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.14</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.15</span>
       </span>
     </div>
 
@@ -122,11 +122,11 @@
     <p>Commands log parsing functions</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getBarcodeCutoffFromCommands</span>(<span class='no'>log</span>)
+    <pre class="usage"><span class='fu'>getBarcodeCutoffFromCommands</span><span class='op'>(</span><span class='va'>log</span><span class='op'>)</span>
 
-<span class='fu'>getLevelFromCommands</span>(<span class='no'>log</span>)
+<span class='fu'>getLevelFromCommands</span><span class='op'>(</span><span class='va'>log</span><span class='op'>)</span>
 
-<span class='fu'>getUMITypeFromCommands</span>(<span class='no'>log</span>)</pre>
+<span class='fu'>getUMITypeFromCommands</span><span class='op'>(</span><span class='va'>log</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,10 +152,17 @@ Commands log.</p></td>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Updated 2019-08-20.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Michael Steinbaugh, Rory Kirchner</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>bcbioBaseTestsURL</span>, <span class='st'>"surecell-commands.log"</span>)
-<span class='no'>log</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/basejump/man/reexports.html'>import</a></span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>→ Importing <span style='color: #0000BB;'>surecell-commands.log</span><span> using </span><span style='color: #0000BB;'>readr</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`read_lines()`</span><span>.</span></div><div class='input'><span class='fu'>getBarcodeCutoffFromCommands</span>(<span class='no'>log</span>)</div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 1000 reads per cellular barcode cutoff detected.</span></div><div class='output co'>#&gt; [1] 1000</div><div class='input'><span class='fu'>getLevelFromCommands</span>(<span class='no'>log</span>)</div><div class='output co'>#&gt; <span class='message'>Counts will imported as genes.</span></div><div class='output co'>#&gt; [1] "genes"</div><div class='input'><span class='fu'>getUMITypeFromCommands</span>(<span class='no'>log</span>)</div><div class='output co'>#&gt; <span class='message'>UMI type: surecell</span></div><div class='output co'>#&gt; [1] "surecell"</div></span></pre>
+    <pre class="examples"><div class='input'><span class='va'>file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>bcbioBaseTestsURL</span>, <span class='st'>"surecell-commands.log"</span><span class='op'>)</span>
+<span class='va'>log</span> <span class='op'>&lt;-</span> <span class='fu'>basejump</span><span class='fu'>::</span><span class='fu'><a href='https://pipette.acidgenomics.com/reference/import.html'>import</a></span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>→ Importing <span style='color: #0000BB;'>surecell-commands.log</span><span> at </span><span style='color: #0000BB;'>https://tests.acidgenomics.com/bcbioBase/v0.6</span><span> using </span><span style='color: #0000BB;'>readr</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`read_lines()`</span><span>.</span></div><div class='input'><span class='fu'>getBarcodeCutoffFromCommands</span><span class='op'>(</span><span class='va'>log</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 1000 reads per cellular barcode cutoff detected.</span></div><div class='output co'>#&gt; [1] 1000</div><div class='input'><span class='fu'>getLevelFromCommands</span><span class='op'>(</span><span class='va'>log</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Counts will imported as genes.</span></div><div class='output co'>#&gt; [1] "genes"</div><div class='input'><span class='fu'>getUMITypeFromCommands</span><span class='op'>(</span><span class='va'>log</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>UMI type: surecell</span></div><div class='output co'>#&gt; [1] "surecell"</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -171,7 +178,7 @@ Commands log.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

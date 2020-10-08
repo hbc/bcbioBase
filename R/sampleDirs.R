@@ -4,7 +4,7 @@
 #' @note Updated 2020-01-17.
 #' @export
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #'
 #' @note Function will [`stop()`][base::stop] if no sample directories match.
 #'
