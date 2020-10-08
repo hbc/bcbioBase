@@ -1,6 +1,6 @@
 globalVariables(".")
 
-.version <- packageVersion("bcbioBase")
+.version <- packageVersion(packageName())
 
 #' bcbioBase test data URL
 #' @export

@@ -51,9 +51,6 @@ Suggests:
     rdrop2 (>= 0.8.1),
     roxygen2,
     testthat
-Remotes:
-    acidgenomics/basejump,
-    acidgenomics/goalie
 biocViews:
     DataImport,
     Infrastructure
