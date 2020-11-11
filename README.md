@@ -1,8 +1,5 @@
 # bcbioBase
 
-[![Repo status: active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Travis CI build status](https://travis-ci.org/hbc/bcbioBase.svg?branch=master)](https://travis-ci.org/hbc/bcbioBase)
-
 Base functions for [bcbio][] [R][] packages.
 
 This is an infrastructure package, providing a shared code framework for bulk RNA-seq and single-cell RNA-seq analysis.
