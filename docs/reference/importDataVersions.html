@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bcbioBase</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.14</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.16</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@
     <p>Import data versions</p>
     </div>
 
-    <pre class="usage"><span class='fu'>importDataVersions</span>(<span class='no'>file</span>)</pre>
+    <pre class="usage"><span class='fu'>importDataVersions</span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,10 +142,15 @@ File path.</p></td>
     <p>The <code>data_versions.csv</code> file is only generated for special genomes
 containing additional information (e.g. the built-in <code>"hg38"</code> build).</p>
 <p>Updated 2020-01-17.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Michael Steinbaugh</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='no'>bcbioBaseTestsURL</span>, <span class='st'>"data-versions.csv"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>importDataVersions</span>(<span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>→ Importing <span style='color: #0000BB;'>pipette-72b52a67f392.csv</span><span> using </span><span style='color: #0000BB;'>vroom</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`vroom()`</span><span>.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; DataFrame with 5 rows and 3 columns
+    <pre class="examples"><div class='input'><span class='va'>file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>bcbioBaseTestsURL</span>, <span class='st'>"data-versions.csv"</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>importDataVersions</span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>→ Importing <span style='color: #0000BB;'>pipette-1a5af93a8e1.csv</span><span> at </span><span style='color: #0000BB;'>/private/var/folders/l1/8y8sjzmn15v49jgrqglghcfr0000gn/T/RtmpSMXk0Y</span><span> using </span><span style='color: #0000BB;'>vroom</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`vroom()`</span><span>.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; DataFrame with 5 rows and 3 columns
 #&gt;        genome        resource    version
 #&gt;   &lt;character&gt;     &lt;character&gt;  &lt;POSIXct&gt;
 #&gt; 1        mm10         sranseq 2015-10-14
@@ -164,11 +169,11 @@ containing additional information (e.g. the built-in <code>"hg38"</code> build).
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>, <a href='https://github.com/roryk/'>Rory Kirchner</a>, <a href='https://lpantano.github.io/'>Lorena Pantano</a>, <a href='http://bioinformatics.sph.harvard.edu/'>Harvard Chan Bioinformatics Core</a>.</p>
+  <p>Developed by <a href='https://steinbaugh.com/'>Michael Steinbaugh</a>, <a href='https://github.com/roryk/'>Rory Kirchner</a>, <a href='https://lpantano.github.io/'>Lorena Pantano</a>, <a href='https://bioinformatics.sph.harvard.edu/'>Harvard Chan Bioinformatics Core</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

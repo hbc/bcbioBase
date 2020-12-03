@@ -21,7 +21,7 @@ Project directory
 This will pick the latest dated directory and warn the user, if bcbio
 has been run multiple times to the same upload directory.
 
-Updated 2020-01-17.
+Updated 2020-12-03.
 }
 \examples{
 uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")

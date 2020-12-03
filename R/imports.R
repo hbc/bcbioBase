@@ -13,5 +13,5 @@
 #' @importFrom methods as is new
 #' @importFrom plyr ldply
 #' @importFrom stringr str_match
-#' @importFrom utils globalVariables
+#' @importFrom utils packageName packageVersion
 NULL

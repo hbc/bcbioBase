@@ -1,8 +1,8 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions for bcbio R packages.
-Version: 0.6.14
-Date: 2020-07-24
+Version: 0.6.16
+Date: 2020-12-03
 Authors@R: c(
     person(
         given = "Michael",
@@ -40,22 +40,20 @@ LazyData: TRUE
 Depends: R (>= 4.0)
 Imports:
     S4Vectors,
-    basejump (>= 0.12.9),
-    cli (>= 2.0),
-    goalie (>= 0.4.6),
+    basejump (>= 0.13.3),
+    cli (>= 2.2),
+    goalie (>= 0.4.11),
     methods,
-    plyr (>= 1.8.6),
+    plyr (>= 1.8),
     stringr (>= 1.4),
     utils
 Suggests:
-    rdrop2 (>= 0.8.1),
+    rdrop2,
     roxygen2,
     testthat
-Remotes:
-    acidgenomics/basejump,
-    acidgenomics/goalie
 biocViews:
     DataImport,
     Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Additional_repositories: https://r.acidgenomics.com

@@ -1,3 +1,15 @@
+## bcbioBase 0.6.16 (2020-12-03)
+
+### Minor changes
+
+- `projectDir`: Improved error message on match failure.
+
+## bcbioBase 0.6.15 (2020-10-08)
+
+### Minor changes
+
+- Updated package dependency version requirements.
+
 ## bcbioBase 0.6.14 (2020-07-24)
 
 ### Minor changes
@@ -51,7 +63,7 @@
 
 ### Minor changes
 
-- Miscellaneous documentation improvements. Now using acidroxygen as the shared
+- Miscellaneous documentation improvements. Now using AcidRoxygen as the shared
   parameter source, following the new conventions used in basejump.
 - Updated dependency versions.
 

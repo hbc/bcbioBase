@@ -8,7 +8,7 @@
 #' @note Updated 2019-08-20.
 #' @export
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #'
 #' @return `Date`.
 #'
