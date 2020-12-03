@@ -1,13 +1,13 @@
 globalVariables(".")
 
-.version <- packageVersion("bcbioBase")
+.version <- packageVersion(packageName())
 
 #' bcbioBase test data URL
 #' @export
 #' @examples
 #' bcbioBaseTestsURL
 bcbioBaseTestsURL <- paste0(
-    "http://tests.acidgenomics.com/bcbioBase/",
+    "https://tests.acidgenomics.com/bcbioBase/",
     "v", .version$major, ".", .version$minor  # nolint
 )
 

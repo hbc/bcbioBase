@@ -1,3 +1,21 @@
+## bcbioBase 0.6.15 (2020-10-08)
+
+### Minor changes
+
+- Updated package dependency version requirements.
+
+## bcbioBase 0.6.14 (2020-07-24)
+
+### Minor changes
+
+- Maintenance release, increasing minimum R dependency to 4.0.
+
+## bcbioBase 0.6.13 (2020-02-19)
+
+### Minor changes
+
+- Changed license from MIT to GPL-3.
+
 ## bcbioBase 0.6.12 (2020-01-20)
 
 ### Minor changes
@@ -39,7 +57,7 @@
 
 ### Minor changes
 
-- Miscellaneous documentation improvements. Now using acidroxygen as the shared
+- Miscellaneous documentation improvements. Now using AcidRoxygen as the shared
   parameter source, following the new conventions used in basejump.
 - Updated dependency versions.
 

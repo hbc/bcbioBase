@@ -46,11 +46,11 @@ test_that("getSampleDataFromYAML", {
 ## Testing against Kayleigh's nested example here.
 test_that("Nested metadata", {
     ## Expecting warnings about integer range here.
-    object <- suppressWarnings(
-        getSampleDataFromYAML(
+    suppressWarnings({
+        object <- getSampleDataFromYAML(
             yaml = import(file.path("cache", "summary-nested-metadata.yaml"))
         )
-    )
+    })
     expect_is(object, "DataFrame")
 })
 
