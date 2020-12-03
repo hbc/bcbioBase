@@ -1,3 +1,9 @@
+## bcbioBase 0.6.16 (2020-12-03)
+
+### Minor changes
+
+- `projectDir`: Improved error message on match failure.
+
 ## bcbioBase 0.6.15 (2020-10-08)
 
 ### Minor changes
