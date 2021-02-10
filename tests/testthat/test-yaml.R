@@ -49,8 +49,7 @@ test_that("Nested metadata", {
     suppressWarnings({
         yaml <- import(file.path("cache", "summary-nested-metadata.yaml"))
     })
-    ## FIXME THIS IS FAILING WITH COMPLEX YAML...
-    ## FIXME NEED TO UPDATE THIS IN ACIDPLYR.
+    ## FIXME NAs introduced by coercion
     object <- getSampleDataFromYAML(yaml)
     expect_is(object, "DataFrame")
 })
