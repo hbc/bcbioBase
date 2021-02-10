@@ -31,7 +31,7 @@ sampleDirs <- function(uploadDir) {
     ## Use the directory basenames for vector names.
     basenames <- basename(dirs)
     ## Return sample directory basenames that are valid names in R.
-    ## We're using these to define the `sampleID` column in our object metadata.
+    ## We're using these to define the `sampleId` column in our object metadata.
     ## Refer to `make.names()` for the valid name conventions in R.
     ## We're using the `makeNames()` variant here instead, which sanitizes using
     ## an underscore instead of a period.

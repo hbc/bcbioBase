@@ -93,7 +93,7 @@
             ## Sanitize names into camel case here, otherwise they'll get
             ## modified during the `ldply()` call that coerces `list` to
             ## `data.frame`.
-            item <- camelCase(item)
+            item <- camelCase(item, strict = TRUE)
             lapply(
                 X = item,
                 FUN = function(item) {
@@ -124,7 +124,7 @@
         areDisjointSets(colnames(top), colnames(nested))
     )
     out <- cbind(top, nested)
-    out <- camelCase(out)
+    out <- camelCase(out, strict = TRUE)
     ## Coerce any periods in colnames to "x" (e.g. `x5.3Bias` to `x5x3Bias`).
     colnames(out) <- gsub("\\.", "x", colnames(out))
     out <- sanitizeNA(out)

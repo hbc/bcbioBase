@@ -1,3 +1,9 @@
+## bcbioBase 0.6.17 (2021-02-10)
+
+### Minor changes
+
+- NAMESPACE updates, following basejump v0.14 release.
+
 ## bcbioBase 0.6.16 (2020-12-03)
 
 ### Minor changes
