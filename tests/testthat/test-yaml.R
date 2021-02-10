@@ -70,7 +70,7 @@ expected <- list(
     "qualityFormat" = "factor",
     "rrna" = "numeric",
     "rrnaRate" = "numeric",
-    "sequenceLength" = "integer",
+    "sequenceLength" = "factor",
     "sequencesFlaggedAsPoorQuality" = "integer",
     "totalReads" = "integer",
     "x5x3Bias" = "numeric"
@@ -89,6 +89,7 @@ test_that("Mismatched values", {
     file <- file.path("cache", "summary-invalid-metrics-mismatch.yaml")
     yaml <- import(file)
     object <- getMetricsFromYAML(yaml)
+    expected[["sequenceLength"]] <- "integer"
     expect_identical(
         object = lapply(object, class),
         expected = expected
