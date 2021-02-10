@@ -49,7 +49,6 @@ test_that("Nested metadata", {
     suppressWarnings({
         yaml <- import(file.path("cache", "summary-nested-metadata.yaml"))
     })
-    ## FIXME NAs introduced by coercion
     object <- getSampleDataFromYAML(yaml)
     expect_is(object, "DataFrame")
 })
@@ -67,17 +66,16 @@ expected <- list(
     "intronicRate" = "numeric",
     "mappedPairedReads" = "integer",
     "mappedReads" = "integer",
-    "percentGC" = "integer",
+    "percentGc" = "integer",
     "qualityFormat" = "factor",
     "rrna" = "numeric",
     "rrnaRate" = "numeric",
-    "sequenceLength" = "factor",
+    "sequenceLength" = "integer",
     "sequencesFlaggedAsPoorQuality" = "integer",
     "totalReads" = "integer",
     "x5x3Bias" = "numeric"
 )
 
-## FIXME THIS IS FAILING.
 test_that("getMetricsFromYAML", {
     object <- getMetricsFromYAML(yaml)
     expect_identical(
@@ -87,12 +85,10 @@ test_that("getMetricsFromYAML", {
 })
 
 ## Check for proper handling of metrics with mismatched number of values.
-## FIXME THIS IS FAILING.
 test_that("Mismatched values", {
     file <- file.path("cache", "summary-invalid-metrics-mismatch.yaml")
     yaml <- import(file)
     object <- getMetricsFromYAML(yaml)
-    expected[["sequenceLength"]] <- "integer"
     expect_identical(
         object = lapply(object, class),
         expected = expected
