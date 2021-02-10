@@ -20,7 +20,7 @@ importProgramVersions <- function(file) {
     file <- tryCatch(
         localOrRemoteFile(file),
         error = function(e) {
-            cli_alert_warning("Program versions are missing.")
+            alertWarning("Program versions are missing.")
             NULL
         }
     )

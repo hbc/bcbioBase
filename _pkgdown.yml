@@ -1,12 +1,12 @@
 authors:
   Michael Steinbaugh:
-    href: https://steinbaugh.com/
+    href: https://mike.steinbaugh.com/
   Rory Kirchner:
     href: https://github.com/roryk/
   Lorena Pantano:
     href: https://lpantano.github.io/
   Harvard Chan Bioinformatics Core:
     href: https://bioinformatics.sph.harvard.edu/
-
 news:
   - one_page: false
+url: https://bioinformatics.sph.harvard.edu/bcbioBase

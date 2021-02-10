@@ -18,7 +18,7 @@
 
 ## Currently parsing of a maximum of 2 key levels is supported.
 ## (e.g. summary > metrics).
-## Updated 2019-08-20.
+## Updated 2021-02-10.
 .sampleYAML <- function(yaml, keys) {
     assert(
         .isSummaryYAML(yaml),
@@ -37,9 +37,8 @@
             y = names(yaml[[1L]])
         )
     )
-    ## Check that nested keys are present and early return on failure. Return
-    ## `NULL` here instead of stopping, so we can handle bcbio RNA-seq fast
-    ## mode.
+    ## Check that nested keys are present, and early return on failure. Return
+    ## `NULL` here instead of stopping for bcbio RNA-seq fast mode.
     if (
         hasLength(keys, n = 2L) &&
         !isSubset(x = keys[[2L]], y = names(yaml[[1L]][[keys[[1L]]]]))
@@ -90,33 +89,21 @@
             ## Remove any entries that are `NULL` (e.g. "batch" in metadata).
             item <- Filter(Negate(is.null), item)
             assert(hasLength(item))
-            ## Sanitize names into camel case here, otherwise they'll get
-            ## modified during the `ldply()` call that coerces `list` to
-            ## `data.frame`.
-            item <- camelCase(item)
-            lapply(
+            names(item) <- camelCase(names(item), strict = TRUE)
+            out <- lapply(
                 X = item,
                 FUN = function(item) {
-                    assert(is.atomic(item))
-                    ## Detect and coerce nested metadata back to a string, if
-                    ## necessary. bcbio allows nesting with a semicolon
-                    ## delimiter.
+                    item <- as.character(item)
                     if (length(item) > 1L) {
                         item <- paste(item, collapse = "; ")
                     }
-                    assert(isScalar(item))
                     item
                 }
             )
+            out
         }
     )
-    ## Using `ldply()` method here to coerce a list with uneven lengths.
-    nested <- ldply(
-        .data = nested,
-        .fun = data.frame,
-        stringsAsFactors = FALSE
-    )
-    nested <- as(nested, "DataFrame")
+    nested <- unlistToDataFrame(nested)
     assert(
         hasLength(nested),
         allAreAtomic(nested),
@@ -124,19 +111,19 @@
         areDisjointSets(colnames(top), colnames(nested))
     )
     out <- cbind(top, nested)
-    out <- camelCase(out)
+    out <- camelCase(out, strict = TRUE)
     ## Coerce any periods in colnames to "x" (e.g. `x5.3Bias` to `x5x3Bias`).
     colnames(out) <- gsub("\\.", "x", colnames(out))
     out <- sanitizeNA(out)
     out <- removeNA(out)
     out <- out[order(out[["description"]]), , drop = FALSE]
     ## Ensure numerics from YAML are set correctly and not character.
-    out <- DataFrame(lapply(
+    out <- lapply(
         X = out,
         FUN = function(x) {
             if (
                 is.character(x) &&
-                any(grepl(pattern = "^[0-9\\.]+$", x = x))
+                all(grepl(pattern = "^[0-9\\.]+$", x = x) | is.na(x))
             ) {
                 x <- as.numeric(x)
             } else if (is.character(x)) {
@@ -151,10 +138,9 @@
             }
             x
         }
-    ))
-    ## Order the columns alphabetically.
+    )
+    out <- DataFrame(out)
     out <- out[, sort(colnames(out)), drop = FALSE]
-    ## Set the rownames.
     rownames(out) <- makeNames(out[["description"]], unique = TRUE)
     out
 }

@@ -31,7 +31,7 @@ sampleDirs <- function(uploadDir) {
     ## Use the directory basenames for vector names.
     basenames <- basename(dirs)
     ## Return sample directory basenames that are valid names in R.
-    ## We're using these to define the `sampleID` column in our object metadata.
+    ## We're using these to define the `sampleId` column in our object metadata.
     ## Refer to `make.names()` for the valid name conventions in R.
     ## We're using the `makeNames()` variant here instead, which sanitizes using
     ## an underscore instead of a period.
@@ -50,7 +50,7 @@ sampleDirs <- function(uploadDir) {
     check <- gsub("[-ACGT]+$", "", basenames)
     if (!isTRUE(validNames(check))) {
         invalid <- setdiff(check, makeNames(check))
-        cli_alert(sprintf(
+        alert(sprintf(
             "Sanitizing sample names: {.var %s}.",
             toString(invalid, width = 100L)
         ))
@@ -59,12 +59,11 @@ sampleDirs <- function(uploadDir) {
     basenames <- makeNames(basenames)
     ## Assign our valid names to the absolute file paths.
     names(dirs) <- basenames
-    cli_text(sprintf(
+    alertInfo(sprintf(
         fmt = "%d %s detected:",
         length(dirs),
         ngettext(n = length(dirs), msg1 = "sample", msg2 = "samples")
     ))
-    cli_div(theme = list(body = list("margin-left" = 4L)))
-    cli_ul(sort(names(dirs)))
+    ul(sort(names(dirs)))
     dirs
 }

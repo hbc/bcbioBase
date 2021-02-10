@@ -21,7 +21,7 @@ importDataVersions <- function(file) {
     file <- tryCatch(
         localOrRemoteFile(file),
         error = function(e) {
-            cli_alert_warning("Data versions are missing.")
+            alertWarning("Data versions are missing.")
             NULL
         }
     )

@@ -35,12 +35,12 @@ projectDir <- function(uploadDir) {
     ## directory, and warn when this is detected.
     if (length(dir) > 1L) {
         newest <- tail(dir, n = 1L)
-        cli_alert_warning("Multiple project directories detected:")
-        cli_ul(dir)
-        cli_alert(sprintf("Using most recent: %s", newest))
+        alertWarning("Multiple project directories detected:")
+        ul(dir)
+        alert(sprintf("Using most recent: %s", newest))
         dir <- newest
     }
     assert(isString(dir))
-    cli_dl(c(projectDir = dir))
+    dl(c("projectDir" = dir))
     realpath(file.path(uploadDir, dir))
 }
