@@ -123,10 +123,7 @@
         FUN = function(x) {
             if (
                 is.character(x) &&
-                all(
-                    grepl(pattern = "^[0-9\\.]+$", x = x) ||
-                    is.na(x)
-                )
+                all(grepl(pattern = "^[0-9\\.]+$", x = x) | is.na(x))
             ) {
                 x <- as.numeric(x)
             } else if (is.character(x)) {
