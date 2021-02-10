@@ -22,11 +22,11 @@ test_that("getSampleDataFromYAML", {
     expect_identical(
         object = object,
         DataFrame(
-            sampleName = factor(samples),
-            description = factor(samples),
-            genomeBuild = factor("mm10"),
-            group = factor(c("ctrl", "ctrl", "ko", "ko")),
-            samRef = factor(paste(
+            "sampleName" = factor(samples),
+            "description" = factor(samples),
+            "genomeBuild" = factor("mm10"),
+            "group" = factor(c("ctrl", "ctrl", "ko", "ko")),
+            "samRef" = factor(paste(
                 "",
                 "groups",
                 "bcbio",
@@ -47,10 +47,11 @@ test_that("getSampleDataFromYAML", {
 test_that("Nested metadata", {
     ## Expecting warnings about integer range here.
     suppressWarnings({
-        object <- getSampleDataFromYAML(
-            yaml = import(file.path("cache", "summary-nested-metadata.yaml"))
-        )
+        yaml <- import(file.path("cache", "summary-nested-metadata.yaml"))
     })
+    ## FIXME THIS IS FAILING WITH COMPLEX YAML...
+    ## FIXME NEED TO UPDATE THIS IN ACIDPLYR.
+    object <- getSampleDataFromYAML(yaml)
     expect_is(object, "DataFrame")
 })
 
@@ -59,24 +60,25 @@ test_that("Nested metadata", {
 context("getMetricsFromYAML")
 
 expected <- list(
-    averageInsertSize = "integer",
-    duplicates = "integer",
-    duplicationRateOfMapped = "numeric",
-    exonicRate = "numeric",
-    intergenicRate = "numeric",
-    intronicRate = "numeric",
-    mappedPairedReads = "integer",
-    mappedReads = "integer",
-    percentGC = "integer",
-    qualityFormat = "factor",
-    rrna = "numeric",
-    rrnaRate = "numeric",
-    sequenceLength = "factor",
-    sequencesFlaggedAsPoorQuality = "integer",
-    totalReads = "integer",
-    x5x3Bias = "numeric"
+    "averageInsertSize" = "integer",
+    "duplicates" = "integer",
+    "duplicationRateOfMapped" = "numeric",
+    "exonicRate" = "numeric",
+    "intergenicRate" = "numeric",
+    "intronicRate" = "numeric",
+    "mappedPairedReads" = "integer",
+    "mappedReads" = "integer",
+    "percentGC" = "integer",
+    "qualityFormat" = "factor",
+    "rrna" = "numeric",
+    "rrnaRate" = "numeric",
+    "sequenceLength" = "factor",
+    "sequencesFlaggedAsPoorQuality" = "integer",
+    "totalReads" = "integer",
+    "x5x3Bias" = "numeric"
 )
 
+## FIXME THIS IS FAILING.
 test_that("getMetricsFromYAML", {
     object <- getMetricsFromYAML(yaml)
     expect_identical(
@@ -86,6 +88,7 @@ test_that("getMetricsFromYAML", {
 })
 
 ## Check for proper handling of metrics with mismatched number of values.
+## FIXME THIS IS FAILING.
 test_that("Mismatched values", {
     file <- file.path("cache", "summary-invalid-metrics-mismatch.yaml")
     yaml <- import(file)

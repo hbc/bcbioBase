@@ -37,9 +37,8 @@
             y = names(yaml[[1L]])
         )
     )
-    ## Check that nested keys are present and early return on failure. Return
-    ## `NULL` here instead of stopping, so we can handle bcbio RNA-seq fast
-    ## mode.
+    ## Check that nested keys are present, and early return on failure. Return
+    ## `NULL` here instead of stopping for bcbio RNA-seq fast mode.
     if (
         hasLength(keys, n = 2L) &&
         !isSubset(x = keys[[2L]], y = names(yaml[[1L]][[keys[[1L]]]]))
@@ -90,24 +89,23 @@
             ## Remove any entries that are `NULL` (e.g. "batch" in metadata).
             item <- Filter(Negate(is.null), item)
             assert(hasLength(item))
-            ## Sanitize names into camel case here, otherwise they'll get
-            ## modified during the `ldply()` call that coerces `list` to
-            ## `data.frame`.
-            item <- camelCase(item, strict = TRUE)
-            lapply(
+            names(item) <- camelCase(names(item), strict = TRUE)
+            out <- lapply(
                 X = item,
                 FUN = function(item) {
-                    assert(is.atomic(item))
+                    ## > assert(is.atomic(item))
+                    item <- as.character(item)
                     ## Detect and coerce nested metadata back to a string, if
                     ## necessary. bcbio allows nesting with a semicolon
                     ## delimiter.
                     if (length(item) > 1L) {
                         item <- paste(item, collapse = "; ")
                     }
-                    assert(isScalar(item))
+                    ## > assert(isScalar(item))
                     item
                 }
             )
+            out
         }
     )
     nested <- unlistToDataFrame(nested)
