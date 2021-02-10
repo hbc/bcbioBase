@@ -22,12 +22,12 @@
 #' colnames(x)
 getMetricsFromYAML <- function(yaml) {
     assert(is.list(yaml))
-    cli_alert("Getting sample quality control metrics from YAML.")
+    alert("Getting sample quality control metrics from YAML.")
     data <- .sampleYAML(yaml, keys = c("summary", "metrics"))
     ## Early return on empty metrics (e.g. fast mode).
     if (!hasLength(data)) {
         ## nocov start
-        cli_alert_warning("No quality control metrics were calculated.")
+        alertWarning("No quality control metrics were calculated.")
         return(NULL)
         ## nocov end
     }

@@ -43,7 +43,7 @@ copyToDropbox <- function(
     rdrop2::drop_auth(rdstoken = rdsToken)
     ## Display account information.
     acc <- rdrop2::drop_acc()
-    cli_dl(sprintf(
+    dl(sprintf(
         "Dropbox: %s <%s>",
         acc[["name"]][["display_name"]],
         acc[["email"]]
@@ -57,13 +57,10 @@ copyToDropbox <- function(
     if (
         any(c("parent_shared_folder_id", "sharing_info") %in% names(metadata))
     ) {
-        cli_alert_warning(
-            "rdrop2 doesn't work well with shared directories."
-        )
-        cli_div(theme = list(body = list("margin-left" = 4L)))
-        cli_text(paste0(
-            "For the time being, please write to an unshared directory.\n",
-            "The files can be then moved manually on your Dropbox account ",
+        alertWarning(paste(
+            "rdrop2 doesn't work well with shared directories.",
+            "For the time being, please write to an unshared directory.",
+            "The files can be then moved manually on your Dropbox account",
             "and the link URLs will be preserved."
         ))
     }

@@ -31,7 +31,7 @@ getBarcodeCutoffFromCommands <- function(log) {
     x <- x[, 2L]
     x <- as.integer(unique(na.omit(x)))
     assert(isInt(x))
-    cli_alert_info(sprintf(
+    alertInfo(sprintf(
         "%d %s per cellular barcode cutoff detected.",
         x, ngettext(n = x, msg1 = "read", msg2 = "reads")
     ))
@@ -69,6 +69,6 @@ getUMITypeFromCommands <- function(log) {
     x <- unique(na.omit(x))
     x <- sub(pattern = "-transform", replacement = "", x = x)
     assert(isString(x))
-    cli_dl(c(`UMI type` = x))
+    dl(c(`UMI type` = x))
     x
 }

@@ -111,6 +111,7 @@
         }
     )
     ## Using `ldply()` method here to coerce a list with uneven lengths.
+    ## FIXME REWORK THIS USING ACIDPLY APPROACH INSTEAD?
     nested <- ldply(
         .data = nested,
         .fun = data.frame,
