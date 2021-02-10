@@ -41,6 +41,6 @@ projectDir <- function(uploadDir) {
         dir <- newest
     }
     assert(isString(dir))
-    cli_dl(c(projectDir = dir))
+    dl(c("projectDir" = dir))
     realpath(file.path(uploadDir, dir))
 }

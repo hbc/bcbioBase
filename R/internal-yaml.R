@@ -110,14 +110,7 @@
             )
         }
     )
-    ## Using `ldply()` method here to coerce a list with uneven lengths.
-    ## FIXME REWORK THIS USING ACIDPLY APPROACH INSTEAD?
-    nested <- ldply(
-        .data = nested,
-        .fun = data.frame,
-        stringsAsFactors = FALSE
-    )
-    nested <- as(nested, "DataFrame")
+    nested <- unlistToDataFrame(nested)
     assert(
         hasLength(nested),
         allAreAtomic(nested),
