@@ -49,6 +49,7 @@ test_that("Nested metadata", {
     })
     object <- getSampleDataFromYAML(yaml)
     expect_is(object, "DataFrame")
+    expect_identical(dim(object), c(218L, 29L))
 })
 
 
