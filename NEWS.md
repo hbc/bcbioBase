@@ -1,3 +1,11 @@
+## bcbioBase 0.6.18 (2021-02-19)
+
+### Minor changes
+
+- `getSampleDataFromYAML`: Fix for call to `AcidPlyr::unlistToDataFrame`,
+  which now returns "name" column for nested YAML processing. See internal
+  `.sampleYAML` generator for details.
+
 ## bcbioBase 0.6.17 (2021-02-10)
 
 ### Minor changes
