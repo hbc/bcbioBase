@@ -104,6 +104,7 @@
         }
     )
     nested <- unlistToDataFrame(nested)
+    nested[["name"]] <- NULL
     assert(
         hasLength(nested),
         allAreAtomic(nested),
