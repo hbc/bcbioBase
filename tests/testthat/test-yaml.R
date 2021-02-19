@@ -17,7 +17,6 @@ test_that("getGTFFileFromYAML", {
 context("getSampleDataFromYAML")
 
 test_that("getSampleDataFromYAML", {
-    ## FIXME THIS IS NOW INTRODUCING AN UNWANTED NAME COLUMN (FROM ACIDPLYR).
     object <- getSampleDataFromYAML(yaml)
     samples <- c("group1_1", "group1_2", "group2_1", "group2_2")
     expected <- DataFrame(
