@@ -18,7 +18,7 @@
 
 ## Currently parsing of a maximum of 2 key levels is supported.
 ## (e.g. summary > metrics).
-## Updated 2021-02-10.
+## Updated 2021-02-19.
 .sampleYAML <- function(yaml, keys) {
     assert(
         .isSummaryYAML(yaml),
@@ -104,6 +104,7 @@
         }
     )
     nested <- unlistToDataFrame(nested)
+    nested[["name"]] <- NULL
     assert(
         hasLength(nested),
         allAreAtomic(nested),

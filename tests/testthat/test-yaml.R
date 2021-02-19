@@ -19,28 +19,26 @@ context("getSampleDataFromYAML")
 test_that("getSampleDataFromYAML", {
     object <- getSampleDataFromYAML(yaml)
     samples <- c("group1_1", "group1_2", "group2_1", "group2_2")
-    expect_identical(
-        object = object,
-        DataFrame(
-            "sampleName" = factor(samples),
-            "description" = factor(samples),
-            "genomeBuild" = factor("mm10"),
-            "group" = factor(c("ctrl", "ctrl", "ko", "ko")),
-            "samRef" = factor(paste(
-                "",
-                "groups",
-                "bcbio",
-                "bcbio_dev",
-                "genomes",
-                "Mmusculus",
-                "mm10",
-                "seq",
-                "mm10.fa",
-                sep = "/"
-            )),
-            row.names = samples
-        )
+    expected <- DataFrame(
+        "sampleName" = factor(samples),
+        "description" = factor(samples),
+        "genomeBuild" = factor("mm10"),
+        "group" = factor(c("ctrl", "ctrl", "ko", "ko")),
+        "samRef" = factor(paste(
+            "",
+            "groups",
+            "bcbio",
+            "bcbio_dev",
+            "genomes",
+            "Mmusculus",
+            "mm10",
+            "seq",
+            "mm10.fa",
+            sep = "/"
+        )),
+        row.names = samples
     )
+    expect_identical(object, expected)
 })
 
 ## Testing against Kayleigh's nested example here.
@@ -51,6 +49,7 @@ test_that("Nested metadata", {
     })
     object <- getSampleDataFromYAML(yaml)
     expect_is(object, "DataFrame")
+    expect_identical(dim(object), c(218L, 29L))
 })
 
 
