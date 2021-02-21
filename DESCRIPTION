@@ -1,8 +1,8 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions for bcbio R packages.
-Version: 0.6.18
-Date: 2021-02-19
+Version: 0.6.19
+Date: 2021-02-21
 Authors@R: c(
     person(
         given = "Michael",
@@ -39,7 +39,7 @@ Encoding: UTF-8
 LazyData: TRUE
 Depends: R (>= 4.0)
 Imports:
-    basejump (>= 0.14.9),
+    basejump (>= 0.14.10),
     goalie (>= 0.4.14),
     stringr (>= 1.4)
 Suggests:
