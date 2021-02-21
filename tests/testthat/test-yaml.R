@@ -50,6 +50,44 @@ test_that("Nested metadata", {
     object <- getSampleDataFromYAML(yaml)
     expect_is(object, "DataFrame")
     expect_identical(dim(object), c(218L, 29L))
+    expect_identical(
+        object = colnames(object),
+        expected = c(
+            "sampleName",
+            "age",
+            "batch",
+            "bclq",
+            "blasts",
+            "condition",
+            "cytogeneticRisk",
+            "description",
+            "fabClassification",
+            "geneticGroup",
+            "genomeBuild",
+            "group",
+            "karyotype",
+            "molecularGeneticAberrations",
+            "samplenumber",
+            "samRef",
+            "sequencingStatistics",
+            "sex",
+            "tissue",
+            "treatment",
+            "wbcX109l",
+            "who2008",
+            "x",
+            "x1",
+            "x2",
+            "x3",
+            "x4",
+            "x5",
+            "x6"
+        )
+    )
+    expect_identical(
+        object = rownames(object)[[1L]],
+        expected = "SRR1022936"
+    )
 })
 
 

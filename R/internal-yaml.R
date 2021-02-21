@@ -103,8 +103,7 @@
             out
         }
     )
-    nested <- unlistToDataFrame(nested)
-    nested[["name"]] <- NULL
+    nested <- rbindToDataFrame(nested)
     assert(
         hasLength(nested),
         allAreAtomic(nested),
