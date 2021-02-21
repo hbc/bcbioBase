@@ -51,9 +51,8 @@ test_that("Nested metadata", {
     expect_is(object, "DataFrame")
     expect_identical(dim(object), c(218L, 29L))
     expect_identical(
-        object = colnames(object),
+        object = sort(colnames(object)),
         expected = c(
-            "sampleName",
             "age",
             "batch",
             "bclq",
@@ -67,6 +66,7 @@ test_that("Nested metadata", {
             "group",
             "karyotype",
             "molecularGeneticAberrations",
+            "sampleName",
             "samplenumber",
             "samRef",
             "sequencingStatistics",
