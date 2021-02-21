@@ -1,3 +1,16 @@
+## bcbioBase 0.6.19 (2021-02-21)
+
+### Minor changes
+
+- Updated internal YAML parser to use improved `rbindToDataFrame` function
+  (see AcidPlyr and/or basejump for detail) instead of the now deprecated
+  `unlistToDataFrame` approach. The new `rbindToDataFrame` function always
+  returns 1:1 from nested list elements to rows, which is ideal for sample
+  metadata and quality control metrics. Alternatively, `rbindlist` from
+  data.table (with `fill = TRUE`) is also work a look, but it can introduce
+  unwanted row expansion and there is no way currently to enforce 1:1 mapping.
+  So we wrote our own function inside of basejump.
+
 ## bcbioBase 0.6.18 (2021-02-19)
 
 ### Minor changes
