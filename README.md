@@ -9,8 +9,8 @@ Refer to our specialized packages for installation instructions:
 - [bcbioRNASeq][]: [R][] package for [bcbio][] RNA-seq analysis.
 - [bcbioSingleCell][]: [R][] package for [bcbio][] single-cell RNA-seq analysis.
 
-[Bioconductor]: https://bioconductor.org/
-[R]: https://www.r-project.org/
 [bcbio]: https://bcbio-nextgen.readthedocs.io/
-[bcbioRNASeq]: http://bioinformatics.sph.harvard.edu/bcbioRNASeq/
-[bcbioSingleCell]: http://bioinformatics.sph.harvard.edu/bcbioSingleCell/
+[bcbiornaseq]: http://r.acidgenomics.com/packages/bcbiornaseq/
+[bcbiosinglecell]: http://r.acidgenomics.com/packages/bcbiosinglecell/
+[bioconductor]: https://bioconductor.org/
+[r]: https://www.r-project.org/
