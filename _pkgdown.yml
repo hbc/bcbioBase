@@ -7,6 +7,15 @@ authors:
     href: https://lpantano.github.io/
   Harvard Chan Bioinformatics Core:
     href: https://bioinformatics.sph.harvard.edu/
+  Acid Genomics:
+    href: https://acidgenomics.com/
+navbar:
+  components:
+     acid:
+       icon: "fas fa-vial fa-lg"
+       href: https://acidgenomics.com/
+  structure:
+    right: [acid, github]
 news:
   - one_page: false
 url: https://r.acidgenomics.com/packages/bcbiobase
