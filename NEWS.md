@@ -1,3 +1,10 @@
+## bcbioBase 0.6.20 (2021-02-26)
+
+### Minor changes
+
+- Renamed "blacklist" to "denylist" internally.
+- Removed reexported functions that are no longer used in other packages.
+
 ## bcbioBase 0.6.19 (2021-02-21)
 
 ### Minor changes

@@ -7,7 +7,7 @@
 #'   output the same metrics into the YAML.
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2020-01-17.
+#' @note Updated 2021-02-26.
 #' @export
 #'
 #' @inheritParams AcidRoxygen::params
@@ -34,8 +34,8 @@ getMetricsFromYAML <- function(yaml) {
     ## Drop any metadata columns. Note we're also dropping the duplicate `name`
     ## column present in the metrics YAML.
     yamlFlatCols <- c("description", "genome_build", "sam_ref")
-    blacklist <- camelCase(c(yamlFlatCols, "name"), strict = TRUE)
-    ## Drop blacklisted columns from the return.
-    data <- data[, sort(setdiff(colnames(data), blacklist)), drop = FALSE]
+    denylist <- camelCase(c(yamlFlatCols, "name"), strict = TRUE)
+    ## Drop denylisted columns from the return.
+    data <- data[, sort(setdiff(colnames(data), denylist)), drop = FALSE]
     data
 }
