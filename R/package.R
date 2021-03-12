@@ -9,10 +9,9 @@
 #' @importFrom basejump DataFrame alert alertInfo alertWarning as camelCase dl
 #'   import is localOrRemoteFile makeNames makeSampleData metadata<- na.omit new
 #'   packageName packageVersion printString rbindToDataFrame realpath removeNA
-#'   sanitizeNA tail ul
+#'   sanitizeNA str_match tail ul
 #' @importFrom goalie allAreAtomic allAreFiles areDisjointSets
 #'   allAreMatchingRegex assert hasLength hasRownames isADirectory isAFile
 #'   isCharacter isMatchingRegex isInRange isInt isScalar isString isSubset
 #'   validNames
-#' @importFrom stringr str_match
 "_PACKAGE"
