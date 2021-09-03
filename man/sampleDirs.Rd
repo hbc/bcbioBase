@@ -11,15 +11,16 @@ sampleDirs(uploadDir)
 Final upload directory path.}
 }
 \value{
-Named \code{character}. Sample directory paths.
+Named \code{character}.
+Sample directory paths.
 }
 \description{
 Sample directories
 }
 \note{
-Updated 2020-01-17.
+Updated 2021-09-03.
 
-Function will \code{\link[base:stop]{stop()}} if no sample directories match.
+Function will intentionally error when no sample directories match.
 }
 \examples{
 uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")

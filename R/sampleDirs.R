@@ -1,14 +1,15 @@
 #' Sample directories
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2020-01-17.
+#' @note Updated 2021-09-03.
 #' @export
 #'
 #' @inheritParams AcidRoxygen::params
 #'
-#' @note Function will [`stop()`][base::stop] if no sample directories match.
+#' @note Function will intentionally error when no sample directories match.
 #'
-#' @return Named `character`. Sample directory paths.
+#' @return Named `character`.
+#' Sample directory paths.
 #'
 #' @examples
 #' uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")
@@ -20,7 +21,9 @@ sampleDirs <- function(uploadDir) {
     ## Get the subdirectories in the upload directory.
     dirs <- sort(list.dirs(uploadDir, full.names = TRUE, recursive = FALSE))
     ## Detect and remove nested dated project directory.
-    projectDir <- suppressMessages(projectDir(uploadDir))
+    suppressMessages({
+        projectDir <- projectDir(uploadDir)
+    })
     dirs <- setdiff(dirs, projectDir)
     ## Double check that we're nuking any remaining dated directories, in case
     ## bcbio has been run multiple times.

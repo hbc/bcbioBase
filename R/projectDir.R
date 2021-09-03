@@ -26,8 +26,8 @@ projectDir <- function(uploadDir) {
         recursive = FALSE
     ))
     if (!hasLength(dir)) {
-        stop(sprintf(
-            "Failed to locate dated bcbio project directory in '%s'.",
+        abort(sprintf(
+            "Failed to locate dated bcbio project directory in {.path %s}.",
             uploadDir
         ))
     }
@@ -37,7 +37,7 @@ projectDir <- function(uploadDir) {
         newest <- tail(dir, n = 1L)
         alertWarning("Multiple project directories detected:")
         ul(dir)
-        alert(sprintf("Using most recent: %s", newest))
+        alert(sprintf("Using most recent: {.val %s}.", newest))
         dir <- newest
     }
     assert(isString(dir))

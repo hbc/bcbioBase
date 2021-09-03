@@ -24,9 +24,10 @@ NULL
 getBarcodeCutoffFromCommands <- function(log) {
     assert(isCharacter(log))
     pattern <- "--cb_cutoff (\\d+)"
-    if (!any(grepl(pattern, log))) {
-        stop("Failed to detect cellular barcode cutoff.")  # nocov
-    }
+    assert(
+        any(grepl(pattern, log)),
+        msg = "Failed to detect cellular barcode cutoff."
+    )
     x <- str_match(string = log, pattern = pattern)
     x <- x[, 2L]
     x <- as.integer(unique(na.omit(x)))
@@ -61,9 +62,10 @@ getLevelFromCommands <- function(log) {
 getUMITypeFromCommands <- function(log) {
     assert(isCharacter(log))
     pattern <- "fastqtransform.*/(.*)\\.json"
-    if (!any(grepl(pattern, log))) {
-        stop("Failed to detect UMI type.")
-    }
+    assert(
+        any(grepl(pattern, log)),
+        msg = "Failed to detect UMI type."
+    )
     x <- str_match(string = log, pattern = pattern)
     x <- x[, 2L]
     x <- unique(na.omit(x))
