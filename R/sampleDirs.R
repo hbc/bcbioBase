@@ -1,7 +1,7 @@
 #' Sample directories
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2021-09-03.
+#' @note Updated 2021-09-08.
 #' @export
 #'
 #' @inheritParams AcidRoxygen::params
@@ -54,8 +54,8 @@ sampleDirs <- function(uploadDir) {
     if (!isTRUE(validNames(check))) {
         invalid <- setdiff(check, makeNames(check))
         alert(sprintf(
-            "Sanitizing sample names: {.var %s}.",
-            toString(invalid, width = 100L)
+            "Sanitizing sample names: %s.",
+            toInlineString(invalid, n = 5L, class = "val")
         ))
     }
     ## Our `makeNames` function coerces periods and dashes to underscores.
