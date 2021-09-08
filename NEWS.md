@@ -1,3 +1,17 @@
+## bcbioBase 0.6.22 (2021-09-08)
+
+### Minor changes
+
+- Updated NAMESPACE to import some functions from methods rather than using
+  basejump reexports: `as`, `is`, `new`.
+
+## bcbioBase 0.6.21 (2021-03-12)
+
+### Minor changes
+
+- Now importing `str_match` from basejump rather than stringr, reducing the
+  number of required packages in imports.
+
 ## bcbioBase 0.6.20 (2021-02-26)
 
 ### Minor changes
