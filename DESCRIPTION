@@ -1,7 +1,7 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions for bcbio R packages.
-Version: 0.6.21.9000
+Version: 0.6.22
 Date: 2021-09-08
 Authors@R: c(
     person(
@@ -39,11 +39,12 @@ Encoding: UTF-8
 LazyData: TRUE
 Depends: R (>= 4.0)
 Imports:
-    basejump (>= 0.14.21.9000),
-    goalie (>= 0.5.4)
+    basejump (>= 0.14.22),
+    goalie (>= 0.5.4),
+    methods
 Suggests:
     rdrop2,
     testthat
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Additional_repositories: https://r.acidgenomics.com
