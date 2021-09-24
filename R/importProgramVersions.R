@@ -1,3 +1,7 @@
+## FIXME Take out code using localOrRemoteFile.
+
+
+
 #' Import program versions
 #'
 #' @note bcbio doesn't save program versions when run in fast mode.
