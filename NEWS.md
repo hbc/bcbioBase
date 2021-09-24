@@ -1,3 +1,5 @@
+## bcbioBase 0.6.23 (UNRELEASED)
+
 ## bcbioBase 0.6.22 (2021-09-08)
 
 ### Minor changes
