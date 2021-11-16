@@ -46,10 +46,10 @@ test_that("Shared Dropbox directory", {
 
 test_that("Invalid parameters", {
     expect_error(
-        copyToDropbox(files = NULL, dir = ".")
+        copyToDropbox(files = NULL, dir = getwd())
     )
     expect_error(
-        copyToDropbox(files = "XXX.csv.gz", dir = ".")
+        copyToDropbox(files = "XXX.csv.gz", dir = getwd())
     )
     expect_error(
         object = copyToDropbox(files = files, dir = NULL)
