@@ -29,11 +29,15 @@ Authors@R: c(
         given = "Harvard Chan Bioinformatics Core",
         email = "bioinformatics@hsph.harvard.edu",
         role = c("cph", "fnd")
+    ),
+    person(
+        given = "Acid Genomics",
+        role = c("cph", "fnd")
     ))
 URL:
     https://r.acidgenomics.com/packages/bcbiobase/,
-    https://github.com/hbc/bcbioBase/
-BugReports: https://github.com/hbc/bcbioBase/issues/
+    https://github.com/acidgenomics/r-bcbiobase/
+BugReports: https://github.com/acidgenomics/r-bcbiobase/issues/
 License: AGPL-3
 Encoding: UTF-8
 LazyData: TRUE
