@@ -39,7 +39,7 @@ Encoding: UTF-8
 LazyData: TRUE
 Depends: R (>= 4.1)
 Imports:
-    basejump (>= 0.15.9000),
+    basejump (>= 0.15.0.9000),
     goalie (>= 0.6.0.9000),
     methods
 Suggests:
