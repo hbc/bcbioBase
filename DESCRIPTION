@@ -42,9 +42,16 @@ License: AGPL-3
 Encoding: UTF-8
 Depends: R (>= 4.1)
 Imports:
-    basejump (>= 0.15.0),
+    AcidBase (>= 0.5.0),
+    AcidCLI (>= 0.1.8),
+    AcidExperiment (>= 0.3.0),
+    AcidPlyr (>= 0.2.0),
+    S4Vectors,
     goalie (>= 0.6.0),
-    methods
+    methods,
+    pipette (>= 0.8.0),
+    stringr,
+    utils
 Suggests:
     testthat
 Roxygen: list(markdown = TRUE)
