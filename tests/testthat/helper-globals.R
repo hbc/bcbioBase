@@ -1,4 +1,4 @@
-import <- basejump::import
-realpath <- basejump::realpath
+import <- pipette::import
+realpath <- AcidBase::realpath
 
 uploadDir <- system.file("extdata/bcbio", package = "bcbioBase")

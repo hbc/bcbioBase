@@ -7,7 +7,7 @@
 #'   output the same metrics into the YAML.
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2021-02-26.
+#' @note Updated 2022-03-07.
 #' @export
 #'
 #' @inheritParams AcidRoxygen::params
@@ -16,7 +16,7 @@
 #'
 #' @examples
 #' file <- file.path(bcbioBaseTestsURL, "summary.yaml")
-#' yaml <- basejump::import(file)
+#' yaml <- import(file)
 #' x <- getMetricsFromYAML(yaml)
 #' summary(x)
 #' colnames(x)

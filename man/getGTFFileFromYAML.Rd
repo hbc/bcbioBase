@@ -18,11 +18,11 @@ File path if the file exists. \code{NULL} if the file does not exist.
 Get GTF file path from YAML
 }
 \note{
-Updated 2020-01-17.
+Updated 2022-03-07.
 }
 \examples{
 file <- file.path(bcbioBaseTestsURL, "summary.yaml")
-yaml <- basejump::import(file)
+yaml <- import(file)
 x <- getGTFFileFromYAML(yaml)
 print(x)
 }

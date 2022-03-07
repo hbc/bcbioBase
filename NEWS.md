@@ -710,14 +710,14 @@ with the [bcbio][] output directories.
 
 - Initial release.
 
-[basejump]: http://basejump.acidgenomics.com/
+[basejump]: http://r.acidgenomics.com/packages/basejump/
 [bcbio]: https://bcbio-nextgen.readthedocs.io/
-[bcbioBase]: https://bioinformatics.sph.harvard.edu/bcbioBase/
-[bcbioRNASeq]: https://bioinformatics.sph.harvard.edu/bcbioRNASeq/
-[bcbioSingleCell]: http://bioinformatics.sph.harvard.edu/bcbioSingleCell/
+[bcbiobase]: https://r.acidgenomics.com/packages/bcbiobase/
+[bcbiornaseq]: https://r.acidgenomics.com/packages/bcbiornaseq/
+[bcbiosinglecell]: http://r.acidgenomics.com/packages/bcbiosinglecell/
 [bioconda]: https://bioconda.github.io/
-[Bioconductor]: http://bioconductor.org/
-[Dropbox]: https://www.dropbox.com/
+[bioconductor]: http://bioconductor.org/
+[dropbox]: https://www.dropbox.com/
 [ggplot2]: https://ggplot2.tidyverse.org/
 [goalie]: https://goalie.acidgenomics.com/
 [lintr]: https://github.com/jimhester/lintr/

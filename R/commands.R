@@ -1,7 +1,7 @@
 #' Commands log parsing functions
 #'
 #' @name commands
-#' @note Updated 2019-08-20.
+#' @note Updated 2022-03-07.
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
 #' @param log `character`.
@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' file <- file.path(bcbioBaseTestsURL, "surecell-commands.log")
-#' log <- basejump::import(file)
+#' log <- import(file)
 #' getBarcodeCutoffFromCommands(log)
 #' getLevelFromCommands(log)
 #' getUMITypeFromCommands(log)
