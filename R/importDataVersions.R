@@ -1,14 +1,10 @@
-## FIXME Take out code using localOrRemoteFile.
-
-
-
 #' Import data versions
 #'
 #' @note The `data_versions.csv` file is only generated for special genomes
 #' containing additional information (e.g. the built-in `"hg38"` build).
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2020-01-17.
+#' @note Updated 2022-03-07.
 #' @export
 #'
 #' @inheritParams AcidRoxygen::params
@@ -20,18 +16,20 @@
 #' x <- importDataVersions(file)
 #' print(x)
 importDataVersions <- function(file) {
-    assert(isString(file))
-    ## Data versions are optional.
-    file <- tryCatch(
-        localOrRemoteFile(file),
+    df <- tryCatch(
+        expr = {
+            df <- import(
+                con = file,
+                format = "csv",
+                engine = "base"
+            )
+            df <- as(df, "DataFrame")
+            df
+        },
         error = function(e) {
             alertWarning("Data versions are missing.")
-            NULL
+            DataFrame()
         }
     )
-    if (is.null(file)) {
-        return(DataFrame())
-    }
-    data <- import(file)
-    as(data, "DataFrame")
+    return(df)
 }
