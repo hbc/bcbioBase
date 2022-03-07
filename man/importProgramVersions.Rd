@@ -19,7 +19,7 @@ Import program versions
 \note{
 bcbio doesn't save program versions when run in fast mode.
 
-Updated 2020-01-17.
+Updated 2022-03-07.
 }
 \examples{
 file <- file.path(bcbioBaseTestsURL, "programs.txt")

@@ -18,7 +18,7 @@ importProgramVersions <- function(file) {
     df <- tryCatch(
         expr = {
             df <- import(
-                con= file,
+                con = file,
                 format = "csv",
                 colnames = c("program", "version"),
                 engine = "base"

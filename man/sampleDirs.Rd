@@ -18,7 +18,7 @@ Sample directory paths.
 Sample directories
 }
 \note{
-Updated 2021-09-08.
+Updated 2022-03-07.
 
 Function will intentionally error when no sample directories match.
 }

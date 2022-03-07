@@ -1,4 +1,19 @@
-## bcbioBase 0.6.23 (UNRELEASED)
+## bcbioBase 0.7.0 (UNRELEASED)
+
+### Major changes
+
+- Removed `copyToDropbox` function, which is not commonly used and is
+  difficult to properly unit test.
+
+### Minor changes
+
+- Updated `importDataVersions` and `importProgramVersions` to now always
+  use base R engine, as this avoids some parsing issues that can pop up when
+  using readr engine instead. Primarily this applies to inconsistent date
+  formatting in data versions return, which can cause a POSIX date error to
+  return when using readr engine.
+- `sampleDirs` function now excludes nested pipeline directories such as
+  `bcbioRNASeq`, which was added in 2021.
 
 ## bcbioBase 0.6.22 (2021-09-08)
 
