@@ -14,6 +14,7 @@
   return when using readr engine.
 - `sampleDirs` function now excludes nested pipeline directories such as
   `bcbioRNASeq`, which was added in 2021.
+- Now reexporting `import` (from pipette), which is used in working examples.
 
 ## bcbioBase 0.6.22 (2021-09-08)
 
