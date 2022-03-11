@@ -1,7 +1,7 @@
 #' Sample directories
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2021-09-08.
+#' @note Updated 2022-03-07.
 #' @export
 #'
 #' @inheritParams AcidRoxygen::params
@@ -19,17 +19,30 @@ sampleDirs <- function(uploadDir) {
     assert(isADirectory(uploadDir))
     uploadDir <- realpath(uploadDir)
     ## Get the subdirectories in the upload directory.
-    dirs <- sort(list.dirs(uploadDir, full.names = TRUE, recursive = FALSE))
+    dirs <- sort(list.dirs(
+        path = uploadDir,
+        full.names = TRUE,
+        recursive = FALSE
+    ))
     ## Detect and remove nested dated project directory.
     suppressMessages({
         projectDir <- projectDir(uploadDir)
     })
-    dirs <- setdiff(dirs, projectDir)
+    dirs <- setdiff(x = dirs, y = projectDir)
+    assert(hasLength(dirs))
     ## Double check that we're nuking any remaining dated directories, in case
     ## bcbio has been run multiple times.
-    isSample <- !grepl(pattern = projectDirPattern, x = basename(dirs))
-    dirs <- dirs[isSample]
-    ## Ensure there are sample directories in the upload.
+    keep <- !grepl(pattern = projectDirPattern, x = basename(dirs))
+    dirs <- dirs[keep]
+    assert(hasLength(dirs))
+    ## Exclude any nested directories from bcbio-nextgen pipelines, such as new
+    ## `bcbioRNASeq/` subdirectory, which was added in 2021.
+    denylist <- c(
+        "bcbioRNASeq",
+        "bcbioSingleCell"
+    )
+    keep <- !basename(dirs) %in% denylist
+    dirs <- dirs[keep]
     assert(hasLength(dirs))
     ## Use the directory basenames for vector names.
     basenames <- basename(dirs)

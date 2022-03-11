@@ -12,8 +12,8 @@ Base functions for bcbio R packages.
 Useful links:
 \itemize{
   \item \url{https://r.acidgenomics.com/packages/bcbiobase/}
-  \item \url{https://github.com/hbc/bcbioBase/}
-  \item Report bugs at \url{https://github.com/hbc/bcbioBase/issues/}
+  \item \url{https://github.com/acidgenomics/r-bcbiobase/}
+  \item Report bugs at \url{https://github.com/acidgenomics/r-bcbiobase/issues/}
 }
 
 }
@@ -29,6 +29,7 @@ Authors:
 Other contributors:
 \itemize{
   \item Harvard Chan Bioinformatics Core \email{bioinformatics@hsph.harvard.edu} [copyright holder, funder]
+  \item Acid Genomics [copyright holder, funder]
 }
 
 }

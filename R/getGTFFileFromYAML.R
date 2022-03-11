@@ -1,7 +1,7 @@
 #' Get GTF file path from YAML
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2020-01-17.
+#' @note Updated 2022-03-07.
 #' @export
 #'
 #' @inheritParams AcidRoxygen::params
@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' file <- file.path(bcbioBaseTestsURL, "summary.yaml")
-#' yaml <- basejump::import(file)
+#' yaml <- import(file)
 #' x <- getGTFFileFromYAML(yaml)
 #' print(x)
 getGTFFileFromYAML <- function(yaml) {

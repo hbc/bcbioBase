@@ -1,0 +1,5 @@
+#+TITLE: bcbioBase
+#+STARTUP: content
+* Development
+** TODO `sampleDirs()`: Need to make this degrade better for samples containing illegal characters.
+    e.g. starting with a number or containing hyphen.

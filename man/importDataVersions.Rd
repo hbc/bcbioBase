@@ -20,7 +20,7 @@ Import data versions
 The \code{data_versions.csv} file is only generated for special genomes
 containing additional information (e.g. the built-in \code{"hg38"} build).
 
-Updated 2020-01-17.
+Updated 2022-03-07.
 }
 \examples{
 file <- file.path(bcbioBaseTestsURL, "data-versions.csv")
