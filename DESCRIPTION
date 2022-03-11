@@ -1,8 +1,8 @@
 Package: bcbioBase
 Title: bcbio Base Functions
 Description: Base functions for bcbio R packages.
-Version: 0.7.0.9000
-Date: 2022-03-07
+Version: 0.7.0
+Date: 2022-03-11
 Authors@R: c(
     person(
         given = "Michael",
@@ -36,14 +36,14 @@ Authors@R: c(
     ))
 URL:
     https://r.acidgenomics.com/packages/bcbiobase/,
-    https://github.com/acidgenomics/r-bcbiobase/
-BugReports: https://github.com/acidgenomics/r-bcbiobase/issues/
+    https://github.com/hbc/bcbioBase/
+BugReports: https://github.com/hbc/bcbioBase/issues/
 License: AGPL-3
 Encoding: UTF-8
 Depends: R (>= 4.1)
 Imports:
     AcidBase (>= 0.5.0),
-    AcidCLI (>= 0.1.8),
+    AcidCLI (>= 0.2.0),
     AcidExperiment (>= 0.3.0),
     AcidPlyr (>= 0.2.0),
     S4Vectors,
