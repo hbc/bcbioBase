@@ -21,9 +21,9 @@ NULL
 #' @importFrom AcidBase printString realpath
 #' @importFrom AcidCLI abort alert alertInfo alertWarning dl toInlineString ul
 #' @importFrom goalie allAreAtomic allAreFiles areDisjointSets
-#'   allAreMatchingRegex assert hasLength hasRownames isADirectory isAFile
-#'   isCharacter isMatchingRegex isInRange isInt isScalar isString isSubset
-#'   validNames
+#' allAreMatchingRegex assert hasLength hasRownames isADirectory isAFile
+#' isCharacter isMatchingRegex isInRange isInt isScalar isString isSubset
+#' validNames
 #' @importFrom methods as is new
 #' @importFrom stringr str_match
 #' @importFrom utils packageName packageVersion

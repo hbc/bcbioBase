@@ -41,9 +41,9 @@
     ## `NULL` here instead of stopping for bcbio RNA-seq fast mode.
     if (
         hasLength(keys, n = 2L) &&
-        !isSubset(x = keys[[2L]], y = names(yaml[[1L]][[keys[[1L]]]]))
+            !isSubset(x = keys[[2L]], y = names(yaml[[1L]][[keys[[1L]]]]))
     ) {
-        return(NULL)  # nocov
+        return(NULL) # nocov
     }
     ## Top-level sample metadata in the YAML is relatively easy to parse. Just
     ## select for atomic values, otherwise return `NA`.
@@ -123,7 +123,7 @@
         FUN = function(x) {
             if (
                 is.character(x) &&
-                all(grepl(pattern = "^[0-9\\.]+$", x = x) | is.na(x))
+                    all(grepl(pattern = "^[0-9\\.]+$", x = x) | is.na(x))
             ) {
                 x <- as.numeric(x)
             } else if (is.character(x)) {
@@ -132,7 +132,7 @@
             ## Coerce double to integer, if appropriate.
             if (
                 is.numeric(x) &&
-                !any(grepl(pattern = "\\.", x = x))
+                    !any(grepl(pattern = "\\.", x = x))
             ) {
                 x <- as.integer(x)
             }

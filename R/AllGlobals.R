@@ -8,7 +8,7 @@ globalVariables(".")
 #' bcbioBaseTestsURL
 bcbioBaseTestsURL <- paste0(
     "https://r.acidgenomics.com/testdata/bcbiobase/",
-    "v", .version$major, ".", .version$minor  # nolint
+    "v", .version$major, ".", .version$minor # nolint
 )
 
 #' Project directory grep pattern

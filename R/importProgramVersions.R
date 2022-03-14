@@ -15,7 +15,7 @@
 #' x <- importProgramVersions(file)
 #' print(x)
 importProgramVersions <- function(file) {
-    df <- tryCatch(
+    tryCatch(
         expr = {
             df <- import(
                 con = file,
@@ -31,5 +31,4 @@ importProgramVersions <- function(file) {
             DataFrame()
         }
     )
-    return(df)
 }

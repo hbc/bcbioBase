@@ -3,8 +3,8 @@
 #' Parse the summary YAML and return quality control metrics.
 #'
 #' @note Metrics are only generated for a standard RNA-seq run with aligned
-#'   counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
-#'   output the same metrics into the YAML.
+#' counts. Fast RNA-seq mode with lightweight counts (pseudocounts) doesn't
+#' output the same metrics into the YAML.
 #'
 #' @author Michael Steinbaugh
 #' @note Updated 2022-03-07.
