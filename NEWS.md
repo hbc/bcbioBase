@@ -1,3 +1,9 @@
+# bcbioBase 0.7.1 (2022-04-29)
+
+## Minor changes
+
+- Bumped the minimum R dependency version to 4.2.
+
 # bcbioBase 0.7.0 (2022-03-11)
 
 ## Major changes
