@@ -1,3 +1,10 @@
+# bcbioBase 0.8.0 (2022-05-06)
+
+## Major changes
+
+- New release series that requires R 4.2 / Bioconductor 3.15.
+- Relaxed version pinning of Acid Genomics dependencies.
+
 # bcbioBase 0.7.1 (2022-04-29)
 
 ## Minor changes

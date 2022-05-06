@@ -3,13 +3,12 @@
 #' @importFrom AcidExperiment makeSampleData
 #' @importFrom AcidPlyr rbindToDataFrame
 #' @importFrom S4Vectors metadata<- na.omit tail
-#' @importFrom methods coerce
 #' @importFrom pipette import removeNA sanitizeNA
 #' @importFrom syntactic camelCase makeNames
 #'
 #' @importMethodsFrom AcidExperiment makeSampleData
 #' @importMethodsFrom AcidPlyr rbindToDataFrame
-#' @importMethodsFrom pipette coerce import removeNA sanitizeNA
+#' @importMethodsFrom pipette import removeNA sanitizeNA
 #' @importMethodsFrom syntactic camelCase makeNames
 NULL
 
