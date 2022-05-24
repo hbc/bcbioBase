@@ -1,3 +1,9 @@
+# bcbioBase 0.8.1 (2022-05-24)
+
+## Minor changes
+
+- Updated lintr checks and testthat unit tests.
+
 # bcbioBase 0.8.0 (2022-05-06)
 
 ## Major changes
