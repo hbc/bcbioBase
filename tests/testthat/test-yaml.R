@@ -1,7 +1,5 @@
 yaml <- import(file.path("cache", "summary.yaml"))
 
-
-
 test_that("getGTFFileFromYAML", {
     expect_message(
         object = getGTFFileFromYAML(yaml),
@@ -9,8 +7,6 @@ test_that("getGTFFileFromYAML", {
     )
     expect_null(getGTFFileFromYAML(yaml))
 })
-
-
 
 test_that("getSampleDataFromYAML", {
     object <- getSampleDataFromYAML(yaml)
@@ -44,15 +40,13 @@ test_that("Nested metadata", {
         yaml <- import(file.path("cache", "summary-nested-metadata.yaml"))
     })
     object <- getSampleDataFromYAML(yaml)
-    expect_is(object, "DataFrame")
+    expect_s4_class(object, "DataFrame")
     expect_identical(dim(object), c(218L, 29L))
     expect_identical(
         object = rownames(object)[[1L]],
         expected = "SRR1022936"
     )
 })
-
-
 
 expected <- list(
     "averageInsertSize" = "integer",

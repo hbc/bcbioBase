@@ -18,7 +18,7 @@
 
 ## Currently parsing of a maximum of 2 key levels is supported.
 ## (e.g. summary > metrics).
-## Updated 2021-02-19.
+## Updated 2022-05-24.
 .sampleYAML <- function(yaml, keys) {
     assert(
         .isSummaryYAML(yaml),
@@ -52,7 +52,7 @@
         FUN = function(item) {
             ## Note that this will return variable length, so `vapply()`
             ## approach doesn't work here. Better method to use instead?
-            x <- sapply(
+            x <- lapply(
                 X = item,
                 FUN = function(item) {
                     if (is.atomic(item)) {
@@ -60,12 +60,10 @@
                     } else {
                         NA_character_
                     }
-                },
-                simplify = TRUE,
-                USE.NAMES = FALSE
+                }
             )
-            ## Don't use `isCharacter()` assert here because we're allowing NA.
-            assert(is.character(x))
+            names(x) <- names(item)
+            x <- unlist(x = x, recursive = FALSE, use.names = TRUE)
             x
         },
         ## Require that there's no dimension mismatch when parsing.
@@ -116,6 +114,7 @@
     colnames(out) <- gsub("\\.", "x", colnames(out))
     out <- sanitizeNA(out)
     out <- removeNA(out)
+    assert(isSubset("description", colnames(out)))
     out <- out[order(out[["description"]]), , drop = FALSE]
     ## Ensure numerics from YAML are set correctly and not character.
     out <- lapply(

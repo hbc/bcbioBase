@@ -1,6 +1,6 @@
 test_that("importDataVersions", {
     x <- importDataVersions(file.path("cache", "data-versions.csv"))
-    expect_is(x, "DataFrame")
+    expect_s4_class(x, "DataFrame")
     expect_identical(
         object = colnames(x),
         expected = c("genome", "resource", "version")
