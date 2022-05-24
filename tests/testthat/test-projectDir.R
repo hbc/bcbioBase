@@ -1,5 +1,3 @@
-context("projectDir")
-
 test_that("Single dated directory (standard)", {
     expect_identical(
         object = projectDir(uploadDir),

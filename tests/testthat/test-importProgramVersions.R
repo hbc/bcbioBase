@@ -1,5 +1,3 @@
-context("importProgramVersions")
-
 test_that("programs.txt", {
     file <- file.path("cache", "programs.txt")
     versions <- importProgramVersions(file)

@@ -1,5 +1,3 @@
-context("runDate")
-
 test_that("runDate", {
     expect_identical(
         object = runDate(projectDir(uploadDir)),

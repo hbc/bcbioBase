@@ -1,5 +1,3 @@
-context("sampleDirs")
-
 test_that("sampleDirs", {
     expect_identical(
         object = sampleDirs(uploadDir),

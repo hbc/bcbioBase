@@ -1,5 +1,3 @@
-context("Commands Log Parsers")
-
 log <- import(file.path("cache", "surecell-commands.log"))
 
 test_that("getBarcodeCutoffFromCommands", {

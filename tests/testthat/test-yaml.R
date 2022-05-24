@@ -2,8 +2,6 @@ yaml <- import(file.path("cache", "summary.yaml"))
 
 
 
-context("getGTFFileFromYAML")
-
 test_that("getGTFFileFromYAML", {
     expect_message(
         object = getGTFFileFromYAML(yaml),
@@ -13,8 +11,6 @@ test_that("getGTFFileFromYAML", {
 })
 
 
-
-context("getSampleDataFromYAML")
 
 test_that("getSampleDataFromYAML", {
     object <- getSampleDataFromYAML(yaml)
@@ -57,8 +53,6 @@ test_that("Nested metadata", {
 })
 
 
-
-context("getMetricsFromYAML")
 
 expected <- list(
     "averageInsertSize" = "integer",
