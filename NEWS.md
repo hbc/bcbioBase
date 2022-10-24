@@ -730,22 +730,22 @@ with the [bcbio][] output directories.
 
 - Initial release.
 
-[basejump]: http://r.acidgenomics.com/packages/basejump/
-[bcbio]: https://bcbio-nextgen.readthedocs.io/
+[basejump]: https://r.acidgenomics.com/packages/basejump/
+[bcbio]: https://bcbio-nextgen.readthedocs.io/en/latest/
 [bcbiobase]: https://r.acidgenomics.com/packages/bcbiobase/
 [bcbiornaseq]: https://r.acidgenomics.com/packages/bcbiornaseq/
-[bcbiosinglecell]: http://r.acidgenomics.com/packages/bcbiosinglecell/
+[bcbiosinglecell]: https://r.acidgenomics.com/packages/bcbiosinglecell/
 [bioconda]: https://bioconda.github.io/
 [bioconductor]: http://bioconductor.org/
 [dropbox]: https://www.dropbox.com/
 [ggplot2]: https://ggplot2.tidyverse.org/
-[goalie]: https://goalie.acidgenomics.com/
-[lintr]: https://github.com/jimhester/lintr/
-[pheatmap]: https://github.com/raivokolde/pheatmap/
+[goalie]: https://r.acidgenomics.com/packages/goalie/
+[lintr]: https://github.com/r-lib/lintr/
+[pheatmap]: https://cran.r-project.org/package=pheatmap
 [rdrop2]: https://github.com/karthik/rdrop2/
-[rlang]: http://rlang.tidyverse.org/
+[rlang]: https://rlang.r-lib.org/
 [roxygen2]: https://cran.r-project.org/package=roxygen2
-[tibble]: http://tibble.tidyverse.org/
-[tidyr]: http://tidyr.tidyverse.org/
-[tidyverse style guide]: http://style.tidyverse.org/
+[tibble]: https://tibble.tidyverse.org/
+[tidyr]: https://tidyr.tidyverse.org/
+[tidyverse style guide]: https://style.tidyverse.org/
 [viridis]: https://cran.r-project.org/package=viridis
