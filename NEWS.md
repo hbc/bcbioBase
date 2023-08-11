@@ -1,6 +1,6 @@
 # Release notes
 
-## bcbioBase 0.8.2 (2023-08-11_
+## bcbioBase 0.8.2 (2023-08-11\_
 
 Minor changes:
 
@@ -363,7 +363,7 @@ New functions:
   run. If [bcbio][] has been run multiple times to the same upload directory,
   the function will return the latest project directory and warn the user.
 
-## Major changes
+Major changes:
 
 - `readTx2gene` now returns a `tx2gene` class object.
 - Pinning to [basejump][] [Bioconductor][] release candidate.
@@ -380,7 +380,7 @@ New functions:
   from a `list` to `data.frame` will sanitize names, so we need to apply our
   rules before this step.
 
-## Minor changes
+Minor changes:
 
 - Simplified NAMESPACE imports.
 - Updated deprecations.
