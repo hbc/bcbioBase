@@ -1,5 +1,7 @@
 # bcbioBase
 
+![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)
+
 Base functions for [bcbio][] [R][] packages.
 
 This is an infrastructure package, providing a shared code framework for bulk RNA-seq and single-cell RNA-seq analysis.
