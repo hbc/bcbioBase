@@ -1,5 +1,3 @@
-globalVariables(".")
-
 .version <- packageVersion(packageName())
 
 #' bcbioBase test data URL
