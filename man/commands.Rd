@@ -25,13 +25,13 @@ Commands log parsing functions
 }
 \section{Functions}{
 \itemize{
-\item \code{getBarcodeCutoffFromCommands}: \code{integer(1)}.
+\item \code{getBarcodeCutoffFromCommands()}: \code{integer(1)}.
 
-\item \code{getLevelFromCommands}: \code{character(1)}. Return \code{"genes"} or \code{"transcripts"}.
+\item \code{getLevelFromCommands()}: \code{character(1)}. Return \code{"genes"} or \code{"transcripts"}.
 
-\item \code{getUMITypeFromCommands}: \code{character(1)}.
+\item \code{getUMITypeFromCommands()}: \code{character(1)}.
+
 }}
-
 \note{
 Updated 2022-03-07.
 }
