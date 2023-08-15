@@ -1,5 +1,7 @@
 # bcbioBase
 
+[![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg)](http://bioconda.github.io/recipes/r-bcbiobase/README.html) ![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)
+
 Base functions for [bcbio][] [R][] packages.
 
 This is an infrastructure package, providing a shared code framework for bulk RNA-seq and single-cell RNA-seq analysis.
