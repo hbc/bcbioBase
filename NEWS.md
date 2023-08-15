@@ -1,11 +1,12 @@
 # Release notes
 
-## bcbioBase 0.8.2 (2023-08-11\_
+## bcbioBase 0.8.2 (2023-08-15)
 
 Minor changes:
 
 - Now requiring R 4.3.
 - Updated lintr checks and enabled testthat to run in parallel.
+- Removed `.` from global variables.
 
 ## bcbioBase 0.8.1 (2022-05-24)
 
