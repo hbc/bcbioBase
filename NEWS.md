@@ -746,7 +746,7 @@ Deprecations:
 [bcbiornaseq]: https://r.acidgenomics.com/packages/bcbiornaseq/
 [bcbiosinglecell]: https://r.acidgenomics.com/packages/bcbiosinglecell/
 [bioconda]: https://bioconda.github.io/
-[bioconductor]: http://bioconductor.org/
+[bioconductor]: https://bioconductor.org/
 [dropbox]: https://www.dropbox.com/
 [ggplot2]: https://ggplot2.tidyverse.org/
 [goalie]: https://r.acidgenomics.com/packages/goalie/
