@@ -1,7 +1,7 @@
 #' Commands log parsing functions
 #'
 #' @name commands
-#' @note Updated 2022-03-07.
+#' @note Updated 2023-09-21.
 #' @author Michael Steinbaugh, Rory Kirchner
 #'
 #' @param log `character`.
@@ -28,7 +28,7 @@ getBarcodeCutoffFromCommands <- function(log) {
         any(grepl(pattern, log)),
         msg = "Failed to detect cellular barcode cutoff."
     )
-    x <- str_match(string = log, pattern = pattern)
+    x <- strMatch(x = log, pattern = pattern)
     x <- x[, 2L]
     x <- as.integer(unique(na.omit(x)))
     assert(isInt(x))
@@ -66,7 +66,7 @@ getUMITypeFromCommands <- function(log) {
         any(grepl(pattern, log)),
         msg = "Failed to detect UMI type."
     )
-    x <- str_match(string = log, pattern = pattern)
+    x <- strMatch(x = log, pattern = pattern)
     x <- x[, 2L]
     x <- unique(na.omit(x))
     x <- sub(pattern = "-transform", replacement = "", x = x)
