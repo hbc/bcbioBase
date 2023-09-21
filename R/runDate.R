@@ -5,7 +5,7 @@
 #' Alternatively, can parse YAML data, but this approach is faster and simpler.
 #'
 #' @author Michael Steinbaugh
-#' @note Updated 2019-08-20.
+#' @note Updated 2023-09-21.
 #' @export
 #'
 #' @inheritParams AcidRoxygen::params
@@ -15,11 +15,11 @@
 #' @examples
 #' runDate(projectDir = "2018-01-01_illumina_rnaseq")
 runDate <- function(projectDir) {
-    projectDir <- basename(projectDir)
     assert(
-        isString(projectDir),
-        allAreMatchingRegex(projectDir, pattern = projectDirPattern)
+        isString(projectDir)
     )
-    match <- str_match(string = projectDir, pattern = projectDirPattern)
+    projectDir <- basename(projectDir)
+    assert(isMatchingRegex(projectDir, pattern = projectDirPattern))
+    match <- strMatch(x = projectDir, pattern = projectDirPattern)
     as.Date(match[[2L]])
 }
