@@ -33,7 +33,7 @@ Commands log parsing functions
 
 }}
 \note{
-Updated 2022-03-07.
+Updated 2023-09-21.
 }
 \examples{
 file <- file.path(bcbioBaseTestsURL, "surecell-commands.log")
