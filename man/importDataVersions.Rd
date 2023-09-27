@@ -23,7 +23,7 @@ containing additional information (e.g. the built-in \code{"hg38"} build).
 Updated 2022-03-07.
 }
 \examples{
-file <- file.path(bcbioBaseTestsURL, "data-versions.csv")
+file <- file.path(bcbioBaseTestsUrl, "data-versions.csv")
 x <- importDataVersions(file)
 print(x)
 }

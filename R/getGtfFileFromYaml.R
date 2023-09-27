@@ -10,11 +10,11 @@
 #' File path if the file exists. `NULL` if the file does not exist.
 #'
 #' @examples
-#' file <- file.path(bcbioBaseTestsURL, "summary.yaml")
+#' file <- file.path(bcbioBaseTestsUrl, "summary.yaml")
 #' yaml <- import(file)
-#' x <- getGTFFileFromYAML(yaml)
+#' x <- getGtfFileFromYaml(yaml)
 #' print(x)
-getGTFFileFromYAML <- function(yaml) {
+getGtfFileFromYaml <- function(yaml) {
     assert(
         is.list(yaml),
         .isSummaryYAML(yaml)

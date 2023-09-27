@@ -15,12 +15,12 @@
 #' @return `DataFrame`.
 #'
 #' @examples
-#' file <- file.path(bcbioBaseTestsURL, "summary.yaml")
+#' file <- file.path(bcbioBaseTestsUrl, "summary.yaml")
 #' yaml <- import(file)
-#' x <- getMetricsFromYAML(yaml)
+#' x <- getMetricsFromYaml(yaml)
 #' summary(x)
 #' colnames(x)
-getMetricsFromYAML <- function(yaml) {
+getMetricsFromYaml <- function(yaml) {
     assert(is.list(yaml))
     alert("Getting sample quality control metrics from YAML.")
     data <- .sampleYAML(yaml, keys = c("summary", "metrics"))

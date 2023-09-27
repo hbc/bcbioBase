@@ -10,11 +10,11 @@
 #' @return `atomic`.
 #'
 #' @examples
-#' file <- file.path(bcbioBaseTestsURL, "surecell-commands.log")
+#' file <- file.path(bcbioBaseTestsUrl, "surecell-commands.log")
 #' log <- import(file)
 #' getBarcodeCutoffFromCommands(log)
 #' getLevelFromCommands(log)
-#' getUMITypeFromCommands(log)
+#' getUmiTypeFromCommands(log)
 NULL
 
 
@@ -59,7 +59,7 @@ getLevelFromCommands <- function(log) {
 
 #' @describeIn commands `character(1)`.
 #' @export
-getUMITypeFromCommands <- function(log) {
+getUmiTypeFromCommands <- function(log) {
     assert(isCharacter(log))
     pattern <- "fastqtransform.*/(.*)\\.json"
     assert(

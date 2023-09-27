@@ -3,8 +3,8 @@
 #' bcbioBase test data URL
 #' @export
 #' @examples
-#' bcbioBaseTestsURL
-bcbioBaseTestsURL <- paste0(
+#' bcbioBaseTestsUrl
+bcbioBaseTestsUrl <- paste0(
     "https://r.acidgenomics.com/testdata/bcbiobase/",
     "v", .version$major, ".", .version$minor # nolint
 )

@@ -11,7 +11,7 @@
 #' @return `DataFrame`.
 #'
 #' @examples
-#' file <- file.path(bcbioBaseTestsURL, "programs.txt")
+#' file <- file.path(bcbioBaseTestsUrl, "programs.txt")
 #' x <- importProgramVersions(file)
 #' print(x)
 importProgramVersions <- function(file) {

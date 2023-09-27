@@ -12,7 +12,7 @@
 #' @return `DataFrame`.
 #'
 #' @examples
-#' file <- file.path(bcbioBaseTestsURL, "data-versions.csv")
+#' file <- file.path(bcbioBaseTestsUrl, "data-versions.csv")
 #' x <- importDataVersions(file)
 #' print(x)
 importDataVersions <- function(file) {

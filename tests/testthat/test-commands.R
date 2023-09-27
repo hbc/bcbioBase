@@ -14,9 +14,9 @@ test_that("getLevelFromCommands", {
     )
 })
 
-test_that("getUMITypeFromCommands", {
+test_that("getUmiTypeFromCommands", {
     expect_identical(
-        object = getUMITypeFromCommands(log),
+        object = getUmiTypeFromCommands(log),
         expected = "surecell"
     )
 })

@@ -4,14 +4,14 @@
 \alias{commands}
 \alias{getBarcodeCutoffFromCommands}
 \alias{getLevelFromCommands}
-\alias{getUMITypeFromCommands}
+\alias{getUmiTypeFromCommands}
 \title{Commands log parsing functions}
 \usage{
 getBarcodeCutoffFromCommands(log)
 
 getLevelFromCommands(log)
 
-getUMITypeFromCommands(log)
+getUmiTypeFromCommands(log)
 }
 \arguments{
 \item{log}{\code{character}.
@@ -29,18 +29,18 @@ Commands log parsing functions
 
 \item \code{getLevelFromCommands()}: \code{character(1)}. Return \code{"genes"} or \code{"transcripts"}.
 
-\item \code{getUMITypeFromCommands()}: \code{character(1)}.
+\item \code{getUmiTypeFromCommands()}: \code{character(1)}.
 
 }}
 \note{
 Updated 2023-09-21.
 }
 \examples{
-file <- file.path(bcbioBaseTestsURL, "surecell-commands.log")
+file <- file.path(bcbioBaseTestsUrl, "surecell-commands.log")
 log <- import(file)
 getBarcodeCutoffFromCommands(log)
 getLevelFromCommands(log)
-getUMITypeFromCommands(log)
+getUmiTypeFromCommands(log)
 }
 \author{
 Michael Steinbaugh, Rory Kirchner

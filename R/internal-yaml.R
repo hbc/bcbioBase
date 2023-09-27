@@ -112,8 +112,8 @@
     out <- camelCase(out, strict = TRUE)
     ## Coerce any periods in colnames to "x" (e.g. `x5.3Bias` to `x5x3Bias`).
     colnames(out) <- gsub("\\.", "x", colnames(out))
-    out <- sanitizeNA(out)
-    out <- removeNA(out)
+    out <- sanitizeNa(out)
+    out <- removeNa(out)
     assert(isSubset("description", colnames(out)))
     out <- out[order(out[["description"]]), , drop = FALSE]
     ## Ensure numerics from YAML are set correctly and not character.

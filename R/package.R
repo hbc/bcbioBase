@@ -12,7 +12,7 @@
 #' @importFrom AcidExperiment makeSampleData
 #' @importFrom AcidPlyr rbindToDataFrame
 #' @importFrom S4Vectors metadata<- na.omit tail
-#' @importFrom pipette import removeNA sanitizeNA
+#' @importFrom pipette import removeNa sanitizeNa
 #' @importFrom syntactic camelCase makeNames
 NULL
 

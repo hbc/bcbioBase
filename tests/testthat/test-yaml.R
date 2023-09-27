@@ -1,15 +1,15 @@
 yaml <- import(file.path("cache", "summary.yaml"))
 
-test_that("getGTFFileFromYAML", {
+test_that("getGtfFileFromYaml", {
     expect_message(
-        object = getGTFFileFromYAML(yaml),
+        object = getGtfFileFromYaml(yaml),
         regexp = "ref-transcripts.gtf"
     )
-    expect_null(getGTFFileFromYAML(yaml))
+    expect_null(getGtfFileFromYaml(yaml))
 })
 
-test_that("getSampleDataFromYAML", {
-    object <- getSampleDataFromYAML(yaml)
+test_that("getSampleDataFromYaml", {
+    object <- getSampleDataFromYaml(yaml)
     samples <- c("group1_1", "group1_2", "group2_1", "group2_2")
     expected <- DataFrame(
         "sampleName" = factor(samples),
@@ -39,7 +39,7 @@ test_that("Nested metadata", {
     suppressWarnings({
         yaml <- import(file.path("cache", "summary-nested-metadata.yaml"))
     })
-    object <- getSampleDataFromYAML(yaml)
+    object <- getSampleDataFromYaml(yaml)
     expect_s4_class(object, "DataFrame")
     expect_identical(dim(object), c(218L, 29L))
     expect_identical(
@@ -67,8 +67,8 @@ expected <- list(
     "x5x3Bias" = "numeric"
 )
 
-test_that("getMetricsFromYAML", {
-    object <- getMetricsFromYAML(yaml)
+test_that("getMetricsFromYaml", {
+    object <- getMetricsFromYaml(yaml)
     expect_identical(
         object = lapply(object, class),
         expected = expected
@@ -79,7 +79,7 @@ test_that("getMetricsFromYAML", {
 test_that("Mismatched values", {
     file <- file.path("cache", "summary-invalid-metrics-mismatch.yaml")
     yaml <- import(file)
-    object <- getMetricsFromYAML(yaml)
+    object <- getMetricsFromYaml(yaml)
     expected[["sequenceLength"]] <- "integer"
     expect_identical(
         object = lapply(object, class),

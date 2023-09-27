@@ -20,5 +20,5 @@ invisible(lapply(
             )
         }
     },
-    url = bcbioBaseTestsURL
+    url = bcbioBaseTestsUrl
 ))

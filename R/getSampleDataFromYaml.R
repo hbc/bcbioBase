@@ -9,12 +9,12 @@
 #' @return `DataFrame`.
 #'
 #' @examples
-#' file <- file.path(bcbioBaseTestsURL, "summary.yaml")
+#' file <- file.path(bcbioBaseTestsUrl, "summary.yaml")
 #' yaml <- import(file)
-#' x <- getSampleDataFromYAML(yaml)
+#' x <- getSampleDataFromYaml(yaml)
 #' summary(x)
 #' colnames(x)
-getSampleDataFromYAML <- function(yaml) {
+getSampleDataFromYaml <- function(yaml) {
     assert(is.list(yaml))
     alert("Getting sample metadata from YAML.")
     data <- .sampleYAML(yaml, keys = "metadata")

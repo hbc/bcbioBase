@@ -22,7 +22,7 @@ bcbio doesn't save program versions when run in fast mode.
 Updated 2022-03-07.
 }
 \examples{
-file <- file.path(bcbioBaseTestsURL, "programs.txt")
+file <- file.path(bcbioBaseTestsUrl, "programs.txt")
 x <- importProgramVersions(file)
 print(x)
 }
