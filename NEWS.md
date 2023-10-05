@@ -5,6 +5,16 @@
 Major changes:
 
 - Bumping version due to downstream changes in Acid Genomics dependencies.
+- Now enforcing strict camel case for all function names.
+- Renamed `bcbioBaseTestsURL` to `bcbioBaseTestsUrl`.
+- Renamed `getGTFFileFromYAML` to `getGtfFileFromYaml`.
+- Renamed `getMetricsFromYAML` to `getMetricsFromYaml`.
+- Renamed `getSampleDataFromYAML` to `getSampleDataFromYaml`.
+- Renamed `getUMITypeFromCommands` to `getUmiTypeFromCommands`.
+- Removed stringi dependency in favor of AcidBase variants.
+
+Minor changes:
+
 - Removed utils dependency, due to change in test URL location.
 
 ## bcbioBase 0.8.2 (2023-08-15)
