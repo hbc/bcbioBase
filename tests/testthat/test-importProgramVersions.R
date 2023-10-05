@@ -1,5 +1,5 @@
 test_that("programs.txt", {
-    file <- file.path("cache", "programs.txt")
+    file <- file.path(cacheDir, "programs.txt")
     versions <- importProgramVersions(file)
     expect_s4_class(versions, "DataFrame")
     expect_identical(

@@ -1,4 +1,4 @@
-log <- import(file.path("cache", "surecell-commands.log"))
+log <- import(file.path(cacheDir, "surecell-commands.log"))
 
 test_that("getBarcodeCutoffFromCommands", {
     expect_identical(

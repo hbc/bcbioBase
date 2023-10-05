@@ -1,5 +1,5 @@
 test_that("importDataVersions", {
-    x <- importDataVersions(file.path("cache", "data-versions.csv"))
+    x <- importDataVersions(file.path(cacheDir, "data-versions.csv"))
     expect_s4_class(x, "DataFrame")
     expect_identical(
         object = colnames(x),

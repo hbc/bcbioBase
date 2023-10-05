@@ -1,4 +1,4 @@
-yaml <- import(file.path("cache", "summary.yaml"))
+yaml <- import(file.path(cacheDir, "summary.yaml"))
 
 test_that("getGtfFileFromYaml", {
     expect_message(
@@ -37,7 +37,7 @@ test_that("getSampleDataFromYaml", {
 test_that("Nested metadata", {
     ## Expecting warnings about integer range here.
     suppressWarnings({
-        yaml <- import(file.path("cache", "summary-nested-metadata.yaml"))
+        yaml <- import(file.path(cacheDir, "summary-nested-metadata.yaml"))
     })
     object <- getSampleDataFromYaml(yaml)
     expect_s4_class(object, "DataFrame")
@@ -77,7 +77,7 @@ test_that("getMetricsFromYaml", {
 
 ## Check for proper handling of metrics with mismatched number of values.
 test_that("Mismatched values", {
-    file <- file.path("cache", "summary-invalid-metrics-mismatch.yaml")
+    file <- file.path(cacheDir, "summary-invalid-metrics-mismatch.yaml")
     yaml <- import(file)
     object <- getMetricsFromYaml(yaml)
     expected[["sequenceLength"]] <- "integer"
