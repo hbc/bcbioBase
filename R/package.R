@@ -28,5 +28,4 @@ NULL
 #' isCharacter isMatchingRegex isInRange isInt isScalar isString isSubset
 #' validNames
 #' @importFrom methods as is new
-#' @importFrom utils packageName packageVersion
 NULL

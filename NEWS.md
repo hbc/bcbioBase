@@ -1,5 +1,12 @@
 # Release notes
 
+## bcbioBase 0.9.0 (2023-10-05)
+
+Major changes:
+
+- Bumping version due to downstream changes in Acid Genomics dependencies.
+- Removed utils dependency, due to change in test URL location.
+
 ## bcbioBase 0.8.2 (2023-08-15)
 
 Minor changes:

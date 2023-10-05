@@ -1,13 +1,8 @@
-.version <- packageVersion(packageName())
-
 #' bcbioBase test data URL
 #' @export
 #' @examples
 #' bcbioBaseTestsUrl
-bcbioBaseTestsUrl <- paste0(
-    "https://r.acidgenomics.com/testdata/bcbiobase/",
-    "v", .version$major, ".", .version$minor # nolint
-)
+bcbioBaseTestsUrl <- "https://r.acidgenomics.com/testdata/bcbiobase"
 
 #' Project directory grep pattern
 #' @export

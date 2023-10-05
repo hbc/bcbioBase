@@ -1,8 +1,8 @@
 Package: bcbioBase
 Title: Bcbio Base Functions
 Description: Base functions for bcbio R packages.
-Version: 0.9.0.9000
-Date: 2023-09-27
+Version: 0.9.0
+Date: 2023-10-05
 Authors@R: c(
     person(
         given = "Michael",
@@ -42,18 +42,17 @@ License: AGPL-3
 Encoding: UTF-8
 Depends: R (>= 4.3)
 Imports:
-    AcidBase (>= 0.6.24),
-    AcidCLI (>= 0.2.8),
-    AcidExperiment (>= 0.4.8),
-    AcidPlyr (>= 0.4.2),
+    AcidBase (>= 0.7.0),
+    AcidCLI (>= 0.3.0),
+    AcidExperiment (>= 0.5.0),
+    AcidPlyr (>= 0.5.0),
     S4Vectors (>= 0.38.0),
-    goalie (>= 0.6.19),
+    goalie (>= 0.7.1),
     pipette (>= 0.14.0),
-    syntactic (>= 0.6.7),
-    methods,
-    utils
+    syntactic (>= 0.7.0),
+    methods
 Suggests:
-    AcidDevTools (>= 0.7.0),
+    AcidDevTools (>= 0.7.1),
     testthat (>= 3.1.10)
 Additional_repositories: https://r.acidgenomics.com
 Config/testthat/edition: 3
