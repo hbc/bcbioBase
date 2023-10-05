@@ -1,5 +1,5 @@
 lst <- AcidDevTools::cacheTestFiles(
-    pkg = .pkgName,
+    pkg = "bcbioBase",
     files = c(
         "bcbio-nextgen-commands.log",
         "bcbio-nextgen.log",
