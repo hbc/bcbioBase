@@ -16,7 +16,7 @@ test_that("getSampleDataFromYaml", {
         "description" = factor(samples),
         "genomeBuild" = factor("mm10"),
         "group" = factor(c("ctrl", "ctrl", "ko", "ko")),
-        "samRef" = factor(paste(
+        "samRef" = factor(file.path(
             "",
             "groups",
             "bcbio",
@@ -25,8 +25,7 @@ test_that("getSampleDataFromYaml", {
             "Mmusculus",
             "mm10",
             "seq",
-            "mm10.fa",
-            sep = "/"
+            "mm10.fa"
         )),
         row.names = samples
     )
