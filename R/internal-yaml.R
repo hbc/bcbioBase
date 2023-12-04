@@ -43,7 +43,7 @@
         hasLength(keys, n = 2L) &&
             !isSubset(x = keys[[2L]], y = names(yaml[[1L]][[keys[[1L]]]]))
     ) {
-        return(NULL) # nocov
+        return(NULL)
     }
     ## Top-level sample metadata in the YAML is relatively easy to parse. Just
     ## select for atomic values, otherwise return `NA`.

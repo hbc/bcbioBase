@@ -26,10 +26,8 @@ getMetricsFromYaml <- function(yaml) {
     data <- .sampleYAML(yaml, keys = c("summary", "metrics"))
     ## Early return on empty metrics (e.g. fast mode).
     if (!hasLength(data)) {
-        ## nocov start
         alertWarning("No quality control metrics were calculated.")
         return(NULL)
-        ## nocov end
     }
     ## Drop any metadata columns. Note we're also dropping the duplicate `name`
     ## column present in the metrics YAML.
