@@ -1,7 +1,7 @@
 # bcbioBase
 
 [![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg)](https://bioconda.github.io/recipes/r-bcbiobase/README.html)
-![Lifecycle: retired](https://img.shields.io/badge/lifecycle-retired-brightred.svg)
+![Lifecycle: retired](https://img.shields.io/badge/lifecycle-retired-red.svg)
 
 **NOTE: [bcbio-nextgen][bcbio] is no longer under active development.**
 Refer to the [notice of discontinuation][] for additional details.
